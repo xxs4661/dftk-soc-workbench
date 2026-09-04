@@ -54,3 +54,22 @@ selection = "pending verification"
 sha256_checksums = "pending verification"
 license_review = "pending verification"
 redistributed_files = false
+
+[source.dftk]
+repository = "https://github.com/xxs4661/DFTK.jl.git"
+remote_url = "https://github.com/xxs4661/DFTK.jl.git"
+upstream_remote_url = "https://github.com/JuliaMolSim/DFTK.jl.git"
+branch_or_reference = "refs/heads/master"
+commit = "2f51b91213e26726fb9c6a17e5fae235a1412d01"
+retrieved_at_utc = "2026-09-04T16:41:26Z"
+selection = "user fork"
+checkout = ".work/DFTK.jl"
+
+[source.pseudopotentialio]
+repository = "https://github.com/JuliaMolSim/PseudoPotentialIO.jl.git"
+remote_url = "https://github.com/JuliaMolSim/PseudoPotentialIO.jl.git"
+branch_or_reference = "refs/heads/main"
+commit = "fec942781560c391f20214ba4cd85fb2431deb84"
+retrieved_at_utc = "2026-09-04T16:41:26Z"
+selection = "upstream"
+checkout = ".work/PseudoPotentialIO.jl"

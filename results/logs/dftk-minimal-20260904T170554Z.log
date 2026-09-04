@@ -1,0 +1,226 @@
+Sanitized concise test log; full transient output contained 4022 lines.
+The omitted middle consisted primarily of dependency setup and SCF iteration output.
+
+     Testing DFTK
+        Test Could not use exact versions of packages in manifest. Re-resolving dependencies
+   Installed GR_jll ─────────────────────── v0.73.27+0
+   Installed libfdk_aac_jll ─────────────── v2.0.4+0
+   Installed libdecor_jll ───────────────── v0.2.2+0
+   Installed x265_jll ───────────────────── v4.1.0+0
+   Installed JpegTurbo_jll ──────────────── v3.2.0+1
+   Installed LERC_jll ───────────────────── v4.1.0+0
+   Installed Libmount_jll ───────────────── v2.42.0+0
+   Installed CUPTI ──────────────────────── v6.3.1
+   Installed cuFFT ──────────────────────── v6.3.1
+   Installed Opus_jll ───────────────────── v1.6.1+0
+   Installed LLVMLoopInfo ───────────────── v1.0.0
+   Installed FastGaussQuadrature ────────── v1.3.0
+   Installed LazyGrids ──────────────────── v1.1.0
+   Installed DoubleFloats ───────────────── v1.11.2
+   Installed Xorg_xkbcomp_jll ───────────── v1.4.7+0
+   Installed RelocatableFolders ─────────── v1.0.1
+   Installed ColorSchemes ───────────────── v3.31.0
+   Installed AMDGPU_LLVM_Backend_jll ────── v22.1.8+2
+
+[... middle of raw output omitted from the committed log ...]
+
+  3   -7.900447707339       -3.52       -2.41    1.1   32.5ms
+  4   -7.900486070023       -4.42       -2.84    2.1   43.2ms
+  5   -7.900486899499       -6.08       -3.28    1.0   34.9ms
+  6   -7.900487025130       -6.90       -4.63    1.1   31.7ms
+  7   -7.900487039018       -7.86       -4.68    2.7   53.5ms
+  8   -7.900487039142       -9.91       -5.37    1.0   34.5ms
+  9   -7.900487039154      -10.90       -5.76    1.1   32.1ms
+ 10   -7.900487039156      -11.90       -6.64    1.2   36.2ms
+ 11   -7.900487039156      -12.76       -7.40    2.1   43.9ms
+ 12   -7.900487039156      -14.57       -7.75    2.0   47.7ms
+ 13   -7.900487039156   +    -Inf       -8.46    1.0   31.3ms
+ 14   -7.900487039156      -14.35       -9.12    1.9   41.8ms
+ 15   -7.900487039156   +  -14.57       -9.92    1.9   43.7ms
+ 16   -7.900487039156   +  -14.75      -10.43    2.0   44.7ms
+ 17   -7.900487039156      -14.75      -11.09    1.3   36.9ms
+ 18   -7.900487039156   +    -Inf      -11.43    1.9   42.4ms
+ 19   -7.900487039156      -14.75      -12.13    1.0   34.4ms
+ 20   -7.900487039156   +  -14.75      -12.34    2.0   44.9ms
+ 21   -7.900487039156      -14.75      -13.04    1.0   34.6ms
+n     Energy            log10(ΔE)   log10(Δρ)   Diag   Δtime
+---   ---------------   ---------   ---------   ----   ------
+  1   -7.895674062467                   -0.68    4.3   71.8ms
+  2   -7.900152029992       -2.35       -1.48    1.0   35.5ms
+  3   -7.900449835317       -3.53       -2.41    1.2   34.0ms
+  4   -7.900485597406       -4.45       -2.84    2.1   46.6ms
+  5   -7.900486485690       -6.05       -3.31    1.1   32.4ms
+  6   -7.900486605414       -6.92       -4.64    1.3   36.6ms
+  7   -7.900486618368       -7.89       -4.83    2.7   54.2ms
+  8   -7.900486618432      -10.20       -5.35    1.0   35.0ms
+  9   -7.900486618442      -10.99       -5.96    1.0   32.4ms
+ 10   -7.900486618443      -12.04       -6.78    1.8   55.5ms
+ 11   -7.900486618443      -13.19       -7.55    1.9   43.2ms
+ 12   -7.900486618443   +  -14.75       -7.95    2.0   49.3ms
+ 13   -7.900486618443      -14.45       -8.98    1.0   31.4ms
+ 14   -7.900486618443   +    -Inf       -9.44    2.4   49.1ms
+ 15   -7.900486618443   +  -14.45      -10.10    1.5   35.9ms
+ 16   -7.900486618443   +    -Inf      -10.61    2.0   44.6ms
+ 17   -7.900486618443   +  -15.05      -11.35    1.5   36.6ms
+ 18   -7.900486618443      -14.35      -11.77    2.0   47.7ms
+ 19   -7.900486618443   +  -14.75      -12.61    1.0   32.2ms
+ 20   -7.900486618443   +  -14.75      -12.88    2.0   48.0ms
+ 21   -7.900486618443      -14.75      -13.75    1.2   37.5ms
+n     Energy            log10(ΔE)   log10(Δρ)   Diag   Δtime
+---   ---------------   ---------   ---------   ----   ------
+  1   -7.542047295198                   -0.56    5.5    754ms
+  2   -7.552904872031       -1.96       -1.43    1.0    493ms
+┌ Warning: Returning zero spin density guess, because no initial magnetization has been specified in any of the given elements / atoms. Your SCF will likely not converge to a spin-broken solution.
+└ @ DFTK <workbench>/.work/DFTK.jl/src/density_methods.jl:136
+n     Energy            log10(ΔE)   log10(Δρ)   Magnet   |Magn|   Diag   Δtime
+---   ---------------   ---------   ---------   ------   ------   ----   ------
+  1   -7.762318838154                   -0.78    0.000    0.002    4.5    666ms
+  2   -7.767576502069       -2.28       -1.13   -0.000    0.001    1.0    394ms
+Test Summary:                                                                                    | Pass  Total     Time
+DFTK                                                                                             | 1387   1387  8m16.0s
+  test                                                                                           | 1387   1387  8m16.0s
+    forwarddiff                                                                                  |  136    136  3m16.1s
+      generic.jl                                                                                 |   31     31    26.7s
+        Derivative of complex function                                                           |    1      1     3.9s
+        Higher derivatives of Fermi-Dirac occupation                                             |   18     18    13.4s
+          Avoid NaN from exp-overflow for large x                                                |   18     18    13.3s
+        Derivative of nonlocal projectors at [0,0,0]                                             |   12     12     9.5s
+          l = 0, α = 1                                                                           |    1      1     0.7s
+          l = 0, α = 2                                                                           |    1      1     0.0s
+          l = 0, α = 3                                                                           |    1      1     0.0s
+          l = 1, α = 1                                                                           |    1      1     0.1s
+          l = 1, α = 2                                                                           |    1      1     0.0s
+          l = 1, α = 3                                                                           |    1      1     0.0s
+          l = 2, α = 1                                                                           |    1      1     0.0s
+          l = 2, α = 2                                                                           |    1      1     0.0s
+          l = 2, α = 3                                                                           |    1      1     0.0s
+          l = 3, α = 1                                                                           |    1      1     0.0s
+          l = 3, α = 2                                                                           |    1      1     0.0s
+          l = 3, α = 3                                                                           |    1      1     0.0s
+      geometry.jl                                                                                |  100    100  2m07.2s
+        Force derivatives using ForwardDiff                                                      |    7      7  1m18.7s
+          Multiple partials                                                                      |    3      3    29.3s
+          Derivative for metals                                                                  |    1      1     5.0s
+          Using PspUpf                                                                           |    1      1     6.7s
+        Anisotropic strain sensitivity using ForwardDiff                                         |   10     10    26.1s
+          strain_isotropic Xc(lda_x, lda_c_pw)                                                   |    5      5    14.1s
+          strain_anisotropic Xc(lda_x, lda_c_pw)                                                 |    5      5    11.0s
+        Symmetries broken by perturbation are filtered out                                       |   81     81     1.6s
+          Atom movement                                                                          |   18     18     0.0s
+          Lattice strain                                                                         |   18     18     0.0s
+          Atom movement + lattice strain                                                         |   10     10     0.0s
+          Isotropic lattice scaling                                                              |   34     34     0.0s
+        Symmetry-breaking perturbation using ForwardDiff                                         |    2      2    20.8s
+          perturbation = lattice                                                                 |    1      1    11.2s
+          perturbation = positions                                                               |    1      1     9.4s
+      parameters.jl                                                                              |    5      5    42.2s
+        scfres PSP sensitivity using ForwardDiff                                                 |    1      1    18.5s
+        Functional force sensitivity using ForwardDiff                                           |    1      1     7.1s
+        LocalNonlinearity sensitivity using ForwardDiff                                          |    1      1     2.3s
+        Test scfres dual has the same params as scfres primal                                    |    1      1    11.3s
+        ForwardDiff wrt temperature                                                              |    1      1     3.0s
+    compute_bands.jl                                                                             |    9      9    14.3s
+      Compute bands for silicon                                                                  |    8      8     2.4s
+      compute_bands for meta-GGA                                                                 |    1      1    11.9s
+    exact_exchange.jl                                                                            |   12     12     2.5s
+      Comparison of VanillaExx to AceExx                                                         |   12     12     2.5s
+    forces.jl                                                                                    |   16     16  1m29.2s
+      Forces term-wise TiO2 (GTH)                                                                |    8      8    26.0s
+        Kinetic{BlowupIdentity}                                                                  |    1      1     0.1s
+        AtomicLocal                                                                              |    1      1     0.2s
+        AtomicNonlocal                                                                           |    1      1     0.1s
+        Ewald                                                                                    |    1      1     0.1s
+        PspCorrection                                                                            |    1      1     0.1s
+        Hartree                                                                                  |    1      1     0.1s
+        Xc                                                                                       |    1      1     0.1s
+        Entropy                                                                                  |    1      1     0.1s
+      Forces term-wise TiO2 (UPF)                                                                |    8      8  1m03.3s
+        Kinetic{BlowupIdentity}                                                                  |    1      1     0.5s
+        AtomicLocal                                                                              |    1      1     0.4s
+        AtomicNonlocal                                                                           |    1      1     0.6s
+        Ewald                                                                                    |    1      1     0.7s
+        PspCorrection                                                                            |    1      1     0.3s
+        Hartree                                                                                  |    1      1     0.3s
+        Xc                                                                                       |    1      1     0.5s
+        Entropy                                                                                  |    1      1     0.7s
+    gdensities.jl                                                                                |   24     24     6.7s
+      Test pack/split_gdensity                                                                   |   24     24     6.7s
+    hartree_fock.jl                                                                              |    6      6    12.5s
+      Silicon Hartree-Fock                                                                       |    6      6    12.5s
+    helium_all_electron.jl                                                                       |    2      2     1.2s
+      Helium all electron                                                                        |    2      2     1.2s
+    iron_lda.jl                                                                                  |   39     39     1.2s
+      Iron LDA (Float64)                                                                         |   39     39     1.2s
+    kernel.jl                                                                                    |   36     36    15.5s
+      ForwardDiff potential_terms for libxc                                                      |   36     36    15.5s
+        Spin polarization: none                                                                  |   18     18    15.2s
+        Spin polarization: collinear                                                             |   18     18     0.3s
+    occupation.jl                                                                                |   54     54     4.3s
+      Smearing for a simple metal                                                                |   24     24     2.4s
+      Fermi level finding for smearing multiple εF                                               |   30     30     1.9s
+    save_bands.jl                                                                                |  344    344    28.3s
+      Save_bands                                                                                 |  344    344    28.3s
+        JSON (nospin notemp)                                                                     |   52     52    13.8s
+        JLD2 (nospin notemp)                                                                     |   76     76     8.6s
+        JSON (collinear temp)                                                                    |   84     84     0.0s
+        JLD2 (collinear temp)                                                                    |  132    132     0.0s
+    scf_compare.jl                                                                               |   26     26    27.1s
+      Compare different SCF algorithms (no spin, no temperature)                                 |   13     13    20.6s
+        Direct minimization                                                                      |    1      1     2.0s
+        Newton                                                                                   |    1      1     4.6s
+        Testing ScfAndersonDensitySolver(; m_start=1, m=10, maxcond=1.0e6, errorfactor=100000.0) |    1      1     0.4s
+        Testing ScfDampingSolver()                                                               |    1      1     0.3s
+        Testing KerkerMixing()                                                                   |    1      1     0.9s
+        Testing SimpleMixing()                                                                   |    1      1     0.8s
+        Testing DielectricMixing(εr=12)                                                          |    1      1     0.9s
+        Testing KerkerDosMixing()                                                                |    1      1     1.0s
+        Testing HybridMixing()                                                                   |    1      1     0.7s
+        Testing HybridMixing(εr=10, RPA=false)                                                   |    1      1     0.0s
+        Testing χ0Mixing(χ0terms=[Applyχ0Model()], RPA=true)                                     |    1      1     1.5s
+      Compare different SCF algorithms (collinear spin, no temperature)                          |    2      2     0.7s
+        Direct minimization                                                                      |    1      1     0.3s
+        Newton                                                                                   |    1      1     0.1s
+      Compare different SCF algorithms (no spin, temperature)                                    |    4      4     2.2s
+        Testing KerkerDosMixing()                                                                |    1      1     0.6s
+        Testing HybridMixing(; RPA=true)                                                         |    1      1     0.3s
+        Testing LdosMixing(; RPA=false)                                                          |    1      1     0.0s
+        Testing HybridMixing(; εr=10, RPA=true)                                                  |    1      1     0.0s
+      Compare different SCF algorithms (collinear spin, temperature)                             |    7      7     3.6s
+        Testing KerkerMixing()                                                                   |    1      1     0.7s
+        Testing KerkerDosMixing()                                                                |    1      1     0.2s
+        Testing DielectricMixing(; εr=10)                                                        |    1      1     0.7s
+        Testing HybridMixing(; εr=10)                                                            |    1      1     0.2s
+        Testing χ0Mixing(; χ0terms=[Applyχ0Model()], RPA=false)                                  |    1      1     1.0s
+    silicon_lda.jl                                                                               |   57     57    27.2s
+      Silicon LDA (small, Float64)                                                               |   15     15     1.4s
+      Silicon LDA (small, Float32)                                                               |   15     15    25.5s
+      Silicon LDA (small, collinear spin)                                                        |   27     27     0.3s
+    silicon_nlcc.jl                                                                              |   27     27     0.8s
+      Silicon NLCC (small, collinear spin)                                                       |   27     27     0.8s
+    silicon_pbe.jl                                                                               |   57     57     5.6s
+      Silicon PBE (small, Float64)                                                               |   15     15     4.0s
+      Silicon PBE (small, Float32)                                                               |   15     15     1.4s
+      Silicon PBE (small, collinear spin)                                                        |   27     27     0.3s
+    silicon_pbe0.jl                                                                              |    6      6     7.4s
+      Silicon PBE0                                                                               |    6      6     7.4s
+    silicon_scan.jl                                                                              |   15     15     5.6s
+      Silicon SCAN (small)                                                                       |   15     15     5.6s
+    standard_models.jl                                                                           |   44     44     1.1s
+      Standard DFT model construction                                                            |   44     44     1.1s
+        reduced HF                                                                               |    4      4     0.0s
+        lda from symbols                                                                         |    4      4     0.0s
+        lda from object                                                                          |    5      5     0.0s
+        xc object plus symbol is error                                                           |    1      1     0.4s
+        HF is error                                                                              |    1      1     0.1s
+        hybrid with implicit exx                                                                 |    6      6     0.0s
+        hybrid with explicit exx                                                                 |    6      6     0.0s
+        pbe0 with exx parameters                                                                 |    6      6     0.0s
+        HSE with default parameters                                                              |    5      5     0.1s
+        HSE with custom parameters                                                               |    6      6     0.0s
+    stresses.jl                                                                                  |   10     10    29.9s
+      ForwardDiff stresses on silicon                                                            |   10     10    29.9s
+    todict.jl                                                                                    |  467    467    19.4s
+      todict                                                                                     |  467    467    19.4s
+        nospin notemp                                                                            |  128    128     9.8s
+        collinear temp                                                                           |  339    339     5.7s
+     Testing DFTK tests passed

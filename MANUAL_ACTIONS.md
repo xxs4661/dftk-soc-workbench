@@ -4,6 +4,12 @@
 
 None at handoff. The public workbench repository and the public DFTK fork were created successfully. No upstream issue or pull request was created or modified.
 
+## Required for Phase 2
+
+None. Source acquisition, environment collection, bootstrap, and the upstream DFTK `:minimal` test selection all executed successfully.
+
+The restricted local execution context did not permit the CPU and memory `sysctl` queries, and `pw.x -version` did not return normally. These missing optional inventory fields did not block DFTK bootstrap or testing; the local template includes the exact commands for collecting them later from an unrestricted terminal.
+
 ## Required before later numerical phases
 
 These are explicitly documented future values, not Phase 1 blockers:
