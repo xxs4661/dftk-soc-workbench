@@ -10,3 +10,5 @@ Before committing a log:
 - verify that it contains no pseudopotential payload or large binary-derived dump.
 
 Prefer a concise Markdown result table when a full log is not needed.
+
+Phase 3's `upf-inspection-20260904T174614Z.log` contains only the sanitized stage statuses and exit code. The pseudopotential payload remains under the ignored `.work/` directory.

@@ -4,6 +4,11 @@ schema = 1
 captured_at_utc = "2026-09-04T16:17:04Z"
 purpose = "Phase 1 repository and upstream-context snapshot"
 
+[inspection.phase_3]
+executed_at_utc = "2026-09-04T17:46:14Z"
+scope = "fully relativistic NC-UPF metadata and current scalar nonlocal path"
+runtime_status = "PASS: raw parse succeeded; DFTK construction was separately rejected as unsupported"
+
 [workbench]
 repository = "https://github.com/xxs4661/dftk-soc-workbench"
 visibility = "public"
@@ -50,9 +55,20 @@ commit = "pending verification"
 role = "numerical reference only; no source translation"
 
 [pseudopotentials]
-selection = "pending verification"
-sha256_checksums = "pending verification"
-license_review = "pending verification"
+selection = "dojo.nc.fr.pbesol.v0_4.stringent.upf / Mg.upf (inspection only)"
+element = "Mg"
+family_identifier = "dojo.nc.fr.pbesol.v0_4.stringent.upf"
+file_name = "Mg.upf"
+source_identifier = "PseudoPotentialData v0.3.2 / PseudoLibrary v0.2.1 artifact"
+source_url = "https://github.com/JuliaMolSim/PseudoLibrary/releases/download/v0.2.1/dojo.nc.fr.pbesol.v0_4.stringent.upf.tar.gz"
+artifact_git_tree_sha1 = "b9d31b902d479f27ebd6420c6e4cc0bb5281d8b0"
+archive_sha256 = "30670649c0eb3f0537f64bf2ab98d1ebba005bdb72f07970673dacea2f3f2be4"
+file_sha256 = "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256"
+local_path = ".work/pseudos/Mg.upf"
+relativistic = "full"
+pseudo_type = "NC"
+has_so = true
+license_review = "not verified; file inspected locally only"
 redistributed_files = false
 
 [source.dftk]

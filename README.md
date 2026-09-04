@@ -75,6 +75,8 @@ The upstream items were open at the recorded inspection time; see [`config/sourc
 - [`environment/`](environment/README.md): reproducibility records and templates
 - [`results/`](results/README.md): policy for small, reviewable results
 - [`scripts/`](scripts/README.md): policy for future automation
+- [`results/fully-relativistic-upf-inspection.md`](results/fully-relativistic-upf-inspection.md): Phase 3 runtime and source inspection
+- [`HANDOFF_TO_GPT56PRO.md`](HANDOFF_TO_GPT56PRO.md): reviewer-oriented execution and evidence handoff
 - [`CONTRIBUTING.md`](CONTRIBUTING.md): contribution and clean-room rules
 - [`MANUAL_ACTIONS.md`](MANUAL_ACTIONS.md): remaining human verification
 

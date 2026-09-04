@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "source_revisions": {
+    "dftk": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+    "pseudopotentialio": "fec942781560c391f20214ba4cd85fb2431deb84"
+  },
+  "loaded_packages": {
+    "dftk": "0.8.0",
+    "pseudopotentialio": "0.3.3",
+    "pseudopotentialio_tree_sha1": "749e921146af23d79563a9e9c409ae807fdc261b"
+  },
+  "input": {
+    "path": ".work/pseudos/Mg.upf",
+    "file_name": "Mg.upf",
+    "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "family_identifier": "dojo.nc.fr.pbesol.v0_4.stringent.upf",
+    "source_identifier": "PseudoPotentialData v0.3.2 / PseudoLibrary v0.2.1 artifact",
+    "redistribution_status": "not verified; inspected locally and not redistributed"
+  },
+  "raw_upf_parsing": {
+    "status": "PASS",
+    "parser": "PseudoPotentialIO.load_psp_file",
+    "parsed_type": "UpfFile"
+  },
+  "upf": {
+    "version": "2.0.1",
+    "pseudo_type": "NC",
+    "relativistic": "full",
+    "has_so": true,
+    "element": "Mg",
+    "beta_projector_count": 6,
+    "beta_angular_momenta": [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "beta_records": [
+      {
+        "position": 1,
+        "index": 1,
+        "l": 0
+      },
+      {
+        "position": 2,
+        "index": 2,
+        "l": 0
+      },
+      {
+        "position": 3,
+        "index": 3,
+        "l": 1
+      },
+      {
+        "position": 4,
+        "index": 4,
+        "l": 1
+      },
+      {
+        "position": 5,
+        "index": 5,
+        "l": 1
+      },
+      {
+        "position": 6,
+        "index": 6,
+        "l": 1
+      }
+    ],
+    "relativistic_beta_record_count": 6,
+    "relativistic_beta_l_values": [
+      0,
+      1
+    ],
+    "relativistic_beta_j_values": [
+      0.5,
+      1.5
+    ],
+    "relativistic_beta_records": [
+      {
+        "index": 1,
+        "l": 0,
+        "j": 0.5,
+        "matches_beta_index": true
+      },
+      {
+        "index": 2,
+        "l": 0,
+        "j": 0.5,
+        "matches_beta_index": true
+      },
+      {
+        "index": 3,
+        "l": 1,
+        "j": 0.5,
+        "matches_beta_index": true
+      },
+      {
+        "index": 4,
+        "l": 1,
+        "j": 1.5,
+        "matches_beta_index": true
+      },
+      {
+        "index": 5,
+        "l": 1,
+        "j": 0.5,
+        "matches_beta_index": true
+      },
+      {
+        "index": 6,
+        "l": 1,
+        "j": 1.5,
+        "matches_beta_index": true
+      }
+    ],
+    "relativistic_wavefunction_records_present": true,
+    "relativistic_wavefunction_record_count": 4,
+    "relativistic_wavefunction_records": [
+      {
+        "index": 1,
+        "l": 0,
+        "j": 0.5,
+        "principal_n": 1
+      },
+      {
+        "index": 2,
+        "l": 1,
+        "j": 1.5,
+        "principal_n": 2
+      },
+      {
+        "index": 3,
+        "l": 1,
+        "j": 0.5,
+        "principal_n": 2
+      },
+      {
+        "index": 4,
+        "l": 0,
+        "j": 0.5,
+        "principal_n": 3
+      }
+    ]
+  },
+  "dftk_construction": {
+    "attempted": true,
+    "status": "REJECTED",
+    "error_type": "ErrorException",
+    "error_message": "Pseudopotential contains the following unsupported features/quantities: spin-orbit coupling"
+  }
+}
