@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "repository": {
+    "name_with_owner": "xxs4661/dftk-soc-workbench",
+    "url": "https://github.com/xxs4661/dftk-soc-workbench",
+    "visibility": "public",
+    "branch": "main",
+    "default_branch": "main"
+  },
+  "commit_shas": {
+    "phase_1": "37ee4395def8236e0b0f153f9265ddbaf40c90cb",
+    "phase_2": "1cf3780aa35761643bb49594a61d435eb7118d41",
+    "phase_3": "ae1be76fd983b44692e8e0340564db873f8c1c47"
+  },
+  "locked_sources": {
+    "dftk": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+    "pseudopotentialio": "fec942781560c391f20214ba4cd85fb2431deb84",
+    "loaded_pseudopotentialio_tree_sha1": "749e921146af23d79563a9e9c409ae807fdc261b"
+  },
+  "environment": {
+    "type": "local macOS workspace",
+    "operating_system": "macOS 26.4, build 25E246",
+    "architecture": "arm64",
+    "julia": "1.12.7"
+  },
+  "commands": [
+    {
+      "name": "fetch_locked_sources_phase_2",
+      "command": "scripts/fetch_sources.sh",
+      "exit_code": 0
+    },
+    {
+      "name": "collect_environment_phase_2",
+      "command": "scripts/collect_environment.sh",
+      "exit_code": 0
+    },
+    {
+      "name": "bootstrap_dftk_phase_2",
+      "command": "scripts/bootstrap_dftk.sh",
+      "exit_code": 0
+    },
+    {
+      "name": "dftk_minimal_phase_2",
+      "command": "scripts/run_dftk_minimal.sh",
+      "exit_code": 0
+    },
+    {
+      "name": "resolve_pseudopotential_data_artifact",
+      "command": "JULIA_DEPOT_PATH=.work/julia-depot julia --startup-file=no --project=.work/DFTK.jl -e <PseudoPotentialData family resolution>",
+      "exit_code": 0
+    },
+    {
+      "name": "initial_inspector_help_with_unavailable_json3",
+      "command": "JULIA_DEPOT_PATH=.work/julia-depot julia --startup-file=no --color=no --project=.work/DFTK.jl scripts/inspect_relativistic_upf.jl --help",
+      "exit_code": 1
+    },
+    {
+      "name": "inspector_help_after_dependency_free_json_change",
+      "command": "JULIA_DEPOT_PATH=.work/julia-depot julia --startup-file=no --color=no --project=.work/DFTK.jl scripts/inspect_relativistic_upf.jl --help",
+      "exit_code": 0
+    },
+    {
+      "name": "runtime_inspection",
+      "command": "scripts/run_upf_inspection.sh",
+      "exit_code": 0
+    },
+    {
+      "name": "independent_file_checksum",
+      "command": "shasum -a 256 .work/pseudos/Mg.upf",
+      "exit_code": 0
+    },
+    {
+      "name": "json_syntax",
+      "command": "python3 -m json.tool results/upf-inspection.json",
+      "exit_code": 0
+    },
+    {
+      "name": "combined_preflight_ending_in_missing_origin_head_symbolic_ref",
+      "command": "git history/status/source checks; git symbolic-ref --short refs/remotes/origin/HEAD",
+      "exit_code": 128
+    },
+    {
+      "name": "first_missing_input_wrapper_with_reserved_zsh_variable",
+      "command": "inspector missing-input check; assign status=$?",
+      "exit_code": 1,
+      "inspector_exit_code": 2
+    },
+    {
+      "name": "corrected_missing_input_check",
+      "command": "inspector missing-input check; assign input_exit=$?; test input_exit -eq 2",
+      "exit_code": 0,
+      "inspector_exit_code": 2
+    },
+    {
+      "name": "restricted_repository_metadata_check",
+      "command": "gh repo view xxs4661/dftk-soc-workbench --json nameWithOwner,url,visibility,defaultBranchRef",
+      "exit_code": 1
+    },
+    {
+      "name": "approved_repository_metadata_check",
+      "command": "gh repo view xxs4661/dftk-soc-workbench --json nameWithOwner,url,visibility,defaultBranchRef",
+      "exit_code": 0
+    },
+    {
+      "name": "first_staged_diff_check",
+      "command": "git diff --cached --check",
+      "exit_code": 2
+    },
+    {
+      "name": "phase_3_commit_after_whitespace_correction",
+      "command": "git diff --cached --check; git commit -m Inspect fully relativistic UPF metadata and DFTK projector path",
+      "exit_code": 0
+    },
+    {
+      "name": "restricted_phase_3_push",
+      "command": "git push origin main",
+      "exit_code": 128
+    },
+    {
+      "name": "approved_phase_3_push",
+      "command": "git push origin main",
+      "exit_code": 0
+    },
+    {
+      "name": "final_content_validation",
+      "command": "JSON, TOML, shell, diff, no-UPF, exact-lock, source-cleanliness, commit-count, and secret-pattern validation group",
+      "exit_code": 0
+    }
+  ],
+  "test_statuses": {
+    "dftk_minimal": {
+      "status": "PASS",
+      "exit_code": 0,
+      "selection": "upstream :minimal, not full suite",
+      "passed": 1387,
+      "total": 1387
+    },
+    "inspector_help": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "missing_input_validation": {
+      "status": "PASS",
+      "observed_inspector_exit_code": 2
+    },
+    "raw_upf_parse": {
+      "status": "PASS"
+    },
+    "dftk_construction": {
+      "status": "REJECTED",
+      "expected_for_locked_source": true,
+      "message": "Pseudopotential contains the following unsupported features/quantities: spin-orbit coupling"
+    },
+    "runtime_inspection": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "independent_sha256": {
+      "status": "PASS",
+      "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256"
+    },
+    "no_tracked_upf": {
+      "status": "PASS"
+    },
+    "locked_source_cleanliness": {
+      "status": "PASS"
+    }
+  },
+  "runtime_input": {
+    "element": "Mg",
+    "family_identifier": "dojo.nc.fr.pbesol.v0_4.stringent.upf",
+    "file_name": "Mg.upf",
+    "source_identifier": "PseudoPotentialData v0.3.2 / PseudoLibrary v0.2.1 artifact",
+    "local_path": ".work/pseudos/Mg.upf",
+    "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "redistribution_status": "not verified; inspected locally and not redistributed"
+  },
+  "report_paths": [
+    "HANDOFF_TO_GPT56PRO.md",
+    "results/fully-relativistic-upf-inspection.md",
+    "results/source-map.md",
+    "results/upf-inspection.json",
+    "results/minimal-test-summary.md",
+    "results/environment-summary.md"
+  ],
+  "blockers": [
+    {
+      "scope": "UPF redistribution",
+      "status": "BLOCKED",
+      "reason": "Data-license terms have not been positively verified; payload was not committed."
+    },
+    {
+      "scope": "future QE comparison",
+      "status": "PENDING",
+      "reason": "Exact QE source revision and executable version are not yet verified."
+    }
+  ],
+  "draft_pull_request": {
+    "status": "NOT CREATED",
+    "reason": "The requested current branch main is also the repository default branch; no distinct head/base comparison exists.",
+    "failure": false,
+    "comparison": "https://github.com/xxs4661/dftk-soc-workbench/compare/1cf3780aa35761643bb49594a61d435eb7118d41...ae1be76fd983b44692e8e0340564db873f8c1c47"
+  },
+  "upstream_actions": {
+    "issues_created_or_commented": false,
+    "pull_requests_created": false,
+    "source_changes": false
+  },
+  "claims_not_made": [
+    "correct SOC Hamiltonian",
+    "correct Clebsch-Gordan convention",
+    "numerical agreement with Quantum ESPRESSO",
+    "accepted DFTK architecture"
+  ]
+}
