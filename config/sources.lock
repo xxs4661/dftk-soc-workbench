@@ -1,0 +1,56 @@
+schema = 1
+
+[record]
+captured_at_utc = "2026-09-04T16:17:04Z"
+purpose = "Phase 1 repository and upstream-context snapshot"
+
+[workbench]
+repository = "https://github.com/xxs4661/dftk-soc-workbench"
+visibility = "public"
+branch_at_preflight = "main"
+commit_at_preflight = "unborn branch; no commit existed"
+origin_fetch = "https://github.com/xxs4661/dftk-soc-workbench.git"
+origin_push = "https://github.com/xxs4661/dftk-soc-workbench.git"
+
+[upstream.dftk]
+repository = "https://github.com/JuliaMolSim/DFTK.jl"
+default_branch = "master"
+observed_commit = "2f51b91213e26726fb9c6a17e5fae235a1412d01"
+role = "upstream context only; not modified"
+
+[upstream.issue_526]
+url = "https://github.com/JuliaMolSim/DFTK.jl/issues/526"
+title = "Non-collinear magnetism"
+state_at_capture = "open"
+updated_at_utc = "2023-12-14T08:18:09Z"
+
+[upstream.issue_1272]
+url = "https://github.com/JuliaMolSim/DFTK.jl/issues/1272"
+title = "Making noncollinear calculation (`spin_polarization=:full`) enabled/supported"
+state_at_capture = "open"
+updated_at_utc = "2026-02-28T16:02:04Z"
+
+[upstream.pull_1273]
+url = "https://github.com/JuliaMolSim/DFTK.jl/pull/1273"
+title = "Noncollinear (`spin_polarization=:full`) calculation added"
+state_at_capture = "open and unmerged"
+updated_at_utc = "2026-03-04T09:50:26Z"
+
+[fork.dftk]
+repository = "https://github.com/xxs4661/DFTK.jl"
+parent = "https://github.com/JuliaMolSim/DFTK.jl"
+visibility = "public"
+default_branch = "master"
+exists_at_capture = true
+modified_by_phase_1 = false
+
+[reference.quantum_espresso]
+repository_or_release = "pending verification"
+commit = "pending verification"
+role = "numerical reference only; no source translation"
+
+[pseudopotentials]
+selection = "pending verification"
+sha256_checksums = "pending verification"
+license_review = "pending verification"
+redistributed_files = false
