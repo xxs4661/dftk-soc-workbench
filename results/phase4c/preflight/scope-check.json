@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "base_commit": "f05e6d70750f10d5ea87ebb9f7c6a5ec993c7063",
+  "base_tracked_file_count": 119,
+  "protected_files_unchanged": 114,
+  "permitted_modified_base_files": [
+    "scripts/compare_scalar_baseline.py",
+    "scripts/parse_qe_baseline.py",
+    "scripts/run_dftk_baseline.jl",
+    "scripts/run_scalar_baseline.py",
+    "tests/test_qe_baseline_parser.py"
+  ],
+  "upstreams": {
+    "DFTK.jl": {
+      "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+      "worktree_status": "clean"
+    },
+    "PseudoPotentialIO.jl": {
+      "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+      "worktree_status": "clean"
+    }
+  },
+  "note": "Includes frozen environment/lock/checksums, FR-NC tools, all Phase4A/4B configurations/reports/results. No upstream source changed."
+}

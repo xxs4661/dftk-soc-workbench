@@ -2,6 +2,7 @@
 """Check paired Si inputs before comparing raw and globally referenced energies."""
 import argparse
 import csv
+import itertools
 import json
 import math
 from pathlib import Path
@@ -27,6 +28,29 @@ def validate_case(case):
             xc['dftk_identifiers'] != ['lda_x','lda_c_pw'] or
             xc['qe_internal_indices'] != [1,4,0,0] or xc['libxc_ids'] != [1,12]):
         raise ValueError('Unsupported or inconsistent case XC mapping')
+    electrons = case['electrons']
+    if any(electrons[key] != value for key, value in
+           [('n_electrons', 8), ('n_bands', 8), ('n_occupied', 4), ('spin_degeneracy', 2)]):
+        raise ValueError('Si case requires eight electrons, eight scalar bands and four occupied bands')
+    requested_kpoint_count(case)
+
+
+def requested_kpoint_count(case):
+    """The request, never the output, defines the expected 8/64-point grid.
+
+    Historical B0 has no count field; its explicit input list remains authoritative.
+    New cases also declare n_kpoints, which must agree with that list.
+    """
+    points = case['kpoints']
+    count = case.get('n_kpoints', len(points))
+    if type(count) is not int or count not in (8, 64) or len(points) != count:
+        raise ValueError('Requested k-point count must be 8 or 64 and match the explicit list')
+    axis = (0, -.5) if count == 8 else (0, .25, -.5, -.25)
+    expected = [{'coordinate_fractional': list(p)} for p in itertools.product(axis, repeat=3)]
+    match_kpoints(expected, points)
+    for point in points:
+        check_close(point['weight_spatial'], 1 / count, 'Requested spatial weight', tol=1e-12)
+    return count
 
 
 def lattice_columns(vectors):

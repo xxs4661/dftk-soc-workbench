@@ -1,5 +1,5 @@
 #!/usr/bin/env julia
-# Phase 4B only: scalar Si SCF, followed by eight converged bands at the final SCF potential.
+# Scalar Si SCF, followed by eight converged bands at the final SCF potential.
 # API evidence: DFTK 2f51b91213e26726fb9c6a17e5fae235a1412d01:
 # src/bzmesh.jl:102; src/scf/nbands_algorithm.jl:19;
 # src/scf/self_consistent_field.jl:239,270; src/eigen/diag.jl:10.
@@ -197,6 +197,22 @@ function run_baseline!(result, casepath, psppath, outputpath)
     diagonal.converged || error("Final-potential diagonalization did not converge")
     all(maximum(res[1:nbands]) < dtol for res in diagonal.residual_norms) ||
         error("Target empty/occupied band residual exceeds the requested tolerance")
+    # LOBPCG history can contain zero slots for already locked states. Separately
+    # recompute every target residual on the unchanged final SCF Hamiltonian.
+    # Matrix application API: pinned DFTK src/terms/Hamiltonian.jl:67,88,137.
+    explicit_residuals = map(eachindex(basis.kpoints)) do ik
+        orbitals = diagonal.X[ik][:, 1:nbands]
+        residual = scf.ham[ik] * orbitals - orbitals .* transpose(diagonal.λ[ik][1:nbands])
+        [norm(view(residual, :, band)) for band in 1:nbands]
+    end
+    finite_data(explicit_residuals)
+    result["diagonalization"]["explicit_recomputed_residuals_ha"] = explicit_residuals
+    result["diagonalization"]["explicit_recomputed_residual_max_ha"] = maximum(maximum, explicit_residuals)
+    result["diagonalization"]["residuals_note"] =
+        "residuals_ha is solver history (previously locked states may have zero slots); " *
+        "explicit_recomputed_residuals_ha is norm(H*psi-lambda*psi) for each target band " *
+        "on the final SCF Hamiltonian. The explicit values are diagnostics; the existing " *
+        "solver convergence criterion is unchanged."
     occupation, fermi = DFTK.compute_occupation(basis, diagonal.λ)
     result["diagonalization"]["all_occupations_raw"] = occupation
     result["integrated_n_electrons"] = check_occupations(occupation, basis.kweights, electrons)

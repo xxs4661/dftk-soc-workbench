@@ -13,7 +13,7 @@ import sys
 import uuid
 import xml.etree.ElementTree as ET
 
-from compare_scalar_baseline import compare, finite_tree, lattice_columns, save_comparison, validate_case, volume
+from compare_scalar_baseline import compare, finite_tree, lattice_columns, requested_kpoint_count, save_comparison, validate_case, volume
 from parse_qe_baseline import parse_qe
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -68,8 +68,7 @@ def make_inputs(case_path, directory):
         raise ValueError('Inconsistent cutoff or occupation configuration')
     if not (q['ibrav']==0 and q['nspin']==1 and not q['noncolin'] and not q['lspinorb'] and q['nosym'] and q['noinv'] and q['diago_full_acc'] and not case['dftk']['symmetries']):
         raise ValueError('Unsupported scalar/symmetry/diagonalization configuration')
-    if len(case['kpoints']) != 8 or abs(sum(p['weight_spatial'] for p in case['kpoints'])-1) > 1e-12:
-        raise ValueError('Case must contain eight explicit spatially normalized k points')
+    requested_kpoint_count(case)
     boolean = lambda value: '.true.' if value else '.false.'
     lines = ["&CONTROL", " calculation='scf', prefix='si', restart_mode='from_scratch',",
              " pseudo_dir='../pseudo', outdir='./scratch', verbosity='high',", "/", "&SYSTEM",
@@ -145,6 +144,20 @@ def new_run_directory(parent):
     return directory
 
 
+def check_reference_environment(environment, qe, reference):
+    """Do not mix a changed executable/environment into the Phase 4C sequence."""
+    for key in ('julia_version', 'manifest_sha256', 'project_sha256', 'source_lock_sha256'):
+        if environment[key] != reference['environment'][key]:
+            raise PrerequisiteError('Reference workbench identity mismatch: ' + key)
+    for name in ('dftk', 'pseudopotentialio'):
+        for key in ('uuid', 'version', 'commit', 'worktree_status'):
+            if environment['packages'][name][key] != reference['environment']['packages'][name][key]:
+                raise PrerequisiteError('Reference loaded package mismatch: ' + name + '.' + key)
+    for key in ('binary_sha256', 'launcher_sha256', 'runner_sha256', 'jll_version', 'jll_uuid'):
+        if qe.get(key) != reference['qe_identity'].get(key):
+            raise PrerequisiteError('Reference QE identity mismatch: ' + key)
+
+
 def run_case(case_path, *, pw_x=None, julia_depot=None):
     directory = new_run_directory(ROOT/'.work/scalar-baseline')
     result = {'schema_version':1,'run_id':directory.name,'execution_status':'BLOCKED',
@@ -181,6 +194,13 @@ def run_case(case_path, *, pw_x=None, julia_depot=None):
             raise PrerequisiteError('QE pw.x not found')
         launcher=str(Path(launcher).absolute())
         result['qe_identity']=qe_identity(launcher,directory,env)
+        reference = None
+        if 'phase4c' in case:
+            reference_path = ROOT / case['phase4c']['reference_result']
+            reference = json.loads(reference_path.read_text())
+            check_reference_environment(result['environment'], result['qe_identity'], reference)
+            result['reference_identity_check'] = {'status': 'PASS',
+                'reference_run_id': reference['run_id'], 'reference_result_sha256': sha256(reference_path)}
         result['reasons']=['Configuration, input hashes and environment recorded; SCF pending']
         write_json(directory/'result.json',result)
         # Both engines read this exact copied UPF. QE's .save starts in a new directory.
@@ -192,7 +212,12 @@ def run_case(case_path, *, pw_x=None, julia_depot=None):
         check_pseudo(local_pseudo,case)
         if qe_run['exit_code'] != 0:
             raise ValueError('QE SCF process failed')
-        qe=parse_qe(qe_dir/'scratch/si.save/data-file-schema.xml',(qe_dir/'qe.stdout').read_text(),qe_run['exit_code'])
+        qe=parse_qe(qe_dir/'scratch/si.save/data-file-schema.xml',(qe_dir/'qe.stdout').read_text(),
+                    qe_run['exit_code'], expected_n_kpoints=requested_kpoint_count(case))
+        if sha256(result['qe_identity']['binary_path']) != result['qe_identity']['binary_sha256']:
+            raise PrerequisiteError('QE executable changed during the run')
+        if reference is not None and qe['version'] != reference['qe_identity']['startup_version']:
+            raise PrerequisiteError('Actual QE startup version differs from the historical reference')
         qe['pseudo_sha256']=sha256(local_pseudo)
         # The two engines' shared file was checked before and after QE; the XML/stdout
         # identify Si.upf. NLCC must also be present in the QE parser's actual evidence.

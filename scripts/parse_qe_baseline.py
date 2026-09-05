@@ -72,15 +72,17 @@ def dot(left, right):
     return sum(a * b for a, b in zip(left, right))
 
 
-def parse_qe(xml_path, stdout_text, exit_code):
+def parse_qe(xml_path, stdout_text, exit_code, *, expected_n_kpoints):
     """Return finite, normalized final SCF data; reject missing/failed evidence."""
+    if type(expected_n_kpoints) is not int or expected_n_kpoints not in (8, 64):
+        raise ValueError("Requested QE k-point count must be explicitly 8 or 64")
     try:
-        return _parse_qe(xml_path, stdout_text, exit_code)
+        return _parse_qe(xml_path, stdout_text, exit_code, expected_n_kpoints)
     except (KeyError, TypeError, ArithmeticError) as error:
         raise ValueError("QE result has malformed required fields") from error
 
 
-def _parse_qe(xml_path, stdout_text, exit_code):
+def _parse_qe(xml_path, stdout_text, exit_code, expected_n_kpoints):
     if type(exit_code) is not int or exit_code != 0:
         raise ValueError("QE process did not exit normally with code 0")
     if "JOB DONE." not in stdout_text:
@@ -147,8 +149,10 @@ def _parse_qe(xml_path, stdout_text, exit_code):
     n_electrons = finite(text(bands, "nelec"))
     n_bands = positive_int(text(bands, "nbnd"))
     n_kpoints = positive_int(text(bands, "nks"))
-    if n_bands != 8 or n_kpoints != 8 or abs(n_electrons - 8) > 1e-8:
-        raise ValueError("QE must report 8 electrons, 8 scalar bands and 8 k points")
+    if n_bands != 8 or abs(n_electrons - 8) > 1e-8:
+        raise ValueError("QE must report 8 electrons and 8 scalar bands")
+    if n_kpoints != expected_n_kpoints:
+        raise ValueError("QE k-point count disagrees with the requested configuration")
 
     structure = require(output, "atomic_structure")
     n_atoms = positive_int(structure.attrib["nat"])
@@ -192,6 +196,18 @@ def _parse_qe(xml_path, stdout_text, exit_code):
         })
     if abs(sum(k["weight_raw"] for k in kpoints) - 2) > 1e-8:
         raise ValueError("QE nonmagnetic raw k-point weights must sum to 2")
+    if any(abs(k["weight_raw"] - 2 / expected_n_kpoints) > 1e-8 for k in kpoints):
+        raise ValueError("QE k-point weights must be uniform for the requested grid")
+    # Compare reciprocal fractional coordinates modulo integer reciprocal vectors;
+    # neither row order nor a raw Cartesian value identifies a distinct k point.
+    for i, point in enumerate(kpoints):
+        coordinate = point["coordinate_fractional"]
+        if not all(math.isfinite(value) for value in coordinate):
+            raise ValueError("QE k-point conversion produced nonfinite coordinates")
+        for previous in kpoints[:i]:
+            if all(abs((a - b) - round(a - b)) <= 1e-8 for a, b in
+                   zip(coordinate, previous["coordinate_fractional"])):
+                raise ValueError("QE k-point list contains duplicate reciprocal points")
     electron_sum_raw = sum(k["weight_raw"] * sum(k["occupations_raw"]) for k in kpoints)
     electron_sum = sum(k["weight_spatial"] * sum(k["occupations"]) for k in kpoints)
     if any(abs(value - n_electrons) > 1e-8 for value in (electron_sum_raw, electron_sum)):
@@ -286,9 +302,12 @@ def main():
     parser.add_argument("xml", type=Path)
     parser.add_argument("stdout", type=Path)
     parser.add_argument("--exit-code", type=int, required=True)
+    parser.add_argument("--expected-kpoints", type=int, choices=(8, 64), required=True,
+                        help="k-point count from the requested case, not from QE output")
     args = parser.parse_args()
     try:
-        result = parse_qe(args.xml, args.stdout.read_text(), args.exit_code)
+        result = parse_qe(args.xml, args.stdout.read_text(), args.exit_code,
+                          expected_n_kpoints=args.expected_kpoints)
         print(json.dumps(result, indent=2, allow_nan=False))
     except (ValueError, KeyError, OSError) as error:
         print("QE parse failed: " + str(error), file=sys.stderr)

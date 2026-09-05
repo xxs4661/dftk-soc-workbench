@@ -1,0 +1,12 @@
+Scalar Si inputs and current loaded environment verified. Starting SCF.
+n     Energy            log10(ΔE)   log10(Δρ)   Diag   Δtime
+---   ---------------   ---------   ---------   ----   ------
+  1   -8.423475991140                   -0.82   37.1    4.36s
+  2   -8.428849153524       -2.27       -1.72   23.4    2.93s
+  3   -8.428891285351       -4.38       -2.58   20.9    1.71s
+  4   -8.428892051577       -6.12       -3.83   16.4    1.56s
+  5   -8.428892052775       -8.92       -5.26   15.4    1.25s
+  6   -8.428892052776      -11.93       -6.28   11.1    1.08s
+  7   -8.428892052776      -13.97       -8.64   10.4    798ms
+SCF converged; diagonalizing its final Hamiltonian for eight target bands.
+DFTK SCF and final-potential target-band diagonalization converged.

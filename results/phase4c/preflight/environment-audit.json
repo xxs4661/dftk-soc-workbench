@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "identity_command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "scripts/run_recorded.py",
+    "identity"
+  ],
+  "identity_exit_code": 0,
+  "workbench_identity_matches_B0": true,
+  "qe_launcher_and_binary_match_B0": true,
+  "qe_startup_version": "Pending confirmation from new actual SCF startup; binary identical to B0 QE7.5",
+  "base_commit": "f05e6d70750f10d5ea87ebb9f7c6a5ec993c7063"
+}

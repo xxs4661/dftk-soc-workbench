@@ -1,0 +1,110 @@
+{
+  "files": [
+    {
+      "file": "case.json",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/case.json",
+      "raw_sha256": "fbaecf97ca828ba324f6b983cbee236b1c5bdceb10ce881426774b2fa44eccb8",
+      "published_sha256": "fbaecf97ca828ba324f6b983cbee236b1c5bdceb10ce881426774b2fa44eccb8",
+      "content_changed": false
+    },
+    {
+      "file": "dftk-input.json",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/dftk-input.json",
+      "raw_sha256": "941fcc81ee0b054b585df67b78059906aee49da1f2ca51cf47215dc04d11ce1b",
+      "published_sha256": "941fcc81ee0b054b585df67b78059906aee49da1f2ca51cf47215dc04d11ce1b",
+      "content_changed": false
+    },
+    {
+      "file": "qe.in",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/qe.in",
+      "raw_sha256": "4ae4b6833eeaf1b09f8644ca0bfa0c236fc840e33d021b51b8b162bad8fa6df9",
+      "published_sha256": "4ae4b6833eeaf1b09f8644ca0bfa0c236fc840e33d021b51b8b162bad8fa6df9",
+      "content_changed": false
+    },
+    {
+      "file": "result.json",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/result.json",
+      "raw_sha256": "79c99f4577dd0ee0ddf3cdc60f5e3f634e7abe613875e1bd8936a75e2bdaa20d",
+      "published_sha256": "f7767adfbef46f45ddaa078e35602c9433f6230b5574c487044911a7fc8dc488",
+      "content_changed": true
+    },
+    {
+      "file": "dftk-result.json",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/dftk-result.json",
+      "raw_sha256": "0e32edfd4dafcc10040d0f8f113dbd6c50c396748d91a895f19cfe62a7029034",
+      "published_sha256": "0e32edfd4dafcc10040d0f8f113dbd6c50c396748d91a895f19cfe62a7029034",
+      "content_changed": false
+    },
+    {
+      "file": "qe-result.json",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/qe-result.json",
+      "raw_sha256": "d3372a839f976979aea5f1dc99fe5c1070708ec8ddc88b0bb90b49b7461736a4",
+      "published_sha256": "d3372a839f976979aea5f1dc99fe5c1070708ec8ddc88b0bb90b49b7461736a4",
+      "content_changed": false
+    },
+    {
+      "file": "dftk.stdout",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/dftk.stdout",
+      "raw_sha256": "be4b4ac0a09ce73cdfb5d17511da7af77dd2f4045648849e3a619851603200d4",
+      "published_sha256": "8c733ac87c074690220904a10926f6606c51b609c4f8e402695cda11e6cd5384",
+      "content_changed": true
+    },
+    {
+      "file": "dftk.stderr",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/dftk.stderr",
+      "raw_sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+      "published_sha256": "e2e8e34beba576847cb55010f3d8de5c333fcedd9c63b69117e9f8dfd917f0ce",
+      "content_changed": true
+    },
+    {
+      "file": "workbench-identity.stdout",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/workbench-identity.stdout",
+      "raw_sha256": "1f70f12fd1cd68e227ef92e737cb178a6908b6b4ce1b417ac3c5f7cf9cc95e6c",
+      "published_sha256": "1f70f12fd1cd68e227ef92e737cb178a6908b6b4ce1b417ac3c5f7cf9cc95e6c",
+      "content_changed": false
+    },
+    {
+      "file": "workbench-identity.stderr",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/workbench-identity.stderr",
+      "raw_sha256": "5b272ae512348ae7e0901f89652dad17ef15e2ebae66c9a4d4f0b2a36b3a1a41",
+      "published_sha256": "5b272ae512348ae7e0901f89652dad17ef15e2ebae66c9a4d4f0b2a36b3a1a41",
+      "content_changed": false
+    },
+    {
+      "file": "qe-jll-probe.stdout",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/qe-jll-probe.stdout",
+      "raw_sha256": "e49cdae2220af2a9c2ff040baed41785327331849022afd8a8c6a9e37e1eb742",
+      "published_sha256": "7948d5f65d693462061abccaca6ee2734499d33549c2c413dc4548a078c61d15",
+      "content_changed": true
+    },
+    {
+      "file": "qe-jll-probe.stderr",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/qe-jll-probe.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "content_changed": false
+    },
+    {
+      "file": "qe.stdout",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/qe/qe.stdout",
+      "raw_sha256": "c52a104f83d58cdaa2f93b6024a6496fe9aa36c0420e63660193622bef3b53ff",
+      "published_sha256": "9560fa8cef63041aa210745b5043a7cb7e11dcc269c60b5584695d7290039464",
+      "content_changed": true
+    },
+    {
+      "file": "qe.stderr",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/qe/qe.stderr",
+      "raw_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "published_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "content_changed": false
+    },
+    {
+      "file": "qe-data-file-schema.xml",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T074856190211Z-bba6ecaf/qe/scratch/si.save/data-file-schema.xml",
+      "raw_sha256": "f83ea804eb1585a8451739ab4d425cdb4efdcd102a195fc1bae11e3caee0c31d",
+      "published_sha256": "f83ea804eb1585a8451739ab4d425cdb4efdcd102a195fc1bae11e3caee0c31d",
+      "content_changed": false
+    }
+  ],
+  "note": "Raw bytes remain unchanged in ignored directories. Public text redacts private paths and normalizes trailing line whitespace/newlines. Raw and public hashes are distinct."
+}

@@ -11,8 +11,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from parse_qe_baseline import parse_qe
 
 
-def synthetic_xml():
+def synthetic_xml(n_kpoints=8):
     """Minimal invented format records with no physical pseudopotential data."""
+    grid = {8: (0, -0.5), 64: (0, 0.25, -0.5, -0.25)}[n_kpoints]
     root = ET.Element("qes:espresso", {
         "xmlns:qes": "http://www.quantum-espresso.org/ns/qes/qes-1.0",
         "Units": "Hartree atomic units",
@@ -71,11 +72,11 @@ def synthetic_xml():
     put(bands, "occupations_kind", "fixed")
     put(bands, "nelec", 8)
     put(bands, "nbnd", 8)
-    put(bands, "nks", 8)
-    for x, y, z in itertools.product((0, -0.5), repeat=3):
+    put(bands, "nks", n_kpoints)
+    for x, y, z in itertools.product(grid, repeat=3):
         block = put(bands, "ks_energies")
         cartesian = (x / 2 - y / 6 + z / 24, y / 3 - z / 12, z / 4)
-        put(block, "k_point", " ".join(map(str, cartesian)), weight="0.25")
+        put(block, "k_point", " ".join(map(str, cartesian)), weight=str(2 / n_kpoints))
         put(block, "eigenvalues", "-1 -0.5 -0.3 -0.2 0.1 0.2 0.3 0.4", size="8")
         put(block, "occupations", "1 1 1 1 0 0 0 0", size="8")
         put(block, "npw", 99)
@@ -100,13 +101,13 @@ JOB DONE.
 
 
 class QeBaselineParserTests(unittest.TestCase):
-    def parse(self, root=None, stdout=SYNTHETIC_STDOUT, code=0):
+    def parse(self, root=None, stdout=SYNTHETIC_STDOUT, code=0, expected_n_kpoints=8):
         root = synthetic_xml() if root is None else root
         xml = ET.tostring(root, encoding="unicode") if not isinstance(root, str) else root
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "synthetic.xml"
             path.write_text(xml)
-            return parse_qe(path, stdout, code)
+            return parse_qe(path, stdout, code, expected_n_kpoints=expected_n_kpoints)
 
     def test_final_output_and_last_text_energy_exclude_intermediate_values(self):
         result = self.parse()
@@ -176,7 +177,8 @@ class QeBaselineParserTests(unittest.TestCase):
     def test_missing_xml_and_truncated_xml_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             with self.assertRaisesRegex(ValueError, "missing or truncated"):
-                parse_qe(Path(directory) / "absent.xml", SYNTHETIC_STDOUT, 0)
+                parse_qe(Path(directory) / "absent.xml", SYNTHETIC_STDOUT, 0,
+                         expected_n_kpoints=8)
         xml = ET.tostring(synthetic_xml(), encoding="unicode")
         with self.assertRaisesRegex(ValueError, "missing or truncated"):
             self.parse(root=xml[:-20])
@@ -244,6 +246,72 @@ class QeBaselineParserTests(unittest.TestCase):
     def test_unrelated_pseudopotential_not_accepted_by_filename_guess(self):
         with self.assertRaisesRegex(ValueError, "selected Si.upf read"):
             self.parse(stdout=SYNTHETIC_STDOUT.replace("Si.upf", "Other.upf"))
+
+    def test_explicit_sixty_four_points_preserve_eight_electrons_and_bands(self):
+        result = self.parse(synthetic_xml(64), expected_n_kpoints=64)
+        self.assertEqual(len(result["kpoints"]), 64)
+        self.assertEqual(result["n_electrons"], 8)
+        self.assertEqual(result["n_bands"], 8)
+        self.assertEqual(result["electron_sum_raw"], 8)
+        self.assertEqual(result["electron_sum_normalized"], 8)
+        for point in result["kpoints"]:
+            self.assertEqual(point["weight_spatial"], 1 / 64)
+            self.assertEqual(point["weight_raw"], 2 / 64)
+            self.assertEqual(len(point["eigenvalues_ha"]), 8)
+
+    def test_expected_count_must_be_requested_not_inferred_from_output(self):
+        for actual, requested in ((8, 64), (64, 8)):
+            with self.subTest(actual=actual, requested=requested):
+                with self.assertRaisesRegex(ValueError, "requested configuration"):
+                    self.parse(synthetic_xml(actual), expected_n_kpoints=requested)
+        with self.assertRaises(TypeError):
+            parse_qe("unused.xml", SYNTHETIC_STDOUT, 0)
+
+    def test_unsupported_or_ill_typed_requested_counts_rejected(self):
+        for count in (0, 1, 63, 65, 64.0, True, "64", None):
+            with self.subTest(count=count):
+                with self.assertRaisesRegex(ValueError, "explicitly 8 or 64"):
+                    self.parse(expected_n_kpoints=count)
+
+    def test_missing_sixty_four_point_block_rejected(self):
+        root = synthetic_xml(64)
+        bands = root.find("output/band_structure")
+        bands.remove(bands.findall("ks_energies")[-1])
+        with self.assertRaisesRegex(ValueError, "missing k-point eigenvalue blocks"):
+            self.parse(root, expected_n_kpoints=64)
+
+    def test_duplicate_kpoint_rejected_for_both_supported_grids(self):
+        for count in (8, 64):
+            with self.subTest(count=count):
+                root = synthetic_xml(count)
+                points = root.findall("output/band_structure/ks_energies/k_point")
+                points[-1].text = points[0].text
+                with self.assertRaisesRegex(ValueError, "duplicate reciprocal points"):
+                    self.parse(root, expected_n_kpoints=count)
+
+    def test_modulo_integer_duplicate_is_not_a_distinct_point(self):
+        root = synthetic_xml(64)
+        points = root.findall("output/band_structure/ks_energies/k_point")
+        # b1 for the fixture's nonsymmetric lattice: +1 reciprocal fraction.
+        points[-1].text = "0.5 0 0"
+        with self.assertRaisesRegex(ValueError, "duplicate reciprocal points"):
+            self.parse(root, expected_n_kpoints=64)
+
+    def test_nonuniform_weights_fail_even_if_electron_and_weight_sums_match(self):
+        root = synthetic_xml(64)
+        points = root.findall("output/band_structure/ks_energies/k_point")
+        points[0].set("weight", str(1 / 64))
+        points[1].set("weight", str(3 / 64))
+        with self.assertRaisesRegex(ValueError, "weights must be uniform"):
+            self.parse(root, expected_n_kpoints=64)
+
+    def test_sixty_four_points_do_not_change_band_or_electron_requirements(self):
+        for field, value in (("nbnd", "4"), ("nelec", "64")):
+            with self.subTest(field=field):
+                root = synthetic_xml(64)
+                root.find("output/band_structure/" + field).text = value
+                with self.assertRaisesRegex(ValueError, "8 electrons and 8 scalar bands"):
+                    self.parse(root, expected_n_kpoints=64)
 
 
 if __name__ == "__main__":
