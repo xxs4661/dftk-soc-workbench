@@ -67,6 +67,8 @@ This workbench follows existing upstream discussion without claiming ownership o
 
 The upstream items were open at the recorded inspection time; see [`config/sources.lock`](config/sources.lock). Their contents and status may change. This workbench is intended to complement existing noncollinear work by focusing on fully relativistic projector metadata, reproducible QE benchmarks, and incremental reviewable changes. It does not imply that any proposal has been accepted upstream.
 
+Phase 4A hardens the acceptance tooling and environment identity checks; see the [Phase 4A review](results/phase4a-review.md). This does not add SOC support.
+
 ## Repository map
 
 - [`rfc/soc-v1.md`](rfc/soc-v1.md): tentative v1 design and open questions

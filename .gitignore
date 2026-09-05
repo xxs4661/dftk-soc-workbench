@@ -12,3 +12,8 @@ Manifest.toml
 .DS_Store
 results/logs/*.tmp
 results/logs/*.raw
+
+# The workbench environment is deliberately versioned.
+!environment/workbench/Manifest.toml
+results/runs/
+__pycache__/

@@ -1,0 +1,51 @@
+[
+  {
+    "check": "wrapper help",
+    "exit_code": 0,
+    "input_status": null,
+    "run_id": null,
+    "negative_test_passed": false
+  },
+  {
+    "check": "Julia help",
+    "exit_code": 0,
+    "input_status": null,
+    "run_id": null,
+    "negative_test_passed": false
+  },
+  {
+    "check": "extra arguments",
+    "exit_code": 2,
+    "input_status": "ARGUMENT_ERROR",
+    "run_id": "20260905T022505038316Z-0860f08e",
+    "negative_test_passed": true
+  },
+  {
+    "check": "missing input",
+    "exit_code": 7,
+    "input_status": "BLOCKED",
+    "run_id": "20260905T022505466773Z-6ad5f276",
+    "negative_test_passed": true
+  },
+  {
+    "check": "parse failure",
+    "exit_code": 3,
+    "input_status": "FAIL",
+    "run_id": "20260905T022509056740Z-611ec422",
+    "negative_test_passed": true
+  },
+  {
+    "check": "information is not acceptance",
+    "exit_code": 0,
+    "input_status": "INFO_ONLY",
+    "run_id": null,
+    "negative_test_passed": false
+  },
+  {
+    "check": "missing source prerequisite",
+    "exit_code": 7,
+    "input_status": "BLOCKED",
+    "run_id": null,
+    "negative_test_passed": true
+  }
+]

@@ -1,0 +1,6 @@
+ERROR: LoadError: There was an error during testing
+in expression starting at <workbench>/tests/legacy_regression.jl:10
+Old classification of unrelated exception: REJECTED
+Test Failed at <workbench>/tests/legacy_regression.jl:10
+  Expression: old_status != "REJECTED"
+   Evaluated: "REJECTED" != "REJECTED"

@@ -1,0 +1,8 @@
+wrapper help: PASS; process exit=0
+Julia help: PASS; process exit=0
+extra arguments: PASS; process exit=2
+missing input: PASS; process exit=7
+parse failure: PASS; process exit=3
+information is not acceptance: PASS; process exit=0
+missing source prerequisite: PASS; process exit=7
+historical PASS preserved as history; current failures have distinct run IDs: PASS
