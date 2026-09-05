@@ -1,0 +1,126 @@
+Starting A from its independent guess and ComplexF64 seed 54001
+A map 1 iteration: residual=0.1522167495910364 energy=-8.423468134478192 status=CONTINUE
+A map 2 iteration: residual=0.09889239587693405 energy=-8.426888294834345 status=CONTINUE
+A map 3 iteration: residual=0.06454321375567917 energy=-8.428160898976662 status=CONTINUE
+A map 4 iteration: residual=0.042405405690825265 energy=-8.428622614355149 status=CONTINUE
+A map 5 iteration: residual=0.0280548458634921 energy=-8.428789119762458 status=CONTINUE
+A map 6 iteration: residual=0.018681882389615462 energy=-8.428849378991238 status=CONTINUE
+A map 7 iteration: residual=0.012512492669194327 energy=-8.428871385572894 status=CONTINUE
+A map 8 iteration: residual=0.008422296328626363 energy=-8.428879526473533 status=CONTINUE
+A map 9 iteration: residual=0.005693087529277815 energy=-8.428882586663965 status=CONTINUE
+A map 10 iteration: residual=0.0038618714436406115 energy=-8.428883758858218 status=CONTINUE
+A map 11 iteration: residual=0.0026273892155672268 energy=-8.42888421751218 status=CONTINUE
+A map 12 iteration: residual=0.0017919011488694398 energy=-8.4288844011715 status=CONTINUE
+A map 13 iteration: residual=0.0012245939995630712 energy=-8.428884476512474 status=CONTINUE
+A map 14 iteration: residual=0.0008383362158393433 energy=-8.42888450817571 status=CONTINUE
+A map 15 iteration: residual=0.0005747525073722128 energy=-8.428884521795268 status=CONTINUE
+A map 16 iteration: residual=0.0003945413824996505 energy=-8.428884527780282 status=CONTINUE
+A map 17 iteration: residual=0.0002711348274498665 energy=-8.428884530460842 status=CONTINUE
+A map 18 iteration: residual=0.00018651204028564096 energy=-8.42888453168122 status=CONTINUE
+A map 19 iteration: residual=0.00012841554069701816 energy=-8.428884532244517 status=CONTINUE
+A map 20 iteration: residual=8.848868692791289e-5 energy=-8.428884532507485 status=CONTINUE
+A map 21 iteration: residual=6.102327553150893e-5 energy=-8.428884532631384 status=CONTINUE
+A map 22 iteration: residual=4.211387660131659e-5 energy=-8.428884532690205 status=CONTINUE
+A map 23 iteration: residual=2.9084797133449466e-5 energy=-8.428884532718294 status=CONTINUE
+A map 24 iteration: residual=2.010068433134378e-5 energy=-8.428884532731775 status=CONTINUE
+A map 25 iteration: residual=1.3901298086807548e-5 energy=-8.428884532738277 status=CONTINUE
+A map 26 iteration: residual=9.620497208228441e-6 energy=-8.42888453274142 status=CONTINUE
+A map 27 iteration: residual=6.662493581328012e-6 energy=-8.428884532742945 status=CONTINUE
+A map 28 iteration: residual=4.617148192401324e-6 energy=-8.428884532743684 status=CONTINUE
+A map 29 iteration: residual=3.2019154757507805e-6 energy=-8.428884532744048 status=CONTINUE
+A map 30 iteration: residual=2.222013870436598e-6 energy=-8.428884532744224 status=CONTINUE
+A map 31 iteration: residual=1.5430722409302001e-6 energy=-8.428884532744311 status=CONTINUE
+A map 32 iteration: residual=1.072336786840132e-6 energy=-8.428884532744352 status=CONTINUE
+A map 33 iteration: residual=7.457300169674144e-7 energy=-8.428884532744371 status=CONTINUE
+A map 34 iteration: residual=5.189673726604491e-7 energy=-8.428884532744384 status=CONTINUE
+A map 35 iteration: residual=3.614155730826967e-7 energy=-8.428884532744387 status=CONTINUE
+A map 36 iteration: residual=2.518749833217544e-7 energy=-8.42888453274439 status=CONTINUE
+A map 37 iteration: residual=1.7565835001055543e-7 energy=-8.42888453274439 status=CONTINUE
+A map 38 iteration: residual=1.225921390038069e-7 energy=-8.42888453274439 status=CONTINUE
+A map 39 iteration: residual=8.561886506759436e-8 energy=-8.428884532744393 status=CONTINUE
+A map 40 iteration: residual=5.983678205492941e-8 energy=-8.428884532744394 status=CONTINUE
+A map 41 iteration: residual=4.1847528254775176e-8 energy=-8.428884532744394 status=CONTINUE
+A map 42 iteration: residual=2.928754762759866e-8 energy=-8.428884532744393 status=CONTINUE
+A map 43 iteration: residual=2.0512650545301594e-8 energy=-8.428884532744394 status=CONTINUE
+A map 44 iteration: residual=1.4373421149430882e-8 energy=-8.428884532744394 status=CONTINUE
+A map 45 iteration: residual=1.0077844261698003e-8 energy=-8.42888453274439 status=CONTINUE
+A map 46 iteration: residual=7.071086931669996e-9 energy=-8.428884532744393 status=CONTINUE
+A map 47 iteration: residual=4.96265458511371e-9 energy=-8.428884532744394 status=CONTINUE
+A map 48 iteration: residual=3.4871765237575227e-9 energy=-8.428884532744393 status=CONTINUE
+A map 49 iteration: residual=2.4510052442586878e-9 energy=-8.428884532744394 status=CONTINUE
+A map 50 iteration: residual=1.7240838505551127e-9 energy=-8.428884532744394 status=CONTINUE
+A map 51 iteration: residual=1.2127770359631329e-9 energy=-8.428884532744394 status=CONTINUE
+A map 52 iteration: residual=8.539984451146579e-10 energy=-8.428884532744393 status=CANDIDATE
+A map 53 closure: residual=3.220091734766808e-11 energy=-8.428884532744394 status=PASS
+Starting B from its independent guess and ComplexF64 seed 55001
+B map 1 iteration: residual=0.15226990456191916 energy=-8.423466895223852 status=CONTINUE
+B map 2 iteration: residual=0.09893198513163357 energy=-8.426887991531204 status=CONTINUE
+B map 3 iteration: residual=0.06457294123212548 energy=-8.428160786332702 status=CONTINUE
+B map 4 iteration: residual=0.04242768450836897 energy=-8.428622565237534 status=CONTINUE
+B map 5 iteration: residual=0.028071476220460943 energy=-8.428789097101607 status=CONTINUE
+B map 6 iteration: residual=0.018694244907780384 energy=-8.428849368224117 status=CONTINUE
+B map 7 iteration: residual=0.01252164710282215 energy=-8.42887138035522 status=CONTINUE
+B map 8 iteration: residual=0.008429051886473823 energy=-8.428879523911 status=CONTINUE
+B map 9 iteration: residual=0.005698058013236044 energy=-8.42888258539449 status=CONTINUE
+B map 10 iteration: residual=0.003865519322523764 energy=-8.428883758225929 status=CONTINUE
+B map 11 iteration: residual=0.002630060774911578 energy=-8.42888421719622 status=CONTINUE
+B map 12 iteration: residual=0.0017938542607438676 energy=-8.428884401013288 status=CONTINUE
+B map 13 iteration: residual=0.0012260197883253807 energy=-8.428884476433154 status=CONTINUE
+B map 14 iteration: residual=0.000839375786303841 energy=-8.428884508135909 status=CONTINUE
+B map 15 iteration: residual=0.0005755096994237214 energy=-8.428884521775284 status=CONTINUE
+B map 16 iteration: residual=0.00039509241103639117 energy=-8.428884527770242 status=CONTINUE
+B map 17 iteration: residual=0.00027153551922905986 energy=-8.428884530455795 status=CONTINUE
+B map 18 iteration: residual=0.00018680321388098883 energy=-8.428884531678683 status=CONTINUE
+B map 19 iteration: residual=0.00012862699780578693 energy=-8.428884532243242 status=CONTINUE
+B map 20 iteration: residual=8.864216308033656e-5 energy=-8.42888453250684 status=CONTINUE
+B map 21 iteration: residual=6.113460795523467e-5 energy=-8.428884532631061 status=CONTINUE
+B map 22 iteration: residual=4.21945946929182e-5 energy=-8.42888453269004 status=CONTINUE
+B map 23 iteration: residual=2.914328875765277e-5 energy=-8.428884532718213 status=CONTINUE
+B map 24 iteration: residual=2.014304627033766e-5 energy=-8.428884532731736 status=CONTINUE
+B map 25 iteration: residual=1.3931963202287416e-5 energy=-8.428884532738255 status=CONTINUE
+B map 26 iteration: residual=9.642682156078705e-6 energy=-8.428884532741408 status=CONTINUE
+B map 27 iteration: residual=6.678535962827673e-6 energy=-8.428884532742941 status=CONTINUE
+B map 28 iteration: residual=4.628741055568961e-6 energy=-8.428884532743684 status=CONTINUE
+B map 29 iteration: residual=3.2102896807514633e-6 energy=-8.428884532744044 status=CONTINUE
+B map 30 iteration: residual=2.2280585730952415e-6 energy=-8.428884532744224 status=CONTINUE
+B map 31 iteration: residual=1.5474331833633583e-6 energy=-8.42888453274431 status=CONTINUE
+B map 32 iteration: residual=1.075481388553283e-6 energy=-8.428884532744354 status=CONTINUE
+B map 33 iteration: residual=7.479962980902311e-7 energy=-8.428884532744371 status=CONTINUE
+B map 34 iteration: residual=5.205987283337703e-7 energy=-8.428884532744384 status=CONTINUE
+B map 35 iteration: residual=3.6258984966233826e-7 energy=-8.428884532744387 status=CONTINUE
+B map 36 iteration: residual=2.5271938913928224e-7 energy=-8.428884532744389 status=CONTINUE
+B map 37 iteration: residual=1.7626531210987321e-7 energy=-8.42888453274439 status=CONTINUE
+B map 38 iteration: residual=1.2302824883484495e-7 energy=-8.42888453274439 status=CONTINUE
+B map 39 iteration: residual=8.593205757712238e-8 energy=-8.428884532744394 status=CONTINUE
+B map 40 iteration: residual=6.00615410628752e-8 energy=-8.428884532744393 status=CONTINUE
+B map 41 iteration: residual=4.2008669357411984e-8 energy=-8.42888453274439 status=CONTINUE
+B map 42 iteration: residual=2.9403029033576635e-8 energy=-8.428884532744394 status=CONTINUE
+B map 43 iteration: residual=2.0595369362546217e-8 energy=-8.428884532744394 status=CONTINUE
+B map 44 iteration: residual=1.4432641026652868e-8 energy=-8.42888453274439 status=CONTINUE
+B map 45 iteration: residual=1.012024654819744e-8 energy=-8.428884532744393 status=CONTINUE
+B map 46 iteration: residual=7.101340758397962e-9 energy=-8.428884532744393 status=CONTINUE
+B map 47 iteration: residual=4.984236048574377e-9 energy=-8.428884532744394 status=CONTINUE
+B map 48 iteration: residual=3.5026768394220035e-9 energy=-8.42888453274439 status=CONTINUE
+B map 49 iteration: residual=2.4620874091203596e-9 energy=-8.428884532744393 status=CONTINUE
+B map 50 iteration: residual=1.7319866469238265e-9 energy=-8.428884532744393 status=CONTINUE
+B map 51 iteration: residual=1.218411810775387e-9 energy=-8.428884532744394 status=CONTINUE
+B map 52 iteration: residual=8.580223834514848e-10 energy=-8.428884532744394 status=CANDIDATE
+B map 53 closure: residual=3.233562468001258e-11 energy=-8.428884532744394 status=PASS
+A and B completed; starting independent native scalar reference C.
+n     Energy            log10(ΔE)   log10(Δρ)   Diag   Δtime
+---   ---------------   ---------   ---------   ----   ------
+  1   -8.423468134479                   -0.82   37.5    3.37s
+  2   -8.428841638888       -2.27       -1.72   23.2    2.30s
+  3   -8.428883765528       -4.38       -2.58   20.5    1.02s
+  4   -8.428884531546       -6.12       -3.83   16.1    885ms
+  5   -8.428884532743       -8.92       -5.26   15.1    767ms
+  6   -8.428884532744      -11.93       -6.28   11.2    577ms
+  7   -8.428884532744      -13.91       -8.64   10.2    654ms
+  8   -8.428884532744   +    -Inf       -9.33    3.4    203ms
+Checking the fixed nonstationary orbital rotation and all three declared difference steps.
+┌ Info: Threading setup:
+│   Threads.nthreads() = 1
+│   n_DFTK = 1
+│   n_fft = 1
+└   n_blas = 1
+Run abc-20260905T130100Z: PASS, exit_code=0

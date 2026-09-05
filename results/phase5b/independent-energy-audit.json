@@ -1,0 +1,248 @@
+{
+  "A_B_raw_orbitals_distinct": true,
+  "audit_status": "PASS",
+  "checked_at_utc": "2026-09-05T13:15:06.198076+00:00",
+  "energy_kind_check": {
+    "A_B": "Seven-term current spinor orbital-density total energy",
+    "C": "Independent native scalar DFTK SCF total energy",
+    "band_expectation": "Recorded separately; actual H at the orbital-generated density",
+    "no_extra_reference_shift_applied": true
+  },
+  "failures": [],
+  "finite_difference": {
+    "analytic_ha_per_rad": 0.01706572307529615,
+    "center_angle_rad": 0.13,
+    "center_double_counting_error_ha": 5.329070518200751e-15,
+    "raw_center": {
+      "density_sha256": "b9c3c9312bd4941f7e276c1eb2d19cc844e6f67d2242aefd642284479069f2ca",
+      "electron_real": 8.000000000000002,
+      "electron_reciprocal": 8.000000000000004,
+      "orthogonality": 8.279877074144428e-15
+    },
+    "steps": [
+      {
+        "distinct_density_hashes": true,
+        "h_rad": 0.001,
+        "recomputed_normalized_error": 1.1377279521274097e-08,
+        "recomputed_numeric_ha_per_rad": 0.017065711698016628
+      },
+      {
+        "distinct_density_hashes": true,
+        "h_rad": 0.0003,
+        "recomputed_normalized_error": 1.0249679195661887e-09,
+        "recomputed_numeric_ha_per_rad": 0.01706572205032823
+      },
+      {
+        "distinct_density_hashes": true,
+        "h_rad": 0.0001,
+        "recomputed_normalized_error": 1.0718355369920829e-10,
+        "recomputed_numeric_ha_per_rad": 0.017065722968112595
+      }
+    ]
+  },
+  "limitations": [
+    "This audit independently recalculates recorded term/comparison/difference arithmetic and raw-state identities; it does not reevaluate the Hamiltonian or analytic derivative. Their source identity and actual-run records were checked.",
+    "The single-traversal fields count the inspected adapter control flow, not internal Libxc backend calls.",
+    "Engineering agreement does not establish physical convergence, SOC, noncollinear LSDA, or upstream native spinor support."
+  ],
+  "native_scalar_C": {
+    "A_density_relative": 2.534804761644842e-11,
+    "B_density_relative": 2.5312559711993258e-11,
+    "density_sha256": "d5770e603ff89a61fdcf9b5019d6479226b08bd5e5dc6670a71fec50e623f4e8",
+    "electron_real": 8.0,
+    "electron_reciprocal": 8.000000000000002,
+    "iterations": 8,
+    "orthogonality": 3.922951731603518e-15,
+    "source": "Independent native scalar SCF executed after A and B",
+    "term_sum_error": 0.0,
+    "terms": {
+      "AtomicLocal": -2.4895693170887863,
+      "AtomicNonlocal": 1.2877005232618246,
+      "Ewald": -8.400464786186092,
+      "Hartree": 0.6284707070515769,
+      "Kinetic": 3.2827600913651556,
+      "PspCorrection": 0.3952218612434866,
+      "Xc": -3.133003612391559
+    },
+    "total": -8.428884532744393
+  },
+  "raw_audit_process": "Fresh Julia standard libraries Serialization, LinearAlgebra, SHA and TOML; DFTK was not loaded",
+  "result_sha256": "0e7c9a48fcc4bc8e947a33519a660c2df83fb75f923f674bc0f89d11b719091a",
+  "run_id": "abc-20260905T130100Z",
+  "run_order": [
+    "A",
+    "B",
+    "C"
+  ],
+  "runs": {
+    "A": {
+      "band_expectation_ha": 0.05694236776070763,
+      "double_counting_reconstructed_total_ha": -8.428884532744387,
+      "final_total_ha": -8.428884532744394,
+      "first_unmixed_residual_l2": 0.1522167495910364,
+      "map_count": 53,
+      "maximum_component_abs_difference_ha": 4.142775011928279e-11,
+      "maximum_energy_errors_ha": {
+        "direct_kinetic_difference_ha": 3.1086244689504383e-15,
+        "direct_nonlocal_difference_ha": 1.1102230246251565e-15,
+        "double_counting_difference_ha": 1.5987211554602254e-14,
+        "energy_term_sum_difference_ha": 1.7763568394002505e-15,
+        "ewald_once_difference_ha": 0.0,
+        "hartree_half_integral_difference_ha": 5.662137425588298e-15,
+        "local_integral_difference_ha": 3.552713678800501e-15,
+        "psp_correction_once_difference_ha": 0.0
+      },
+      "raw_state_checks": {
+        "closure_residual": 3.220091734766808e-11,
+        "density_sha256": "3bdd34ac27200b945f48963667e033a9b97bd4599cf7e76e84b653b2889fba68",
+        "electron_real": 8.000000000000002,
+        "electron_reciprocal": 8.000000000000004,
+        "orthogonality": 7.689922981044945e-15,
+        "pauli_definition_error": 0.0,
+        "pauli_ratio": 1.2491363639698224e-13,
+        "shapes": [
+          [
+            4170,
+            22
+          ],
+          [
+            4240,
+            22
+          ],
+          [
+            4240,
+            22
+          ],
+          [
+            4200,
+            22
+          ],
+          [
+            4240,
+            22
+          ],
+          [
+            4200,
+            22
+          ],
+          [
+            4200,
+            22
+          ],
+          [
+            4240,
+            22
+          ]
+        ],
+        "term_sum_error": 0.0,
+        "terms": {
+          "AtomicLocal": -2.4895693171143884,
+          "AtomicNonlocal": 1.2877005232406713,
+          "Ewald": -8.400464786186092,
+          "Hartree": 0.6284707070605609,
+          "Kinetic": 3.2827600914065833,
+          "PspCorrection": 0.3952218612434866,
+          "Xc": -3.133003612395216
+        },
+        "total": -8.428884532744394,
+        "trace_error": 0.0
+      },
+      "term_minus_scalar_ha": {
+        "AtomicLocal": -2.560218703706596e-11,
+        "AtomicNonlocal": -2.1153301332788033e-11,
+        "Ewald": 0.0,
+        "Hartree": 8.983924715266767e-12,
+        "Kinetic": 4.142775011928279e-11,
+        "PspCorrection": 0.0,
+        "Xc": -3.657074643115266e-12
+      },
+      "total_minus_scalar_ha": -1.7763568394002505e-15
+    },
+    "B": {
+      "band_expectation_ha": 0.05694236776066082,
+      "double_counting_reconstructed_total_ha": -8.428884532744384,
+      "final_total_ha": -8.428884532744394,
+      "first_unmixed_residual_l2": 0.15226990456191916,
+      "map_count": 53,
+      "maximum_component_abs_difference_ha": 4.140066067748194e-11,
+      "maximum_energy_errors_ha": {
+        "direct_kinetic_difference_ha": 3.1086244689504383e-15,
+        "direct_nonlocal_difference_ha": 1.5543122344752192e-15,
+        "double_counting_difference_ha": 1.2434497875801753e-14,
+        "energy_term_sum_difference_ha": 1.7763568394002505e-15,
+        "ewald_once_difference_ha": 0.0,
+        "hartree_half_integral_difference_ha": 5.329070518200751e-15,
+        "local_integral_difference_ha": 2.220446049250313e-15,
+        "psp_correction_once_difference_ha": 0.0
+      },
+      "raw_state_checks": {
+        "closure_residual": 3.233562468001258e-11,
+        "density_sha256": "93d24b2ea062db9f8192983112dfb7e61233c60edbb3922dfd5c00299f6f5a86",
+        "electron_real": 8.000000000000002,
+        "electron_reciprocal": 8.000000000000002,
+        "orthogonality": 7.233057263219769e-15,
+        "pauli_definition_error": 0.0,
+        "pauli_ratio": 1.4081996000404205e-13,
+        "shapes": [
+          [
+            4170,
+            22
+          ],
+          [
+            4240,
+            22
+          ],
+          [
+            4240,
+            22
+          ],
+          [
+            4200,
+            22
+          ],
+          [
+            4240,
+            22
+          ],
+          [
+            4200,
+            22
+          ],
+          [
+            4200,
+            22
+          ],
+          [
+            4240,
+            22
+          ]
+        ],
+        "term_sum_error": 0.0,
+        "terms": {
+          "AtomicLocal": -2.48956931711418,
+          "AtomicNonlocal": 1.2877005232405114,
+          "Ewald": -8.400464786186092,
+          "Hartree": 0.6284707070605139,
+          "Kinetic": 3.2827600914065562,
+          "PspCorrection": 0.3952218612434866,
+          "Xc": -3.13300361239519
+        },
+        "total": -8.428884532744394,
+        "trace_error": 0.0
+      },
+      "term_minus_scalar_ha": {
+        "AtomicLocal": -2.539390919764628e-11,
+        "AtomicNonlocal": -2.1313173448334055e-11,
+        "Ewald": 0.0,
+        "Hartree": 8.936962281325123e-12,
+        "Kinetic": 4.140066067748194e-11,
+        "PspCorrection": 0.0,
+        "Xc": -3.631317468943962e-12
+      },
+      "total_minus_scalar_ha": -1.7763568394002505e-15
+    }
+  },
+  "schema_version": 1,
+  "scope": "Independent post-run energy audit; no SCF or extra DFTK energy evaluations",
+  "source_hash_mismatches": []
+}

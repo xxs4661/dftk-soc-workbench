@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "run_id": "abc-20260905T130100Z",
+  "base_commit": "60140a4148a510f0b2eb36f7bf00d683f3105a9a",
+  "numerical_review_status": "REVIEW_REQUIRED",
+  "evidence": [
+    {
+      "raw_path_ignored": ".work/phase5b/abc-20260905T130100Z/result.json",
+      "raw_sha256": "0e7c9a48fcc4bc8e947a33519a660c2df83fb75f923f674bc0f89d11b719091a",
+      "public_path": "results/phase5b/real-abc.json",
+      "public_sha256": "0e7c9a48fcc4bc8e947a33519a660c2df83fb75f923f674bc0f89d11b719091a",
+      "transformation": "Path redaction only; JSON was already redacted by runtime"
+    },
+    {
+      "raw_path_ignored": ".work/phase5b-preflight/abc-20260905T130100Z.log",
+      "raw_sha256": "56c7f359e1242c3272084670eba19165fb22f921779a608244bd1156e8f7c142",
+      "public_path": "results/phase5b/real-abc.log",
+      "public_sha256": "cf73df63f300c1f1c990fd4b52ba3900c63e93c8fff9abf3285e8a29b7c6e74c",
+      "transformation": "Path redaction and trailing whitespace removal in public log only"
+    },
+    {
+      "raw_path_ignored": ".work/phase5b-preflight/attempt-1/all-tests.log",
+      "raw_sha256": "d5883e00442e32ca0d06dd6a7e4474713ae36617b837fcf86617763277051bc9",
+      "public_path": "results/phase5b/tests.log",
+      "public_sha256": "6d509462b2bae4a9a9f58ae913906acbc8ab9c45f7e2fe04de9bed031c40a7af",
+      "transformation": "Path redaction and trailing whitespace removal in public log only"
+    },
+    {
+      "raw_path_ignored": ".work/phase5b-preflight/attempt-1/unit-test-identity.json",
+      "raw_sha256": "dd92ed678edc6d9fbff866e7786bd2871fddd39115b00af66f03a1daec641702",
+      "public_path": "results/phase5b/test-identity.json",
+      "public_sha256": "dd92ed678edc6d9fbff866e7786bd2871fddd39115b00af66f03a1daec641702",
+      "transformation": "Path redaction only; JSON was already redacted by runtime"
+    },
+    {
+      "raw_path_ignored": ".work/phase5b-preflight/attempt-1/new-test-evidence.json",
+      "raw_sha256": "a777505a7b765728260ced62a198dc53e8675848c22040668f34f7ec004e15c5",
+      "public_path": "results/phase5b/new-test-evidence.json",
+      "public_sha256": "a777505a7b765728260ced62a198dc53e8675848c22040668f34f7ec004e15c5",
+      "transformation": "Path redaction only; JSON was already redacted by runtime"
+    },
+    {
+      "raw_path_ignored": ".work/phase5b-preflight/source-boundary.json",
+      "raw_sha256": "d2bba58f61f01348240f76a56a9533a2c33ce84107e490d459501391f1a8e696",
+      "public_path": "results/phase5b/source-boundary.json",
+      "public_sha256": "d2bba58f61f01348240f76a56a9533a2c33ce84107e490d459501391f1a8e696",
+      "transformation": "Path redaction only; JSON was already redacted by runtime"
+    },
+    {
+      "raw_path_ignored": ".work/phase5b-preflight/abc-20260905T130100Z-independent-map-audit.json",
+      "raw_sha256": "354137cfc4818f9ea55fc7e282eb8bd4639bc30c200c660f6abf488275fe4bba",
+      "public_path": "results/phase5b/independent-map-audit.json",
+      "public_sha256": "354137cfc4818f9ea55fc7e282eb8bd4639bc30c200c660f6abf488275fe4bba",
+      "transformation": "Path redaction only; JSON was already redacted by runtime"
+    },
+    {
+      "raw_path_ignored": ".work/phase5b-preflight/abc-20260905T130100Z-independent-raw-audit.log",
+      "raw_sha256": "fefb253635106277a12b45ca8e3ae3a5ae229be0b84eefbe3d39045c72d726b3",
+      "public_path": "results/phase5b/independent-raw-audit.log",
+      "public_sha256": "fefb253635106277a12b45ca8e3ae3a5ae229be0b84eefbe3d39045c72d726b3",
+      "transformation": "Path redaction only; JSON was already redacted by runtime"
+    },
+    {
+      "raw_path_ignored": ".work/phase5b/abc-20260905T130100Z/A/maps.jsonl",
+      "raw_sha256": "f64fc9c54396575f5652f36be87f11e10d1bcfbd5c50bf799bcf169898dbfbe9",
+      "public_path": "results/phase5b/maps-A.jsonl",
+      "public_sha256": "3b1a570a06f9135d3000cdd7e90ad3d8998b8c563aaf4d7e7c67b34a36c37041",
+      "transformation": "Compact measured per-map records: density hashes/counts/norms, potential/probe changes, energy checks and per-k solver counts/maxima retained; full intermediate per-state arrays remain in ignored original journal. Final full per-state arrays are also in real-abc.json."
+    },
+    {
+      "raw_path_ignored": ".work/phase5b/abc-20260905T130100Z/B/maps.jsonl",
+      "raw_sha256": "ae2008ed38725a47cf693314a23a0bc177f33fc2275cfbad837bd755415cc80f",
+      "public_path": "results/phase5b/maps-B.jsonl",
+      "public_sha256": "a538099c791d506930c4a387f730943930a16b38021cc8ff1fac3690840f3589",
+      "transformation": "Compact measured per-map records: density hashes/counts/norms, potential/probe changes, energy checks and per-k solver counts/maxima retained; full intermediate per-state arrays remain in ignored original journal. Final full per-state arrays are also in real-abc.json."
+    },
+    {
+      "raw_path_ignored": ".work/phase5b-preflight/energy-result-audit.json",
+      "raw_sha256": "21201dc353f9100c7d5e104f7cabeeb83c763fc65cb341bf1a98551088cc330e",
+      "public_path": "results/phase5b/independent-energy-audit.json",
+      "public_sha256": "21201dc353f9100c7d5e104f7cabeeb83c763fc65cb341bf1a98551088cc330e",
+      "transformation": "Unmodified independent post-run audit; no SCF or new Hamiltonian evaluation"
+    }
+  ],
+  "source_sha256": {
+    "prototypes/spinor/README.md": "fd94d6ebc8c6da4892f86c1b0e8baf021b3ba15c42e604ed52b98923b091f58f",
+    "prototypes/spinor/SCF-DESIGN.md": "51dc5e85ea15cf086142cac846e9fb6908798ebb4f7be35b3afceef9468ce9a4",
+    "prototypes/spinor/SpinorPrototype.jl": "6febe1c9122548282cda9ddcf35266a45b519e4d91c3f54a4fbe523abd255698",
+    "prototypes/spinor/SpinorSCFPrototype.jl": "ecaf2dad038d41bf609a76f3095745a461ce1db7b138b695272e0e3078ef79f6",
+    "prototypes/spinor/b0_support.jl": "807edeffe446dd8b9473ce322126ad50cdbd1062c0b2540354edffb28d7bcd2e",
+    "prototypes/spinor/checks.jl": "f77b9f0e84aab6c8a443dc2f03c5d510f212ce5e1e4db25da37da6c5f6c24361",
+    "prototypes/spinor/density.jl": "54e9410800a874d9ba2aea0d2bec80b520b7c6fcca8e9c396c1a164e8dbf8dc4",
+    "prototypes/spinor/energy.jl": "16bfe425958fd91adcd0d7eb8bf57d19820f752aca6e1244e3446e6936f0e436",
+    "prototypes/spinor/fft.jl": "a1462a3f5ceeb9065a9b2f6513cbbc7282794dc1b432739517046c6d59cb9126",
+    "prototypes/spinor/operators.jl": "f12296c929e42a290188044485d1e8006f82fa0a3be9e312afc334bcb5581b0e",
+    "prototypes/spinor/phase5b.toml": "34b013ee3ff65e9f666175c7fad064d6998f046187c9dfb0891d923b338c1f51",
+    "prototypes/spinor/scf.jl": "3a7270abbf5b59b1d785a421d7db453d124bd604c87ac6ef1b3b24774d29c235",
+    "prototypes/spinor/tolerances.toml": "945bd3b519da9dca2cd73964e09a39360cdea0b939d98c2a7811b11877e44447",
+    "scripts/run_spinor_scf_b0.jl": "d9052b4e215da181bdb8b721e0917e2e2208aaff4fe6f1cc2277c694d9201aef",
+    "tests/spinor_scf/failure_worker.jl": "737aac6a11211080794d3ba148c29bd07263cacdeb354f1c9c137dc34c5370b6",
+    "tests/spinor_scf/runtests.jl": "d382c55a59055478e488cd074d761cae5320159449497a7396046db23a272fe1",
+    "tests/spinor_scf/test_energy.jl": "5823db43047d337bf699abb15d3b3ba7de257f79d064df4854e797228d6ce509",
+    "tests/spinor_scf/test_scf.jl": "c8557b0c6aeff6e238e4bcc4d294134625169ea154975a8c5b9b2955b6250675"
+  },
+  "raw_states": [
+    {
+      "ignored_path": ".work/phase5b/abc-20260905T130100Z/A/map-1-state.bin",
+      "bytes": 18532398,
+      "sha256": "5ebeb7a0adee330a3da75bb45e0f79760da613b6ebf8e522601964bc991f1f0c",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5b/abc-20260905T130100Z/A/map-53-state.bin",
+      "bytes": 18532398,
+      "sha256": "20910f209e0b089a6fa2ea588532e32ce33ff8dae8bbf1768b45dc6e68c9dc9b",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5b/abc-20260905T130100Z/B/map-1-state.bin",
+      "bytes": 18532398,
+      "sha256": "352070e26763002ab8e5ae7cbd97e4aebde8c913686d6e157d9143861d5b85aa",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5b/abc-20260905T130100Z/B/map-53-state.bin",
+      "bytes": 18532398,
+      "sha256": "2f75f8d5dbcc0e47f69776b594c0dc0775a10b373215161a262a2b754c50d145",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5b/abc-20260905T130100Z/C-reference-state.bin",
+      "bytes": 4508638,
+      "sha256": "148e84cf5a4dea869391f597c6b0a9a8dfa66d5d23d4cca0044dd91ab4262fec",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5b/abc-20260905T130100Z/directional-center.bin",
+      "bytes": 18018720,
+      "sha256": "b6a0bcf78d95198d32d29d2531f4c90caa3ee01f74170f4fbdcc8534b42e2631",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5b/abc-20260905T130100Z/initial-densities.bin",
+      "bytes": 1024076,
+      "sha256": "b5f27182c9fbf1210a6933850e320784b9b08a5aa78be9c5683ff070dcd3d775",
+      "committed": false
+    }
+  ],
+  "derived_files": [
+    {
+      "path": "results/phase5b/density-maps.csv",
+      "sha256": "2c9070d051146593b9dbc7718f5e319f223dd958ccdd0c30c30fe21d0cfd1a93",
+      "source": "A/B journals; LF line endings; numerical CSV fields unchanged"
+    },
+    {
+      "path": "results/phase5b/synthetic-failure-records.json",
+      "sha256": "42060f9802a13f3336a230816409fb048501d9981499c1ae88161c882a9966ed",
+      "source": "Actual synthetic worker records from new-test-evidence.json"
+    }
+  ],
+  "actual_exit_codes": {
+    "old_and_new_tests": 0,
+    "real_abc_and_finite_differences": 0
+  },
+  "source_hashes_match_execution": true,
+  "note": "No raw orbitals/density arrays, UPF, cache or upstream sources published. Public log whitespace cleanup does not alter measurements. CSV/compact journals retain IEEE Float64 values; full raw/public hashes are separate."
+}
