@@ -1,0 +1,34 @@
+schema_version = 1
+precision = "Float64 / ComplexF64"
+scope = "Prototype engineering gates declared before the Phase 5A real run; not physical continuum accuracy"
+
+[acceptance]
+algebra_normalized = 1e-11
+orthogonality_frobenius = 1e-9
+explicit_residual_ha = 1e-9
+spectrum_max_abs_ha = 1e-8
+electron_count_abs = 1e-8
+density_relative_l2 = 1e-7
+pauli_density_relative_l2 = 1e-7
+fixed_h_expectation_abs_ha_cell = 1e-7
+
+[solver]
+scalar_target_states = 8
+scalar_auxiliary_states = 3
+scalar_tolerance_ha = 1e-10
+scalar_maxiter = 150
+spinor_components = 2
+spinor_target_states = 16
+spinor_auxiliary_states = 6
+spinor_tolerance_ha = 1e-10
+spinor_maxiter = 300
+spinor_miniter = 1
+initial_seed_base = 53001
+preconditioner_shift_ha = 1.0
+
+[norms]
+orthogonality = "Frobenius norm of X'X-I over all target columns"
+explicit_residual = "Euclidean norm of H*x-lambda*x for each target state, recomputed directly"
+density = "sqrt(dvol)*Frobenius norm over the real grid; compare with scalar final-H density"
+pauli_density = "sqrt(dvol)*Frobenius norm over all three m fields divided by charge-density L2 norm"
+near_zero_rule = "Default algebra uses error/max(norm(reference),1). FFT tests use the stricter error/norm(reference) except norm(reference)<1e-12, where they use absolute error. Synthetic density tests use relative errors for nonzero references and absolute errors for zero identities. Dimensionless normalization tests use absolute deviation from one. Real density comparison divides by positive scalar final-H density norm; Pauli ratio divides by positive measured spinor charge-density norm. Neither real density ratio uses an arbitrary floor."

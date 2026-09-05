@@ -1,0 +1,25 @@
+Starting the sole fresh scalar B0 SCF.
+n     Energy            log10(ΔE)   log10(Δρ)   Diag   Δtime
+---   ---------------   ---------   ---------   ----   ------
+  1   -8.423468134479                   -0.82   37.2    3.57s
+  2   -8.428841638888       -2.27       -1.72   23.6    2.27s
+  3   -8.428883765528       -4.38       -2.58   20.5    1.17s
+  4   -8.428884531546       -6.12       -3.83   16.1    861ms
+  5   -8.428884532743       -8.92       -5.26   15.1    736ms
+  6   -8.428884532744      -11.93       -6.28   11.4    569ms
+  7   -8.428884532744      -13.85       -8.64   10.4    639ms
+Scalar SCF complete; obtaining scalar references on exactly scf.ham.
+Solving spinor k=1/8: NG=2085, dimension=4170, targets=16, auxiliary=6.
+Solving spinor k=2/8: NG=2120, dimension=4240, targets=16, auxiliary=6.
+Solving spinor k=3/8: NG=2120, dimension=4240, targets=16, auxiliary=6.
+Solving spinor k=4/8: NG=2100, dimension=4200, targets=16, auxiliary=6.
+Solving spinor k=5/8: NG=2120, dimension=4240, targets=16, auxiliary=6.
+Solving spinor k=6/8: NG=2100, dimension=4200, targets=16, auxiliary=6.
+Solving spinor k=7/8: NG=2100, dimension=4200, targets=16, auxiliary=6.
+Solving spinor k=8/8: NG=2120, dimension=4240, targets=16, auxiliary=6.
+Run b0-20260905T104910Z: PASS, exit_code=0
+┌ Info: Threading setup:
+│   Threads.nthreads() = 1
+│   n_DFTK = 1
+│   n_fft = 1
+└   n_blas = 1

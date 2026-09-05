@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "base_commit": "47159d7b28f01a86f26425183803ee31cb2d2f70",
+  "real_run_id": "b0-20260905T104910Z",
+  "review_status": "REVIEW_REQUIRED",
+  "evidence": [
+    {
+      "raw_path_ignored": ".work/phase5a/b0-20260905T104910Z/result.json",
+      "raw_sha256": "7f9b541fbf690133828c6734b1b3c2f62bd4aad8039f2ecd7105a65a59d4e02e",
+      "public_path": "results/phase5a/real-b0.json",
+      "public_sha256": "7f9b541fbf690133828c6734b1b3c2f62bd4aad8039f2ecd7105a65a59d4e02e",
+      "redaction": "workbench and home paths only; result/identity JSON were already redacted by Julia"
+    },
+    {
+      "raw_path_ignored": ".work/phase5a-preflight/b0-20260905T104910Z.log",
+      "raw_sha256": "56fbb6fd5e5e31b634972a67360c6d2d4b2349b118a80da0e150a218c922c1b2",
+      "public_path": "results/phase5a/real-b0.log",
+      "public_sha256": "b90c981f8b6c6104df5323b115bf04357d2a5f41e551117713ff846b02ff88ed",
+      "redaction": "workbench/home paths redacted and trailing line whitespace removed in public log only; raw file unchanged"
+    },
+    {
+      "raw_path_ignored": ".work/phase5a-preflight/all-unit-tests.log",
+      "raw_sha256": "f6f7681836d66ab9d222d08419d715142ef443aee83eabeca9146a06f2b41fb8",
+      "public_path": "results/phase5a/unit-tests.log",
+      "public_sha256": "f6f7681836d66ab9d222d08419d715142ef443aee83eabeca9146a06f2b41fb8",
+      "redaction": "workbench/home paths redacted and trailing line whitespace removed in public log only; raw file unchanged"
+    },
+    {
+      "raw_path_ignored": ".work/phase5a-preflight/unit-test-identity.json",
+      "raw_sha256": "dd92ed678edc6d9fbff866e7786bd2871fddd39115b00af66f03a1daec641702",
+      "public_path": "results/phase5a/unit-test-identity.json",
+      "public_sha256": "dd92ed678edc6d9fbff866e7786bd2871fddd39115b00af66f03a1daec641702",
+      "redaction": "workbench and home paths only; result/identity JSON were already redacted by Julia"
+    },
+    {
+      "raw_path_ignored": ".work/phase5a/preflight-20260905-a/result.json",
+      "raw_sha256": "31746a5010761b3e47a210a78e19d7dea8e1e28d2dd4341048422c02b1879f08",
+      "public_path": "results/phase5a/interface-preflight.json",
+      "public_sha256": "31746a5010761b3e47a210a78e19d7dea8e1e28d2dd4341048422c02b1879f08",
+      "redaction": "workbench and home paths only; result/identity JSON were already redacted by Julia"
+    },
+    {
+      "raw_path_ignored": ".work/phase5a-preflight/b0-interface-preflight-a.log",
+      "raw_sha256": "88d43289abc4bf653424ddbf24ada702f9c509e1714ca5987b183e473a719fc1",
+      "public_path": "results/phase5a/interface-preflight.log",
+      "public_sha256": "f61342f9c02b254d369469c7372b83768a2d0b1abbd942f9a723c4b65a0be6a3",
+      "redaction": "workbench/home paths redacted and trailing line whitespace removed in public log only; raw file unchanged"
+    },
+    {
+      "raw_path_ignored": ".work/phase5a-preflight/cli-checks.json",
+      "raw_sha256": "eb95cf9980681cbdbd2feecc6e5909bcad3579c78d4c177f84f5f503361dd80c",
+      "public_path": "results/phase5a/cli-checks.json",
+      "public_sha256": "eb95cf9980681cbdbd2feecc6e5909bcad3579c78d4c177f84f5f503361dd80c",
+      "redaction": "workbench and home paths only; result/identity JSON were already redacted by Julia"
+    },
+    {
+      "raw_path_ignored": ".work/phase5a-preflight/help.log",
+      "raw_sha256": "56a9f7745d3381d70e8b77e0f6481e9f063a3665cf070840b417a87f7dd08a9c",
+      "public_path": "results/phase5a/cli-help.log",
+      "public_sha256": "56a9f7745d3381d70e8b77e0f6481e9f063a3665cf070840b417a87f7dd08a9c",
+      "redaction": "workbench/home paths redacted and trailing line whitespace removed in public log only; raw file unchanged"
+    },
+    {
+      "raw_path_ignored": ".work/phase5a-preflight/missing-arguments.log",
+      "raw_sha256": "bb1e81f3c79ca3717dbf8d95c0b0b900d3d1a7e0872e7f5fd4f1a5a43bc04911",
+      "public_path": "results/phase5a/cli-missing-arguments.log",
+      "public_sha256": "bb1e81f3c79ca3717dbf8d95c0b0b900d3d1a7e0872e7f5fd4f1a5a43bc04911",
+      "redaction": "workbench/home paths redacted and trailing line whitespace removed in public log only; raw file unchanged"
+    },
+    {
+      "raw_path_ignored": ".work/phase5a-preflight/existing-run.log",
+      "raw_sha256": "525db2d27bfbef1c6f18d26071b26e3bdc80386ea381bb287195bfa9497e7327",
+      "public_path": "results/phase5a/cli-existing-run.log",
+      "public_sha256": "525db2d27bfbef1c6f18d26071b26e3bdc80386ea381bb287195bfa9497e7327",
+      "redaction": "workbench/home paths redacted and trailing line whitespace removed in public log only; raw file unchanged"
+    },
+    {
+      "raw_path_ignored": ".work/phase5a-preflight/source-boundary.json",
+      "raw_sha256": "0b9287aa6077460b30b1ea9e79903f5d4b51c0fc84859f8c5bc3da2322fd0b55",
+      "public_path": "results/phase5a/source-boundary.json",
+      "public_sha256": "0b9287aa6077460b30b1ea9e79903f5d4b51c0fc84859f8c5bc3da2322fd0b55",
+      "redaction": "workbench and home paths only; result/identity JSON were already redacted by Julia"
+    }
+  ],
+  "new_source_sha256": {
+    "prototypes/spinor/README.md": "fd94d6ebc8c6da4892f86c1b0e8baf021b3ba15c42e604ed52b98923b091f58f",
+    "prototypes/spinor/SpinorPrototype.jl": "6febe1c9122548282cda9ddcf35266a45b519e4d91c3f54a4fbe523abd255698",
+    "prototypes/spinor/density.jl": "54e9410800a874d9ba2aea0d2bec80b520b7c6fcca8e9c396c1a164e8dbf8dc4",
+    "prototypes/spinor/fft.jl": "a1462a3f5ceeb9065a9b2f6513cbbc7282794dc1b432739517046c6d59cb9126",
+    "prototypes/spinor/operators.jl": "f12296c929e42a290188044485d1e8006f82fa0a3be9e312afc334bcb5581b0e",
+    "prototypes/spinor/tolerances.toml": "945bd3b519da9dca2cd73964e09a39360cdea0b939d98c2a7811b11877e44447",
+    "scripts/run_spinor_b0.jl": "d07e2e5507a4e4cf11b9a2f9be0098e7a38c702ec55481fd7a1242aa7bc842d7",
+    "tests/spinor/runtests.jl": "7ea1fdf1632ad0fec504a40c062a4d096cd37b5ab6fe315bfca94a72602b8280",
+    "tests/spinor/test_density.jl": "2984b4f3ad6b53aeda340b03b585b688246206102f4282f5f4d1ea0b957b34cc",
+    "tests/spinor/test_fft.jl": "8a3bbbf685f46fddaaf165fee6497a688c91439dfe64a58c751653750e566dab",
+    "tests/spinor/test_operators.jl": "6624727b56207943151d093a49e4a7900089b66f318cf00d596d4f7cfc3c2a63"
+  },
+  "raw_orbital_files": [
+    {
+      "ignored_path": ".work/phase5a/b0-20260905T104910Z/final-reference-and-density.bin",
+      "bytes": 10351929,
+      "sha256": "851d8b40dbb917e503474eb45a8302a0913af9b5564b9248fe23693aef28a50c",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5a/b0-20260905T104910Z/scalar-scf-orbitals.bin",
+      "bytes": 3482004,
+      "sha256": "372928794f123d4cca1080aa4f98d040ad1566052f4383e4997b6ddd88ee3c8a",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5a/b0-20260905T104910Z/spinor-k1-orbitals.bin",
+      "bytes": 1468132,
+      "sha256": "6c4ddc2412e6b256c215d2e7807d46911726d61f9ddfc66206ff93c6e9c1323d",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5a/b0-20260905T104910Z/spinor-k2-orbitals.bin",
+      "bytes": 1492772,
+      "sha256": "d75a3df9aaa2a86a71a4af953fd6d4ce31911da7dd577353acd05e639d1d058b",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5a/b0-20260905T104910Z/spinor-k3-orbitals.bin",
+      "bytes": 1492772,
+      "sha256": "29a95857fc75ad2b6c9b40c2a67bfbd0fdfd7685b74f0f8e20b1d1168f2224fa",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5a/b0-20260905T104910Z/spinor-k4-orbitals.bin",
+      "bytes": 1478692,
+      "sha256": "cf418a26922dc659ec13377987c797c73d88d1c7796e0168c716a976e10d11f7",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5a/b0-20260905T104910Z/spinor-k5-orbitals.bin",
+      "bytes": 1492772,
+      "sha256": "ebc96600aa953c89b5a8843c3d23d54373eea9f7e339285ffb48c2d45a804d60",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5a/b0-20260905T104910Z/spinor-k6-orbitals.bin",
+      "bytes": 1478692,
+      "sha256": "7abbc41305443b7f38cce6c7fa15751081cb42906ae83435e7da3061fad91818",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5a/b0-20260905T104910Z/spinor-k7-orbitals.bin",
+      "bytes": 1478692,
+      "sha256": "9b2cf4487eb8d2a8fddf97d77c4d3fcfce01e2062bc6dde94220c862ec95985c",
+      "committed": false
+    },
+    {
+      "ignored_path": ".work/phase5a/b0-20260905T104910Z/spinor-k8-orbitals.bin",
+      "bytes": 1492772,
+      "sha256": "dea880663e3ed49b34ea366227f81dd90381db355bdd095d014e0125b994358b",
+      "committed": false
+    }
+  ],
+  "real_execution_sources_match_current": true,
+  "note": "No orbitals, UPF, matrices or cache copied into public evidence. Public JSON retains measured precision. Public logs redact private paths and remove trailing line whitespace only; raw files and separate hashes are preserved."
+}
