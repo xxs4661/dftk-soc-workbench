@@ -1,0 +1,33 @@
+test_filter_failure_fails (test_recorder.RecorderTests) ... ok
+test_invalid_json_fails (test_recorder.RecorderTests) ... ok
+test_log_write_failure_fails (test_recorder.RecorderTests) ... ok
+test_nonzero_worker_never_passes (test_recorder.RecorderTests) ... ok
+test_result_cannot_contradict_exit (test_recorder.RecorderTests) ... ok
+test_two_early_failures_have_distinct_current_records (test_recorder.RecorderTests) ... ok
+test_zero_without_json_fails (test_recorder.RecorderTests) ... ok
+test_bootstrap_setup_failure_skips_identity (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_environment_and_input_reject_wrong_types (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_identity_success_cannot_substitute_for_tests_or_minimal (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_identity_tests_minimal_and_bootstrap_success_without_upf (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_legitimate_failure_codes_are_preserved (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_missing_environment_cannot_become_successful_empty_object (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_nested_summary_fields_have_valid_types (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_non_upf_runtime_failure_can_omit_worker_action (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_null_input_is_protocol_error (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_process_and_json_exit_codes_must_agree (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_required_fields_types_and_status_values (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_strict_success_requires_all_stages_and_matching_mode (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_summary_rendering_failure_replaces_current_record_with_fresh_error (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_summary_write_failure_never_publishes_current_pass (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_unwritable_disk_reports_persistence_failure_without_crashing (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_valid_strict_success_publishes_after_summary (test_recorder_contract.AdditionalRecorderContractTests) ... ok
+test_failed_overall_cannot_exit_zero (test_recorder_contract.RecorderContractTests) ... ok
+test_null_environment_cannot_leave_pass_or_crash (test_recorder_contract.RecorderContractTests) ... ok
+test_overall_pass_requires_successful_parse (test_recorder_contract.RecorderContractTests) ... ok
+test_strict_inspection_cannot_accept_info_only (test_recorder_contract.RecorderContractTests) ... ok
+test_unknown_schema_must_not_pass (test_recorder_contract.RecorderContractTests) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 35.191s
+
+OK

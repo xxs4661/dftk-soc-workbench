@@ -1,0 +1,11 @@
+Recorder Git blob SHA-1: 97ba76404969f7c3c4300a85697ebfece2c1018f
+test_failed_overall_cannot_exit_zero (__main__.RecorderContractTests) ... ok
+test_null_environment_cannot_leave_pass_or_crash (__main__.RecorderContractTests) ... ok
+test_overall_pass_requires_successful_parse (__main__.RecorderContractTests) ... ok
+test_strict_inspection_cannot_accept_info_only (__main__.RecorderContractTests) ... ok
+test_unknown_schema_must_not_pass (__main__.RecorderContractTests) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 3.609s
+
+OK

@@ -1,0 +1,61 @@
+Recorder Git blob SHA-1: 12e8cf6ee58c3b69607627a16280a09ed6296dd3
+test_failed_overall_cannot_exit_zero (__main__.RecorderContractTests) ... FAIL
+test_null_environment_cannot_leave_pass_or_crash (__main__.RecorderContractTests) ... FAIL
+test_overall_pass_requires_successful_parse (__main__.RecorderContractTests) ... FAIL
+test_strict_inspection_cannot_accept_info_only (__main__.RecorderContractTests) ... FAIL
+test_unknown_schema_must_not_pass (__main__.RecorderContractTests) ... FAIL
+
+======================================================================
+FAIL: test_failed_overall_cannot_exit_zero (__main__.RecorderContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<review-evidence>/test_phase4a_recorder_contract.py", line 83, in test_failed_overall_cannot_exit_zero
+    self.assert_rejected(payload)
+  File "<review-evidence>/test_phase4a_recorder_contract.py", line 74, in assert_rejected
+    self.assertNotEqual(exit_code, 0, f'Malformed protocol returned success: {records}')
+AssertionError: 0 == 0 : Malformed protocol returned success: [{'schema_version': 2, 'mode': 'fr-nc', 'parse_status': 'FAIL', 'metadata_validation_status': 'NOT_RUN', 'dftk_construction_status': 'NOT_RUN', 'overall_status': 'FAIL', 'exit_code': 0, 'reasons': [], 'environment': {'status': 'PASS', 'manifest_sha256': '0000000000000000000000000000000000000000000000000000000000000000'}, 'input': {'sha256': '0000000000000000000000000000000000000000000000000000000000000000'}, 'worker_exit_code': 0, 'command': ['julia', '--startup-file=no', '--color=no', '--project=<workbench>/environment/workbench', '<workbench>/scripts/inspect_relativistic_upf.jl', '--mode', 'fr-nc', '--default-input'], 'run_id': '20260905T025559917372Z-4174a181', 'action': 'inspect'}]
+
+======================================================================
+FAIL: test_null_environment_cannot_leave_pass_or_crash (__main__.RecorderContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<review-evidence>/test_phase4a_recorder_contract.py", line 104, in test_null_environment_cannot_leave_pass_or_crash
+    self.assert_rejected(payload)
+  File "<review-evidence>/test_phase4a_recorder_contract.py", line 72, in assert_rejected
+    self.assertIsNone(error, f'Uncaught exception; saved records: {records}; error: {error}')
+AssertionError: "AttributeError: 'NoneType' object has no attribute 'get'" is not None : Uncaught exception; saved records: [{'schema_version': 2, 'mode': 'fr-nc', 'parse_status': 'PASS', 'metadata_validation_status': 'PASS', 'dftk_construction_status': 'EXPECTED_SOC_REJECTION', 'overall_status': 'PASS', 'exit_code': 0, 'reasons': [], 'environment': None, 'input': {'sha256': '0000000000000000000000000000000000000000000000000000000000000000'}, 'worker_exit_code': 0, 'command': ['julia', '--startup-file=no', '--color=no', '--project=<workbench>/environment/workbench', '<workbench>/scripts/inspect_relativistic_upf.jl', '--mode', 'fr-nc', '--default-input'], 'run_id': '20260905T025600441463Z-6600f3e6', 'action': 'inspect'}]; error: AttributeError: 'NoneType' object has no attribute 'get'
+
+======================================================================
+FAIL: test_overall_pass_requires_successful_parse (__main__.RecorderContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<review-evidence>/test_phase4a_recorder_contract.py", line 88, in test_overall_pass_requires_successful_parse
+    self.assert_rejected(payload)
+  File "<review-evidence>/test_phase4a_recorder_contract.py", line 74, in assert_rejected
+    self.assertNotEqual(exit_code, 0, f'Malformed protocol returned success: {records}')
+AssertionError: 0 == 0 : Malformed protocol returned success: [{'schema_version': 2, 'mode': 'fr-nc', 'parse_status': 'FAIL', 'metadata_validation_status': 'PASS', 'dftk_construction_status': 'EXPECTED_SOC_REJECTION', 'overall_status': 'PASS', 'exit_code': 0, 'reasons': [], 'environment': {'status': 'PASS', 'manifest_sha256': '0000000000000000000000000000000000000000000000000000000000000000'}, 'input': {'sha256': '0000000000000000000000000000000000000000000000000000000000000000'}, 'worker_exit_code': 0, 'command': ['julia', '--startup-file=no', '--color=no', '--project=<workbench>/environment/workbench', '<workbench>/scripts/inspect_relativistic_upf.jl', '--mode', 'fr-nc', '--default-input'], 'run_id': '20260905T025600858231Z-fa37374d', 'action': 'inspect'}]
+
+======================================================================
+FAIL: test_strict_inspection_cannot_accept_info_only (__main__.RecorderContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<review-evidence>/test_phase4a_recorder_contract.py", line 99, in test_strict_inspection_cannot_accept_info_only
+    self.assert_rejected(payload)
+  File "<review-evidence>/test_phase4a_recorder_contract.py", line 74, in assert_rejected
+    self.assertNotEqual(exit_code, 0, f'Malformed protocol returned success: {records}')
+AssertionError: 0 == 0 : Malformed protocol returned success: [{'schema_version': 2, 'mode': 'inspect', 'parse_status': 'PASS', 'metadata_validation_status': 'NOT_RUN', 'dftk_construction_status': 'NOT_RUN', 'overall_status': 'INFO_ONLY', 'exit_code': 0, 'reasons': [], 'environment': {'status': 'PASS', 'manifest_sha256': '0000000000000000000000000000000000000000000000000000000000000000'}, 'input': {'sha256': '0000000000000000000000000000000000000000000000000000000000000000'}, 'worker_exit_code': 0, 'command': ['julia', '--startup-file=no', '--color=no', '--project=<workbench>/environment/workbench', '<workbench>/scripts/inspect_relativistic_upf.jl', '--mode', 'fr-nc', '--default-input'], 'run_id': '20260905T025601286376Z-cc8bc866', 'action': 'inspect'}]
+
+======================================================================
+FAIL: test_unknown_schema_must_not_pass (__main__.RecorderContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<review-evidence>/test_phase4a_recorder_contract.py", line 93, in test_unknown_schema_must_not_pass
+    self.assert_rejected(payload)
+  File "<review-evidence>/test_phase4a_recorder_contract.py", line 74, in assert_rejected
+    self.assertNotEqual(exit_code, 0, f'Malformed protocol returned success: {records}')
+AssertionError: 0 == 0 : Malformed protocol returned success: [{'schema_version': 999, 'mode': 'fr-nc', 'parse_status': 'PASS', 'metadata_validation_status': 'PASS', 'dftk_construction_status': 'EXPECTED_SOC_REJECTION', 'overall_status': 'PASS', 'exit_code': 0, 'reasons': [], 'environment': {'status': 'PASS', 'manifest_sha256': '0000000000000000000000000000000000000000000000000000000000000000'}, 'input': {'sha256': '0000000000000000000000000000000000000000000000000000000000000000'}, 'worker_exit_code': 0, 'command': ['julia', '--startup-file=no', '--color=no', '--project=<workbench>/environment/workbench', '<workbench>/scripts/inspect_relativistic_upf.jl', '--mode', 'fr-nc', '--default-input'], 'run_id': '20260905T025601719375Z-a1e11884', 'action': 'inspect'}]
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.230s
+
+FAILED (failures=5)

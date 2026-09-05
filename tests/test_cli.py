@@ -59,4 +59,6 @@ with tempfile.TemporaryDirectory(dir=ROOT / '.work') as temp:
 assert hashlib.sha256(historical.read_bytes()).hexdigest() == before
 assert len({x['run_id'] for x in ledger if x['run_id']}) == sum(bool(x['run_id']) for x in ledger)
 print('historical PASS preserved as history; current failures have distinct run IDs: PASS')
-(ROOT / '.work/phase4a-evidence/cli-ledger.json').write_text(json.dumps(ledger, indent=2) + '\n')
+ledger_path = ROOT / '.work/phase4a-evidence/cli-ledger.json'
+ledger_path.parent.mkdir(parents=True, exist_ok=True)
+ledger_path.write_text(json.dumps(ledger, indent=2) + '\n')

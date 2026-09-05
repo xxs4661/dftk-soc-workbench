@@ -1,0 +1,6 @@
+{
+  "command": "python3 tests/test_cli.py",
+  "exit_code": 0,
+  "output_parent_initially_absent": true,
+  "historical_evidence_restored_unchanged": true
+}

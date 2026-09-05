@@ -11,7 +11,9 @@ Project. All expected source commits and the default Mg checksum come from
   in a new Julia process. It never changes the dependency resolution intentionally.
 - `python3 scripts/run_recorded.py tests`: check actual environment identity and run the
   workbench Julia tests. These are not upstream DFTK tests.
-- `PYTHONDONTWRITEBYTECODE=1 python3 tests/test_recorder.py`: subprocess/log failure tests.
+- `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_recorder*.py' -v`:
+  original subprocess/log tests plus synthetic recorder protocol/publication regressions.
+  Synthetic workers do not validate Julia, environments or pseudopotentials.
 - `python3 tests/test_cli.py`: fresh-process CLI checks, including real Mg information
   mode. Requires the environment and the ignored Mg sample.
 - `run_upf_inspection.sh [UPF_PATH]`: explicitly run **fr-nc** acceptance. With no argument,
@@ -32,6 +34,13 @@ The Python recorder replaces the old shell pipelines: it separately checks the w
 exit, output sanitization, JSON structure and log/result writes. Human-readable logs go
 to stderr/the run log; stdout contains one JSON object (except help). If storage itself
 fails, the command exits nonzero and emits the failure JSON on stdout when possible.
+Schema 2 is checked against the requested action before accepting worker output.
+Strict inspection requires environment/parse/metadata PASS and EXPECTED_SOC_REJECTION;
+identity, tests and minimal require their matching worker action and no UPF stages.
+Protocol contradictions return 9; valid worker failures retain their failure codes.
+JSON and summary are prepared before writing, and the authoritative result JSON is
+published last. Rendering or writing failures produce a fresh ERROR record; failure
+to persist that record is explicitly reported on stderr and in the stdout JSON.
 
 ## Acceptance contract
 
