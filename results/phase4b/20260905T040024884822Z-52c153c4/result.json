@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "run_id": "20260905T040024884822Z-52c153c4",
+  "execution_status": "FAIL",
+  "input_comparability_status": "FAIL",
+  "numerical_agreement_status": "NOT_ASSESSED",
+  "convergence_study_status": "NOT_RUN",
+  "reasons": [
+    "ValueError: QE XML missing scf_has_converged"
+  ],
+  "commands": [
+    {
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "<workbench>/scripts/run_recorded.py",
+        "identity"
+      ],
+      "cwd": "<workbench>/.work/scalar-baseline/20260905T040024884822Z-52c153c4",
+      "exit_code": 0,
+      "stdout": "workbench-identity.stdout",
+      "stderr": "workbench-identity.stderr"
+    },
+    {
+      "command": [
+        "<home>/.local/bin/pw.x",
+        "-in",
+        "qe.in"
+      ],
+      "cwd": "<workbench>/.work/scalar-baseline/20260905T040024884822Z-52c153c4/qe",
+      "exit_code": 0,
+      "stdout": "qe.stdout",
+      "stderr": "qe.stderr"
+    }
+  ],
+  "exit_code": 1,
+  "inputs": {
+    "case_sha256": "2f7aaf914ef6db5ccfa4c81a124b24c5bd32b27383d95c756c97266a22b63f65",
+    "dftk_input_sha256": "618f46548779453dae52ed3a01a3a87d066ddf8583e5ea1b83f220670a07c87e",
+    "qe_input_sha256": "f634604331eab32dfc03daab4fb6c7abb704cbe75dd6c6f1b7c03feb47675fe2",
+    "volume_bohr3": 270.011394
+  },
+  "pseudo": {
+    "sha256": "686dd9f7d58fe63bdb1e595f0aeecf7d70d2857f06ffb00b8273950d6431e805",
+    "upf_version": "2.0.1",
+    "header": {
+      "generated": "Generated using ONCVPSP code by D. R. Hamann",
+      "author": "anonymous",
+      "date": "180309",
+      "comment": "",
+      "element": "Si",
+      "pseudo_type": "NC",
+      "relativistic": "scalar",
+      "is_ultrasoft": "F",
+      "is_paw": "F",
+      "is_coulomb": "F",
+      "has_so": "F",
+      "has_wfc": "F",
+      "has_gipaw": "F",
+      "core_correction": "T",
+      "functional": "SLA  PW   NOGX NOGC",
+      "z_valence": "    4.00",
+      "total_psenergy": "  -7.56425863110E+00",
+      "rho_cutoff": "   1.50900000000E+01",
+      "l_max": "2",
+      "l_local": "-1",
+      "mesh_size": "  1510",
+      "number_of_wfc": "2",
+      "number_of_proj": "6"
+    },
+    "nlcc": true
+  },
+  "thread_settings": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "JULIA_NUM_THREADS": "1"
+  },
+  "environment": {
+    "project_sha256": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "julia_version": "1.12.7",
+    "packages": {
+      "dftk": {
+        "worktree_status": "clean",
+        "expected_uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_path": "<workbench>/.work/DFTK.jl/src/DFTK.jl",
+        "checkout": "<workbench>/.work/DFTK.jl",
+        "expected_version": "0.8.0",
+        "version": "0.8.0",
+        "path": "<workbench>/.work/DFTK.jl/src/DFTK.jl"
+      },
+      "pseudopotentialio": {
+        "worktree_status": "clean",
+        "expected_uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl",
+        "checkout": "<workbench>/.work/PseudoPotentialIO.jl",
+        "expected_version": "0.3.3",
+        "version": "0.3.3",
+        "path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl"
+      }
+    },
+    "active_project": "<workbench>/environment/workbench/Project.toml",
+    "status": "PASS",
+    "source_lock_sha256": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "active_manifest": "<workbench>/environment/workbench/Manifest.toml",
+    "manifest_sha256": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "reasons": []
+  },
+  "qe_identity": {
+    "selected_path": "<home>/.local/bin/pw.x",
+    "resolved_launcher": "<home>/.local/bin/qe-jll",
+    "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+    "source_commit": null,
+    "source_commit_note": "Not confirmed; record actual startup version and binary hash",
+    "jll_version": "7.5.1+0",
+    "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+    "jll_source": "<home>/.julia/packages/QuantumEspresso_jll/T1wk0/src/QuantumEspresso_jll.jl",
+    "active_project": "<home>/.julia/environments/v1.12/Project.toml",
+    "binary": "<home>/.julia/artifacts/273d3312b2a70e6223250dbf4a39ab3f28b04104/bin/pw.x",
+    "artifacts_file": "<home>/.julia/packages/QuantumEspresso_jll/T1wk0/Artifacts.toml",
+    "runner_path": "<home>/.local/share/qe-jll/qe-runner.jl",
+    "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+    "probe": {
+      "command": [
+        "<home>/.juliaup/bin/julia",
+        "--startup-file=no",
+        "-e",
+        "using QuantumEspresso_jll, SHA, TOML; println(\"jll_version=\",pkgversion(QuantumEspresso_jll)); println(\"jll_uuid=\",Base.PkgId(QuantumEspresso_jll).uuid); println(\"jll_source=\",pathof(QuantumEspresso_jll)); println(\"active_project=\",Base.active_project()); QuantumEspresso_jll.pwscf() do executable; println(\"binary=\",realpath(executable)); end; p=joinpath(dirname(dirname(pathof(QuantumEspresso_jll))),\"Artifacts.toml\"); println(\"artifacts_file=\",p)"
+      ],
+      "cwd": "<workbench>/.work/scalar-baseline/20260905T040024884822Z-52c153c4",
+      "exit_code": 0,
+      "stdout": "qe-jll-probe.stdout",
+      "stderr": "qe-jll-probe.stderr"
+    },
+    "installation_source": "Existing QuantumEspresso_jll installation (not installed or upgraded by this run)",
+    "binary_path": "<home>/.julia/artifacts/273d3312b2a70e6223250dbf4a39ab3f28b04104/bin/pw.x",
+    "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0"
+  }
+}

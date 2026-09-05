@@ -1,0 +1,4 @@
+All 71 files tracked at base 45e3761242dd8c083cca586dc0efc82f93929bd5 are byte-identical: PASS
+DFTK.jl: 2f51b91213e26726fb9c6a17e5fae235a1412d01; clean
+PseudoPotentialIO.jl: fec942781560c391f20214ba4cd85fb2431deb84; clean
+No old recorder, FR-NC validator, source lock, Project/Manifest/checksums or historical results modified.

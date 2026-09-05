@@ -1,0 +1,54 @@
+{
+  "files": [
+    {
+      "file": "identity.json",
+      "raw_path": "<workbench>/.work/phase4b-preflight/identity.json",
+      "raw_sha256": "adc8462f5eb075d3d925b69e1e8ce5956495dfb73c2bf4e6570307646fc98661",
+      "published_sha256": "adc8462f5eb075d3d925b69e1e8ce5956495dfb73c2bf4e6570307646fc98661",
+      "redacted": false
+    },
+    {
+      "file": "identity.log",
+      "raw_path": "<workbench>/.work/phase4b-preflight/identity.log",
+      "raw_sha256": "ceeb1cb97ebd9f68b57f6c87fe2344cf15b857e3e5d59a001bbb5fac8a19f8f2",
+      "published_sha256": "ceeb1cb97ebd9f68b57f6c87fe2344cf15b857e3e5d59a001bbb5fac8a19f8f2",
+      "redacted": false
+    },
+    {
+      "file": "baseline-tests.log",
+      "raw_path": "<workbench>/.work/phase4b-preflight/baseline-tests.log",
+      "raw_sha256": "e512027f2eb1a9312e71722d0b300e030b67db97538b75fe91ec8db6e7f4dc41",
+      "published_sha256": "e512027f2eb1a9312e71722d0b300e030b67db97538b75fe91ec8db6e7f4dc41",
+      "redacted": false
+    },
+    {
+      "file": "baseline-tests-fixture-overlap.log",
+      "raw_path": "<workbench>/.work/phase4b-preflight/baseline-tests-fixture-overlap.log",
+      "raw_sha256": "3b9b9dc29223ae635c82cedd018357983c98a1d4be994f2dcfa62909dfa2a014",
+      "published_sha256": "350ea3d44914039503289912a85c6137c3addfd072494940f212c3daeafd4156",
+      "redacted": true
+    },
+    {
+      "file": "final-qe-audit.json",
+      "raw_path": "<workbench>/.work/phase4b-preflight/final-qe-audit.json",
+      "raw_sha256": "2b1d6c625a275aa4bdc7ebcaf9187a7700db95ddc4cdf6e6cebf3ebd4b1d3b71",
+      "published_sha256": "2b1d6c625a275aa4bdc7ebcaf9187a7700db95ddc4cdf6e6cebf3ebd4b1d3b71",
+      "redacted": false
+    },
+    {
+      "file": "qe-startup.stdout",
+      "raw_path": "<workbench>/.work/phase4b-preflight/qe-startup.stdout",
+      "raw_sha256": "a3f2a16e8ee29c9eb56f393548c045a21b43e85f099ffb86751d09b82a5851be",
+      "published_sha256": "610a39c2f24a4da3666231ca57d6d32b3c68eae19b2605f29937943d4bd379cb",
+      "redacted": true
+    },
+    {
+      "file": "qe-startup.stderr",
+      "raw_path": "<workbench>/.work/phase4b-preflight/qe-startup.stderr",
+      "raw_sha256": "811275438945f0ebda4e25d3cfe27f30637035df151af894d815b0a2dab7e449",
+      "published_sha256": "811275438945f0ebda4e25d3cfe27f30637035df151af894d815b0a2dab7e449",
+      "redacted": false
+    }
+  ],
+  "note": "Original raw bytes remain unchanged in ignored directories. Published text redacts private paths and removes trailing line whitespace; both byte hashes are recorded separately."
+}

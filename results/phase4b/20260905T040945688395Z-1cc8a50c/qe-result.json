@@ -1,0 +1,502 @@
+{
+  "schema_version": 1,
+  "code": "QE",
+  "execution_status": "PASS",
+  "converged": true,
+  "exit_code": 0,
+  "version": "7.5",
+  "energy_ha": -8.428880195604947,
+  "energy_raw": {
+    "value": -8.428880195604947,
+    "unit": "Ha",
+    "field": "output/total_energy/etot"
+  },
+  "energy_ry_stdout": -16.85776039,
+  "stdout_energy_half_digit_ry": 5e-09,
+  "lattice_vectors_bohr": [
+    [
+      0.0,
+      5.13,
+      5.13
+    ],
+    [
+      5.13,
+      0.0,
+      5.13
+    ],
+    [
+      5.13,
+      5.13,
+      0.0
+    ]
+  ],
+  "alat_bohr": 7.254915574973977,
+  "positions_fractional": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.25000000000000006,
+      0.25000000000000006,
+      0.25000000000000006
+    ]
+  ],
+  "positions_cartesian_bohr": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      2.565,
+      2.565,
+      2.565
+    ]
+  ],
+  "atom_symbols": [
+    "Si",
+    "Si"
+  ],
+  "n_atoms": 2,
+  "kpoints": [
+    {
+      "coordinate_fractional": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "coordinate_raw": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "weight_raw": 0.25,
+      "weight_spatial": 0.125,
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "eigenvalues_ha": [
+        -0.2096295824590137,
+        0.2331141909007091,
+        0.2331142524193345,
+        0.2331145022977106,
+        0.3211516891760546,
+        0.3211518073771116,
+        0.3211518267086746,
+        0.3494531695626245
+      ],
+      "npw": 2085
+    },
+    {
+      "coordinate_fractional": [
+        0.0,
+        0.0,
+        -0.5000000000000001
+      ],
+      "coordinate_raw": [
+        -0.3535533905932738,
+        -0.3535533905932738,
+        0.3535533905932738
+      ],
+      "weight_raw": 0.25,
+      "weight_spatial": 0.125,
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "eigenvalues_ha": [
+        -0.1224931529912403,
+        -0.02778857425030919,
+        0.1880336803295161,
+        0.1880338911898645,
+        0.2819177661953516,
+        0.3484490935387687,
+        0.3484492865854143,
+        0.5001596028613016
+      ],
+      "npw": 2120
+    },
+    {
+      "coordinate_fractional": [
+        0.0,
+        -0.5000000000000001,
+        0.0
+      ],
+      "coordinate_raw": [
+        -0.3535533905932738,
+        0.3535533905932738,
+        -0.3535533905932738
+      ],
+      "weight_raw": 0.25,
+      "weight_spatial": 0.125,
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "eigenvalues_ha": [
+        -0.1224932693591674,
+        -0.02778833373600004,
+        0.1880337134621261,
+        0.1880337638843629,
+        0.2819176788847396,
+        0.3484491090815623,
+        0.3484491449925132,
+        0.5001595292359036
+      ],
+      "npw": 2120
+    },
+    {
+      "coordinate_fractional": [
+        0.0,
+        -0.5000000000000001,
+        -0.5000000000000001
+      ],
+      "coordinate_raw": [
+        -0.7071067811865476,
+        0.0,
+        0.0
+      ],
+      "weight_raw": 0.25,
+      "weight_spatial": 0.125,
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "eigenvalues_ha": [
+        -0.05611457012488241,
+        -0.05611437098868781,
+        0.1254165899969537,
+        0.1254166715880065,
+        0.2483785830254679,
+        0.2483787087450408,
+        0.5970199744174396,
+        0.5970200180857932
+      ],
+      "npw": 2100
+    },
+    {
+      "coordinate_fractional": [
+        -0.5000000000000001,
+        0.0,
+        0.0
+      ],
+      "coordinate_raw": [
+        0.3535533905932738,
+        -0.3535533905932738,
+        -0.3535533905932738
+      ],
+      "weight_raw": 0.25,
+      "weight_spatial": 0.125,
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "eigenvalues_ha": [
+        -0.1224931289961177,
+        -0.02778862394432926,
+        0.188033705036653,
+        0.1880338886508334,
+        0.2819177797693634,
+        0.3484491153370843,
+        0.3484492908107634,
+        0.5001596176503089
+      ],
+      "npw": 2120
+    },
+    {
+      "coordinate_fractional": [
+        -0.5000000000000001,
+        0.0,
+        -0.5000000000000001
+      ],
+      "coordinate_raw": [
+        0.0,
+        -0.7071067811865476,
+        0.0
+      ],
+      "weight_raw": 0.25,
+      "weight_spatial": 0.125,
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "eigenvalues_ha": [
+        -0.05611457845440804,
+        -0.05611436253143211,
+        0.1254165841879552,
+        0.1254166765953002,
+        0.2483785787333276,
+        0.2483787139914746,
+        0.5970199745962329,
+        0.5970200165828193
+      ],
+      "npw": 2100
+    },
+    {
+      "coordinate_fractional": [
+        -0.5000000000000001,
+        -0.5000000000000001,
+        0.0
+      ],
+      "coordinate_raw": [
+        0.0,
+        0.0,
+        -0.7071067811865476
+      ],
+      "weight_raw": 0.25,
+      "weight_spatial": 0.125,
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "eigenvalues_ha": [
+        -0.05611453886981001,
+        -0.05611440256107382,
+        0.1254166072437334,
+        0.1254166567634788,
+        0.2483786025114478,
+        0.2483786856199515,
+        0.5970199802700523,
+        0.597020013122535
+      ],
+      "npw": 2100
+    },
+    {
+      "coordinate_fractional": [
+        -0.5000000000000001,
+        -0.5000000000000001,
+        -0.5000000000000001
+      ],
+      "coordinate_raw": [
+        -0.3535533905932738,
+        -0.3535533905932738,
+        -0.3535533905932738
+      ],
+      "weight_raw": 0.25,
+      "weight_spatial": 0.125,
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "eigenvalues_ha": [
+        -0.1224931590590292,
+        -0.02778856159006763,
+        0.1880336743698371,
+        0.1880338900979496,
+        0.2819177658377414,
+        0.3484490886015432,
+        0.3484492828352531,
+        0.5001595999689088
+      ],
+      "npw": 2120
+    }
+  ],
+  "n_electrons": 8.0,
+  "n_bands": 8,
+  "electron_sum_raw": 8.0,
+  "electron_sum_normalized": 8.0,
+  "fft_grid": [
+    36,
+    36,
+    36
+  ],
+  "fft_smooth_grid": [
+    36,
+    36,
+    36
+  ],
+  "ecut_ha": 30.0,
+  "ecutrho_ha": 120.0,
+  "xc_raw": "PW",
+  "xc_stdout": "SLA  PW   NOGX NOGC",
+  "xc_indices": [
+    1,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "pseudo_files": [
+    "Si.upf"
+  ],
+  "pseudo_type": "NC",
+  "nlcc": true,
+  "z_valence": 4.0,
+  "pseudo_stdout_description": "Norm-conserving + core correction",
+  "pseudo_evidence": "QE stdout PseudoPot file read and Pseudo is summary; matched XML atomic_species",
+  "input_model": {
+    "nspin": 1,
+    "lsda": false,
+    "noncolin": false,
+    "spinorbit": false,
+    "occupations": "fixed",
+    "nosym": true,
+    "noinv": true,
+    "diago_full_acc": true
+  },
+  "scf": {
+    "iterations": 8,
+    "error_ha": 5.141901161100219e-12,
+    "convergence_evidence": "Final output/convergence_info/scf_conv/convergence_achieved plus final stdout convergence report",
+    "diagonalization_threshold_last_ry": 1.77e-12,
+    "diagonalization_residuals": null,
+    "residual_note": "QE XML/stdout do not report individual eigenvector residual norms"
+  },
+  "fermi_energy_ha": 0.2331145022977106,
+  "fermi_energy_definition": "QE fixed-occupation XML: highest occupied level (HOMO/VBMax), when present",
+  "metadata_units": {
+    "xml_format": {
+      "NAME": "QEXSD",
+      "VERSION": "25.05.21"
+    },
+    "xml_energy": "Ha",
+    "xml_positions": "bohr",
+    "xml_cell": "bohr",
+    "xml_kpoint_and_reciprocal_vectors": "Cartesian, 2*pi/alat",
+    "raw_weights": "include identical-spin degeneracy 2; sum 2",
+    "raw_occupations": "per spin, 0 or 1; XML wg/wk",
+    "normalization": "spatial_weight=raw_weight/2; occupation=2*raw_occupation"
+  },
+  "format_sources": {
+    "xml_units_and_version": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/qexsd.f90#L53-L55",
+    "xml_units_declaration": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/qexsd.f90#L128-L136",
+    "energy_structure_convergence": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90",
+    "convergence_xml_field": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/qes_write_module.f90#L2779-L2800",
+    "eigenvalues_occupations_kpoints": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/qexsd_init.f90#L1159-L1274",
+    "nonmagnetic_weight_degeneracy": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/setup.f90#L647-L675"
+  },
+  "pseudo_sha256": "686dd9f7d58fe63bdb1e595f0aeecf7d70d2857f06ffb00b8273950d6431e805"
+}

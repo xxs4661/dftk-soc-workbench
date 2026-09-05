@@ -1,0 +1,58 @@
+test_cartesian_output_conversion_uses_actual_nonsymmetric_cell (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_empty_state_accuracy_evidence_required (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_exit_zero_and_job_done_do_not_prove_scf_convergence (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_final_nan_diagonalization_does_not_reuse_prior_value (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_final_nan_text_energy_does_not_reuse_prior_value (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_final_output_and_last_text_energy_exclude_intermediate_values (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_final_unconverged_text_cannot_reuse_prior_convergence (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_illegal_fixed_occupations_rejected (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_incomplete_band_count_rejected (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_internal_parameter_name_is_not_an_xml_convergence_field (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_last_output_record_is_selected_without_searching_for_success (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_missing_core_correction_not_filled_from_case_defaults (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_missing_eigenvalues_rejected (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_missing_xml_and_truncated_xml_rejected (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_nlcc_and_species_are_reported_from_actual_worker_fields (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_nonfinite_eigenvalues_rejected (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_nonzero_process_rejected_even_with_converged_data (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_raw_and_normalized_electrons_both_eight (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_spin_degeneracy_not_inferred_from_renormalization (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_truncated_stdout_rejected (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_unknown_xml_format_rejected (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_unrelated_pseudopotential_not_accepted_by_filename_guess (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_wrong_xml_units_rejected (test_qe_baseline_parser.QeBaselineParserTests) ... ok
+test_checksum_mismatch_blocks_comparison_and_input_read (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_constant_spectrum_offset_does_not_shift_total_energy (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_failed_new_run_never_uses_old_success (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_generated_input_records_exact_source_hash (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_global_band_overlap_breaks_fixed_occupation_model (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_inconsistent_case_xc_mapping_is_rejected (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_kpoint_integer_reciprocal_equivalence (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_kpoint_reordering_is_matched_by_coordinate (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_missing_bands_nan_and_nonfixed_occupations_rejected (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_missing_duplicate_and_wrong_kpoints_rejected (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_no_scf_convergence_despite_zero_exit_is_rejected (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_nonsymmetric_cell_is_transposed_only_for_dftk (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_qe_higher_order_xc_indices_must_be_zero (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_raw_and_normalized_energy_must_agree (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_single_global_reference_retains_relative_kpoint_offsets (test_scalar_baseline.ScalarBaselineTests) ... ERROR
+test_space_weights_and_spin_occupation_count (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_unit_conversion_direction (test_scalar_baseline.ScalarBaselineTests) ... ok
+test_xc_nlcc_and_geometry_mismatch_cannot_look_comparable (test_scalar_baseline.ScalarBaselineTests) ... ok
+
+======================================================================
+ERROR: test_single_global_reference_retains_relative_kpoint_offsets (test_scalar_baseline.ScalarBaselineTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<workbench>/tests/test_scalar_baseline.py", line 154, in test_single_global_reference_retains_relative_kpoint_offsets
+    result=comparison.compare(case,d,q)
+  File "<workbench>/scripts/compare_scalar_baseline.py", line 158, in compare
+    dp, qp = validate_result(case, dftk, 'DFTK'), validate_result(case, qe, 'QE')
+  File "<workbench>/scripts/compare_scalar_baseline.py", line 144, in validate_result
+    raise ValueError('Global occupied/empty levels violate the fixed zero-temperature model')
+ValueError: Global occupied/empty levels violate the fixed zero-temperature model
+
+----------------------------------------------------------------------
+Ran 41 tests in 0.023s
+
+FAILED (errors=1)

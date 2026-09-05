@@ -1,0 +1,47 @@
+{
+  "files": [
+    {
+      "file": "result.json",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T040513792276Z-2bf66131/result.json",
+      "raw_sha256": "65c50ae766d25697aaf823300c8bfeb98d70347974e07305506a9c58a998c6bb",
+      "published_sha256": "4e719d09bc582c0fcaf1c71c728c82676f67e0ff17626f9595aa9e9cad3838a3",
+      "redacted": true
+    },
+    {
+      "file": "qe.stdout",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T040513792276Z-2bf66131/qe/qe.stdout",
+      "raw_sha256": "58bd04aec7c736897a45398c9454ad9805743825c73b80e97601e5269961aa23",
+      "published_sha256": "ebe5361074a5c893e74a92da070af56f9f6cf3b3bba80be537be2d2d82653b50",
+      "redacted": true
+    },
+    {
+      "file": "qe.stderr",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T040513792276Z-2bf66131/qe/qe.stderr",
+      "raw_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "published_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "redacted": false
+    },
+    {
+      "file": "dftk-result.json",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T040513792276Z-2bf66131/dftk-result.json",
+      "raw_sha256": "0d866ed39058f6124ac90b778462c09aff94c85764e105fd578bda4e7f6d2868",
+      "published_sha256": "0d866ed39058f6124ac90b778462c09aff94c85764e105fd578bda4e7f6d2868",
+      "redacted": false
+    },
+    {
+      "file": "dftk.stdout",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T040513792276Z-2bf66131/dftk.stdout",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redacted": false
+    },
+    {
+      "file": "dftk.stderr",
+      "raw_path": "<workbench>/.work/scalar-baseline/20260905T040513792276Z-2bf66131/dftk.stderr",
+      "raw_sha256": "fba28c63af2a0626a483284faf10398c10b8135b361a4775efe1eee6f3d8de53",
+      "published_sha256": "b79881bd62d12b67faa57eedf154ef991a1a2cefda700b4682067d674f7b6822",
+      "redacted": true
+    }
+  ],
+  "note": "Original raw bytes remain unchanged in ignored directories. Published text redacts private paths and removes trailing line whitespace; both byte hashes are recorded separately."
+}
