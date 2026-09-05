@@ -1,0 +1,26 @@
+Precompiling packages...
+    315.5 ms  ✓ Serialization
+  1 dependency successfully precompiled in 0 seconds
+ERROR: LoadError: ArgumentError: Package JSON3 [0f8b85d8-7281-11e9-16c2-39a750bddbf1] is required but does not seem to be installed:
+ - Run `Pkg.instantiate()` to install all recorded dependencies.
+
+Stacktrace:
+ [1] __require_prelocked(pkg::Base.PkgId, env::String)
+   @ Base ./loading.jl:2682
+ [2] _require_prelocked(uuidkey::Base.PkgId, env::String)
+   @ Base ./loading.jl:2560
+ [3] macro expansion
+   @ ./loading.jl:2488 [inlined]
+ [4] macro expansion
+   @ ./lock.jl:376 [inlined]
+ [5] __require(into::Module, mod::Symbol)
+   @ Base ./loading.jl:2453
+ [6] require(into::Module, mod::Symbol)
+   @ Base ./loading.jl:2429
+ [7] include(mod::Module, _path::String)
+   @ Base ./Base.jl:306
+ [8] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:317
+ [9] _start()
+   @ Base ./client.jl:550
+in expression starting at <workbench>/.work/phase6a-preflight/independent-raw-audit.jl:1

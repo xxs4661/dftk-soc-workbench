@@ -1,0 +1,3 @@
+Independent raw audit PASS; checks=1936; Mg kernel=3.807394693867218e-17; Mg TR=5.120736964563821e-18; Si maximum=5.924261374413789e-16
+exit_code=0
+Command: JULIA_DEPOT_PATH=<existing-shared-cache> JULIA_LOAD_PATH=@:@stdlib JULIA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 julia --startup-file=no --project=environment/workbench .work/phase6a-preflight/independent-raw-audit.jl

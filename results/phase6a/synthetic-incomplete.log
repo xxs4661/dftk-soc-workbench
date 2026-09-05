@@ -1,0 +1,15 @@
+Required Phase 6A stage did not pass
+Stacktrace:
+ [1] error(s::String)
+   @ Base ./error.jl:44
+ [2] with_phase6a_record(work::var"#66#67", outdir::String)
+   @ Main ~/Documents/Codex/2026-09-05/jian/work/phase4a/scripts/run_relativistic_projectors.jl:52
+ [3] top-level scope
+   @ ~/Documents/Codex/2026-09-05/jian/work/phase4a/tests/relativistic/failure_worker.jl:5
+ [4] include(mod::Module, _path::String)
+   @ Base ./Base.jl:306
+ [5] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:317
+ [6] _start()
+   @ Base ./client.jl:550
+Phase 6A current-synthetic-incomplete: FAIL, exit_code=1

@@ -1,0 +1,50 @@
+schema_version = 1
+phase = "6A"
+base_commit = "c235481e0a3eb149759d12293cbf005916ab09fb"
+scope = "Independent relativistic nonlocal operator; no SCF or total-energy integration"
+numeric_type = "Float64 / ComplexF64"
+supported_l = [0, 1, 2, 3]
+unit_convention = "dftk_paired"
+normalization = "norm(actual-reference)/max(norm(actual),norm(reference),1); expected zero uses absolute norm"
+
+[tolerances]
+j_atol = 1e-10
+j_rtol = 0.0
+angular = 1e-12
+operator = 1e-11
+gaussian_radial = 1e-8
+nonlocal_energy = 1e-11
+cross_channel_d = 0.0
+note = "Independent real radial quadrature differences are diagnostics, not gated at machine precision. No threshold adaptation."
+
+[gaussian]
+a_bohr_minus2 = 0.7
+rmax_bohr = 12.0
+points = [2401, 4801]
+q_bohr_minus1 = [0.0, 1e-8, 1e-4, 0.2, 0.9, 2.3, 4.0]
+tail_note = "a*rmax^2=100.8; exponential tail exp(-100.8), with finite polynomial prefactors through l=3. Two fixed grids only."
+
+[mg_probe]
+scope = "Algebraic reciprocal-space probe, not a physical Mg crystal or Si/Mg mixture"
+lattice_bohr = [[10.0,0.0,0.0],[0.0,10.0,0.0],[0.0,0.0,10.0]]
+positions_fractional = [[0.17,0.23,0.31]]
+second_atom_fractional = [0.41,0.07,0.19]
+translation_fractional = [0.11,-0.13,0.07]
+g_vectors = [[0,0,0],[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1],[1,1,0],[-1,-1,0],[1,-1,1],[-1,1,-1],[2,1,-1],[-2,-1,1]]
+kpoints_fractional = [[0.0,0.0,0.0],[0.125,0.0625,-0.1875],[-0.125,-0.0625,0.1875]]
+radial_q_bohr_minus1 = [0.0,1e-8,1e-4,0.2,0.9,2.3,4.0]
+random_seed = 61001
+input_columns = 3
+algebraic_volume_ratio = 1.7
+
+[scalar_si]
+scope = "Synthetic complete spin-degenerate channel model made from real scalar Si UPF; no Si FR/SOC claim"
+case_path = "benchmarks/si-sr-lda/case.json"
+random_seed = 61002
+input_columns = 3
+
+[runtime]
+julia_threads = 1
+blas_threads = 1
+scf = false
+qe = false
