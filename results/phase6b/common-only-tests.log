@@ -1,0 +1,9 @@
+┌ Info: Threading setup:
+│   Threads.nthreads() = 1
+│   n_DFTK = 1
+│   n_fft = 1
+└   n_blas = 1
+Test Summary:                      | Pass  Total  Time
+Controlled same-source common data |   68     68  0.1s
+Test Summary:                                  | Pass  Total  Time
+Real scalar Si common-only same-rule reference |    7      7  0.1s

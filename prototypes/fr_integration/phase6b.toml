@@ -1,0 +1,69 @@
+schema_version = 1
+phase = "6B"
+base_commit = "1db8b61e7d962c7476b301e8a5be0be3725fbe6f"
+scope = "Fixed-density FR Hamiltonian and orbital-density energy integration; no SCF"
+numeric_type = "Float64 / ComplexF64"
+normalization = "norm(a-b)/max(norm(a),norm(b),1); absolute error when both norms < 1"
+common_fourier_probes_bohr_inverse = [0.0, 0.0001, 0.2, 0.9, 2.3, 4.0]
+
+[mg]
+cell_side_bohr = 10.0
+positions_fractional = [[0.17, 0.23, 0.31]]
+ecut_ha = 15.0
+kpoints = [[0.0, 0.0, 0.0], [0.125, 0.0625, -0.1875], [-0.125, -0.0625, 0.1875]]
+kweights = [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+xc_identifiers = ["gga_x_pbe_sol", "gga_c_pbe_sol"]
+symmetries = false
+reference_density_modulation = 0.02
+reference_density_wavevector = [1, 2, 3]
+reference_density = "N_e/Omega * (1 + 0.02*(cos(2pi*(x+2y+3z))-discrete_mean))"
+electron_count = "Derived from actual common-data z_valence summed over atoms"
+occupation = "Prescribed diagnostic: first N_e explicit spinor states each 1, others 0; no ground-state claim"
+
+[solver]
+n_target = "smallest even integer >= max(16,N_e+4)"
+n_auxiliary = 6
+tolerance_ha = 1e-10
+maxiter = 300
+preconditioner_shift_ha = 1.0
+
+[seeds]
+eigensolve_base = 62001
+symmetry_probe = 62021
+mg_energy_fixture = 62041
+si_energy_fixture = 62061
+
+[thresholds]
+common_data_normalized = 1e-10
+scalar_hamiltonian_normalized = 1e-10
+hermiticity_normalized = 1e-10
+hamiltonian_decomposition_normalized = 1e-10
+energy_decomposition_normalized = 1e-10
+nonlocal_energy_normalized = 1e-11
+electron_count_abs = 1e-8
+gram_norm = 1e-9
+residual_ha = 1e-9
+kramers_ha = 1e-8
+time_reversed_spectrum_ha = 1e-8
+time_reversal_normalized = 1e-10
+energy_abs_ha = 1e-8
+scalar_energy_abs_ha = 1e-8
+spin_flip_min_signal = 1e-12
+spin_flip_relative = 1e-8
+cross_energy_min_abs_ha = 1e-12
+
+[finite_difference]
+kpoint_index = 1
+occupied_index = 1
+empty_index = "N_e+1"
+center_angle_rad = 0.13
+steps_rad = [0.001, 0.0003, 0.0001]
+total_derivative_min_abs = 1e-5
+nl_derivative_min_abs = 1e-10
+total_error_normalized = 1e-6
+nl_error_abs_floor = 1e-9
+nl_error_relative = 1e-6
+
+[spin_rotation]
+axis = [1.0, 2.0, 3.0]
+angle_rad = 0.47

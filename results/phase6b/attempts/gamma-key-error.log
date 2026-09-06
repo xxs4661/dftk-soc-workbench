@@ -1,0 +1,27 @@
+┌ Info: Threading setup:
+│   Threads.nthreads() = 1
+│   n_DFTK = 1
+│   n_fft = 1
+└   n_blas = 1
+Real scalar Si: common, full-H action and seven-term synthetic-limit energy, no SCF
+ArgumentError: G+k reversal is not bijective
+Stacktrace:
+ [1] time_reversal_map(basis::PlaneWaveBasis{Float64, Float64, DFTK.CPU, FFTGrid{Float64, Float64, Array{StaticArraysCore.SVector{3, Int64}, 3}, Array{StaticArraysCore.SVector{3, Float64}, 3}}, Vector{StaticArraysCore.SVector{3, Int64}}}, source_k::Kpoint{Float64, Vector{StaticArraysCore.SVector{3, Int64}}, Vector{Int64}}, target_k::Kpoint{Float64, Vector{StaticArraysCore.SVector{3, Int64}}, Vector{Int64}})
+   @ Main.FRIntegration <workbench>/prototypes/fr_integration/runtime_checks.jl:64
+ [2] full_hamiltonian_checks(ctx::Main.FRIntegration.FRHamiltonianContext, ham::Vector{Main.FRIntegration.FullHamiltonianBlock{Main.FRIntegration.FRHamiltonianContext, Main.SpinorPrototype.ComponentOperator{ComplexF64, DFTK.DftHamiltonianBlock{PlaneWaveBasis{Float64, Float64, DFTK.CPU, FFTGrid{Float64, Float64, Array{StaticArraysCore.SVector{3, Int64}, 3}, Array{StaticArraysCore.SVector{3, Float64}, 3}}, Vector{StaticArraysCore.SVector{3, Int64}}}, Kpoint{Float64, Vector{StaticArraysCore.SVector{3, Int64}}, Vector{Int64}}, DFTK.RealSpaceMultiplication{Float64, Array{Float64, 3}}, Nothing, Vector{@NamedTuple{ψ_reals::Array{ComplexF64, 3}}}}}, Main.RelativisticProjectors.FRNonlocalOperator{Vector{NamedTuple}}}}, settings::Dict{String, Any})
+   @ Main.FRIntegration <workbench>/prototypes/fr_integration/runtime_checks.jl:108
+ [3] run_phase6b!(result::Dict{String, Any}, outdir::String)
+   @ Main <workbench>/scripts/run_fr_integration.jl:139
+ [4] with_phase6b_record(work::typeof(run_phase6b!), outdir::String)
+   @ Main <workbench>/scripts/run_fr_integration.jl:50
+ [5] phase6b_main(args::Vector{String})
+   @ Main <workbench>/scripts/run_fr_integration.jl:187
+ [6] top-level scope
+   @ <workbench>/scripts/run_fr_integration.jl:189
+ [7] include(mod::Module, _path::String)
+   @ Base ./Base.jl:306
+ [8] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:317
+ [9] _start()
+   @ Base ./client.jl:550
+Phase 6B 20260906T004258Z-real-621db3c3: FAIL, exit=1

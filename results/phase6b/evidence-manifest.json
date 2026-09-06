@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "scope": "Raw/public hashes kept distinct; public text has path redaction, trailing-whitespace cleanup and LF line endings; no UPF or orbital/cache distribution",
+  "generated_utc": "2026-09-06T01:04:21.709919+00:00",
+  "copies": [
+    {
+      "raw_path": ".work/phase6b/20260906T004533Z-real-2eb791c8/result.json",
+      "raw_sha256": "244d25366187d74a5f141108e772d411ec6a2224bdf2dfc375719798675021a0",
+      "public_path": "results/phase6b/real-mg-si.json",
+      "public_sha256": "244d25366187d74a5f141108e772d411ec6a2224bdf2dfc375719798675021a0"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004533Z-real-2eb791c8.log",
+      "raw_sha256": "160810c660ba08d28c4f465ab151e37e2b91db48e2ead913a5d99c1fcfca8309",
+      "public_path": "results/phase6b/real-mg-si.log",
+      "public_sha256": "66ac0ac20d74a73ca2f8cb33b53acb549292dbd8a82870857c43f112622fdc00"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004533Z-real-2eb791c8.command.json",
+      "raw_sha256": "9323903e9d11fc0c3e6cbc1751efb03384e4cbb7a0c5cf9a27edea4e279bbd28",
+      "public_path": "results/phase6b/real-mg-si.command.json",
+      "public_sha256": "a87769d73ecbe44008386af29a24568def4543fe0da890510d3d8980adff3094"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004752Z-tests-7c813603/test-result.json",
+      "raw_sha256": "fc0a828ce7ce0ca0243c8d81d6bcd4f37620b448e80f4603e40f2476c0795546",
+      "public_path": "results/phase6b/tests-final.json",
+      "public_sha256": "fc0a828ce7ce0ca0243c8d81d6bcd4f37620b448e80f4603e40f2476c0795546"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004752Z-tests-7c813603.log",
+      "raw_sha256": "99f92a3ef1f0c95d57dbc908cd7ab217c67753269382af57cccd13c1d72e0758",
+      "public_path": "results/phase6b/tests-final.log",
+      "public_sha256": "8b990deebcb2250aeb5f129bdff96d93fcd896fc3c1ce0aecca9be95a1966a65"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004752Z-tests-7c813603.command.json",
+      "raw_sha256": "d52c5304e6f8d8455ef286c0b2dd3516197e0bcf9681a0c71caff678edb4f975",
+      "public_path": "results/phase6b/tests-final.command.json",
+      "public_sha256": "b1d233d2326ab1ec00eac4e4e2c64213bbe7c6180784edc4574b3811c4f499fd"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004621Z-regression-11fdf03d/test-result.json",
+      "raw_sha256": "d26ee84246af205ab7fbb3800443ca9092536f994ae101853519daa2eecfbdc0",
+      "public_path": "results/phase6b/phase6a-regression.json",
+      "public_sha256": "d26ee84246af205ab7fbb3800443ca9092536f994ae101853519daa2eecfbdc0"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004621Z-regression-11fdf03d.log",
+      "raw_sha256": "f79841fb0c69d2e1c6bccb2c7c98de014f4b720a286baf0a825d417803e22537",
+      "public_path": "results/phase6b/phase6a-regression.log",
+      "public_sha256": "df8239f4c929bb101b46363150aa35d6ce39a474f8fdeb5acddcec279eec8212"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004621Z-regression-11fdf03d.command.json",
+      "raw_sha256": "c1c151b9acc037c1bf415efd0c1d2f2d4c4e916cbe01373fa016beb45b040512",
+      "public_path": "results/phase6b/phase6a-regression.command.json",
+      "public_sha256": "cb2306af4424cb81242e241255f2fff1a274c703a777aeca515ac115e2c0442f"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004533Z-real-2eb791c8/identity.raw.json",
+      "raw_sha256": "42b38f668b051484830c99c68ae1eee7c1154646ee7bedf4ca9f602d04ad14a3",
+      "public_path": "results/phase6b/real-environment.json",
+      "public_sha256": "2974eeabf89b83496c0c78b626145f6ec793f1cb8fe1ae8d20ac909edcad9f6c"
+    },
+    {
+      "raw_path": ".work/phase6b-preflight/identity.raw.json",
+      "raw_sha256": "42b38f668b051484830c99c68ae1eee7c1154646ee7bedf4ca9f602d04ad14a3",
+      "public_path": "results/phase6b/preflight-environment.json",
+      "public_sha256": "2974eeabf89b83496c0c78b626145f6ec793f1cb8fe1ae8d20ac909edcad9f6c"
+    },
+    {
+      "raw_path": ".work/phase6b-preflight/identity.log",
+      "raw_sha256": "c8ee724c7fefa1a9629043ce4cdd9a9fcc05b82a586eb89929b14b53f92de297",
+      "public_path": "results/phase6b/preflight-environment.log",
+      "public_sha256": "c8ee724c7fefa1a9629043ce4cdd9a9fcc05b82a586eb89929b14b53f92de297"
+    },
+    {
+      "raw_path": ".work/phase6b-preflight/initial-boundary.json",
+      "raw_sha256": "468fc9231b27d4f1799977ff67eeecbc4e2fbf6f586e5b17565b1b3f69786135",
+      "public_path": "results/phase6b/boundary-start.json",
+      "public_sha256": "468fc9231b27d4f1799977ff67eeecbc4e2fbf6f586e5b17565b1b3f69786135"
+    },
+    {
+      "raw_path": ".work/phase6b-preflight/final-boundary.json",
+      "raw_sha256": "6606b986b8926db9311b3efc94d44b28c1a0e510c06ac4098c6cc48c2a52e4a1",
+      "public_path": "results/phase6b/boundary-final.json",
+      "public_sha256": "6606b986b8926db9311b3efc94d44b28c1a0e510c06ac4098c6cc48c2a52e4a1"
+    },
+    {
+      "raw_path": ".work/phase6b-preflight/settings-before-tests.json",
+      "raw_sha256": "2affb03faf215947372549c907dad20d82d14589b1a27f6573e70a3142248948",
+      "public_path": "results/phase6b/settings-before-tests.json",
+      "public_sha256": "2affb03faf215947372549c907dad20d82d14589b1a27f6573e70a3142248948"
+    },
+    {
+      "raw_path": ".work/phase6b-preflight/common-only-attempt-1/run.log",
+      "raw_sha256": "0e09592ad84148fdde4d559731cf0b9543ff46997fc531564b6eceafccdd6a85",
+      "public_path": "results/phase6b/attempts/common-functional-rejection.log",
+      "public_sha256": "15d194204901928f055e640111b7141970e293e1fc64db646b3dd77b532ca134"
+    },
+    {
+      "raw_path": ".work/phase6b-preflight/common-only-attempt-2/result.json",
+      "raw_sha256": "1cd9dfca6356b39f735d34d5731b8e293c72cebb5d076a9009189d588f5a26be",
+      "public_path": "results/phase6b/common-only-tests.json",
+      "public_sha256": "4dd0f2698256240c74b72e2566881ed6dec513ccde18ad2ade44f38f3f1533a8"
+    },
+    {
+      "raw_path": ".work/phase6b-preflight/common-only-attempt-2/run.log",
+      "raw_sha256": "138bbdc96a257f020034c9ab91e1dd2e0539c330115d260babcce69ebf62a74b",
+      "public_path": "results/phase6b/common-only-tests.log",
+      "public_sha256": "9b4c3dd379dadbb59d712e2c3fecf0917c187163be50972ad86310672e570150"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T003757Z-tests-83d553f8.log",
+      "raw_sha256": "fc795635097759e3e9865f9295da3e2eec3ae0171ad834d31f110f8dcc4bf0d3",
+      "public_path": "results/phase6b/attempts/entry-parse-error.log",
+      "public_sha256": "1b5f03d70f69ae0078e5aee7c006360857c19b03498fcb68f461b130ea1dbb32"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T003757Z-tests-83d553f8.command.json",
+      "raw_sha256": "e8a3a5c7c064aa21d0ec81fd1d742333ac128cb7c9bc87e921896c3659432e6d",
+      "public_path": "results/phase6b/attempts/entry-parse-error.command.json",
+      "public_sha256": "1208b7b7df53aac1346a109b462853d6735f2745882b3a742a7d2b5b0c1ed8e3"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T003922Z-tests-f9bdd416.log",
+      "raw_sha256": "a93dd77ff546f3bf35d29d36d9ba85c9364161af990be6fcbe5054a2022d872d",
+      "public_path": "results/phase6b/attempts/gga-test-api-error.log",
+      "public_sha256": "85f347778e564630ca7bb8a209b3e5b30e87dbb65781daf05f5c99f29b52fcac"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T003922Z-tests-f9bdd416.command.json",
+      "raw_sha256": "e5eefb3554ad0a10636a9695f123a1c9ae597231f94b3c41d41fca1c80d117e7",
+      "public_path": "results/phase6b/attempts/gga-test-api-error.command.json",
+      "public_sha256": "08def680236b5142bdded24d69ae4754ff30af62ca2b2c5cac614ea5fbd9b15a"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T003922Z-tests-f9bdd416/test-result.json",
+      "raw_sha256": "b26d7967cd524190dd17dbcbe8e7a4871d04e8acbbb36bf3889d208cd352b251",
+      "public_path": "results/phase6b/attempts/gga-test-api-error.json",
+      "public_sha256": "b26d7967cd524190dd17dbcbe8e7a4871d04e8acbbb36bf3889d208cd352b251"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004258Z-real-621db3c3.log",
+      "raw_sha256": "00429039cadf0a9782427402419e699a67f39d2a44b170af8a6acc92651079bb",
+      "public_path": "results/phase6b/attempts/gamma-key-error.log",
+      "public_sha256": "218b48d3685a065991e77f53b31bb3a53ee858d4ebf4dd9ea34de426a419e603"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004258Z-real-621db3c3.command.json",
+      "raw_sha256": "a58d4cafb9c4115d19499ae63b9b34b3c51dcd377cbdf89bca57d5313e432229",
+      "public_path": "results/phase6b/attempts/gamma-key-error.command.json",
+      "public_sha256": "60ec1ebe85653ea4288cb78b7394921c2af3003dab34ea3ec1a6bd20d912d29b"
+    },
+    {
+      "raw_path": ".work/phase6b/20260906T004258Z-real-621db3c3/result.json",
+      "raw_sha256": "2fd627e12846e9f092e003ef880d683061c85c8637f7052dc0eff7520683d9d5",
+      "public_path": "results/phase6b/attempts/gamma-key-error.json",
+      "public_sha256": "2fd627e12846e9f092e003ef880d683061c85c8637f7052dc0eff7520683d9d5"
+    },
+    {
+      "raw_path": ".work/phase6b/cli-20260906T004859Z-11b31f0d/result.json",
+      "raw_sha256": "c17e8c0b1480d5aa6c86743703bd5992f58a11237cbf46675a8b46c40565b291",
+      "public_path": "results/phase6b/cli.json",
+      "public_sha256": "8ab41e29fdf2e3755902e8458654d2500429c28b325f81cddb580a56770d74e1"
+    },
+    {
+      "raw_path": ".work/phase6b/cli-20260906T004859Z-11b31f0d/help.stdout",
+      "raw_sha256": "16d195ec577f5678589196d2c01913976508505ca84c248401e2b11093f7e5d0",
+      "public_path": "results/phase6b/cli/help.stdout",
+      "public_sha256": "16d195ec577f5678589196d2c01913976508505ca84c248401e2b11093f7e5d0"
+    },
+    {
+      "raw_path": ".work/phase6b/cli-20260906T004859Z-11b31f0d/help.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_path": "results/phase6b/cli/help.stderr",
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "raw_path": ".work/phase6b/cli-20260906T004859Z-11b31f0d/existing.stdout",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_path": "results/phase6b/cli/existing.stdout",
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "raw_path": ".work/phase6b/cli-20260906T004859Z-11b31f0d/missing.stderr",
+      "raw_sha256": "db0b6d3b9bb755ca70ccd4b093fa65fb319146ec79713938b2a00f485f136f22",
+      "public_path": "results/phase6b/cli/missing.stderr",
+      "public_sha256": "db0b6d3b9bb755ca70ccd4b093fa65fb319146ec79713938b2a00f485f136f22"
+    },
+    {
+      "raw_path": ".work/phase6b/cli-20260906T004859Z-11b31f0d/missing.stdout",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_path": "results/phase6b/cli/missing.stdout",
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "raw_path": ".work/phase6b/cli-20260906T004859Z-11b31f0d/existing.stderr",
+      "raw_sha256": "9bfe132900111417a2ae5fd6e48277ee50fbd702efaebe7cdb742dd0a2833733",
+      "public_path": "results/phase6b/cli/existing.stderr",
+      "public_sha256": "9bfe132900111417a2ae5fd6e48277ee50fbd702efaebe7cdb742dd0a2833733"
+    }
+  ],
+  "raw_inventory": [
+    {
+      "path": ".work/phase6b/20260906T003757Z-tests-83d553f8.command.json",
+      "sha256": "e8a3a5c7c064aa21d0ec81fd1d742333ac128cb7c9bc87e921896c3659432e6d",
+      "record": {
+        "run_id": "20260906T003757Z-tests-83d553f8",
+        "command": [
+          "julia",
+          "--startup-file=no",
+          "--color=no",
+          "--project=environment/workbench",
+          "tests/fr_integration/runtests.jl",
+          "<workbench>/.work/phase6b/20260906T003757Z-tests-83d553f8"
+        ],
+        "started_utc": "2026-09-06T00:37:57.157667+00:00",
+        "status": "FINISHED",
+        "exit_code": 1,
+        "finished_utc": "2026-09-06T00:38:00.346500+00:00"
+      }
+    },
+    {
+      "path": ".work/phase6b/20260906T003922Z-tests-f9bdd416.command.json",
+      "sha256": "e5eefb3554ad0a10636a9695f123a1c9ae597231f94b3c41d41fca1c80d117e7",
+      "record": {
+        "run_id": "20260906T003922Z-tests-f9bdd416",
+        "command": [
+          "julia",
+          "--startup-file=no",
+          "--color=no",
+          "--project=environment/workbench",
+          "tests/fr_integration/runtests.jl",
+          "<workbench>/.work/phase6b/20260906T003922Z-tests-f9bdd416"
+        ],
+        "started_utc": "2026-09-06T00:39:22.709797+00:00",
+        "status": "FINISHED",
+        "exit_code": 1,
+        "finished_utc": "2026-09-06T00:39:49.470862+00:00"
+      }
+    },
+    {
+      "path": ".work/phase6b/20260906T004132Z-tests-e671d757.command.json",
+      "sha256": "ac1f555f3277eb8a866fa49d18c3f7c75cff0b9b8d71a9aff6e8b852b1cdb95a",
+      "record": {
+        "run_id": "20260906T004132Z-tests-e671d757",
+        "command": [
+          "julia",
+          "--startup-file=no",
+          "--color=no",
+          "--project=environment/workbench",
+          "tests/fr_integration/runtests.jl",
+          "<workbench>/.work/phase6b/20260906T004132Z-tests-e671d757"
+        ],
+        "started_utc": "2026-09-06T00:41:32.495130+00:00",
+        "status": "FINISHED",
+        "exit_code": 0,
+        "finished_utc": "2026-09-06T00:41:58.093269+00:00"
+      }
+    },
+    {
+      "path": ".work/phase6b/20260906T004258Z-real-621db3c3.command.json",
+      "sha256": "a58d4cafb9c4115d19499ae63b9b34b3c51dcd377cbdf89bca57d5313e432229",
+      "record": {
+        "run_id": "20260906T004258Z-real-621db3c3",
+        "command": [
+          "julia",
+          "--startup-file=no",
+          "--color=no",
+          "--project=environment/workbench",
+          "scripts/run_fr_integration.jl",
+          "<workbench>/.work/phase6b/20260906T004258Z-real-621db3c3"
+        ],
+        "started_utc": "2026-09-06T00:42:58.633090+00:00",
+        "status": "FINISHED",
+        "exit_code": 1,
+        "finished_utc": "2026-09-06T00:43:17.399476+00:00"
+      }
+    },
+    {
+      "path": ".work/phase6b/20260906T004436Z-tests-ae01400b.command.json",
+      "sha256": "b4a191d9addfa26d20e837bd806895b126ca6e632ac2f06678678d16027862b8",
+      "record": {
+        "run_id": "20260906T004436Z-tests-ae01400b",
+        "command": [
+          "julia",
+          "--startup-file=no",
+          "--color=no",
+          "--project=environment/workbench",
+          "tests/fr_integration/runtests.jl",
+          "<workbench>/.work/phase6b/20260906T004436Z-tests-ae01400b"
+        ],
+        "started_utc": "2026-09-06T00:44:36.319182+00:00",
+        "status": "FINISHED",
+        "exit_code": 0,
+        "finished_utc": "2026-09-06T00:45:00.101807+00:00"
+      }
+    },
+    {
+      "path": ".work/phase6b/20260906T004533Z-real-2eb791c8.command.json",
+      "sha256": "9323903e9d11fc0c3e6cbc1751efb03384e4cbb7a0c5cf9a27edea4e279bbd28",
+      "record": {
+        "run_id": "20260906T004533Z-real-2eb791c8",
+        "command": [
+          "julia",
+          "--startup-file=no",
+          "--color=no",
+          "--project=environment/workbench",
+          "scripts/run_fr_integration.jl",
+          "<workbench>/.work/phase6b/20260906T004533Z-real-2eb791c8"
+        ],
+        "started_utc": "2026-09-06T00:45:33.713945+00:00",
+        "status": "FINISHED",
+        "exit_code": 0,
+        "finished_utc": "2026-09-06T00:46:00.890363+00:00"
+      }
+    },
+    {
+      "path": ".work/phase6b/20260906T004621Z-regression-11fdf03d.command.json",
+      "sha256": "c1c151b9acc037c1bf415efd0c1d2f2d4c4e916cbe01373fa016beb45b040512",
+      "record": {
+        "run_id": "20260906T004621Z-regression-11fdf03d",
+        "command": [
+          "julia",
+          "--startup-file=no",
+          "--color=no",
+          "--project=environment/workbench",
+          "tests/relativistic/runtests.jl",
+          "<workbench>/.work/phase6b/20260906T004621Z-regression-11fdf03d"
+        ],
+        "started_utc": "2026-09-06T00:46:21.051343+00:00",
+        "status": "FINISHED",
+        "exit_code": 0,
+        "finished_utc": "2026-09-06T00:46:46.742738+00:00"
+      }
+    },
+    {
+      "path": ".work/phase6b/20260906T004752Z-tests-7c813603.command.json",
+      "sha256": "d52c5304e6f8d8455ef286c0b2dd3516197e0bcf9681a0c71caff678edb4f975",
+      "record": {
+        "run_id": "20260906T004752Z-tests-7c813603",
+        "command": [
+          "julia",
+          "--startup-file=no",
+          "--color=no",
+          "--project=environment/workbench",
+          "tests/fr_integration/runtests.jl",
+          "<workbench>/.work/phase6b/20260906T004752Z-tests-7c813603"
+        ],
+        "started_utc": "2026-09-06T00:47:52.094191+00:00",
+        "status": "FINISHED",
+        "exit_code": 0,
+        "finished_utc": "2026-09-06T00:48:15.876918+00:00"
+      }
+    },
+    {
+      "path": ".work/phase6b/20260906T004258Z-real-621db3c3/si-fixture-density.bin",
+      "sha256": "7ef36174119df2ac95a926ca1dc4fbdbf5b37c4f5eef84fb47eedcbee043a40b",
+      "bytes": 9148164,
+      "classification": "Ignored raw orbitals/densities; not distributed"
+    },
+    {
+      "path": ".work/phase6b/20260906T004533Z-real-2eb791c8/mg-energy-densities.bin",
+      "sha256": "0d4c1ba54584369534d8a652d222b111480d4c78622d7bcb8c2e1ce294eea569",
+      "bytes": 10053271,
+      "classification": "Ignored raw orbitals/densities; not distributed"
+    },
+    {
+      "path": ".work/phase6b/20260906T004533Z-real-2eb791c8/mg-k1-orbitals.bin",
+      "sha256": "b94d154106533f97b59f302d8cb8cf30acb0013f53b1f2b416fafe38887b44cb",
+      "bytes": 1934086,
+      "classification": "Ignored raw orbitals/densities; not distributed"
+    },
+    {
+      "path": ".work/phase6b/20260906T004533Z-real-2eb791c8/mg-k2-orbitals.bin",
+      "sha256": "860ac6abc3b11275379f604532c33c98f5914bd03860f2cc7ea4060f8b423122",
+      "bytes": 1930502,
+      "classification": "Ignored raw orbitals/densities; not distributed"
+    },
+    {
+      "path": ".work/phase6b/20260906T004533Z-real-2eb791c8/mg-k3-orbitals.bin",
+      "sha256": "aaf06778940228a67e7975b2af0d9361c14955b6802c630da36659a01687d56a",
+      "bytes": 1930502,
+      "classification": "Ignored raw orbitals/densities; not distributed"
+    },
+    {
+      "path": ".work/phase6b/20260906T004533Z-real-2eb791c8/si-fixture-density.bin",
+      "sha256": "eeb12be5d0537240593745ec4a09ea41362341793d01e2b513096ad3d24f47a4",
+      "bytes": 9148164,
+      "classification": "Ignored raw orbitals/densities; not distributed"
+    }
+  ]
+}

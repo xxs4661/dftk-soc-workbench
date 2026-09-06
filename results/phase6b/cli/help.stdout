@@ -1,0 +1,2 @@
+Usage: run_fr_integration.jl NEW_IGNORED_RUN_DIRECTORY
+Phase 6B fixed-density and orbital-energy checks; no SCF/QE.
