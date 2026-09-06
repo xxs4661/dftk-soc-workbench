@@ -1,0 +1,28 @@
+ERROR: LoadError: ParseError:
+# Error @ <workbench>/tests/soc_scf/test_ensemble.jl:38:56
+
+    shifted=fermi_occupations([e .+7.25 for e in levels],weights,ne,tau)
+#                                                      ╙ ── unexpected `]`
+Stacktrace:
+ [1] top-level scope
+   @ <workbench>/tests/soc_scf/test_ensemble.jl:38
+ [2] include(mapexpr::Function, mod::Module, _path::String)
+   @ Base ./Base.jl:307
+ [3] top-level scope
+   @ stdin:7
+ [4] eval(m::Module, e::Any)
+   @ Core ./boot.jl:489
+ [5] include_string(mapexpr::typeof(identity), mod::Module, code::String, filename::String)
+   @ Base ./loading.jl:2952
+ [6] include_string
+   @ ./loading.jl:2962 [inlined]
+ [7] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:315
+ [8] _start()
+   @ Base ./client.jl:550
+in expression starting at <workbench>/tests/soc_scf/test_ensemble.jl:38
+in expression starting at stdin:7
+Synthetic ensemble only, no DFTK/PPIO load or physical solve; Julia 1.12.7
+SHA256 prototypes/soc_scf/ensemble.jl 978b801c9e471462969ad3ad80742a3abc2d5649a149c92671aa0875f7987e63
+SHA256 tests/soc_scf/test_ensemble.jl bd8eed99ac97ceb1fd92c48485b21265e865bc89b5db606bb9803ffc3c485ff7
+SHA256 prototypes/soc_scf/phase6c.toml fed341560f53663f580c37a8f691298aa24784957b49270c5e3f71289736c58c

@@ -13,6 +13,24 @@ const _FR_CONTEXT_CERTIFICATES = IdDict{FRHamiltonianContext,Any}()
 
 _fr_array_hash(a) = bytes2hex(SHA.sha256(reinterpret(UInt8, vec(copy(a)))))
 
+# The explicit six-term model contains internal energy only. The caller's
+# capacity-one ensemble layer owns entropy; native scalar Entropy is not added.
+function _common_temperature(temperature, smearing)
+    temperature isa Real && !(temperature isa Bool) && isfinite(temperature) && temperature >= 0 ||
+        throw(ArgumentError("electronic temperature tau=k_B*T must be finite and nonnegative in Ha"))
+    tau = Float64(temperature)
+    isfinite(tau) || throw(ArgumentError("electronic temperature is not finite Float64"))
+    temperature > 0 && iszero(tau) && throw(ArgumentError("positive electronic temperature underflows Float64"))
+    if iszero(tau)
+        smearing isa DFTK.Smearing.None ||
+            throw(ArgumentError("zero-temperature common model requires Smearing.None"))
+    else
+        smearing isa DFTK.Smearing.FermiDirac ||
+            throw(ArgumentError("positive electronic temperature requires explicit Smearing.FermiDirac"))
+    end
+    tau
+end
+
 function _common_term_gate(basis)
     expected = (DFTK.Kinetic, DFTK.AtomicLocal, DFTK.Ewald,
                 DFTK.PspCorrection, DFTK.Hartree, DFTK.Xc)
@@ -29,7 +47,7 @@ function _common_term_gate(basis)
         throw(ArgumentError("instantiated common terms do not match the six declared terms"))
     basis.model.spin_polarization == :none && basis.model.n_spin_components == 1 ||
         throw(ArgumentError("common model must be charge-only with one scalar component"))
-    basis.model.temperature == 0 || throw(ArgumentError("only zero-temperature diagnostic occupations are supported"))
+    _common_temperature(basis.model.temperature, basis.model.smearing)
     xc = only(filter(t -> t isa DFTK.Xc, ts))
     xc.use_nlcc && !xc.nlcc_from_vw && xc.scaling_factor == 1 && xc.potential_threshold == 0 ||
         throw(ArgumentError("common XC must retain the unscaled complete native NLCC path"))
@@ -45,7 +63,8 @@ function _basis_snapshot(basis)
        mapping=[copy(k.mapping) for k in basis.kpoints],
        mapping_inv=[copy(k.mapping_inv) for k in basis.kpoints],
        mapping_device=[copy(k.mapping_device) for k in basis.kpoints],
-       fft_size=basis.fft_size, Ecut=basis.Ecut, n_electrons=basis.model.n_electrons)
+       fft_size=basis.fft_size, Ecut=basis.Ecut, n_electrons=basis.model.n_electrons,
+       temperature=basis.model.temperature, smearing=basis.model.smearing)
 end
 
 function _context_certificate(ctx)
@@ -59,6 +78,8 @@ function _validate_live_binding(ctx)
     basis = ctx.basis
     basis === cert.basis || throw(ArgumentError("basis object identity mismatch"))
     snap = cert.snapshot
+    basis.model.temperature == snap.temperature && basis.model.smearing === snap.smearing ||
+        throw(ArgumentError("electronic temperature or smearing differs from the bound context settings"))
     basis.model === snap.model && basis.model.lattice == snap.lattice &&
         basis.model.positions == snap.positions && basis.model.n_electrons == snap.n_electrons &&
         basis.fft_size == snap.fft_size && basis.Ecut == snap.Ecut ||
@@ -137,9 +158,14 @@ end
 Build six explicit common terms, then one FR operator per physical k point.
 `bundles` has one issued bundle per atom in `positions` order. Scalar degeneration
 requires the explicit `:synthetic_scalar_limit` mode and the issued Si bundle.
+Default temperature is zero with no smearing, preserving Phase 6B. Positive
+`temperature` is tau=k_B*T in Ha and requires explicit `Smearing.FermiDirac()`.
+The six common terms exclude entropy at either temperature.
 """
 function build_context(bundles, lattice, positions, kcoords, kweights;
-                       Ecut, xc_identifiers, mode::Symbol)
+                       Ecut, xc_identifiers, mode::Symbol,
+                       temperature=0.0, smearing=DFTK.Smearing.None())
+    tau = _common_temperature(temperature, smearing)
     bs = collect(bundles)
     !isempty(bs) && length(bs) == length(positions) ||
         throw(ArgumentError("one issued source bundle per atom is required"))
@@ -165,8 +191,9 @@ function build_context(bundles, lattice, positions, kcoords, kweights;
              DFTK.PspCorrection(), DFTK.Hartree(), DFTK.Xc(xcids)]
     atoms = [DFTK.ElementPsp(b.common.element, b.common) for b in bs]
     model = DFTK.Model(Matrix{Float64}(lattice), atoms, [Float64.(r) for r in positions];
-        model_name="Phase 6B common-only integration", terms, n_electrons=ne,
-        spin_polarization=:none, temperature=0.0, symmetries=false)
+        model_name=iszero(tau) ? "Phase 6B common-only integration" : "Finite-temperature common-only integration",
+        terms, n_electrons=ne,
+        spin_polarization=:none, temperature=tau, smearing, symmetries=false)
     basis = DFTK.PlaneWaveBasis(model; Ecut=Float64(Ecut),
         kgrid=DFTK.ExplicitKpoints([Float64.(k) for k in kcoords], Float64.(kweights)))
     length(basis.kpoints) == length(kcoords) &&

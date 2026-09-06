@@ -1,0 +1,7 @@
+┌ Info: Threading setup:
+│   Threads.nthreads() = 1
+│   n_DFTK = 1
+│   n_fft = 1
+└   n_blas = 1
+Test Summary:                        | Pass  Total  Time
+Phase 6C temperature model interface |   47     47  3.3s

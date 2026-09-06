@@ -1,0 +1,40 @@
+ERROR: Some tests did not pass: 39 passed, 0 failed, 1 errored, 0 broken.
+Synthetic A/B endpoint comparison: Error During Test at <workbench>/tests/soc_scf/test_comparison.jl:49
+  Got exception outside of a @test
+  MethodError: Cannot `convert` an object of type Bool to an object of type String
+  The function `convert` exists, but no method is defined for this combination of argument types.
+
+  Closest candidates are:
+    convert(::Type{String}, !Matched::String)
+     @ Base essentials.jl:461
+    convert(::Type{T}, !Matched::T) where T<:AbstractString
+     @ Base strings/basic.jl:232
+    convert(::Type{T}, !Matched::AbstractString) where T<:AbstractString
+     @ Base strings/basic.jl:233
+    ...
+
+  Stacktrace:
+    [1] setindex!(h::Dict{String, String}, v0::Bool, key::String)
+      @ Base ./dict.jl:355
+    [2] macro expansion
+      @ <workbench>/tests/soc_scf/test_comparison.jl:137 [inlined]
+    [3] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+    [4] run_soc_comparison_tests()
+      @ Main <workbench>/tests/soc_scf/test_comparison.jl:50
+    [5] top-level scope
+      @ none:1
+    [6] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+    [7] macro expansion
+      @ none:1 [inlined]
+    [8] eval(m::Module, e::Any)
+      @ Core ./boot.jl:489
+    [9] exec_options(opts::Base.JLOptions)
+      @ Base ./client.jl:283
+   [10] _start()
+      @ Base ./client.jl:550
+Test Summary:                       | Pass  Error  Total  Time
+Phase 6C comparison only            |   39      1     40  3.5s
+  Synthetic A/B endpoint comparison |   39      1     40  1.6s
+RNG of the outermost testset: Xoshiro(0x152eda4a762e71e3, 0x62cd77848724771a, 0x558e75678d398f1d, 0x850dbce8ebd5a6e0, 0x8cbfb63c409332e2)

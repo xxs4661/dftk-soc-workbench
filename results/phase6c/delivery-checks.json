@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "checks": {
+    "staged_diff_check": {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "diagnostic_lines": 0
+    },
+    "worktree_diff_check": {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "diagnostic_lines": 0
+    }
+  },
+  "relative_links_checked": 37,
+  "private_paths_credentials_and_forbidden_artifacts_scan": "PASS",
+  "original_public_hash_receipts_verified": 52,
+  "A_B_raw_checkpoint_and_current_numerical_sources_verified": true,
+  "english_summary_words_including_heading_links": 250,
+  "staged_files": 83,
+  "total_staged_file_bytes": 1854229,
+  "largest_staged_file_bytes": 363598,
+  "errors": [],
+  "scope": "Candidate files and preserved evidence; original numerical runs are not rerun for text normalization"
+}

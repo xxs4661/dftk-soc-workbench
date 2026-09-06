@@ -1,0 +1,1 @@
+{"execution_status":"PASS","passes":55,"errors":0,"scope":"Synthetic comparison arrays and records only; no SCF or QE","exit_code":0,"source_sha256":{"scripts/compare_soc_scf.jl":"2ff6d9857e59f00b20b84f5e03e3b75b55804d0fd9da9c6d1a77ab85777a0a16","tests/soc_scf/test_comparison.jl":"c7a5ace7dc457a23cb4ef2f832ea32870fe833c533bb23de8703cb62966e62c9"},"fails":0}

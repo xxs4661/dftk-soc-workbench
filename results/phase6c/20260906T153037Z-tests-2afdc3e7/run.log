@@ -1,0 +1,47 @@
+┌ Info: Threading setup:
+│   Threads.nthreads() = 1
+│   n_DFTK = 1
+│   n_fft = 1
+└   n_blas = 1
+Refusing existing run directory; no stale result is reused
+Synthetic failure after provisional stage success
+Stacktrace:
+  [1] error(s::String)
+    @ Base ./error.jl:44
+  [2] (::var"#run_soc_recording_tests##2#run_soc_recording_tests##3")(r::Dict{String, Any}, p::String)
+    @ Main <workbench>/tests/soc_scf/test_recording.jl:13
+  [3] phase6c_record(work::var"#run_soc_recording_tests##2#run_soc_recording_tests##3", label::String, outdir::String)
+    @ Main <workbench>/scripts/run_soc_scf.jl:35
+  [4] macro expansion
+    @ ~/.julia/juliaup/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+  [5] macro expansion
+    @ <workbench>/tests/soc_scf/test_recording.jl:11 [inlined]
+  [6] macro expansion
+    @ ~/.julia/juliaup/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+  [7] run_soc_recording_tests(outdir::String)
+    @ Main <workbench>/tests/soc_scf/test_recording.jl:4
+  [8] top-level scope
+    @ <workbench>/tests/soc_scf/runtests.jl:30
+  [9] macro expansion
+    @ ~/.julia/juliaup/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [10] macro expansion
+    @ <workbench>/tests/soc_scf/runtests.jl:34 [inlined]
+ [11] include(mod::Module, _path::String)
+    @ Base ./Base.jl:306
+ [12] exec_options(opts::Base.JLOptions)
+    @ Base ./client.jl:317
+ [13] _start()
+    @ Base ./client.jl:550
+Phase 6C failed: FAIL, exit=1
+Persistence failure: Public evidence requires finite real numbers
+Persistence failure: SystemError: opening file "<workbench>/.work/phase6c/20260906T153037Z-tests-2afdc3e7/summary-write-fail/summary.txt.tmp": Is a directory
+Usage: run_soc_scf.jl A|B NEW_IGNORED_RUN_DIRECTORY
+Only A and B are physical run labels
+Usage: compare_soc_scf.jl RAW_A_RESULT RAW_B_RESULT NEW_COMPARISON_JSON (no SCF; non-PASS exits 1)
+Refusing existing comparison output
+ArgumentError: Actual final checkpoint SHA-256 differs
+A/B comparison: FAIL
+Usage: run_soc_scf.jl A|B NEW_IGNORED_RUN_DIRECTORY
+Usage: compare_soc_scf.jl RAW_A_RESULT RAW_B_RESULT NEW_COMPARISON_JSON (no SCF; non-PASS exits 1)
+Test Summary:                                     | Pass  Total   Time
+Phase 6C ensemble, controller and interface tests |  438    438  17.3s

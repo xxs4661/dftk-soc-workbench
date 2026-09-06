@@ -1,0 +1,79 @@
+schema_version = 1
+phase = "6C"
+base_commit = "9ec5ef155ad6c078ad6379a6b32f23b7f27da7eb"
+scope = "Two independent charge-only Mg SOC SCF solutions with capacity-one global Fermi occupations; no QE execution"
+numeric_type = "Float64 / ComplexF64"
+
+[mg]
+cell_side_bohr = 10.0
+positions_fractional = [[0.17, 0.23, 0.31]]
+ecut_ha = 15.0
+kpoints = [[0.0, 0.0, 0.0], [0.125, 0.0625, -0.1875], [-0.125, -0.0625, 0.1875]]
+kweights = [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+xc_identifiers = ["gga_x_pbe_sol", "gga_c_pbe_sol"]
+symmetries = false
+reference_density_modulation = 0.02
+reference_density_wavevector = [1, 2, 3]
+expected_header_valence = 10
+expected_has_nlcc = false
+
+[ensemble]
+tau_ha = 0.001
+smearing = "FermiDirac"
+capacity_per_spinor_state = 1
+root_maxiter = 256
+root_electron_atol = 1e-12
+boundary_states = 2
+boundary_occupation_max = 1e-10
+stationarity_endpoint_margin = 1e-8
+stationarity_abs_ha = 1e-8
+
+[solver]
+initial_target_states = 24
+auxiliary_states = 6
+target_increment = 8
+max_target_states = 48
+tolerance_ha = 1e-10
+maxiter = 300
+preconditioner_shift_ha = 1.0
+
+[scf]
+alpha = 0.1
+max_maps = 400
+feedback = "valence charge only; no renormalization, clipping, magnetization clearing or symmetrization"
+initial_A = "Uniform header-derived N_e / Omega"
+initial_B = "A * (1 + 0.02*(cos(2pi*(x+2y+3z))-unweighted discrete grid mean))"
+closure = "Actual additional map from candidate n_out, included in max_maps"
+
+[seeds]
+A = 63001
+B = 64001
+symmetry_probe = 65021
+potential_probe = 65041
+extension_stride = 100000
+
+[thresholds]
+electron_count_abs = 1e-8
+density_fixedpoint_l2 = 1e-8
+residual_ha = 1e-9
+self_density_residual_ha = 1e-7
+gram_norm = 1e-9
+pauli_density_relative = 1e-7
+ab_density_relative = 1e-6
+ab_energy_abs_ha = 1e-7
+ab_spectrum_abs_ha = 1e-6
+comparison_lowest_states = 16
+energy_abs_ha = 1e-8
+free_energy_arithmetic_relative = 1e-12
+self_rayleigh_occupation_abs = 1e-6
+kramers_ha = 1e-8
+time_reversed_spectrum_ha = 1e-8
+time_reversal_normalized = 1e-10
+paired_occupation_abs = 1e-6
+hermiticity_normalized = 1e-10
+hamiltonian_decomposition_normalized = 1e-10
+spin_flip_min_signal = 1e-12
+spin_flip_relative = 1e-8
+
+[evidence]
+checkpoint_policy = "First map, candidates/closure/failure and rolling latest arrays; all completed map diagnostics and density hashes retained"

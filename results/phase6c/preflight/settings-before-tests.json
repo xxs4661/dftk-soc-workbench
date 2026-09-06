@@ -1,0 +1,6 @@
+{
+  "saved_utc": "2026-09-06T14:46:00.630452+00:00",
+  "config": "prototypes/soc_scf/phase6c.toml",
+  "sha256": "fed341560f53663f580c37a8f691298aa24784957b49270c5e3f71289736c58c",
+  "formal_tests_or_scf_started": false
+}

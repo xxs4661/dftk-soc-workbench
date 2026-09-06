@@ -1,0 +1,1194 @@
+{
+  "label": "A",
+  "density_closure_status": "PASS",
+  "band_completeness_diagnostic_status": "PASS",
+  "base_commit": "9ec5ef155ad6c078ad6379a6b32f23b7f27da7eb",
+  "temperature_ha": 0.001,
+  "qe_soc_benchmark_status": "NOT_RUN",
+  "finished_utc": "2026-09-06T15:29:29.188",
+  "environment": {
+    "project_sha256": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "julia_version": "1.12.7",
+    "packages": {
+      "dftk": {
+        "worktree_status": "clean",
+        "expected_uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_path": "<workbench>/.work/DFTK.jl/src/DFTK.jl",
+        "checkout": "<workbench>/.work/DFTK.jl",
+        "expected_version": "0.8.0",
+        "version": "0.8.0",
+        "path": "<workbench>/.work/DFTK.jl/src/DFTK.jl"
+      },
+      "pseudopotentialio": {
+        "worktree_status": "clean",
+        "expected_uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl",
+        "checkout": "<workbench>/.work/PseudoPotentialIO.jl",
+        "expected_version": "0.3.3",
+        "version": "0.3.3",
+        "path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl"
+      }
+    },
+    "active_project": "<workbench>/environment/workbench/Project.toml",
+    "status": "PASS",
+    "source_lock_sha256": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "active_manifest": "<workbench>/environment/workbench/Manifest.toml",
+    "manifest_sha256": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "reasons": []
+  },
+  "exit_code": 0,
+  "final": {
+    "target_states": 24,
+    "n_in_sha256": "60d9f235aab7f02834a5182da244d15622a876ccc91ae811fced56d2c664f345",
+    "map_count": 191,
+    "mu_ha": -0.07907451383388588,
+    "diagnostics": {
+      "band_completeness": {
+        "status": "PASS",
+        "maximum_top_occupation": 1.4257013430024992e-109,
+        "threshold": 1e-10,
+        "top_two": [
+          [
+            2.221870675935859e-141,
+            2.2218706759351014e-141
+          ],
+          [
+            1.4257013430024992e-109,
+            1.4256911273194156e-109
+          ],
+          [
+            1.425701343001932e-109,
+            1.4256911273190105e-109
+          ]
+        ],
+        "scope": "Highest two converged physical target states per k; auxiliary states excluded; finite-tail diagnostic",
+        "target": 24,
+        "next_target": null
+      },
+      "occupations": {
+        "mu_selection_rule": "Midpoint of the global spectral gap; Float64 counts equal at its 1/4,1/2,3/4 points",
+        "maxiter": 256,
+        "occupation_maximum": 1.0,
+        "initial_bracket_ha": [
+          -3.3632105571926645,
+          0.3087916347904003
+        ],
+        "final_bracket_ha": [
+          -0.12046782294380674,
+          -0.037681204723965
+        ],
+        "mu_ha": -0.07907451383388588,
+        "highest_two": [
+          [
+            2.221870675935859e-141,
+            2.2218706759351014e-141
+          ],
+          [
+            1.4257013430024992e-109,
+            1.4256911273194156e-109
+          ],
+          [
+            1.425701343001932e-109,
+            1.4256911273190105e-109
+          ]
+        ],
+        "occupation_minimum": 2.2218706759351014e-141,
+        "status": "PASS",
+        "plateau_gap_ha": [
+          -0.16186113205372762,
+          0.003712104385955874
+        ],
+        "electrons_per_k_weighted": [
+          3.333333333333333,
+          3.333333333333333,
+          3.333333333333333
+        ],
+        "electrons_per_k_unweighted": [
+          10.0,
+          10.0,
+          10.0
+        ],
+        "iterations": 0,
+        "electron_count": 10.0,
+        "tau_ha": 0.001,
+        "numerical_plateau": true,
+        "spatial_weights": [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ],
+        "plateau_interval_ha": [
+          -0.12046782294380674,
+          -0.037681204723965
+        ],
+        "smearing": "FermiDirac",
+        "capacity_per_state": 1,
+        "target_electrons": 10.0,
+        "electron_residual": 0.0
+      },
+      "energy_checks": {
+        "energy_term_sum_difference_ha": -7.105427357601002e-15,
+        "psp_correction_reference_ha": 0.09187494522099392,
+        "native_nonlocal_terms": 0,
+        "nlcc_present": false,
+        "core_electron_integral": 0.0,
+        "component_norm_min": 0.022411499763494405,
+        "ewald_once_difference_ha": 0.0,
+        "local_integral_difference_ha": 0.0,
+        "component_norm_max": 0.9775885002365045,
+        "psp_correction_once_difference_ha": 0.0,
+        "double_counting_total_ha": -57.32598798514782,
+        "direct_kinetic_ha": 29.07598445081146,
+        "density_source": "These spinors and capacity-one occupations; n_X, not n_ref",
+        "integral_n_vxc_ha": -9.371197354607217,
+        "electron_count_real": 10.000000000000002,
+        "expected_valence_electrons": 10,
+        "ewald_reference_ha": -14.186487397403095,
+        "xc_scope": "One six-term energy_hamiltonian traversal; full frozen charge-only LDA/GGA potential, core added internally",
+        "double_counting_difference_ha": -8.526512829121202e-14,
+        "hartree_half_integral_difference_ha": 2.1316282072803006e-14,
+        "direct_kinetic_difference_ha": -7.105427357601002e-15,
+        "band_expectation_ha": -16.908737216691158,
+        "electron_count_reciprocal": 10.000000000000004
+      },
+      "orbital_density_sha256": "38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130",
+      "self_density_h_rayleigh_residuals_ha": [
+        [
+          1.443926854736891e-10,
+          1.4445339158896454e-10,
+          1.7818149280490542e-10,
+          1.7827636142102125e-10,
+          1.825106297910641e-10,
+          1.8250594611853844e-10,
+          1.7297540276146763e-10,
+          1.7292689417076936e-10,
+          2.8858618553277777e-09,
+          2.892819845657275e-09,
+          3.294188847569243e-09,
+          3.2955621982100837e-09,
+          3.3539817202376372e-09,
+          3.335024103043777e-09,
+          3.3477112732221624e-09,
+          3.34822723032404e-09,
+          9.163791652842433e-09,
+          9.171528350740799e-09,
+          3.443086782559297e-09,
+          3.4434195512729122e-09,
+          3.085565224989689e-09,
+          3.084882301940372e-09,
+          3.1361918646685674e-09,
+          3.136877439675095e-09
+        ],
+        [
+          1.6160879806684885e-10,
+          1.616189828577989e-10,
+          2.2789109546240662e-10,
+          2.280449835884305e-10,
+          2.302877833201325e-10,
+          2.3009369473648176e-10,
+          2.1296129019369012e-10,
+          2.1301885030832284e-10,
+          2.650937436167183e-09,
+          2.649697993356962e-09,
+          6.184201294565148e-09,
+          6.180686847205683e-09,
+          4.3407346191785344e-09,
+          4.341274886578064e-09,
+          3.699690935776735e-09,
+          3.7010855424610473e-09,
+          6.792272984337257e-09,
+          6.78407743343008e-09,
+          4.757763207049413e-09,
+          4.752178785147738e-09,
+          4.991130103092089e-09,
+          4.985895261998483e-09,
+          6.690390853403969e-09,
+          6.690981512771122e-09
+        ],
+        [
+          1.6163458801426352e-10,
+          1.6163573644677311e-10,
+          2.2788569405071546e-10,
+          2.2805075145060217e-10,
+          2.3027466070357077e-10,
+          2.3009525466717172e-10,
+          2.1296345410108542e-10,
+          2.1300874490835993e-10,
+          2.6515846645582984e-09,
+          2.650562252664554e-09,
+          6.187674134071028e-09,
+          6.1832592530318715e-09,
+          4.342137341925343e-09,
+          4.339231499709227e-09,
+          3.701170005339707e-09,
+          3.7011495732249284e-09,
+          6.7894427420514115e-09,
+          6.785209304109738e-09,
+          4.755773903325449e-09,
+          4.753493133601928e-09,
+          4.98842921185345e-09,
+          4.987585936936772e-09,
+          6.688919087928501e-09,
+          6.6877762277394264e-09
+        ]
+      ],
+      "orbital_electron_count": 10.000000000000004,
+      "consumed_input_sha256": "60d9f235aab7f02834a5182da244d15622a876ccc91ae811fced56d2c664f345",
+      "entropy_dimensionless": 1.2426050669902275e-34,
+      "self_density_h_rayleigh_values_ha": [
+        [
+          -3.2992105559873264,
+          -3.2992105559873277,
+          -1.6706679260763406,
+          -1.6706679260763404,
+          -1.6619559029683373,
+          -1.661955902968338,
+          -1.6617685913095368,
+          -1.6617685913095386,
+          -0.16839752371316122,
+          -0.16839752371316108,
+          0.051333302338598015,
+          0.051333302338598036,
+          0.051645599522157436,
+          0.051645599522157366,
+          0.051823320792370196,
+          0.05182332079237028,
+          0.05640446462511915,
+          0.05640446462511908,
+          0.09354014199021003,
+          0.09354014199020996,
+          0.09368651224620025,
+          0.09368651224620028,
+          0.24479163496553494,
+          0.24479163496553508
+        ],
+        [
+          -3.2990329984715006,
+          -3.299032998407269,
+          -1.6698394171141104,
+          -1.6698392831890851,
+          -1.6617473012330195,
+          -1.6617472298231344,
+          -1.6580719637816863,
+          -1.6580718676966888,
+          -0.16186113398620772,
+          -0.16186113127933366,
+          0.0037121064386774886,
+          0.0037121475006958583,
+          0.026939911100640954,
+          0.02693996486782796,
+          0.047153698358275244,
+          0.047153745653367475,
+          0.09932708415282747,
+          0.09932713175757664,
+          0.1254630880831846,
+          0.1254631153742971,
+          0.14737674227129544,
+          0.14737674786587338,
+          0.17155259959073638,
+          0.17155260675613537
+        ],
+        [
+          -3.2990329984715,
+          -3.2990329984072684,
+          -1.6698394171141109,
+          -1.669839283189086,
+          -1.6617473012330206,
+          -1.6617472298231322,
+          -1.6580719637816865,
+          -1.6580718676966903,
+          -0.16186113398620755,
+          -0.16186113127933344,
+          0.0037121064386774856,
+          0.003712147500695841,
+          0.026939911100640996,
+          0.02693996486782798,
+          0.047153698358275174,
+          0.04715374565336749,
+          0.09932708415282762,
+          0.09932713175757638,
+          0.12546308808318463,
+          0.12546311537429702,
+          0.14737674227129552,
+          0.14737674786587346,
+          0.17155259959073632,
+          0.17155260675613523
+        ]
+      ],
+      "max_self_rayleigh_residual_ha": 9.171528350740799e-09,
+      "probe_action_sha256": "14dc8bdf1a706f0bfdaac6b08037a57712397251fbbc236ae672b3dd3b6daf70",
+      "entropy_energy_ha": -1.2426050669902276e-37,
+      "internal_energy_ha": -57.325987985147734,
+      "potential_change_norm": 2.0966076046887275e-05,
+      "potential_sha256": "d22d98197aea729c8ebd7b7250d23b3e3643e5acddb975952184899c0b13eb8f",
+      "real_electron_count": 10.000000000000002,
+      "occupation_stationarity": {
+        "max_abs_residual_ha": 0.0,
+        "status": "NO_RESOLVABLE_PARTIAL_OCCUPATIONS",
+        "values": [],
+        "checked_states": 0,
+        "excluded_states": 72,
+        "endpoint_margin": 1e-08
+      },
+      "max_gram_norm": 1.4741437109303966e-14,
+      "target_states": 24,
+      "free_energy_ha": -57.325987985147734,
+      "nonlocal_decomposition": {
+        "full_ha": -14.214054510747257,
+        "down_ha": -7.1070183105787805,
+        "diagonal_ha": -14.21403662115761,
+        "decomposition_difference_ha": -1.8274125973289507e-15,
+        "projected_normalized_error": 1.2497186063674836e-16,
+        "up_ha": -7.10701831057883,
+        "cross_ha": -1.7889589644275464e-05,
+        "projected_full_ha": -14.214054510747255
+      },
+      "self_density_h_old_lambda_residuals_ha": [
+        [
+          1.2139570689682802e-09,
+          1.2139599864686245e-09,
+          1.221720021424264e-09,
+          1.221728701515378e-09,
+          1.219549010541646e-09,
+          1.2195483010630355e-09,
+          1.2245406576083655e-09,
+          1.2245322843842927e-09,
+          2.9979611031447064e-09,
+          3.0046593957909382e-09,
+          3.3352086911494976e-09,
+          3.336565149241541e-09,
+          3.4029135042477925e-09,
+          3.38422981118257e-09,
+          3.403452987890994e-09,
+          3.4039604364654322e-09,
+          1.081648751290319e-08,
+          1.0823042591093272e-08,
+          3.5096393074979184e-09,
+          3.5099657076503345e-09,
+          3.127453073090827e-09,
+          3.1267792779281925e-09,
+          3.1410780983719806e-09,
+          3.1417625892144215e-09
+        ],
+        [
+          1.2158425869294762e-09,
+          1.2158428944401352e-09,
+          1.2293975399779795e-09,
+          1.2293968451173846e-09,
+          1.228947858572558e-09,
+          1.2288999599614596e-09,
+          1.232717290272993e-09,
+          1.2327158298315535e-09,
+          2.761730685533835e-09,
+          2.7605408969685414e-09,
+          6.51598121509583e-09,
+          6.512646627465573e-09,
+          4.448140439482037e-09,
+          4.448667928667424e-09,
+          3.775923929379788e-09,
+          3.777290040630562e-09,
+          7.2477575868871535e-09,
+          7.2400770060818855e-09,
+          4.923122017751473e-09,
+          4.917724424877052e-09,
+          5.1943358759354255e-09,
+          5.189305562209173e-09,
+          7.027804786228213e-09,
+          7.028366925516785e-09
+        ],
+        [
+          1.2158445036799965e-09,
+          1.2158457908615059e-09,
+          1.2293968411482234e-09,
+          1.2293975458440973e-09,
+          1.2289429331552653e-09,
+          1.2289005058810394e-09,
+          1.2327183266745547e-09,
+          1.2327146130335044e-09,
+          2.762351851954263e-09,
+          2.7613704119325453e-09,
+          6.519277353928183e-09,
+          6.51508791979534e-09,
+          4.449509245627818e-09,
+          4.446673945029963e-09,
+          3.7773731335485435e-09,
+          3.777352748291272e-09,
+          7.245105221898119e-09,
+          7.2411377382841655e-09,
+          4.921199715360618e-09,
+          4.918994445807645e-09,
+          5.191740803880302e-09,
+          5.190930172974013e-09,
+          7.026403590982755e-09,
+          7.025315472207559e-09
+        ]
+      ],
+      "rayleigh_occupations": {
+        "max_occupation_difference": 7.109523849762031e-43,
+        "occupation_report": {
+          "mu_selection_rule": "Midpoint of the global spectral gap; Float64 counts equal at its 1/4,1/2,3/4 points",
+          "maxiter": 256,
+          "occupation_maximum": 1.0,
+          "initial_bracket_ha": [
+            -3.3632105559873278,
+            0.3087916349655351
+          ],
+          "final_bracket_ha": [
+            -0.12046782184983071,
+            -0.037681202990825245
+          ],
+          "mu_ha": -0.07907451242032798,
+          "highest_two": [
+            [
+              2.2218734275530815e-141,
+              2.221873427552829e-141
+            ],
+            [
+              1.4257002909980117e-109,
+              1.4256900753231957e-109
+            ],
+            [
+              1.4257002909980928e-109,
+              1.4256900753234387e-109
+            ]
+          ],
+          "occupation_minimum": 2.221873427552829e-141,
+          "status": "PASS",
+          "plateau_gap_ha": [
+            -0.16186113127933344,
+            0.0037121064386774856
+          ],
+          "electrons_per_k_weighted": [
+            3.333333333333333,
+            3.333333333333333,
+            3.333333333333333
+          ],
+          "electrons_per_k_unweighted": [
+            10.0,
+            10.0,
+            10.0
+          ],
+          "iterations": 0,
+          "electron_count": 10.0,
+          "tau_ha": 0.001,
+          "numerical_plateau": true,
+          "spatial_weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ],
+          "plateau_interval_ha": [
+            -0.12046782184983071,
+            -0.037681202990825245
+          ],
+          "smearing": "FermiDirac",
+          "capacity_per_state": 1,
+          "target_electrons": 10.0,
+          "electron_residual": 0.0
+        },
+        "source": "H[n_out] Rayleigh quotients, sorted only for global root then restored to original columns; not a new diagonalization",
+        "occupations": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.3152913707994618e-57,
+            2.3152913707993962e-57,
+            1.694246938732053e-57,
+            1.6942469387321976e-57,
+            1.4183824292314243e-57,
+            1.4183824292313035e-57,
+            1.4528736767508314e-59,
+            1.4528736767509552e-59,
+            1.0824506208546546e-75,
+            1.0824506208547161e-75,
+            9.350617660069604e-76,
+            9.350617660069337e-76,
+            2.2218734275530815e-141,
+            2.221873427552829e-141
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.1123161787039406e-36,
+            1.1122705056942985e-36,
+            9.089099603393683e-47,
+            9.088610921213317e-47,
+            1.5128107374495412e-55,
+            1.5127391906181073e-55,
+            3.320251989102166e-78,
+            3.3200939331012752e-78,
+            1.4806375513506707e-89,
+            1.4805971436560696e-89,
+            4.5026653200629336e-99,
+            4.502640129621318e-99,
+            1.4257002909980117e-109,
+            1.4256900753231957e-109
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.1123161787039406e-36,
+            1.1122705056943142e-36,
+            9.089099603393296e-47,
+            9.088610921213059e-47,
+            1.5128107374496273e-55,
+            1.5127391906180642e-55,
+            3.3202519891017886e-78,
+            3.3200939331021248e-78,
+            1.4806375513506286e-89,
+            1.4805971436561959e-89,
+            4.5026653200625494e-99,
+            4.5026401296209335e-99,
+            1.4257002909980928e-109,
+            1.4256900753234387e-109
+          ]
+        ]
+      },
+      "magnetization_integral": [
+        -2.4964806082659983e-15,
+        3.840885726537105e-17,
+        2.8796731573734954e-15
+      ],
+      "pauli_density_relative_l2": 1.0314304884391205e-13,
+      "max_input_h_residual_ha": 9.969270277980549e-11,
+      "energy_terms_ha": {
+        "PspCorrection": 0.09187494522099392,
+        "Ewald": -14.186487397403095,
+        "Kinetic": 29.075984450811468,
+        "AtomicNonlocalFR": -14.214054510747257,
+        "AtomicLocal": -79.43302742791043,
+        "Hartree": 28.516778812881178,
+        "Xc": -7.1770568580005945
+      },
+      "probe_action_norm": 9.708735626854578,
+      "potential_norm": 90.04470682975355,
+      "energy_density_source": "Same physical X/f and n_out; seven-term E plus spinor entropy once; no n_next terms",
+      "max_self_density_h_residual_ha": 1.0823042591093272e-08,
+      "free_energy_arithmetic_error_ha": 1.2426050669902276e-37,
+      "formal_occupation_source": "Global capacity-one Fermi root of the current map's solved H[n_in] eigenvalues"
+    },
+    "eigenvalues_ha": [
+      [
+        -3.2992105571926644,
+        -3.2992105571926604,
+        -1.6706679272849974,
+        -1.670667927284992,
+        -1.6619559041741516,
+        -1.6619559041741514,
+        -1.6617685925217993,
+        -1.6617685925217982,
+        -0.16839752452530163,
+        -0.16839752452530118,
+        0.05133330181712238,
+        0.05133330181712245,
+        0.05164559894715573,
+        0.051645598947156854,
+        0.05182332017891983,
+        0.051823320178920176,
+        0.05640445887870069,
+        0.05640445887870122,
+        0.0935401413099737,
+        0.09354014130997401,
+        0.09368651173605327,
+        0.0936865117360534,
+        0.24479163479039995,
+        0.24479163479040025
+      ],
+      [
+        -3.2990329996765553,
+        -3.299032999612321,
+        -1.6698394183222016,
+        -1.6698392843971483,
+        -1.661747302440199,
+        -1.6617472310303003,
+        -1.6580719649958693,
+        -1.6580718689108604,
+        -0.16186113476060232,
+        -0.16186113205372782,
+        0.0037121043859559932,
+        0.0037121454479717678,
+        0.02693991012905654,
+        0.026939963896242296,
+        0.04715369760336567,
+        0.04715374489845958,
+        0.09932708162399045,
+        0.09932712922874111,
+        0.1254630868179494,
+        0.12546311410906583,
+        0.1473767408326345,
+        0.14737674642721404,
+        0.17155259743929263,
+        0.17155260460469213
+      ],
+      [
+        -3.299032999676554,
+        -3.2990329996123213,
+        -1.669839418322202,
+        -1.6698392843971481,
+        -1.6617473024401965,
+        -1.6617472310303003,
+        -1.6580719649958695,
+        -1.6580718689108607,
+        -0.16186113476060196,
+        -0.16186113205372762,
+        0.003712104385955874,
+        0.003712145447971891,
+        0.0269399101290568,
+        0.026939963896242047,
+        0.047153697603365755,
+        0.04715374489845976,
+        0.0993270816239906,
+        0.0993271292287407,
+        0.1254630868179488,
+        0.1254631141090662,
+        0.1473767408326341,
+        0.14737674642721338,
+        0.171552597439293,
+        0.1715526046046924
+      ]
+    ],
+    "n_out_sha256": "38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130",
+    "occupations": [
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        2.31528930536997e-57,
+        2.3152893053697726e-57,
+        1.6942455180113913e-57,
+        1.6942455180095134e-57,
+        1.4183812943734182e-57,
+        1.4183812943729346e-57,
+        1.4528799718635568e-59,
+        1.4528799718627724e-59,
+        1.0824498270705563e-75,
+        1.0824498270702486e-75,
+        9.350609212623305e-76,
+        9.350609212622241e-76,
+        2.221870675935859e-141,
+        2.2218706759351014e-141
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.1123168896561833e-36,
+        1.1122712166202253e-36,
+        9.089095586253558e-47,
+        9.088606904300412e-47,
+        1.5128097410396e-55,
+        1.5127381942527751e-55,
+        3.3202556921120854e-78,
+        3.3200976359298224e-78,
+        1.4806373317385305e-89,
+        1.4805969240441155e-89,
+        4.502665433093433e-99,
+        4.502640242644147e-99,
+        1.4257013430024992e-109,
+        1.4256911273194156e-109
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.1123168896563256e-36,
+        1.1122712166200988e-36,
+        9.089095586251232e-47,
+        9.088606904302737e-47,
+        1.5128097410394711e-55,
+        1.5127381942524741e-55,
+        3.3202556921115192e-78,
+        3.3200976359312376e-78,
+        1.4806373317394142e-89,
+        1.4805969240436106e-89,
+        4.502665433095225e-99,
+        4.50264024264709e-99,
+        1.425701343001932e-109,
+        1.4256911273190105e-109
+      ]
+    ],
+    "unmixed_residual_l2": 1.6542346674852517e-09
+  },
+  "energy_and_free_energy_status": "PASS",
+  "time_reversal_status": "PASS",
+  "time_reversal": {
+    "eigenvalue_source": "Actual closure solve H[n_in], where n_in is previous candidate's n_out; final H[n_out] action and Rayleigh residuals are separate",
+    "status": "PASS",
+    "full_h_at_n_out": {
+      "time_reversal": [
+        {
+          "ng": 2777,
+          "source": 1,
+          "target": 1,
+          "bijection": true,
+          "reversal_map_sha256": "25b51fe0a3a30b54ed1e0e97e20d62f5fbe2c7e93b3e81f71715c7c872850e05",
+          "normalized_error": 3.5905083638147756e-17,
+          "absolute_error": 3.470315970556509e-16
+        },
+        {
+          "ng": 2770,
+          "source": 2,
+          "target": 3,
+          "bijection": true,
+          "reversal_map_sha256": "77c579b6969cf15c9411ce6900f8efae9a68594344b5b63246be6430cd84a0ba",
+          "normalized_error": 3.69370013436075e-17,
+          "absolute_error": 3.56424979609209e-16
+        },
+        {
+          "ng": 2770,
+          "source": 3,
+          "target": 2,
+          "bijection": true,
+          "reversal_map_sha256": "dc7fe225533ad1f4ab6cdb948ff2a99533c2af88abbf28c95da3d6fed3aaeb43",
+          "normalized_error": 3.768886901254866e-17,
+          "absolute_error": 3.6523308129151795e-16
+        }
+      ],
+      "convention": "i sigma_y K plus a verified bijection of actual G+k vectors; independent physical k blocks",
+      "status": "PASS",
+      "blocks": [
+        {
+          "omitted_fr_effect_norm": 0.12268444409058099,
+          "hermiticity_normalized": 1.936441004293616e-16,
+          "decomposition_normalized": 0.0,
+          "duplicated_fr_effect_norm": 0.12268444409058099,
+          "omitted_fr_effect_matches": 4.582472657416626e-16,
+          "k_index": 1,
+          "duplicated_fr_effect_matches": 7.179606492127387e-16,
+          "spin_flip": {
+            "common_up_norm": 0.0,
+            "status": "PASS",
+            "signal_relative_error": 0.0,
+            "absolute_error": 0.0,
+            "signal_norm": 0.0002353659761588432
+          }
+        },
+        {
+          "omitted_fr_effect_norm": 0.1236117357692879,
+          "hermiticity_normalized": 2.2490430861276357e-16,
+          "decomposition_normalized": 0.0,
+          "duplicated_fr_effect_norm": 0.12361173576928805,
+          "omitted_fr_effect_matches": 4.53189622699698e-16,
+          "k_index": 2,
+          "duplicated_fr_effect_matches": 7.146788777012066e-16,
+          "spin_flip": {
+            "common_up_norm": 0.0,
+            "status": "PASS",
+            "signal_relative_error": 0.0,
+            "absolute_error": 0.0,
+            "signal_norm": 0.00016644872767844067
+          }
+        },
+        {
+          "omitted_fr_effect_norm": 0.11359480929954031,
+          "hermiticity_normalized": 2.0407899217551515e-16,
+          "decomposition_normalized": 0.0,
+          "duplicated_fr_effect_norm": 0.11359480929954031,
+          "omitted_fr_effect_matches": 4.468443083334507e-16,
+          "k_index": 3,
+          "duplicated_fr_effect_matches": 7.081657717841452e-16,
+          "spin_flip": {
+            "common_up_norm": 0.0,
+            "status": "PASS",
+            "signal_relative_error": 0.0,
+            "absolute_error": 0.0,
+            "signal_norm": 0.00024396636181233663
+          }
+        }
+      ],
+      "seed": 65021
+    },
+    "gamma_kramers_max_ha": 5.329070518200751e-15,
+    "gamma_occupation_max_difference": 1.8779214489716895e-69,
+    "plus_minus_occupation_max_difference": 1.4232472081240942e-49,
+    "plus_minus_spectrum_max_ha": 2.4424906541753444e-15
+  },
+  "upstream_native_support": "NOT_IMPLEMENTED_BY_THIS_PHASE",
+  "run_id": "20260906T151940Z-A-270110aa",
+  "started_utc": "2026-09-06T15:19:47.145",
+  "settings": {
+    "base_commit": "9ec5ef155ad6c078ad6379a6b32f23b7f27da7eb",
+    "mg": {
+      "expected_has_nlcc": false,
+      "expected_header_valence": 10,
+      "cell_side_bohr": 10.0,
+      "positions_fractional": [
+        [
+          0.17,
+          0.23,
+          0.31
+        ]
+      ],
+      "xc_identifiers": [
+        "gga_x_pbe_sol",
+        "gga_c_pbe_sol"
+      ],
+      "ecut_ha": 15.0,
+      "reference_density_wavevector": [
+        1,
+        2,
+        3
+      ],
+      "kweights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "symmetries": false,
+      "reference_density_modulation": 0.02,
+      "kpoints": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        [
+          -0.125,
+          -0.0625,
+          0.1875
+        ]
+      ]
+    },
+    "seeds": {
+      "B": 64001,
+      "A": 63001,
+      "symmetry_probe": 65021,
+      "extension_stride": 100000,
+      "potential_probe": 65041
+    },
+    "solver": {
+      "preconditioner_shift_ha": 1.0,
+      "target_increment": 8,
+      "initial_target_states": 24,
+      "auxiliary_states": 6,
+      "tolerance_ha": 1e-10,
+      "maxiter": 300,
+      "max_target_states": 48
+    },
+    "scf": {
+      "alpha": 0.1,
+      "initial_A": "Uniform header-derived N_e / Omega",
+      "closure": "Actual additional map from candidate n_out, included in max_maps",
+      "feedback": "valence charge only; no renormalization, clipping, magnetization clearing or symmetrization",
+      "initial_B": "A * (1 + 0.02*(cos(2pi*(x+2y+3z))-unweighted discrete grid mean))",
+      "max_maps": 400
+    },
+    "scope": "Two independent charge-only Mg SOC SCF solutions with capacity-one global Fermi occupations; no QE execution",
+    "ensemble": {
+      "boundary_states": 2,
+      "tau_ha": 0.001,
+      "root_electron_atol": 1e-12,
+      "root_maxiter": 256,
+      "stationarity_endpoint_margin": 1e-08,
+      "stationarity_abs_ha": 1e-08,
+      "capacity_per_spinor_state": 1,
+      "smearing": "FermiDirac",
+      "boundary_occupation_max": 1e-10
+    },
+    "phase": "6C",
+    "thresholds": {
+      "comparison_lowest_states": 16,
+      "time_reversal_normalized": 1e-10,
+      "free_energy_arithmetic_relative": 1e-12,
+      "gram_norm": 1e-09,
+      "pauli_density_relative": 1e-07,
+      "kramers_ha": 1e-08,
+      "time_reversed_spectrum_ha": 1e-08,
+      "spin_flip_min_signal": 1e-12,
+      "residual_ha": 1e-09,
+      "ab_density_relative": 1e-06,
+      "density_fixedpoint_l2": 1e-08,
+      "hermiticity_normalized": 1e-10,
+      "paired_occupation_abs": 1e-06,
+      "ab_energy_abs_ha": 1e-07,
+      "ab_spectrum_abs_ha": 1e-06,
+      "self_density_residual_ha": 1e-07,
+      "spin_flip_relative": 1e-08,
+      "hamiltonian_decomposition_normalized": 1e-10,
+      "energy_abs_ha": 1e-08,
+      "electron_count_abs": 1e-08,
+      "self_rayleigh_occupation_abs": 1e-06
+    },
+    "schema_version": 1,
+    "evidence": {
+      "checkpoint_policy": "First map, candidates/closure/failure and rolling latest arrays; all completed map diagnostics and density hashes retained"
+    },
+    "numeric_type": "Float64 / ComplexF64"
+  },
+  "executed_source_sha256": {
+    "prototypes/fr_integration/runtime_checks.jl": "c0fbba8a06de748ba537469863bcc5676360b41c41dddcf2d8838f49e97a3bb2",
+    "prototypes/fr_integration/hamiltonian.jl": "2455442d7b4e6d1edcc5637e60e7d2b3f2e1d9e6b277dad441b7ba786568f0ae",
+    "prototypes/relativistic/RelativisticProjectors.jl": "c24c2382e5bb112bc428fd59ce1995e6470caa25e657030f67aefa34d45b5de5",
+    "prototypes/fr_integration/common_data.jl": "9a12fd418818cbed9460685ff2527f0c4f98aef61220d98bfd559603eeadd4bf",
+    "prototypes/soc_scf/solver.jl": "4586e1b2b34c20fccf1e4e85ddeb8e563a941b8263a6df89bb94e2bf207a57b8",
+    "scripts/upf_runtime.jl": "75e30175b9fe89d9bff39a429a1d474169c1d4a403b5ac55994dd972b5480934",
+    "prototypes/spinor/density.jl": "54e9410800a874d9ba2aea0d2bec80b520b7c6fcca8e9c396c1a164e8dbf8dc4",
+    "prototypes/relativistic/operator.jl": "b7d8ac06984de7ae3485fa70b9243fcd3c074804dc7343d172c5c0295472ca5c",
+    "prototypes/fr_integration/variational.jl": "9642bcb94ac5e75c2e72a419ffbd9fcee38c3a14a54eac45d0284fbd0d440c21",
+    "prototypes/spinor/b0_support.jl": "807edeffe446dd8b9473ce322126ad50cdbd1062c0b2540354edffb28d7bcd2e",
+    "scripts/upf_validation.jl": "c703419f5aea896b55544fa01a542adb6199e566d60db9c5c5aa3270a306e08e",
+    "prototypes/relativistic/radial.jl": "2384619bc8fcd437fd455e7f13442cfe1e2f88dbd2eeda94cf02a134f9d3c292",
+    "prototypes/soc_scf/scf.jl": "d3bacfe6d72923924f58914c9891eead994f5c6224d26174a007bc768aeab0d7",
+    "prototypes/relativistic/angular.jl": "1428a4a6a50f9f68cfa0f099827d0a606cceab1d7d72be4247062bf41fe2eb63",
+    "prototypes/soc_scf/SOCSCF.jl": "fb3bc260a9b1bb33b7a2f82148858264d60f38768c98980644bbab57c264dafe",
+    "prototypes/fr_integration/FRIntegration.jl": "efcb54e838d07ce01669f4e60703b69675fd21f259ff4aec5e0be5e1f9e1d2f8",
+    "scripts/run_soc_scf.jl": "6bd6a74ec7c4bc1e835306070c2b15b9e94af39193fd9ca8000397aabe219d52",
+    "prototypes/fr_integration/energy.jl": "2a90d6bc819d15af3b7586d19fcac5f05b1fe2a1a5e3827138ee9fd906e7fb59",
+    "prototypes/spinor/operators.jl": "f12296c929e42a290188044485d1e8006f82fa0a3be9e312afc334bcb5581b0e",
+    "scripts/workbench_environment.jl": "0f57d8930b56a01e534623cab662f96c9a0a66d8e1215503404c49cd09f8e850",
+    "prototypes/relativistic/channels.jl": "15950a9168504dac483bcdc9c588e9db0555ea547f77b34163a491d07ba0bb10",
+    "prototypes/spinor/SpinorSCFPrototype.jl": "ecaf2dad038d41bf609a76f3095745a461ce1db7b138b695272e0e3078ef79f6",
+    "prototypes/soc_scf/phase6c.toml": "fed341560f53663f580c37a8f691298aa24784957b49270c5e3f71289736c58c",
+    "prototypes/spinor/scf.jl": "5321aa6af014bd2fea85a8858fdfe54ed4d66b564e7c979642c4943c1b6d79a9",
+    "prototypes/soc_scf/ensemble.jl": "527c303f5455269487e45ce38e02bb473939ad25ccfa576cc2cb7dc6193c8c9b",
+    "prototypes/spinor/fft.jl": "a1462a3f5ceeb9065a9b2f6513cbbc7282794dc1b432739517046c6d59cb9126",
+    "prototypes/spinor/energy.jl": "16bfe425958fd91adcd0d7eb8bf57d19820f752aca6e1244e3446e6936f0e436",
+    "prototypes/spinor/checks.jl": "f77b9f0e84aab6c8a443dc2f03c5d510f212ce5e1e4db25da37da6c5f6c24361",
+    "prototypes/spinor/SpinorPrototype.jl": "6febe1c9122548282cda9ddcf35266a45b519e4d91c3f54a4fbe523abd255698",
+    "scripts/run_fr_integration.jl": "1f2b45f5b695de092cde0ab8dddf9e8b4e1e7fa238206fd3beeada7da28a2e1d"
+  },
+  "config_sha256": "fed341560f53663f580c37a8f691298aa24784957b49270c5e3f71289736c58c",
+  "completed_maps": 191,
+  "final_environment": {
+    "project_sha256": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "julia_version": "1.12.7",
+    "packages": {
+      "dftk": {
+        "worktree_status": "clean",
+        "expected_uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_path": "<workbench>/.work/DFTK.jl/src/DFTK.jl",
+        "checkout": "<workbench>/.work/DFTK.jl",
+        "expected_version": "0.8.0",
+        "version": "0.8.0",
+        "path": "<workbench>/.work/DFTK.jl/src/DFTK.jl"
+      },
+      "pseudopotentialio": {
+        "worktree_status": "clean",
+        "expected_uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl",
+        "checkout": "<workbench>/.work/PseudoPotentialIO.jl",
+        "expected_version": "0.3.3",
+        "version": "0.3.3",
+        "path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl"
+      }
+    },
+    "active_project": "<workbench>/environment/workbench/Project.toml",
+    "status": "PASS",
+    "source_lock_sha256": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "active_manifest": "<workbench>/environment/workbench/Manifest.toml",
+    "manifest_sha256": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "reasons": []
+  },
+  "global_occupation_status": "PASS",
+  "parallelism": {
+    "julia": 1,
+    "blas": 1,
+    "fft": 1,
+    "mpi": 1
+  },
+  "two_initial_states_comparison_status": "NOT_RUN",
+  "initial": {
+    "label": "A",
+    "summary": {
+      "minimum": 0.01,
+      "negative_roundoff_bound": 1.4210854715202004e-14,
+      "electron_count": 10.000000000000007,
+      "sha256": "e54ed4b140ab95e4e88e31e0c0848067b8d8104fa58ade2e436177ef61af36c0",
+      "l2": 0.31622776601683794
+    },
+    "normalization_applied": false,
+    "qbar": null,
+    "source": "Uniform header-derived N_e / Omega",
+    "seed": 63001,
+    "prior_run_orbitals_used": false
+  },
+  "basis": {
+    "kpoints": [
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ng": 2777,
+        "weight_spatial": 0.3333333333333333,
+        "g_order_sha256": "d90f937f8bc3f0ebd1723176669fd5f8be0311091029920878a94ccd2b3ac2f6"
+      },
+      {
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "ng": 2770,
+        "weight_spatial": 0.3333333333333333,
+        "g_order_sha256": "9d0991d7456e17a1021b3318798f941f71983fb30039ba72166a0ec93788dbd0"
+      },
+      {
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "ng": 2770,
+        "weight_spatial": 0.3333333333333333,
+        "g_order_sha256": "cca688654814583a3ec45e16a2fa719687c7f16d4e7f2082b95cfb35921b5063"
+      }
+    ],
+    "lattice_bohr": [
+      [
+        10.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        10.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        10.0
+      ]
+    ],
+    "native_nonlocal_terms": 0,
+    "ecut_ha": 15.0,
+    "n_electrons": 10,
+    "positions_fractional": [
+      [
+        0.17,
+        0.23,
+        0.31
+      ]
+    ],
+    "term_types": [
+      "DFTK.TermKinetic",
+      "DFTK.TermAtomicLocal{Array{Float64, 3}}",
+      "DFTK.TermEwald{Float64}",
+      "DFTK.TermPspCorrection{Float64}",
+      "DFTK.TermHartree",
+      "DFTK.TermXc{Float64, Nothing, Nothing}"
+    ],
+    "volume_bohr3": 1000.0,
+    "fft_grid": [
+      40,
+      40,
+      40
+    ]
+  },
+  "numerical_review_status": "REVIEW_REQUIRED",
+  "input": {
+    "functional": "PBESOL",
+    "radial_points": 1510,
+    "has_so": true,
+    "g0_local": 0.0,
+    "correction_per_electron_volume": 9.187494522099392,
+    "core_fourier_zero": 0.0,
+    "mode": "real_fr",
+    "nlcc_present": false,
+    "r_last_bohr": 15.09,
+    "relativistic": "full",
+    "r_first_bohr": 0.0,
+    "core_semantics": "PP_NLCC = n_core; Fourier integrand stores r\u00b2 n_core",
+    "element": "Mg",
+    "local_unit": "PP_LOCAL / 2, Ry to Ha",
+    "header_note": "Exact PP_HEADER text retained; reported functional follows frozen PPIO whitespace normalization",
+    "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "binding": "Loader-issued object capability plus unchanged full source/common/channel snapshots; one parse",
+    "xc_identifiers": [
+      "gga_x_pbe_sol",
+      "gga_c_pbe_sol"
+    ],
+    "z_valence": 10,
+    "beta_cutoff_indices": [
+      160,
+      160,
+      160,
+      160,
+      160,
+      160
+    ],
+    "valence_fourier_zero": 9.999997867876154,
+    "valence_semantics": "PP_RHOATOM / (4pi) = r\u00b2 n_valence",
+    "quadrature": "simpson_uniform",
+    "source": "https://github.com/JuliaMolSim/PseudoLibrary/releases/download/v0.2.1/dojo.nc.fr.pbesol.v0_4.stringent.upf.tar.gz",
+    "cutoff_indices": {
+      "local_potential": 1510,
+      "core": 1510,
+      "correction": 1510,
+      "valence": 1510
+    }
+  },
+  "smearing": "FermiDirac",
+  "execution_status": "PASS",
+  "checkpoint_sha256": "5b138d68662fc6451ffd8b78bbd71939454ca30f8ad014623cb1d8e6720f5451",
+  "qe_soc_input_status": "BLOCKED",
+  "workbench_head_at_execution": "9ec5ef155ad6c078ad6379a6b32f23b7f27da7eb",
+  "phase": "6C",
+  "noncollinear_xc_status": "NOT_IMPLEMENTED",
+  "schema_version": 1,
+  "soc_scf_execution_status": "PASS"
+}

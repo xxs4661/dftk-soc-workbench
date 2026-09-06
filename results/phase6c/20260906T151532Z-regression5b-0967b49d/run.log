@@ -1,0 +1,20 @@
+┌ Info: Threading setup:
+│   Threads.nthreads() = 1
+│   n_DFTK = 1
+│   n_fft = 1
+└   n_blas = 1
+┌ Info: Threading setup:
+│   Threads.nthreads() = 1
+│   n_DFTK = 1
+│   n_fft = 1
+└   n_blas = 1
+Frozen workbench identity: PASS
+Manifest SHA256: 5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37
+Synthetic algebra threshold: 1e-11 (norm and near-zero definitions in each test)
+Scope: synthetic matrices/coefficients and a small kinetic-only DFTK basis; no SCF
+Synthetic FFT basis: NG=[87, 83], fft_size=(12, 15, 15)
+Test Summary:                                    | Pass  Total  Time
+Phase 5A independent spinor prototype unit tests |  544    544  8.3s
+Phase 5B new tests: synthetic orbitals on verified B0 and synthetic density maps; no SCF
+Test Summary:                                    | Pass  Total   Time
+Phase 5B energy and density-feedback regressions |  228    228  36.5s

@@ -11,7 +11,7 @@ Base.showerror(io::IO, err::DensityMapFailure) = print(io, err.reason)
 _scf_hash(a) = bytes2hex(SHA.sha256(reinterpret(UInt8, vec(copy(a)))))
 
 """Validate a Float64 valence density without clipping or renormalizing it."""
-function density_summary(n, dvol; electron_tol=1e-8)
+function density_summary(n, dvol; electron_tol=1e-8, n_electrons=8)
     n isa AbstractArray{Float64} && !isempty(n) ||
         throw(ArgumentError("Density must be a nonempty Float64 array"))
     isfinite(dvol) && dvol > 0 || throw(ArgumentError("Invalid real-grid volume element"))
@@ -19,8 +19,10 @@ function density_summary(n, dvol; electron_tol=1e-8)
     all(isfinite, n) || throw(ArgumentError("Nonfinite valence density"))
     negative_bound = 64eps(Float64) * max(1.0, maximum(abs, n))
     minimum(n) >= -negative_bound || throw(ArgumentError("Negative density exceeds rounding bound"))
+    n_electrons isa Real && isfinite(n_electrons) && n_electrons > 0 ||
+        throw(ArgumentError("Positive finite valence electron count required"))
     count = dvol * sum(n)
-    abs(count-8) <= electron_tol || throw(ArgumentError("Valence electron count drift: $count"))
+    abs(count-n_electrons) <= electron_tol || throw(ArgumentError("Valence electron count drift: $count"))
     (; sha256=_scf_hash(n), electron_count=count, l2=sqrt(dvol)*norm(n),
        minimum=minimum(n), negative_roundoff_bound=negative_bound)
 end
@@ -28,7 +30,9 @@ end
 """
     iterate_density_map(map_density, n0; dvol, ...)
 
-Small controller shared by the real loop and synthetic fault tests. A map takes
+Small controller shared by the real loop and synthetic fault tests.
+The optional n_electrons defaults to the historical Si count; Phase 6C passes
+its actual header-derived count without using the old Si orbital/energy path. A map takes
 `(n_in, map_index, is_closure)` and returns `n_out`, `raw`, `closure_ok`, and
 `diagnostics` containing `consumed_input_sha256` and `orbital_density_sha256`.
 The latter is derived independently from the actual returned orbitals.
@@ -39,7 +43,7 @@ linear mixing step. All maps, including closure, count against the same limit.
 The callback receives every completed map and a safe failure record on errors.
 """
 function iterate_density_map(map_density, n0; dvol, alpha=0.3, max_maps=200,
-                             density_tol=1e-9, electron_tol=1e-8,
+                             density_tol=1e-9, electron_tol=1e-8, n_electrons=8,
                              callback=(record, raw)->nothing)
     isfinite(alpha) && 0 < alpha <= 1 || throw(ArgumentError("Mixing alpha must lie in (0,1]"))
     max_maps isa Integer && max_maps > 0 || throw(ArgumentError("Positive map budget required"))
@@ -52,13 +56,13 @@ function iterate_density_map(map_density, n0; dvol, alpha=0.3, max_maps=200,
             "map_role"=>closing ? "closure" : "iteration", "status"=>"RUNNING")
         raw = nothing
         try
-            sin = density_summary(n_in, dvol; electron_tol)
+            sin = density_summary(n_in, dvol; electron_tol, n_electrons)
             record["n_in"] = sin
             mapped = map_density(copy(n_in), imap, closing)
             raw = mapped.raw
             n_out = copy(vec(mapped.n_out))
             size(n_out) == size(n_in) || throw(DimensionMismatch("Density map changed grid size"))
-            sout = density_summary(n_out, dvol; electron_tol)
+            sout = density_summary(n_out, dvol; electron_tol, n_electrons)
             diag = mapped.diagnostics
             diag.consumed_input_sha256 == sin.sha256 ||
                 error("Hamiltonian consumed stale or mismatched input density")
@@ -67,13 +71,13 @@ function iterate_density_map(map_density, n0; dvol, alpha=0.3, max_maps=200,
             mapped.closure_ok isa Bool || error("Closure check must return a Boolean")
             residual = sqrt(dvol) * norm(n_out-n_in)
             n_mixed = (1-alpha).*n_in .+ alpha.*n_out
-            smixed = density_summary(n_mixed, dvol; electron_tol)
+            smixed = density_summary(n_mixed, dvol; electron_tol, n_electrons)
             candidate = residual <= density_tol
             converged = closing && candidate && mapped.closure_ok
             # Closure uses the candidate OUTPUT, not its damped approximation.
             next_is_closure = !closing && candidate
             n_next = converged || next_is_closure ? copy(n_out) : n_mixed
-            snext = density_summary(n_next, dvol; electron_tol)
+            snext = density_summary(n_next, dvol; electron_tol, n_electrons)
             merge!(record, Dict("n_out"=>sout, "n_mixed"=>smixed, "n_next"=>snext,
                 "unmixed_residual_l2"=>residual,
                 "mixed_step_l2"=>sqrt(dvol)*norm(n_mixed-n_in),

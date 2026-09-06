@@ -1,0 +1,6 @@
+Abort(69354895): Fatal error in internal_Init_thread: Other MPI error, error stack:
+internal_Init_thread(71)..........: MPI_Init_thread(argc=0x0, argv=0x0, required=2, provided=0x16ef00e70) failed
+MPII_Init_thread(261).............:
+MPID_Init(549)....................:
+MPIDI_OFI_init_local(716).........:
+MPIDI_OFI_create_vci_context(1050): OFI call ep failed (default nic=utun4: Operation not permitted)

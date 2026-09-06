@@ -1,0 +1,28 @@
+test_actual_input_hash_is_checked_again (test_qe_preparation.PreparationProtocolTests.test_actual_input_hash_is_checked_again) ... ok
+test_checklist_construction_failure_does_not_publish (test_qe_preparation.PreparationProtocolTests.test_checklist_construction_failure_does_not_publish) ... ok
+test_checklist_write_failure_does_not_publish (test_qe_preparation.PreparationProtocolTests.test_checklist_write_failure_does_not_publish) ... ok
+test_comparison_configuration_hash_must_match_actual_file (test_qe_preparation.PreparationProtocolTests.test_comparison_configuration_hash_must_match_actual_file) ... ok
+test_comparison_requires_pass (test_qe_preparation.PreparationProtocolTests.test_comparison_requires_pass) ... ok
+test_comparison_run_identity_must_match (test_qe_preparation.PreparationProtocolTests.test_comparison_run_identity_must_match) ... ok
+test_edited_result_invalidates_comparison_hash (test_qe_preparation.PreparationProtocolTests.test_edited_result_invalidates_comparison_hash) ... ok
+test_every_required_worker_stage_must_pass (test_qe_preparation.PreparationProtocolTests.test_every_required_worker_stage_must_pass) ... ok
+test_existing_evidence_is_not_overwritten (test_qe_preparation.PreparationProtocolTests.test_existing_evidence_is_not_overwritten) ... ok
+test_final_common_target_is_not_initial_count_or_doubled (test_qe_preparation.PreparationProtocolTests.test_final_common_target_is_not_initial_count_or_doubled) ... ok
+test_frozen_geometry_change_is_rejected (test_qe_preparation.PreparationProtocolTests.test_frozen_geometry_change_is_rejected) ... ok
+test_header_failure_never_becomes_physical_validation (test_qe_preparation.PreparationProtocolTests.test_header_failure_never_becomes_physical_validation) ... ok
+test_invalid_target_count_is_rejected (test_qe_preparation.PreparationProtocolTests.test_invalid_target_count_is_rejected) ... ok
+test_kpoint_count_coordinates_and_weights_are_checked (test_qe_preparation.PreparationProtocolTests.test_kpoint_count_coordinates_and_weights_are_checked) ... ok
+test_mismatched_common_target_is_rejected (test_qe_preparation.PreparationProtocolTests.test_mismatched_common_target_is_rejected) ... ok
+test_missing_or_wrong_nested_types_are_rejected (test_qe_preparation.PreparationProtocolTests.test_missing_or_wrong_nested_types_are_rejected) ... ok
+test_missing_stage_is_not_success (test_qe_preparation.PreparationProtocolTests.test_missing_stage_is_not_success) ... ok
+test_nonfinite_json_is_rejected (test_qe_preparation.PreparationProtocolTests.test_nonfinite_json_is_rejected) ... ok
+test_physical_model_and_input_metadata_are_checked (test_qe_preparation.PreparationProtocolTests.test_physical_model_and_input_metadata_are_checked) ... ok
+test_reused_run_id_is_rejected (test_qe_preparation.PreparationProtocolTests.test_reused_run_id_is_rejected) ... ok
+test_schema_and_run_label_are_checked (test_qe_preparation.PreparationProtocolTests.test_schema_and_run_label_are_checked) ... ok
+test_synthetic_success_publishes_one_input_without_execution_or_upf (test_qe_preparation.PreparationProtocolTests.test_synthetic_success_publishes_one_input_without_execution_or_upf) ... ok
+test_worker_configuration_hash_must_match_actual_file (test_qe_preparation.PreparationProtocolTests.test_worker_configuration_hash_must_match_actual_file) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.073s
+
+OK
