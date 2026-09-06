@@ -1,7 +1,0 @@
-Frozen workbench identity: PASS
-Manifest SHA256: 5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37
-Synthetic algebra threshold: 1e-11 (norm and near-zero definitions in each test)
-Scope: synthetic matrices/coefficients and a small kinetic-only DFTK basis; no SCF
-Synthetic FFT basis: NG=[87, 83], fft_size=(12, 15, 15)
-Test Summary:                                    | Pass  Total   Time
-Phase 5A independent spinor prototype unit tests |  544    544  11.0s

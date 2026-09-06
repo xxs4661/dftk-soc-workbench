@@ -1,7 +1,0 @@
-Usage: compare_soc_scf.jl RAW_A_RESULT RAW_B_RESULT NEW_COMPARISON_JSON (no SCF; non-PASS exits 1)
-Refusing existing comparison output
-ArgumentError: Actual final checkpoint SHA-256 differs
-A/B comparison: FAIL
-Usage: compare_soc_scf.jl RAW_A_RESULT RAW_B_RESULT NEW_COMPARISON_JSON (no SCF; non-PASS exits 1)
-Test Summary:            | Pass  Total  Time
-Phase 6C comparison only |   55     55  3.2s

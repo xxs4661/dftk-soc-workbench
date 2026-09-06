@@ -1,8 +1,0 @@
-Test Summary:                        | Pass  Total  Time
-FR-NC metadata (memory objects only) |   43     43  0.5s
-Test Summary:                    | Pass  Total  Time
-DFTK construction classification |   14     14  0.2s
-Test Summary:            | Pass  Total  Time
-Parsing and beta adapter |    3      3  0.0s
-Test Summary:           | Pass  Total  Time
-Loaded package identity |    3      3  0.1s

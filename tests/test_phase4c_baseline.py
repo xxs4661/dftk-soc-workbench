@@ -21,7 +21,7 @@ import compare_scalar_baseline as comparison
 from parse_qe_baseline import parse_qe
 import run_scalar_baseline as runner
 
-B0 = ROOT / "results/phase4b/20260905T040945688395Z-1cc8a50c"
+B0 = ROOT / "results/scalar-si-baseline/B0"
 BASE_CASE = ROOT / "benchmarks/si-sr-lda/case.json"
 C3_CASE = ROOT / "benchmarks/si-sr-lda/phase4c/C3.json"
 

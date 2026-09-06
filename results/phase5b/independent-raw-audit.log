@@ -1,3 +1,0 @@
-PASS: four immutable first/closure checkpoints (A1,A53,B1,B53) independently match journal density hashes, unmixed residuals, Pauli ratios, charge counts, energy terms, raw R/Pauli signs and all target Gram matrices.
-Read-only array algebra; no new Hamiltonian, diagonalization or SCF executed.
-exit_code=0

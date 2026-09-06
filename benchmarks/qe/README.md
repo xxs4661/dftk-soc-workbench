@@ -1,7 +1,12 @@
-# Quantum ESPRESSO benchmark inputs
+# Quantum ESPRESSO reference cases
 
-This directory is reserved for future QE input files and concise run instructions. QE is an independent numerical reference; its source will not be copied or translated.
+[Scalar Si](../si-sr-lda/README.md) has actual paired QE 7.5 evidence.
+[Mg SOC](../mg-soc-fermi/checklist.md) has a prepared input only:
+**PREPARED_NOT_EXECUTED**, with the first SOC E/F comparison **NOT_RUN**.
+This directory does not contain another input set. QE algorithms are not copied
+or translated; exact builds, inputs, units and band matching belong to each case.
 
-Inputs should pin the QE version or commit, executable build details, pseudopotential identifier and SHA-256 checksum, lattice and positions, energy cutoffs, explicit k-points, occupations, smearing, XC functional, convergence thresholds, and relativistic/noncollinear flags. Any comparison must document unit conversions and band-matching rules.
-
-Do not commit pseudopotential payloads, `.save` directories, wavefunctions, charge-density binaries, temporary XML, mixing files, or large raw output. Small sanitized logs may be placed under [`../../results/logs/`](../../results/logs/README.md).
+Publish only whitelisted small numerical evidence under the [scientific index](../../results/README.md).
+UPF payloads, wavefunctions, density binaries, caches and raw save directories stay
+outside version control. Small actual XML outputs retained for offline parsing
+are distinct from complete QE save directories.

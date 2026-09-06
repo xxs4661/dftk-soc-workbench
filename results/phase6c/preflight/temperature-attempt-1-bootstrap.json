@@ -1,1 +1,0 @@
-{"execution_status":"BLOCKED","test_status":"NOT_RUN","exit_code":143,"reason":"DFTK import aborted during MPI initialization: OFI endpoint permission denied in sandbox; no model, eigensolve, or SCF executed","log":".work/phase6c-preflight/temperature-attempt-1.log"}

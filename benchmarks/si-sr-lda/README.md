@@ -90,7 +90,7 @@ From the repository root, with the frozen workbench sources/environment already
 available and the Si file obtained above:
 
 ```sh
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p '*baseline*.py' -v
+PYTHONDONTWRITEBYTECODE=1 python3.9 -m unittest discover -s tests -p '*baseline*.py' -v
 python3 scripts/run_scalar_baseline.py --julia-depot /path/to/existing/workbench/cache
 ```
 
@@ -119,5 +119,8 @@ available in these outputs. The two SCF tolerances measure different quantities.
 one global HOMO reference per program; there is no per-k-point shift or total
 energy correction. Numerical agreement remains `REVIEW_REQUIRED` until reviewed;
 `convergence_study_status` remains `NOT_RUN`. Selected published evidence and its
-raw/redacted SHA-256 manifest are linked from the
-[Phase 4B report](../../results/phase4b-review.md).
+raw/public SHA-256 provenance are in the
+[canonical B0 evidence](../../results/scalar-si-baseline/README.md).
+Exact historical numerical replay uses Python 3.9; the original assertions are
+unchanged. [Finite cutoff and k-point sensitivities](../../results/scalar-si-sensitivity/README.md)
+remain separate observations.

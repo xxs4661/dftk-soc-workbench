@@ -17,3 +17,7 @@ results/logs/*.raw
 !environment/workbench/Manifest.toml
 results/runs/
 __pycache__/
+
+# Local agent/process scratch is never public evidence.
+/.agent-work/
+/local_archive/

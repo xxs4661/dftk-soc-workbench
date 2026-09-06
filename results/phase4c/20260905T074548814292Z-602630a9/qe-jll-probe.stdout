@@ -1,6 +1,0 @@
-jll_version=7.5.1+0
-jll_uuid=74603b90-2fcf-5710-a7d7-830b31b8b33c
-jll_source=<home>/.julia/packages/QuantumEspresso_jll/T1wk0/src/QuantumEspresso_jll.jl
-active_project=<home>/.julia/environments/v1.12/Project.toml
-binary=<home>/.julia/artifacts/273d3312b2a70e6223250dbf4a39ab3f28b04104/bin/pw.x
-artifacts_file=<home>/.julia/packages/QuantumEspresso_jll/T1wk0/Artifacts.toml

@@ -1,0 +1,794 @@
+{
+  "schema_version": 1,
+  "case": "mg-soc-scf",
+  "source_phase": "6C",
+  "publication_snapshot": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+  "environment": {
+    "path": "results/shared/environment.json",
+    "sha256": "b6a5999b51a9aed12efa9d66e9884ad8be401a72b76d751296458555c963991b"
+  },
+  "settings": {
+    "path": "prototypes/soc_scf/phase6c.toml",
+    "sha256": "fed341560f53663f580c37a8f691298aa24784957b49270c5e3f71289736c58c",
+    "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297"
+  },
+  "predeclaration": {
+    "saved_utc": "2026-09-06T14:46:00.630452+00:00",
+    "config": "prototypes/soc_scf/phase6c.toml",
+    "sha256": "fed341560f53663f580c37a8f691298aa24784957b49270c5e3f71289736c58c",
+    "formal_tests_or_scf_started": false
+  },
+  "runs": {
+    "A": {
+      "run_id": "20260906T151940Z-A-270110aa",
+      "label": "A",
+      "started_utc": "2026-09-06T15:19:47.145",
+      "finished_utc": "2026-09-06T15:29:29.188",
+      "exit_code": 0,
+      "execution_status": "PASS",
+      "initial": {
+        "label": "A",
+        "summary": {
+          "minimum": 0.01,
+          "negative_roundoff_bound": 1.4210854715202004e-14,
+          "electron_count": 10.000000000000007,
+          "sha256": "e54ed4b140ab95e4e88e31e0c0848067b8d8104fa58ade2e436177ef61af36c0",
+          "l2": 0.31622776601683794
+        },
+        "normalization_applied": false,
+        "qbar": null,
+        "source": "Uniform header-derived N_e / Omega",
+        "seed": 63001,
+        "prior_run_orbitals_used": false
+      },
+      "checkpoint_sha256": "5b138d68662fc6451ffd8b78bbd71939454ca30f8ad014623cb1d8e6720f5451",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "scripts/run_soc_scf.jl",
+        "A",
+        "<workbench>/.work/phase6c/20260906T151940Z-A-270110aa"
+      ],
+      "environment_checks": [
+        {
+          "boundary": "start",
+          "status": "PASS",
+          "environment_ref": {
+            "path": "results/shared/environment.json",
+            "sha256": "b6a5999b51a9aed12efa9d66e9884ad8be401a72b76d751296458555c963991b"
+          },
+          "source_field": "environment",
+          "run_id": "20260906T151940Z-A-270110aa",
+          "time_scope": "Bound by recorded run start/end, no separate check timestamp was recorded"
+        },
+        {
+          "boundary": "end",
+          "status": "PASS",
+          "environment_ref": {
+            "path": "results/shared/environment.json",
+            "sha256": "b6a5999b51a9aed12efa9d66e9884ad8be401a72b76d751296458555c963991b"
+          },
+          "source_field": "final_environment",
+          "run_id": "20260906T151940Z-A-270110aa",
+          "time_scope": "Bound by recorded run start/end, no separate check timestamp was recorded"
+        }
+      ]
+    },
+    "B": {
+      "run_id": "20260906T153016Z-B-62835d43",
+      "label": "B",
+      "started_utc": "2026-09-06T15:30:23.644",
+      "finished_utc": "2026-09-06T15:40:10.638",
+      "exit_code": 0,
+      "execution_status": "PASS",
+      "initial": {
+        "label": "B",
+        "summary": {
+          "minimum": 0.0098,
+          "negative_roundoff_bound": 1.4210854715202004e-14,
+          "electron_count": 10.000000000000004,
+          "sha256": "11eb4f97b96eee6fa607f2bccf763526609bf19164519a4c515ab550121449c1",
+          "l2": 0.31625938721246377
+        },
+        "normalization_applied": false,
+        "qbar": -4.5595471842574396e-17,
+        "source": "A * (1 + 0.02*(cos(2pi*(x+2y+3z))-unweighted discrete grid mean))",
+        "seed": 64001,
+        "prior_run_orbitals_used": false
+      },
+      "checkpoint_sha256": "ff91020614a30d40a226194b95f041ee6120c1fb8398ad685712ca41ff4dddd9",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "scripts/run_soc_scf.jl",
+        "B",
+        "<workbench>/.work/phase6c/20260906T153016Z-B-62835d43"
+      ],
+      "environment_checks": [
+        {
+          "boundary": "start",
+          "status": "PASS",
+          "environment_ref": {
+            "path": "results/shared/environment.json",
+            "sha256": "b6a5999b51a9aed12efa9d66e9884ad8be401a72b76d751296458555c963991b"
+          },
+          "source_field": "environment",
+          "run_id": "20260906T153016Z-B-62835d43",
+          "time_scope": "Bound by recorded run start/end, no separate check timestamp was recorded"
+        },
+        {
+          "boundary": "end",
+          "status": "PASS",
+          "environment_ref": {
+            "path": "results/shared/environment.json",
+            "sha256": "b6a5999b51a9aed12efa9d66e9884ad8be401a72b76d751296458555c963991b"
+          },
+          "source_field": "final_environment",
+          "run_id": "20260906T153016Z-B-62835d43",
+          "time_scope": "Bound by recorded run start/end, no separate check timestamp was recorded"
+        }
+      ]
+    }
+  },
+  "sources": {
+    "A": {
+      "raw_result": {
+        "path": ".work/phase6c/20260906T151940Z-A-270110aa/result.json",
+        "sha256": "9942aabe50daf12f581433f9f222a78a8254d8c538335e6a931975176bce8fd5",
+        "bytes": 56526
+      },
+      "raw_maps": {
+        "path": ".work/phase6c/20260906T151940Z-A-270110aa/maps.jsonl",
+        "sha256": "393291a022437348aab1a73a7130538f6e6a039bd27d33e99f3f6f4b97099991",
+        "bytes": 3843367
+      },
+      "published_endpoint": {
+        "path": "results/phase6c/20260906T151940Z-A-270110aa/result.compact.json",
+        "sha256": "b1ef96c4f7c3a6ec20b471a4f6d7ee14c870db94a8556fa21e17c19e3342256c",
+        "bytes": 40283,
+        "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "blob": "e8cb81784b8b89537545ee0dbf4f13f92ac5cfa2"
+      },
+      "published_maps": {
+        "path": "results/phase6c/20260906T151940Z-A-270110aa/maps.csv",
+        "sha256": "a7e20a20009902e36fa6fead9493cf4d8371f9fc1f06dafa616718b627bcf6ed",
+        "bytes": 296017,
+        "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "blob": "fa5bb2018e0cc99d8e57b09d56f61a20640473f9"
+      },
+      "published_solvers": {
+        "path": "results/phase6c/20260906T151940Z-A-270110aa/solvers.csv",
+        "sha256": "b6c4d4d051a34689f4fe0feb5c260f34d5b18d5be485d2c890b5d33a874685d4",
+        "bytes": 363598,
+        "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "blob": "fa32285dc4dbe42d1b2208f5fac8722200e1500c"
+      },
+      "engine_log": {
+        "path": "results/phase6c/20260906T151940Z-A-270110aa/run.log",
+        "sha256": "ac323a4ec2bd76c8567fa9950976241597ccf5e2c61cbf244d21bfb1afcd5f66",
+        "bytes": 19446,
+        "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "blob": "96196db6525127fe09d916d82dab52424830af57"
+      },
+      "command": {
+        "path": "results/phase6c/20260906T151940Z-A-270110aa/command.json",
+        "sha256": "72a557f1bc75ea8be837d20884ad7cc4b23e3cd0ee27deb6259fd6c1c67c6f95",
+        "bytes": 5437,
+        "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "blob": "91d4f1e50d434efd592cf61d44353bbd08982bbf"
+      }
+    },
+    "B": {
+      "raw_result": {
+        "path": ".work/phase6c/20260906T153016Z-B-62835d43/result.json",
+        "sha256": "3ba4ff5ea1328c02e90aa2177ad352cf4c2ec4ac644dd7392016c5fcf1804db9",
+        "bytes": 56590
+      },
+      "raw_maps": {
+        "path": ".work/phase6c/20260906T153016Z-B-62835d43/maps.jsonl",
+        "sha256": "e251d8df3e3087dba297181640a5eac9e9369ab9a37ec9685c664ea763d3d8ca",
+        "bytes": 3843505
+      },
+      "published_endpoint": {
+        "path": "results/phase6c/20260906T153016Z-B-62835d43/result.compact.json",
+        "sha256": "c164b7d67d4c5894dc289114395358231b460c13e7a05b11ec20dfffb59ebb69",
+        "bytes": 40323,
+        "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "blob": "5b9921635b87168da766ad631fed54a3c249a0dd"
+      },
+      "published_maps": {
+        "path": "results/phase6c/20260906T153016Z-B-62835d43/maps.csv",
+        "sha256": "0aea3d88bf78d88e3811e8062aceefb2261e038f68d237116cb8f39058043d62",
+        "bytes": 296011,
+        "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "blob": "2129a3f4058ec43bdff558e4c3deb89c9aba03bb"
+      },
+      "published_solvers": {
+        "path": "results/phase6c/20260906T153016Z-B-62835d43/solvers.csv",
+        "sha256": "040004964b29af82243de66b88b92055eae7658203affdb4e83bfb4bba14435d",
+        "bytes": 363547,
+        "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "blob": "ccf7042585c0f71b386fed4d34e496cfe2660ecf"
+      },
+      "engine_log": {
+        "path": "results/phase6c/20260906T153016Z-B-62835d43/run.log",
+        "sha256": "ddbefde05736ea31a57443027425b97adf2f276727e1f7b43e880bd75068ef4e",
+        "bytes": 19427,
+        "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "blob": "7ac6c2bc0ec785ea3765cb52c9bba981d96fef25"
+      },
+      "command": {
+        "path": "results/phase6c/20260906T153016Z-B-62835d43/command.json",
+        "sha256": "78b359a3bf5afee26c85371747294252e93f495ab93e9e121f5a47480f1e9f78",
+        "bytes": 5545,
+        "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "blob": "db47a8fbc89e2d08c6a22ae97abffe940beaf5ce"
+      }
+    },
+    "comparison": {
+      "path": "results/phase6c/20260906T154035Z-compare-f24619d0/comparison.json",
+      "sha256": "4ce1e6822f7c98ffb3e5ace67a1160b77d07776b70353064b7bccbf1a36a1f98",
+      "bytes": 3518,
+      "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+      "blob": "165dc1c1ad7ef9b755da20a7b2ac628696e578b0"
+    },
+    "results/phase6c/20260906T153037Z-tests-2afdc3e7/test-result.json": {
+      "path": "results/phase6c/20260906T153037Z-tests-2afdc3e7/test-result.json",
+      "sha256": "c0296887d4de1887f403fde27967bc8029819ecadb9daddd3c7e3a4d423aabe3",
+      "bytes": 17455,
+      "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+      "blob": "5c25b084ac4dacc1c0ad6a13a0babb8c7d775b08"
+    },
+    "results/phase6c/20260906T151424Z-regression6b-0083f6a9/run.log": {
+      "path": "results/phase6c/20260906T151424Z-regression6b-0083f6a9/run.log",
+      "sha256": "73c60462eb912b1c8bb138b4b3b31e4230104d15fa86a8b12b1cec0eb46879e3",
+      "bytes": 3692,
+      "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+      "blob": "6054377567bde607076f73fde3a7ff76ab60f2a1"
+    },
+    "results/phase6c/20260906T151532Z-regression5b-0967b49d/run.log": {
+      "path": "results/phase6c/20260906T151532Z-regression5b-0967b49d/run.log",
+      "sha256": "55bb60a0873390c4b3b6bfbb7f1b4cca0d76ee91d8d5db2f6f381215733925ab",
+      "bytes": 913,
+      "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+      "blob": "4feb4bfcdbec7d71c78d12a8ce1b35a703fd19c2"
+    },
+    "results/phase6c/preflight/qe-preparation-tests-attempt-3.log": {
+      "path": "results/phase6c/preflight/qe-preparation-tests-attempt-3.log",
+      "sha256": "b3f0ac980035159dee1c0be2684754a63f1c369328d82218330a3d98ddd0fad5",
+      "bytes": 3583,
+      "commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+      "blob": "dbe62cfee55e55b83ea05d6a41ba5380834c56bd"
+    }
+  },
+  "public_sha256": {
+    "comparison.json": "2ed63cef64b1fbd580bb8e187fd741ffb3bab56d67031799a2e1176682ecf85f",
+    "README.md": "d46a32f7e990910c1261d618943f053d19dfaf8f0d046c3635ec049d1937192f",
+    "A/maps.csv": "a04f4cddc7d315ae134237ba619d1d12997b257e1c8e0aeae892ebf6c0be8155",
+    "A/endpoint.json": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+    "A/engine.log": "ac323a4ec2bd76c8567fa9950976241597ccf5e2c61cbf244d21bfb1afcd5f66",
+    "B/maps.csv": "ef92471c02c0fd0a43986d27391d0103158b576b67d5aa3571824cff7b78031b",
+    "B/endpoint.json": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+    "B/engine.log": "ddbefde05736ea31a57443027425b97adf2f276727e1f7b43e880bd75068ef4e"
+  },
+  "array_dependent_claims": "Density L2, Pauli density, Gram, H residuals/TR action and energy contractions are original runner measurements. Public hashes bind reported records; they do not reconstruct arrays.",
+  "offline_arithmetic_scope": "Recompute all map energy/DC/F algebra and recorded gates, final physical-spinor entropy/weighted count, raw spectra and A/B E/F. No independent array-based validation.",
+  "historical_combined_status": {
+    "soc_scf_execution_status": "PASS",
+    "global_occupation_status": "PASS",
+    "band_completeness_diagnostic_status": "PASS",
+    "density_closure_status": "PASS",
+    "energy_and_free_energy_status": "PASS",
+    "two_initial_states_comparison_status": "PASS",
+    "time_reversal_status": "PASS",
+    "schema_version": 1,
+    "phase": "6C",
+    "numerical_review_status": "REVIEW_REQUIRED",
+    "qe_soc_input_status": "PREPARED_NOT_EXECUTED",
+    "qe_soc_benchmark_status": "NOT_RUN",
+    "noncollinear_xc_status": "NOT_IMPLEMENTED",
+    "upstream_native_support": "NOT_IMPLEMENTED_BY_THIS_PHASE",
+    "A": "20260906T151940Z-A-270110aa",
+    "B": "20260906T153016Z-B-62835d43",
+    "comparison_run_id": "20260906T154035Z-compare-f24619d0",
+    "scope": "Declared workbench engineering thresholds, pending human review and first independent QE SOC comparison"
+  },
+  "input": {
+    "functional": "PBESOL",
+    "radial_points": 1510,
+    "has_so": true,
+    "g0_local": 0.0,
+    "correction_per_electron_volume": 9.187494522099392,
+    "core_fourier_zero": 0.0,
+    "mode": "real_fr",
+    "nlcc_present": false,
+    "r_last_bohr": 15.09,
+    "relativistic": "full",
+    "r_first_bohr": 0.0,
+    "core_semantics": "PP_NLCC = n_core; Fourier integrand stores r² n_core",
+    "element": "Mg",
+    "local_unit": "PP_LOCAL / 2, Ry to Ha",
+    "header_note": "Exact PP_HEADER text retained; reported functional follows frozen PPIO whitespace normalization",
+    "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "binding": "Loader-issued object capability plus unchanged full source/common/channel snapshots; one parse",
+    "xc_identifiers": [
+      "gga_x_pbe_sol",
+      "gga_c_pbe_sol"
+    ],
+    "z_valence": 10,
+    "beta_cutoff_indices": [
+      160,
+      160,
+      160,
+      160,
+      160,
+      160
+    ],
+    "valence_fourier_zero": 9.999997867876154,
+    "valence_semantics": "PP_RHOATOM / (4pi) = r² n_valence",
+    "quadrature": "simpson_uniform",
+    "source": "https://github.com/JuliaMolSim/PseudoLibrary/releases/download/v0.2.1/dojo.nc.fr.pbesol.v0_4.stringent.upf.tar.gz",
+    "cutoff_indices": {
+      "local_potential": 1510,
+      "core": 1510,
+      "correction": 1510,
+      "valence": 1510
+    }
+  },
+  "basis": {
+    "kpoints": [
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ng": 2777,
+        "weight_spatial": 0.3333333333333333,
+        "g_order_sha256": "d90f937f8bc3f0ebd1723176669fd5f8be0311091029920878a94ccd2b3ac2f6"
+      },
+      {
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "ng": 2770,
+        "weight_spatial": 0.3333333333333333,
+        "g_order_sha256": "9d0991d7456e17a1021b3318798f941f71983fb30039ba72166a0ec93788dbd0"
+      },
+      {
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "ng": 2770,
+        "weight_spatial": 0.3333333333333333,
+        "g_order_sha256": "cca688654814583a3ec45e16a2fa719687c7f16d4e7f2082b95cfb35921b5063"
+      }
+    ],
+    "lattice_bohr": [
+      [
+        10.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        10.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        10.0
+      ]
+    ],
+    "native_nonlocal_terms": 0,
+    "ecut_ha": 15.0,
+    "n_electrons": 10,
+    "positions_fractional": [
+      [
+        0.17,
+        0.23,
+        0.31
+      ]
+    ],
+    "term_types": [
+      "DFTK.TermKinetic",
+      "DFTK.TermAtomicLocal{Array{Float64, 3}}",
+      "DFTK.TermEwald{Float64}",
+      "DFTK.TermPspCorrection{Float64}",
+      "DFTK.TermHartree",
+      "DFTK.TermXc{Float64, Nothing, Nothing}"
+    ],
+    "volume_bohr3": 1000.0,
+    "fft_grid": [
+      40,
+      40,
+      40
+    ]
+  },
+  "parallelism": {
+    "julia": 1,
+    "blas": 1,
+    "fft": 1,
+    "mpi": 1
+  },
+  "executed_source_sha256": {
+    "prototypes/fr_integration/runtime_checks.jl": "c0fbba8a06de748ba537469863bcc5676360b41c41dddcf2d8838f49e97a3bb2",
+    "prototypes/fr_integration/hamiltonian.jl": "2455442d7b4e6d1edcc5637e60e7d2b3f2e1d9e6b277dad441b7ba786568f0ae",
+    "prototypes/relativistic/RelativisticProjectors.jl": "c24c2382e5bb112bc428fd59ce1995e6470caa25e657030f67aefa34d45b5de5",
+    "prototypes/fr_integration/common_data.jl": "9a12fd418818cbed9460685ff2527f0c4f98aef61220d98bfd559603eeadd4bf",
+    "prototypes/soc_scf/solver.jl": "4586e1b2b34c20fccf1e4e85ddeb8e563a941b8263a6df89bb94e2bf207a57b8",
+    "scripts/upf_runtime.jl": "75e30175b9fe89d9bff39a429a1d474169c1d4a403b5ac55994dd972b5480934",
+    "prototypes/spinor/density.jl": "54e9410800a874d9ba2aea0d2bec80b520b7c6fcca8e9c396c1a164e8dbf8dc4",
+    "prototypes/relativistic/operator.jl": "b7d8ac06984de7ae3485fa70b9243fcd3c074804dc7343d172c5c0295472ca5c",
+    "prototypes/fr_integration/variational.jl": "9642bcb94ac5e75c2e72a419ffbd9fcee38c3a14a54eac45d0284fbd0d440c21",
+    "prototypes/spinor/b0_support.jl": "807edeffe446dd8b9473ce322126ad50cdbd1062c0b2540354edffb28d7bcd2e",
+    "scripts/upf_validation.jl": "c703419f5aea896b55544fa01a542adb6199e566d60db9c5c5aa3270a306e08e",
+    "prototypes/relativistic/radial.jl": "2384619bc8fcd437fd455e7f13442cfe1e2f88dbd2eeda94cf02a134f9d3c292",
+    "prototypes/soc_scf/scf.jl": "d3bacfe6d72923924f58914c9891eead994f5c6224d26174a007bc768aeab0d7",
+    "prototypes/relativistic/angular.jl": "1428a4a6a50f9f68cfa0f099827d0a606cceab1d7d72be4247062bf41fe2eb63",
+    "prototypes/soc_scf/SOCSCF.jl": "fb3bc260a9b1bb33b7a2f82148858264d60f38768c98980644bbab57c264dafe",
+    "prototypes/fr_integration/FRIntegration.jl": "efcb54e838d07ce01669f4e60703b69675fd21f259ff4aec5e0be5e1f9e1d2f8",
+    "scripts/run_soc_scf.jl": "6bd6a74ec7c4bc1e835306070c2b15b9e94af39193fd9ca8000397aabe219d52",
+    "prototypes/fr_integration/energy.jl": "2a90d6bc819d15af3b7586d19fcac5f05b1fe2a1a5e3827138ee9fd906e7fb59",
+    "prototypes/spinor/operators.jl": "f12296c929e42a290188044485d1e8006f82fa0a3be9e312afc334bcb5581b0e",
+    "scripts/workbench_environment.jl": "0f57d8930b56a01e534623cab662f96c9a0a66d8e1215503404c49cd09f8e850",
+    "prototypes/relativistic/channels.jl": "15950a9168504dac483bcdc9c588e9db0555ea547f77b34163a491d07ba0bb10",
+    "prototypes/spinor/SpinorSCFPrototype.jl": "ecaf2dad038d41bf609a76f3095745a461ce1db7b138b695272e0e3078ef79f6",
+    "prototypes/soc_scf/phase6c.toml": "fed341560f53663f580c37a8f691298aa24784957b49270c5e3f71289736c58c",
+    "prototypes/spinor/scf.jl": "5321aa6af014bd2fea85a8858fdfe54ed4d66b564e7c979642c4943c1b6d79a9",
+    "prototypes/soc_scf/ensemble.jl": "527c303f5455269487e45ce38e02bb473939ad25ccfa576cc2cb7dc6193c8c9b",
+    "prototypes/spinor/fft.jl": "a1462a3f5ceeb9065a9b2f6513cbbc7282794dc1b432739517046c6d59cb9126",
+    "prototypes/spinor/energy.jl": "16bfe425958fd91adcd0d7eb8bf57d19820f752aca6e1244e3446e6936f0e436",
+    "prototypes/spinor/checks.jl": "f77b9f0e84aab6c8a443dc2f03c5d510f212ce5e1e4db25da37da6c5f6c24361",
+    "prototypes/spinor/SpinorPrototype.jl": "6febe1c9122548282cda9ddcf35266a45b519e4d91c3f54a4fbe523abd255698",
+    "scripts/run_fr_integration.jl": "1f2b45f5b695de092cde0ab8dddf9e8b4e1e7fa238206fd3beeada7da28a2e1d"
+  },
+  "workbench_head_at_execution": "9ec5ef155ad6c078ad6379a6b32f23b7f27da7eb",
+  "base_commit": "9ec5ef155ad6c078ad6379a6b32f23b7f27da7eb",
+  "comparison_check": {
+    "run_id": "20260906T154035Z-compare-f24619d0",
+    "finished_utc": "2026-09-06T15:40:42.795",
+    "status": "PASS",
+    "environment_ref": {
+      "path": "results/shared/environment.json",
+      "sha256": "b6a5999b51a9aed12efa9d66e9884ad8be401a72b76d751296458555c963991b"
+    }
+  },
+  "validation": {
+    "final_new_tests": {
+      "run_id": "20260906T153037Z-tests-2afdc3e7",
+      "started_utc": "2026-09-06T15:30:40.719",
+      "finished_utc": "2026-09-06T15:31:06.331",
+      "test_counts": {
+        "passes": 438,
+        "errors": 0,
+        "broken": 0,
+        "fails": 0
+      },
+      "scope": "Synthetic spectra, maps and faults; real-Mg operator/energy fixtures, no physical eigensolve or SCF",
+      "test_source_sha256": {
+        "runtests.jl": "20903d2ee8e531c8b311bdfd78cc8b9c680e381ef2c06551d287b6764e89cf89",
+        "test_temperature.jl": "077f83b1e50c6ccab818fc2c4e755699eee9a9f51dcb9f93b24afa87edbeeb0f",
+        "test_ensemble.jl": "a9ac12f5f527bc722dbf320b814a9344a1bcc19461749074fe986378325b21cd",
+        "test_comparison.jl": "8846f6e3aabcd58686080ab4f632a2c257f5c748659dfb9e0ac755b9d58b702b",
+        "test_controller.jl": "3e6937d82cc3b30dde52e37fb540566cb4ba9f5d22748fbda977aadb50b474c1",
+        "test_recording.jl": "9a6355ec2de582673d41a465e4682f8c441601d4e6199f3c24fb4b8d0d9c4d3e",
+        "test_integration.jl": "210d533df69414c65fc2ca93f5474d7b5a4c541cb0cf8fd872340ad4e3f0d66c"
+      },
+      "integration": {
+        "equal_occupation_density_error": 5.517148473839304e-17,
+        "occupation_electron_residual": -9.71667191151937e-13,
+        "entropy_energy_ha": -0.01058575466060546,
+        "internal_energy_ha": 73.68667729066631,
+        "changed_input_hartree_potential_norm": 0.0813442906762512,
+        "scope": "Real Mg fractional-occupation operator/energy fixtures with synthetic spectra; no eigensolve or SCF",
+        "per_k_unweighted_electrons": [
+          10.099999999999048,
+          9.899999999999011,
+          9.999999999999028
+        ],
+        "free_energy_ha": 73.6760915360057,
+        "changed_input_h_action_norm": 0.0003191632840085907,
+        "double_counting_difference_ha": 0.0,
+        "unequal_occupation_density_change_l2": 0.0009529951714840239,
+        "changed_input_potential_norm": 0.09718533033609528,
+        "changed_input_xc_potential_norm": 0.17852661224288738
+      },
+      "ensemble": {
+        "plateau": {
+          "mu_selection_rule": "Midpoint of the global spectral gap; Float64 counts equal at its 1/4,1/2,3/4 points",
+          "maxiter": 256,
+          "occupation_maximum": 1.0,
+          "initial_bracket_ha": [
+            -10.064,
+            12.064
+          ],
+          "final_bracket_ha": [
+            -3.5,
+            5.5
+          ],
+          "mu_ha": 1.0,
+          "highest_two": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ],
+          "occupation_minimum": 0.0,
+          "status": "PASS",
+          "plateau_gap_ha": [
+            -8.0,
+            10.0
+          ],
+          "electrons_per_k_weighted": [
+            0.2,
+            0.8
+          ],
+          "electrons_per_k_unweighted": [
+            1.0,
+            1.0
+          ],
+          "iterations": 0,
+          "electron_count": 1.0,
+          "tau_ha": 0.001,
+          "numerical_plateau": true,
+          "spatial_weights": [
+            0.2,
+            0.8
+          ],
+          "plateau_interval_ha": [
+            -3.5,
+            5.5
+          ],
+          "smearing": "FermiDirac",
+          "capacity_per_state": 1,
+          "target_electrons": 1.0,
+          "electron_residual": 0.0
+        },
+        "known_spectrum": {
+          "mu_selection_rule": "First bounded-bisection midpoint satisfying the global count tolerance",
+          "maxiter": 256,
+          "occupation_maximum": 0.8000000000001748,
+          "initial_bracket_ha": [
+            -1.1377258872223979,
+            1.5088887795833288
+          ],
+          "final_bracket_ha": [
+            0.1699999999999466,
+            0.17000000000009707
+          ],
+          "mu_ha": 0.17000000000002186,
+          "highest_two": [
+            [
+              0.40000000000026203,
+              0.10000000000009832
+            ],
+            [
+              0.20000000000017487,
+              0.050000000000051906
+            ]
+          ],
+          "occupation_minimum": 0.050000000000051906,
+          "status": "PASS",
+          "plateau_gap_ha": null,
+          "electrons_per_k_weighted": [
+            0.32500000000013374,
+            0.7125000000003421
+          ],
+          "electrons_per_k_unweighted": [
+            1.300000000000535,
+            0.9500000000004561
+          ],
+          "iterations": 45,
+          "electron_count": 1.0375000000004757,
+          "tau_ha": 0.02,
+          "numerical_plateau": false,
+          "spatial_weights": [
+            0.25,
+            0.75
+          ],
+          "plateau_interval_ha": null,
+          "smearing": "FermiDirac",
+          "capacity_per_state": 1,
+          "target_electrons": 1.0375,
+          "electron_residual": 4.756195437494171e-13
+        },
+        "scope": "Synthetic finite-temperature spectra, occupations, entropy and band-tail diagnostics; no physical solve",
+        "tr_occupation_max_difference": 0.0,
+        "stationarity": {
+          "max_abs_residual_ha": 0.0,
+          "status": "EVALUATED",
+          "values": [
+            {
+              "residual_ha": 0.0,
+              "k_index": 1,
+              "occupation": 0.8000000000001748,
+              "band_index": 1
+            },
+            {
+              "residual_ha": 0.0,
+              "k_index": 1,
+              "occupation": 0.40000000000026203,
+              "band_index": 2
+            },
+            {
+              "residual_ha": 0.0,
+              "k_index": 1,
+              "occupation": 0.10000000000009832,
+              "band_index": 3
+            },
+            {
+              "residual_ha": 0.0,
+              "k_index": 2,
+              "occupation": 0.7000000000002294,
+              "band_index": 1
+            },
+            {
+              "residual_ha": 0.0,
+              "k_index": 2,
+              "occupation": 0.20000000000017487,
+              "band_index": 2
+            },
+            {
+              "residual_ha": 0.0,
+              "k_index": 2,
+              "occupation": 0.050000000000051906,
+              "band_index": 3
+            }
+          ],
+          "checked_states": 6,
+          "excluded_states": 0,
+          "endpoint_margin": 1e-08
+        },
+        "band_expansion_events": [
+          {
+            "status": "EXPAND",
+            "maximum_top_occupation": 0.2,
+            "threshold": 1e-10,
+            "top_two": [
+              [
+                0.2,
+                0.2
+              ],
+              [
+                0.2,
+                0.2
+              ],
+              [
+                0.2,
+                0.2
+              ]
+            ],
+            "scope": "Highest two converged physical target states per k; auxiliary states excluded; finite-tail diagnostic",
+            "target": 24,
+            "next_target": 32
+          },
+          {
+            "status": "EXPAND",
+            "maximum_top_occupation": 0.2,
+            "threshold": 1e-10,
+            "top_two": [
+              [
+                0.2,
+                0.2
+              ],
+              [
+                0.2,
+                0.2
+              ],
+              [
+                0.2,
+                0.2
+              ]
+            ],
+            "scope": "Highest two converged physical target states per k; auxiliary states excluded; finite-tail diagnostic",
+            "target": 32,
+            "next_target": 40
+          },
+          {
+            "status": "EXPAND",
+            "maximum_top_occupation": 0.2,
+            "threshold": 1e-10,
+            "top_two": [
+              [
+                0.2,
+                0.2
+              ],
+              [
+                0.2,
+                0.2
+              ],
+              [
+                0.2,
+                0.2
+              ]
+            ],
+            "scope": "Highest two converged physical target states per k; auxiliary states excluded; finite-tail diagnostic",
+            "target": 40,
+            "next_target": 48
+          },
+          {
+            "status": "INSUFFICIENT_BANDS",
+            "maximum_top_occupation": 0.2,
+            "threshold": 1e-10,
+            "top_two": [
+              [
+                0.2,
+                0.2
+              ],
+              [
+                0.2,
+                0.2
+              ],
+              [
+                0.2,
+                0.2
+              ]
+            ],
+            "scope": "Highest two converged physical target states per k; auxiliary states excluded; finite-tail diagnostic",
+            "target": 48,
+            "next_target": null
+          }
+        ],
+        "entropy": {
+          "arithmetic_error_ha": -1.5959455978986625e-16,
+          "entropy_dimensionless": 1.3569607426891093,
+          "tau_ha": 0.02,
+          "free_energy_ha": -3.0271392148537823,
+          "entropy_scope": "Physical spinor f only, spatial weights; S/k_B; no core or component multiplicity",
+          "entropy_energy_ha": -0.027139214853782186,
+          "internal_energy_ha": -3.0,
+          "entropy_capacity_per_state": 1
+        }
+      },
+      "temperature": {
+        "zero_temperature_ha": 0.0,
+        "scope": "Fixed model and Hamiltonian interface only; no occupations/eigensolve/SCF",
+        "finite_smearing": "DFTK.Smearing.FermiDirac",
+        "common_term_count": 6,
+        "finite_temperature_ha": 0.001,
+        "same_density_hamiltonian_normalized_error": 0.0,
+        "native_entropy_term_count": 0
+      }
+    },
+    "affected_regressions": [
+      {
+        "run_id": "20260906T151424Z-regression6b-0083f6a9",
+        "test_counts": {
+          "passes": 241,
+          "errors": 0,
+          "broken": 0,
+          "fails": 0
+        }
+      },
+      {
+        "run_id": "20260906T151532Z-regression5b-0967b49d",
+        "passed_counts": [
+          544,
+          228
+        ]
+      }
+    ],
+    "qe_preparation_protocol_tests": 24,
+    "scope": "Historical workbench tests, not newly executed by curation and not physical SCF or QE"
+  },
+  "export": {
+    "script": "scripts/curate_soc_evidence.py",
+    "script_sha256": "5899db832b621625a1cf26b82c37b9c57a1fd62063172229fb0908cf2c6cce1a",
+    "rule": "Explicit selections in selected_map/endpoint; exact JSON numeric equality and CSV round-trip checks. Original logs are byte-preserved. Source final solver residuals: /final/diagnostics/band_attempts/0/per_k.",
+    "arithmetic": "Historical values are preserved. Offline reassociated Python sums can differ in last bits and are checked against original declared thresholds, never written over originals."
+  }
+}

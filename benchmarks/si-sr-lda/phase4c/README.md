@@ -81,7 +81,7 @@ No package installation or dependency update is part of these commands.
 
 ```sh
 JULIA_DEPOT_PATH=/path/to/existing/workbench/cache python3 scripts/run_recorded.py identity
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts:tests python3 -m unittest -v test_scalar_baseline test_qe_baseline_parser test_phase4c_baseline test_si_reference test_si_sensitivity
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts:tests python3.9 -m unittest -v test_scalar_baseline test_qe_baseline_parser test_phase4c_baseline test_si_reference test_si_sensitivity
 python3 scripts/inspect_si_reference.py --case benchmarks/si-sr-lda/case.json --output .work/new-reference.json
 python3 scripts/run_scalar_baseline.py --case benchmarks/si-sr-lda/phase4c/C1.json --julia-depot /path/to/existing/workbench/cache
 python3 scripts/run_scalar_baseline.py --case benchmarks/si-sr-lda/phase4c/C2.json --julia-depot /path/to/existing/workbench/cache
@@ -123,5 +123,18 @@ settings and convergence criteria. Matrix application uses the pinned
 [Hamiltonian block API](https://github.com/JuliaMolSim/DFTK.jl/blob/2f51b91213e26726fb9c6a17e5fae235a1412d01/src/terms/Hamiltonian.jl#L67).
 
 The limited results and review-dependent next-stage recommendations are in
-[results/phase4c-review.md](../../../results/phase4c-review.md). This phase does
+[canonical scalar sensitivity evidence](../../../results/scalar-si-sensitivity/README.md). This phase does
 not establish full k-point convergence or implement/validate SOC or spinors.
+
+The frozen configuration's historical B0 path is resolved by the runner to the
+[byte-identical canonical B0 record](../../../results/scalar-si-baseline/B0/result.json).
+The raw analyzer still verifies the original raw manifest; migration does not
+substitute public hashes for those private raw files. For public-only offline
+replay (Python 3.9, no UPF, Julia or QE), run:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3.9 scripts/curate_scalar_evidence.py --check
+```
+
+Public-only radial reintegration is `NOT_AVAILABLE_WITHOUT_UPF`; the published
+reference retains its original finite-grid quadrature and tail diagnostics.

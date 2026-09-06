@@ -45,3 +45,9 @@ This is not noncollinear magnetic XC, an upstream-ready API, a convergence
 study, or independent QE validation. See the Phase 6C report for actual run
 statuses, including any failures. The next scientific gate is independent QE
 SOC comparison; preparing an input does not execute it.
+
+The [curated Mg evidence](../../results/mg-soc-scf/README.md) retains both
+191-map histories, complete target spectra and state residuals. Its documented
+Python standard-library check recomputes public energy and spectral arithmetic
+without loading Julia or private checkpoints. Density and orbital-dependent
+quantities remain explicitly identified as original runner measurements.

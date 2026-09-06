@@ -158,6 +158,13 @@ def check_reference_environment(environment, qe, reference):
             raise PrerequisiteError('Reference QE identity mismatch: ' + key)
 
 
+def resolve_reference_result(relative_path):
+    """Resolve the one frozen historical reference after public evidence curation."""
+    if relative_path == 'results/phase4b/20260905T040945688395Z-1cc8a50c/result.json':
+        relative_path = 'results/scalar-si-baseline/B0/result.json'
+    return ROOT / relative_path
+
+
 def run_case(case_path, *, pw_x=None, julia_depot=None):
     directory = new_run_directory(ROOT/'.work/scalar-baseline')
     result = {'schema_version':1,'run_id':directory.name,'execution_status':'BLOCKED',
@@ -196,7 +203,7 @@ def run_case(case_path, *, pw_x=None, julia_depot=None):
         result['qe_identity']=qe_identity(launcher,directory,env)
         reference = None
         if 'phase4c' in case:
-            reference_path = ROOT / case['phase4c']['reference_result']
+            reference_path = resolve_reference_result(case['phase4c']['reference_result'])
             reference = json.loads(reference_path.read_text())
             check_reference_environment(result['environment'], result['qe_identity'], reference)
             result['reference_identity_check'] = {'status': 'PASS',

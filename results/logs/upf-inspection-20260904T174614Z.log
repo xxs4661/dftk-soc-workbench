@@ -1,7 +1,0 @@
-Inspecting: .work/pseudos/Mg.upf
-Raw UPF parsing and DFTK construction are separate recorded stages.
-Raw UPF parsing: PASS
-DFTK construction: REJECTED
-Inspection status: PASS
-JSON output: results/upf-inspection.json
-Inspection exit code: 0

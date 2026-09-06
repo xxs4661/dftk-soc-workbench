@@ -21,12 +21,14 @@ Project. All expected source commits and the default Mg checksum come from
 - `run_dftk_minimal.sh`: optionally run upstream `:minimal` after the same identity checks.
   It uses `allow_reresolve=false`; missing test dependencies cause failure instead of a
   silent dependency upgrade. Phase 4A did not rerun this upstream selection.
-- `collect_environment.sh`: legacy optional host inventory; its old reports remain history.
+- `collect_environment.sh`: legacy optional host inventory in ignored `.work/environment-inventory/`;
+  its old reports remain history.
 
 Every recorded invocation has a unique `results/runs/<run_id>/` with JSON, worker log
 and a summary referencing the run ID, input checksum and Manifest checksum. These
 transient directories are ignored; selected sanitized evidence is committed under
-`results/phase4a/`. Historical `results/upf-inspection.json` and earlier logs are untouched.
+case-oriented `results/` entries after explicit whitelist export. Historical inspection
+bytes remain at `results/upf-acceptance/phase3-inspection.json` and in Git history.
 The initial marker is non-passing, so interrupted or early-failed runs cannot inherit
 another run's PASS. There is no shared "latest PASS" file.
 
@@ -74,4 +76,30 @@ physical pseudopotentials are invalid. Explicitly indexed reordering is accepted
 roundoff; no rounding into allowed values is performed. Repeated `(l,j)` radial channels
 are allowed; a partner `j` branch is not required. PP_RELWFC is not required for the
 nonlocal-beta acceptance performed here. See the pinned source citations and test
-results in [the Phase 4A review](../results/phase4a-review.md).
+results in [UPF acceptance evidence](../results/upf-acceptance/README.md).
+
+
+## Scientific entry points and public offline review
+
+| Purpose | Entry point / instructions |
+| --- | --- |
+| Matched scalar Si run and parse/compare | `run_scalar_baseline.py`, `parse_qe_baseline.py`, `compare_scalar_baseline.py`; [Si case](../benchmarks/si-sr-lda/README.md) |
+| Independent reference integral and limited sensitivity | `inspect_si_reference.py`, `analyze_si_sensitivity.py`; [fixed matrix](../benchmarks/si-sr-lda/phase4c/README.md) |
+| No-SOC fixed-potential / SCF spinors | [spinor prototype](../prototypes/spinor/README.md) |
+| Angular/radial FR projectors | [FR projector conventions](../prototypes/relativistic/CONVENTIONS.md) |
+| Full Hamiltonian / energy at fixed density | [FR integration](../prototypes/fr_integration/README.md) |
+| Charge-only SOC SCF / comparison | `run_soc_scf.jl`, `compare_soc_scf.jl`; [SOC prototype](../prototypes/soc_scf/README.md) |
+| QE SOC input preparation only | `prepare_soc_qe_input.py` (Python 3.12+); [checklist](../benchmarks/mg-soc-fermi/checklist.md) |
+| Public-only verification, no scientific run | `python3.9 scripts/check_publication.py` |
+
+The `curate_*_evidence.py` helpers export explicit existing source fields or check
+published arithmetic. Their check modes never start Julia/QE or load private raw
+arrays. Export is publication work, not a new scientific result. Do not copy whole
+run directories into results. Exact historical scalar replay uses Python 3.9;
+newer Python summation differences are not repaired by changing algorithms or
+loosening assertions. Current [status and NOT_RUN limits](../docs/status.md) apply.
+
+The combined publication check uses Python 3.9 for exact historical scalar
+arithmetic and `python3.12` on PATH for standard-library TOML in the prototype
+checks (`--modern-python PATH` selects an existing Python 3.11+ interpreter).
+It installs no packages or environments.

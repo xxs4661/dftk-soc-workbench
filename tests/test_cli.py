@@ -30,7 +30,7 @@ def check(label, command, expected_exit, status=None):
     return data
 
 
-historical = ROOT / 'results/upf-inspection.json'
+historical = ROOT / 'results/upf-acceptance/phase3-inspection.json'
 before = hashlib.sha256(historical.read_bytes()).hexdigest()
 check('wrapper help', wrapper + ['--help'], 0)
 check('Julia help', worker + ['--help'], 0)

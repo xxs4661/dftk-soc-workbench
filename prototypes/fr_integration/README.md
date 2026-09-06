@@ -89,5 +89,5 @@ global ground-state filling claim. The fixed orbital rotation and three step
 sizes are not varied after results are observed. General complex energy fixtures
 are clearly distinct from the solved orbitals and from a physical ground state.
 
-See the [review report](../../results/phase6b-review.md) for actual execution,
+See the [review report](../../results/fr-hamiltonian-energy/README.md) for actual execution,
 source hashes, failures, numerical values and remaining limits.

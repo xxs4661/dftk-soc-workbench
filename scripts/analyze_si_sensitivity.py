@@ -173,7 +173,7 @@ def read_run(directory, label):
 def analyze(reference, directories):
     finite_tree(reference)
     check_historical_hashes(directories['B0'], load_json(
-        ROOT / 'results/phase4b' / B0_RUN_ID / 'evidence-manifest.json'))
+        ROOT / 'results/scalar-si-baseline/evidence.json')['case']['historical_raw_manifest'])
     check_independent_reference(reference, directories['B0'] / 'case.json')
     data = {label: read_run(directories[label], label) for label in MATRIX}
     baseline = data['B0'][0]

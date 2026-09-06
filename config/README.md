@@ -1,16 +1,11 @@
-# Configuration and source records
+# Frozen source records
 
-This directory records the exact external references used by the workbench. [`sources.lock`](sources.lock) is intentionally human-readable so changes to scientific provenance remain reviewable.
+[sources.lock](sources.lock) records the original inspected dependencies, input
+source and historical upstream observations. It is not a live upstream status
+service. Existing records stay unchanged when a later case introduces a different
+pseudopotential or executable; that case must record its own reviewed immutable
+identity, source, SHA-256, licensing boundary and actual runtime evidence.
 
-Before adding a numerical benchmark, update the lock with:
-
-- the DFTK and parser source commits actually tested;
-- the Quantum ESPRESSO release or commit actually tested;
-- each pseudopotential's exact family identifier and source;
-- the SHA-256 checksum calculated from the exact local file;
-- the pseudopotential licensing or redistribution reference; and
-- the UTC time at which mutable upstream metadata was checked.
-
-The words **pending verification** identify explicit future values. They must be resolved before results depending on those values are interpreted.
-
-Do not store tokens, credentials, local absolute paths, pseudopotential payloads, or downloaded source trees here.
+The workbench Project, Manifest and checksums remain frozen. Do not change source
+locks or hashes to silence an identity failure. Do not store credentials, private
+absolute paths, UPF payloads, caches or downloaded source trees here.

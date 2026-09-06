@@ -1,0 +1,99 @@
+{
+  "recorded_comparison": {
+    "density_absolute_l2": 5.082762870838869e-13,
+    "internal_energy_abs_difference_ha": 7.105427357601002e-15,
+    "qe_soc_benchmark_status": "NOT_RUN",
+    "lowest_states_compared": 16,
+    "finished_utc": "2026-09-06T15:40:42.795",
+    "density_relative_l2": 1.5213561136012009e-13,
+    "exit_code": 0,
+    "config_sha256": "fed341560f53663f580c37a8f691298aa24784957b49270c5e3f71289736c58c",
+    "kpoint_mapping_b_for_a": [
+      1,
+      2,
+      3
+    ],
+    "diagnostic_only": {
+      "shared_state_occupation_max_difference": 3.778183443671564e-46,
+      "note": "f/S/mu are diagnostics; no chemical-potential equality gate in a numerically saturated gap",
+      "mu_abs_difference_ha": 5.544870118612266e-13,
+      "shared_states_compared": 24,
+      "entropy_abs_difference_dimensionless": 4.1659506869382143e-44
+    },
+    "two_initial_states_comparison_status": "PASS",
+    "target_states": {
+      "B": 24,
+      "A": 24
+    },
+    "common_target_states": 24,
+    "numerical_review_status": "REVIEW_REQUIRED",
+    "input_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "execution_status": "PASS",
+    "max_raw_eigenvalue_difference_ha": 8.941406642870575e-13,
+    "qe_soc_input_status": "BLOCKED",
+    "spectra_by_k": [
+      {
+        "coordinate_fractional": [
+          0,
+          0,
+          0
+        ],
+        "max_abs_difference_ha": 2.3339663535182353e-13,
+        "b_index": 1,
+        "a_index": 1
+      },
+      {
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "max_abs_difference_ha": 8.940903573062542e-13,
+        "b_index": 2,
+        "a_index": 2
+      },
+      {
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "max_abs_difference_ha": 8.941406642870575e-13,
+        "b_index": 3,
+        "a_index": 3
+      }
+    ],
+    "comparison_definition": "Raw lowest 16 levels at uniquely matched fractional k modulo reciprocal integers; no spectral matching, energy shift or fit",
+    "phase": "6C",
+    "runs": {
+      "B": {
+        "checkpoint_sha256": "ff91020614a30d40a226194b95f041ee6120c1fb8398ad685712ca41ff4dddd9",
+        "result_sha256": "3ba4ff5ea1328c02e90aa2177ad352cf4c2ec4ac644dd7392016c5fcf1804db9",
+        "run_id": "20260906T153016Z-B-62835d43"
+      },
+      "A": {
+        "checkpoint_sha256": "5b138d68662fc6451ffd8b78bbd71939454ca30f8ad014623cb1d8e6720f5451",
+        "result_sha256": "9942aabe50daf12f581433f9f222a78a8254d8c538335e6a931975176bce8fd5",
+        "run_id": "20260906T151940Z-A-270110aa"
+      }
+    },
+    "schema_version": 1,
+    "free_energy_abs_difference_ha": 7.105427357601002e-15
+  },
+  "environment_ref": {
+    "path": "results/shared/environment.json",
+    "sha256": "b6a5999b51a9aed12efa9d66e9884ad8be401a72b76d751296458555c963991b"
+  },
+  "public_recomputation": [
+    "spectra_by_k",
+    "max_raw_eigenvalue_difference_ha",
+    "internal_energy_abs_difference_ha",
+    "free_energy_abs_difference_ha",
+    "diagnostic_only"
+  ],
+  "runner_reported_requires_arrays_or_rerun": [
+    "density_absolute_l2",
+    "density_relative_l2"
+  ],
+  "note": "The original comparison's prepared-input BLOCKED stage predates preparation; current combined historical status is separate."
+}

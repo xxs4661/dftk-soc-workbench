@@ -37,5 +37,6 @@ the loaded-path check.
 The Mac MPI implementation may require execution outside a restricted process sandbox.
 An initialization failure is a failed environment check, not evidence of validation.
 
-The original PBEsol Mg sample remains a metadata-inspection input only. It is not a
-validated LDA/LSDA benchmark, and its redistribution permission remains unverified.
+The PBEsol Mg sample was initially used for metadata inspection and later for the
+explicitly prescribed FR/SOC prototypes. It is not a validated LDA/LSDA benchmark,
+and its redistribution permission remains unverified. See the [current scope](../../docs/status.md).

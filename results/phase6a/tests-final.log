@@ -1,7 +1,0 @@
-┌ Info: Threading setup:
-│   Threads.nthreads() = 1
-│   n_DFTK = 1
-│   n_fft = 1
-└   n_blas = 1
-Test Summary:                                           | Pass  Total   Time
-Phase 6A independent relativistic projector regressions | 1272   1272  20.5s

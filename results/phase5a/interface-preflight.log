@@ -1,6 +1,0 @@
-Run preflight-20260905-a: PASS, exit_code=0
-┌ Info: Threading setup:
-│   Threads.nthreads() = 1
-│   n_DFTK = 1
-│   n_fft = 1
-└   n_blas = 1
