@@ -92,6 +92,8 @@ results in [UPF acceptance evidence](../results/upf-acceptance/README.md).
 | First QE SOC run, parser and comparison | `run_qe_soc.py`, `parse_qe_soc.py`, `compare_qe_soc.py`; [fixed Mg case](../benchmarks/mg-soc-qe-v1/README.md) |
 | Bounded QE SOC diagnostics | `run_qe_soc_diagnostics.py`, `parse_qe_soc_diagnostics.py`, `compare_qe_soc_diagnostics.py`; [fixed slots and source prerequisites](../benchmarks/mg-soc-qe-diagnostics-v1/README.md) |
 | Diagnostics plus unchanged old publication checks | `python3.12 scripts/check_qe_soc_diagnostics.py --all --legacy-python python3.9`; [evidence](../results/mg-soc-qe-diagnostics/README.md) |
+| Read bound existing density arrays; no model or solve | `run_density_hartree_audit.py`, `extract_soc_density.jl`, `parse_qe_charge_density.py`; [fixed read-only plan](../benchmarks/mg-soc-density-hartree-v1/README.md) |
+| Complete public Fourier/Hartree arithmetic and old checks | `python3.12 scripts/check_density_hartree.py --all --legacy-python python3.9`; [array evidence](../results/mg-soc-density-hartree/README.md) |
 | QE SOC offline native replay | `python3.12 scripts/check_qe_soc_evidence.py` |
 | QE SOC input preparation only | `prepare_soc_qe_input.py` (Python 3.12+); [checklist](../benchmarks/mg-soc-fermi/checklist.md) |
 | Public-only verification, no scientific run | `python3.9 scripts/check_publication.py` |
@@ -129,3 +131,10 @@ Phase 7B uses `test_qe_soc_diagnostics_*.py` for directed synthetic contracts;
 its native evidence checker is public-only. I36 completion is initialization, not
 SCF success. Fixed-density bands never provide new E/F. Slot claims prevent
 unannounced repeats, and historical charge/wfc snapshots are protected by hashes.
+
+Phase 7C uses `test_density*.py`, `test_qe_charge_density.py` and the small
+`test_soc_density_fft.jl` synthetic array suite. The extractor authenticates
+historical bytes before Serialization, reads A/B before G40, and refuses existing
+output directories. It starts no SCF, eigensolve or QE program. The public checker
+requires only complete gzip CSV coefficients and standard-library Python;
+n_in/real-array extraction checks retain their separate runner-reported scope.
