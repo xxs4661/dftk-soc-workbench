@@ -1,5 +1,7 @@
 # Workbench scripts
 
+- `run_orbital_energy_audit.py`: authenticated original G40/A/B extraction → density/kinetic gates → frozen FR only → signed ledger; requires existing NumPy and frozen Julia. `check_orbital_energy.py --all --legacy-python python3.9`: offline public Q coefficient/FR replay and full historical chain, no numerical solver. See [case](../benchmarks/mg-soc-wavefunction-energy-v1/README.md).
+
 Use the [workbench environment](../environment/workbench/README.md), not a modified DFTK
 Project. All expected source commits and the default Mg checksum come from
 [`config/sources.lock`](../config/sources.lock).

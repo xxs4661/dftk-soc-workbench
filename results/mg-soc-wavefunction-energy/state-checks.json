@@ -1,0 +1,4486 @@
+{
+  "A": {
+    "schema_version": 1,
+    "label": "A",
+    "status": "PASS",
+    "all_required_gates_passed": true,
+    "spinor_layout": "coefficients[spin,G,band], block components; capacity one",
+    "state_count": 24,
+    "k_count": 3,
+    "volume_bohr3": 1000.0000000000007,
+    "reciprocal_duality_max_abs": 0.0,
+    "fft_size": [
+      40,
+      40,
+      40
+    ],
+    "normalization_and_gram": [
+      {
+        "k_index_zero_based": 0,
+        "NG": 2777,
+        "norms": [
+          1.000000000000001,
+          0.9999999999999999,
+          1.000000000000003,
+          1.0000000000000002,
+          1.0,
+          0.9999999999999986,
+          1.0000000000000007,
+          1.000000000000001,
+          1.0000000000000013,
+          0.9999999999999999,
+          0.9999999999999991,
+          1.000000000000002,
+          1.0000000000000027,
+          1.0000000000000056,
+          0.9999999999999987,
+          0.999999999999997,
+          0.9999999999999998,
+          1.0000000000000013,
+          1.0000000000000007,
+          1.0000000000000042,
+          0.9999999999999999,
+          1.0000000000000007,
+          0.9999999999999992,
+          1.0000000000000016
+        ],
+        "maximum_norm_error": 5.551115123125783e-15,
+        "gram_frobenius": 1.9712569059650285e-14,
+        "k_cart_max_abs_error": 0.0,
+        "cutoff_max_ha": 14.804406601634037,
+        "status": "PASS"
+      },
+      {
+        "k_index_zero_based": 1,
+        "NG": 2770,
+        "norms": [
+          0.9999999999999993,
+          1.0000000000000002,
+          1.0000000000000002,
+          1.0000000000000009,
+          1.000000000000001,
+          0.9999999999999989,
+          1.0000000000000013,
+          1.0000000000000018,
+          1.0000000000000004,
+          0.9999999999999987,
+          1.0000000000000024,
+          1.0000000000000016,
+          0.9999999999999966,
+          1.0000000000000042,
+          1.000000000000001,
+          0.9999999999999987,
+          0.9999999999999978,
+          1.0000000000000002,
+          1.0,
+          0.9999999999999991,
+          1.0000000000000002,
+          1.0000000000000018,
+          0.9999999999999981,
+          0.9999999999999987
+        ],
+        "maximum_norm_error": 4.218847493575595e-15,
+        "gram_frobenius": 1.8388844797510384e-14,
+        "k_cart_max_abs_error": 0.0,
+        "cutoff_max_ha": 14.987919558466793,
+        "status": "PASS"
+      },
+      {
+        "k_index_zero_based": 2,
+        "NG": 2770,
+        "norms": [
+          0.9999999999999991,
+          1.0000000000000002,
+          0.9999999999999989,
+          1.0000000000000002,
+          0.9999999999999988,
+          1.0000000000000007,
+          1.000000000000001,
+          1.0000000000000002,
+          0.9999999999999991,
+          1.0000000000000004,
+          1.0000000000000004,
+          1.0000000000000007,
+          1.0000000000000036,
+          1.0000000000000007,
+          1.0000000000000029,
+          1.0000000000000033,
+          0.9999999999999997,
+          0.9999999999999956,
+          0.9999999999999954,
+          0.999999999999999,
+          0.9999999999999979,
+          0.9999999999999984,
+          0.9999999999999984,
+          0.9999999999999997
+        ],
+        "maximum_norm_error": 4.551914400963142e-15,
+        "gram_frobenius": 1.6607436555736124e-14,
+        "k_cart_max_abs_error": 0.0,
+        "cutoff_max_ha": 14.987919558466793,
+        "status": "PASS"
+      }
+    ],
+    "electrons": {
+      "from_occupations": 10.0,
+      "from_actual_norms": 10.000000000000002,
+      "from_real_density": 10.000000000000005,
+      "per_k_real_contributions": [
+        3.333333333333336,
+        3.3333333333333353,
+        3.333333333333334
+      ],
+      "errors": {
+        "occupations_minus_expected": 0.0,
+        "norm_weighted_minus_expected": 1.7763568394002505e-15,
+        "real_density_minus_expected": 5.329070518200751e-15,
+        "real_minus_norm_weighted": 3.552713678800501e-15
+      },
+      "status": "PASS"
+    },
+    "product_support": {
+      "status": "PASS",
+      "same_k_difference_extents": [
+        [
+          16,
+          16,
+          16
+        ],
+        [
+          16,
+          16,
+          16
+        ],
+        [
+          16,
+          16,
+          16
+        ]
+      ],
+      "possible_product_count": 21421,
+      "nyquist_ambiguous_products": 0,
+      "method": "All same-k integer G-G pairs, blocked direct enumeration; strict unique finite-grid representatives"
+    },
+    "same_source_orbital_density": {
+      "coefficient_max_abs": 3.469446951953614e-18,
+      "common_coefficient_count": 64000,
+      "common_nonzero_difference_l2": 4.335650547991979e-17,
+      "reference_nonzero_l2": 0.10517554332685873,
+      "common_nonzero_relative_l2": 4.122299168465319e-16,
+      "zero_reference_denominator": false,
+      "zero_reference_rule": "When reference fluctuations are exactly zero, apply the declared absolute coefficient maximum only; relative L2 is not defined unless the difference is also exactly zero",
+      "outside_saved_coefficient_l2": 0.0,
+      "outside_saved_coefficient_max_abs": 0.0,
+      "outside_saved_mode_count": 0,
+      "possible_products_outside_saved_count": 0,
+      "scope": "FULL_FINITE_PRODUCT_SUPPORT_WITHIN_SAVED_G",
+      "unknown_physical_modes_assumed_zero": false,
+      "original_node_relative_l2": 2.6831468920030395e-16,
+      "original_node_max_abs": 1.3322676295501878e-15,
+      "original_n_out_sha256": "38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130",
+      "status": "PASS"
+    },
+    "direct_correlation_checks": [
+      {
+        "miller": [
+          0,
+          0,
+          0
+        ],
+        "correlation": [
+          0.009999999999999995,
+          2.4846794505459018e-21
+        ],
+        "FFT": [
+          0.009999999999999998,
+          0.0
+        ],
+        "absolute_difference": 3.469447841667633e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          1,
+          0,
+          0
+        ],
+        "correlation": [
+          0.004068985149247571,
+          -0.007401607102054381
+        ],
+        "FFT": [
+          0.004068985149247572,
+          -0.007401607102054383
+        ],
+        "absolute_difference": 3.1273172206927508e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -1,
+          0,
+          0
+        ],
+        "correlation": [
+          0.004068985149247571,
+          0.007401607102054381
+        ],
+        "FFT": [
+          0.004068985149247572,
+          0.007401607102054383
+        ],
+        "absolute_difference": 3.1273172206927508e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          1,
+          0
+        ],
+        "correlation": [
+          0.0010570041180377075,
+          -0.008366471777205767
+        ],
+        "FFT": [
+          0.001057004118037708,
+          -0.00836647177720577
+        ],
+        "absolute_difference": 3.496446946337351e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          -1,
+          0
+        ],
+        "correlation": [
+          0.0010570041180377075,
+          0.008366471777205767
+        ],
+        "FFT": [
+          0.001057004118037708,
+          0.00836647177720577
+        ],
+        "absolute_difference": 3.496446946337351e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          0,
+          1
+        ],
+        "correlation": [
+          -0.003117660268095407,
+          -0.00787442659858557
+        ],
+        "FFT": [
+          -0.0031176602680954082,
+          -0.007874426598585576
+        ],
+        "absolute_difference": 5.364336092018247e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          0,
+          -1
+        ],
+        "correlation": [
+          -0.003117660268095407,
+          0.00787442659858557
+        ],
+        "FFT": [
+          -0.0031176602680954074,
+          0.007874426598585574
+        ],
+        "absolute_difference": 3.496446946337351e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          1,
+          2,
+          3
+        ],
+        "correlation": [
+          -0.0036723714244383606,
+          0.0014540108237863056
+        ],
+        "FFT": [
+          -0.0036723714244383623,
+          0.0014540108237863056
+        ],
+        "absolute_difference": 1.734723475976807e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -1,
+          -2,
+          -3
+        ],
+        "correlation": [
+          -0.0036723714244383606,
+          -0.0014540108237863056
+        ],
+        "FFT": [
+          -0.003672371424438362,
+          -0.0014540108237863056
+        ],
+        "absolute_difference": 1.3010426069826053e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          2,
+          -1,
+          3
+        ],
+        "correlation": [
+          0.0038259388800573444,
+          -0.0009823422089366048
+        ],
+        "FFT": [
+          0.0038259388800573457,
+          -0.0009823422089366052
+        ],
+        "absolute_difference": 1.371419323662774e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -2,
+          1,
+          -3
+        ],
+        "correlation": [
+          0.0038259388800573444,
+          0.0009823422089366048
+        ],
+        "FFT": [
+          0.0038259388800573452,
+          0.000982342208936605
+        ],
+        "absolute_difference": 8.940560153363745e-19,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          3,
+          2,
+          -1
+        ],
+        "correlation": [
+          -0.0021163742994220495,
+          0.0033348501344776945
+        ],
+        "FFT": [
+          -0.002116374299422051,
+          0.0033348501344776967
+        ],
+        "absolute_difference": 2.5287722848198975e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -3,
+          -2,
+          1
+        ],
+        "correlation": [
+          -0.0021163742994220495,
+          -0.0033348501344776945
+        ],
+        "FFT": [
+          -0.0021163742994220512,
+          -0.0033348501344776962
+        ],
+        "absolute_difference": 2.4532694666933987e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          7,
+          -5,
+          4
+        ],
+        "correlation": [
+          4.0962883106945046e-05,
+          0.00021476943454214238
+        ],
+        "FFT": [
+          4.09628831069451e-05,
+          0.00021476943454214257
+        ],
+        "absolute_difference": 1.9732777394727857e-19,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -7,
+          5,
+          -4
+        ],
+        "correlation": [
+          4.0962883106945046e-05,
+          -0.00021476943454214238
+        ],
+        "FFT": [
+          4.096288310694511e-05,
+          -0.0002147694345421425
+        ],
+        "absolute_difference": 1.2785428548203785e-19,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          17,
+          0,
+          0
+        ],
+        "correlation": [
+          0.0,
+          0.0
+        ],
+        "FFT": [
+          -1.7347234759768072e-19,
+          1.0408340855860843e-20
+        ],
+        "absolute_difference": 1.737843173028635e-19,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -17,
+          0,
+          0
+        ],
+        "correlation": [
+          0.0,
+          0.0
+        ],
+        "FFT": [
+          0.0,
+          -2.740863092043355e-19
+        ],
+        "absolute_difference": 2.740863092043355e-19,
+        "status": "PASS"
+      }
+    ],
+    "kinetic": {
+      "direct_ha": 29.075984450811465,
+      "gradient_ha": 29.07598445081147,
+      "signed_difference_ha": -7.105427357601002e-15,
+      "status": "PASS",
+      "evidence_kind": "DIRECT_REEVALUATION_OF_KINETIC_FROM_ORIGINAL_DFTK_X",
+      "summation": "Direct: stable coefficient-probability sum with physical G+k. Independent: three covariant-derivative IFFTs and real-space squared integrals.",
+      "historical_ha": 29.075984450811468,
+      "historical_signed_difference_ha": -3.552713678800501e-15,
+      "same_source_status": "PASS"
+    },
+    "per_k": [
+      {
+        "k_index_zero_based": 0,
+        "weight_spatial": 0.3333333333333333,
+        "k_cart_bohr_inv": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "NG": 2777,
+        "states": [
+          {
+            "band_one_based": 1,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.2992105571926644,
+            "norm": 1.000000000000001,
+            "kinetic_unweighted_ha": 2.190307804850501,
+            "gradient_unweighted_ha": 2.190307804850502,
+            "kinetic_weighted_ha": 0.7301026016168337,
+            "gradient_weighted_ha": 0.7301026016168339,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 2,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.2992105571926604,
+            "norm": 0.9999999999999999,
+            "kinetic_unweighted_ha": 2.1903078048505242,
+            "gradient_unweighted_ha": 2.1903078048505247,
+            "kinetic_weighted_ha": 0.7301026016168414,
+            "gradient_weighted_ha": 0.7301026016168415,
+            "signed_path_difference_ha": -4.440892098500626e-16
+          },
+          {
+            "band_one_based": 3,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6706679272849974,
+            "norm": 1.000000000000003,
+            "kinetic_unweighted_ha": 4.033691637444604,
+            "gradient_unweighted_ha": 4.033691637444606,
+            "kinetic_weighted_ha": 1.3445638791482013,
+            "gradient_weighted_ha": 1.3445638791482017,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 4,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.670667927284992,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 4.033691637444947,
+            "gradient_unweighted_ha": 4.033691637444948,
+            "kinetic_weighted_ha": 1.3445638791483154,
+            "gradient_weighted_ha": 1.3445638791483159,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 5,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6619559041741516,
+            "norm": 1.0,
+            "kinetic_unweighted_ha": 4.023967372662135,
+            "gradient_unweighted_ha": 4.0239673726621366,
+            "kinetic_weighted_ha": 1.3413224575540448,
+            "gradient_weighted_ha": 1.3413224575540454,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 6,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6619559041741514,
+            "norm": 0.9999999999999986,
+            "kinetic_unweighted_ha": 4.0239673726622245,
+            "gradient_unweighted_ha": 4.023967372662226,
+            "kinetic_weighted_ha": 1.3413224575540748,
+            "gradient_weighted_ha": 1.3413224575540754,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 7,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6617685925217993,
+            "norm": 1.0000000000000007,
+            "kinetic_unweighted_ha": 4.023803778838857,
+            "gradient_unweighted_ha": 4.023803778838859,
+            "kinetic_weighted_ha": 1.341267926279619,
+            "gradient_weighted_ha": 1.3412679262796197,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 8,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6617685925217982,
+            "norm": 1.000000000000001,
+            "kinetic_unweighted_ha": 4.023803778838831,
+            "gradient_unweighted_ha": 4.023803778838832,
+            "kinetic_weighted_ha": 1.3412679262796101,
+            "gradient_weighted_ha": 1.3412679262796106,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 9,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.16839752452530163,
+            "norm": 1.0000000000000013,
+            "kinetic_unweighted_ha": 0.25779625393782873,
+            "gradient_unweighted_ha": 0.25779625393782885,
+            "kinetic_weighted_ha": 0.0859320846459429,
+            "gradient_weighted_ha": 0.08593208464594294,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 10,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.16839752452530118,
+            "norm": 0.9999999999999999,
+            "kinetic_unweighted_ha": 0.25779625393444267,
+            "gradient_unweighted_ha": 0.2577962539344428,
+            "kinetic_weighted_ha": 0.08593208464481422,
+            "gradient_weighted_ha": 0.08593208464481425,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 11,
+            "occupation": 2.31528930536997e-57,
+            "eigenvalue_ha": 0.05133330181712238,
+            "norm": 0.9999999999999991,
+            "kinetic_unweighted_ha": 0.4046914655419552,
+            "gradient_unweighted_ha": 0.40469146554195534,
+            "kinetic_weighted_ha": 3.1232594071459618e-58,
+            "gradient_weighted_ha": 3.1232594071459632e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 12,
+            "occupation": 2.3152893053697726e-57,
+            "eigenvalue_ha": 0.05133330181712245,
+            "norm": 1.000000000000002,
+            "kinetic_unweighted_ha": 0.4046914655444219,
+            "gradient_unweighted_ha": 0.40469146554442215,
+            "kinetic_weighted_ha": 3.123259407164733e-58,
+            "gradient_weighted_ha": 3.1232594071647346e-58,
+            "signed_path_difference_ha": -2.220446049250313e-16
+          },
+          {
+            "band_one_based": 13,
+            "occupation": 1.6942455180113913e-57,
+            "eigenvalue_ha": 0.05164559894715573,
+            "norm": 1.0000000000000027,
+            "kinetic_unweighted_ha": 0.4046200024335584,
+            "gradient_unweighted_ha": 0.4046200024335585,
+            "kinetic_weighted_ha": 2.2850854187360485e-58,
+            "gradient_weighted_ha": 2.285085418736049e-58,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 14,
+            "occupation": 1.6942455180095134e-57,
+            "eigenvalue_ha": 0.051645598947156854,
+            "norm": 1.0000000000000056,
+            "kinetic_unweighted_ha": 0.4046200024385396,
+            "gradient_unweighted_ha": 0.4046200024385398,
+            "kinetic_weighted_ha": 2.285085418761647e-58,
+            "gradient_weighted_ha": 2.285085418761648e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 15,
+            "occupation": 1.4183812943734182e-57,
+            "eigenvalue_ha": 0.05182332017891983,
+            "norm": 0.9999999999999987,
+            "kinetic_unweighted_ha": 0.40452543381969397,
+            "gradient_unweighted_ha": 0.40452543381969414,
+            "kinetic_weighted_ha": 1.9125710280938202e-58,
+            "gradient_weighted_ha": 1.912571028093821e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 16,
+            "occupation": 1.4183812943729346e-57,
+            "eigenvalue_ha": 0.051823320178920176,
+            "norm": 0.999999999999997,
+            "kinetic_unweighted_ha": 0.40452543381978856,
+            "gradient_unweighted_ha": 0.4045254338197887,
+            "kinetic_weighted_ha": 1.912571028093615e-58,
+            "gradient_weighted_ha": 1.912571028093616e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 17,
+            "occupation": 1.4528799718635568e-59,
+            "eigenvalue_ha": 0.05640445887870069,
+            "norm": 0.9999999999999998,
+            "kinetic_unweighted_ha": 0.3312862067779832,
+            "gradient_unweighted_ha": 0.3312862067779833,
+            "kinetic_weighted_ha": 1.6043969826079355e-60,
+            "gradient_weighted_ha": 1.604396982607936e-60,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 18,
+            "occupation": 1.4528799718627724e-59,
+            "eigenvalue_ha": 0.05640445887870122,
+            "norm": 1.0000000000000013,
+            "kinetic_unweighted_ha": 0.3312862067715292,
+            "gradient_unweighted_ha": 0.33128620677152926,
+            "kinetic_weighted_ha": 1.6043969825758131e-60,
+            "gradient_weighted_ha": 1.6043969825758134e-60,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 19,
+            "occupation": 1.0824498270705563e-75,
+            "eigenvalue_ha": 0.0935401413099737,
+            "norm": 1.0000000000000007,
+            "kinetic_unweighted_ha": 0.2240330950559134,
+            "gradient_unweighted_ha": 0.22403309505591348,
+            "kinetic_weighted_ha": 8.083486166711831e-77,
+            "gradient_weighted_ha": 8.083486166711834e-77,
+            "signed_path_difference_ha": -8.326672684688674e-17
+          },
+          {
+            "band_one_based": 20,
+            "occupation": 1.0824498270702486e-75,
+            "eigenvalue_ha": 0.09354014130997401,
+            "norm": 1.0000000000000042,
+            "kinetic_unweighted_ha": 0.2240330950559326,
+            "gradient_unweighted_ha": 0.22403309505593266,
+            "kinetic_weighted_ha": 8.083486166710226e-77,
+            "gradient_weighted_ha": 8.08348616671023e-77,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 21,
+            "occupation": 9.350609212623305e-76,
+            "eigenvalue_ha": 0.09368651173605327,
+            "norm": 0.9999999999999999,
+            "kinetic_unweighted_ha": 0.22402159473478744,
+            "gradient_unweighted_ha": 0.2240215947347875,
+            "kinetic_weighted_ha": 6.982461291845559e-77,
+            "gradient_weighted_ha": 6.982461291845562e-77,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 22,
+            "occupation": 9.350609212622241e-76,
+            "eigenvalue_ha": 0.0936865117360534,
+            "norm": 1.0000000000000007,
+            "kinetic_unweighted_ha": 0.2240215947348549,
+            "gradient_unweighted_ha": 0.22402159473485495,
+            "kinetic_weighted_ha": 6.982461291846867e-77,
+            "gradient_weighted_ha": 6.982461291846869e-77,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 23,
+            "occupation": 2.221870675935859e-141,
+            "eigenvalue_ha": 0.24479163479039995,
+            "norm": 0.9999999999999992,
+            "kinetic_unweighted_ha": 0.4600256190893072,
+            "gradient_unweighted_ha": 0.4600256190893074,
+            "kinetic_weighted_ha": 3.407058110779237e-142,
+            "gradient_weighted_ha": 3.407058110779238e-142,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 24,
+            "occupation": 2.2218706759351014e-141,
+            "eigenvalue_ha": 0.24479163479040025,
+            "norm": 1.0000000000000016,
+            "kinetic_unweighted_ha": 0.4600256190895021,
+            "gradient_unweighted_ha": 0.46002561908950235,
+            "kinetic_weighted_ha": 3.4070581107795186e-142,
+            "gradient_weighted_ha": 3.40705811077952e-142,
+            "signed_path_difference_ha": -2.220446049250313e-16
+          }
+        ],
+        "kinetic_ha": 9.686377898488297,
+        "gradient_kinetic_ha": 9.6863778984883
+      },
+      {
+        "k_index_zero_based": 1,
+        "weight_spatial": 0.3333333333333333,
+        "k_cart_bohr_inv": [
+          0.07853981633974483,
+          0.039269908169872414,
+          -0.11780972450961724
+        ],
+        "NG": 2770,
+        "states": [
+          {
+            "band_one_based": 1,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.2990329996765553,
+            "norm": 0.9999999999999993,
+            "kinetic_unweighted_ha": 2.1900194716840176,
+            "gradient_unweighted_ha": 2.190019471684018,
+            "kinetic_weighted_ha": 0.7300064905613391,
+            "gradient_weighted_ha": 0.7300064905613393,
+            "signed_path_difference_ha": -4.440892098500626e-16
+          },
+          {
+            "band_one_based": 2,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.299032999612321,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 2.190019471435998,
+            "gradient_unweighted_ha": 2.1900194714359986,
+            "kinetic_weighted_ha": 0.7300064904786661,
+            "gradient_weighted_ha": 0.7300064904786662,
+            "signed_path_difference_ha": -4.440892098500626e-16
+          },
+          {
+            "band_one_based": 3,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6698394183222016,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 4.032454945326247,
+            "gradient_unweighted_ha": 4.032454945326249,
+            "kinetic_weighted_ha": 1.3441516484420823,
+            "gradient_weighted_ha": 1.3441516484420828,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 4,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6698392843971483,
+            "norm": 1.0000000000000009,
+            "kinetic_unweighted_ha": 4.032454967695717,
+            "gradient_unweighted_ha": 4.032454967695718,
+            "kinetic_weighted_ha": 1.3441516558985722,
+            "gradient_weighted_ha": 1.3441516558985724,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 5,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.661747302440199,
+            "norm": 1.000000000000001,
+            "kinetic_unweighted_ha": 4.02297472281121,
+            "gradient_unweighted_ha": 4.0229747228112105,
+            "kinetic_weighted_ha": 1.340991574270403,
+            "gradient_weighted_ha": 1.3409915742704035,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 6,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6617472310303003,
+            "norm": 0.9999999999999989,
+            "kinetic_unweighted_ha": 4.022974740839201,
+            "gradient_unweighted_ha": 4.022974740839203,
+            "kinetic_weighted_ha": 1.3409915802797336,
+            "gradient_weighted_ha": 1.3409915802797343,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 7,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6580719649958693,
+            "norm": 1.0000000000000013,
+            "kinetic_unweighted_ha": 4.014006024588454,
+            "gradient_unweighted_ha": 4.014006024588455,
+            "kinetic_weighted_ha": 1.3380020081961512,
+            "gradient_weighted_ha": 1.3380020081961517,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 8,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6580718689108604,
+            "norm": 1.0000000000000018,
+            "kinetic_unweighted_ha": 4.014005904109175,
+            "gradient_unweighted_ha": 4.014005904109176,
+            "kinetic_weighted_ha": 1.3380019680363917,
+            "gradient_weighted_ha": 1.338001968036392,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 9,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.16186113476060232,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 0.2827497859232971,
+            "gradient_unweighted_ha": 0.28274978592329714,
+            "kinetic_weighted_ha": 0.09424992864109902,
+            "gradient_weighted_ha": 0.09424992864109905,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 10,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.16186113205372782,
+            "norm": 0.9999999999999987,
+            "kinetic_unweighted_ha": 0.28274979407061657,
+            "gradient_unweighted_ha": 0.2827497940706167,
+            "kinetic_weighted_ha": 0.09424993135687218,
+            "gradient_weighted_ha": 0.09424993135687222,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 11,
+            "occupation": 1.1123168896561833e-36,
+            "eigenvalue_ha": 0.0037121043859559932,
+            "norm": 1.0000000000000024,
+            "kinetic_unweighted_ha": 0.27220905440208043,
+            "gradient_unweighted_ha": 0.27220905440208054,
+            "kinetic_weighted_ha": 1.0092757624292429e-37,
+            "gradient_weighted_ha": 1.0092757624292433e-37,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 12,
+            "occupation": 1.1122712166202253e-36,
+            "eigenvalue_ha": 0.0037121454479717678,
+            "norm": 1.0000000000000016,
+            "kinetic_unweighted_ha": 0.27220893651749756,
+            "gradient_unweighted_ha": 0.27220893651749767,
+            "kinetic_weighted_ha": 1.0092338833173823e-37,
+            "gradient_weighted_ha": 1.0092338833173827e-37,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 13,
+            "occupation": 9.089095586253558e-47,
+            "eigenvalue_ha": 0.02693991012905654,
+            "norm": 0.9999999999999966,
+            "kinetic_unweighted_ha": 0.31282431051577014,
+            "gradient_unweighted_ha": 0.3128243105157703,
+            "kinetic_weighted_ha": 9.477633533272328e-48,
+            "gradient_weighted_ha": 9.477633533272333e-48,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 14,
+            "occupation": 9.088606904300412e-47,
+            "eigenvalue_ha": 0.026939963896242296,
+            "norm": 1.0000000000000042,
+            "kinetic_unweighted_ha": 0.312824115562255,
+            "gradient_unweighted_ha": 0.3128241155622551,
+            "kinetic_weighted_ha": 9.477118055102601e-48,
+            "gradient_weighted_ha": 9.477118055102604e-48,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 15,
+            "occupation": 1.5128097410396e-55,
+            "eigenvalue_ha": 0.04715369760336567,
+            "norm": 1.000000000000001,
+            "kinetic_unweighted_ha": 0.3692237156320343,
+            "gradient_unweighted_ha": 0.3692237156320344,
+            "kinetic_weighted_ha": 1.8618841121032557e-56,
+            "gradient_weighted_ha": 1.861884112103256e-56,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 16,
+            "occupation": 1.5127381942527751e-55,
+            "eigenvalue_ha": 0.04715374489845958,
+            "norm": 0.9999999999999987,
+            "kinetic_unweighted_ha": 0.36922334876912294,
+            "gradient_unweighted_ha": 0.36922334876912305,
+            "kinetic_weighted_ha": 1.8617942063098854e-56,
+            "gradient_weighted_ha": 1.8617942063098861e-56,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 17,
+            "occupation": 3.3202556921120854e-78,
+            "eigenvalue_ha": 0.09932708162399045,
+            "norm": 0.9999999999999978,
+            "kinetic_unweighted_ha": 0.38005569237959835,
+            "gradient_unweighted_ha": 0.38005569237959846,
+            "kinetic_weighted_ha": 4.2062735864765366e-79,
+            "gradient_weighted_ha": 4.206273586476538e-79,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 18,
+            "occupation": 3.3200976359298224e-78,
+            "eigenvalue_ha": 0.09932712922874111,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 0.3800558442870101,
+            "gradient_unweighted_ha": 0.3800558442870102,
+            "kinetic_weighted_ha": 4.206075033795383e-79,
+            "gradient_weighted_ha": 4.2060750337953845e-79,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 19,
+            "occupation": 1.4806373317385305e-89,
+            "eigenvalue_ha": 0.1254630868179494,
+            "norm": 1.0,
+            "kinetic_unweighted_ha": 0.3597770521418286,
+            "gradient_unweighted_ha": 0.3597770521418287,
+            "kinetic_weighted_ha": 1.7756644483467707e-90,
+            "gradient_weighted_ha": 1.7756644483467712e-90,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 20,
+            "occupation": 1.4805969240441155e-89,
+            "eigenvalue_ha": 0.12546311410906583,
+            "norm": 0.9999999999999991,
+            "kinetic_unweighted_ha": 0.35977703118148635,
+            "gradient_unweighted_ha": 0.3597770311814865,
+            "kinetic_weighted_ha": 1.775615885696775e-90,
+            "gradient_weighted_ha": 1.7756158856967759e-90,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 21,
+            "occupation": 4.502665433093433e-99,
+            "eigenvalue_ha": 0.1473767408326345,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 0.3997612741353066,
+            "gradient_unweighted_ha": 0.3997612741353067,
+            "kinetic_weighted_ha": 5.999970901794776e-100,
+            "gradient_weighted_ha": 5.999970901794778e-100,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 22,
+            "occupation": 4.502640242644147e-99,
+            "eigenvalue_ha": 0.14737674642721404,
+            "norm": 1.0000000000000018,
+            "kinetic_unweighted_ha": 0.39976127260538946,
+            "gradient_unweighted_ha": 0.3997612726053896,
+            "kinetic_weighted_ha": 5.999937311612212e-100,
+            "gradient_weighted_ha": 5.999937311612214e-100,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 23,
+            "occupation": 1.4257013430024992e-109,
+            "eigenvalue_ha": 0.17155259743929263,
+            "norm": 0.9999999999999981,
+            "kinetic_unweighted_ha": 0.334702046400169,
+            "gradient_unweighted_ha": 0.33470204640016915,
+            "kinetic_weighted_ha": 1.5906171901946857e-110,
+            "gradient_weighted_ha": 1.5906171901946863e-110,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 24,
+            "occupation": 1.4256911273194156e-109,
+            "eigenvalue_ha": 0.17155260460469213,
+            "norm": 0.9999999999999987,
+            "kinetic_unweighted_ha": 0.33470206289598614,
+            "gradient_unweighted_ha": 0.33470206289598625,
+            "kinetic_weighted_ha": 1.5906058712210415e-110,
+            "gradient_weighted_ha": 1.5906058712210418e-110,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          }
+        ],
+        "kinetic_ha": 9.694803276161311,
+        "gradient_kinetic_ha": 9.694803276161313
+      },
+      {
+        "k_index_zero_based": 2,
+        "weight_spatial": 0.3333333333333333,
+        "k_cart_bohr_inv": [
+          -0.07853981633974483,
+          -0.039269908169872414,
+          0.11780972450961724
+        ],
+        "NG": 2770,
+        "states": [
+          {
+            "band_one_based": 1,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.299032999676554,
+            "norm": 0.9999999999999991,
+            "kinetic_unweighted_ha": 2.1900194716840136,
+            "gradient_unweighted_ha": 2.1900194716840145,
+            "kinetic_weighted_ha": 0.7300064905613378,
+            "gradient_weighted_ha": 0.7300064905613382,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 2,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.2990329996123213,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 2.1900194714359893,
+            "gradient_unweighted_ha": 2.19001947143599,
+            "kinetic_weighted_ha": 0.7300064904786631,
+            "gradient_weighted_ha": 0.7300064904786634,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 3,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.669839418322202,
+            "norm": 0.9999999999999989,
+            "kinetic_unweighted_ha": 4.032454945326245,
+            "gradient_unweighted_ha": 4.032454945326246,
+            "kinetic_weighted_ha": 1.3441516484420817,
+            "gradient_weighted_ha": 1.344151648442082,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 4,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6698392843971481,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 4.0324549676957195,
+            "gradient_unweighted_ha": 4.03245496769572,
+            "kinetic_weighted_ha": 1.344151655898573,
+            "gradient_weighted_ha": 1.3441516558985733,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 5,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6617473024401965,
+            "norm": 0.9999999999999988,
+            "kinetic_unweighted_ha": 4.0229747228111945,
+            "gradient_unweighted_ha": 4.022974722811195,
+            "kinetic_weighted_ha": 1.3409915742703982,
+            "gradient_weighted_ha": 1.3409915742703984,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 6,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6617472310303003,
+            "norm": 1.0000000000000007,
+            "kinetic_unweighted_ha": 4.02297474083922,
+            "gradient_unweighted_ha": 4.022974740839221,
+            "kinetic_weighted_ha": 1.3409915802797399,
+            "gradient_weighted_ha": 1.34099158027974,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 7,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6580719649958695,
+            "norm": 1.000000000000001,
+            "kinetic_unweighted_ha": 4.0140060245884515,
+            "gradient_unweighted_ha": 4.014006024588453,
+            "kinetic_weighted_ha": 1.3380020081961503,
+            "gradient_weighted_ha": 1.338002008196151,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 8,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6580718689108607,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 4.014005904109157,
+            "gradient_unweighted_ha": 4.014005904109158,
+            "kinetic_weighted_ha": 1.3380019680363857,
+            "gradient_weighted_ha": 1.338001968036386,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 9,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.16186113476060196,
+            "norm": 0.9999999999999991,
+            "kinetic_unweighted_ha": 0.28274978592435845,
+            "gradient_unweighted_ha": 0.28274978592435857,
+            "kinetic_weighted_ha": 0.09424992864145282,
+            "gradient_weighted_ha": 0.09424992864145285,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 10,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.16186113205372762,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 0.2827497940712217,
+            "gradient_unweighted_ha": 0.2827497940712218,
+            "kinetic_weighted_ha": 0.0942499313570739,
+            "gradient_weighted_ha": 0.09424993135707393,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 11,
+            "occupation": 1.1123168896563256e-36,
+            "eigenvalue_ha": 0.003712104385955874,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 0.27220905440134063,
+            "gradient_unweighted_ha": 0.2722090544013407,
+            "kinetic_weighted_ha": 1.0092757624266292e-37,
+            "gradient_weighted_ha": 1.0092757624266294e-37,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 12,
+            "occupation": 1.1122712166200988e-36,
+            "eigenvalue_ha": 0.003712145447971891,
+            "norm": 1.0000000000000007,
+            "kinetic_unweighted_ha": 0.27220893651642925,
+            "gradient_unweighted_ha": 0.2722089365164293,
+            "kinetic_weighted_ha": 1.0092338833133067e-37,
+            "gradient_weighted_ha": 1.009233883313307e-37,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 13,
+            "occupation": 9.089095586251232e-47,
+            "eigenvalue_ha": 0.0269399101290568,
+            "norm": 1.0000000000000036,
+            "kinetic_unweighted_ha": 0.31282431051544607,
+            "gradient_unweighted_ha": 0.3128243105154461,
+            "kinetic_weighted_ha": 9.477633533260085e-48,
+            "gradient_weighted_ha": 9.477633533260087e-48,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 14,
+            "occupation": 9.088606904302737e-47,
+            "eigenvalue_ha": 0.026939963896242047,
+            "norm": 1.0000000000000007,
+            "kinetic_unweighted_ha": 0.312824115561402,
+            "gradient_unweighted_ha": 0.3128241155614021,
+            "kinetic_weighted_ha": 9.477118055079185e-48,
+            "gradient_weighted_ha": 9.477118055079188e-48,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 15,
+            "occupation": 1.5128097410394711e-55,
+            "eigenvalue_ha": 0.047153697603365755,
+            "norm": 1.0000000000000029,
+            "kinetic_unweighted_ha": 0.36922371563227435,
+            "gradient_unweighted_ha": 0.36922371563227446,
+            "kinetic_weighted_ha": 1.8618841121043077e-56,
+            "gradient_weighted_ha": 1.8618841121043082e-56,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 16,
+            "occupation": 1.5127381942524741e-55,
+            "eigenvalue_ha": 0.04715374489845976,
+            "norm": 1.0000000000000033,
+            "kinetic_unweighted_ha": 0.36922334876865115,
+            "gradient_unweighted_ha": 0.3692233487686513,
+            "kinetic_weighted_ha": 1.861794206307136e-56,
+            "gradient_weighted_ha": 1.8617942063071368e-56,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 17,
+            "occupation": 3.3202556921115192e-78,
+            "eigenvalue_ha": 0.0993270816239906,
+            "norm": 0.9999999999999997,
+            "kinetic_unweighted_ha": 0.3800556923804026,
+            "gradient_unweighted_ha": 0.3800556923804027,
+            "kinetic_weighted_ha": 4.2062735864847206e-79,
+            "gradient_weighted_ha": 4.206273586484722e-79,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 18,
+            "occupation": 3.3200976359312376e-78,
+            "eigenvalue_ha": 0.0993271292287407,
+            "norm": 0.9999999999999956,
+            "kinetic_unweighted_ha": 0.3800558442875643,
+            "gradient_unweighted_ha": 0.3800558442875644,
+            "kinetic_weighted_ha": 4.206075033803309e-79,
+            "gradient_weighted_ha": 4.20607503380331e-79,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 19,
+            "occupation": 1.4806373317394142e-89,
+            "eigenvalue_ha": 0.1254630868179488,
+            "norm": 0.9999999999999954,
+            "kinetic_unweighted_ha": 0.35977705214418654,
+            "gradient_unweighted_ha": 0.3597770521441867,
+            "kinetic_weighted_ha": 1.775664448359468e-90,
+            "gradient_weighted_ha": 1.7756644483594688e-90,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 20,
+            "occupation": 1.4805969240436106e-89,
+            "eigenvalue_ha": 0.1254631141090662,
+            "norm": 0.999999999999999,
+            "kinetic_unweighted_ha": 0.3597770311823719,
+            "gradient_unweighted_ha": 0.35977703118237203,
+            "kinetic_weighted_ha": 1.7756158857005402e-90,
+            "gradient_weighted_ha": 1.7756158857005407e-90,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 21,
+            "occupation": 4.502665433095225e-99,
+            "eigenvalue_ha": 0.1473767408326341,
+            "norm": 0.9999999999999979,
+            "kinetic_unweighted_ha": 0.39976127413412466,
+            "gradient_unweighted_ha": 0.3997612741341248,
+            "kinetic_weighted_ha": 5.999970901779424e-100,
+            "gradient_weighted_ha": 5.999970901779427e-100,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 22,
+            "occupation": 4.50264024264709e-99,
+            "eigenvalue_ha": 0.14737674642721338,
+            "norm": 0.9999999999999984,
+            "kinetic_unweighted_ha": 0.39976127260530386,
+            "gradient_unweighted_ha": 0.39976127260530403,
+            "kinetic_weighted_ha": 5.999937311614849e-100,
+            "gradient_weighted_ha": 5.999937311614851e-100,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 23,
+            "occupation": 1.425701343001932e-109,
+            "eigenvalue_ha": 0.171552597439293,
+            "norm": 0.9999999999999984,
+            "kinetic_unweighted_ha": 0.33470204640058315,
+            "gradient_unweighted_ha": 0.3347020464005833,
+            "kinetic_weighted_ha": 1.590617190196021e-110,
+            "gradient_weighted_ha": 1.5906171901960218e-110,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 24,
+            "occupation": 1.4256911273190105e-109,
+            "eigenvalue_ha": 0.1715526046046924,
+            "norm": 0.9999999999999997,
+            "kinetic_unweighted_ha": 0.33470206289542515,
+            "gradient_unweighted_ha": 0.33470206289542526,
+            "kinetic_weighted_ha": 1.5906058712179236e-110,
+            "gradient_weighted_ha": 1.590605871217924e-110,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          }
+        ],
+        "kinetic_ha": 9.694803276161856,
+        "gradient_kinetic_ha": 9.694803276161858
+      }
+    ],
+    "eband_bookkeeping": {
+      "sum_w_f_epsilon_ha": -16.90873722793246,
+      "status": "NOT_REQUESTED",
+      "scope": "Original XML/checkpoint occupation-energy bookkeeping only; not a Hamiltonian residual or kinetic identity"
+    },
+    "pauli_diagnostic": {
+      "n_min": 0.00011639629358739986,
+      "m_max_norm": 4.100408725500585e-13,
+      "sigma_y_convention": "m_y=-2 Im(sum wf u_up conj(u_down))",
+      "scope": "New orbital Pauli diagnostic, not magnetization read from G40 charge and not evidence of noncollinear XC"
+    },
+    "input_array_fingerprints": {
+      "lattice_columns": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "ab966366d26be8289c36085e3dbf78bd63422816465b0a4f0ff613230bd211f8"
+      },
+      "reciprocal_columns": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "5b53f2e58e2744a8745051b60e14eac3fcc1966693ea0ae1b983ef80628af80d"
+      },
+      "0/millers": {
+        "shape": [
+          2777,
+          3
+        ],
+        "dtype": "<i8",
+        "sha256": "5a210b569373797bf137b91d9806fa7f3f4e20dd72a1de907f59c4318808d56b"
+      },
+      "0/coefficients": {
+        "shape": [
+          2,
+          2777,
+          24
+        ],
+        "dtype": "<c16",
+        "sha256": "1f7324e60420e48fc60a7edabd2ff3ebdfff9853f10e1eb0c167d09e3f0731f2"
+      },
+      "0/occupations": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "0f76f2817128c5e23b7b766a2ab8615c49b4a35ef2f998a1faa6e7ec465a284f"
+      },
+      "0/eigenvalues": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "009c55ee71ebec16ffc319b3a5f3c6f0d4952475bf1f97039ef2763625aa74f5"
+      },
+      "0/k_cart": {
+        "shape": [
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0"
+      },
+      "0/weight": {
+        "shape": [],
+        "dtype": "<f8",
+        "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+      },
+      "1/millers": {
+        "shape": [
+          2770,
+          3
+        ],
+        "dtype": "<i8",
+        "sha256": "081eccb1d184f82f7b48841c61303ebdf138ed74420de918fca841001d8644c8"
+      },
+      "1/coefficients": {
+        "shape": [
+          2,
+          2770,
+          24
+        ],
+        "dtype": "<c16",
+        "sha256": "bdb829015579b3204dc8bb6d062cab3039bb5c7ea1b4384af3866f9f3d61d86c"
+      },
+      "1/occupations": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "a9d1434bb37be0ebd48a1e286d5d00c2866c5f22380aad3d43a7a1edb8c96bac"
+      },
+      "1/eigenvalues": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "2d56fb38697b5a249e1a07e9b7d487afeec59cc3b40082e1d0f956e43a35705f"
+      },
+      "1/k_cart": {
+        "shape": [
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "17358d22c0a27fcbeb0d24616c3511d9659eddfcf17e6a296982ae0cc722ec5b"
+      },
+      "1/weight": {
+        "shape": [],
+        "dtype": "<f8",
+        "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+      },
+      "2/millers": {
+        "shape": [
+          2770,
+          3
+        ],
+        "dtype": "<i8",
+        "sha256": "71db13d29db58d6ac436011861368f922394c3cb9483b5d532987b2552f2c881"
+      },
+      "2/coefficients": {
+        "shape": [
+          2,
+          2770,
+          24
+        ],
+        "dtype": "<c16",
+        "sha256": "cdc4eea14cf3c658e234ea997ea0c5df1843569013f85906049ddccd1bf0239f"
+      },
+      "2/occupations": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "d551d0cedba1b8b3b9e18488eadb478573bd41b9d2624a72f015f2af9f9a8302"
+      },
+      "2/eigenvalues": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "0164638c4b75c7b614041d39416fa83e6b8b12c4653bc77bf30c26cd0e866bea"
+      },
+      "2/k_cart": {
+        "shape": [
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "1d5308fcde3b243290fc0b81ddd1c91841c7fedb84a5ba334ad5af9b8b50d151"
+      },
+      "2/weight": {
+        "shape": [],
+        "dtype": "<f8",
+        "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+      }
+    },
+    "input_bytes_unchanged": true,
+    "normalization_or_QR_applied": false,
+    "new_scf_status": "NOT_RUN",
+    "new_eigensolve_status": "NOT_RUN",
+    "new_occupation_solve_status": "NOT_RUN",
+    "new_xc_evaluation_status": "NOT_RUN",
+    "new_qe_pp_execution_status": "NOT_RUN",
+    "physical_convergence_status": "NOT_ESTABLISHED",
+    "numerical_review_status": "REVIEW_REQUIRED",
+    "independent_native_qe_nonlocal_status": "NOT_MEASURED",
+    "qe_original_input_hamiltonian_residual_status": "NOT_AVAILABLE",
+    "backend": {
+      "numpy_version": "2.3.5",
+      "complex_dtype": "complex128",
+      "real_dtype": "float64"
+    },
+    "FFT_convention": "ifftn(c_grid)*Ngrid/sqrt(volume); physical first-index-fast order; same-k density sum then spatial weights once"
+  },
+  "B": {
+    "schema_version": 1,
+    "label": "B",
+    "status": "PASS",
+    "all_required_gates_passed": true,
+    "spinor_layout": "coefficients[spin,G,band], block components; capacity one",
+    "state_count": 24,
+    "k_count": 3,
+    "volume_bohr3": 1000.0000000000007,
+    "reciprocal_duality_max_abs": 0.0,
+    "fft_size": [
+      40,
+      40,
+      40
+    ],
+    "normalization_and_gram": [
+      {
+        "k_index_zero_based": 0,
+        "NG": 2777,
+        "norms": [
+          0.9999999999999991,
+          1.0000000000000004,
+          1.0000000000000004,
+          0.9999999999999973,
+          0.9999999999999999,
+          1.0000000000000009,
+          1.0000000000000002,
+          0.9999999999999998,
+          1.000000000000002,
+          1.0000000000000004,
+          0.999999999999999,
+          0.9999999999999996,
+          0.9999999999999997,
+          0.9999999999999952,
+          0.9999999999999989,
+          0.9999999999999993,
+          0.9999999999999999,
+          1.0000000000000013,
+          1.0,
+          1.0000000000000027,
+          0.9999999999999981,
+          0.9999999999999996,
+          0.9999999999999989,
+          1.0000000000000016
+        ],
+        "maximum_norm_error": 4.773959005888173e-15,
+        "gram_frobenius": 1.436769243179359e-14,
+        "k_cart_max_abs_error": 0.0,
+        "cutoff_max_ha": 14.804406601634037,
+        "status": "PASS"
+      },
+      {
+        "k_index_zero_based": 1,
+        "NG": 2770,
+        "norms": [
+          1.0000000000000016,
+          1.0000000000000016,
+          1.0000000000000002,
+          1.0000000000000007,
+          0.9999999999999997,
+          1.0000000000000004,
+          1.0000000000000009,
+          1.0000000000000002,
+          1.000000000000004,
+          1.0000000000000036,
+          0.9999999999999997,
+          0.9999999999999959,
+          0.9999999999999999,
+          1.0000000000000013,
+          0.9999999999999998,
+          1.0000000000000038,
+          0.9999999999999957,
+          0.999999999999994,
+          1.0000000000000029,
+          1.0000000000000036,
+          1.000000000000001,
+          1.000000000000002,
+          1.000000000000003,
+          0.999999999999998
+        ],
+        "maximum_norm_error": 5.995204332975845e-15,
+        "gram_frobenius": 2.0327675178851064e-14,
+        "k_cart_max_abs_error": 0.0,
+        "cutoff_max_ha": 14.987919558466793,
+        "status": "PASS"
+      },
+      {
+        "k_index_zero_based": 2,
+        "NG": 2770,
+        "norms": [
+          1.0000000000000016,
+          1.0,
+          1.0000000000000002,
+          0.9999999999999999,
+          1.0000000000000013,
+          0.9999999999999996,
+          1.0000000000000009,
+          1.0000000000000007,
+          0.9999999999999988,
+          1.000000000000003,
+          1.0000000000000033,
+          0.999999999999999,
+          0.999999999999999,
+          0.9999999999999934,
+          0.9999999999999986,
+          0.999999999999999,
+          1.0000000000000016,
+          1.000000000000001,
+          0.9999999999999993,
+          0.9999999999999967,
+          0.9999999999999981,
+          1.0000000000000042,
+          0.9999999999999952,
+          0.999999999999997
+        ],
+        "maximum_norm_error": 6.5503158452884236e-15,
+        "gram_frobenius": 2.0262063471297243e-14,
+        "k_cart_max_abs_error": 0.0,
+        "cutoff_max_ha": 14.987919558466793,
+        "status": "PASS"
+      }
+    ],
+    "electrons": {
+      "from_occupations": 10.0,
+      "from_actual_norms": 10.000000000000005,
+      "from_real_density": 10.000000000000009,
+      "per_k_real_contributions": [
+        3.3333333333333344,
+        3.3333333333333384,
+        3.333333333333336
+      ],
+      "errors": {
+        "occupations_minus_expected": 0.0,
+        "norm_weighted_minus_expected": 5.329070518200751e-15,
+        "real_density_minus_expected": 8.881784197001252e-15,
+        "real_minus_norm_weighted": 3.552713678800501e-15
+      },
+      "status": "PASS"
+    },
+    "product_support": {
+      "status": "PASS",
+      "same_k_difference_extents": [
+        [
+          16,
+          16,
+          16
+        ],
+        [
+          16,
+          16,
+          16
+        ],
+        [
+          16,
+          16,
+          16
+        ]
+      ],
+      "possible_product_count": 21421,
+      "nyquist_ambiguous_products": 0,
+      "method": "All same-k integer G-G pairs, blocked direct enumeration; strict unique finite-grid representatives"
+    },
+    "same_source_orbital_density": {
+      "coefficient_max_abs": 3.469446951953614e-18,
+      "common_coefficient_count": 64000,
+      "common_nonzero_difference_l2": 4.3407216696123055e-17,
+      "reference_nonzero_l2": 0.10517554332685822,
+      "common_nonzero_relative_l2": 4.1271207471897454e-16,
+      "zero_reference_denominator": false,
+      "zero_reference_rule": "When reference fluctuations are exactly zero, apply the declared absolute coefficient maximum only; relative L2 is not defined unless the difference is also exactly zero",
+      "outside_saved_coefficient_l2": 0.0,
+      "outside_saved_coefficient_max_abs": 0.0,
+      "outside_saved_mode_count": 0,
+      "possible_products_outside_saved_count": 0,
+      "scope": "FULL_FINITE_PRODUCT_SUPPORT_WITHIN_SAVED_G",
+      "unknown_physical_modes_assumed_zero": false,
+      "original_node_relative_l2": 2.7079491600431737e-16,
+      "original_node_max_abs": 1.3322676295501878e-15,
+      "original_n_out_sha256": "bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3",
+      "status": "PASS"
+    },
+    "direct_correlation_checks": [
+      {
+        "miller": [
+          0,
+          0,
+          0
+        ],
+        "correlation": [
+          0.01,
+          8.727378255694454e-21
+        ],
+        "FFT": [
+          0.010000000000000002,
+          0.0
+        ],
+        "absolute_difference": 1.7347454295187735e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          1,
+          0,
+          0
+        ],
+        "correlation": [
+          0.004068985149247962,
+          -0.007401607102055037
+        ],
+        "FFT": [
+          0.004068985149247963,
+          -0.007401607102055041
+        ],
+        "absolute_difference": 3.576224061345498e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -1,
+          0,
+          0
+        ],
+        "correlation": [
+          0.004068985149247962,
+          0.007401607102055037
+        ],
+        "FFT": [
+          0.004068985149247963,
+          0.00740160710205504
+        ],
+        "absolute_difference": 2.742838647325548e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          1,
+          0
+        ],
+        "correlation": [
+          0.0010570041180384526,
+          -0.008366471777207486
+        ],
+        "FFT": [
+          0.001057004118038453,
+          -0.00836647177720749
+        ],
+        "absolute_difference": 3.496446946337351e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          -1,
+          0
+        ],
+        "correlation": [
+          0.0010570041180384526,
+          0.008366471777207486
+        ],
+        "FFT": [
+          0.001057004118038453,
+          0.00836647177720749
+        ],
+        "absolute_difference": 3.496446946337351e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          0,
+          1
+        ],
+        "correlation": [
+          -0.0031176602680959256,
+          -0.007874426598586906
+        ],
+        "FFT": [
+          -0.003117660268095927,
+          -0.007874426598586908
+        ],
+        "absolute_difference": 2.168404344971009e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          0,
+          -1
+        ],
+        "correlation": [
+          -0.0031176602680959256,
+          0.007874426598586904
+        ],
+        "FFT": [
+          -0.003117660268095927,
+          0.007874426598586908
+        ],
+        "absolute_difference": 3.705370968959021e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          1,
+          2,
+          3
+        ],
+        "correlation": [
+          -0.0036723714244348117,
+          0.0014540108237861805
+        ],
+        "FFT": [
+          -0.0036723714244348135,
+          0.0014540108237861814
+        ],
+        "absolute_difference": 1.939479807224432e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -1,
+          -2,
+          -3
+        ],
+        "correlation": [
+          -0.0036723714244348117,
+          -0.0014540108237861805
+        ],
+        "FFT": [
+          -0.0036723714244348135,
+          -0.0014540108237861814
+        ],
+        "absolute_difference": 1.939479807224432e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          2,
+          -1,
+          3
+        ],
+        "correlation": [
+          0.003825938880057441,
+          -0.0009823422089365488
+        ],
+        "FFT": [
+          0.0038259388800574424,
+          -0.0009823422089365492
+        ],
+        "absolute_difference": 1.371419323662774e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -2,
+          1,
+          -3
+        ],
+        "correlation": [
+          0.003825938880057441,
+          0.0009823422089365488
+        ],
+        "FFT": [
+          0.003825938880057442,
+          0.0009823422089365488
+        ],
+        "absolute_difference": 8.673617379884035e-19,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          3,
+          2,
+          -1
+        ],
+        "correlation": [
+          -0.0021163742994221454,
+          0.003334850134477554
+        ],
+        "FFT": [
+          -0.0021163742994221462,
+          0.0033348501344775557
+        ],
+        "absolute_difference": 1.939479807224432e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -3,
+          -2,
+          1
+        ],
+        "correlation": [
+          -0.0021163742994221454,
+          -0.003334850134477554
+        ],
+        "FFT": [
+          -0.0021163742994221462,
+          -0.0033348501344775553
+        ],
+        "absolute_difference": 1.5636586103463754e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          7,
+          -5,
+          4
+        ],
+        "correlation": [
+          4.096288310701017e-05,
+          0.00021476943454218475
+        ],
+        "FFT": [
+          4.096288310701016e-05,
+          0.00021476943454218483
+        ],
+        "absolute_difference": 8.243680437578442e-20,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -7,
+          5,
+          -4
+        ],
+        "correlation": [
+          4.096288310701017e-05,
+          -0.00021476943454218475
+        ],
+        "FFT": [
+          4.09628831070102e-05,
+          -0.00021476943454218483
+        ],
+        "absolute_difference": 8.571370772892337e-20,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          17,
+          0,
+          0
+        ],
+        "correlation": [
+          0.0,
+          0.0
+        ],
+        "FFT": [
+          -1.6479873021779668e-19,
+          -2.524022657546254e-19
+        ],
+        "absolute_difference": 3.0143909043033336e-19,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -17,
+          0,
+          0
+        ],
+        "correlation": [
+          0.0,
+          0.0
+        ],
+        "FFT": [
+          -1.3877787807814457e-20,
+          1.3877787807814457e-20
+        ],
+        "absolute_difference": 1.9626155733547188e-20,
+        "status": "PASS"
+      }
+    ],
+    "kinetic": {
+      "direct_ha": 29.07598445081151,
+      "gradient_ha": 29.075984450811518,
+      "signed_difference_ha": -7.105427357601002e-15,
+      "status": "PASS",
+      "evidence_kind": "DIRECT_REEVALUATION_OF_KINETIC_FROM_ORIGINAL_DFTK_X",
+      "summation": "Direct: stable coefficient-probability sum with physical G+k. Independent: three covariant-derivative IFFTs and real-space squared integrals.",
+      "historical_ha": 29.075984450811514,
+      "historical_signed_difference_ha": -3.552713678800501e-15,
+      "same_source_status": "PASS"
+    },
+    "per_k": [
+      {
+        "k_index_zero_based": 0,
+        "weight_spatial": 0.3333333333333333,
+        "k_cart_bohr_inv": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "NG": 2777,
+        "states": [
+          {
+            "band_one_based": 1,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.299210557192533,
+            "norm": 0.9999999999999991,
+            "kinetic_unweighted_ha": 2.1903078048505535,
+            "gradient_unweighted_ha": 2.190307804850554,
+            "kinetic_weighted_ha": 0.7301026016168511,
+            "gradient_weighted_ha": 0.7301026016168513,
+            "signed_path_difference_ha": -4.440892098500626e-16
+          },
+          {
+            "band_one_based": 2,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.299210557192532,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 2.1903078048505686,
+            "gradient_unweighted_ha": 2.190307804850569,
+            "kinetic_weighted_ha": 0.7301026016168561,
+            "gradient_weighted_ha": 0.7301026016168564,
+            "signed_path_difference_ha": -4.440892098500626e-16
+          },
+          {
+            "band_one_based": 3,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6706679272848615,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 4.033691637444885,
+            "gradient_unweighted_ha": 4.033691637444886,
+            "kinetic_weighted_ha": 1.3445638791482948,
+            "gradient_weighted_ha": 1.3445638791482954,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 4,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6706679272848604,
+            "norm": 0.9999999999999973,
+            "kinetic_unweighted_ha": 4.033691637444917,
+            "gradient_unweighted_ha": 4.033691637444919,
+            "kinetic_weighted_ha": 1.3445638791483057,
+            "gradient_weighted_ha": 1.3445638791483063,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 5,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6619559041740135,
+            "norm": 0.9999999999999999,
+            "kinetic_unweighted_ha": 4.023967372662271,
+            "gradient_unweighted_ha": 4.0239673726622724,
+            "kinetic_weighted_ha": 1.34132245755409,
+            "gradient_weighted_ha": 1.3413224575540907,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 6,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6619559041740133,
+            "norm": 1.0000000000000009,
+            "kinetic_unweighted_ha": 4.023967372662328,
+            "gradient_unweighted_ha": 4.023967372662329,
+            "kinetic_weighted_ha": 1.3413224575541094,
+            "gradient_weighted_ha": 1.3413224575541096,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 7,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.661768592521668,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 4.023803778839086,
+            "gradient_unweighted_ha": 4.023803778839087,
+            "kinetic_weighted_ha": 1.3412679262796952,
+            "gradient_weighted_ha": 1.3412679262796954,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 8,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6617685925216659,
+            "norm": 0.9999999999999998,
+            "kinetic_unweighted_ha": 4.0238037788390635,
+            "gradient_unweighted_ha": 4.023803778839065,
+            "kinetic_weighted_ha": 1.3412679262796878,
+            "gradient_weighted_ha": 1.3412679262796883,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 9,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.16839752452506868,
+            "norm": 1.000000000000002,
+            "kinetic_unweighted_ha": 0.25779625393637745,
+            "gradient_unweighted_ha": 0.25779625393637756,
+            "kinetic_weighted_ha": 0.08593208464545915,
+            "gradient_weighted_ha": 0.08593208464545918,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 10,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.1683975245250678,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 0.2577962539342703,
+            "gradient_unweighted_ha": 0.2577962539342704,
+            "kinetic_weighted_ha": 0.08593208464475677,
+            "gradient_weighted_ha": 0.0859320846447568,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 11,
+            "occupation": 2.3152893067032346e-57,
+            "eigenvalue_ha": 0.05133330181710102,
+            "norm": 0.999999999999999,
+            "kinetic_unweighted_ha": 0.4046914655439448,
+            "gradient_unweighted_ha": 0.4046914655439449,
+            "kinetic_weighted_ha": 3.123259408959853e-58,
+            "gradient_weighted_ha": 3.1232594089598536e-58,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 12,
+            "occupation": 2.315289306701326e-57,
+            "eigenvalue_ha": 0.05133330181710185,
+            "norm": 0.9999999999999996,
+            "kinetic_unweighted_ha": 0.40469146554316454,
+            "gradient_unweighted_ha": 0.4046914655431647,
+            "kinetic_weighted_ha": 3.1232594089512563e-58,
+            "gradient_weighted_ha": 3.1232594089512577e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 13,
+            "occupation": 1.6942455186935316e-57,
+            "eigenvalue_ha": 0.051645598947307594,
+            "norm": 0.9999999999999997,
+            "kinetic_unweighted_ha": 0.404620002450745,
+            "gradient_unweighted_ha": 0.40462000245074514,
+            "kinetic_weighted_ha": 2.285085419753135e-58,
+            "gradient_weighted_ha": 2.2850854197531356e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 14,
+            "occupation": 1.6942455186921353e-57,
+            "eigenvalue_ha": 0.051645598947308455,
+            "norm": 0.9999999999999952,
+            "kinetic_unweighted_ha": 0.4046200024486858,
+            "gradient_unweighted_ha": 0.404620002448686,
+            "kinetic_weighted_ha": 2.285085419739622e-58,
+            "gradient_weighted_ha": 2.2850854197396236e-58,
+            "signed_path_difference_ha": -2.220446049250313e-16
+          },
+          {
+            "band_one_based": 15,
+            "occupation": 1.4183812949241317e-57,
+            "eigenvalue_ha": 0.051823320179086065,
+            "norm": 0.9999999999999989,
+            "kinetic_unweighted_ha": 0.40452543383038775,
+            "gradient_unweighted_ha": 0.40452543383038786,
+            "kinetic_weighted_ha": 1.9125710288869718e-58,
+            "gradient_weighted_ha": 1.912571028886972e-58,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 16,
+            "occupation": 1.4183812949238898e-57,
+            "eigenvalue_ha": 0.051823320179086224,
+            "norm": 0.9999999999999993,
+            "kinetic_unweighted_ha": 0.4045254338308287,
+            "gradient_unweighted_ha": 0.40452543383082884,
+            "kinetic_weighted_ha": 1.9125710288887302e-58,
+            "gradient_weighted_ha": 1.912571028888731e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 17,
+            "occupation": 1.4528799691002484e-59,
+            "eigenvalue_ha": 0.05640445888115713,
+            "norm": 0.9999999999999999,
+            "kinetic_unweighted_ha": 0.3312862067934123,
+            "gradient_unweighted_ha": 0.3312862067934125,
+            "kinetic_weighted_ha": 1.6043969796311712e-60,
+            "gradient_weighted_ha": 1.604396979631172e-60,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 18,
+            "occupation": 1.4528799691001246e-59,
+            "eigenvalue_ha": 0.05640445888115721,
+            "norm": 1.0000000000000013,
+            "kinetic_unweighted_ha": 0.33128620679380116,
+            "gradient_unweighted_ha": 0.3312862067938013,
+            "kinetic_weighted_ha": 1.6043969796329178e-60,
+            "gradient_weighted_ha": 1.6043969796329183e-60,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 19,
+            "occupation": 1.0824498273205532e-75,
+            "eigenvalue_ha": 0.09354014131029723,
+            "norm": 1.0,
+            "kinetic_unweighted_ha": 0.2240330950582938,
+            "gradient_unweighted_ha": 0.22403309505829389,
+            "kinetic_weighted_ha": 8.08348616866464e-77,
+            "gradient_weighted_ha": 8.083486168664644e-77,
+            "signed_path_difference_ha": -8.326672684688674e-17
+          },
+          {
+            "band_one_based": 20,
+            "occupation": 1.082449827320184e-75,
+            "eigenvalue_ha": 0.09354014131029759,
+            "norm": 1.0000000000000027,
+            "kinetic_unweighted_ha": 0.22403309505828078,
+            "gradient_unweighted_ha": 0.2240330950582809,
+            "kinetic_weighted_ha": 8.083486168661413e-77,
+            "gradient_weighted_ha": 8.083486168661418e-77,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 21,
+            "occupation": 9.350609215227756e-76,
+            "eigenvalue_ha": 0.09368651173632925,
+            "norm": 0.9999999999999981,
+            "kinetic_unweighted_ha": 0.22402159473742492,
+            "gradient_unweighted_ha": 0.224021594737425,
+            "kinetic_weighted_ha": 6.982461293872611e-77,
+            "gradient_weighted_ha": 6.982461293872614e-77,
+            "signed_path_difference_ha": -8.326672684688674e-17
+          },
+          {
+            "band_one_based": 22,
+            "occupation": 9.350609215220314e-76,
+            "eigenvalue_ha": 0.09368651173633004,
+            "norm": 0.9999999999999996,
+            "kinetic_unweighted_ha": 0.22402159473736766,
+            "gradient_unweighted_ha": 0.2240215947373677,
+            "kinetic_weighted_ha": 6.982461293865269e-77,
+            "gradient_weighted_ha": 6.98246129386527e-77,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 23,
+            "occupation": 2.2218706767542748e-141,
+            "eigenvalue_ha": 0.2447916347905861,
+            "norm": 0.9999999999999989,
+            "kinetic_unweighted_ha": 0.46002561909269274,
+            "gradient_unweighted_ha": 0.46002561909269296,
+            "kinetic_weighted_ha": 3.407058112059285e-142,
+            "gradient_weighted_ha": 3.407058112059287e-142,
+            "signed_path_difference_ha": -2.220446049250313e-16
+          },
+          {
+            "band_one_based": 24,
+            "occupation": 2.221870676753517e-141,
+            "eigenvalue_ha": 0.2447916347905864,
+            "norm": 1.0000000000000016,
+            "kinetic_unweighted_ha": 0.46002561909257234,
+            "gradient_unweighted_ha": 0.46002561909257256,
+            "kinetic_weighted_ha": 3.4070581120572314e-142,
+            "gradient_weighted_ha": 3.407058112057233e-142,
+            "signed_path_difference_ha": -2.220446049250313e-16
+          }
+        ],
+        "kinetic_ha": 9.686377898488105,
+        "gradient_kinetic_ha": 9.686377898488109
+      },
+      {
+        "k_index_zero_based": 1,
+        "weight_spatial": 0.3333333333333333,
+        "k_cart_bohr_inv": [
+          0.07853981633974483,
+          0.039269908169872414,
+          -0.11780972450961724
+        ],
+        "NG": 2770,
+        "states": [
+          {
+            "band_one_based": 1,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.2990329996764296,
+            "norm": 1.0000000000000016,
+            "kinetic_unweighted_ha": 2.190019471684034,
+            "gradient_unweighted_ha": 2.1900194716840344,
+            "kinetic_weighted_ha": 0.7300064905613446,
+            "gradient_weighted_ha": 0.7300064905613448,
+            "signed_path_difference_ha": -4.440892098500626e-16
+          },
+          {
+            "band_one_based": 2,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.2990329996122,
+            "norm": 1.0000000000000016,
+            "kinetic_unweighted_ha": 2.1900194714360204,
+            "gradient_unweighted_ha": 2.1900194714360204,
+            "kinetic_weighted_ha": 0.7300064904786734,
+            "gradient_weighted_ha": 0.7300064904786734,
+            "signed_path_difference_ha": 0.0
+          },
+          {
+            "band_one_based": 3,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6698394183220604,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 4.032454945326344,
+            "gradient_unweighted_ha": 4.032454945326345,
+            "kinetic_weighted_ha": 1.3441516484421145,
+            "gradient_weighted_ha": 1.3441516484421148,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 4,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6698392843970074,
+            "norm": 1.0000000000000007,
+            "kinetic_unweighted_ha": 4.032454967695807,
+            "gradient_unweighted_ha": 4.032454967695808,
+            "kinetic_weighted_ha": 1.3441516558986022,
+            "gradient_weighted_ha": 1.3441516558986026,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 5,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6617473024400644,
+            "norm": 0.9999999999999997,
+            "kinetic_unweighted_ha": 4.022974722811299,
+            "gradient_unweighted_ha": 4.0229747228113,
+            "kinetic_weighted_ha": 1.340991574270433,
+            "gradient_weighted_ha": 1.3409915742704333,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 6,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.661747231030168,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 4.02297474083931,
+            "gradient_unweighted_ha": 4.022974740839311,
+            "kinetic_weighted_ha": 1.34099158027977,
+            "gradient_weighted_ha": 1.3409915802797703,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 7,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6580719649957434,
+            "norm": 1.0000000000000009,
+            "kinetic_unweighted_ha": 4.014006024588512,
+            "gradient_unweighted_ha": 4.014006024588513,
+            "kinetic_weighted_ha": 1.3380020081961705,
+            "gradient_weighted_ha": 1.3380020081961708,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 8,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.658071868910734,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 4.014005904109219,
+            "gradient_unweighted_ha": 4.01400590410922,
+            "kinetic_weighted_ha": 1.3380019680364061,
+            "gradient_weighted_ha": 1.3380019680364068,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 9,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.16186113476038724,
+            "norm": 1.000000000000004,
+            "kinetic_unweighted_ha": 0.2827497859235702,
+            "gradient_unweighted_ha": 0.28274978592357025,
+            "kinetic_weighted_ha": 0.09424992864119006,
+            "gradient_weighted_ha": 0.09424992864119008,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 10,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.1618611320535129,
+            "norm": 1.0000000000000036,
+            "kinetic_unweighted_ha": 0.2827497940706669,
+            "gradient_unweighted_ha": 0.282749794070667,
+            "kinetic_weighted_ha": 0.09424993135688897,
+            "gradient_weighted_ha": 0.094249931356889,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 11,
+            "occupation": 1.1123168892784282e-36,
+            "eigenvalue_ha": 0.0037121043868500836,
+            "norm": 0.9999999999999997,
+            "kinetic_unweighted_ha": 0.27220905440268817,
+            "gradient_unweighted_ha": 0.2722090544026883,
+            "kinetic_weighted_ha": 1.0092757620887351e-37,
+            "gradient_weighted_ha": 1.0092757620887356e-37,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 12,
+            "occupation": 1.1122712162431022e-36,
+            "eigenvalue_ha": 0.0037121454488653204,
+            "norm": 0.9999999999999959,
+            "kinetic_unweighted_ha": 0.272208936517905,
+            "gradient_unweighted_ha": 0.27220893651790506,
+            "kinetic_weighted_ha": 1.0092338829767052e-37,
+            "gradient_weighted_ha": 1.0092338829767054e-37,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 13,
+            "occupation": 9.089095589305052e-47,
+            "eigenvalue_ha": 0.02693991012927529,
+            "norm": 0.9999999999999999,
+            "kinetic_unweighted_ha": 0.31282431051657306,
+            "gradient_unweighted_ha": 0.31282431051657317,
+            "kinetic_weighted_ha": 9.477633536478593e-48,
+            "gradient_weighted_ha": 9.477633536478597e-48,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 14,
+            "occupation": 9.088606907353423e-47,
+            "eigenvalue_ha": 0.026939963896460875,
+            "norm": 1.0000000000000013,
+            "kinetic_unweighted_ha": 0.3128241155634866,
+            "gradient_unweighted_ha": 0.3128241155634867,
+            "kinetic_weighted_ha": 9.477118058323432e-48,
+            "gradient_weighted_ha": 9.477118058323435e-48,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 15,
+            "occupation": 1.512809741578477e-55,
+            "eigenvalue_ha": 0.04715369760356394,
+            "norm": 0.9999999999999998,
+            "kinetic_unweighted_ha": 0.36922371563362333,
+            "gradient_unweighted_ha": 0.3692237156336234,
+            "kinetic_weighted_ha": 1.861884112774489e-56,
+            "gradient_weighted_ha": 1.8618841127744893e-56,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 16,
+            "occupation": 1.512738194791003e-55,
+            "eigenvalue_ha": 0.047153744898658256,
+            "norm": 1.0000000000000038,
+            "kinetic_unweighted_ha": 0.36922334877020496,
+            "gradient_unweighted_ha": 0.36922334877020513,
+            "kinetic_weighted_ha": 1.8617942069777626e-56,
+            "gradient_weighted_ha": 1.8617942069777635e-56,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 17,
+            "occupation": 3.3202556901550954e-78,
+            "eigenvalue_ha": 0.09932708162513436,
+            "norm": 0.9999999999999957,
+            "kinetic_unweighted_ha": 0.38005569237620224,
+            "gradient_unweighted_ha": 0.38005569237620235,
+            "kinetic_weighted_ha": 4.2062735839597333e-79,
+            "gradient_weighted_ha": 4.2062735839597345e-79,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 18,
+            "occupation": 3.320097633972548e-78,
+            "eigenvalue_ha": 0.09932712922988512,
+            "norm": 0.999999999999994,
+            "kinetic_unweighted_ha": 0.38005584428310557,
+            "gradient_unweighted_ha": 0.3800558442831057,
+            "kinetic_weighted_ha": 4.2060750312725934e-79,
+            "gradient_weighted_ha": 4.2060750312725946e-79,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 19,
+            "occupation": 1.4806373320498128e-89,
+            "eigenvalue_ha": 0.12546308681829366,
+            "norm": 1.0000000000000029,
+            "kinetic_unweighted_ha": 0.3597770521443645,
+            "gradient_unweighted_ha": 0.3597770521443646,
+            "kinetic_weighted_ha": 1.775664448732594e-90,
+            "gradient_weighted_ha": 1.7756644487325946e-90,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 20,
+            "occupation": 1.4805969243538324e-89,
+            "eigenvalue_ha": 0.12546311410941113,
+            "norm": 1.0000000000000036,
+            "kinetic_unweighted_ha": 0.35977703118216525,
+            "gradient_unweighted_ha": 0.3597770311821653,
+            "kinetic_weighted_ha": 1.7756158860715557e-90,
+            "gradient_weighted_ha": 1.775615886071556e-90,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 21,
+            "occupation": 4.5026654331735445e-99,
+            "eigenvalue_ha": 0.1473767408331712,
+            "norm": 1.000000000000001,
+            "kinetic_unweighted_ha": 0.3997612741330261,
+            "gradient_unweighted_ha": 0.3997612741330262,
+            "kinetic_weighted_ha": 5.9999709018673e-100,
+            "gradient_weighted_ha": 5.999970901867301e-100,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 22,
+            "occupation": 4.5026402427218255e-99,
+            "eigenvalue_ha": 0.14737674642775125,
+            "norm": 1.000000000000002,
+            "kinetic_unweighted_ha": 0.39976127260626443,
+            "gradient_unweighted_ha": 0.3997612726062645,
+            "kinetic_weighted_ha": 5.999937311728855e-100,
+            "gradient_weighted_ha": 5.999937311728856e-100,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 23,
+            "occupation": 1.425701342669377e-109,
+            "eigenvalue_ha": 0.17155259744008075,
+            "norm": 1.000000000000003,
+            "kinetic_unweighted_ha": 0.3347020464008537,
+            "gradient_unweighted_ha": 0.3347020464008539,
+            "kinetic_weighted_ha": 1.5906171898262843e-110,
+            "gradient_weighted_ha": 1.5906171898262852e-110,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 24,
+            "occupation": 1.425691126986377e-109,
+            "eigenvalue_ha": 0.17155260460548016,
+            "norm": 0.999999999999998,
+            "kinetic_unweighted_ha": 0.3347020628962327,
+            "gradient_unweighted_ha": 0.33470206289623283,
+            "kinetic_weighted_ha": 1.5906058708506508e-110,
+            "gradient_weighted_ha": 1.5906058708506514e-110,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          }
+        ],
+        "kinetic_ha": 9.694803276161593,
+        "gradient_kinetic_ha": 9.694803276161595
+      },
+      {
+        "k_index_zero_based": 2,
+        "weight_spatial": 0.3333333333333333,
+        "k_cart_bohr_inv": [
+          -0.07853981633974483,
+          -0.039269908169872414,
+          0.11780972450961724
+        ],
+        "NG": 2770,
+        "states": [
+          {
+            "band_one_based": 1,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.2990329996764305,
+            "norm": 1.0000000000000016,
+            "kinetic_unweighted_ha": 2.1900194716840335,
+            "gradient_unweighted_ha": 2.190019471684034,
+            "kinetic_weighted_ha": 0.7300064905613445,
+            "gradient_weighted_ha": 0.7300064905613446,
+            "signed_path_difference_ha": -4.440892098500626e-16
+          },
+          {
+            "band_one_based": 2,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.2990329996121917,
+            "norm": 1.0,
+            "kinetic_unweighted_ha": 2.1900194714360053,
+            "gradient_unweighted_ha": 2.1900194714360057,
+            "kinetic_weighted_ha": 0.7300064904786684,
+            "gradient_weighted_ha": 0.7300064904786685,
+            "signed_path_difference_ha": -4.440892098500626e-16
+          },
+          {
+            "band_one_based": 3,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6698394183220608,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 4.032454945326332,
+            "gradient_unweighted_ha": 4.032454945326334,
+            "kinetic_weighted_ha": 1.3441516484421108,
+            "gradient_weighted_ha": 1.3441516484421112,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 4,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6698392843970074,
+            "norm": 0.9999999999999999,
+            "kinetic_unweighted_ha": 4.032454967695808,
+            "gradient_unweighted_ha": 4.03245496769581,
+            "kinetic_weighted_ha": 1.3441516558986026,
+            "gradient_weighted_ha": 1.3441516558986033,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 5,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6617473024400644,
+            "norm": 1.0000000000000013,
+            "kinetic_unweighted_ha": 4.022974722811295,
+            "gradient_unweighted_ha": 4.022974722811297,
+            "kinetic_weighted_ha": 1.3409915742704315,
+            "gradient_weighted_ha": 1.3409915742704321,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 6,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6617472310301666,
+            "norm": 0.9999999999999996,
+            "kinetic_unweighted_ha": 4.022974740839313,
+            "gradient_unweighted_ha": 4.022974740839315,
+            "kinetic_weighted_ha": 1.340991580279771,
+            "gradient_weighted_ha": 1.3409915802797716,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 7,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6580719649957438,
+            "norm": 1.0000000000000009,
+            "kinetic_unweighted_ha": 4.014006024588523,
+            "gradient_unweighted_ha": 4.014006024588525,
+            "kinetic_weighted_ha": 1.3380020081961743,
+            "gradient_weighted_ha": 1.338002008196175,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 8,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.6580718689107352,
+            "norm": 1.0000000000000007,
+            "kinetic_unweighted_ha": 4.014005904109225,
+            "gradient_unweighted_ha": 4.014005904109226,
+            "kinetic_weighted_ha": 1.3380019680364081,
+            "gradient_weighted_ha": 1.3380019680364086,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 9,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.16186113476038647,
+            "norm": 0.9999999999999988,
+            "kinetic_unweighted_ha": 0.2827497859235114,
+            "gradient_unweighted_ha": 0.2827497859235115,
+            "kinetic_weighted_ha": 0.09424992864117046,
+            "gradient_weighted_ha": 0.0942499286411705,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 10,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.1618611320535128,
+            "norm": 1.000000000000003,
+            "kinetic_unweighted_ha": 0.2827497940713862,
+            "gradient_unweighted_ha": 0.28274979407138623,
+            "kinetic_weighted_ha": 0.09424993135712872,
+            "gradient_weighted_ha": 0.09424993135712874,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 11,
+            "occupation": 1.1123168892785072e-36,
+            "eigenvalue_ha": 0.0037121043868500146,
+            "norm": 1.0000000000000033,
+            "kinetic_unweighted_ha": 0.27220905440274523,
+            "gradient_unweighted_ha": 0.27220905440274534,
+            "kinetic_weighted_ha": 1.0092757620890183e-37,
+            "gradient_weighted_ha": 1.0092757620890187e-37,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 12,
+            "occupation": 1.1122712162431496e-36,
+            "eigenvalue_ha": 0.003712145448865285,
+            "norm": 0.999999999999999,
+            "kinetic_unweighted_ha": 0.27220893651845923,
+            "gradient_unweighted_ha": 0.27220893651845934,
+            "kinetic_weighted_ha": 1.0092338829788031e-37,
+            "gradient_weighted_ha": 1.0092338829788035e-37,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 13,
+            "occupation": 9.089095589305052e-47,
+            "eigenvalue_ha": 0.0269399101292753,
+            "norm": 0.999999999999999,
+            "kinetic_unweighted_ha": 0.312824310516063,
+            "gradient_unweighted_ha": 0.31282431051606313,
+            "kinetic_weighted_ha": 9.477633536463141e-48,
+            "gradient_weighted_ha": 9.477633536463144e-48,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 14,
+            "occupation": 9.088606907354714e-47,
+            "eigenvalue_ha": 0.02693996389646074,
+            "norm": 0.9999999999999934,
+            "kinetic_unweighted_ha": 0.31282411556287204,
+            "gradient_unweighted_ha": 0.31282411556287215,
+            "kinetic_weighted_ha": 9.477118058306159e-48,
+            "gradient_weighted_ha": 9.477118058306163e-48,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 15,
+            "occupation": 1.512809741578563e-55,
+            "eigenvalue_ha": 0.047153697603563874,
+            "norm": 0.9999999999999986,
+            "kinetic_unweighted_ha": 0.3692237156340719,
+            "gradient_unweighted_ha": 0.369223715634072,
+            "kinetic_weighted_ha": 1.8618841127768572e-56,
+            "gradient_weighted_ha": 1.8618841127768576e-56,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 16,
+            "occupation": 1.512738194791218e-55,
+            "eigenvalue_ha": 0.047153744898658125,
+            "norm": 0.999999999999999,
+            "kinetic_unweighted_ha": 0.3692233487700227,
+            "gradient_unweighted_ha": 0.36922334877002283,
+            "kinetic_weighted_ha": 1.861794206977108e-56,
+            "gradient_weighted_ha": 1.8617942069771086e-56,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 17,
+            "occupation": 3.3202556901517924e-78,
+            "eigenvalue_ha": 0.09932708162513536,
+            "norm": 1.0000000000000016,
+            "kinetic_unweighted_ha": 0.38005569237434245,
+            "gradient_unweighted_ha": 0.38005569237434256,
+            "kinetic_weighted_ha": 4.206273583934965e-79,
+            "gradient_weighted_ha": 4.206273583934966e-79,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 18,
+            "occupation": 3.3200976339697173e-78,
+            "eigenvalue_ha": 0.09932712922988597,
+            "norm": 1.000000000000001,
+            "kinetic_unweighted_ha": 0.38005584428344114,
+            "gradient_unweighted_ha": 0.38005584428344125,
+            "kinetic_weighted_ha": 4.2060750312727205e-79,
+            "gradient_weighted_ha": 4.2060750312727217e-79,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 19,
+            "occupation": 1.4806373320506545e-89,
+            "eigenvalue_ha": 0.1254630868182931,
+            "norm": 0.9999999999999993,
+            "kinetic_unweighted_ha": 0.35977705214465244,
+            "gradient_unweighted_ha": 0.3597770521446526,
+            "kinetic_weighted_ha": 1.7756644487350245e-90,
+            "gradient_weighted_ha": 1.7756644487350252e-90,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 20,
+            "occupation": 1.4805969243554315e-89,
+            "eigenvalue_ha": 0.12546311410941005,
+            "norm": 0.9999999999999967,
+            "kinetic_unweighted_ha": 0.35977703118111126,
+            "gradient_unweighted_ha": 0.3597770311811114,
+            "kinetic_weighted_ha": 1.7756158860682714e-90,
+            "gradient_weighted_ha": 1.775615886068272e-90,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 21,
+            "occupation": 4.502665433174696e-99,
+            "eigenvalue_ha": 0.14737674083317095,
+            "norm": 0.9999999999999981,
+            "kinetic_unweighted_ha": 0.3997612741348484,
+            "gradient_unweighted_ha": 0.3997612741348485,
+            "kinetic_weighted_ha": 5.999970901896186e-100,
+            "gradient_weighted_ha": 5.999970901896187e-100,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 22,
+            "occupation": 4.502640242718754e-99,
+            "eigenvalue_ha": 0.14737674642775195,
+            "norm": 1.0000000000000042,
+            "kinetic_unweighted_ha": 0.3997612726040663,
+            "gradient_unweighted_ha": 0.3997612726040664,
+            "kinetic_weighted_ha": 5.99993731169177e-100,
+            "gradient_weighted_ha": 5.999937311691771e-100,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 23,
+            "occupation": 1.4257013426713626e-109,
+            "eigenvalue_ha": 0.17155259744007934,
+            "norm": 0.9999999999999952,
+            "kinetic_unweighted_ha": 0.33470204640222256,
+            "gradient_unweighted_ha": 0.33470204640222273,
+            "kinetic_weighted_ha": 1.5906171898350046e-110,
+            "gradient_weighted_ha": 1.5906171898350055e-110,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 24,
+            "occupation": 1.4256911269868632e-109,
+            "eigenvalue_ha": 0.17155260460547986,
+            "norm": 0.999999999999997,
+            "kinetic_unweighted_ha": 0.33470206289487703,
+            "gradient_unweighted_ha": 0.33470206289487714,
+            "kinetic_weighted_ha": 1.5906058708447505e-110,
+            "gradient_weighted_ha": 1.590605870844751e-110,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          }
+        ],
+        "kinetic_ha": 9.69480327616181,
+        "gradient_kinetic_ha": 9.694803276161814
+      }
+    ],
+    "eband_bookkeeping": {
+      "sum_w_f_epsilon_ha": -16.908737227930963,
+      "status": "NOT_REQUESTED",
+      "scope": "Original XML/checkpoint occupation-energy bookkeeping only; not a Hamiltonian residual or kinetic identity"
+    },
+    "pauli_diagnostic": {
+      "n_min": 0.00011639629357391916,
+      "m_max_norm": 2.339323071666668e-13,
+      "sigma_y_convention": "m_y=-2 Im(sum wf u_up conj(u_down))",
+      "scope": "New orbital Pauli diagnostic, not magnetization read from G40 charge and not evidence of noncollinear XC"
+    },
+    "input_array_fingerprints": {
+      "lattice_columns": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "ab966366d26be8289c36085e3dbf78bd63422816465b0a4f0ff613230bd211f8"
+      },
+      "reciprocal_columns": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "5b53f2e58e2744a8745051b60e14eac3fcc1966693ea0ae1b983ef80628af80d"
+      },
+      "0/millers": {
+        "shape": [
+          2777,
+          3
+        ],
+        "dtype": "<i8",
+        "sha256": "5a210b569373797bf137b91d9806fa7f3f4e20dd72a1de907f59c4318808d56b"
+      },
+      "0/coefficients": {
+        "shape": [
+          2,
+          2777,
+          24
+        ],
+        "dtype": "<c16",
+        "sha256": "0df2fb1c11edc29143da48d3cd095e2bdab3dc23ab35cd1f2d653e59fd89f44a"
+      },
+      "0/occupations": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "fed37cacee2595dba1deb19647094ac9d9cbc2f698ccfe0857306d9992569822"
+      },
+      "0/eigenvalues": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "9693adb32d6778d7324159949226ea8618425d5d55458a1b13e7a377397a5d20"
+      },
+      "0/k_cart": {
+        "shape": [
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0"
+      },
+      "0/weight": {
+        "shape": [],
+        "dtype": "<f8",
+        "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+      },
+      "1/millers": {
+        "shape": [
+          2770,
+          3
+        ],
+        "dtype": "<i8",
+        "sha256": "081eccb1d184f82f7b48841c61303ebdf138ed74420de918fca841001d8644c8"
+      },
+      "1/coefficients": {
+        "shape": [
+          2,
+          2770,
+          24
+        ],
+        "dtype": "<c16",
+        "sha256": "ed56c03dd5fd5126d9fee1f4ece63c7bbd3ddd67a0a7522f3e76492605d57c38"
+      },
+      "1/occupations": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "6bb77b4e66f15be3e34fc741b2b4fffcc09be7ba1a3f559fe7a79789795066ce"
+      },
+      "1/eigenvalues": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "f4ec7f1c4a3351ffaa9218db4061cadcb92b6a28fd5287255a6ea96f6f9c1b55"
+      },
+      "1/k_cart": {
+        "shape": [
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "17358d22c0a27fcbeb0d24616c3511d9659eddfcf17e6a296982ae0cc722ec5b"
+      },
+      "1/weight": {
+        "shape": [],
+        "dtype": "<f8",
+        "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+      },
+      "2/millers": {
+        "shape": [
+          2770,
+          3
+        ],
+        "dtype": "<i8",
+        "sha256": "71db13d29db58d6ac436011861368f922394c3cb9483b5d532987b2552f2c881"
+      },
+      "2/coefficients": {
+        "shape": [
+          2,
+          2770,
+          24
+        ],
+        "dtype": "<c16",
+        "sha256": "3b7c8e973ac0d0ece766ea62dcc4f842fa73360f63b49a954bd9b94a7f35379c"
+      },
+      "2/occupations": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "43d2adbbf16a6c542b80e8c15fdad8889c8584f8c3b942b039484f1de0d67850"
+      },
+      "2/eigenvalues": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "2c2d49f5cd85893e72540104d39028a71c8a8414fc5a6217c7084c838686061a"
+      },
+      "2/k_cart": {
+        "shape": [
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "1d5308fcde3b243290fc0b81ddd1c91841c7fedb84a5ba334ad5af9b8b50d151"
+      },
+      "2/weight": {
+        "shape": [],
+        "dtype": "<f8",
+        "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+      }
+    },
+    "input_bytes_unchanged": true,
+    "normalization_or_QR_applied": false,
+    "new_scf_status": "NOT_RUN",
+    "new_eigensolve_status": "NOT_RUN",
+    "new_occupation_solve_status": "NOT_RUN",
+    "new_xc_evaluation_status": "NOT_RUN",
+    "new_qe_pp_execution_status": "NOT_RUN",
+    "physical_convergence_status": "NOT_ESTABLISHED",
+    "numerical_review_status": "REVIEW_REQUIRED",
+    "independent_native_qe_nonlocal_status": "NOT_MEASURED",
+    "qe_original_input_hamiltonian_residual_status": "NOT_AVAILABLE",
+    "backend": {
+      "numpy_version": "2.3.5",
+      "complex_dtype": "complex128",
+      "real_dtype": "float64"
+    },
+    "FFT_convention": "ifftn(c_grid)*Ngrid/sqrt(volume); physical first-index-fast order; same-k density sum then spatial weights once"
+  },
+  "Q": {
+    "schema_version": 1,
+    "label": "Q",
+    "status": "PASS",
+    "all_required_gates_passed": true,
+    "spinor_layout": "coefficients[spin,G,band], block components; capacity one",
+    "state_count": 24,
+    "k_count": 3,
+    "volume_bohr3": 1000.0000000000007,
+    "reciprocal_duality_max_abs": 0.0,
+    "fft_size": [
+      40,
+      40,
+      40
+    ],
+    "normalization_and_gram": [
+      {
+        "k_index_zero_based": 0,
+        "NG": 2777,
+        "norms": [
+          1.0000000000000009,
+          0.9999999999999999,
+          1.0000000000000018,
+          0.9999999999999998,
+          1.0000000000000002,
+          0.9999999999999992,
+          1.000000000000002,
+          0.9999999999999989,
+          1.0000000000000024,
+          0.9999999999999987,
+          0.9999999999999986,
+          0.9999999999999974,
+          0.9999999999999994,
+          1.0000000000000013,
+          1.0000000000000013,
+          1.0000000000000022,
+          1.0000000000000004,
+          0.9999999999999989,
+          1.0000000000000002,
+          1.0000000000000004,
+          1.0000000000000016,
+          1.0000000000000013,
+          0.9999999999999971,
+          1.0000000000000027
+        ],
+        "maximum_norm_error": 2.886579864025407e-15,
+        "gram_frobenius": 1.746820352687145e-14,
+        "k_cart_max_abs_error": 0.0,
+        "cutoff_max_ha": 14.804406601634037,
+        "status": "PASS"
+      },
+      {
+        "k_index_zero_based": 1,
+        "NG": 2770,
+        "norms": [
+          1.0000000000000002,
+          1.0000000000000004,
+          1.0000000000000002,
+          0.9999999999999991,
+          0.9999999999999998,
+          0.9999999999999998,
+          1.0,
+          0.999999999999999,
+          1.0000000000000004,
+          0.9999999999999989,
+          1.0000000000000004,
+          1.0000000000000004,
+          1.0000000000000013,
+          1.000000000000002,
+          1.0000000000000007,
+          0.9999999999999992,
+          0.9999999999999997,
+          1.0000000000000022,
+          1.0000000000000007,
+          1.0000000000000007,
+          1.0000000000000027,
+          1.0000000000000002,
+          1.0000000000000002,
+          1.0000000000000016
+        ],
+        "maximum_norm_error": 2.6645352591003757e-15,
+        "gram_frobenius": 2.1685571867102224e-14,
+        "k_cart_max_abs_error": 0.0,
+        "cutoff_max_ha": 14.987919558466793,
+        "status": "PASS"
+      },
+      {
+        "k_index_zero_based": 2,
+        "NG": 2770,
+        "norms": [
+          1.000000000000001,
+          0.9999999999999991,
+          1.0,
+          1.0000000000000002,
+          0.9999999999999996,
+          0.9999999999999996,
+          0.9999999999999998,
+          0.9999999999999999,
+          1.0000000000000013,
+          1.0000000000000022,
+          1.0,
+          0.9999999999999991,
+          0.9999999999999992,
+          0.9999999999999998,
+          0.9999999999999994,
+          1.0000000000000002,
+          1.000000000000001,
+          1.0000000000000024,
+          0.9999999999999983,
+          1.0000000000000029,
+          0.9999999999999998,
+          1.0000000000000009,
+          1.0000000000000038,
+          0.9999999999999989
+        ],
+        "maximum_norm_error": 3.774758283725532e-15,
+        "gram_frobenius": 1.629200906796312e-14,
+        "k_cart_max_abs_error": 0.0,
+        "cutoff_max_ha": 14.987919558466793,
+        "status": "PASS"
+      }
+    ],
+    "electrons": {
+      "from_occupations": 10.0,
+      "from_actual_norms": 10.000000000000002,
+      "from_real_density": 10.000000000000005,
+      "per_k_real_contributions": [
+        3.3333333333333357,
+        3.3333333333333335,
+        3.3333333333333353
+      ],
+      "errors": {
+        "occupations_minus_expected": 0.0,
+        "norm_weighted_minus_expected": 1.7763568394002505e-15,
+        "real_density_minus_expected": 5.329070518200751e-15,
+        "real_minus_norm_weighted": 3.552713678800501e-15
+      },
+      "status": "PASS"
+    },
+    "product_support": {
+      "status": "PASS",
+      "same_k_difference_extents": [
+        [
+          16,
+          16,
+          16
+        ],
+        [
+          16,
+          16,
+          16
+        ],
+        [
+          16,
+          16,
+          16
+        ]
+      ],
+      "possible_product_count": 21421,
+      "nyquist_ambiguous_products": 0,
+      "method": "All same-k integer G-G pairs, blocked direct enumeration; strict unique finite-grid representatives"
+    },
+    "same_source_orbital_density": {
+      "coefficient_max_abs": 5.204170427930421e-18,
+      "common_coefficient_count": 22119,
+      "common_nonzero_difference_l2": 4.756606648226402e-17,
+      "reference_nonzero_l2": 0.10517555025935894,
+      "common_nonzero_relative_l2": 4.522540301901716e-16,
+      "zero_reference_denominator": false,
+      "zero_reference_rule": "When reference fluctuations are exactly zero, apply the declared absolute coefficient maximum only; relative L2 is not defined unless the difference is also exactly zero",
+      "outside_saved_coefficient_l2": 1.789093435430393e-17,
+      "outside_saved_coefficient_max_abs": 8.914390172607787e-19,
+      "outside_saved_mode_count": 41881,
+      "possible_products_outside_saved_count": 0,
+      "scope": "FULL_FINITE_PRODUCT_SUPPORT_WITHIN_SAVED_G",
+      "unknown_physical_modes_assumed_zero": false,
+      "status": "PASS"
+    },
+    "direct_correlation_checks": [
+      {
+        "miller": [
+          0,
+          0,
+          0
+        ],
+        "correlation": [
+          0.009999999999999993,
+          -1.4981727308655384e-21
+        ],
+        "FFT": [
+          0.009999999999999997,
+          0.0
+        ],
+        "absolute_difference": 3.469447275423242e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          1,
+          0,
+          0
+        ],
+        "correlation": [
+          0.00406898565973164,
+          -0.007401608079814251
+        ],
+        "FFT": [
+          0.0040689856597316415,
+          -0.007401608079814254
+        ],
+        "absolute_difference": 3.1273172206927508e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -1,
+          0,
+          0
+        ],
+        "correlation": [
+          0.00406898565973164,
+          0.007401608079814251
+        ],
+        "FFT": [
+          0.0040689856597316415,
+          0.007401608079814253
+        ],
+        "absolute_difference": 2.4532694666933987e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          1,
+          0
+        ],
+        "correlation": [
+          0.0010570042533140245,
+          -0.008366472943186033
+        ],
+        "FFT": [
+          0.0010570042533140254,
+          -0.008366472943186036
+        ],
+        "absolute_difference": 3.576224061345498e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          -1,
+          0
+        ],
+        "correlation": [
+          0.0010570042533140245,
+          0.008366472943186033
+        ],
+        "FFT": [
+          0.0010570042533140252,
+          0.008366472943186036
+        ],
+        "absolute_difference": 3.529906531158615e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          0,
+          1
+        ],
+        "correlation": [
+          -0.0031176605538363205,
+          -0.007874427467113072
+        ],
+        "FFT": [
+          -0.003117660553836322,
+          -0.007874427467113075
+        ],
+        "absolute_difference": 3.705370968959021e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          0,
+          0,
+          -1
+        ],
+        "correlation": [
+          -0.0031176605538363205,
+          0.007874427467113072
+        ],
+        "FFT": [
+          -0.003117660553836322,
+          0.007874427467113075
+        ],
+        "absolute_difference": 3.705370968959021e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          1,
+          2,
+          3
+        ],
+        "correlation": [
+          -0.003672371535736173,
+          0.0014540108295487161
+        ],
+        "FFT": [
+          -0.0036723715357361753,
+          0.0014540108295487168
+        ],
+        "absolute_difference": 2.2638805996750743e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -1,
+          -2,
+          -3
+        ],
+        "correlation": [
+          -0.003672371535736173,
+          -0.0014540108295487161
+        ],
+        "FFT": [
+          -0.0036723715357361744,
+          -0.0014540108295487168
+        ],
+        "absolute_difference": 1.454609855418324e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          2,
+          -1,
+          3
+        ],
+        "correlation": [
+          0.0038259389705780026,
+          -0.0009823422312955185
+        ],
+        "FFT": [
+          0.0038259389705780035,
+          -0.0009823422312955187
+        ],
+        "absolute_difference": 8.940560153363745e-19,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -2,
+          1,
+          -3
+        ],
+        "correlation": [
+          0.0038259389705780026,
+          0.0009823422312955185
+        ],
+        "FFT": [
+          0.003825938970578004,
+          0.0009823422312955187
+        ],
+        "absolute_difference": 1.3189888700125507e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          3,
+          2,
+          -1
+        ],
+        "correlation": [
+          -0.0021163743221173704,
+          0.003334850202136843
+        ],
+        "FFT": [
+          -0.002116374322117371,
+          0.003334850202136845
+        ],
+        "absolute_difference": 1.788112030672749e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -3,
+          -2,
+          1
+        ],
+        "correlation": [
+          -0.0021163743221173704,
+          -0.003334850202136843
+        ],
+        "FFT": [
+          -0.0021163743221173713,
+          -0.0033348502021368445
+        ],
+        "absolute_difference": 1.5636586103463754e-18,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          7,
+          -5,
+          4
+        ],
+        "correlation": [
+          4.0962880242089185e-05,
+          0.0002147694237915232
+        ],
+        "FFT": [
+          4.0962880242089246e-05,
+          0.00021476942379152327
+        ],
+        "absolute_difference": 8.159701876572675e-20,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -7,
+          5,
+          -4
+        ],
+        "correlation": [
+          4.0962880242089185e-05,
+          -0.0002147694237915232
+        ],
+        "FFT": [
+          4.0962880242089246e-05,
+          -0.00021476942379152335
+        ],
+        "absolute_difference": 1.4861506258114245e-19,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          17,
+          0,
+          0
+        ],
+        "correlation": [
+          0.0,
+          0.0
+        ],
+        "FFT": [
+          1.4224732503009819e-19,
+          5.854691731421724e-19
+        ],
+        "absolute_difference": 6.0250182919058215e-19,
+        "status": "PASS"
+      },
+      {
+        "miller": [
+          -17,
+          0,
+          0
+        ],
+        "correlation": [
+          0.0,
+          0.0
+        ],
+        "FFT": [
+          9.71445146547012e-20,
+          -6.036837696399289e-19
+        ],
+        "absolute_difference": 6.114500392134849e-19,
+        "status": "PASS"
+      }
+    ],
+    "kinetic": {
+      "direct_ha": 29.07598791063465,
+      "gradient_ha": 29.075987910634662,
+      "signed_difference_ha": -1.0658141036401503e-14,
+      "status": "PASS",
+      "evidence_kind": "DIRECT_REEVALUATION_OF_KINETIC_FROM_ORIGINAL_QE_WFC",
+      "summation": "Direct: stable coefficient-probability sum with physical G+k. Independent: three covariant-derivative IFFTs and real-space squared integrals.",
+      "same_source_status": "NO_INDEPENDENT_NATIVE_QE_T_FIELD"
+    },
+    "per_k": [
+      {
+        "k_index_zero_based": 0,
+        "weight_spatial": 0.3333333333333333,
+        "k_cart_bohr_inv": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "NG": 2777,
+        "states": [
+          {
+            "band_one_based": 1,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.290026709683869,
+            "norm": 1.0000000000000009,
+            "kinetic_unweighted_ha": 2.190307866035037,
+            "gradient_unweighted_ha": 2.1903078660350372,
+            "kinetic_weighted_ha": 0.7301026220116789,
+            "gradient_weighted_ha": 0.7301026220116791,
+            "signed_path_difference_ha": -4.440892098500626e-16
+          },
+          {
+            "band_one_based": 2,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.290026709683865,
+            "norm": 0.9999999999999999,
+            "kinetic_unweighted_ha": 2.1903078660892525,
+            "gradient_unweighted_ha": 2.1903078660892534,
+            "kinetic_weighted_ha": 0.7301026220297508,
+            "gradient_weighted_ha": 0.7301026220297511,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 3,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.661484050124307,
+            "norm": 1.0000000000000018,
+            "kinetic_unweighted_ha": 4.033691917744943,
+            "gradient_unweighted_ha": 4.033691917744945,
+            "kinetic_weighted_ha": 1.3445639725816476,
+            "gradient_weighted_ha": 1.3445639725816483,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 4,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.661484050124304,
+            "norm": 0.9999999999999998,
+            "kinetic_unweighted_ha": 4.033691916909824,
+            "gradient_unweighted_ha": 4.0336919169098255,
+            "kinetic_weighted_ha": 1.3445639723032745,
+            "gradient_weighted_ha": 1.3445639723032752,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 5,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.652772022458752,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 4.02396765765709,
+            "gradient_unweighted_ha": 4.023967657657091,
+            "kinetic_weighted_ha": 1.3413225525523633,
+            "gradient_weighted_ha": 1.3413225525523638,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 6,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.652772022458749,
+            "norm": 0.9999999999999992,
+            "kinetic_unweighted_ha": 4.023967659147084,
+            "gradient_unweighted_ha": 4.023967659147086,
+            "kinetic_weighted_ha": 1.341322553049028,
+            "gradient_weighted_ha": 1.3413225530490287,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 7,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.652584719435195,
+            "norm": 1.000000000000002,
+            "kinetic_unweighted_ha": 4.02380406016604,
+            "gradient_unweighted_ha": 4.023804060166042,
+            "kinetic_weighted_ha": 1.3412680200553466,
+            "gradient_weighted_ha": 1.3412680200553473,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 8,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.652584719435191,
+            "norm": 0.9999999999999989,
+            "kinetic_unweighted_ha": 4.023804059703614,
+            "gradient_unweighted_ha": 4.0238040597036155,
+            "kinetic_weighted_ha": 1.3412680199012046,
+            "gradient_weighted_ha": 1.341268019901205,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 9,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.1592125117318751,
+            "norm": 1.0000000000000024,
+            "kinetic_unweighted_ha": 0.25779702620973793,
+            "gradient_unweighted_ha": 0.25779702620973804,
+            "kinetic_weighted_ha": 0.08593234206991264,
+            "gradient_weighted_ha": 0.08593234206991268,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 10,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.1592125117318731,
+            "norm": 0.9999999999999987,
+            "kinetic_unweighted_ha": 0.2577970229222674,
+            "gradient_unweighted_ha": 0.2577970229222675,
+            "kinetic_weighted_ha": 0.08593234097408914,
+            "gradient_weighted_ha": 0.08593234097408917,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 11,
+            "occupation": 1.786990194143389e-57,
+            "eigenvalue_ha": 0.06051854170658223,
+            "norm": 0.9999999999999986,
+            "kinetic_unweighted_ha": 0.40469225319688795,
+            "gradient_unweighted_ha": 0.4046922531968881,
+            "kinetic_weighted_ha": 2.4106036270287742e-58,
+            "gradient_weighted_ha": 2.4106036270287753e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 12,
+            "occupation": 1.786990194105297e-57,
+            "eigenvalue_ha": 0.06051854170660355,
+            "norm": 0.9999999999999974,
+            "kinetic_unweighted_ha": 0.4046923952118803,
+            "gradient_unweighted_ha": 0.4046923952118804,
+            "kinetic_weighted_ha": 2.4106044729087182e-58,
+            "gradient_weighted_ha": 2.410604472908719e-58,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 13,
+            "occupation": 1.307686684657375e-57,
+            "eigenvalue_ha": 0.06083081476879809,
+            "norm": 0.9999999999999994,
+            "kinetic_unweighted_ha": 0.40462071728722987,
+            "gradient_unweighted_ha": 0.40462071728723004,
+            "kinetic_weighted_ha": 1.7637237477767555e-58,
+            "gradient_weighted_ha": 1.7637237477767562e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 14,
+            "occupation": 1.307686684647266e-57,
+            "eigenvalue_ha": 0.06083081476880585,
+            "norm": 1.0000000000000013,
+            "kinetic_unweighted_ha": 0.4046208049107589,
+            "gradient_unweighted_ha": 0.4046208049107591,
+            "kinetic_weighted_ha": 1.763724129710195e-58,
+            "gradient_weighted_ha": 1.7637241297101955e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 15,
+            "occupation": 1.094770945739041e-57,
+            "eigenvalue_ha": 0.06100852929600227,
+            "norm": 1.0000000000000013,
+            "kinetic_unweighted_ha": 0.4045262347682809,
+            "gradient_unweighted_ha": 0.4045262347682811,
+            "kinetic_weighted_ha": 1.4762118953784139e-58,
+            "gradient_weighted_ha": 1.4762118953784146e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 16,
+            "occupation": 1.094770945733752e-57,
+            "eigenvalue_ha": 0.0610085292960071,
+            "norm": 1.0000000000000022,
+            "kinetic_unweighted_ha": 0.40452625723239377,
+            "gradient_unweighted_ha": 0.40452625723239394,
+            "kinetic_weighted_ha": 1.4762119773481423e-58,
+            "gradient_weighted_ha": 1.4762119773481428e-58,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 17,
+            "occupation": 1.122773659200118e-59,
+            "eigenvalue_ha": 0.06558844253609487,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 0.33128355596464054,
+            "gradient_unweighted_ha": 0.33128355596464065,
+            "kinetic_weighted_ha": 1.2398548345441552e-60,
+            "gradient_weighted_ha": 1.2398548345441556e-60,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 18,
+            "occupation": 1.122773659191406e-59,
+            "eigenvalue_ha": 0.06558844253610262,
+            "norm": 0.9999999999999989,
+            "kinetic_unweighted_ha": 0.33128351582605536,
+            "gradient_unweighted_ha": 0.3312835158260554,
+            "kinetic_weighted_ha": 1.2398546843127142e-60,
+            "gradient_weighted_ha": 1.2398546843127145e-60,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 19,
+            "occupation": 8.354714762732516e-76,
+            "eigenvalue_ha": 0.1027253652005468,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 0.2240331482082997,
+            "gradient_unweighted_ha": 0.22403314820829975,
+            "kinetic_weighted_ha": 6.239110168924411e-77,
+            "gradient_weighted_ha": 6.2391101689244125e-77,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 20,
+            "occupation": 8.354714762691913e-76,
+            "eigenvalue_ha": 0.1027253652005517,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 0.22403316272638155,
+            "gradient_unweighted_ha": 0.22403316272638163,
+            "kinetic_weighted_ha": 6.239110573208865e-77,
+            "gradient_weighted_ha": 6.2391105732088675e-77,
+            "signed_path_difference_ha": -8.326672684688674e-17
+          },
+          {
+            "band_one_based": 21,
+            "occupation": 7.216675228215907e-76,
+            "eigenvalue_ha": 0.102871796870165,
+            "norm": 1.0000000000000016,
+            "kinetic_unweighted_ha": 0.22402171115313538,
+            "gradient_unweighted_ha": 0.22402171115313546,
+            "kinetic_weighted_ha": 5.388973111537904e-77,
+            "gradient_weighted_ha": 5.3889731115379056e-77,
+            "signed_path_difference_ha": -8.326672684688674e-17
+          },
+          {
+            "band_one_based": 22,
+            "occupation": 7.21667522817386e-76,
+            "eigenvalue_ha": 0.1028717968701708,
+            "norm": 1.0000000000000013,
+            "kinetic_unweighted_ha": 0.2240217195884671,
+            "gradient_unweighted_ha": 0.22402171958846717,
+            "kinetic_weighted_ha": 5.388973314423337e-77,
+            "gradient_weighted_ha": 5.3889733144233396e-77,
+            "signed_path_difference_ha": -8.326672684688674e-17
+          },
+          {
+            "band_one_based": 23,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.2539770697253799,
+            "norm": 0.9999999999999971,
+            "kinetic_unweighted_ha": 0.46002643180015523,
+            "gradient_unweighted_ha": 0.4600264318001554,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 24,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.2539770793794403,
+            "norm": 1.0000000000000027,
+            "kinetic_unweighted_ha": 0.4600266215661125,
+            "gradient_unweighted_ha": 0.46002662156611274,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -2.220446049250313e-16
+          }
+        ],
+        "kinetic_ha": 9.686379017528296,
+        "gradient_kinetic_ha": 9.686379017528301
+      },
+      {
+        "k_index_zero_based": 1,
+        "weight_spatial": 0.3333333333333333,
+        "k_cart_bohr_inv": [
+          0.07853981633974483,
+          0.039269908169872414,
+          -0.11780972450961724
+        ],
+        "NG": 2770,
+        "states": [
+          {
+            "band_one_based": 1,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.289849151959801,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 2.1900195328025593,
+            "gradient_unweighted_ha": 2.19001953280256,
+            "kinetic_weighted_ha": 0.7300065109341864,
+            "gradient_weighted_ha": 0.7300065109341866,
+            "signed_path_difference_ha": -4.440892098500626e-16
+          },
+          {
+            "band_one_based": 2,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.289849151895668,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 2.190019532553746,
+            "gradient_unweighted_ha": 2.190019532553747,
+            "kinetic_weighted_ha": 0.7300065108512486,
+            "gradient_weighted_ha": 0.7300065108512489,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 3,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.660655539645817,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 4.032455227468295,
+            "gradient_unweighted_ha": 4.032455227468297,
+            "kinetic_weighted_ha": 1.3441517424894318,
+            "gradient_weighted_ha": 1.3441517424894323,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 4,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.660655406012684,
+            "norm": 0.9999999999999991,
+            "kinetic_unweighted_ha": 4.032455250947006,
+            "gradient_unweighted_ha": 4.032455250947008,
+            "kinetic_weighted_ha": 1.3441517503156686,
+            "gradient_weighted_ha": 1.3441517503156692,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 5,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.652563421914582,
+            "norm": 0.9999999999999998,
+            "kinetic_unweighted_ha": 4.0229750103059585,
+            "gradient_unweighted_ha": 4.02297501030596,
+            "kinetic_weighted_ha": 1.3409916701019862,
+            "gradient_weighted_ha": 1.3409916701019866,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 6,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.652563350689304,
+            "norm": 0.9999999999999998,
+            "kinetic_unweighted_ha": 4.022975028859604,
+            "gradient_unweighted_ha": 4.022975028859606,
+            "kinetic_weighted_ha": 1.3409916762865346,
+            "gradient_weighted_ha": 1.3409916762865353,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 7,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.648888092242373,
+            "norm": 1.0,
+            "kinetic_unweighted_ha": 4.014006310468312,
+            "gradient_unweighted_ha": 4.0140063104683135,
+            "kinetic_weighted_ha": 1.3380021034894372,
+            "gradient_weighted_ha": 1.3380021034894378,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 8,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.648887996428969,
+            "norm": 0.999999999999999,
+            "kinetic_unweighted_ha": 4.0140061905636975,
+            "gradient_unweighted_ha": 4.014006190563699,
+            "kinetic_weighted_ha": 1.3380020635212324,
+            "gradient_weighted_ha": 1.338002063521233,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 9,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.1526761307085706,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 0.28275062377164994,
+            "gradient_unweighted_ha": 0.28275062377165,
+            "kinetic_weighted_ha": 0.0942502079238833,
+            "gradient_weighted_ha": 0.09425020792388333,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 10,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.152676128001559,
+            "norm": 0.9999999999999989,
+            "kinetic_unweighted_ha": 0.28275063191879163,
+            "gradient_unweighted_ha": 0.28275063191879174,
+            "kinetic_weighted_ha": 0.09425021063959721,
+            "gradient_weighted_ha": 0.09425021063959724,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 11,
+            "occupation": 8.587958216433072e-37,
+            "eigenvalue_ha": 0.01289701158087318,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 0.2722084480950396,
+            "gradient_unweighted_ha": 0.27220844809503963,
+            "kinetic_weighted_ha": 7.792382594667635e-38,
+            "gradient_weighted_ha": 7.792382594667637e-38,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 12,
+            "occupation": 8.587605205758755e-37,
+            "eigenvalue_ha": 0.01289705268702681,
+            "norm": 1.0000000000000004,
+            "kinetic_unweighted_ha": 0.2722083301813398,
+            "gradient_unweighted_ha": 0.2722083301813399,
+            "kinetic_weighted_ha": 7.792058911053905e-38,
+            "gradient_weighted_ha": 7.792058911053908e-38,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 13,
+            "occupation": 7.015724188937902e-47,
+            "eigenvalue_ha": 0.03612506958290297,
+            "norm": 1.0000000000000013,
+            "kinetic_unweighted_ha": 0.31282435744176157,
+            "gradient_unweighted_ha": 0.3128243574417617,
+            "kinetic_weighted_ha": 7.31563137131041e-48,
+            "gradient_weighted_ha": 7.315631371310413e-48,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 14,
+            "occupation": 7.015345886660574e-47,
+            "eigenvalue_ha": 0.03612512350641348,
+            "norm": 1.000000000000002,
+            "kinetic_unweighted_ha": 0.3128241624668934,
+            "gradient_unweighted_ha": 0.3128241624668935,
+            "kinetic_weighted_ha": 7.315232338033865e-48,
+            "gradient_weighted_ha": 7.315232338033867e-48,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 15,
+            "occupation": 1.167711080634989e-55,
+            "eigenvalue_ha": 0.05633885877809071,
+            "norm": 1.0000000000000007,
+            "kinetic_unweighted_ha": 0.36922409669985945,
+            "gradient_unweighted_ha": 0.36922409669985956,
+            "kinetic_weighted_ha": 1.4371568965129016e-56,
+            "gradient_weighted_ha": 1.437156896512902e-56,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 16,
+            "occupation": 1.167655603648619e-55,
+            "eigenvalue_ha": 0.05633890628839111,
+            "norm": 0.9999999999999992,
+            "kinetic_unweighted_ha": 0.369223729860137,
+            "gradient_unweighted_ha": 0.3692237298601372,
+            "kinetic_weighted_ha": 1.437087190570776e-56,
+            "gradient_weighted_ha": 1.4370871905707768e-56,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 17,
+            "occupation": 2.563892165146938e-78,
+            "eigenvalue_ha": 0.1085118349273916,
+            "norm": 0.9999999999999997,
+            "kinetic_unweighted_ha": 0.38005723571536715,
+            "gradient_unweighted_ha": 0.38005723571536726,
+            "kinetic_weighted_ha": 3.248085896526776e-79,
+            "gradient_weighted_ha": 3.2480858965267774e-79,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 18,
+            "occupation": 2.563770242673005e-78,
+            "eigenvalue_ha": 0.1085118824821892,
+            "norm": 1.0000000000000022,
+            "kinetic_unweighted_ha": 0.380057388253581,
+            "gradient_unweighted_ha": 0.3800573882535811,
+            "kinetic_weighted_ha": 3.247932741708506e-79,
+            "gradient_weighted_ha": 3.2479327417085064e-79,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 19,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.1346481018109147,
+            "norm": 1.0000000000000007,
+            "kinetic_unweighted_ha": 0.3597763213522524,
+            "gradient_unweighted_ha": 0.3597763213522525,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 20,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.1346481292004228,
+            "norm": 1.0000000000000007,
+            "kinetic_unweighted_ha": 0.35977630146038225,
+            "gradient_unweighted_ha": 0.35977630146038236,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 21,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.1565616717766078,
+            "norm": 1.0000000000000027,
+            "kinetic_unweighted_ha": 0.3997605769934098,
+            "gradient_unweighted_ha": 0.3997605769934099,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 22,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.1565616773839831,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 0.3997605751629795,
+            "gradient_unweighted_ha": 0.3997605751629796,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 23,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.1807376633274277,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 0.3347024055066062,
+            "gradient_unweighted_ha": 0.33470240550660635,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 24,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.1807376705382888,
+            "norm": 1.0000000000000016,
+            "kinetic_unweighted_ha": 0.33470242194253125,
+            "gradient_unweighted_ha": 0.3347024219425314,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          }
+        ],
+        "kinetic_ha": 9.694804446553206,
+        "gradient_kinetic_ha": 9.69480444655321
+      },
+      {
+        "k_index_zero_based": 2,
+        "weight_spatial": 0.3333333333333333,
+        "k_cart_bohr_inv": [
+          -0.07853981633974483,
+          -0.039269908169872414,
+          0.11780972450961724
+        ],
+        "NG": 2770,
+        "states": [
+          {
+            "band_one_based": 1,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.289849151959801,
+            "norm": 1.000000000000001,
+            "kinetic_unweighted_ha": 2.1900195328025576,
+            "gradient_unweighted_ha": 2.1900195328025585,
+            "kinetic_weighted_ha": 0.7300065109341858,
+            "gradient_weighted_ha": 0.7300065109341861,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 2,
+            "occupation": 1.0,
+            "eigenvalue_ha": -3.289849151895663,
+            "norm": 0.9999999999999991,
+            "kinetic_unweighted_ha": 2.1900195325537815,
+            "gradient_unweighted_ha": 2.190019532553782,
+            "kinetic_weighted_ha": 0.7300065108512604,
+            "gradient_weighted_ha": 0.7300065108512606,
+            "signed_path_difference_ha": -4.440892098500626e-16
+          },
+          {
+            "band_one_based": 3,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.660655539645819,
+            "norm": 1.0,
+            "kinetic_unweighted_ha": 4.032455227468386,
+            "gradient_unweighted_ha": 4.032455227468388,
+            "kinetic_weighted_ha": 1.344151742489462,
+            "gradient_weighted_ha": 1.3441517424894625,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 4,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.660655406012684,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 4.0324552509469775,
+            "gradient_unweighted_ha": 4.032455250946979,
+            "kinetic_weighted_ha": 1.344151750315659,
+            "gradient_weighted_ha": 1.3441517503156597,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 5,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.652563421914583,
+            "norm": 0.9999999999999996,
+            "kinetic_unweighted_ha": 4.022975010305914,
+            "gradient_unweighted_ha": 4.022975010305915,
+            "kinetic_weighted_ha": 1.3409916701019713,
+            "gradient_weighted_ha": 1.3409916701019715,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 6,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.652563350689305,
+            "norm": 0.9999999999999996,
+            "kinetic_unweighted_ha": 4.0229750288596735,
+            "gradient_unweighted_ha": 4.022975028859674,
+            "kinetic_weighted_ha": 1.3409916762865577,
+            "gradient_weighted_ha": 1.3409916762865581,
+            "signed_path_difference_ha": -8.881784197001252e-16
+          },
+          {
+            "band_one_based": 7,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.648888092242374,
+            "norm": 0.9999999999999998,
+            "kinetic_unweighted_ha": 4.014006310468404,
+            "gradient_unweighted_ha": 4.014006310468406,
+            "kinetic_weighted_ha": 1.338002103489468,
+            "gradient_weighted_ha": 1.3380021034894685,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 8,
+            "occupation": 1.0,
+            "eigenvalue_ha": -1.648887996428971,
+            "norm": 0.9999999999999999,
+            "kinetic_unweighted_ha": 4.014006190563653,
+            "gradient_unweighted_ha": 4.014006190563655,
+            "kinetic_weighted_ha": 1.3380020635212175,
+            "gradient_weighted_ha": 1.3380020635212182,
+            "signed_path_difference_ha": -1.7763568394002505e-15
+          },
+          {
+            "band_one_based": 9,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.1526761307085705,
+            "norm": 1.0000000000000013,
+            "kinetic_unweighted_ha": 0.28275062377171534,
+            "gradient_unweighted_ha": 0.2827506237717154,
+            "kinetic_weighted_ha": 0.09425020792390511,
+            "gradient_weighted_ha": 0.09425020792390512,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 10,
+            "occupation": 1.0,
+            "eigenvalue_ha": -0.1526761280015587,
+            "norm": 1.0000000000000022,
+            "kinetic_unweighted_ha": 0.28275063191838257,
+            "gradient_unweighted_ha": 0.2827506319183827,
+            "kinetic_weighted_ha": 0.09425021063946085,
+            "gradient_weighted_ha": 0.09425021063946089,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 11,
+            "occupation": 8.587958216429533e-37,
+            "eigenvalue_ha": 0.0128970115808736,
+            "norm": 1.0,
+            "kinetic_unweighted_ha": 0.27220844809626354,
+            "gradient_unweighted_ha": 0.27220844809626366,
+            "kinetic_weighted_ha": 7.792382594699461e-38,
+            "gradient_weighted_ha": 7.792382594699465e-38,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 12,
+            "occupation": 8.587605205759242e-37,
+            "eigenvalue_ha": 0.01289705268702676,
+            "norm": 0.9999999999999991,
+            "kinetic_unweighted_ha": 0.2722083301816702,
+            "gradient_unweighted_ha": 0.27220833018167023,
+            "kinetic_weighted_ha": 7.792058911063804e-38,
+            "gradient_weighted_ha": 7.792058911063806e-38,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 13,
+            "occupation": 7.015724188936906e-47,
+            "eigenvalue_ha": 0.03612506958290312,
+            "norm": 0.9999999999999992,
+            "kinetic_unweighted_ha": 0.31282435744035186,
+            "gradient_unweighted_ha": 0.312824357440352,
+            "kinetic_weighted_ha": 7.315631371276404e-48,
+            "gradient_weighted_ha": 7.315631371276406e-48,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 14,
+            "occupation": 7.015345886662667e-47,
+            "eigenvalue_ha": 0.03612512350641319,
+            "norm": 0.9999999999999998,
+            "kinetic_unweighted_ha": 0.31282416246668915,
+            "gradient_unweighted_ha": 0.31282416246668926,
+            "kinetic_weighted_ha": 7.315232338031271e-48,
+            "gradient_weighted_ha": 7.315232338031275e-48,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 15,
+            "occupation": 1.167711080634126e-55,
+            "eigenvalue_ha": 0.05633885877809146,
+            "norm": 0.9999999999999994,
+            "kinetic_unweighted_ha": 0.3692240966993628,
+            "gradient_unweighted_ha": 0.36922409669936285,
+            "kinetic_weighted_ha": 1.4371568965099064e-56,
+            "gradient_weighted_ha": 1.4371568965099066e-56,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 16,
+            "occupation": 1.167655603648603e-55,
+            "eigenvalue_ha": 0.05633890628839116,
+            "norm": 1.0000000000000002,
+            "kinetic_unweighted_ha": 0.36922372985997537,
+            "gradient_unweighted_ha": 0.36922372985997554,
+            "kinetic_weighted_ha": 1.4370871905701275e-56,
+            "gradient_weighted_ha": 1.4370871905701282e-56,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 17,
+            "occupation": 2.563892165145845e-78,
+            "eigenvalue_ha": 0.108511834927392,
+            "norm": 1.000000000000001,
+            "kinetic_unweighted_ha": 0.3800572357159896,
+            "gradient_unweighted_ha": 0.3800572357159898,
+            "kinetic_weighted_ha": 3.2480858965307115e-79,
+            "gradient_weighted_ha": 3.248085896530713e-79,
+            "signed_path_difference_ha": -2.220446049250313e-16
+          },
+          {
+            "band_one_based": 18,
+            "occupation": 2.563770242667176e-78,
+            "eigenvalue_ha": 0.1085118824821915,
+            "norm": 1.0000000000000024,
+            "kinetic_unweighted_ha": 0.380057388251668,
+            "gradient_unweighted_ha": 0.3800573882516682,
+            "kinetic_weighted_ha": 3.247932741684773e-79,
+            "gradient_weighted_ha": 3.247932741684774e-79,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 19,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.1346481018109164,
+            "norm": 0.9999999999999983,
+            "kinetic_unweighted_ha": 0.35977632135059306,
+            "gradient_unweighted_ha": 0.3597763213505931,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 20,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.1346481292004225,
+            "norm": 1.0000000000000029,
+            "kinetic_unweighted_ha": 0.35977630145974177,
+            "gradient_unweighted_ha": 0.3597763014597418,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -5.551115123125783e-17
+          },
+          {
+            "band_one_based": 21,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.1565616717766075,
+            "norm": 0.9999999999999998,
+            "kinetic_unweighted_ha": 0.3997605769927961,
+            "gradient_unweighted_ha": 0.3997605769927962,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -1.1102230246251565e-16
+          },
+          {
+            "band_one_based": 22,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.1565616773839848,
+            "norm": 1.0000000000000009,
+            "kinetic_unweighted_ha": 0.3997605751616551,
+            "gradient_unweighted_ha": 0.39976057516165525,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 23,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.180737663327428,
+            "norm": 1.0000000000000038,
+            "kinetic_unweighted_ha": 0.3347024055307292,
+            "gradient_unweighted_ha": 0.3347024055307294,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -1.6653345369377348e-16
+          },
+          {
+            "band_one_based": 24,
+            "occupation": 0.0,
+            "eigenvalue_ha": 0.1807376705382868,
+            "norm": 0.9999999999999989,
+            "kinetic_unweighted_ha": 0.33470242193754374,
+            "gradient_unweighted_ha": 0.33470242193754396,
+            "kinetic_weighted_ha": 0.0,
+            "gradient_weighted_ha": 0.0,
+            "signed_path_difference_ha": -2.220446049250313e-16
+          }
+        ],
+        "kinetic_ha": 9.694804446553148,
+        "gradient_kinetic_ha": 9.694804446553151
+      }
+    ],
+    "eband_bookkeeping": {
+      "sum_w_f_epsilon_ha": -16.816896255288878,
+      "status": "PASS",
+      "scope": "Original XML/checkpoint occupation-energy bookkeeping only; not a Hamiltonian residual or kinetic identity",
+      "native_eband_ha": -16.81689625528888,
+      "signed_difference_ha": 3.552713678800501e-15,
+      "allowed_ha": 1.0001815999223434e-10,
+      "print_halfwidth_ha": 1.815999223433713e-14
+    },
+    "pauli_diagnostic": {
+      "n_min": 0.00011640201905997982,
+      "m_max_norm": 6.470834346546481e-10,
+      "sigma_y_convention": "m_y=-2 Im(sum wf u_up conj(u_down))",
+      "scope": "New orbital Pauli diagnostic, not magnetization read from G40 charge and not evidence of noncollinear XC"
+    },
+    "input_array_fingerprints": {
+      "lattice_columns": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "ab966366d26be8289c36085e3dbf78bd63422816465b0a4f0ff613230bd211f8"
+      },
+      "reciprocal_columns": {
+        "shape": [
+          3,
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "5b53f2e58e2744a8745051b60e14eac3fcc1966693ea0ae1b983ef80628af80d"
+      },
+      "0/millers": {
+        "shape": [
+          2777,
+          3
+        ],
+        "dtype": "<i8",
+        "sha256": "78b78add54e39d890ba1eb141c5c86c1bdce140a57c5a6f5171117b2f169eb93"
+      },
+      "0/coefficients": {
+        "shape": [
+          2,
+          2777,
+          24
+        ],
+        "dtype": "<c16",
+        "sha256": "e2daadcd88fc00b0ba27fb80bc8ca5632a1c5c7b8a4a468ac690b720435ff31c"
+      },
+      "0/occupations": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "b20509644d325cbcd48f43f2712394695b1a82c1b66f23faa8eb64bf4ff92bf9"
+      },
+      "0/eigenvalues": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "7a704145fa41fe7cf21863b1f99c2cf2c0d6ef06e2721f5da114f60699d41936"
+      },
+      "0/k_cart": {
+        "shape": [
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0"
+      },
+      "0/weight": {
+        "shape": [],
+        "dtype": "<f8",
+        "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+      },
+      "1/millers": {
+        "shape": [
+          2770,
+          3
+        ],
+        "dtype": "<i8",
+        "sha256": "53254ac5b52ce7de4bf8cae89ac0be074cd98228de2b4d1689a8e5bdb43c3d86"
+      },
+      "1/coefficients": {
+        "shape": [
+          2,
+          2770,
+          24
+        ],
+        "dtype": "<c16",
+        "sha256": "d02528ee26692e1831e16022176c97c0e20a20195ef693363669a8d38d9e89bb"
+      },
+      "1/occupations": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "949fe162f7e94811ddd84002155963154401f8be2edd8d7147e3c52dd05c3aa7"
+      },
+      "1/eigenvalues": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "9e01e05fdcddb4ae914e73a317b96c04865993633d0a8afe79160e93c1137f5c"
+      },
+      "1/k_cart": {
+        "shape": [
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "17358d22c0a27fcbeb0d24616c3511d9659eddfcf17e6a296982ae0cc722ec5b"
+      },
+      "1/weight": {
+        "shape": [],
+        "dtype": "<f8",
+        "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+      },
+      "2/millers": {
+        "shape": [
+          2770,
+          3
+        ],
+        "dtype": "<i8",
+        "sha256": "e91d2ed5a6210510071b5f599e1f18e6ee6ea199cac95f15ec197b666b06a295"
+      },
+      "2/coefficients": {
+        "shape": [
+          2,
+          2770,
+          24
+        ],
+        "dtype": "<c16",
+        "sha256": "5ed690909ebb3f21b20ef094ca8f02573e38534c6397dc82b4d753df89279e3c"
+      },
+      "2/occupations": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "e857849ab346be002cf58574b800707ed74369def1ccd6e9477af9bc8dd8a6b4"
+      },
+      "2/eigenvalues": {
+        "shape": [
+          24
+        ],
+        "dtype": "<f8",
+        "sha256": "909563823f738543084e33d88b96f2ae107eda89c77d470d0ec17b79d3d850ef"
+      },
+      "2/k_cart": {
+        "shape": [
+          3
+        ],
+        "dtype": "<f8",
+        "sha256": "1d5308fcde3b243290fc0b81ddd1c91841c7fedb84a5ba334ad5af9b8b50d151"
+      },
+      "2/weight": {
+        "shape": [],
+        "dtype": "<f8",
+        "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+      }
+    },
+    "input_bytes_unchanged": true,
+    "normalization_or_QR_applied": false,
+    "new_scf_status": "NOT_RUN",
+    "new_eigensolve_status": "NOT_RUN",
+    "new_occupation_solve_status": "NOT_RUN",
+    "new_xc_evaluation_status": "NOT_RUN",
+    "new_qe_pp_execution_status": "NOT_RUN",
+    "physical_convergence_status": "NOT_ESTABLISHED",
+    "numerical_review_status": "REVIEW_REQUIRED",
+    "independent_native_qe_nonlocal_status": "NOT_MEASURED",
+    "qe_original_input_hamiltonian_residual_status": "NOT_AVAILABLE",
+    "backend": {
+      "numpy_version": "2.3.5",
+      "complex_dtype": "complex128",
+      "real_dtype": "float64"
+    },
+    "FFT_convention": "ifftn(c_grid)*Ngrid/sqrt(volume); physical first-index-fast order; same-k density sum then spatial weights once"
+  }
+}

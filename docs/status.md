@@ -9,7 +9,8 @@ based on `d2ed86316bd030f9d662a1089edb83c94d8f2607`. All original SCFs remain
 HISTORICAL_REUSED. Phase 7C performs NEW_EXTRACTION_FROM_HISTORICAL_ARRAYS;
 Phase 7D adds NEW_POSTPROCESSING_OF_HISTORICAL_STATES based on
 `45225ee1accabd0aae36acec072f0f6ba7dd1de8`; Phase 7E adds two bound pp reconstructions based on
-`fe5e4c85700f5902afee9a345b9f1bb2c8e58e1a`. Main is unchanged.
+`fe5e4c85700f5902afee9a345b9f1bb2c8e58e1a`. Phase 7F adds static original-orbital
+diagnostics based on `28e67d4aca41e11b38a6364503e2dbacc0dd1ee4`. Main is unchanged.
 Acceptance of a development starting point is not an independent expert rerun;
 historical `REVIEW_REQUIRED` fields remain unchanged.
 
@@ -27,6 +28,7 @@ historical `REVIEW_REQUIRED` fields remain unchanged.
 | Existing density/Hartree arrays | [Bound A/B final n_out and G40 SCF rho; complete Fourier coefficients](../results/mg-soc-density-hartree/README.md). All three native Hartree terms reconstructed within 1.1e-13 Ha; 22,118 shared nonzero G. | A−QE density projected L2 2.9662e-7 electron/bohr^(3/2); Hartree −0.16237 meV/cell, other energy terms' undecomposed difference +0.78681 meV/cell. Full cross-code real-space density **NOT_ASSESSED**; physical attribution **NOT_ESTABLISHED**, agreement **REVIEW_REQUIRED**. No new solve. |
 | Existing-density energy/reference audit | [Signed full ledger; A/B local/XC/Pc/Ewald restored; complete Q_rep evaluated with frozen full PBEsol](../results/mg-soc-energy-reference/README.md). Five fixed-density calls; no new solve. | A XC density response +0.01735 meV, Q_rep evaluator residual +0.05468 meV; O combination difference +0.71428 meV. Native QE local potential NOT_EXTRACTED, separate T/NL NOT_AVAILABLE. G=0 candidate +0.45363 meV is tagged prediction, not causal proof. Agreement REVIEW_REQUIRED; attribution open. |
 | QE reconstructed local ionic potential | [Same-build P2/P0, complete fields, all-node registration and signed local ledger](../results/mg-soc-qe-local-potential/README.md). Both pp calls PASS; 64000 nodes/17 modes register. | P2 mean supports tagged G=0; A local response/shape/G0 = +0.213945/+0.115610/+0.453635 meV, remaining O = −0.068909 meV. Historical memory/tab_vloc NOT_EXTRACTED; independent T/NL NOT_AVAILABLE. Attribution PARTIALLY_QUANTIFIED, review REVIEW_REQUIRED, IEEE NOT_LOCALIZED. |
+| Original G40/A/B orbital and energy audit | [Complete Q spinors, density/direct T and frozen FR expectation](../results/mg-soc-wavefunction-energy/README.md). All finite representation and same-source gates PASS; 3 density-independent FR blocks, no new electronic solve. | A response −0.068920107 meV/cell; J +0.000011267 meV/cell within print halfwidth0.000520741. Q expectation uses DFTK FR, independent native QE NL NOT_MEASURED. Original H[n_in] residual NOT_AVAILABLE; A/B X extraction RUNNER_REPORTED, public scalar/projection sums replayable. No newly identified scientific implementation bug; REVIEW_REQUIRED. |
 | Noncollinear magnetic XC | **NOT_IMPLEMENTED** | Charge-only closure does not validate magnetic XC. |
 | Physical cutoff/k/temperature convergence | **NOT_ESTABLISHED** | Limited scalar sensitivity and prescribed Mg cases do not establish converged material predictions. |
 | Upstream native support / architecture acceptance | **NOT_IMPLEMENTED_BY_THIS_WORKBENCH** / **NOT_ESTABLISHED** | Neither core checkout changed; no maintainer endorsement implied. [Open architectural questions](soc-upstream-risks.md). |
@@ -74,3 +76,7 @@ are replayable. Original Julia field extraction remains separately bound to
 archived source arrays. Two pp initializations were executed, including their
 normal potential/Hartree/XC work; independent XC and new solvers were NOT_RUN.
 Earlier phase-specific NOT_EXTRACTED/NOT_RUN statements remain historical.
+
+Phase 7F complete Q coefficients supersede the generic private-orbital limitation only
+for the explicitly bound original G40 three-k/24-state package. All prior evidence
+keeps its original scope; physical convergence and IEEE localization remain open.

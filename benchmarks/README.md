@@ -1,5 +1,7 @@
 # Physical cases and reproduction
 
+- [mg-soc-wavefunction-energy-v1](mg-soc-wavefunction-energy-v1/README.md): original G40/A/B static audit; plan and fixed engineering gates; no new SCF/QE/XC.
+
 | Case | Frozen inputs and commands | Evidence |
 | --- | --- | --- |
 | Si SR-LDA, two atoms, B0 | [Si baseline](si-sr-lda/README.md) | [Scalar comparison](../results/scalar-si-baseline/README.md) |

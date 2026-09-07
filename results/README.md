@@ -1,5 +1,7 @@
 # Scientific evidence
 
+- [Phase 7F: original wavefunctions, kinetic and frozen nonlocal audit](mg-soc-wavefunction-energy/README.md) — full Q coefficient replay, A/B scalar/projection checks; [review](phase7f-review.md).
+
 Phase 7C adds the [saved density/Hartree audit](mg-soc-density-hartree/README.md)
 and complete native Fourier coefficients for offline replay, without new solves.
 Phase 7B supplied the bounded QE solver/FFT/IEEE diagnostics. The Phase 7A SCF,

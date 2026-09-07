@@ -11,7 +11,7 @@ The [solver/FFT diagnostics](results/mg-soc-qe-diagnostics/README.md),
 [energy/reference ledger](results/mg-soc-energy-reference/README.md) preserve
 all earlier results and limitations.
 
-The current [QE local-potential audit](results/mg-soc-qe-local-potential/README.md)
+The preceding [QE local-potential audit](results/mg-soc-qe-local-potential/README.md)
 executed two same-build pp.x slots on independent G40 copies. All 64000 P0
 nodes and 17 complex modes register. The pp-reconstructed mean supports the
 prior G=0 prediction; it is not extraction of historical SCF memory.
@@ -23,6 +23,15 @@ not independently measured QE kinetic/nonlocal energy. Numerical review is
 **NOT_LOCALIZED**. No new SCF/eigensolve or independent XC run was performed;
 normal pp initialization did reconstruct potentials. Main is unchanged.
 
+The current [original-wavefunction audit](results/mg-soc-wavefunction-energy/README.md)
+reads the bound original G40 and A/B endpoints without new solves. All finite
+orbital-density, direct/gradient kinetic and frozen FR gates pass. The A−Q
+common-evaluator T+NL response is −0.068920107 meV/cell; the remaining
+cross-source combination J is +0.000011267 meV/cell, with P2/token halfwidth
+0.000520741 meV/cell. Native QE NL is **NOT_MEASURED** and the original
+input-Hamiltonian residual **NOT_AVAILABLE**. Complete canonical Q coefficients
+and one P/D set permit public replay; A/B source extraction remains runner-reported.
+
 - [Capabilities, evidence levels and limitations](docs/status.md)
 - [Scientific results and offline review](results/README.md)
 - [Physical inputs and reproduction](benchmarks/README.md)
@@ -32,7 +41,7 @@ normal pp initialization did reconstruct potentials. Main is unchanged.
 For an offline review using public files only, run from the repository root:
 
 ```sh
-python_numpy scripts/check_qe_local_potential.py --all --legacy-python python3.9
+python_numpy scripts/check_orbital_energy.py --all --legacy-python python3.9
 ```
 
 `python_numpy` is an existing Python 3.12 interpreter with NumPy (tested 2.3.5);
