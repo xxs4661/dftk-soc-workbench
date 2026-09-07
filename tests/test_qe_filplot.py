@@ -27,16 +27,18 @@ def field(i, j, k):
     return .37 + .12*math.cos(2*math.pi*(x+y)+.31) + .08*math.sin(2*math.pi*(y-z)+.47)
 
 
-def fixture(plot=2, *, blank_title=False):
+def fixture(plot=2, *, blank_title=False, padded=True):
+    allocated = ALLOCATED if padded else GRID
     lines = ['' if blank_title else 'SYNTHETIC FORMAT FIXTURE; NOT A PHYSICAL PSEUDOPOTENTIAL']
-    lines.append(''.join('%8d' % n for n in ALLOCATED+GRID+[1, 1]))
+    lines.append(''.join('%8d' % n for n in allocated+GRID+[1, 1]))
     lines.append('%6d  ' % 0 + ''.join('%16.8f' % n for n in [ALAT, 0, 0, 0, 0, 0]))
     lines.extend(' '.join('%.16E' % v for v in col) for col in AT_COLUMNS)
     lines.append(''.join('%20.10f' % n for n in [148.9459799554, 4, 30])+'%6d' % plot)
     lines.append('%4d   %2s   %5.2f' % (1, 'Mg', 10))
     lines.append('%4d   ' % 1 + ''.join('%15.9f' % n for n in TAU)+'   %2d' % 1)
     # The retained planes stop at physical nz=5, while nr3x=7 is metadata.
-    table = [[[999+i+10*j+100*k for i in range(6)] for j in range(4)] for k in range(5)]
+    table = [[[999+i+10*j+100*k for i in range(allocated[0])]
+              for j in range(allocated[1])] for k in range(5)]
     for k in range(5):
         for j in range(3):
             for i in range(4):
@@ -93,6 +95,31 @@ class FilplotTests(unittest.TestCase):
         self.assertEqual(parsed['values'][0], float(parsed['raw_tokens'][0])/2)
         self.assertNotEqual(parsed['values'][0], float(parsed['raw_tokens'][0]))
         self.assertNotEqual(parsed['values'][0], float(parsed['raw_tokens'][0])/4)
+
+    def test_same_physical_field_without_padding(self):
+        padded = self.read()
+        compact = self.read(fixture(padded=False))
+        self.assertEqual(compact['padding_count_excluded'], 0)
+        self.assertEqual(compact['physical_payload_indices'], list(range(60)))
+        self.assertEqual(compact['values'], padded['values'])
+        self.assertEqual(compact['halfwidths'], padded['halfwidths'])
+
+    def test_fractional_to_cartesian_geometry_uses_column_vectors(self):
+        fractional = [.11, .23, .31]
+        tau = [sum(AT_COLUMNS[column][row]*fractional[column] for column in range(3))
+               for row in range(3)]
+        lines = fixture().splitlines()
+        lines[8] = '1 '+' '.join('%.9f' % x for x in tau)+' 1'
+        self.path.write_text('\n'.join(lines)+'\n')
+        expected = expectations()
+        expected['positions_cartesian_bohr'] = [[ALAT*x for x in tau]]
+        parsed = parse_qe_filplot(self.path, expected_plot_num=2, expected=expected)
+        self.assertEqual(parsed['expected_validation_status'], 'PASS')
+        wrong_tau = [sum(AT_COLUMNS[row][column]*fractional[column] for column in range(3))
+                     for row in range(3)]
+        expected['positions_cartesian_bohr'] = [[ALAT*x for x in wrong_tau]]
+        with self.assertRaises(FilplotParseError):
+            parse_qe_filplot(self.path, expected_plot_num=2, expected=expected)
 
     def test_plot0_density_no_spin_or_volume_factor(self):
         parsed = self.read(plot=0)
