@@ -100,6 +100,33 @@ class DensityAuditRecorderTests(unittest.TestCase):
                 audit.save_completion(p, {'execution_status':'PASS','sources':{},'number':float('nan')})
             self.assertEqual(json.loads((p/'result.json').read_text())['execution_status'],'FAIL')
 
+    def test_qe_coefficient_write_failure_cannot_enter_completion_set(self):
+        parsed={'miller':[(0,0,0)], 'rho_g':[0.01+0j]}
+        datasets={'A_out':{}, 'A_in':{}, 'B_out':{}, 'B_in':{}}
+        with tempfile.TemporaryDirectory() as tmp:
+            def broken_writer(*args):
+                raise OSError('synthetic output failure')
+            with self.assertRaises(OSError):
+                audit.store_qe_coefficients(Path(tmp),parsed,datasets,broken_writer)
+        self.assertNotIn('QE',datasets)
+        self.assertIn('rho_g',parsed)
+
+    def test_actual_historical_xml_schema_read_only(self):
+        root=Path(__file__).resolve().parents[1]
+        result=audit.validate_qe_xml(root/'results/mg-soc-qe-diagnostics/G40/qe.xml', audit.load(root/audit.PLAN))
+        self.assertEqual(result['hartree_ha'],28.51678477992461)
+        self.assertIsNone(result['exact_installed_qe_source_commit'])
+
+    def test_native_csv_transfer_binding_rejects_changed_bytes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p=Path(tmp)/'synthetic.csv'
+            p.write_text('m1,m2,m3,n_in_real,n_in_imag,n_out_real,n_out_imag\n0,0,0,0.01,0.0,0.01,0.0\n')
+            metadata={'coefficients':{'sha256':audit.digest(p),'row_count':1}}
+            audit.read_bound_native_csv(p,'A',metadata,[1,1,1])
+            p.write_text(p.read_text().replace('0.01','0.02'))
+            with self.assertRaisesRegex(ValueError,'receipt'):
+                audit.read_bound_native_csv(p,'A',metadata,[1,1,1])
+
     def test_persistence_failure_explicit(self):
         with tempfile.TemporaryDirectory() as tmp, patch.object(audit,'write_json',side_effect=OSError('synthetic disk')):
             with patch('sys.stderr') as stderr, self.assertRaises(OSError):

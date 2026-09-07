@@ -111,7 +111,18 @@ def read_native_csv(path, label):
             for state in ('in', 'out'):
                 values = datasets[label + '_' + state]
                 require(m not in values, 'Duplicate Julia native mode')
-                values[m] = complex(float(row['n_' + state + '_real']), float(row['n_' + state + '_imag']))
+                z = complex(float(row['n_' + state + '_real']), float(row['n_' + state + '_imag']))
+                require(math.isfinite(z.real) and math.isfinite(z.imag), 'Nonfinite Julia coefficient')
+                values[m] = z
+    return datasets
+
+
+def read_bound_native_csv(path, label, metadata, grid):
+    expected = metadata['coefficients']
+    require(digest(path) == expected['sha256'] and expected['row_count'] == math.prod(grid),
+            'Julia CSV differs from the executed extractor receipt')
+    datasets = read_native_csv(path, label)
+    require(all(len(c) == expected['row_count'] for c in datasets.values()), 'Incomplete Julia native CSV')
     return datasets
 
 
@@ -153,6 +164,14 @@ def validate_reciprocal_columns(columns, plan):
                 for i in range(3) for j in range(3))
     require(error <= plan['thresholds']['reciprocal_duality_abs'], 'A^T B/(2pi) differs: units/basis not comparable')
     return error
+
+
+def store_qe_coefficients(directory, parsed, datasets, writer):
+    candidate = dict(zip(parsed['miller'], parsed['rho_g']))
+    writer(directory / 'qe-native.csv.gz', {'QE': candidate})
+    # The completion set must not include QE until its required file exists.
+    datasets['QE'] = candidate
+    del parsed['miller'], parsed['rho_g']
 
 
 def save_completion(directory, record, summary_builder=None):
@@ -214,7 +233,7 @@ def execute(root, directory, manifest_path, raw_root, julia):
                         metadata['executed_script_sha256'] == record['execution_source_sha256']['scripts/extract_soc_density.jl'],
                         'Julia result is not a successful current extraction')
                 record['sources'][label]['metadata'] = metadata
-                datasets.update(read_native_csv(directory / label / 'native.csv', label))
+                datasets.update(read_bound_native_csv(directory / label / 'native.csv', label, metadata, plan['fft_size']))
             except Exception as error:
                 record['sources'].setdefault(label, {})['extraction_status'] = 'BLOCKED'
                 record['sources'][label]['reason'] = str(error)
@@ -233,9 +252,8 @@ def execute(root, directory, manifest_path, raw_root, julia):
             parsed['native_max_q2_over_2_ha'] = max(q2) / 2
             require(parsed['native_max_q2_over_2_ha'] <= plan['sources']['G40']['density_cutoff_ha'] +
                     plan['thresholds']['cutoff_abs_ha'], 'G40 actual Miller list exceeds density cutoff')
-            datasets['QE'] = dict(zip(parsed.pop('miller'), parsed.pop('rho_g')))
+            store_qe_coefficients(directory, parsed, datasets, write_coefficients_gzip)
             record['sources']['G40'].update(metadata=parsed, xml=xml)
-            write_coefficients_gzip(directory / 'qe-native.csv.gz', {'QE': datasets['QE']})
         except Exception as error:
             record['sources'].setdefault('G40', {})['extraction_status'] = 'BLOCKED'
             record['sources']['G40']['reason'] = str(error)
@@ -245,7 +263,9 @@ def execute(root, directory, manifest_path, raw_root, julia):
                     require(digest(item['path']) == item['sha256'], 'Read-only source changed after extraction')
                 source['source_preservation_status'] = 'PASS'
         # Arithmetic and explicit public export are separate, replayable operations.
-        record['execution_status'] = 'PASS' if set(datasets) == {'A_in','A_out','B_in','B_out','QE'} else 'BLOCKED'
+        complete = set(datasets) == {'A_in','A_out','B_in','B_out','QE'} and all(
+            'extraction_status' not in source for source in record['sources'].values())
+        record['execution_status'] = 'PASS' if complete else 'BLOCKED'
         record['exit_code'] = 0 if record['execution_status'] == 'PASS' else 7
         record['finished_utc'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
         save_completion(directory, record)
