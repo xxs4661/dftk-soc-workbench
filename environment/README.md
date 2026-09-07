@@ -1,11 +1,22 @@
-# Environment records
+# Reproducible environment
 
-Reproducible numerical comparisons require the software, hardware, and execution context to be recorded independently of input files.
+Use the dedicated [workbench Julia environment](workbench/README.md). Its
+Project/Manifest/checksums and [source lock](../config/sources.lock) are frozen;
+relative checkout paths support relocation after fetching the locked sources.
 
-- [`codex-environment.md`](codex-environment.md) records the environment observed while Phase 1 was created.
-- [`local-macos-template.md`](local-macos-template.md) is a checklist for a future local benchmark environment.
-- [`dftk-development-notes.md`](dftk-development-notes.md) summarizes development and testing instructions at the locked DFTK commit.
+The [shared recorded identity](../results/shared/environment.json) captures actual
+loaded Julia/source identity. Case evidence retains independent run check receipts
+and case-specific QE binary/launch identity. These historical records are not a
+claim that a reader's current environment matches; run the identity check in a new
+Julia process before physical reproduction.
 
-Phase 2's observed host facts are generated in [`../results/environment-summary.md`](../results/environment-summary.md).
+[DFTK development notes](dftk-development-notes.md) describe the pinned upstream
+workflow. [The host checklist](local-macos-template.md) is a template, not a measured
+machine report. Do not publish usernames, private absolute paths or credentials.
+For public-only offline review use Python 3.9; the QE-input preparer needs Python
+3.12+ for `tomllib`. No environment or package versions were changed by curation.
 
-Do not record usernames, absolute home-directory paths, tokens, credential-helper output, or other secrets. Use **pending verification** for information that cannot be observed safely.
+The combined publication check uses Python 3.9 for exact historical scalar
+arithmetic and `python3.12` on PATH for standard-library TOML in the prototype
+checks (`--modern-python PATH` selects an existing Python 3.11+ interpreter).
+It installs no packages or environments.

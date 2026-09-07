@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "phase": "6C",
+  "qe_soc_input_status": "PREPARED_NOT_EXECUTED",
+  "qe_soc_benchmark_status": "NOT_RUN",
+  "qe_documentation_version": "7.5",
+  "qe_execution": "NOT_RUN",
+  "runs": {
+    "A": {
+      "run_id": "20260906T151940Z-A-270110aa",
+      "result_sha256": "9942aabe50daf12f581433f9f222a78a8254d8c538335e6a931975176bce8fd5"
+    },
+    "B": {
+      "run_id": "20260906T153016Z-B-62835d43",
+      "result_sha256": "3ba4ff5ea1328c02e90aa2177ad352cf4c2ec4ac644dd7392016c5fcf1804db9"
+    }
+  },
+  "comparison_sha256": "4ce1e6822f7c98ffb3e5ace67a1160b77d07776b70353064b7bccbf1a36a1f98",
+  "config_sha256": "fed341560f53663f580c37a8f691298aa24784957b49270c5e3f71289736c58c",
+  "phase6b_config_sha256": "d3036fed641ec460e8171cc5aaa098ab83bf82912ab104aad45ba8b343cd8b4f",
+  "source_lock_sha256": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+  "input": {
+    "element": "Mg",
+    "pseudo_type": "NC",
+    "relativistic": "full",
+    "has_so": true,
+    "nlcc_present": false,
+    "functional": "PBESOL",
+    "z_valence": 10,
+    "file_name": "Mg.upf",
+    "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256"
+  },
+  "qe_input_sha256": "4d76b661c9a1c620da19e6f5db9dd9ee1e8651715bf9d421adce6db58c4d9476",
+  "nbnd": 24,
+  "n_electrons": 10,
+  "capacity_per_spinor_state": 1,
+  "temperature_ha": 0.001,
+  "degauss_ry": 0.002,
+  "ecutwfc_ry": 30.0,
+  "ecutrho_ry": 120.0,
+  "geometry": {
+    "cell_side_bohr": 10.0,
+    "positions_fractional": [
+      [
+        0.17,
+        0.23,
+        0.31
+      ]
+    ],
+    "ecut_ha": 15.0,
+    "kpoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.125,
+        0.0625,
+        -0.1875
+      ],
+      [
+        -0.125,
+        -0.0625,
+        0.1875
+      ]
+    ],
+    "kweights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "xc_identifiers": [
+      "gga_x_pbe_sol",
+      "gga_c_pbe_sol"
+    ],
+    "symmetries": false
+  },
+  "qe_solver_preparation": {
+    "conv_thr_ry": 1e-10,
+    "electron_maxstep": 400,
+    "mixing_beta": 0.1,
+    "diagonalization": "QE default"
+  },
+  "portable_paths": {
+    "pseudo_dir": "./pseudo",
+    "outdir": "./scratch"
+  },
+  "documentation": [
+    "https://www.quantum-espresso.org/Doc/INPUT_PW.html",
+    "https://gitlab.com/QEF/q-e/-/raw/qe-7.5/PW/Doc/INPUT_PW.def",
+    "https://lists.quantum-espresso.org/pipermail/users/2021-January/046830.html"
+  ]
+}

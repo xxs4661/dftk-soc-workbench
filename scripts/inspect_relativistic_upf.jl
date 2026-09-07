@@ -1,288 +1,168 @@
 #!/usr/bin/env julia
 
-using DFTK
-using PseudoPotentialIO
-using SHA
-using TOML
-
-const WORKBENCH_ROOT = normpath(joinpath(@__DIR__, ".."))
-const SOURCES_LOCK = joinpath(WORKBENCH_ROOT, "config", "sources.lock")
-
-function usage(io::IO=stdout)
-    println(io, "Usage: inspect_relativistic_upf.jl [options] UPF_PATH")
-    println(io)
-    println(io, "Parse one UPF without dumping radial arrays, then separately attempt")
-    println(io, "construction through DFTK.PspUpf.")
-    println(io)
-    println(io, "Options:")
-    println(io, "  --json PATH              Write deterministic JSON to PATH")
-    println(io, "  --display-path PATH      Sanitized input path stored in JSON")
-    println(io, "  --family-id ID           Pseudopotential family identifier")
-    println(io, "  --source-id ID           Source or package identifier")
-    println(io, "  --redistribution STATUS  Observed redistribution status")
-    println(io, "  -h, --help               Show this help")
+function usage()
+    println("Usage: inspect_relativistic_upf.jl --mode fr-nc|inspect [--default-input | UPF_PATH]")
+    println("       inspect_relativistic_upf.jl --check-environment | --unit-tests | --upstream-minimal")
+    println("fr-nc validates metadata and expects the locked DFTK SOC guard; inspect only parses.")
+    println("Exit codes: 0 accepted/information/help; 2 arguments; 3 parse; 4 metadata;")
+    println("5 unexpected construction; 6 environment; 7 prerequisite; 8 checksum; 9 runtime/I/O.")
 end
 
-function parse_arguments(args)
-    options = Dict{String,Union{Nothing,String}}(
-        "json" => nothing,
-        "display-path" => nothing,
-        "family-id" => nothing,
-        "source-id" => nothing,
-        "redistribution" => nothing,
-    )
-    positional = String[]
+const ROOT = realpath(joinpath(@__DIR__, ".."))
+include("workbench_environment.jl")
+include("upf_validation.jl")
+using .WorkbenchEnvironment, .UpfValidation, TOML
+
+function arguments(args)
+    mode, action, input, default = nothing, "inspect", nothing, false
     i = 1
     while i <= length(args)
         arg = args[i]
-        if arg in ("-h", "--help")
-            return (; help=true, options, positional)
-        elseif startswith(arg, "--")
-            key = arg[3:end]
-            haskey(options, key) || error("Unknown option: $arg")
-            i == length(args) && error("Option $arg requires a value")
-            options[key] = args[i + 1]
-            i += 2
-        else
-            push!(positional, arg)
+        if arg == "--mode"
             i += 1
-        end
-    end
-    (; help=false, options, positional)
-end
-
-function sanitized_message(err, input_path)
-    message = sprint(showerror, err)
-    message = replace(message, abspath(input_path) => "<upf-input>")
-    replace(message, homedir() => "<home>")
-end
-
-function sha256_file(path)
-    open(path, "r") do io
-        bytes2hex(sha256(io))
-    end
-end
-
-function write_json_string(io, value::AbstractString)
-    print(io, '"')
-    for character in value
-        if character == '"'
-            print(io, "\\\"")
-        elseif character == '\\'
-            print(io, "\\\\")
-        elseif character == '\b'
-            print(io, "\\b")
-        elseif character == '\f'
-            print(io, "\\f")
-        elseif character == '\n'
-            print(io, "\\n")
-        elseif character == '\r'
-            print(io, "\\r")
-        elseif character == '\t'
-            print(io, "\\t")
-        elseif Int(character) < 0x20
-            print(io, "\\u", lpad(string(Int(character); base=16), 4, '0'))
+            i <= length(args) || error("--mode needs a value")
+            isnothing(mode) || error("--mode repeated")
+            mode = args[i]
+        elseif arg == "--default-input"
+            default && error("--default-input repeated")
+            default = true
+        elseif arg in ("--check-environment", "--unit-tests", "--upstream-minimal")
+            action == "inspect" || error("Only one action is allowed")
+            action = arg
+        elseif startswith(arg, "-")
+            error("Unknown argument: $arg")
         else
-            print(io, character)
+            isnothing(input) || error("Expected at most one UPF path")
+            input = arg
         end
+        i += 1
     end
-    print(io, '"')
-end
-
-function write_json(io, value; indentation=0)
-    if isnothing(value)
-        print(io, "null")
-    elseif value isa Bool
-        print(io, value ? "true" : "false")
-    elseif value isa Number
-        isfinite(value) || error("Cannot serialize a non-finite number as JSON")
-        print(io, value)
-    elseif value isa AbstractString
-        write_json_string(io, value)
-    elseif value isa NamedTuple
-        names = propertynames(value)
-        isempty(names) && return print(io, "{}")
-        println(io, "{")
-        for (position, name) in enumerate(names)
-            print(io, " "^(indentation + 2))
-            write_json_string(io, string(name))
-            print(io, ": ")
-            write_json(io, getproperty(value, name); indentation=indentation + 2)
-            position == length(names) ? println(io) : println(io, ',')
-        end
-        print(io, " "^indentation, '}')
-    elseif value isa AbstractVector
-        isempty(value) && return print(io, "[]")
-        println(io, "[")
-        for (position, item) in enumerate(value)
-            print(io, " "^(indentation + 2))
-            write_json(io, item; indentation=indentation + 2)
-            position == length(value) ? println(io) : println(io, ',')
-        end
-        print(io, " "^indentation, ']')
+    if action == "inspect"
+        mode in ("fr-nc", "inspect") || error("Explicit --mode fr-nc or inspect required")
+        xor(default, !isnothing(input)) || error("Provide one UPF path or --default-input")
     else
-        error("Unsupported JSON value type: $(typeof(value))")
+        isnothing(mode) && isnothing(input) && !default || error("Action cannot be combined with input/mode")
     end
+    (; mode, action, input, default)
 end
 
-function write_result(output_path, result)
-    if isnothing(output_path)
-        write_json(stdout, result)
-        println()
-    else
-        open(output_path, "w") do io
-            write_json(io, result)
-            println(io)
+function early_failure(code, status, reason)
+    # Only fixed internal strings reach this dependency-free JSON envelope.
+    println("{\"schema_version\":2,\"parse_status\":\"NOT_RUN\",\"metadata_validation_status\":\"NOT_RUN\",\"dftk_construction_status\":\"NOT_RUN\",\"overall_status\":\"$status\",\"exit_code\":$code,\"reasons\":[\"$reason\"]}")
+    exit(code)
+end
+
+if ARGS == ["--help"] || ARGS == ["-h"]
+    usage()
+    exit(0)
+end
+const OPTIONS = try
+    arguments(ARGS)
+catch err
+    println(stderr, "ARGUMENT_ERROR: ", public_data(sprint(showerror, err), ROOT))
+    early_failure(2, "ARGUMENT_ERROR", "Invalid arguments; see stderr")
+end
+for file in ("config/sources.lock", "environment/workbench/Project.toml",
+             "environment/workbench/Manifest.toml", "environment/workbench/checksums.toml")
+    isfile(joinpath(ROOT, file)) || early_failure(7, "BLOCKED", "Required workbench environment file is missing")
+end
+for spec in values(TOML.parsefile(joinpath(ROOT, "config", "sources.lock"))["source"])
+    isdir(joinpath(ROOT, spec["checkout"])) || early_failure(7, "BLOCKED", "Required source checkout is missing")
+end
+# Load packages at top level before calling main in a new Julia process.
+try
+    @eval using JSON3, DFTK, PseudoPotentialIO
+catch err
+    println(stderr, "ENVIRONMENT_ERROR: ", public_data(sprint(showerror, err), ROOT))
+    early_failure(6, "ENVIRONMENT_MISMATCH", "Required package could not be loaded; see stderr")
+end
+
+include("upf_runtime.jl")
+using .UpfRuntime
+
+function main(options)
+    result = Dict{String,Any}("schema_version" => 2, "parse_status" => "NOT_RUN",
+        "metadata_validation_status" => "NOT_RUN", "dftk_construction_status" => "NOT_RUN",
+        "overall_status" => "BLOCKED", "reasons" => String[])
+    finish(code) = begin
+        result["exit_code"] = code
+        println(JSON3.write(public_data(result, ROOT)))
+        code
+    end
+    identity = try
+        environment_identity(ROOT, (DFTK, PseudoPotentialIO))
+    catch err
+        result["reasons"] = ["Environment prerequisites unavailable: " * sprint(showerror, err)]
+        return finish(6)
+    end
+    result["environment"] = identity
+    if identity.status != "PASS"
+        result["overall_status"] = "ENVIRONMENT_MISMATCH"
+        result["reasons"] = identity.reasons
+        return finish(6)
+    end
+    try
+        if options.action != "inspect"
+            if options.action == "--unit-tests"
+                redirect_stdout(stderr) do
+                    Base.include(Main, joinpath(ROOT, "tests", "runtests.jl"))
+                end
+            elseif options.action == "--upstream-minimal"
+                redirect_stdout(stderr) do
+                    WorkbenchEnvironment.Pkg.test("DFTK"; test_args=["minimal"], allow_reresolve=false)
+                end
+            end
+            result["overall_status"] = "PASS"
+            result["action"] = options.action
+            return finish(0)
         end
-    end
-end
-
-function source_revisions()
-    lock = TOML.parsefile(SOURCES_LOCK)
-    (; dftk=lock["source"]["dftk"]["commit"],
-       pseudopotentialio=lock["source"]["pseudopotentialio"]["commit"])
-end
-
-function loaded_versions()
-    manifest = TOML.parsefile(joinpath(WORKBENCH_ROOT, ".work", "DFTK.jl", "Manifest.toml"))
-    ppio = only(manifest["deps"]["PseudoPotentialIO"])
-    (; dftk=string(pkgversion(DFTK)),
-       pseudopotentialio=string(pkgversion(PseudoPotentialIO)),
-       pseudopotentialio_tree_sha1=ppio["git-tree-sha1"])
-end
-
-function inspect_upf(input_path, display_path, provenance)
-    checksum = sha256_file(input_path)
-    parsed = try
-        PseudoPotentialIO.load_psp_file(input_path)
+        result["mode"] = options.mode
+        lock = TOML.parsefile(joinpath(ROOT, "config", "sources.lock"))
+        pseudo = lock["pseudopotentials"]
+        input = options.default ? joinpath(ROOT, pseudo["local_path"]) : abspath(options.input)
+        result["input"] = Dict("path" => options.default ? pseudo["local_path"] : "<external-input>/" * basename(input))
+        if !isfile(input)
+            result["reasons"] = ["UPF input is missing"]
+            return finish(7)
+        end
+        checksum = filehash(input)
+        result["input"]["sha256"] = checksum
+        if options.default
+            result["input"]["expected_sha256"] = pseudo["file_sha256"]
+            if checksum != pseudo["file_sha256"]
+                result["overall_status"] = "INPUT_MISMATCH"
+                result["reasons"] = ["Default Mg checksum differs from sources.lock"]
+                return finish(8)
+            end
+            result["input"]["family_identifier"] = pseudo["family_identifier"]
+            result["input"]["source_identifier"] = pseudo["source_identifier"]
+            result["input"]["scope"] = "PBEsol family; metadata inspection only, not LDA/LSDA benchmarking"
+        end
+        parsing = parse_input(input)
+        result["parse_status"] = parsing.status
+        if parsing.status != "PASS"
+            result["overall_status"] = "FAIL"
+            result["reasons"] = parsing.reasons
+            return finish(3)
+        end
+        parsed = parsing.parsed
+        metadata = metadata_from_upf(parsed)
+        result["parsed_type"] = string(typeof(parsed))
+        if options.mode == "inspect"
+            result["overall_status"] = "INFO_ONLY"
+            result["reasons"] = ["Parsing succeeded; FR-NC acceptance was not requested"]
+            return finish(0)
+        end
+        acceptance = accept_metadata(metadata,
+            () -> DFTK.PspUpf(parsed; identifier=basename(input));
+            guard_file=joinpath(dirname(pathof(DFTK)), "pseudo", "PspUpf.jl"))
+        merge!(result, Dict(string(k) => v for (k,v) in pairs(acceptance)))
+        finish(acceptance.exit_code)
     catch err
-        result = (
-            schema_version=1,
-            status="FAIL",
-            source_revisions=source_revisions(),
-            input=(; path=display_path, file_name=basename(input_path), sha256=checksum,
-                   provenance...),
-            raw_upf_parsing=(; status="FAIL", parser="PseudoPotentialIO.load_psp_file",
-                             error_type=string(typeof(err)),
-                             error_message=sanitized_message(err, input_path)),
-            dftk_construction=(; attempted=false, status="NOT RUN"),
-        )
-        return result, 3
+        result["overall_status"] = "ERROR"
+        result["reasons"] = ["Unexpected runtime error: " * sprint(showerror, err)]
+        finish(9)
     end
-
-    if !(parsed isa PseudoPotentialIO.UpfFile)
-        result = (
-            schema_version=1,
-            status="FAIL",
-            source_revisions=source_revisions(),
-            input=(; path=display_path, file_name=basename(input_path), sha256=checksum,
-                   provenance...),
-            raw_upf_parsing=(; status="FAIL", parser="PseudoPotentialIO.load_psp_file",
-                             error_type="UnexpectedParsedType",
-                             error_message="Input did not parse as PseudoPotentialIO.UpfFile"),
-            dftk_construction=(; attempted=false, status="NOT RUN"),
-        )
-        return result, 4
-    end
-
-    betas = parsed.nonlocal.betas
-    spin_orb = parsed.spin_orb
-    relbetas = isnothing(spin_orb) ? PseudoPotentialIO.UpfRelBeta[] : spin_orb.relbetas
-    relwfcs = isnothing(spin_orb) ? PseudoPotentialIO.UpfRelWfc[] : spin_orb.relwfcs
-
-    beta_records = [(; position=i, index=beta.index, l=beta.angular_momentum)
-                    for (i, beta) in enumerate(betas)]
-    relativistic_beta_records = map(relbetas) do relbeta
-        index = relbeta.index
-        matches_beta = !isnothing(index) && 1 <= index <= length(betas) &&
-                       betas[index].index == index
-        (; index, l=relbeta.lll, j=relbeta.jjj, matches_beta_index=matches_beta)
-    end
-    relativistic_wavefunction_records = [
-        (; index=wfc.index, l=wfc.lchi, j=wfc.jchi, principal_n=wfc.nn)
-        for wfc in relwfcs
-    ]
-
-    construction = try
-        DFTK.PspUpf(parsed; identifier=basename(input_path))
-        (; attempted=true, status="CONSTRUCTED", error_type=nothing, error_message=nothing)
-    catch err
-        message = sanitized_message(err, input_path)
-        status = occursin("unsupported", lowercase(message)) ? "REJECTED" : "ERROR"
-        (; attempted=true, status, error_type=string(typeof(err)), error_message=message)
-    end
-
-    result = (
-        schema_version=1,
-        status=construction.status == "ERROR" ? "FAIL" : "PASS",
-        source_revisions=source_revisions(),
-        loaded_packages=loaded_versions(),
-        input=(; path=display_path, file_name=basename(input_path), sha256=checksum,
-               provenance...),
-        raw_upf_parsing=(; status="PASS", parser="PseudoPotentialIO.load_psp_file",
-                         parsed_type=string(typeof(parsed))),
-        upf=(;
-            version=parsed.version,
-            pseudo_type=parsed.header.pseudo_type,
-            relativistic=parsed.header.relativistic,
-            has_so=parsed.header.has_so,
-            element=parsed.header.element,
-            beta_projector_count=length(betas),
-            beta_angular_momenta=[beta.angular_momentum for beta in betas],
-            beta_records,
-            relativistic_beta_record_count=length(relbetas),
-            relativistic_beta_l_values=sort(unique([beta.lll for beta in relbetas
-                                                    if !isnothing(beta.lll)])),
-            relativistic_beta_j_values=sort(unique([beta.jjj for beta in relbetas])),
-            relativistic_beta_records,
-            relativistic_wavefunction_records_present=!isempty(relwfcs),
-            relativistic_wavefunction_record_count=length(relwfcs),
-            relativistic_wavefunction_records,
-        ),
-        dftk_construction=construction,
-    )
-    result, construction.status == "ERROR" ? 5 : 0
 end
 
-function main(args)
-    parsed_args = try
-        parse_arguments(args)
-    catch err
-        println(stderr, "Argument error: ", sprint(showerror, err))
-        usage(stderr)
-        return 2
-    end
-    if parsed_args.help
-        usage()
-        return 0
-    end
-    if length(parsed_args.positional) != 1
-        println(stderr, "Expected exactly one UPF path.")
-        usage(stderr)
-        return 2
-    end
-
-    input_path = only(parsed_args.positional)
-    output_path = parsed_args.options["json"]
-    display_path = something(parsed_args.options["display-path"], input_path)
-    if !isfile(input_path)
-        println(stderr, "Input does not exist or is not a file: ", display_path)
-        return 2
-    end
-
-    provenance = (;
-        family_identifier=parsed_args.options["family-id"],
-        source_identifier=parsed_args.options["source-id"],
-        redistribution_status=parsed_args.options["redistribution"],
-    )
-    result, exit_code = inspect_upf(input_path, display_path, provenance)
-    write_result(output_path, result)
-
-    println("Raw UPF parsing: ", result.raw_upf_parsing.status)
-    println("DFTK construction: ", result.dftk_construction.status)
-    println("Inspection status: ", result.status)
-    !isnothing(output_path) && println("JSON output: results/upf-inspection.json")
-    exit_code
-end
-
-exit(main(ARGS))
+exit(main(OPTIONS))

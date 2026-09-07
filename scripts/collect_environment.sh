@@ -5,7 +5,7 @@ set -euo pipefail
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 REPOSITORY_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 WORK_DIR="$REPOSITORY_ROOT/.work"
-RESULTS_DIR="$REPOSITORY_ROOT/results"
+RESULTS_DIR="$WORK_DIR/environment-inventory"
 DFTK_DIR="$WORK_DIR/DFTK.jl"
 PSEUDOPOTENTIALIO_DIR="$WORK_DIR/PseudoPotentialIO.jl"
 

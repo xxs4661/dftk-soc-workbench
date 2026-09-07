@@ -1,6 +1,7 @@
 # RFC: Investigating SOC support in DFTK.jl, v1
 
-**Status:** Active design document; not implemented; not accepted upstream
+**Status:** Historical initial proposal, not current capability status and not accepted upstream.
+See [current capabilities](../docs/status.md) for implemented prototype scope.
 
 **Scope:** Fully relativistic norm-conserving UPF pseudopotentials on CPU
 

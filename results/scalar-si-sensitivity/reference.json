@@ -1,0 +1,78 @@
+{
+  "alpha_ha_bohr3": 6.669650355851782,
+  "C_ha": 0.04940273265543588,
+  "formula": "alpha = 4*pi*integral_0^R [r^2*(Vloc_Ry/2)+Z*r] dr; C = n_atoms*alpha/volume",
+  "n_atoms": 2,
+  "z_valence": 4.0,
+  "volume_bohr3": 270.011394,
+  "units": {
+    "r": "bohr",
+    "Vloc_input": "Ry",
+    "Vloc_integrated": "Ha",
+    "integrand": "Ha*bohr^2",
+    "alpha": "Ha*bohr^3",
+    "C": "Ha"
+  },
+  "grid": {
+    "points": 1510,
+    "r_min_bohr": 0.0,
+    "r_max_bohr": 15.09,
+    "step_min_bohr": 0.009999999999999787,
+    "step_max_bohr": 0.010000000000001563,
+    "requested_radial_truncation": null,
+    "integration_limit": "last actual PP_R value"
+  },
+  "quadrature": {
+    "primary": "Piecewise quadratic interpolation on actual coordinates; final single interval uses final three-point quadratic",
+    "secondary": "Composite trapezoid on the same full grid",
+    "trapezoid_alpha_ha_bohr3": 6.669231475341945,
+    "trapezoid_C_ha": 0.04939962996777792,
+    "quadratic_minus_trapezoid_C_ha": 3.102687657961617e-06,
+    "coarsening_checks": [
+      {
+        "stride": 2,
+        "points": 756,
+        "alpha_ha_bohr3": 6.669650347413801,
+        "C_ha": 0.049402732592934956,
+        "delta_C_from_full_ha": -6.250092528022972e-11
+      },
+      {
+        "stride": 3,
+        "points": 504,
+        "alpha_ha_bohr3": 6.6696504518054,
+        "C_ha": 0.04940273336617343,
+        "delta_C_from_full_ha": 7.107375504621459e-10
+      },
+      {
+        "stride": 4,
+        "points": 379,
+        "alpha_ha_bohr3": 6.669650220382014,
+        "C_ha": 0.04940273165199846,
+        "delta_C_from_full_ha": -1.0034374167776866e-09
+      }
+    ],
+    "interpretation": "Method/coarsening sensitivity diagnostics, not strict error bounds"
+  },
+  "tail": {
+    "start_bohr": 14.1,
+    "end_bohr": 15.09,
+    "points": 100,
+    "signed_alpha_ha_bohr3": -5.818474909188946e-06,
+    "signed_C_ha": -4.309799540673418e-08,
+    "integrand_final_ha_bohr2": -3.802257495522099e-07,
+    "integrand_max_abs_ha_bohr2": 5.651350463153904e-07,
+    "max_abs_rV_plus_Z": 4.008049980797068e-08,
+    "beyond_grid": "Not integrated or fitted; the finite-grid tail is reported without assuming it is exactly zero"
+  },
+  "spectral_data_used": false,
+  "dftk_correction_called": false,
+  "scf_total_energy_modified": false,
+  "schema_version": 1,
+  "reference_inspection_status": "PASS",
+  "input_filename": "Si.upf",
+  "input_sha256": "686dd9f7d58fe63bdb1e595f0aeecf7d70d2857f06ffb00b8273950d6431e805",
+  "case_sha256": "2f7aaf914ef6db5ccfa4c81a124b24c5bd32b27383d95c756c97266a22b63f65",
+  "upf_version": "2.0.1",
+  "units_source": "https://pseudopotentials.quantum-espresso.org/home/unified-pseudopotential-format",
+  "scope": "Independent finite local-potential radial integral only; no numerical agreement or SCF claim"
+}

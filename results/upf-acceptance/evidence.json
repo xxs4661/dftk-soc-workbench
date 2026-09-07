@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "scope": "HISTORICAL_REUSED; export performs no Julia/UPF check",
+  "sources": [
+    {
+      "source_path": "results/upf-inspection.json",
+      "source_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+      "source_blob": "c2629131a1a7922b038b3bf56f55029cf17b1365",
+      "source_sha256": "39586a06f498af61a8254c542a2c4ae29a9265791109f0d840f6e213a1fb2756",
+      "public_path": "results/upf-acceptance/phase3-inspection.json",
+      "public_sha256": "39586a06f498af61a8254c542a2c4ae29a9265791109f0d840f6e213a1fb2756",
+      "transformation": "byte-identical"
+    },
+    {
+      "source_path": "results/phase4a1/mg-20260905T030611379883Z-0094f2da.json",
+      "source_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+      "source_blob": "ba62cedbfa9a5f8e9435d6b5925784b0ec572cad",
+      "source_sha256": "546f792ec3caa30951ddf0065ff4a8f8cda8c8f10182bd812a8879081c07d14c",
+      "public_path": "results/upf-acceptance/strict-mg.json",
+      "public_sha256": "a729f5e5f620a8a0c4c148c83a121b9d19267d8230bd8084c45c5001bc0389e7",
+      "transformation": "environment replaced by equal shared object reference"
+    },
+    {
+      "source_path": "results/logs/dftk-minimal-20260904T170554Z.log",
+      "source_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+      "source_blob": "1f237c9917b7dc767ff96e553ec9cf8a65604a15",
+      "source_sha256": "bae6cffbe606e554521ae6c176cc24b9205f29f43e43efa9c5d3ec19410473a8",
+      "public_path": "results/upf-acceptance/historical-minimal.log",
+      "public_sha256": "bae6cffbe606e554521ae6c176cc24b9205f29f43e43efa9c5d3ec19410473a8",
+      "transformation": "byte-identical"
+    }
+  ],
+  "extractor": {
+    "path": "scripts/check_publication.py",
+    "sha256": "1e57aca111c37e2c385cdf2d509e890f6ae2f712fa46100c90a27d80c8862e5e"
+  },
+  "historical_minimal": {
+    "started_utc": "2026-09-04T17:05:54Z",
+    "ended_utc": "2026-09-04T17:21:27Z",
+    "dftk_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+    "selection": ":minimal",
+    "passed": 1387,
+    "total": 1387,
+    "exit_code": 0
+  },
+  "strict_mg_run_id": "20260905T030611379883Z-0094f2da"
+}

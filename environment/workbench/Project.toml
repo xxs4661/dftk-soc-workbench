@@ -1,0 +1,8 @@
+[deps]
+DFTK = "acf6eb54-70d9-11e9-0013-234b7a5f5337"
+JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+PseudoPotentialIO = "cb339c56-07fa-4cb2-923a-142469552264"
+SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

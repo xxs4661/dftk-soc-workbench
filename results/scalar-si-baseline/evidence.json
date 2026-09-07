@@ -1,0 +1,358 @@
+{
+  "schema_version": 1,
+  "scope": "Historical scalar Si baseline; SCF NOT_RUN during curation",
+  "extractor": {
+    "path": "scripts/curate_scalar_evidence.py",
+    "sha256": "756733028e866e9a070dfd4ecb22fb40b34f8e2caa2e664af155ad3206c02119",
+    "scope": "Curation/export identity, not a retroactive execution-code claim"
+  },
+  "case": {
+    "run_id": "20260905T040945688395Z-1cc8a50c",
+    "case_path": "benchmarks/si-sr-lda/case.json",
+    "historical_record": {
+      "schema_version": 1,
+      "run_id": "20260905T040945688395Z-1cc8a50c",
+      "execution_status": "PASS",
+      "input_comparability_status": "PASS",
+      "numerical_agreement_status": "REVIEW_REQUIRED",
+      "convergence_study_status": "NOT_RUN",
+      "reasons": [],
+      "exit_code": 0,
+      "inputs": {
+        "case_sha256": "2f7aaf914ef6db5ccfa4c81a124b24c5bd32b27383d95c756c97266a22b63f65",
+        "dftk_input_sha256": "618f46548779453dae52ed3a01a3a87d066ddf8583e5ea1b83f220670a07c87e",
+        "qe_input_sha256": "f634604331eab32dfc03daab4fb6c7abb704cbe75dd6c6f1b7c03feb47675fe2",
+        "volume_bohr3": 270.011394
+      },
+      "pseudo": {
+        "sha256": "686dd9f7d58fe63bdb1e595f0aeecf7d70d2857f06ffb00b8273950d6431e805",
+        "upf_version": "2.0.1",
+        "header": {
+          "generated": "Generated using ONCVPSP code by D. R. Hamann",
+          "author": "anonymous",
+          "date": "180309",
+          "comment": "",
+          "element": "Si",
+          "pseudo_type": "NC",
+          "relativistic": "scalar",
+          "is_ultrasoft": "F",
+          "is_paw": "F",
+          "is_coulomb": "F",
+          "has_so": "F",
+          "has_wfc": "F",
+          "has_gipaw": "F",
+          "core_correction": "T",
+          "functional": "SLA  PW   NOGX NOGC",
+          "z_valence": "    4.00",
+          "total_psenergy": "  -7.56425863110E+00",
+          "rho_cutoff": "   1.50900000000E+01",
+          "l_max": "2",
+          "l_local": "-1",
+          "mesh_size": "  1510",
+          "number_of_wfc": "2",
+          "number_of_proj": "6"
+        },
+        "nlcc": true
+      },
+      "thread_settings": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "JULIA_NUM_THREADS": "1"
+      },
+      "process_exit_codes": {
+        "workbench-identity.stdout": 0,
+        "qe.stdout": 0,
+        "dftk.stdout": 0
+      }
+    },
+    "environment_reference": {
+      "path": "results/shared/environment.json",
+      "sha256": "b6a5999b51a9aed12efa9d66e9884ad8be401a72b76d751296458555c963991b",
+      "equality": "Entire historical environment object equal"
+    },
+    "qe_identity": {
+      "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+      "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+      "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+      "jll_version": "7.5.1+0",
+      "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+      "startup_version": "7.5",
+      "source_commit": null
+    },
+    "canonical_files": {
+      "results/scalar-si-baseline/B0/qe-data-file-schema.xml": "8968708589fc1976c5d80063ac94e36966d4f545a934378eac27e8562edbe6b8",
+      "results/scalar-si-baseline/B0/qe.stdout": "90ebc31737a861254587ae40f4b3712df3d0967e5b36e9022d03c8bb69fb4b14",
+      "results/scalar-si-baseline/B0/dftk.stdout": "f8ba5523e76fb3636e5d9048d78831ea40a09144dece2fb9efc6211b2677c04d",
+      "results/scalar-si-baseline/B0/dftk-result.json": "75565cc116787bb4cedc978c92e45bc4e64b5c7c4a20bc22e4657bb5881054af",
+      "results/scalar-si-baseline/B0/qe.in": "f634604331eab32dfc03daab4fb6c7abb704cbe75dd6c6f1b7c03feb47675fe2",
+      "results/scalar-si-baseline/B0/dftk-input.json": "618f46548779453dae52ed3a01a3a87d066ddf8583e5ea1b83f220670a07c87e",
+      "results/scalar-si-baseline/B0/case.json": "2f7aaf914ef6db5ccfa4c81a124b24c5bd32b27383d95c756c97266a22b63f65",
+      "results/scalar-si-baseline/B0/qe-result.json": "192426eba37e17f89a093fa33f036f31a91312a5e1ee0f3cd0fcef7d5cd091b4",
+      "results/scalar-si-baseline/B0/comparison.json": "b5815bd919837b99531a2194a2fdaae8f7bf9f8ab8a63baef8e8fd1d47e9f2ca",
+      "results/scalar-si-baseline/B0/result.json": "6458593dfd9bc01d2d83c032fb305b9f69aeb32dbbcfa697a7b08081fe7a5113",
+      "results/scalar-si-baseline/B0/qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "results/scalar-si-baseline/B0/dftk.stderr": "e2e8e34beba576847cb55010f3d8de5c333fcedd9c63b69117e9f8dfd917f0ce",
+      "benchmarks/si-sr-lda/case.json": "2f7aaf914ef6db5ccfa4c81a124b24c5bd32b27383d95c756c97266a22b63f65"
+    },
+    "original_sources": [
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/qe-data-file-schema.xml",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "fe765a7437d576768918b0e8763d5d513f519c7b",
+        "sha256": "8968708589fc1976c5d80063ac94e36966d4f545a934378eac27e8562edbe6b8",
+        "bytes": 43964
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/qe.stdout",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "c584c908ac909b93ef07e3659159c72d931cd494",
+        "sha256": "90ebc31737a861254587ae40f4b3712df3d0967e5b36e9022d03c8bb69fb4b14",
+        "bytes": 16963
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/dftk.stdout",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "94d1a96798c60da91c3c5751381e3e2305ff238e",
+        "sha256": "f8ba5523e76fb3636e5d9048d78831ea40a09144dece2fb9efc6211b2677c04d",
+        "bytes": 776
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/dftk-result.json",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "fd72c14d3fc0df550cec4e06b9d22fd9bc622450",
+        "sha256": "75565cc116787bb4cedc978c92e45bc4e64b5c7c4a20bc22e4657bb5881054af",
+        "bytes": 14214
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/qe.in",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "fe2d605b2297ba14b8abf1f8e9795a0677bed9db",
+        "sha256": "f634604331eab32dfc03daab4fb6c7abb704cbe75dd6c6f1b7c03feb47675fe2",
+        "bytes": 671
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/dftk-input.json",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "39eface1574e08bf4901b7fc31199b8d2e47c90d",
+        "sha256": "618f46548779453dae52ed3a01a3a87d066ddf8583e5ea1b83f220670a07c87e",
+        "bytes": 3732
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/case.json",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "9513876d16d2b7283ca52a22e0145aa85e436f3f",
+        "sha256": "2f7aaf914ef6db5ccfa4c81a124b24c5bd32b27383d95c756c97266a22b63f65",
+        "bytes": 3474
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/qe-result.json",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "5e0ab83bfc4415984cf590ca9997c275a05afa91",
+        "sha256": "192426eba37e17f89a093fa33f036f31a91312a5e1ee0f3cd0fcef7d5cd091b4",
+        "bytes": 10135
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/result.json",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "83c560c87682a7acc17e7b0a2dd38702ef261f34",
+        "sha256": "6458593dfd9bc01d2d83c032fb305b9f69aeb32dbbcfa697a7b08081fe7a5113",
+        "bytes": 6624
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/evidence-manifest.json",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "f022c77adea39d1818f81496e3f2c16c43ca2b15",
+        "sha256": "e1f20a7a0ee4c9bf8afad834600100e120b715fbb3002d8f88cb5816a4dbbf1c",
+        "bytes": 6253
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/qe.stderr",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "095b72f3c4a0ea9448197521b6a81e34a3fcd950",
+        "sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+        "bytes": 119
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/dftk.stderr",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "ce0efe336eb600ec15659103fd39f96e9a29574b",
+        "sha256": "e2e8e34beba576847cb55010f3d8de5c333fcedd9c63b69117e9f8dfd917f0ce",
+        "bytes": 106
+      },
+      {
+        "original_path": "results/phase4b/20260905T040945688395Z-1cc8a50c/comparison.json",
+        "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+        "git_blob": "fe4c15b3b69eb12be31ac9c652b4d75fa9cbc9f9",
+        "sha256": "b5815bd919837b99531a2194a2fdaae8f7bf9f8ab8a63baef8e8fd1d47e9f2ca",
+        "bytes": 30467
+      }
+    ],
+    "qe_reparse_canonical_sha256": "abc85d4e390f38c8c0894d3a9e46d0b7e7e9516ec243a2bdc7675fdc9b481237",
+    "warning_streams": {
+      "qe.stderr": {
+        "path": "results/scalar-si-baseline/B0/qe.stderr",
+        "sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+        "occurred_in_this_run": true
+      },
+      "dftk.stderr": {
+        "path": "results/scalar-si-baseline/B0/dftk.stderr",
+        "sha256": "e2e8e34beba576847cb55010f3d8de5c333fcedd9c63b69117e9f8dfd917f0ce",
+        "occurred_in_this_run": true
+      }
+    },
+    "execution_code_provenance_limit": "Original run did not record executed script hashes; accepted snapshot and loaded package/executable identities are retained separately.",
+    "historical_raw_manifest": {
+      "files": [
+        {
+          "file": "case.json",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/case.json",
+          "raw_sha256": "2f7aaf914ef6db5ccfa4c81a124b24c5bd32b27383d95c756c97266a22b63f65",
+          "published_sha256": "2f7aaf914ef6db5ccfa4c81a124b24c5bd32b27383d95c756c97266a22b63f65",
+          "redacted": false
+        },
+        {
+          "file": "dftk-input.json",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/dftk-input.json",
+          "raw_sha256": "618f46548779453dae52ed3a01a3a87d066ddf8583e5ea1b83f220670a07c87e",
+          "published_sha256": "618f46548779453dae52ed3a01a3a87d066ddf8583e5ea1b83f220670a07c87e",
+          "redacted": false
+        },
+        {
+          "file": "qe.in",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/qe.in",
+          "raw_sha256": "f634604331eab32dfc03daab4fb6c7abb704cbe75dd6c6f1b7c03feb47675fe2",
+          "published_sha256": "f634604331eab32dfc03daab4fb6c7abb704cbe75dd6c6f1b7c03feb47675fe2",
+          "redacted": false
+        },
+        {
+          "file": "result.json",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/result.json",
+          "raw_sha256": "efe94c8ad9e1f225729fa9c5d5f5c6894c4ea0b881ce329a7d3cf84d8f274f86",
+          "published_sha256": "6458593dfd9bc01d2d83c032fb305b9f69aeb32dbbcfa697a7b08081fe7a5113",
+          "redacted": true
+        },
+        {
+          "file": "dftk-result.json",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/dftk-result.json",
+          "raw_sha256": "75565cc116787bb4cedc978c92e45bc4e64b5c7c4a20bc22e4657bb5881054af",
+          "published_sha256": "75565cc116787bb4cedc978c92e45bc4e64b5c7c4a20bc22e4657bb5881054af",
+          "redacted": false
+        },
+        {
+          "file": "qe-result.json",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/qe-result.json",
+          "raw_sha256": "192426eba37e17f89a093fa33f036f31a91312a5e1ee0f3cd0fcef7d5cd091b4",
+          "published_sha256": "192426eba37e17f89a093fa33f036f31a91312a5e1ee0f3cd0fcef7d5cd091b4",
+          "redacted": false
+        },
+        {
+          "file": "comparison.json",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/comparison.json",
+          "raw_sha256": "b5815bd919837b99531a2194a2fdaae8f7bf9f8ab8a63baef8e8fd1d47e9f2ca",
+          "published_sha256": "b5815bd919837b99531a2194a2fdaae8f7bf9f8ab8a63baef8e8fd1d47e9f2ca",
+          "redacted": false
+        },
+        {
+          "file": "eigenvalues.csv",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/eigenvalues.csv",
+          "raw_sha256": "61f58c220645bb49c683617cc6ee117dd565e4e382ead1f6e9b5ac46d994c16d",
+          "published_sha256": "9539d380e6db95779bb4efe92e352fb22dbd233a32d014c247a59a9cd35add5b",
+          "redacted": true
+        },
+        {
+          "file": "workbench-identity.stdout",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/workbench-identity.stdout",
+          "raw_sha256": "6cb6a08eb6371c2022e0665e71df361c6d616e7931988fe954ac5e5c9ab63b28",
+          "published_sha256": "6cb6a08eb6371c2022e0665e71df361c6d616e7931988fe954ac5e5c9ab63b28",
+          "redacted": false
+        },
+        {
+          "file": "workbench-identity.stderr",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/workbench-identity.stderr",
+          "raw_sha256": "005edbdea6d7d95c1daf519b9aea4347ae09635639a2203a1074982382e037e7",
+          "published_sha256": "005edbdea6d7d95c1daf519b9aea4347ae09635639a2203a1074982382e037e7",
+          "redacted": false
+        },
+        {
+          "file": "qe-jll-probe.stdout",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/qe-jll-probe.stdout",
+          "raw_sha256": "e49cdae2220af2a9c2ff040baed41785327331849022afd8a8c6a9e37e1eb742",
+          "published_sha256": "7948d5f65d693462061abccaca6ee2734499d33549c2c413dc4548a078c61d15",
+          "redacted": true
+        },
+        {
+          "file": "qe-jll-probe.stderr",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/qe-jll-probe.stderr",
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "redacted": false
+        },
+        {
+          "file": "dftk.stdout",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/dftk.stdout",
+          "raw_sha256": "25a601659d1c2c76467cd7a77f0ff1c18369e45f8aefff658af98fe73f387e83",
+          "published_sha256": "f8ba5523e76fb3636e5d9048d78831ea40a09144dece2fb9efc6211b2677c04d",
+          "redacted": true
+        },
+        {
+          "file": "dftk.stderr",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/dftk.stderr",
+          "raw_sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+          "published_sha256": "e2e8e34beba576847cb55010f3d8de5c333fcedd9c63b69117e9f8dfd917f0ce",
+          "redacted": true
+        },
+        {
+          "file": "qe.stdout",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/qe/qe.stdout",
+          "raw_sha256": "aa19c54be579709d95b42e467dad6fd8e77728823af8ac1874ea1fccec045312",
+          "published_sha256": "90ebc31737a861254587ae40f4b3712df3d0967e5b36e9022d03c8bb69fb4b14",
+          "redacted": true
+        },
+        {
+          "file": "qe.stderr",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/qe/qe.stderr",
+          "raw_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+          "published_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+          "redacted": false
+        },
+        {
+          "file": "qe-data-file-schema.xml",
+          "raw_path": "<workbench>/.work/scalar-baseline/20260905T040945688395Z-1cc8a50c/qe/scratch/si.save/data-file-schema.xml",
+          "raw_sha256": "8968708589fc1976c5d80063ac94e36966d4f545a934378eac27e8562edbe6b8",
+          "published_sha256": "8968708589fc1976c5d80063ac94e36966d4f545a934378eac27e8562edbe6b8",
+          "redacted": false
+        }
+      ],
+      "note": "Original raw bytes remain unchanged in ignored directories. Published text redacts private paths and removes trailing line whitespace; both byte hashes are recorded separately."
+    }
+  },
+  "qe_build_identity": {
+    "binary_sha256_verified_after_run": true,
+    "artifact_git_tree_sha1": "273d3312b2a70e6223250dbf4a39ab3f28b04104",
+    "artifact_metadata_sha256": "ece6b4c553f67e379ef60f097aefe2dfacb651146c46c15e8f9ca7001680a9b3",
+    "architecture": "aarch64",
+    "os": "macos",
+    "libgfortran_version": "5.0.0",
+    "mpi": "mpich",
+    "artifact_download_url": "https://github.com/JuliaBinaryWrappers/QuantumEspresso_jll.jl/releases/download/QuantumEspresso-v7.5.1+0/QuantumEspresso.v7.5.1.aarch64-apple-darwin-libgfortran5-mpi+mpich.tar.gz",
+    "artifact_download_sha256": "93428e2fe1a67dc8fc8d762a1e4ef2f3c3b13083d5a304d316d7ef47225c9c32",
+    "binary_startup_version": "7.5",
+    "jll_package_version": "7.5.1+0",
+    "source_commit": null,
+    "source_commit_status": "NOT_CONFIRMED",
+    "installation_changed": false
+  },
+  "qe_build_identity_source": {
+    "original_path": "results/phase4b/preflight/qe-build-identity.json",
+    "accepted_snapshot_commit": "8658992afa936f6cdb1a8055699ae9aa47b32297",
+    "git_blob": "121f80a27720abc1e9ede2581a342fc392e40734",
+    "sha256": "1465b1c2c68f534750a2c6622fccee3f735fa25755d97dcb986cd8b60c5ccd60",
+    "bytes": 794
+  },
+  "unchanged_numerical_files": {
+    "scripts/parse_qe_baseline.py": "689c9b51f4e619eee6977caa8548c2f14b3a6e8438b6ee5e51e309f54aa9a639",
+    "scripts/compare_scalar_baseline.py": "8aaeede98d4195a15b89a4e3a44af83ba70438d52955568d3492e0372f6f44ae",
+    "scripts/inspect_si_reference.py": "66a11d005ee6e7a360d589926e15fc02da5b7c3fc163dd7f1c7fe2271ae65ab3",
+    "scripts/run_dftk_baseline.jl": "2c0d5a2efcd9bd26db5be67b715c7b36949e4f464914b44dda5547bfd56ee0e0"
+  }
+}

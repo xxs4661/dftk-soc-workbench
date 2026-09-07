@@ -1,7 +1,7 @@
-# DFTK benchmark inputs
+# DFTK case entry points
 
-This directory is reserved for future DFTK input files and concise run instructions. Phase 1 does not modify or vendor DFTK source code and contains no SOC implementation.
-
-Begin with a scalar-relativistic baseline that mirrors the physical and numerical choices in [`../qe/`](../qe/README.md). A later spinor path may be added only after its interfaces exist and its status is stated accurately.
-
-Inputs should pin the DFTK commit, Julia version, project dependencies, pseudopotential identifier and SHA-256 checksum, cutoff, explicit k-points, occupations, XC functional, convergence thresholds, and requested observables. Keep `Manifest.toml`, downloaded packages, pseudopotential files, and large calculation outputs outside version control.
+Current inputs live in the [Si cases](../si-sr-lda/README.md) and the
+[prototype modules](../../scripts/README.md). This directory does not contain a
+second input set. Use the dedicated [frozen environment](../../environment/workbench/README.md),
+including the versioned workbench Manifest; downloaded sources and caches stay ignored.
+See [current capabilities](../../docs/status.md) before interpreting prototype results.

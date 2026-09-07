@@ -1,6 +1,6 @@
 # Local macOS benchmark environment template
 
-Run these commands from the workbench repository root on the Mac that will execute a benchmark. Phase 2 did run in a local macOS workspace, but this file remains an unfilled template for future runs; the actual Phase 2 observations are in [`../results/environment-summary.md`](../results/environment-summary.md).
+Run these commands from the workbench repository root on the Mac that will execute a benchmark. Phase 2 did run in a local macOS workspace, but this file remains an unfilled template for future runs; the actual Phase 2 observations are in [the fixed historical report](https://github.com/xxs4661/dftk-soc-workbench/blob/8658992afa936f6cdb1a8055699ae9aa47b32297/results/environment-summary.md).
 
 ## Collection commands
 

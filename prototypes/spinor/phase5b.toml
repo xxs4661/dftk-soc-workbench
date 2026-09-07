@@ -1,0 +1,63 @@
+schema_version = 1
+phase = "5B"
+precision = "Float64 / ComplexF64"
+scope = "B0 charge-only unpolarized LDA spinor SCF workbench prototype; no SOC"
+
+[scf]
+alpha = 0.3
+max_maps = 200
+
+[solver]
+target_states = 16
+auxiliary_states = 6
+tolerance_ha = 1e-10
+maxiter = 300
+preconditioner_shift_ha = 1.0
+
+[initialization]
+seed_a = 54001
+seed_b = 55001
+perturbation_amplitude = 0.01
+perturbation_reciprocal_vector = [1, 2, 3]
+normalization = "One explicit initialization-only scaling to eight valence electrons; no iterative renormalization"
+
+[scalar]
+seed = 0
+density_tolerance = 1e-9
+maxiter = 150
+target_states = 8
+auxiliary_states = 3
+diagonalization_tolerance_ha = 1e-10
+
+[finite_difference]
+kpoint_index = 1
+occupied_state = 1
+empty_state = 9
+center_angle_rad = 0.13
+steps_rad = [1e-3, 3e-4, 1e-4]
+minimum_nonstationary_derivative_ha_per_rad = 1e-5
+
+[acceptance]
+density_fixedpoint_l2 = 1e-9
+explicit_residual_ha = 1e-9
+self_density_residual_ha = 1e-7
+orthogonality_frobenius = 1e-9
+electron_count_abs = 1e-8
+pauli_density_relative_l2 = 1e-7
+density_vs_scalar_relative_l2 = 1e-7
+total_energy_vs_scalar_abs_ha_cell = 1e-7
+energy_component_abs_ha_cell = 1e-6
+a_vs_b_energy_abs_ha_cell = 1e-7
+energy_identity_abs_ha_cell = 1e-9
+spectrum_max_abs_ha = 1e-6
+directional_derivative_normalized = 1e-6
+
+[norms]
+density_fixedpoint = "sqrt(dvol)*norm(n_out-n_in); never multiply the acceptance residual by alpha"
+mixing_step = "sqrt(dvol)*norm(n_mixed-n_in); n_mixed=(1-alpha)*n_in+alpha*n_out. Actual n_next uses candidate n_out for the explicit closure map, otherwise n_mixed; record its step separately."
+density_relative = "norm(spinor_n-scalar_n)/norm(scalar_n), strictly positive reference norm"
+pauli_relative = "norm(m)/norm(n), strictly positive measured spinor valence charge-density norm"
+negativity_roundoff = "Reject minimum(n)<-64*eps(Float64)*max(1,maximum(abs,n)); never clip"
+directional_derivative = "abs(numeric-analytic)/max(1,abs(analytic)); Ha/cell and radians"
+orthogonality = "Frobenius norm of target X'X-I"
+orbitals = "component-interleaved ComplexF64; component norms sum to one per state"
