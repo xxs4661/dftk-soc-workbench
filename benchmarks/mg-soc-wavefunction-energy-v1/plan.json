@@ -1,0 +1,1355 @@
+{
+  "schema_version": 1,
+  "phase": "7F",
+  "case": "mg-soc-wavefunction-energy-v1",
+  "base_commit": "28e67d4aca41e11b38a6364503e2dbacc0dd1ee4",
+  "branch": "codex/phase7f-wavefunction-energy-audit",
+  "created_utc": "2026-09-07T17:20:58.315532+00:00",
+  "historical_binding_plan": "benchmarks/mg-soc-density-hartree-v1/plan.json",
+  "physical": {
+    "lattice_vectors_bohr": [
+      [
+        10.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        10.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        10.0
+      ]
+    ],
+    "volume_bohr3": 1000.0,
+    "atoms": 1,
+    "element": "Mg",
+    "position_fractional": [
+      0.17,
+      0.23,
+      0.31
+    ],
+    "expected_electrons": 10.0,
+    "functionals": [
+      "gga_x_pbe_sol",
+      "gga_c_pbe_sol"
+    ],
+    "nlcc": false,
+    "ecut_ha": 15.0,
+    "fft_size": [
+      40,
+      40,
+      40
+    ],
+    "tau_ha": 0.001,
+    "kpoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.125,
+        0.0625,
+        -0.1875
+      ],
+      [
+        -0.125,
+        -0.0625,
+        0.1875
+      ]
+    ],
+    "kweights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "charge_spin_components": 1,
+    "target_states": 24,
+    "n_states": 24,
+    "occupation_capacity": 1,
+    "pseudopotential_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256"
+  },
+  "thresholds": {
+    "reciprocal_duality_abs": 1e-12,
+    "k_cart_abs_bohr_inv": 1e-12,
+    "cutoff_slack_ha": 1e-10,
+    "state_norm_abs": 1e-09,
+    "gram_frobenius": 1e-09,
+    "electron_count_abs": 1e-08,
+    "kinetic_paths_abs_ha": 1e-09,
+    "kinetic_history_abs_ha": 1e-09,
+    "q_density_coefficient_max_abs": 1e-10,
+    "q_density_nonzero_relative_l2": 1e-09,
+    "ab_density_relative_l2": 1e-09,
+    "ab_density_node_max_abs": 1e-10,
+    "direct_correlation_abs": 1e-11,
+    "analytic_normalized": 1e-12,
+    "ledger_abs_ha": 1e-10,
+    "nonlocal_contraction_abs_ha": 1e-10,
+    "historical_nonlocal_abs_ha": 1e-09
+  },
+  "sources": {
+    "A": {
+      "run_id": "20260906T151940Z-A-270110aa",
+      "role": "primary",
+      "source_status": "HISTORICAL_REUSED",
+      "format": "Julia Serialization; plain NamedTuple",
+      "checkpoint": {
+        "path": ".work/phase6c/20260906T151940Z-A-270110aa/final.bin",
+        "sha256": "5b138d68662fc6451ffd8b78bbd71939454ca30f8ad014623cb1d8e6720f5451",
+        "bytes": 13054344
+      },
+      "receipt": {
+        "path": ".work/phase6c/20260906T151940Z-A-270110aa/result.json",
+        "sha256": "9942aabe50daf12f581433f9f222a78a8254d8c538335e6a931975176bce8fd5",
+        "bytes": 56526
+      },
+      "maps": {
+        "path": ".work/phase6c/20260906T151940Z-A-270110aa/maps.jsonl",
+        "sha256": "393291a022437348aab1a73a7130538f6e6a039bd27d33e99f3f6f4b97099991",
+        "bytes": 3843367
+      },
+      "endpoint": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de"
+      },
+      "historical_evidence_path": "results/mg-soc-scf/evidence.json",
+      "energy_state": "n_out",
+      "closure_state": "n_in versus n_out"
+    },
+    "B": {
+      "run_id": "20260906T153016Z-B-62835d43",
+      "role": "auxiliary",
+      "source_status": "HISTORICAL_REUSED",
+      "format": "Julia Serialization; plain NamedTuple",
+      "checkpoint": {
+        "path": ".work/phase6c/20260906T153016Z-B-62835d43/final.bin",
+        "sha256": "ff91020614a30d40a226194b95f041ee6120c1fb8398ad685712ca41ff4dddd9",
+        "bytes": 13054344
+      },
+      "receipt": {
+        "path": ".work/phase6c/20260906T153016Z-B-62835d43/result.json",
+        "sha256": "3ba4ff5ea1328c02e90aa2177ad352cf4c2ec4ac644dd7392016c5fcf1804db9",
+        "bytes": 56590
+      },
+      "maps": {
+        "path": ".work/phase6c/20260906T153016Z-B-62835d43/maps.jsonl",
+        "sha256": "e251d8df3e3087dba297181640a5eac9e9369ab9a37ec9685c664ea763d3d8ca",
+        "bytes": 3843505
+      },
+      "endpoint": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7"
+      },
+      "historical_evidence_path": "results/mg-soc-scf/evidence.json",
+      "energy_state": "n_out",
+      "closure_state": "n_in versus n_out"
+    },
+    "G40": {
+      "run_id": "20260907T112107073262Z-G40-3f9731a6",
+      "role": "QE original SCF saved charge",
+      "source_status": "HISTORICAL_REUSED",
+      "manifest_sha256": "70a3235baa0a7361ac7fe57fa6b76ff795670c3f6a91b472156d3a6a10d3a2e4",
+      "manifest_evidence_path": "results/mg-soc-qe-diagnostics/evidence.json",
+      "manifest_evidence_field": "raw_backup.manifest_sha256",
+      "files": {
+        "scratch/mg_soc_qe_v1.save/charge-density.dat": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/charge-density.dat",
+          "sha256": "b93c254aa6972cf3c559fb8f85a630c0699e2eefe4382772a9203d11fcaa5359",
+          "bytes": 619448
+        },
+        "scratch/mg_soc_qe_v1.save/data-file-schema.xml": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/data-file-schema.xml",
+          "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+          "bytes": 42675
+        },
+        "result.json": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/result.json",
+          "bytes": 360,
+          "sha256": "c645cbc3c43ed770962fba8e0cd82a6908e94b64bbe9a7f4035debfa0f44d5f0"
+        },
+        "save-snapshot.json": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/save-snapshot.json",
+          "bytes": 515,
+          "sha256": "eb1f6dbf86f0698cbf36d71e3e922fe10057d72cb8d062ff155cd4114bc7d121"
+        },
+        "qe.in": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/qe.in",
+          "bytes": 988,
+          "sha256": "793d30bc6c0f3ee214ca8f6cc8ed0aa88a879ffc4284536ccf7e8584287b1677"
+        },
+        "process-exit.json": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/process-exit.json",
+          "bytes": 99,
+          "sha256": "66b8d9b53a2362ed9e133f89e8c08579f86c2083da4f71b8bb812db3e4314c19"
+        },
+        "pseudo/Mg.upf": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/pseudo/Mg.upf",
+          "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+          "bytes": 252203
+        },
+        "qe-data-file-schema.xml": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/qe-data-file-schema.xml",
+          "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+          "bytes": 42675
+        },
+        "scratch/mg_soc_qe_v1.save/Mg.upf": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/Mg.upf",
+          "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+          "bytes": 252203
+        },
+        "scratch/mg_soc_qe_v1.save/wfc1.dat": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/wfc1.dat",
+          "sha256": "d56c746b2875764923cd09cf3ee27e70ac59a9780c193c45fd40f766353be485",
+          "bytes": 2166416
+        },
+        "scratch/mg_soc_qe_v1.save/wfc2.dat": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/wfc2.dat",
+          "sha256": "a583623ef9802ac040282539c71d40bf7b67cb5948977fcad55eb338b5c616af",
+          "bytes": 2160956
+        },
+        "scratch/mg_soc_qe_v1.save/wfc3.dat": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/wfc3.dat",
+          "sha256": "13b2987d722061a639d3285b77a815336433eae04bd5274093c423f347956a3a",
+          "bytes": 2160956
+        },
+        "scratch/mg_soc_qe_v1.xml": {
+          "path": "20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.xml",
+          "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+          "bytes": 42675
+        }
+      },
+      "expected_ngm": 22119,
+      "expected_gamma_only": false,
+      "expected_nspin": 1,
+      "energy_state": "converged unmixed output rho, v_of_rho then write_scf (tagged source convention; installed exact QE source commit unavailable)",
+      "density_cutoff_ha": 60.0
+    }
+  },
+  "source_sha256": {
+    "results/mg-soc-scf/evidence.json": "437e2424d8ce7d8d11b5732b7b52815910853d7d43307215b5fbc466e321e243",
+    "results/mg-soc-qe-diagnostics/canonical.json": "549023435154cdedd1bd568e649f4935455f7c1478638b0fa9dd74d300d58551",
+    "results/mg-soc-qe-diagnostics/evidence.json": "12782022024f1e00fb9a834863685ffab871dadd1b8fbeec5617d2021fc287c2",
+    "results/mg-soc-density-hartree/comparison.json": "eef425149d63aafa6b1996b50ead09c8fcbfd8edd148130ca9256c1e1bfb0c38",
+    "results/mg-soc-density-hartree/evidence.json": "8dc5d15e512ed1a3923b51ade2690db6ce9201876f77e2549ab7c4e486daa084",
+    "benchmarks/mg-soc-density-hartree-v1/plan.json": "7f1d157de21c89046f4257c1a391432d0e970625b037d444b330521e9d91b428",
+    "benchmarks/mg-soc-density-hartree-v1/source-conventions.md": "460be8197887f900af64bd0d334aa51885554ab64b24c1cd6bc27de603a5e59a",
+    "benchmarks/mg-soc-qe-diagnostics-v1/G40.in": "793d30bc6c0f3ee214ca8f6cc8ed0aa88a879ffc4284536ccf7e8584287b1677",
+    "benchmarks/mg-soc-fermi/parameters.json": "560ce58d1906b344b4ae9db82d52abb44026c4c23d23a3eb895580dbf5252f8e",
+    "benchmarks/mg-soc-qe-v1/case.json": "d6909ab6fc42aebab68486959df974ee9301b0dafa75b3d6a2bbe5304c9ef3c4",
+    "config/sources.lock": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "environment/workbench/Project.toml": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "environment/workbench/Manifest.toml": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "environment/workbench/checksums.toml": "3a0cb9974084e96224a77baf167ed653bf4e435714dbc6c8a0578ac84006f180",
+    "results/mg-soc-scf/A/endpoint.json": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+    "results/mg-soc-scf/B/endpoint.json": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+    "results/mg-soc-qe-diagnostics/G40/qe.xml": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+    "results/mg-soc-qe-diagnostics/G40/qe.stdout": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+    "results/mg-soc-qe-diagnostics/G40/qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "results/mg-soc-density-hartree/dftk-nout.csv.gz": "5a395b2d7312bc42a81bc7fcfa03ecad41ec7d71b8d9295eb1d1a5912d4e298a",
+    "results/mg-soc-density-hartree/qe-rho.csv.gz": "b3985df7971c2ecd0c8f94afd6a86cabbfa6fcad27894f0666d71c71382a6568",
+    "benchmarks/mg-soc-energy-reference-v1/plan.json": "bc05068d22cc0e409f75d3cb403fdfbca72ce47d88426eac4d957c2e623c0687",
+    "results/mg-soc-energy-reference/evidence.json": "bf11084b145793f250cbc3cd7d7eeb9bdb8fb0f2e417edebac3b6f5e8343aed5",
+    "results/mg-soc-energy-reference/common-terms.json": "238340ab5b7dd2885260f13d38f1bfc8874fd83aa510de2cc713bee3587064ce",
+    "results/mg-soc-energy-reference/ledger.json": "ccce1790aceac94437e50fd4eef29434aecd764e593b35160fe4553af0fa951b",
+    "results/mg-soc-energy-reference/comparison.json": "7a151d4f76ab91a42276ef528eb5dd24b4359623e96d38e5b355370d97a0a865",
+    "results/mg-soc-energy-reference/local-g0.json": "7a1f75c0e6ccb723ad390f20344e21769d044b8fc543f5a6ebdcfae7cb724300",
+    "results/mg-soc-qe-local-potential/evidence.json": "9ab512079b0dce0d2f871a06a829e22f33d229913ffea4a511c35404121cc13a",
+    "results/mg-soc-qe-local-potential/comparison.json": "f93c78a88e6d8cbb7a2dc421b405c23bbff928a77853656874efb517575eb4b3",
+    "results/mg-soc-qe-local-potential/saved-field-receipt.json": "7cbd64f765d157fb28175e9d98b9eee2f8d9b7ed99f4aa98a99dd9d5cd025388",
+    "results/mg-soc-qe-local-potential/P2/local-ionic.pp.gz": "f24d3084238019b5a4dd95147a9bd82ca997aa3114d89624db91cb9a7ff50d8c",
+    "results/mg-soc-qe-local-potential/potentials.csv.gz": "18c3e3f6fa9e986fcea1214672d287b8413c70e24d7425ed92ef34976829020b",
+    "benchmarks/mg-soc-qe-local-potential-v1/plan.json": "ea225f5eed7e691450e45e3801fc81dd6c2e5db174e1daaf9cdcf5055aad5c37",
+    "scripts/extract_soc_density.jl": "bacb2f32ea8e80d1783369cca7c1b6fc78087647b8335c5132f74c9710d30fc8",
+    "scripts/parse_qe_filplot.py": "b29bcf0efc3acd66519ee8be09d0217a0be1a341125f9f58d7fb1756d154ff6c",
+    "prototypes/relativistic/channels.jl": "15950a9168504dac483bcdc9c588e9db0555ea547f77b34163a491d07ba0bb10",
+    "prototypes/relativistic/RelativisticProjectors.jl": "c24c2382e5bb112bc428fd59ce1995e6470caa25e657030f67aefa34d45b5de5",
+    "prototypes/relativistic/radial.jl": "2384619bc8fcd437fd455e7f13442cfe1e2f88dbd2eeda94cf02a134f9d3c292",
+    "prototypes/relativistic/operator.jl": "b7d8ac06984de7ae3485fa70b9243fcd3c074804dc7343d172c5c0295472ca5c",
+    "prototypes/relativistic/probe_checks.jl": "1ba37ea0d145d4d2d5c1c2cf333440363d17a1e32e09c9edd18a7e983aeb8556",
+    "prototypes/relativistic/angular.jl": "1428a4a6a50f9f68cfa0f099827d0a606cceab1d7d72be4247062bf41fe2eb63"
+  },
+  "identity": {
+    "dftk_construction_status": "NOT_RUN",
+    "overall_status": "PASS",
+    "parse_status": "NOT_RUN",
+    "action": "identity",
+    "metadata_validation_status": "NOT_RUN",
+    "environment": {
+      "project_sha256": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+      "julia_version": "1.12.7",
+      "packages": {
+        "dftk": {
+          "worktree_status": "clean",
+          "expected_uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+          "expected_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+          "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+          "uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+          "expected_path": "<workbench>/.work/DFTK.jl/src/DFTK.jl",
+          "checkout": "<workbench>/.work/DFTK.jl",
+          "expected_version": "0.8.0",
+          "version": "0.8.0",
+          "path": "<workbench>/.work/DFTK.jl/src/DFTK.jl"
+        },
+        "pseudopotentialio": {
+          "worktree_status": "clean",
+          "expected_uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+          "expected_commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+          "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+          "uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+          "expected_path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl",
+          "checkout": "<workbench>/.work/PseudoPotentialIO.jl",
+          "expected_version": "0.3.3",
+          "version": "0.3.3",
+          "path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl"
+        }
+      },
+      "active_project": "<workbench>/environment/workbench/Project.toml",
+      "status": "PASS",
+      "source_lock_sha256": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+      "active_manifest": "<workbench>/environment/workbench/Manifest.toml",
+      "manifest_sha256": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+      "reasons": []
+    },
+    "schema_version": 2,
+    "exit_code": 0,
+    "reasons": [],
+    "worker_exit_code": 0,
+    "command": [
+      "julia",
+      "--startup-file=no",
+      "--color=no",
+      "--project=<workbench>/environment/workbench",
+      "<workbench>/scripts/inspect_relativistic_upf.jl",
+      "--check-environment"
+    ],
+    "run_id": "20260907T170824813487Z-779a32ae"
+  },
+  "original_binding": {
+    "status": "PASS",
+    "checked_utc": "2026-09-07T17:20:58.315532+00:00",
+    "scope": "read-only current originals versus previously bound same-machine external archives",
+    "files": [
+      {
+        "current": ".work/phase6c/20260906T151940Z-A-270110aa/final.bin",
+        "archive_label": "phase7c-20260907T131310Z",
+        "archive_relative": "raw/historical-sources/A/final.bin",
+        "sha256": "5b138d68662fc6451ffd8b78bbd71939454ca30f8ad014623cb1d8e6720f5451",
+        "bytes": 13054344
+      },
+      {
+        "current": ".work/phase6c/20260906T151940Z-A-270110aa/result.json",
+        "archive_label": "phase7c-20260907T131310Z",
+        "archive_relative": "raw/historical-sources/A/result.json",
+        "sha256": "9942aabe50daf12f581433f9f222a78a8254d8c538335e6a931975176bce8fd5",
+        "bytes": 56526
+      },
+      {
+        "current": ".work/phase6c/20260906T151940Z-A-270110aa/maps.jsonl",
+        "archive_label": "phase7c-20260907T131310Z",
+        "archive_relative": "raw/historical-sources/A/maps.jsonl",
+        "sha256": "393291a022437348aab1a73a7130538f6e6a039bd27d33e99f3f6f4b97099991",
+        "bytes": 3843367
+      },
+      {
+        "current": ".work/phase6c/20260906T153016Z-B-62835d43/final.bin",
+        "archive_label": "phase7c-20260907T131310Z",
+        "archive_relative": "raw/historical-sources/B/final.bin",
+        "sha256": "ff91020614a30d40a226194b95f041ee6120c1fb8398ad685712ca41ff4dddd9",
+        "bytes": 13054344
+      },
+      {
+        "current": ".work/phase6c/20260906T153016Z-B-62835d43/result.json",
+        "archive_label": "phase7c-20260907T131310Z",
+        "archive_relative": "raw/historical-sources/B/result.json",
+        "sha256": "3ba4ff5ea1328c02e90aa2177ad352cf4c2ec4ac644dd7392016c5fcf1804db9",
+        "bytes": 56590
+      },
+      {
+        "current": ".work/phase6c/20260906T153016Z-B-62835d43/maps.jsonl",
+        "archive_label": "phase7c-20260907T131310Z",
+        "archive_relative": "raw/historical-sources/B/maps.jsonl",
+        "sha256": "e251d8df3e3087dba297181640a5eac9e9369ab9a37ec9685c664ea763d3d8ca",
+        "bytes": 3843505
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/case.json",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/case.json",
+        "sha256": "e69c75ef5495c6a053c76d625e87ee32c08def13ca7e4ae3e29b21c0f12ffbff",
+        "bytes": 8006
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/identity-after/qe-jll-probe.stderr",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/identity-after/qe-jll-probe.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/identity-after/qe-jll-probe.stdout",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/identity-after/qe-jll-probe.stdout",
+        "sha256": "e49cdae2220af2a9c2ff040baed41785327331849022afd8a8c6a9e37e1eb742",
+        "bytes": 390
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/preflight.json",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/preflight.json",
+        "sha256": "5e339c21f09f880ad26205e4191974b93710b2dc80b5846c1ad81611f9852771",
+        "bytes": 3430
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/process-exit.json",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/process-exit.json",
+        "sha256": "66b8d9b53a2362ed9e133f89e8c08579f86c2083da4f71b8bb812db3e4314c19",
+        "bytes": 99
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/process-start.json",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/process-start.json",
+        "sha256": "cfd28f9bba2bb9cf8b5afeb221d6377737615cdb308cc35efc249fe52a3adfab",
+        "bytes": 149
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/pseudo/Mg.upf",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/pseudo/Mg.upf",
+        "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+        "bytes": 252203
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/qe-data-file-schema.xml",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/qe-data-file-schema.xml",
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "bytes": 42675
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/qe-jll-probe.stderr",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/qe-jll-probe.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/qe-jll-probe.stdout",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/qe-jll-probe.stdout",
+        "sha256": "e49cdae2220af2a9c2ff040baed41785327331849022afd8a8c6a9e37e1eb742",
+        "bytes": 390
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/qe-result.json",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/qe-result.json",
+        "sha256": "8b36bb4d262ac7374fc665690c220f66d6c23f520e5744662b948bc9200b6f6f",
+        "bytes": 31152
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/qe.in",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/qe.in",
+        "sha256": "793d30bc6c0f3ee214ca8f6cc8ed0aa88a879ffc4284536ccf7e8584287b1677",
+        "bytes": 988
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/qe.stderr",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/qe.stderr",
+        "sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+        "bytes": 119
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/qe.stdout",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/qe.stdout",
+        "sha256": "3b5684faa56ec93fa87592d4df8c30a509adcde769622310e0295c94a7dbd038",
+        "bytes": 20913
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/result.json",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/result.json",
+        "sha256": "c645cbc3c43ed770962fba8e0cd82a6908e94b64bbe9a7f4035debfa0f44d5f0",
+        "bytes": 360
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/save-snapshot.json",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/save-snapshot.json",
+        "sha256": "eb1f6dbf86f0698cbf36d71e3e922fe10057d72cb8d062ff155cd4114bc7d121",
+        "bytes": 515
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/Mg.upf",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/Mg.upf",
+        "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+        "bytes": 252203
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/charge-density.dat",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/charge-density.dat",
+        "sha256": "b93c254aa6972cf3c559fb8f85a630c0699e2eefe4382772a9203d11fcaa5359",
+        "bytes": 619448
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/data-file-schema.xml",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/data-file-schema.xml",
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "bytes": 42675
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/wfc1.dat",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/wfc1.dat",
+        "sha256": "d56c746b2875764923cd09cf3ee27e70ac59a9780c193c45fd40f766353be485",
+        "bytes": 2166416
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/wfc2.dat",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/wfc2.dat",
+        "sha256": "a583623ef9802ac040282539c71d40bf7b67cb5948977fcad55eb338b5c616af",
+        "bytes": 2160956
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/wfc3.dat",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.save/wfc3.dat",
+        "sha256": "13b2987d722061a639d3285b77a815336433eae04bd5274093c423f347956a3a",
+        "bytes": 2160956
+      },
+      {
+        "current": ".work/phase7b/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.xml",
+        "archive_label": "phase7b-20260907T111422Z",
+        "archive_relative": "raw/20260907T112107073262Z-G40-3f9731a6/scratch/mg_soc_qe_v1.xml",
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "bytes": 42675
+      }
+    ]
+  },
+  "header_preflight": {
+    "wfc1.dat": {
+      "schema_version": 1,
+      "ik": 1,
+      "k_cart_bohr_inv": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "b_columns_bohr_inv": [
+        [
+          0.6283185307179586,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.6283185307179586,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.6283185307179586
+        ]
+      ],
+      "ispin": 1,
+      "gamma_only": false,
+      "gamma_only_raw": 0,
+      "scalef": 1.0,
+      "ngw": 2777,
+      "igwx": 2777,
+      "npol": 2,
+      "nbnd": 24,
+      "file_bytes": 2166416,
+      "format": {
+        "endian": "little",
+        "record_marker_bytes": 4,
+        "integer_bytes": 4,
+        "logical_bytes": 4,
+        "real_bytes": 8,
+        "complex_bytes": 16
+      },
+      "records": [
+        {
+          "payload_offset": 4,
+          "payload_bytes": 44
+        },
+        {
+          "payload_offset": 56,
+          "payload_bytes": 16
+        },
+        {
+          "payload_offset": 80,
+          "payload_bytes": 72
+        },
+        {
+          "payload_offset": 160,
+          "payload_bytes": 33324
+        },
+        {
+          "payload_offset": 33492,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 122364,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 211236,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 300108,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 388980,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 477852,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 566724,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 655596,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 744468,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 833340,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 922212,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1011084,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1099956,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1188828,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1277700,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1366572,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1455444,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1544316,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1633188,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1722060,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1810932,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1899804,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 1988676,
+          "payload_bytes": 88864
+        },
+        {
+          "payload_offset": 2077548,
+          "payload_bytes": 88864
+        }
+      ],
+      "record_payload_bytes": [
+        44,
+        16,
+        72,
+        33324,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864,
+        88864
+      ],
+      "header_payload_sha256": "b87aaec40a7e623e3443064574a49869a1b21e190b1500dfc9eed7b2749afa36",
+      "format_source": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/io_base.f90#L103-L186",
+      "producer_source": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L978-L1031",
+      "ngw_semantics": "maximum original global G index; not selected plane-wave count",
+      "igwx_semantics": "dense collected k-supported count; must equal original XML npw",
+      "coefficient_layout": "one record per original band; up[NG] followed by down[NG]",
+      "header_validation_status": "HEADER_AND_RECORD_ENVELOPES_ONLY",
+      "miller_values_status": "NOT_READ",
+      "coefficient_values_status": "NOT_READ",
+      "candidate_count": 1
+    },
+    "wfc2.dat": {
+      "schema_version": 1,
+      "ik": 2,
+      "k_cart_bohr_inv": [
+        0.07853981633974483,
+        0.039269908169872414,
+        -0.11780972450961724
+      ],
+      "b_columns_bohr_inv": [
+        [
+          0.6283185307179586,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.6283185307179586,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.6283185307179586
+        ]
+      ],
+      "ispin": 1,
+      "gamma_only": false,
+      "gamma_only_raw": 0,
+      "scalef": 1.0,
+      "ngw": 2925,
+      "igwx": 2770,
+      "npol": 2,
+      "nbnd": 24,
+      "file_bytes": 2160956,
+      "format": {
+        "endian": "little",
+        "record_marker_bytes": 4,
+        "integer_bytes": 4,
+        "logical_bytes": 4,
+        "real_bytes": 8,
+        "complex_bytes": 16
+      },
+      "records": [
+        {
+          "payload_offset": 4,
+          "payload_bytes": 44
+        },
+        {
+          "payload_offset": 56,
+          "payload_bytes": 16
+        },
+        {
+          "payload_offset": 80,
+          "payload_bytes": 72
+        },
+        {
+          "payload_offset": 160,
+          "payload_bytes": 33240
+        },
+        {
+          "payload_offset": 33408,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 122056,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 210704,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 299352,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 388000,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 476648,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 565296,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 653944,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 742592,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 831240,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 919888,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1008536,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1097184,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1185832,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1274480,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1363128,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1451776,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1540424,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1629072,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1717720,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1806368,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1895016,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1983664,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 2072312,
+          "payload_bytes": 88640
+        }
+      ],
+      "record_payload_bytes": [
+        44,
+        16,
+        72,
+        33240,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640
+      ],
+      "header_payload_sha256": "7e986a9c53be3e9d4b3544b093f879a16f965f3ee06d34da25aecadf7876f7b0",
+      "format_source": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/io_base.f90#L103-L186",
+      "producer_source": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L978-L1031",
+      "ngw_semantics": "maximum original global G index; not selected plane-wave count",
+      "igwx_semantics": "dense collected k-supported count; must equal original XML npw",
+      "coefficient_layout": "one record per original band; up[NG] followed by down[NG]",
+      "header_validation_status": "HEADER_AND_RECORD_ENVELOPES_ONLY",
+      "miller_values_status": "NOT_READ",
+      "coefficient_values_status": "NOT_READ",
+      "candidate_count": 1
+    },
+    "wfc3.dat": {
+      "schema_version": 1,
+      "ik": 3,
+      "k_cart_bohr_inv": [
+        -0.07853981633974483,
+        -0.039269908169872414,
+        0.11780972450961724
+      ],
+      "b_columns_bohr_inv": [
+        [
+          0.6283185307179586,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.6283185307179586,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.6283185307179586
+        ]
+      ],
+      "ispin": 1,
+      "gamma_only": false,
+      "gamma_only_raw": 0,
+      "scalef": 1.0,
+      "ngw": 2944,
+      "igwx": 2770,
+      "npol": 2,
+      "nbnd": 24,
+      "file_bytes": 2160956,
+      "format": {
+        "endian": "little",
+        "record_marker_bytes": 4,
+        "integer_bytes": 4,
+        "logical_bytes": 4,
+        "real_bytes": 8,
+        "complex_bytes": 16
+      },
+      "records": [
+        {
+          "payload_offset": 4,
+          "payload_bytes": 44
+        },
+        {
+          "payload_offset": 56,
+          "payload_bytes": 16
+        },
+        {
+          "payload_offset": 80,
+          "payload_bytes": 72
+        },
+        {
+          "payload_offset": 160,
+          "payload_bytes": 33240
+        },
+        {
+          "payload_offset": 33408,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 122056,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 210704,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 299352,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 388000,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 476648,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 565296,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 653944,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 742592,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 831240,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 919888,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1008536,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1097184,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1185832,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1274480,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1363128,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1451776,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1540424,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1629072,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1717720,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1806368,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1895016,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 1983664,
+          "payload_bytes": 88640
+        },
+        {
+          "payload_offset": 2072312,
+          "payload_bytes": 88640
+        }
+      ],
+      "record_payload_bytes": [
+        44,
+        16,
+        72,
+        33240,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640,
+        88640
+      ],
+      "header_payload_sha256": "ed2d662f14a00cd18c8876c651098515344520e45aecd94cd92f3ce2173d6a5d",
+      "format_source": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/io_base.f90#L103-L186",
+      "producer_source": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L978-L1031",
+      "ngw_semantics": "maximum original global G index; not selected plane-wave count",
+      "igwx_semantics": "dense collected k-supported count; must equal original XML npw",
+      "coefficient_layout": "one record per original band; up[NG] followed by down[NG]",
+      "header_validation_status": "HEADER_AND_RECORD_ENVELOPES_ONLY",
+      "miller_values_status": "NOT_READ",
+      "coefficient_values_status": "NOT_READ",
+      "candidate_count": 1
+    }
+  },
+  "format_source": {
+    "tag": "qe-7.5",
+    "scope": "Official format and source semantics read in memory; no source code saved or executed",
+    "installed_exact_source_commit_status": "NOT_CONFIRMED",
+    "sources": {
+      "Modules/io_base.f90": {
+        "sha256": "f7953c8f0952d9cb22f48b6291252a36a9f8c14bbcff923d9b75adabcdea4755",
+        "lines": [
+          103,
+          104,
+          132,
+          133,
+          186
+        ],
+        "finding": "Header records then reciprocal columns, native Miller triples, one original-band record with up block followed by down block; supported PW scale one.",
+        "url": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/io_base.f90"
+      },
+      "PW/src/pw_restart_new.f90": {
+        "sha256": "82dfdef8ded7f853b705762036fda7a7694e3a4af6e00e1bfeffa50d35cc46ef",
+        "lines": [
+          986,
+          990,
+          996,
+          1027,
+          1028,
+          1030,
+          1031
+        ],
+        "finding": "ngw is maximum original global G index; compact collected igwx is selected count. Producer multiplies xk and bg columns by tpiba, supplies scale 1 and original selected integer G.",
+        "url": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90"
+      },
+      "Modules/qexsd_init.f90": {
+        "sha256": "aa4d0cab034ec79d39a55afa1ae5f6b78fb08c5864789a05e16eae69dd59231d",
+        "lines": [
+          1237,
+          1242,
+          1255,
+          1256,
+          1264
+        ],
+        "finding": "Original non-LSDA XML occupations are wg/wk for nonzero weight; stored eigenvalues are converted Ry to Ha; npw is selected ngk.",
+        "url": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/qexsd_init.f90"
+      },
+      "PW/src/sum_band.f90": {
+        "sha256": "ca9ff51e95abe2ef4913d9dd39d7b4627fed294dc10d22ae0050503e40f619cb",
+        "lines": [
+          214,
+          230,
+          233,
+          271,
+          278,
+          283,
+          553,
+          559,
+          561,
+          566,
+          567,
+          1032
+        ],
+        "finding": "Two component charge contributions use wg/volume; sum over k/bands; density support conversion and conditional augmentation then symmetry call. eband is weighted eigenvalue sum.",
+        "url": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/sum_band.f90"
+      },
+      "PW/src/electrons.f90": {
+        "sha256": "e62ea5f6c65039481f5fa5b580765dac5e3074e9e2d40c0c7ab9d7acd3be8175",
+        "lines": [
+          725,
+          849,
+          990,
+          1004,
+          1007,
+          1259
+        ],
+        "finding": "sum_band creates output charge; deband precedes final output-density HXC update; converged descf zero; write_scf saves rho. Do not reconstruct original-input Hamiltonian from output-density energies.",
+        "url": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90"
+      },
+      "PW/src/punch.f90": {
+        "sha256": "288fe98445b014f9693eeaca53cf90f1deeb080532fe747bcdc88452e39f6cd8",
+        "lines": [
+          76,
+          91,
+          152
+        ],
+        "finding": "Final punch writes XML, charge as applicable and collected original wavefunctions; source/run hashes still required.",
+        "url": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/punch.f90"
+      },
+      "PW/src/symme.f90": {
+        "sha256": "de9a54510f544bc4c1ca42ee2103c0b39fec6b93e83311976b32fe1725946461",
+        "lines": [
+          499,
+          783
+        ],
+        "finding": "nsym=1 sets no_rho_sym; sym_rho returns. Actual original G40 XML nsym1/nosym=true, so no symmetry modification is needed.",
+        "url": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/symme.f90"
+      }
+    }
+  },
+  "direct_fourier_miller_points": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      -1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      -1
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      -1,
+      -2,
+      -3
+    ],
+    [
+      2,
+      -1,
+      3
+    ],
+    [
+      -2,
+      1,
+      -3
+    ],
+    [
+      3,
+      2,
+      -1
+    ],
+    [
+      -3,
+      -2,
+      1
+    ],
+    [
+      7,
+      -5,
+      4
+    ],
+    [
+      -7,
+      5,
+      -4
+    ],
+    [
+      17,
+      0,
+      0
+    ],
+    [
+      -17,
+      0,
+      0
+    ]
+  ],
+  "public_size_estimate": {
+    "Q_complex_coefficients_bytes": 6387456,
+    "Q_int64_millers_bytes": 199608,
+    "FR_P_complex_bytes": 4258304,
+    "complete_public_uncompressed_estimate_bytes": 11000000,
+    "scope": "Lossless case-sized canonical NPZ exception explicitly requested; no native wfc or A/B X duplication."
+  },
+  "execution_order": [
+    "commit plan/sources/thresholds",
+    "commit tested extraction/evaluation code",
+    "authenticated A/B and original G40 read",
+    "all source/layout/norm/occupation/density/kinetic gates",
+    "frozen single FR operator on A/B/Q only if gates pass",
+    "P2 direct integral and signed ledger only if dependencies pass",
+    "offline public replay, external archive/restore, ordinary commit and branch-only push"
+  ],
+  "prohibited": [
+    "SCF",
+    "eigensolve",
+    "occupation solve",
+    "pw.x",
+    "pp.x",
+    "new XC/Hartree/local potential evaluation",
+    "mixed Hamiltonian",
+    "scans",
+    "IEEE experiment",
+    "normalization/QR/conjugation/phase fitting/filtering",
+    "historical or frozen source mutation"
+  ],
+  "failure_policy": "Unique run; stop dependent evaluation on FAIL/BLOCKED; retain measured failures and original inputs. No rerun to relax thresholds.",
+  "evidence_tiers": {
+    "Q": "Canonical full original coefficients, G, f, eigenvalues and geometry: bitwise binary roundtrip; public density/T/FR replay",
+    "AB": "Original trusted checkpoints private; public per-state norm/T/f and projected amplitudes runner-reported extraction, contractions replayable",
+    "QE_nonlocal": "NOT_MEASURED; DFTK operator on Q is explicitly not native QE NL",
+    "original_input_H_residual": "NOT_AVAILABLE",
+    "physical_convergence": "NOT_ESTABLISHED"
+  }
+}
