@@ -5,7 +5,8 @@
 | Si SR-LDA, two atoms, B0 | [Si baseline](si-sr-lda/README.md) | [Scalar comparison](../results/scalar-si-baseline/README.md) |
 | Si C1/C2/C3, limited cutoff/k sensitivity | [Three fixed cases](si-sr-lda/phase4c/README.md) | [Reference and sensitivity](../results/scalar-si-sensitivity/README.md) |
 | No-SOC spinor / FR operator / energy fixtures | [Prototype entry points](../scripts/README.md) | [Scientific index](../results/README.md) |
-| Mg charge-only SOC and matching QE input | [Parameters](mg-soc-fermi/parameters.json), [QE checklist](mg-soc-fermi/checklist.md) | [A/B SCF](../results/mg-soc-scf/README.md); QE **PREPARED_NOT_EXECUTED** |
+| Historical Mg charge-only SOC and prepared QE input | [Parameters](mg-soc-fermi/parameters.json), [QE checklist](mg-soc-fermi/checklist.md) | [A/B SCF](../results/mg-soc-scf/README.md); QE **PREPARED_NOT_EXECUTED** |
+| First executed Mg QE SOC comparison | [New fixed case and commands](mg-soc-qe-v1/README.md) | [SCF/refined spectra, E/F and unresolved differences](../results/mg-soc-qe-comparison/README.md) |
 
 The [frozen environment](../environment/workbench/README.md) and recorded UPF hashes
 are prerequisites for physical reproduction. UPF bytes are acquired separately

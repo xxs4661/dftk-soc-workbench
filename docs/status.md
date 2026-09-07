@@ -1,8 +1,9 @@
 # Capability and validation status
 
 This is the single complete current capability table. It describes evidence at
-accepted development snapshot `8658992afa936f6cdb1a8055699ae9aa47b32297` and the
-curated public data derived from it. Repository curation adds no scientific run.
+the historical development snapshot `8658992afa936f6cdb1a8055699ae9aa47b32297` and
+the first Phase 7A QE SOC comparison based on published main
+`77bd2e151116bcc189b797e6da415d27a61d3a2b`. A/B remain HISTORICAL_REUSED.
 Acceptance of a development starting point is not an independent expert rerun;
 historical `REVIEW_REQUIRED` fields remain unchanged.
 
@@ -15,7 +16,7 @@ historical `REVIEW_REQUIRED` fields remain unchanged.
 | Relativistic channels / nonlocal operator | [CG and independent L·S, Gaussian and real Mg quadrature, Si scalar limit](../results/relativistic-projectors/README.md) | CPU prescribed fixtures; synthetic analytic accuracy is distinct from real-UPF quadrature sensitivity. |
 | Full FR Hamiltonian and energy | [Seven terms, orbital variations and fixed-density eigenpairs](../results/fr-hamiltonian-energy/README.md) | Fixed-density test is not SCF; density mismatch and old-spectrum energy mismatch are retained limitations. |
 | Charge-only SOC SCF | [Independent Mg A/B, 191 maps each, 24 target states per k point](../results/mg-soc-scf/README.md) | PBEsol Mg, three explicit k points, 15 Ha, tau=0.001 Ha; internal engineering closure only. No resolvable partial occupations in actual endpoint stationarity check. |
-| QE SOC comparison | [Input, parameters and checklist](../benchmarks/mg-soc-fermi/checklist.md): **PREPARED_NOT_EXECUTED** | E/F cross-code comparison **NOT_RUN**. This is the next scientific gate, subject to separate authorization and review. |
+| QE SOC comparison | [New Mg QE 7.5 SCF, one fixed-density refinement and Phase 6C A/B](../results/mg-soc-qe-comparison/README.md). QE execution: **PASS**. | E/F and raw/global-reference spectra compared; numerical agreement **REVIEW_REQUIRED**. FFT 36³ vs 40³; SCF eigenvalue warnings and native IEEE flags retained. Density L2 comparison NOT_RUN. |
 | Noncollinear magnetic XC | **NOT_IMPLEMENTED** | Charge-only closure does not validate magnetic XC. |
 | Physical cutoff/k/temperature convergence | **NOT_ESTABLISHED** | Limited scalar sensitivity and prescribed Mg cases do not establish converged material predictions. |
 | Upstream native support / architecture acceptance | **NOT_IMPLEMENTED_BY_THIS_WORKBENCH** / **NOT_ESTABLISHED** | Neither core checkout changed; no maintainer endorsement implied. [Open architectural questions](soc-upstream-risks.md). |
@@ -29,8 +30,10 @@ hashes alone are not independent numerical verification. UPF reintegration from
 original bytes requires acquiring the recorded input. Licensed inputs are not
 redistributed by this repository.
 
-Historical upstream `:minimal` results remain historical; this curation did not
-rerun numerical Julia tests, SCF, QE, or the full upstream suite. Tooling CLI
-checks (including information-only Mg parsing) were checked separately. See each case for original run
-identities, exact execution-file hashes, thresholds, adverse results and NOT_RUN
+Historical upstream `:minimal` results remain historical; Phase 7A does not rerun
+DFTK A/B or numerical Julia/upstream suites. A fresh frozen-environment identity
+check and affected Python tests accompany the new QE run. The old
+[preparation package](../benchmarks/mg-soc-fermi/checklist.md) remains
+PREPARED_NOT_EXECUTED; it is not relabeled as an earlier executed benchmark.
+See each case for original run identities, exact execution-file hashes, thresholds, adverse results and NOT_RUN
 items. AI-assisted checks do not substitute for external physical validation.

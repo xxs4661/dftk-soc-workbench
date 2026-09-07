@@ -1,0 +1,807 @@
+{
+  "schema_version": 1,
+  "case": "mg-soc-qe-v1",
+  "comparison_execution_status": "PASS",
+  "qe_execution_status": "PASS",
+  "input_comparability_status": "PASS",
+  "energy_semantics_status": "PASS",
+  "numerical_agreement_status": "REVIEW_REQUIRED",
+  "physical_convergence_status": "NOT_ESTABLISHED",
+  "noncollinear_magnetic_xc_status": "NOT_IMPLEMENTED",
+  "upstream_native_support": "NOT_IMPLEMENTED_BY_THIS_WORKBENCH",
+  "units": {
+    "energy": "Ha/cell",
+    "display_energy": "eV/cell",
+    "hartree_ev": 27.211386245981,
+    "atoms_per_cell": 1
+  },
+  "references": {
+    "A": {
+      "energy": {
+        "internal_ha": -57.325987985147734,
+        "free_ha": -57.325987985147734,
+        "entropy_ha": -1.2426050669902276e-37,
+        "internal_ev": -1559.9196009963212,
+        "free_ev": -1559.9196009963212,
+        "entropy_ev": -3.381300642908418e-36,
+        "unit": "Ha/cell",
+        "atoms_per_cell": 1,
+        "per_atom_equals_per_cell_for_this_case": true,
+        "source": "Historical endpoint diagnostics: seven-term E and capacity-one -TS once",
+        "arithmetic_residual_ha": 1.2426050669902276e-37
+      },
+      "electrons": 10.0,
+      "mu_ha": -0.07907451383388588,
+      "energy_terms_ha": {
+        "PspCorrection": 0.09187494522099392,
+        "Ewald": -14.186487397403095,
+        "Kinetic": 29.075984450811468,
+        "AtomicNonlocalFR": -14.214054510747257,
+        "AtomicLocal": -79.43302742791043,
+        "Hartree": 28.516778812881178,
+        "Xc": -7.1770568580005945
+      },
+      "source": {
+        "status": "HISTORICAL_REUSED",
+        "commit": "ac22a64421c4a5444a399477b9a3215dbd913487",
+        "endpoint_path": "results/mg-soc-scf/A/endpoint.json",
+        "endpoint_sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "evidence_path": "results/mg-soc-scf/evidence.json",
+        "evidence_sha256": "437e2424d8ce7d8d11b5732b7b52815910853d7d43307215b5fbc466e321e243",
+        "run_id": "20260906T151940Z-A-270110aa",
+        "environment": {
+          "path": "results/shared/environment.json",
+          "sha256": "b6a5999b51a9aed12efa9d66e9884ad8be401a72b76d751296458555c963991b"
+        },
+        "executed_source_map_field": "executed_source_sha256"
+      },
+      "map_count": 191,
+      "fft_grid": [
+        40,
+        40,
+        40
+      ],
+      "precision": {
+        "eigenvalue_source": "Global capacity-one Fermi root of the current map's solved H[n_in] eigenvalues",
+        "self_density_old_lambda_max_ha": 1.0823042591093272e-08,
+        "self_density_rayleigh_max_ha": 9.171528350740799e-09,
+        "input_hamiltonian_target_residual_max_ha": 9.969270277980549e-11,
+        "status": "HISTORICAL_RUNNER_REPORTED; private physical arrays not rechecked"
+      }
+    },
+    "B": {
+      "energy": {
+        "internal_ha": -57.32598798514773,
+        "free_ha": -57.32598798514773,
+        "entropy_ha": -1.2426050665736325e-37,
+        "internal_ev": -1559.919600996321,
+        "free_ev": -1559.919600996321,
+        "entropy_ev": -3.381300641774805e-36,
+        "unit": "Ha/cell",
+        "atoms_per_cell": 1,
+        "per_atom_equals_per_cell_for_this_case": true,
+        "source": "Historical endpoint diagnostics: seven-term E and capacity-one -TS once",
+        "arithmetic_residual_ha": 1.2426050665736325e-37
+      },
+      "electrons": 10.0,
+      "mu_ha": -0.07907451383333139,
+      "energy_terms_ha": {
+        "PspCorrection": 0.09187494522099392,
+        "Ewald": -14.186487397403095,
+        "Kinetic": 29.075984450811514,
+        "AtomicNonlocalFR": -14.21405451074761,
+        "AtomicLocal": -79.43302742790986,
+        "Hartree": 28.51677881288095,
+        "Xc": -7.1770568580006175
+      },
+      "source": {
+        "status": "HISTORICAL_REUSED",
+        "commit": "ac22a64421c4a5444a399477b9a3215dbd913487",
+        "endpoint_path": "results/mg-soc-scf/B/endpoint.json",
+        "endpoint_sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "evidence_path": "results/mg-soc-scf/evidence.json",
+        "evidence_sha256": "437e2424d8ce7d8d11b5732b7b52815910853d7d43307215b5fbc466e321e243",
+        "run_id": "20260906T153016Z-B-62835d43",
+        "environment": {
+          "path": "results/shared/environment.json",
+          "sha256": "b6a5999b51a9aed12efa9d66e9884ad8be401a72b76d751296458555c963991b"
+        },
+        "executed_source_map_field": "executed_source_sha256"
+      },
+      "map_count": 191,
+      "fft_grid": [
+        40,
+        40,
+        40
+      ],
+      "precision": {
+        "eigenvalue_source": "Global capacity-one Fermi root of the current map's solved H[n_in] eigenvalues",
+        "self_density_old_lambda_max_ha": 1.0811677455353301e-08,
+        "self_density_rayleigh_max_ha": 9.159279939852875e-09,
+        "input_hamiltonian_target_residual_max_ha": 8.946712915219417e-11,
+        "status": "HISTORICAL_RUNNER_REPORTED; private physical arrays not rechecked"
+      }
+    }
+  },
+  "QE": {
+    "energy": {
+      "internal_ha": -57.32602794786339,
+      "free_ha": -57.32602794786339,
+      "entropy_ha": 0.0,
+      "internal_ev": -1559.9206884372122,
+      "free_ev": -1559.9206884372122,
+      "entropy_ev": 0.0,
+      "unit": "Ha/cell",
+      "atoms_per_cell": 1,
+      "per_atom_equals_per_cell_for_this_case": true,
+      "source": {
+        "free_ha": "final XML output/total_energy/etot",
+        "entropy_ha": "final XML output/total_energy/demet",
+        "internal_ha": "E = F - demet, no zero-temperature extrapolation or correction"
+      },
+      "arithmetic_residual_ha": 0.0
+    },
+    "electrons": 10.0,
+    "fermi_energy_ha": -0.07015234249335432,
+    "precision": {
+      "stdout_spectrum_check": {
+        "status": "PASS",
+        "matched_eigenvalues": 72,
+        "stdout_to_xml_kpoint_indices": [
+          0,
+          1,
+          2
+        ],
+        "max_abs_xml_minus_stdout_ev": 4.793025300885314e-05,
+        "maximum_printed_rounding_bound_ev": 5.00027211386246e-05,
+        "occupation_fields_checked": 72,
+        "native_ev_per_ha": 27.211386245988034,
+        "scope": "Native stdout rounding crosscheck, not an eigenvector residual estimate"
+      },
+      "diago_full_acc": true,
+      "ethr_history_ry": [
+        1e-10,
+        0.00855,
+        0.00634,
+        0.00018,
+        5.36e-05,
+        3.13e-06,
+        1.64e-06,
+        1.03e-07,
+        8.8e-09,
+        8.8e-09,
+        8.14e-10,
+        1.59e-10,
+        3.46e-12,
+        1.36e-12,
+        1.36e-12
+      ],
+      "last_ethr_ry": 1.36e-12,
+      "individual_eigenvector_residual_status": "NOT_AVAILABLE",
+      "individual_eigenvector_residuals_ha": null,
+      "note": "ethr is an eigenvalue convergence threshold, not ||Hpsi-epsilon psi||"
+    },
+    "warnings": [
+      {
+        "line": 162,
+        "text": "negative rho (up, down):  7.069E-02 0.000E+00"
+      },
+      {
+        "line": 177,
+        "text": "c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "line": 178,
+        "text": "c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "line": 181,
+        "text": "negative rho (up, down):  5.026E-02 0.000E+00"
+      },
+      {
+        "line": 198,
+        "text": "negative rho (up, down):  2.476E-04 0.000E+00"
+      },
+      {
+        "line": 288,
+        "text": "c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "line": 304,
+        "text": "c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "line": 350,
+        "text": "c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "line": 366,
+        "text": "c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "line": 382,
+        "text": "c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "line": 398,
+        "text": "c_bands:  2 eigenvalues not converged"
+      }
+    ],
+    "entropy_diagnostic": {
+      "from_published_occupations_dimensionless": 9.573393329777869e-35,
+      "minus_tau_S_ha": -9.573393329777868e-38,
+      "native_minus_diagnostic_ha": 9.573393329777868e-38,
+      "scope": "Independent diagnostic from rounded native occupations, not a replacement for native demet"
+    }
+  },
+  "comparisons": {
+    "A_minus_QE": {
+      "role": "primary",
+      "energy": {
+        "internal": {
+          "signed_ha": 3.9962715653985015e-05,
+          "absolute_ha": 3.9962715653985015e-05,
+          "signed_ev": 0.0010874408910988974,
+          "absolute_ev": 0.0010874408910988974
+        },
+        "free": {
+          "signed_ha": 3.9962715653985015e-05,
+          "absolute_ha": 3.9962715653985015e-05,
+          "signed_ev": 0.0010874408910988974,
+          "absolute_ev": 0.0010874408910988974
+        },
+        "entropy": {
+          "signed_ha": -1.2426050669902276e-37,
+          "absolute_ha": 1.2426050669902276e-37,
+          "signed_ev": -3.381300642908418e-36,
+          "absolute_ev": 3.381300642908418e-36
+        }
+      },
+      "same_definition_energy_terms": {
+        "status": "REPORTED_WITH_DISTINCT_FINAL_DENSITIES",
+        "unit": "Ha/cell",
+        "terms": {
+          "Hartree": {
+            "historical_ha": 28.516778812881178,
+            "qe_ha": 28.51669193844877,
+            "qe_xml_field": "ehart",
+            "signed_ha": 8.687443240873449e-05,
+            "absolute_ha": 8.687443240873449e-05,
+            "signed_ev": 0.002363973735174444,
+            "absolute_ev": 0.002363973735174444
+          },
+          "Xc": {
+            "historical_ha": -7.1770568580005945,
+            "qe_ha": -7.177075813654218,
+            "qe_xml_field": "etxc",
+            "signed_ha": 1.8955653623642377e-05,
+            "absolute_ha": 1.8955653623642377e-05,
+            "signed_ev": 0.0005158096122979621,
+            "absolute_ev": 0.0005158096122979621
+          },
+          "Ewald": {
+            "historical_ha": -14.186487397403095,
+            "qe_ha": -14.1864874158072,
+            "qe_xml_field": "ewald",
+            "signed_ha": 1.840410490672184e-08,
+            "absolute_ha": 1.840410490672184e-08,
+            "signed_ev": 5.008012071283621e-07,
+            "absolute_ev": 5.008012071283621e-07
+          }
+        },
+        "scope": "Hartree and XC evaluated on each engine's own final density; Ewald is the ion-ion term. No cross-code density-array validation.",
+        "qe_units_source": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L719-L727",
+        "not_mapped": [
+          "Kinetic",
+          "AtomicLocal",
+          "AtomicNonlocalFR",
+          "PspCorrection"
+        ],
+        "note": "QE native band/one-electron expressions are retained separately, not forced into the remaining historical terms"
+      },
+      "electrons": {
+        "signed": 0.0,
+        "absolute": 0.0
+      },
+      "spectrum": {
+        "difference_convention": "DFTK minus QE; no total-energy adjustment",
+        "global_reference_status": "SUPPORTED",
+        "references": {
+          "DFTK": {
+            "status": "SUPPORTED",
+            "homo_ha": -0.16186113205372762,
+            "lumo_ha": 0.003712104385955874,
+            "gap_ha": 0.1655732364396835,
+            "occupied_states": 30,
+            "empty_states": 42,
+            "rule": "Maximum occupied energy across the entire three-k set"
+          },
+          "QE": {
+            "status": "SUPPORTED",
+            "homo_ha": -0.1526725927368723,
+            "lumo_ha": 0.01289820562772123,
+            "gap_ha": 0.16557079836459354,
+            "occupied_states": 30,
+            "empty_states": 42,
+            "rule": "Maximum occupied energy across the entire three-k set"
+          }
+        },
+        "summary": {
+          "16": {
+            "all": {
+              "raw": {
+                "count": 48,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188539316855315,
+                "rms_ha": 0.009178604871828871,
+                "max_abs_ev": 0.2500328923873324,
+                "rms_ev": 0.24976256236657834,
+                "signed_mean_ha": -0.009178601222266622,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 48,
+                "status": "REPORTED",
+                "max_abs_ha": 2.410698481059015e-05,
+                "rms_ha": 1.2874839433773515e-05,
+                "max_abs_ev": 0.0006559844749069656,
+                "rms_ev": 0.0003503422286873984,
+                "signed_mean_ha": 9.938094588611673e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "occupied": {
+              "raw": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188539316855315,
+                "rms_ha": 0.009174982100851298,
+                "max_abs_ev": 0.2500328923873324,
+                "rms_ev": 0.24966398174622687,
+                "signed_mean_ha": -0.009174978270316174,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 2.410698481059015e-05,
+                "rms_ha": 1.594340462151119e-05,
+                "max_abs_ev": 0.0006559844749069656,
+                "rms_ev": 0.0004338421412318995,
+                "signed_mean_ha": 1.356104653900773e-05,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "empty": {
+              "raw": {
+                "count": 18,
+                "status": "REPORTED",
+                "max_abs_ha": 0.00918661099119085,
+                "rms_ha": 0.00918463964799522,
+                "max_abs_ev": 0.24998041997286857,
+                "rms_ev": 0.2499267769917489,
+                "signed_mean_ha": -0.009184639475517365,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 18,
+                "status": "REPORTED",
+                "max_abs_ha": 6.619392969614557e-06,
+                "rms_ha": 4.286846896320362e-06,
+                "max_abs_ev": 0.00018012285881011288,
+                "rms_ev": 0.00011665104667315825,
+                "signed_mean_ha": 3.899841337951577e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            }
+          },
+          "24": {
+            "all": {
+              "raw": {
+                "count": 72,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188539316855315,
+                "rms_ha": 0.009180607281551451,
+                "max_abs_ev": 0.2500328923873324,
+                "rms_ev": 0.24981705071096216,
+                "signed_mean_ha": -0.009180604274165987,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 72,
+                "status": "REPORTED",
+                "max_abs_ha": 2.410698481059015e-05,
+                "rms_ha": 1.0871253064846591e-05,
+                "max_abs_ev": 0.0006559844749069656,
+                "rms_ev": 0.0002958218661253453,
+                "signed_mean_ha": 7.935042689273223e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "occupied": {
+              "raw": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188539316855315,
+                "rms_ha": 0.009174982100851298,
+                "max_abs_ev": 0.2500328923873324,
+                "rms_ev": 0.24966398174622687,
+                "signed_mean_ha": -0.009174978270316174,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 2.410698481059015e-05,
+                "rms_ha": 1.594340462151119e-05,
+                "max_abs_ev": 0.0006559844749069656,
+                "rms_ev": 0.0004338421412318995,
+                "signed_mean_ha": 1.356104653900773e-05,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "empty": {
+              "raw": {
+                "count": 42,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188040155682795,
+                "rms_ha": 0.009184623158473685,
+                "max_abs_ev": 0.25001930951986795,
+                "rms_ev": 0.2499263282890094,
+                "signed_mean_ha": -0.009184622848344424,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 42,
+                "status": "REPORTED",
+                "max_abs_ha": 7.860405776605184e-06,
+                "rms_ha": 4.5864546496506595e-06,
+                "max_abs_ev": 0.0002138925376373439,
+                "rms_ev": 0.00012480378897131956,
+                "signed_mean_ha": 3.916468510891431e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            }
+          }
+        },
+        "occupation_classification_matches": true,
+        "group_definition": "Occupied/empty statistics use DFTK f>=0.5 classification",
+        "alignment_rule": "Exactly one global occupied maximum per program, applied to every k and band; no fitting"
+      },
+      "chemical_potential": {
+        "historical_ha": -0.07907451383388588,
+        "qe_ha": -0.07015234249335432,
+        "signed_difference_ha": -0.008922171340531554,
+        "status": "DIAGNOSTIC_ONLY; plateau chemical potentials need not agree"
+      }
+    },
+    "B_minus_QE": {
+      "role": "auxiliary_reproducibility_reference",
+      "energy": {
+        "internal": {
+          "signed_ha": 3.996271566109044e-05,
+          "absolute_ha": 3.996271566109044e-05,
+          "signed_ev": 0.001087440891292246,
+          "absolute_ev": 0.001087440891292246
+        },
+        "free": {
+          "signed_ha": 3.996271566109044e-05,
+          "absolute_ha": 3.996271566109044e-05,
+          "signed_ev": 0.001087440891292246,
+          "absolute_ev": 0.001087440891292246
+        },
+        "entropy": {
+          "signed_ha": -1.2426050665736325e-37,
+          "absolute_ha": 1.2426050665736325e-37,
+          "signed_ev": -3.381300641774805e-36,
+          "absolute_ev": 3.381300641774805e-36
+        }
+      },
+      "same_definition_energy_terms": {
+        "status": "REPORTED_WITH_DISTINCT_FINAL_DENSITIES",
+        "unit": "Ha/cell",
+        "terms": {
+          "Hartree": {
+            "historical_ha": 28.51677881288095,
+            "qe_ha": 28.51669193844877,
+            "qe_xml_field": "ehart",
+            "signed_ha": 8.687443218136082e-05,
+            "absolute_ha": 8.687443218136082e-05,
+            "signed_ev": 0.002363973728987291,
+            "absolute_ev": 0.002363973728987291
+          },
+          "Xc": {
+            "historical_ha": -7.1770568580006175,
+            "qe_ha": -7.177075813654218,
+            "qe_xml_field": "etxc",
+            "signed_ha": 1.8955653600549738e-05,
+            "absolute_ha": 1.8955653600549738e-05,
+            "signed_ev": 0.0005158096116695793,
+            "absolute_ev": 0.0005158096116695793
+          },
+          "Ewald": {
+            "historical_ha": -14.186487397403095,
+            "qe_ha": -14.1864874158072,
+            "qe_xml_field": "ewald",
+            "signed_ha": 1.840410490672184e-08,
+            "absolute_ha": 1.840410490672184e-08,
+            "signed_ev": 5.008012071283621e-07,
+            "absolute_ev": 5.008012071283621e-07
+          }
+        },
+        "scope": "Hartree and XC evaluated on each engine's own final density; Ewald is the ion-ion term. No cross-code density-array validation.",
+        "qe_units_source": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L719-L727",
+        "not_mapped": [
+          "Kinetic",
+          "AtomicLocal",
+          "AtomicNonlocalFR",
+          "PspCorrection"
+        ],
+        "note": "QE native band/one-electron expressions are retained separately, not forced into the remaining historical terms"
+      },
+      "electrons": {
+        "signed": 0.0,
+        "absolute": 0.0
+      },
+      "spectrum": {
+        "difference_convention": "DFTK minus QE; no total-energy adjustment",
+        "global_reference_status": "SUPPORTED",
+        "references": {
+          "DFTK": {
+            "status": "SUPPORTED",
+            "homo_ha": -0.1618611320535128,
+            "lumo_ha": 0.0037121043868500146,
+            "gap_ha": 0.16557323644036281,
+            "occupied_states": 30,
+            "empty_states": 42,
+            "rule": "Maximum occupied energy across the entire three-k set"
+          },
+          "QE": {
+            "status": "SUPPORTED",
+            "homo_ha": -0.1526725927368723,
+            "lumo_ha": 0.01289820562772123,
+            "gap_ha": 0.16557079836459354,
+            "occupied_states": 30,
+            "empty_states": 42,
+            "rule": "Maximum occupied energy across the entire three-k set"
+          }
+        },
+        "summary": {
+          "16": {
+            "all": {
+              "raw": {
+                "count": 48,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188539316640487,
+                "rms_ha": 0.009178604871613585,
+                "max_abs_ev": 0.2500328923814866,
+                "rms_ev": 0.24976256236072011,
+                "signed_mean_ha": -0.0091786012220514,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 48,
+                "status": "REPORTED",
+                "max_abs_ha": 2.4106984721550262e-05,
+                "rms_ha": 1.2874839386327893e-05,
+                "max_abs_ev": 0.0006559844724840669,
+                "rms_ev": 0.0003503422273963373,
+                "signed_mean_ha": 9.93809458903321e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "occupied": {
+              "raw": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188539316640487,
+                "rms_ha": 0.009174982100701482,
+                "max_abs_ev": 0.2500328923814866,
+                "rms_ev": 0.24966398174215015,
+                "signed_mean_ha": -0.009174978270166386,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 2.4106984721550262e-05,
+                "rms_ha": 1.594340455152051e-05,
+                "max_abs_ev": 0.0006559844724840669,
+                "rms_ev": 0.0004338421393273561,
+                "signed_mean_ha": 1.3561046474013424e-05,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "empty": {
+              "raw": {
+                "count": 18,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009186610991212214,
+                "rms_ha": 0.009184639647670925,
+                "max_abs_ev": 0.24998041997344994,
+                "rms_ev": 0.2499267769829244,
+                "signed_mean_ha": -0.009184639475193093,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 18,
+                "status": "REPORTED",
+                "max_abs_ha": 6.619392953072234e-06,
+                "rms_ha": 4.286846950175826e-06,
+                "max_abs_ev": 0.00018012285835997333,
+                "rms_ev": 0.00011665104813864007,
+                "signed_mean_ha": 3.899841447399521e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            }
+          },
+          "24": {
+            "all": {
+              "raw": {
+                "count": 72,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188539316640487,
+                "rms_ha": 0.009180607281161443,
+                "max_abs_ev": 0.2500328923814866,
+                "rms_ev": 0.2498170507003495,
+                "signed_mean_ha": -0.009180604273776127,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 72,
+                "status": "REPORTED",
+                "max_abs_ha": 2.4106984721550262e-05,
+                "rms_ha": 1.0871253069905814e-05,
+                "max_abs_ev": 0.0006559844724840669,
+                "rms_ev": 0.0002958218662630138,
+                "signed_mean_ha": 7.935042864328794e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "occupied": {
+              "raw": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188539316640487,
+                "rms_ha": 0.009174982100701482,
+                "max_abs_ev": 0.2500328923814866,
+                "rms_ev": 0.24966398174215015,
+                "signed_mean_ha": -0.009174978270166386,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 2.4106984721550262e-05,
+                "rms_ha": 1.594340455152051e-05,
+                "max_abs_ev": 0.0006559844724840669,
+                "rms_ev": 0.0004338421393273561,
+                "signed_mean_ha": 1.3561046474013424e-05,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "empty": {
+              "raw": {
+                "count": 42,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188040155406155,
+                "rms_ha": 0.009184623157912292,
+                "max_abs_ev": 0.2500193095123402,
+                "rms_ev": 0.24992632827373312,
+                "signed_mean_ha": -0.009184622847783083,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 42,
+                "status": "REPORTED",
+                "max_abs_ha": 7.860405906057188e-06,
+                "rms_ha": 4.586454843994664e-06,
+                "max_abs_ev": 0.0002138925411599124,
+                "rms_ev": 0.00012480379425968934,
+                "signed_mean_ha": 3.916468857411201e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            }
+          }
+        },
+        "occupation_classification_matches": true,
+        "group_definition": "Occupied/empty statistics use DFTK f>=0.5 classification",
+        "alignment_rule": "Exactly one global occupied maximum per program, applied to every k and band; no fitting"
+      },
+      "chemical_potential": {
+        "historical_ha": -0.07907451383333139,
+        "qe_ha": -0.07015234249335432,
+        "signed_difference_ha": -0.008922171339977067,
+        "status": "DIAGNOSTIC_ONLY; plateau chemical potentials need not agree"
+      }
+    }
+  },
+  "spectral_symmetry": {
+    "A": {
+      "status": "DIAGNOSTIC_ONLY",
+      "gamma_adjacent_pair_max_ha": 5.329070518200751e-15,
+      "plus_minus_spectrum_max_ha": 2.4424906541753444e-15,
+      "pair_rule": "Adjacent sorted Gamma levels and equal band indices at uniquely matched k+/k-; no channel assignment"
+    },
+    "B": {
+      "status": "DIAGNOSTIC_ONLY",
+      "gamma_adjacent_pair_max_ha": 2.220446049250313e-15,
+      "plus_minus_spectrum_max_ha": 8.43769498715119e-15,
+      "pair_rule": "Adjacent sorted Gamma levels and equal band indices at uniquely matched k+/k-; no channel assignment"
+    },
+    "QE": {
+      "status": "DIAGNOSTIC_ONLY",
+      "gamma_adjacent_pair_max_ha": 9.569939285469786e-11,
+      "plus_minus_spectrum_max_ha": 1.9984014443252818e-15,
+      "pair_rule": "Adjacent sorted Gamma levels and equal band indices at uniquely matched k+/k-; no channel assignment"
+    }
+  },
+  "numerical_settings_match": {
+    "status": "INPUT_PASS_WITH_NUMERICAL_DIFFERENCES",
+    "DFTK_fft_grid": [
+      40,
+      40,
+      40
+    ],
+    "QE_fft_grid": [
+      36,
+      36,
+      36
+    ],
+    "QE_fft_smooth_grid": [
+      36,
+      36,
+      36
+    ],
+    "spatial_plane_waves": [
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "DFTK_spatial_npw": 2777,
+        "QE_spatial_npw": 2777
+      },
+      {
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "DFTK_spatial_npw": 2770,
+        "QE_spatial_npw": 2770
+      },
+      {
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "DFTK_spatial_npw": 2770,
+        "QE_spatial_npw": 2770
+      }
+    ],
+    "scope": "FFT and spatial plane-wave counts only; quadrature and solver implementations are not asserted equal"
+  },
+  "mg_local_zero_diagnostic": {
+    "psp_correction_ha": 0.09187494522099392,
+    "electrons": 10,
+    "correction_per_electron_ha": 0.009187494522099392,
+    "status": "NON_FITTED_DIAGNOSTIC_ONLY",
+    "qe_internal_g0": "NOT_DIRECTLY_EXTRACTED",
+    "energy_or_spectrum_adjustment_applied": false,
+    "interpretation": "Mg constant from the existing DFTK PspCorrection. No causal attribution of residual differences or use of a Si constant."
+  },
+  "array_revalidation": {
+    "DFTK_density_orbitals": "NOT_RUN; existing runner records only",
+    "cross_code_density_l2": "NOT_RUN"
+  },
+  "scientific_limitations": [
+    "Single Mg case, cutoff, k set and temperature; no physical convergence study",
+    "Historical eigenpairs belong to H[n_in]; recorded H[n_out] residuals bound their interpretation",
+    "A/B repeatability does not imply equal absolute accuracy",
+    "No wavefunction/channel matching: no j-labelled or material SOC-splitting attribution",
+    "Native QE energy terms are not forced into the historical seven-term decomposition"
+  ]
+}

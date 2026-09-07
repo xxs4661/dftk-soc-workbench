@@ -89,6 +89,8 @@ results in [UPF acceptance evidence](../results/upf-acceptance/README.md).
 | Angular/radial FR projectors | [FR projector conventions](../prototypes/relativistic/CONVENTIONS.md) |
 | Full Hamiltonian / energy at fixed density | [FR integration](../prototypes/fr_integration/README.md) |
 | Charge-only SOC SCF / comparison | `run_soc_scf.jl`, `compare_soc_scf.jl`; [SOC prototype](../prototypes/soc_scf/README.md) |
+| First QE SOC run, parser and comparison | `run_qe_soc.py`, `parse_qe_soc.py`, `compare_qe_soc.py`; [fixed Mg case](../benchmarks/mg-soc-qe-v1/README.md) |
+| QE SOC offline native replay | `python3.12 scripts/check_qe_soc_evidence.py` |
 | QE SOC input preparation only | `prepare_soc_qe_input.py` (Python 3.12+); [checklist](../benchmarks/mg-soc-fermi/checklist.md) |
 | Public-only verification, no scientific run | `python3.9 scripts/check_publication.py` |
 
@@ -103,3 +105,20 @@ The combined publication check uses Python 3.9 for exact historical scalar
 arithmetic and `python3.12` on PATH for standard-library TOML in the prototype
 checks (`--modern-python PATH` selects an existing Python 3.11+ interpreter).
 It installs no packages or environments.
+
+Phase 7A synthetic/adapter tests:
+
+```sh
+python3.12 -m unittest discover -s tests -p 'test_qe_soc_*.py' -v
+```
+
+They perform no physical QE solve. The real runner requires
+an existing executable and exact UPF bytes; it creates an isolated run and never
+automatically retries. `--refine-from .work/phase7a/<scf_run_id>` permits one
+explicit warning-triggered bands refinement in copied scratch; original SCF E/F
+remain authoritative. A standalone process receipt distinguishes solver exit from
+parser failure. Native stderr warnings remain public even when XML is finite.
+
+The current publication checker verifies the old UPF exporter from the fixed
+`ac22a64421c4a5444a399477b9a3215dbd913487` Git object. Its `--export-upf` now refuses
+to refresh frozen evidence; reproduce old export only from that historical checkout.
