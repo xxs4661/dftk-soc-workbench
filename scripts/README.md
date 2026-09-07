@@ -148,3 +148,15 @@ n_in/real-array extraction checks retain their separate runner-reported scope.
 Read the [plan](../benchmarks/mg-soc-energy-reference-v1/README.md) and
 [energy audit report](../results/mg-soc-energy-reference/README.md) for commands,
 source restoration, predeclared gates, failure records and evidence limits.
+
+## Bound QE local-potential audit
+
+- `python_numpy scripts/check_qe_local_potential.py --all --legacy-python python3.9`: complete public NumPy FFT/registration/integral/precision replay; chains frozen predecessors. Use an existing NumPy environment; no installation.
+- `run_qe_local_postprocess.py P2` then `P0`: exactly-once authorized slots using committed preparation, real source/build checks and independent copies. Completed claims prohibit numerical retries.
+- `extract_saved_local_field.jl REQUEST.json NEW_IGNORED_DIR`: authenticate the saved Phase7D container before reading local/density arrays; frozen FFT only, no new model/XC.
+- `parse_qe_filplot.py`, `replay_qe_local_fields.py`, `compare_qe_local_potential.py`: bounded native format, full public transforms and signed algebra.
+
+See the [Phase7E contract](../benchmarks/mg-soc-qe-local-potential-v1/README.md)
+and [evidence](../results/mg-soc-qe-local-potential/README.md). Synthetic tests
+are in `test_qe_filplot.py`, `test_qe_local_*.py` and
+`test_saved_local_field.jl`; synthetic workers are not physical calculations.

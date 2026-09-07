@@ -3,29 +3,25 @@
 A research workbench for norm-conserving UPF pseudopotentials, two-component
 spinors and spin–orbit coupling on top of a frozen DFTK environment.
 
-The repository contains a scalar Si baseline and restricted spinor/SOC prototypes.
-The [first QE SOC comparison](results/mg-soc-qe-comparison/README.md) and Phase 6C
-A/B are now **HISTORICAL_REUSED** references. Historical Phase 7A QE execution: **PASS**.
-The historical [solver/FFT diagnostics](results/mg-soc-qe-diagnostics/README.md) completed
-one initialization check and five prescribed QE solves. Same-density D/C spectra
-are stable under the declared filter; the 40³ grid control changes the energy and
-relative spectra, while the remaining energy difference and IEEE warning origin
-are unresolved. Numerical agreement is **REVIEW_REQUIRED** and physical convergence
-is **NOT_ESTABLISHED**. The new [saved density/Hartree audit](results/mg-soc-density-hartree/README.md)
-reads existing A/B and G40 arrays without new solves. All native Hartree terms
-are recovered within 1.1e-13 Ha; A−QE common-support density L2 is 2.97e-7
-electron/bohr^(3/2), with Hartree difference −0.16237 meV/cell. This does not
-explain the whole +0.62444 meV total-energy difference. Full cross-code real-space
-density is NOT_ASSESSED; residual attribution remains NOT_ESTABLISHED.
-The [energy/reference audit](results/mg-soc-energy-reference/README.md) now
-completes the signed native energy ledger and evaluates fixed historical A/B and
-QE finite-series densities with the frozen local/PBEsol implementation. A's
-+0.62444 meV difference separates into Hartree −0.16237, XC +0.07203,
-Ewald +0.00050 and a still-combined single-electron +0.71428 meV. Five fixed-density
-XC evaluations restore same-source terms; a +0.45363 meV local G=0 candidate is
-source-convention evidence, not runtime attribution or an energy correction.
-Residual attribution stays open; no new SCF, eigen solve or QE run occurred.
-This development branch has not been published to main.
+The scalar Si baseline and restricted spinor/SOC prototypes use frozen dependencies.
+Phase 6C A/B and the [first QE SOC comparison](results/mg-soc-qe-comparison/README.md)
+remain **HISTORICAL_REUSED**. Historical Phase 7A QE execution: **PASS**.
+The [solver/FFT diagnostics](results/mg-soc-qe-diagnostics/README.md),
+[saved density/Hartree audit](results/mg-soc-density-hartree/README.md) and
+[energy/reference ledger](results/mg-soc-energy-reference/README.md) preserve
+all earlier results and limitations.
+
+The current [QE local-potential audit](results/mg-soc-qe-local-potential/README.md)
+executed two same-build pp.x slots on independent G40 copies. All 64000 P0
+nodes and 17 complex modes register. The pp-reconstructed mean supports the
+prior G=0 prediction; it is not extraction of historical SCF memory.
+A−G40 local bookkeeping separates into density response +0.213944969,
+nonzero G shape +0.115609946 and G=0 +0.453634725 meV/cell, leaving a derived
+O residual −0.068908841 meV/cell. Native E/F is unchanged. This residual is
+not independently measured QE kinetic/nonlocal energy. Numerical review is
+**REVIEW_REQUIRED**, physical convergence **NOT_ESTABLISHED**, and IEEE origin
+**NOT_LOCALIZED**. No new SCF/eigensolve or independent XC run was performed;
+normal pp initialization did reconstruct potentials. Main is unchanged.
 
 - [Capabilities, evidence levels and limitations](docs/status.md)
 - [Scientific results and offline review](results/README.md)
@@ -36,10 +32,12 @@ This development branch has not been published to main.
 For an offline review using public files only, run from the repository root:
 
 ```sh
-python3.12 scripts/check_energy_reference.py --all --legacy-python python3.9
+python_numpy scripts/check_qe_local_potential.py --all --legacy-python python3.9
 ```
 
-Exact replay of historical scalar RMS values uses Python 3.9 (the recorded
+`python_numpy` is an existing Python 3.12 interpreter with NumPy (tested 2.3.5);
+no dependency installation is performed. Full fields, registration and precision
+propagation are replayed. Exact historical scalar RMS values use Python 3.9 (the recorded
 summation behavior); Python 3.12 or later is required by the QE-input preparer.
 No calculation is started by the publication check. Physical reproduction
 requires Julia 1.12.7, the locked checkouts, and separately acquired UPF files;

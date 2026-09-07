@@ -19,6 +19,11 @@ internal checks, physical convergence and external validation.
 | How sensitive is the fixed-density spectrum to solver choice and the SCF to 36³/40³ FFT? | [Mg QE diagnostics: original spectra, E/F, IEEE scope and unresolved residuals](mg-soc-qe-diagnostics/README.md) |
 | Does the remaining difference appear in saved density/Hartree, and do native energies reconstruct? | [Mg density/Hartree: bound A/B/G40, complete coefficients, support and signed decomposition](mg-soc-density-hartree/README.md) |
 
+Current [bound QE local-potential audit](mg-soc-qe-local-potential/README.md):
+P2/P0 completed once each; complete native potential/token evidence supports
+all-node and full Fourier replay, exact signed local decomposition and print
+bounds. Remaining O residual and IEEE cause remain unresolved; no new SCF.
+
 Each case has one evidence/provenance entry and its required source data. The
 [shared environment](shared/environment.json) records the frozen Julia identity;
 individual run receipts retain the fact and time of their own identity check.
@@ -48,7 +53,7 @@ New SOC offline replay: `python3.12 scripts/check_qe_soc_evidence.py`. The combi
 checker also requires the reviewed historical UPF exporter Git object retained
 in a normal clone. Its old evidence hash is not replaced by the evolving verifier.
 
-## Current energy/reference evidence
+## Historical energy/reference evidence
 
 [Existing Mg SOC endpoint energy audit](mg-soc-energy-reference/README.md):
 signed historical E/H/XC/Ewald/O ledger, fixed A/B/Q_rep common-term evaluation,

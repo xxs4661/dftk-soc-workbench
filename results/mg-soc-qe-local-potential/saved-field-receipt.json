@@ -1,0 +1,558 @@
+{
+  "schema_version": 1,
+  "run_id": "20260907T160918658618Z-Dfield-90372b75",
+  "execution_commit": "8c18549536dbd0c0a6d337e6cdedd319f3788d70",
+  "executed_script_sha256": "472a1dd11d67392df6f38493a95e8c429377c670aa0f5c5697bd704384da69a1",
+  "plan_sha256": "ea225f5eed7e691450e45e3801fc81dd6c2e5db174e1daaf9cdcf5055aad5c37",
+  "execution_status": "PASS",
+  "exit_code": 0,
+  "source_binding": {
+    "receipt_sha256": "79a71309e56b76493ee113ddb17284a969ab77cd81542d8f43ef0651a1340593",
+    "source_evidence_path": "results/mg-soc-energy-reference/evidence.json",
+    "metadata_sha256": "140a69110fb62f67ba07bcd98d280559e91f0ee30693431904fd74601bf6f728",
+    "production_julia_version": "1.12.7",
+    "producer_script_sha256": "ddda3e92e8fd1d099d4ed5342b13288603782767427ec9b5e12bbb3fb616c19f",
+    "source_run_id": "20260907T144446657126Z-8fa3b4d2",
+    "source_evidence_sha256": "bf11084b145793f250cbc3cd7d7eeb9bdb8fb0f2e417edebac3b6f5e8343aed5",
+    "source_execution_commit": "4e953e202e1ffff46a4dabc6e0df512304cd55ec",
+    "historical_archive": {
+      "status": "PASS",
+      "restore_sample_count": 3,
+      "bytes": 38986495,
+      "backup_location_scope": "Same-machine repository-external archive; not offsite",
+      "archive_name": "phase7d-20260907T142212Z",
+      "restore_sample_bytes": 23604877,
+      "restore_paths": [
+        "raw/20260907T144446657126Z-8fa3b4d2/common/arrays.bin",
+        "raw/20260907T144446657126Z-8fa3b4d2/common/metadata.json",
+        "raw/20260907T144446657126Z-8fa3b4d2/local-g0.json"
+      ],
+      "manifest_sha256": "f054dc6d9009c0bcf5b8a724e0b54bf02e49b8592c1bf05fd973ff6846f95a85",
+      "file_count": 29,
+      "previous_sources_archive": "phase7c-20260907T131310Z (referenced, not recopied)"
+    },
+    "arrays_sha256": "09f440183eac2db99168a7729079471074f7f0b1536fa8e229732e268d029c93"
+  },
+  "source_preservation_status": "PASS",
+  "environment": {
+    "project_sha256": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "julia_version": "1.12.7",
+    "packages": {
+      "dftk": {
+        "worktree_status": "clean",
+        "expected_uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_path": "<workbench>/.work/DFTK.jl/src/DFTK.jl",
+        "checkout": "<workbench>/.work/DFTK.jl",
+        "expected_version": "0.8.0",
+        "version": "0.8.0",
+        "path": "<workbench>/.work/DFTK.jl/src/DFTK.jl"
+      },
+      "pseudopotentialio": {
+        "worktree_status": "clean",
+        "expected_uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl",
+        "checkout": "<workbench>/.work/PseudoPotentialIO.jl",
+        "expected_version": "0.3.3",
+        "version": "0.3.3",
+        "path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl"
+      }
+    },
+    "active_project": "<workbench>/environment/workbench/Project.toml",
+    "status": "PASS",
+    "source_lock_sha256": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "active_manifest": "<workbench>/environment/workbench/Manifest.toml",
+    "manifest_sha256": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "reasons": []
+  },
+  "constants": {
+    "ewald_eta": 0.18027756377319948,
+    "source_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "volume_bohr3": 1000,
+    "natoms": 1,
+    "psp_correction_scope": "One native per-cell constant; not added to density response or historical totals",
+    "alpha_from_common_native": 9.187494522099392,
+    "nlcc": false,
+    "psp_local_fourier_G0": 0,
+    "ewald_ha": -14.186487397403095,
+    "psp_correction_ha": 0.09187494522099392,
+    "n_electrons_from_atoms_actual": 10,
+    "model_ne": 10
+  },
+  "original_array_scope": "ORIGINAL_ARCHIVED_ARRAYS; public coefficient reconstruction is separately labeled",
+  "original_vs_public_reconstruction": {
+    "A": {
+      "normalized_l2": 3.884956655330222e-16,
+      "max_abs": 1.3322676295501878e-15,
+      "status": "PASS"
+    },
+    "B": {
+      "normalized_l2": 3.572653312271984e-16,
+      "max_abs": 8.881784197001252e-16,
+      "status": "PASS"
+    },
+    "Q": {
+      "normalized_l2": 4.2854222146356654e-16,
+      "max_abs": 1.7763568394002505e-15,
+      "status": "PASS"
+    },
+    "V_D": {
+      "normalized_l2": 3.5075209710749777e-16,
+      "max_abs": 7.105427357601002e-15,
+      "status": "PASS"
+    }
+  },
+  "original_pointwise_integrals_ha": {
+    "L_D_A": -79.43302742791043,
+    "L_D_B": -79.43302742790988,
+    "L_D_Q": -79.43303529024301,
+    "L_Qpp_Q": -79.34118126437784,
+    "L_Qpp_printed_P0": -79.34118126434517
+  },
+  "original_comparisons": {
+    "A_minus_G40": {
+      "historical_delta_ha": {
+        "E": 2.2947777679860337e-05,
+        "H": -5.967043431809316e-06,
+        "XC": 2.6470818008661468e-06,
+        "Ew": 1.840410490672184e-08,
+        "O": 2.6249335206784963e-05
+      },
+      "rho_response_ha": 7.862332579611066e-06,
+      "shape_at_Q_ha": 4.248587148167908e-06,
+      "g0_at_Q_ha": 1.6670768671109282e-05,
+      "Delta_Lbar_current_ha": 2.8781688399703853e-05,
+      "same_source_local_plus_Pc_drift_ha": 0.0,
+      "Delta_Lbar_historical_ha": 2.8781688399703853e-05,
+      "R_after_local_ha": -2.5323531929188903e-06,
+      "g0_simplified_auxiliary_ha": 1.6670768671137037e-05,
+      "g0_exact_minus_simplified_ha": -2.128137893538179e-17,
+      "local_recombination_error_ha": 8.155978605157987e-16,
+      "total_ledger_error_ha": -8.881784197001252e-16,
+      "uncertainty": {
+        "u_local_combination_print_ha": 1.91368667774992e-08,
+        "u_R_after_local_print_ha": 1.91368827774992e-08,
+        "u_historical_O_Q_print_ha": 1.6e-14,
+        "correlation_rule": "rho+shape+G0 is one local term; shape and G0 rounding combined before propagation"
+      },
+      "subterm_rule": "rho_response, shape and G0 partition local only; subtract drift for historical ledger, never add both parent and children"
+    },
+    "B_minus_G40": {
+      "historical_delta_ha": {
+        "E": 2.2947777686965765e-05,
+        "H": -5.967043659182991e-06,
+        "XC": 2.647081777773508e-06,
+        "Ew": 1.840410490672184e-08,
+        "O": 2.6249335462580348e-05
+      },
+      "rho_response_ha": 7.862333139411838e-06,
+      "shape_at_Q_ha": 4.248587148167908e-06,
+      "g0_at_Q_ha": 1.6670768671109282e-05,
+      "Delta_Lbar_current_ha": 2.8781688953927187e-05,
+      "same_source_local_plus_Pc_drift_ha": -1.4210854715202004e-14,
+      "Delta_Lbar_historical_ha": 2.878168896813804e-05,
+      "R_after_local_ha": -2.532353505557694e-06,
+      "g0_simplified_auxiliary_ha": 1.6670768671137037e-05,
+      "g0_exact_minus_simplified_ha": -2.128137893538179e-17,
+      "local_recombination_error_ha": -4.7618396584788586e-15,
+      "total_ledger_error_ha": 8.881784197001252e-16,
+      "uncertainty": {
+        "u_local_combination_print_ha": 1.91368667774992e-08,
+        "u_R_after_local_print_ha": 1.91368827774992e-08,
+        "u_historical_O_Q_print_ha": 1.6e-14,
+        "correlation_rule": "rho+shape+G0 is one local term; shape and G0 rounding combined before propagation"
+      },
+      "subterm_rule": "rho_response, shape and G0 partition local only; subtract drift for historical ledger, never add both parent and children"
+    }
+  },
+  "original_potential_mean_ha": -4.964071527492901e-19,
+  "outputs_local_sha256": {
+    "fields": "7cefdf9711adac9686caae252d869f5028c2e8adb2d9b50e6b2579e9dcc35139",
+    "native": "f6dd5fd19ae58c5a8e31afbba9be37afaa367c89a395c61b591c5393f02dc83d"
+  },
+  "raw_metadata_sha256": "f5858417ccaec624cd83c54fc5b5eda1df507233bcd310413b01169674bed6e8",
+  "field_checks": {
+    "saved_local_nbar_sha256": "ab187da1592eb58bf3bfa8c24db8bd32efe2504a9e57590d3b13f2c694ae0cef",
+    "origin_fractional": [
+      0,
+      0,
+      0
+    ],
+    "applied_mean_shift": false,
+    "status": "PASS",
+    "unused_fields": "Serialized vxc, gradient and sigma materialized by the plain container reader but not used in any evaluation",
+    "local_fft": {
+      "convention": "Original zero-origin nodes; first index fastest; all native bins including G=0 and Nyquist",
+      "real_l2_squared": 1181.3634567991026,
+      "parseval_normalized": 0.0,
+      "direct_checks": [
+        {
+          "direct": [
+            -5.611830444784971e-19,
+            0.0
+          ],
+          "fft": [
+            -4.4408920985006255e-18,
+            0.0
+          ],
+          "absolute_error": 3.879709054022128e-18,
+          "normalized_error": 3.879709054022128e-18,
+          "miller": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            -0.14897976960996284,
+            0.27099319490201146
+          ],
+          "fft": [
+            -0.14897976960996281,
+            0.27099319490201146
+          ],
+          "absolute_error": 2.7755575615628914e-17,
+          "normalized_error": 2.7755575615628914e-17,
+          "miller": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            -0.14897976960996284,
+            -0.27099319490201146
+          ],
+          "fft": [
+            -0.14897976960996281,
+            -0.27099319490201146
+          ],
+          "absolute_error": 2.7755575615628914e-17,
+          "normalized_error": 2.7755575615628914e-17,
+          "miller": [
+            -1,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            -0.038758638002497875,
+            0.30680621150235615
+          ],
+          "fft": [
+            -0.03875863800249783,
+            0.30680621150235615
+          ],
+          "absolute_error": 4.163336342344337e-17,
+          "normalized_error": 4.163336342344337e-17,
+          "miller": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "direct": [
+            -0.038758638002497875,
+            -0.30680621150235615
+          ],
+          "fft": [
+            -0.03875863800249785,
+            -0.30680621150235615
+          ],
+          "absolute_error": 2.7755575615628914e-17,
+          "normalized_error": 2.7755575615628914e-17,
+          "miller": [
+            0,
+            -1,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.11384056623749714,
+            0.2875284488793469
+          ],
+          "fft": [
+            0.11384056623749716,
+            0.2875284488793468
+          ],
+          "absolute_error": 1.1443916996305594e-16,
+          "normalized_error": 1.1443916996305594e-16,
+          "miller": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "direct": [
+            0.11384056623749714,
+            -0.2875284488793469
+          ],
+          "fft": [
+            0.11384056623749716,
+            -0.2875284488793468
+          ],
+          "absolute_error": 1.1443916996305594e-16,
+          "normalized_error": 1.1443916996305594e-16,
+          "miller": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "direct": [
+            0.013993708859100607,
+            -0.005540501284278746
+          ],
+          "fft": [
+            0.013993708859100631,
+            -0.005540501284278748
+          ],
+          "absolute_error": 2.434800425099963e-17,
+          "normalized_error": 2.434800425099963e-17,
+          "miller": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "direct": [
+            0.013993708859100607,
+            0.005540501284278746
+          ],
+          "fft": [
+            0.013993708859100631,
+            0.005540501284278748
+          ],
+          "absolute_error": 2.434800425099963e-17,
+          "normalized_error": 2.434800425099963e-17,
+          "miller": [
+            -1,
+            -2,
+            -3
+          ]
+        },
+        {
+          "direct": [
+            -0.014577773226554241,
+            0.0037429359959161544
+          ],
+          "fft": [
+            -0.014577773226554222,
+            0.003742935995916159
+          ],
+          "absolute_error": 1.966923233740024e-17,
+          "normalized_error": 1.966923233740024e-17,
+          "miller": [
+            2,
+            -1,
+            3
+          ]
+        },
+        {
+          "direct": [
+            -0.014577773226554241,
+            -0.0037429359959161544
+          ],
+          "fft": [
+            -0.014577773226554222,
+            -0.0037429359959161583
+          ],
+          "absolute_error": 1.947705154527678e-17,
+          "normalized_error": 1.947705154527678e-17,
+          "miller": [
+            -2,
+            1,
+            -3
+          ]
+        },
+        {
+          "direct": [
+            0.008064523336141114,
+            -0.012707655388591602
+          ],
+          "fft": [
+            0.00806452333614112,
+            -0.012707655388591603
+          ],
+          "absolute_error": 7.152448122690996e-18,
+          "normalized_error": 7.152448122690996e-18,
+          "miller": [
+            3,
+            2,
+            -1
+          ]
+        },
+        {
+          "direct": [
+            0.008064523336141114,
+            0.012707655388591602
+          ],
+          "fft": [
+            0.00806452333614112,
+            0.012707655388591603
+          ],
+          "absolute_error": 7.152448122690996e-18,
+          "normalized_error": 7.152448122690996e-18,
+          "miller": [
+            -3,
+            -2,
+            1
+          ]
+        },
+        {
+          "direct": [
+            2.5700592955278473e-05,
+            0.0001347272264151335
+          ],
+          "fft": [
+            2.5700592955297853e-05,
+            0.0001347272264151325
+          ],
+          "absolute_error": 1.940604530915237e-17,
+          "normalized_error": 1.940604530915237e-17,
+          "miller": [
+            7,
+            -5,
+            4
+          ]
+        },
+        {
+          "direct": [
+            2.5700592955278473e-05,
+            -0.0001347272264151335
+          ],
+          "fft": [
+            2.570059295529778e-05,
+            -0.00013472722641513253
+          ],
+          "absolute_error": 1.933021919041545e-17,
+          "normalized_error": 1.933021919041545e-17,
+          "miller": [
+            -7,
+            5,
+            -4
+          ]
+        },
+        {
+          "direct": [
+            9.779186544769036e-07,
+            8.090046681249545e-07
+          ],
+          "fft": [
+            9.779186544212277e-07,
+            8.090046682376783e-07
+          ],
+          "absolute_error": 1.2572373005474563e-16,
+          "normalized_error": 1.2572373005474563e-16,
+          "miller": [
+            17,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            9.779186544769036e-07,
+            -8.090046681249545e-07
+          ],
+          "fft": [
+            9.77918654421263e-07,
+            -8.090046682376802e-07
+          ],
+          "absolute_error": 1.2570978248807093e-16,
+          "normalized_error": 1.2570978248807093e-16,
+          "miller": [
+            -17,
+            0,
+            0
+          ]
+        }
+      ],
+      "fourier_l2_squared": 1181.3634567991026,
+      "g0": [
+        -4.4408920985006255e-18,
+        0.0
+      ],
+      "status": "PASS",
+      "normalization": "ordinary Fourier series: DFTK.fft(field)/sqrt(Omega) = FFT(field)/Ngrid",
+      "mean": 0.0,
+      "complex_roundtrip_normalized": 3.4466093631239307e-16,
+      "coefficient_count": 64000,
+      "roundtrip_imaginary_max": 1.7493936115773202e-15
+    },
+    "volume_bohr3": 1000.0,
+    "local_nbar_restoration_normalized": 2.758646868134057e-16,
+    "units": {
+      "potential_coefficients": "Ha",
+      "density": "electron/bohr^3",
+      "potential_l2_squared": "Ha^2 bohr^3",
+      "energy": "Ha/cell",
+      "potential": "Ha",
+      "density_l2_squared": "electron^2/bohr^3"
+    },
+    "applied_density_normalization": false,
+    "fft_size": [
+      40,
+      40,
+      40
+    ],
+    "physical_node_count": 64000
+  },
+  "saved_density_checks": {
+    "B": {
+      "integral_minus_historical_ha": -4.263256414560601e-14,
+      "historical_atomic_local_ha": -79.43302742790986,
+      "real_fourier_difference_ha": 4.263256414560601e-14,
+      "status": "PASS",
+      "local_fourier_integral_ha": -79.43302742790995,
+      "potential_sha256": "9a77f4e893eca3f0f2de003f9aad24debfb8fcff47a2199741eb51ac462533e4",
+      "n_sha256": "bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3",
+      "electron_count": 10.000000000000004,
+      "source_evaluation": "B_original_n_out",
+      "mean_ha": 0.0,
+      "local_integral_ha": -79.4330274279099,
+      "historical_mean_ha": 0
+    },
+    "A": {
+      "integral_minus_historical_ha": 0.0,
+      "historical_atomic_local_ha": -79.43302742791043,
+      "real_fourier_difference_ha": 5.684341886080802e-14,
+      "status": "PASS",
+      "local_fourier_integral_ha": -79.43302742791049,
+      "potential_sha256": "9a77f4e893eca3f0f2de003f9aad24debfb8fcff47a2199741eb51ac462533e4",
+      "n_sha256": "38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130",
+      "electron_count": 10.000000000000002,
+      "source_evaluation": "A_original_n_out",
+      "mean_ha": 0.0,
+      "local_integral_ha": -79.43302742791043,
+      "historical_mean_ha": 0
+    },
+    "Q": {
+      "integral_minus_historical_ha": 0.0,
+      "historical_atomic_local_ha": -79.43303529024301,
+      "real_fourier_difference_ha": -2.842170943040401e-14,
+      "status": "PASS",
+      "local_fourier_integral_ha": -79.43303529024298,
+      "potential_sha256": "9a77f4e893eca3f0f2de003f9aad24debfb8fcff47a2199741eb51ac462533e4",
+      "n_sha256": "249b8cb8e4c143274887a73e6fd996de2ab72bc388bc55ea2590f43dc472eb5c",
+      "electron_count": 10.000000000000004,
+      "source_evaluation": "Q_rep",
+      "mean_ha": 0.0,
+      "local_integral_ha": -79.43303529024301,
+      "historical_mean_ha": 0
+    }
+  }
+}
