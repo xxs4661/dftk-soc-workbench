@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "case": "mg-soc-qe-diagnostics-v1",
+  "phase": "7B",
+  "base_commit": "9d49ca88bfe3c4add0e6c80c1376f006d065e306",
+  "geometry": {
+    "lattice_vectors_bohr": [
+      [
+        10.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        10.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        10.0
+      ]
+    ],
+    "positions_fractional": [
+      [
+        0.17,
+        0.23,
+        0.31
+      ]
+    ],
+    "species": [
+      "Mg"
+    ]
+  },
+  "electrons": {
+    "n_electrons": 10,
+    "n_bands": 24,
+    "occupation_capacity": 1,
+    "temperature_ha": 0.001
+  },
+  "kpoints": [
+    {
+      "coordinate_fractional": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "weight_spatial": 0.3333333333333333
+    },
+    {
+      "coordinate_fractional": [
+        0.125,
+        0.0625,
+        -0.1875
+      ],
+      "weight_spatial": 0.3333333333333333
+    },
+    {
+      "coordinate_fractional": [
+        -0.125,
+        -0.0625,
+        0.1875
+      ],
+      "weight_spatial": 0.3333333333333333
+    }
+  ],
+  "pseudo": {
+    "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "filename": "Mg.upf",
+    "element": "Mg",
+    "pseudo_type": "NC",
+    "relativistic": "full",
+    "has_so": true,
+    "z_valence": 10,
+    "nlcc": false
+  },
+  "xc": {
+    "functional": "PBESOL",
+    "qe_indices": [
+      1,
+      4,
+      10,
+      8
+    ],
+    "dftk_identifiers": [
+      "gga_x_pbe_sol",
+      "gga_c_pbe_sol"
+    ]
+  },
+  "cutoffs": {
+    "qe_ecutwfc_ry": 30.0,
+    "qe_ecutrho_ry": 120.0
+  },
+  "qe": {
+    "version": "7.5",
+    "calculation": "scf",
+    "conv_thr_ry": 1e-10,
+    "electron_maxstep": 400,
+    "mixing_beta": 0.1,
+    "diago_full_acc": true,
+    "diago_thr_init_ry": 1e-10,
+    "noncolin": true,
+    "lspinorb": true,
+    "starting_magnetization": 0.0,
+    "nosym": true,
+    "noinv": true,
+    "no_t_rev": true,
+    "smearing": "fermi-dirac",
+    "degauss_ry": 0.002,
+    "restart_mode": "from_scratch",
+    "fft": "QE default; record actual grids",
+    "threads": 1
+  },
+  "comparison": {
+    "primary_reference": "A",
+    "auxiliary_reference": "B",
+    "lowest_states": 16,
+    "all_states": 24,
+    "occupied_threshold": 0.5,
+    "saturation_tolerance": 1e-08,
+    "classification": "Each historical reference f>=0.5; report QE classification agreement separately",
+    "reference": "One global sampled HOMO per engine, applicable only when every occupation is within 1e-8 of 0 or 1; otherwise raw spectra remain available and referenced comparison is unsupported",
+    "numerical_agreement_status": "REVIEW_REQUIRED",
+    "physical_convergence_status": "NOT_ESTABLISHED",
+    "no_fitted_or_total_energy_correction": true
+  },
+  "parsing": {
+    "coordinate_tolerance": 1e-10,
+    "weight_tolerance": 1e-10,
+    "electron_tolerance": 1e-08,
+    "geometry_tolerance": 1e-09,
+    "occupation_tolerance": 1e-10,
+    "energy_arithmetic_tolerance_ha": 1e-10
+  },
+  "historical": {
+    "status": "HISTORICAL_REUSED",
+    "commit": "ac22a64421c4a5444a399477b9a3215dbd913487",
+    "evidence": {
+      "path": "results/mg-soc-scf/evidence.json",
+      "sha256": "437e2424d8ce7d8d11b5732b7b52815910853d7d43307215b5fbc466e321e243"
+    },
+    "references": {
+      "A": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "run_id": "20260906T151940Z-A-270110aa"
+      },
+      "B": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "run_id": "20260906T153016Z-B-62835d43"
+      }
+    }
+  },
+  "frozen_environment": {
+    "config/sources.lock": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "environment/workbench/Project.toml": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "environment/workbench/Manifest.toml": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37"
+  },
+  "execution_order": [
+    "I36",
+    "D36",
+    "C36",
+    "G40",
+    "D40",
+    "C40"
+  ],
+  "cross_solver_gate_ha": 1e-07,
+  "slots": {
+    "I36": {
+      "calculation": "scf",
+      "initialization_only": true,
+      "fft_grid": [
+        36,
+        36,
+        36
+      ],
+      "solver": "david",
+      "diago_thr_init_ry": 1e-10,
+      "source_slot": null,
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/I36.in",
+      "input_sha256": "9ecec125b7ed9b38a66abd7d8f03fb74a05440ffedafb311db847c7e90e078fe"
+    },
+    "D36": {
+      "calculation": "bands",
+      "initialization_only": false,
+      "fft_grid": [
+        36,
+        36,
+        36
+      ],
+      "solver": "david",
+      "diago_thr_init_ry": 1e-13,
+      "source_slot": "Q36",
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/D36.in",
+      "input_sha256": "71cadfff5f32b8c5828a6a640c7002f389a74eb95c26174f80f6a81c3800d768",
+      "diago_david_ndim": 2
+    },
+    "C36": {
+      "calculation": "bands",
+      "initialization_only": false,
+      "fft_grid": [
+        36,
+        36,
+        36
+      ],
+      "solver": "cg",
+      "diago_thr_init_ry": 1e-13,
+      "source_slot": "Q36",
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/C36.in",
+      "input_sha256": "2f22e4af5b11eb8acb5a6ffe7ac874dda0b8fb53bb0ef88c2e54c27cf7d5fa44",
+      "diago_cg_maxiter": 200
+    },
+    "G40": {
+      "calculation": "scf",
+      "initialization_only": false,
+      "fft_grid": [
+        40,
+        40,
+        40
+      ],
+      "solver": "david",
+      "diago_thr_init_ry": 1e-10,
+      "source_slot": null,
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/G40.in",
+      "input_sha256": "793d30bc6c0f3ee214ca8f6cc8ed0aa88a879ffc4284536ccf7e8584287b1677"
+    },
+    "D40": {
+      "calculation": "bands",
+      "initialization_only": false,
+      "fft_grid": [
+        40,
+        40,
+        40
+      ],
+      "solver": "david",
+      "diago_thr_init_ry": 1e-13,
+      "source_slot": "G40",
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/D40.in",
+      "input_sha256": "a06a8a3900d447bebc11b7d11329f87efc23035202bf2740de61d7e9110d7679",
+      "diago_david_ndim": 2
+    },
+    "C40": {
+      "calculation": "bands",
+      "initialization_only": false,
+      "fft_grid": [
+        40,
+        40,
+        40
+      ],
+      "solver": "cg",
+      "diago_thr_init_ry": 1e-13,
+      "source_slot": "G40",
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/C40.in",
+      "input_sha256": "2067a0f31cc547d0bc02b6f4d41214ed314527192ad141565f8439b78260a239",
+      "diago_cg_maxiter": 200
+    }
+  },
+  "qe_identity": {
+    "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+    "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+    "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+    "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+    "jll_version": "7.5.1+0"
+  },
+  "historical_qe": {
+    "commit": "9d49ca88bfe3c4add0e6c80c1376f006d065e306",
+    "status": "HISTORICAL_REUSED",
+    "evidence": {
+      "path": "results/mg-soc-qe-comparison/evidence.json",
+      "sha256": "06f8248acb1a36a1cb317aa0c27eb5badcd618c5c1beccf148c286540adfb319"
+    },
+    "source_scf_run_id": "20260907T001853989732Z-c88a8fa3",
+    "old_bands_run_id": "20260907T002225710098Z-bands-1561a3f2"
+  },
+  "interpretation": {
+    "numerical_agreement_status": "REVIEW_REQUIRED",
+    "physical_convergence_status": "NOT_ESTABLISHED",
+    "individual_eigenvector_residual_status": "NOT_AVAILABLE",
+    "no_alignment_same_density": true,
+    "no_total_energy_correction": true,
+    "stability_gate_requires_no_unconverged_warnings": true,
+    "max_new_numerical_solves": 5,
+    "max_initialization_runs": 1
+  },
+  "saved_utc": "2026-09-07T11:10:11.952065+00:00"
+}
