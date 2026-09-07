@@ -1,0 +1,957 @@
+{
+  "schema_version": 1,
+  "case": "mg-soc-qe-diagnostics-v1",
+  "base_commit": "9d49ca88bfe3c4add0e6c80c1376f006d065e306",
+  "preparation_commit": "57ccbdc07d4d618f8dcf4135ab4cc28b62b7552f",
+  "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+  "predeclaration_saved_utc": "2026-09-07T11:10:11.952065+00:00",
+  "historical_reference_status": "HISTORICAL_REUSED",
+  "historical_qe": {
+    "commit": "9d49ca88bfe3c4add0e6c80c1376f006d065e306",
+    "status": "HISTORICAL_REUSED",
+    "evidence": {
+      "path": "results/mg-soc-qe-comparison/evidence.json",
+      "sha256": "06f8248acb1a36a1cb317aa0c27eb5badcd618c5c1beccf148c286540adfb319"
+    },
+    "source_scf_run_id": "20260907T001853989732Z-c88a8fa3",
+    "old_bands_run_id": "20260907T002225710098Z-bands-1561a3f2"
+  },
+  "run_slots": {
+    "I36": {
+      "slot": "I36",
+      "run_id": "20260907T111929978454Z-I36-b582abea",
+      "execution_status": "PASS",
+      "input_contract_status": "PASS",
+      "recorder_exit_code": 0,
+      "process_exit_code": 0,
+      "process_interrupted": false,
+      "started_utc": "2026-09-07T11:19:30.281906+00:00",
+      "finished_utc": "2026-09-07T11:19:30.677528+00:00",
+      "command": [
+        "pw.x",
+        "-in",
+        "qe.in"
+      ],
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/I36.in",
+      "input_sha256": "9ecec125b7ed9b38a66abd7d8f03fb74a05440ffedafb311db847c7e90e078fe",
+      "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+      "preflight": {
+        "saved_utc": "2026-09-07T11:19:30.269943+00:00",
+        "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+        "execution_commit": "57ccbdc07d4d618f8dcf4135ab4cc28b62b7552f",
+        "execution_source_sha256": {
+          "scripts/run_qe_soc_diagnostics.py": "1273aa3e8661dd39ec1354e376a06c356e97c9cce44e99202c78a13c2783c1d7",
+          "scripts/parse_qe_soc_diagnostics.py": "caae30d0d784f3074603b1d46b0ab2ccf3ab1f64b4a62e365d53e17578131788",
+          "scripts/compare_qe_soc_diagnostics.py": "2ed7c57b47cbf392adc7c5f73b0877bc9f610c3eea68c8173194550fea3abac4",
+          "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+          "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+          "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185"
+        }
+      },
+      "qe_identity": {
+        "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+        "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+        "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+        "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+        "jll_version": "7.5.1+0",
+        "startup_version": "7.5",
+        "source_commit": null,
+        "scope": "Actual existing launch binary/runner; source commit not inferred from version"
+      },
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "JULIA_NUM_THREADS": "1"
+      },
+      "pseudo_before_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "pseudo_after_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "source_binding": {
+        "status": "NOT_APPLICABLE",
+        "fresh_scratch": true
+      },
+      "source_preservation_status": "PASS",
+      "native_files": {
+        "xml": {
+          "public_path": "results/mg-soc-qe-diagnostics/I36/qe.xml",
+          "raw_sha256": "bc138ecd4c018f320866145523c9c79a9de687d575ee9487ca8db19ac98cdab9",
+          "public_sha256": "bc138ecd4c018f320866145523c9c79a9de687d575ee9487ca8db19ac98cdab9",
+          "raw_bytes": 30179,
+          "public_bytes": 30179,
+          "transformation": "Byte-identical"
+        },
+        "stdout": {
+          "public_path": "results/mg-soc-qe-diagnostics/I36/qe.stdout",
+          "raw_sha256": "f463cadb4ddc238ed69e8b701c4ffcf55f834f1ff72995c7321b17847d908fa0",
+          "public_sha256": "1ae497d7b0e3911b111a0f7c5fd2f720991875812a85eb837dae4faafe10fb59",
+          "raw_bytes": 6368,
+          "public_bytes": 6304,
+          "transformation": "Trailing spaces/tabs removed per line; no content or lines dropped"
+        },
+        "stderr": {
+          "public_path": "results/mg-soc-qe-diagnostics/I36/qe.stderr",
+          "raw_sha256": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+          "public_sha256": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+          "raw_bytes": 81,
+          "public_bytes": 81,
+          "transformation": "Byte-identical"
+        }
+      },
+      "original_recorder_result_sha256": "645841dc41051c33d02645340454760aad3d4046fd01deab4aa330c1a1237d62",
+      "original_parsed_record_sha256": "4fa24874ddc18e7245b0e1293b933cdb62c2baf68308a061040490494218cf22",
+      "post_execution_numeric_equality": "PASS",
+      "original_process_start_sha256": "bc2ff21717551763521ea803786c361c645776f478f356612c211d6fc80144ef",
+      "original_process_exit_sha256": "d1b02d6d9936f613fa9e1a1374a5f7b787c0190c03b67eebedcebb2b4c5c116c",
+      "original_preflight_sha256": "0dfaf576271f8981d095f625af2b6733fc94abd0eba2cbb223c210c27f8b8bfb"
+    },
+    "D36": {
+      "slot": "D36",
+      "run_id": "20260907T111948528180Z-D36-3d8fff49",
+      "execution_status": "PASS",
+      "input_contract_status": "PASS",
+      "recorder_exit_code": 0,
+      "process_exit_code": 0,
+      "process_interrupted": false,
+      "started_utc": "2026-09-07T11:19:48.836733+00:00",
+      "finished_utc": "2026-09-07T11:19:50.070433+00:00",
+      "command": [
+        "pw.x",
+        "-in",
+        "qe.in"
+      ],
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/D36.in",
+      "input_sha256": "71cadfff5f32b8c5828a6a640c7002f389a74eb95c26174f80f6a81c3800d768",
+      "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+      "preflight": {
+        "saved_utc": "2026-09-07T11:19:48.825036+00:00",
+        "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+        "execution_commit": "57ccbdc07d4d618f8dcf4135ab4cc28b62b7552f",
+        "execution_source_sha256": {
+          "scripts/run_qe_soc_diagnostics.py": "1273aa3e8661dd39ec1354e376a06c356e97c9cce44e99202c78a13c2783c1d7",
+          "scripts/parse_qe_soc_diagnostics.py": "caae30d0d784f3074603b1d46b0ab2ccf3ab1f64b4a62e365d53e17578131788",
+          "scripts/compare_qe_soc_diagnostics.py": "2ed7c57b47cbf392adc7c5f73b0877bc9f610c3eea68c8173194550fea3abac4",
+          "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+          "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+          "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185"
+        }
+      },
+      "qe_identity": {
+        "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+        "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+        "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+        "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+        "jll_version": "7.5.1+0",
+        "startup_version": "7.5",
+        "source_commit": null,
+        "scope": "Actual existing launch binary/runner; source commit not inferred from version"
+      },
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "JULIA_NUM_THREADS": "1"
+      },
+      "pseudo_before_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "pseudo_after_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "source_binding": {
+        "status": "PASS",
+        "source_slot": "Q36",
+        "source_run_id": "20260907T001853989732Z-c88a8fa3",
+        "source_snapshot_sha256": "0e1ecb91b0ab8de2e34daa5e7a64c93a79ffc5593dfbabd9da97850bd9e052ce",
+        "charge_before_sha256": "81491411c5a327ca5ae022fd950efacc247ec0eea1f78adbd0811c81dea53b9b",
+        "initial_wfc_sha256": {
+          "wfc1.dat": "2c94e248ebce0873606f2b594e0ed94ea13b1c3b943272c501ff5dce1dd6c732",
+          "wfc2.dat": "5da97b83d2a7d2c534f738700c6f2bef8dd6773bdb13cc194ac0ba2a159a1055",
+          "wfc3.dat": "d054ffab3e8515d38baae204517457bacfb6857ca7d1b95e76f66cdc7b9016af"
+        },
+        "source_preservation_status": "PASS",
+        "charge_after_sha256": "81491411c5a327ca5ae022fd950efacc247ec0eea1f78adbd0811c81dea53b9b"
+      },
+      "source_preservation_status": "PASS",
+      "native_files": {
+        "xml": {
+          "public_path": "results/mg-soc-qe-diagnostics/D36/qe.xml",
+          "raw_sha256": "44ea992ace82e1f96f5a0081760e48a54f4a761c583292c7a55d64950a2d7e1b",
+          "public_sha256": "44ea992ace82e1f96f5a0081760e48a54f4a761c583292c7a55d64950a2d7e1b",
+          "raw_bytes": 40108,
+          "public_bytes": 40108,
+          "transformation": "Byte-identical"
+        },
+        "stdout": {
+          "public_path": "results/mg-soc-qe-diagnostics/D36/qe.stdout",
+          "raw_sha256": "e245abc31594cccb7483a47f2f062a3d6957544f73a6795735b645e7d4134f48",
+          "public_sha256": "4ac66cf1406f4798b00ca44041843dca4e9a63d1a67e04518ad0cc24d404c3b2",
+          "raw_bytes": 9421,
+          "public_bytes": 9357,
+          "transformation": "Trailing spaces/tabs removed per line; no content or lines dropped"
+        },
+        "stderr": {
+          "public_path": "results/mg-soc-qe-diagnostics/D36/qe.stderr",
+          "raw_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+          "public_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+          "raw_bytes": 119,
+          "public_bytes": 119,
+          "transformation": "Byte-identical"
+        }
+      },
+      "original_recorder_result_sha256": "870e1f7065f9d0795cf60d4f8b43722b140eba9eba17d79728dcd96e094cd7b0",
+      "original_parsed_record_sha256": "0e2878e6ad4beb1c95924ddb4dd5a541d588346e7385b9ab6f1f383fe71e8981",
+      "post_execution_numeric_equality": "PASS",
+      "original_process_start_sha256": "504b630ebbe7f9ceb88f93d893edd68a59a97133752560eab22b5203c57e6a71",
+      "original_process_exit_sha256": "8aef34f17bd0807198e33e06f979fb184d49aa0036ded3c397b0d4ff6b3f79b0",
+      "original_preflight_sha256": "7999801e2653e86864dd240b06f8c731e0f019fc9f98676e9e5e532dbc7d1735"
+    },
+    "C36": {
+      "slot": "C36",
+      "run_id": "20260907T112027797228Z-C36-09d225c5",
+      "execution_status": "PASS",
+      "input_contract_status": "PASS",
+      "recorder_exit_code": 0,
+      "process_exit_code": 0,
+      "process_interrupted": false,
+      "started_utc": "2026-09-07T11:20:28.098991+00:00",
+      "finished_utc": "2026-09-07T11:20:29.251090+00:00",
+      "command": [
+        "pw.x",
+        "-in",
+        "qe.in"
+      ],
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/C36.in",
+      "input_sha256": "2f22e4af5b11eb8acb5a6ffe7ac874dda0b8fb53bb0ef88c2e54c27cf7d5fa44",
+      "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+      "preflight": {
+        "saved_utc": "2026-09-07T11:20:28.087480+00:00",
+        "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+        "execution_commit": "57ccbdc07d4d618f8dcf4135ab4cc28b62b7552f",
+        "execution_source_sha256": {
+          "scripts/run_qe_soc_diagnostics.py": "1273aa3e8661dd39ec1354e376a06c356e97c9cce44e99202c78a13c2783c1d7",
+          "scripts/parse_qe_soc_diagnostics.py": "caae30d0d784f3074603b1d46b0ab2ccf3ab1f64b4a62e365d53e17578131788",
+          "scripts/compare_qe_soc_diagnostics.py": "2ed7c57b47cbf392adc7c5f73b0877bc9f610c3eea68c8173194550fea3abac4",
+          "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+          "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+          "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185"
+        }
+      },
+      "qe_identity": {
+        "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+        "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+        "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+        "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+        "jll_version": "7.5.1+0",
+        "startup_version": "7.5",
+        "source_commit": null,
+        "scope": "Actual existing launch binary/runner; source commit not inferred from version"
+      },
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "JULIA_NUM_THREADS": "1"
+      },
+      "pseudo_before_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "pseudo_after_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "source_binding": {
+        "status": "PASS",
+        "source_slot": "Q36",
+        "source_run_id": "20260907T001853989732Z-c88a8fa3",
+        "source_snapshot_sha256": "0e1ecb91b0ab8de2e34daa5e7a64c93a79ffc5593dfbabd9da97850bd9e052ce",
+        "charge_before_sha256": "81491411c5a327ca5ae022fd950efacc247ec0eea1f78adbd0811c81dea53b9b",
+        "initial_wfc_sha256": {
+          "wfc1.dat": "2c94e248ebce0873606f2b594e0ed94ea13b1c3b943272c501ff5dce1dd6c732",
+          "wfc2.dat": "5da97b83d2a7d2c534f738700c6f2bef8dd6773bdb13cc194ac0ba2a159a1055",
+          "wfc3.dat": "d054ffab3e8515d38baae204517457bacfb6857ca7d1b95e76f66cdc7b9016af"
+        },
+        "source_preservation_status": "PASS",
+        "charge_after_sha256": "81491411c5a327ca5ae022fd950efacc247ec0eea1f78adbd0811c81dea53b9b"
+      },
+      "source_preservation_status": "PASS",
+      "native_files": {
+        "xml": {
+          "public_path": "results/mg-soc-qe-diagnostics/C36/qe.xml",
+          "raw_sha256": "ef0eab5d1ded24b32fedddd4e9128b5b6150392c6cc798784abcaa9fc54deb86",
+          "public_sha256": "ef0eab5d1ded24b32fedddd4e9128b5b6150392c6cc798784abcaa9fc54deb86",
+          "raw_bytes": 39542,
+          "public_bytes": 39542,
+          "transformation": "Byte-identical"
+        },
+        "stdout": {
+          "public_path": "results/mg-soc-qe-diagnostics/C36/qe.stdout",
+          "raw_sha256": "95ffc5c3a089924c01dc9d3ae326516103a85ae7323602ef0ab53ce9d78d7150",
+          "public_sha256": "a2aef9b6535a8588bb466a6082794e572b1aa6c7f7a117faf67e0bc65040b813",
+          "raw_bytes": 9087,
+          "public_bytes": 9023,
+          "transformation": "Trailing spaces/tabs removed per line; no content or lines dropped"
+        },
+        "stderr": {
+          "public_path": "results/mg-soc-qe-diagnostics/C36/qe.stderr",
+          "raw_sha256": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+          "public_sha256": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+          "raw_bytes": 81,
+          "public_bytes": 81,
+          "transformation": "Byte-identical"
+        }
+      },
+      "original_recorder_result_sha256": "c8b1e9131c02f3492c08b20242337acb5112921fc5517c4db6bcfdba4c191f54",
+      "original_parsed_record_sha256": "19c0d0b24c0c7b8038502804fc9df08b77743813f28cfcaf8cc69ee7e4544b42",
+      "post_execution_numeric_equality": "PASS",
+      "original_process_start_sha256": "bd9ea387879fb052c4c0dbc46a25c8e41deba0be357c1c3d084c274d417943e6",
+      "original_process_exit_sha256": "2ddee7b4bbe11b616e9b41ab3b926e80217045f67464eae808d16e03181a285a",
+      "original_preflight_sha256": "fe5caccbf264e88cd876f6cca0177f482e3182a7dd095f4be2f7b4f962f556ae"
+    },
+    "G40": {
+      "slot": "G40",
+      "run_id": "20260907T112107073262Z-G40-3f9731a6",
+      "execution_status": "PASS",
+      "input_contract_status": "PASS",
+      "recorder_exit_code": 0,
+      "process_exit_code": 0,
+      "process_interrupted": false,
+      "started_utc": "2026-09-07T11:21:07.373708+00:00",
+      "finished_utc": "2026-09-07T11:21:12.907471+00:00",
+      "command": [
+        "pw.x",
+        "-in",
+        "qe.in"
+      ],
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/G40.in",
+      "input_sha256": "793d30bc6c0f3ee214ca8f6cc8ed0aa88a879ffc4284536ccf7e8584287b1677",
+      "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+      "preflight": {
+        "saved_utc": "2026-09-07T11:21:07.362326+00:00",
+        "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+        "execution_commit": "57ccbdc07d4d618f8dcf4135ab4cc28b62b7552f",
+        "execution_source_sha256": {
+          "scripts/run_qe_soc_diagnostics.py": "1273aa3e8661dd39ec1354e376a06c356e97c9cce44e99202c78a13c2783c1d7",
+          "scripts/parse_qe_soc_diagnostics.py": "caae30d0d784f3074603b1d46b0ab2ccf3ab1f64b4a62e365d53e17578131788",
+          "scripts/compare_qe_soc_diagnostics.py": "2ed7c57b47cbf392adc7c5f73b0877bc9f610c3eea68c8173194550fea3abac4",
+          "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+          "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+          "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185"
+        }
+      },
+      "qe_identity": {
+        "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+        "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+        "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+        "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+        "jll_version": "7.5.1+0",
+        "startup_version": "7.5",
+        "source_commit": null,
+        "scope": "Actual existing launch binary/runner; source commit not inferred from version"
+      },
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "JULIA_NUM_THREADS": "1"
+      },
+      "pseudo_before_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "pseudo_after_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "source_binding": {
+        "status": "NOT_APPLICABLE",
+        "fresh_scratch": true
+      },
+      "source_preservation_status": "PASS",
+      "native_files": {
+        "xml": {
+          "public_path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+          "raw_sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+          "public_sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+          "raw_bytes": 42675,
+          "public_bytes": 42675,
+          "transformation": "Byte-identical"
+        },
+        "stdout": {
+          "public_path": "results/mg-soc-qe-diagnostics/G40/qe.stdout",
+          "raw_sha256": "3b5684faa56ec93fa87592d4df8c30a509adcde769622310e0295c94a7dbd038",
+          "public_sha256": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+          "raw_bytes": 20913,
+          "public_bytes": 20846,
+          "transformation": "Trailing spaces/tabs removed per line; no content or lines dropped"
+        },
+        "stderr": {
+          "public_path": "results/mg-soc-qe-diagnostics/G40/qe.stderr",
+          "raw_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+          "public_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+          "raw_bytes": 119,
+          "public_bytes": 119,
+          "transformation": "Byte-identical"
+        }
+      },
+      "original_recorder_result_sha256": "c645cbc3c43ed770962fba8e0cd82a6908e94b64bbe9a7f4035debfa0f44d5f0",
+      "original_parsed_record_sha256": "8b36bb4d262ac7374fc665690c220f66d6c23f520e5744662b948bc9200b6f6f",
+      "post_execution_numeric_equality": "PASS",
+      "original_process_start_sha256": "cfd28f9bba2bb9cf8b5afeb221d6377737615cdb308cc35efc249fe52a3adfab",
+      "original_process_exit_sha256": "66b8d9b53a2362ed9e133f89e8c08579f86c2083da4f71b8bb812db3e4314c19",
+      "original_preflight_sha256": "5e339c21f09f880ad26205e4191974b93710b2dc80b5846c1ad81611f9852771"
+    },
+    "D40": {
+      "slot": "D40",
+      "run_id": "20260907T112146269902Z-D40-3e4c90c8",
+      "execution_status": "PASS",
+      "input_contract_status": "PASS",
+      "recorder_exit_code": 0,
+      "process_exit_code": 0,
+      "process_interrupted": false,
+      "started_utc": "2026-09-07T11:21:46.572436+00:00",
+      "finished_utc": "2026-09-07T11:21:48.035351+00:00",
+      "command": [
+        "pw.x",
+        "-in",
+        "qe.in"
+      ],
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/D40.in",
+      "input_sha256": "a06a8a3900d447bebc11b7d11329f87efc23035202bf2740de61d7e9110d7679",
+      "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+      "preflight": {
+        "saved_utc": "2026-09-07T11:21:46.561144+00:00",
+        "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+        "execution_commit": "57ccbdc07d4d618f8dcf4135ab4cc28b62b7552f",
+        "execution_source_sha256": {
+          "scripts/run_qe_soc_diagnostics.py": "1273aa3e8661dd39ec1354e376a06c356e97c9cce44e99202c78a13c2783c1d7",
+          "scripts/parse_qe_soc_diagnostics.py": "caae30d0d784f3074603b1d46b0ab2ccf3ab1f64b4a62e365d53e17578131788",
+          "scripts/compare_qe_soc_diagnostics.py": "2ed7c57b47cbf392adc7c5f73b0877bc9f610c3eea68c8173194550fea3abac4",
+          "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+          "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+          "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185"
+        }
+      },
+      "qe_identity": {
+        "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+        "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+        "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+        "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+        "jll_version": "7.5.1+0",
+        "startup_version": "7.5",
+        "source_commit": null,
+        "scope": "Actual existing launch binary/runner; source commit not inferred from version"
+      },
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "JULIA_NUM_THREADS": "1"
+      },
+      "pseudo_before_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "pseudo_after_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "source_binding": {
+        "status": "PASS",
+        "source_slot": "G40",
+        "source_run_id": "20260907T112107073262Z-G40-3f9731a6",
+        "source_snapshot_sha256": "e04b522711cf922e211d0ee92431e56256f7d678e0368359751e50079e5356ef",
+        "charge_before_sha256": "b93c254aa6972cf3c559fb8f85a630c0699e2eefe4382772a9203d11fcaa5359",
+        "initial_wfc_sha256": {
+          "wfc1.dat": "d56c746b2875764923cd09cf3ee27e70ac59a9780c193c45fd40f766353be485",
+          "wfc2.dat": "a583623ef9802ac040282539c71d40bf7b67cb5948977fcad55eb338b5c616af",
+          "wfc3.dat": "13b2987d722061a639d3285b77a815336433eae04bd5274093c423f347956a3a"
+        },
+        "source_preservation_status": "PASS",
+        "charge_after_sha256": "b93c254aa6972cf3c559fb8f85a630c0699e2eefe4382772a9203d11fcaa5359"
+      },
+      "source_preservation_status": "PASS",
+      "native_files": {
+        "xml": {
+          "public_path": "results/mg-soc-qe-diagnostics/D40/qe.xml",
+          "raw_sha256": "87e274496a9abfc4e5bff335f01d885a52acc64d0856d45d70764406e5b97816",
+          "public_sha256": "87e274496a9abfc4e5bff335f01d885a52acc64d0856d45d70764406e5b97816",
+          "raw_bytes": 40268,
+          "public_bytes": 40268,
+          "transformation": "Byte-identical"
+        },
+        "stdout": {
+          "public_path": "results/mg-soc-qe-diagnostics/D40/qe.stdout",
+          "raw_sha256": "3d951a55d3c04ad082d28be6765c83118e17a1a894cbe5766092847c90abe2b5",
+          "public_sha256": "9e76b6679fc481f322891460a36f4380d362b3c2e204b8563c83abde22b83e99",
+          "raw_bytes": 9421,
+          "public_bytes": 9357,
+          "transformation": "Trailing spaces/tabs removed per line; no content or lines dropped"
+        },
+        "stderr": {
+          "public_path": "results/mg-soc-qe-diagnostics/D40/qe.stderr",
+          "raw_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+          "public_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+          "raw_bytes": 119,
+          "public_bytes": 119,
+          "transformation": "Byte-identical"
+        }
+      },
+      "original_recorder_result_sha256": "ecf393af8054db3735dba8a2a83b3eac64a627092bae4acaa97a0c64353260af",
+      "original_parsed_record_sha256": "6920f91e3fb77304b8ad6a1ebdbd2ba8bc22960f80ceff49a4579404a1c7ad9e",
+      "post_execution_numeric_equality": "PASS",
+      "original_process_start_sha256": "52390f168ee648d6451eadfcd723a47b58fe220d771edeca3ed23964a0074583",
+      "original_process_exit_sha256": "9a9632678dee4fd4a6c524b4758dd6d7ea1d5270fadcde37324276e80e742cd1",
+      "original_preflight_sha256": "b3944ce0cf6d31bbd491610f582f23036ca79588845e7ec1500494c8b6d77721"
+    },
+    "C40": {
+      "slot": "C40",
+      "run_id": "20260907T112203309625Z-C40-80fdb528",
+      "execution_status": "PASS",
+      "input_contract_status": "PASS",
+      "recorder_exit_code": 0,
+      "process_exit_code": 0,
+      "process_interrupted": false,
+      "started_utc": "2026-09-07T11:22:03.626782+00:00",
+      "finished_utc": "2026-09-07T11:22:04.913387+00:00",
+      "command": [
+        "pw.x",
+        "-in",
+        "qe.in"
+      ],
+      "input_path": "benchmarks/mg-soc-qe-diagnostics-v1/C40.in",
+      "input_sha256": "2067a0f31cc547d0bc02b6f4d41214ed314527192ad141565f8439b78260a239",
+      "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+      "preflight": {
+        "saved_utc": "2026-09-07T11:22:03.613844+00:00",
+        "plan_sha256": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+        "execution_commit": "57ccbdc07d4d618f8dcf4135ab4cc28b62b7552f",
+        "execution_source_sha256": {
+          "scripts/run_qe_soc_diagnostics.py": "1273aa3e8661dd39ec1354e376a06c356e97c9cce44e99202c78a13c2783c1d7",
+          "scripts/parse_qe_soc_diagnostics.py": "caae30d0d784f3074603b1d46b0ab2ccf3ab1f64b4a62e365d53e17578131788",
+          "scripts/compare_qe_soc_diagnostics.py": "2ed7c57b47cbf392adc7c5f73b0877bc9f610c3eea68c8173194550fea3abac4",
+          "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+          "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+          "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185"
+        }
+      },
+      "qe_identity": {
+        "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+        "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+        "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+        "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+        "jll_version": "7.5.1+0",
+        "startup_version": "7.5",
+        "source_commit": null,
+        "scope": "Actual existing launch binary/runner; source commit not inferred from version"
+      },
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "JULIA_NUM_THREADS": "1"
+      },
+      "pseudo_before_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "pseudo_after_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "source_binding": {
+        "status": "PASS",
+        "source_slot": "G40",
+        "source_run_id": "20260907T112107073262Z-G40-3f9731a6",
+        "source_snapshot_sha256": "e04b522711cf922e211d0ee92431e56256f7d678e0368359751e50079e5356ef",
+        "charge_before_sha256": "b93c254aa6972cf3c559fb8f85a630c0699e2eefe4382772a9203d11fcaa5359",
+        "initial_wfc_sha256": {
+          "wfc1.dat": "d56c746b2875764923cd09cf3ee27e70ac59a9780c193c45fd40f766353be485",
+          "wfc2.dat": "a583623ef9802ac040282539c71d40bf7b67cb5948977fcad55eb338b5c616af",
+          "wfc3.dat": "13b2987d722061a639d3285b77a815336433eae04bd5274093c423f347956a3a"
+        },
+        "source_preservation_status": "PASS",
+        "charge_after_sha256": "b93c254aa6972cf3c559fb8f85a630c0699e2eefe4382772a9203d11fcaa5359"
+      },
+      "source_preservation_status": "PASS",
+      "native_files": {
+        "xml": {
+          "public_path": "results/mg-soc-qe-diagnostics/C40/qe.xml",
+          "raw_sha256": "98ca35c003034ff2fb9c5e5cc89adb76d62494ad79e404d63a9c795c9a424547",
+          "public_sha256": "98ca35c003034ff2fb9c5e5cc89adb76d62494ad79e404d63a9c795c9a424547",
+          "raw_bytes": 39690,
+          "public_bytes": 39690,
+          "transformation": "Byte-identical"
+        },
+        "stdout": {
+          "public_path": "results/mg-soc-qe-diagnostics/C40/qe.stdout",
+          "raw_sha256": "9bc47a2201876170203ec80112658b3f1f3efe04985ea9fe8ce543e1820d5ff3",
+          "public_sha256": "a8f706c1ea4d7f2f56f37a4a8abb178c04cbff79e592f52b6d0ec9041aa8b9db",
+          "raw_bytes": 9087,
+          "public_bytes": 9023,
+          "transformation": "Trailing spaces/tabs removed per line; no content or lines dropped"
+        },
+        "stderr": {
+          "public_path": "results/mg-soc-qe-diagnostics/C40/qe.stderr",
+          "raw_sha256": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+          "public_sha256": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+          "raw_bytes": 81,
+          "public_bytes": 81,
+          "transformation": "Byte-identical"
+        }
+      },
+      "original_recorder_result_sha256": "e27809aed6401eaf54f6f4ee7b76745486e2cfd0a5986845ff1ac9fd0ae4b3b3",
+      "original_parsed_record_sha256": "793d06852380f170b6bbc47bb3ae55c1bd9f108bcc9325636e839c975f695c97",
+      "post_execution_numeric_equality": "PASS",
+      "original_process_start_sha256": "8102de661b93e381b65d5d11b1fd8fd23187e20d22d361e10a7aa456ba5c51c3",
+      "original_process_exit_sha256": "4000e3788e50c6a004898b30822d2b4ed682b431893b0c5059ae5df4b2dbece2",
+      "original_preflight_sha256": "1ea04c09736da9da1bf4bf5cefe3ed3fa6c0e000d15b30870edb8b463604090e"
+    }
+  },
+  "source_snapshots": {
+    "Q36": {
+      "run_id": "20260907T001853989732Z-c88a8fa3",
+      "save_sha256": {
+        "Mg.upf": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+        "charge-density.dat": "81491411c5a327ca5ae022fd950efacc247ec0eea1f78adbd0811c81dea53b9b",
+        "data-file-schema.xml": "34295b4ee53396f6a655f7ca152804b3e763ba13c5dc49f14fdf2ab588107366",
+        "wfc1.dat": "2c94e248ebce0873606f2b594e0ed94ea13b1c3b943272c501ff5dce1dd6c732",
+        "wfc2.dat": "5da97b83d2a7d2c534f738700c6f2bef8dd6773bdb13cc194ac0ba2a159a1055",
+        "wfc3.dat": "d054ffab3e8515d38baae204517457bacfb6857ca7d1b95e76f66cdc7b9016af"
+      }
+    },
+    "G40": {
+      "run_id": "20260907T112107073262Z-G40-3f9731a6",
+      "save_sha256": {
+        "Mg.upf": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+        "charge-density.dat": "b93c254aa6972cf3c559fb8f85a630c0699e2eefe4382772a9203d11fcaa5359",
+        "data-file-schema.xml": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "wfc1.dat": "d56c746b2875764923cd09cf3ee27e70ac59a9780c193c45fd40f766353be485",
+        "wfc2.dat": "a583623ef9802ac040282539c71d40bf7b67cb5948977fcad55eb338b5c616af",
+        "wfc3.dat": "13b2987d722061a639d3285b77a815336433eae04bd5274093c423f347956a3a"
+      }
+    }
+  },
+  "source_recovery": {
+    "status": "PASS",
+    "restored_files": 19,
+    "source_archive_manifest_sha256": "097bd3c9539eb9ec5c35525e4243f1772dcda229e9b2de836c8fe3e955edb671",
+    "actual_temporary_restore": true,
+    "saved_utc": "2026-09-07T11:11:49.601634+00:00"
+  },
+  "historical_fixed_density_source_status": "PASS",
+  "frozen_boundary": {
+    "historical_public_and_source_files_unchanged": 220,
+    "registered_frozen_scientific_files": 86,
+    "upstream": {
+      "DFTK.jl": {
+        "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "status": ""
+      },
+      "PseudoPotentialIO.jl": {
+        "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "status": ""
+      }
+    },
+    "workbench_environment": {
+      "config/sources.lock": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+      "environment/workbench/Project.toml": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+      "environment/workbench/Manifest.toml": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37"
+    },
+    "historical_sources_preserved_before_after_each_run": true
+  },
+  "qe_dependency_baseline": {
+    "status": "PASS",
+    "julia_version": "1.12.7",
+    "project_sha256": "283d923b892d1fb37bac1e54d97f9ceec9b95b35e5dc452178f2b312a7c34f70",
+    "manifest_sha256": "944648a95f9c59804a87277d6850a966b1a6d434ac7435d508c394bf5d7b1582",
+    "libraries": [
+      {
+        "filename": "libxml2.2.dylib",
+        "sha256": "a283c005013c75c802fae6277442f8e34128eb2feb10c3ad37615b4193e4b8bb"
+      },
+      {
+        "filename": "libopenblas.0.3.34.dylib",
+        "sha256": "ac05907431fd80143551e697b799ff01230554d07301bb5c157a61ab24bc4455"
+      },
+      {
+        "filename": "libfftw3.3.dylib",
+        "sha256": "3cf70e7d10448c14a9206a9ab8f0c9524bb65746501518c63f11a63627071d99"
+      },
+      {
+        "filename": "libfftw3f.3.dylib",
+        "sha256": "53006b141989b91d032430b5747165caa1989d7ecc4e8efd48b108b08e5d93c9"
+      },
+      {
+        "filename": "libscalapack32.dylib",
+        "sha256": "309fbad60a6aacb4b1eb8291461c929b342f212423cf8fac2f52499c52e85cef"
+      },
+      {
+        "filename": "libcharset.1.dylib",
+        "sha256": "802b21ee31cc89c30605d1b35009a06f66435952f39e2bd104e0053fea9fc811"
+      },
+      {
+        "filename": "libiconv.2.dylib",
+        "sha256": "8647fe6b4e8a1b9bd096ff027cfda5c92cff3d9f25a18abd08c834ff838d7c5d"
+      },
+      {
+        "filename": "libhwloc.15.dylib",
+        "sha256": "20b200744c3abc58b2d6bc1273ce7eeab3411bc17e3b7fb04f898539105b6b5e"
+      },
+      {
+        "filename": "libxc.15.dylib",
+        "sha256": "47e134ec6bebb5d27bd301e1f8fb43c2bc95472d07c01ab67fed185ff3e015bd"
+      },
+      {
+        "filename": "libxcf03.15.dylib",
+        "sha256": "9760508b8ab781d2aea27d3f82a7c2ed6abb932362fdb681ffed3619acdba9d1"
+      },
+      {
+        "filename": "libmpi.12.dylib",
+        "sha256": "f330a193737480dd26f44368fbad96f9aec75f7eff0f16b650c39e7a5c2ef53a"
+      },
+      {
+        "filename": "libmpicxx.12.dylib",
+        "sha256": "b5ec6bfd535e5c8574735cc12d5854648aecdad58a285eda1a179f135a299c63"
+      },
+      {
+        "filename": "libmpifort.12.dylib",
+        "sha256": "7d69f53bcf003d2b89fe7a0dc987f8edb4b90ee8a199ee4c6bc9b8e74cdf4b6e"
+      },
+      {
+        "filename": "libpmpi.12.dylib",
+        "sha256": "a59d657156d7aae08de09bc207adaf7c57b67f36f136af79b905b061915382af"
+      },
+      {
+        "filename": "libgcc_s.1.1.dylib",
+        "sha256": "145a5cae0f20adcc2287120e626c6c137b550c491c5cdab636af957ea90e14c1"
+      },
+      {
+        "filename": "libgfortran.5.dylib",
+        "sha256": "a72b8368e6ba2f9e37ac14f9c10cafb0d6d0d9746fae0c479a7990a5a4e3bfb1"
+      },
+      {
+        "filename": "libgomp.1.dylib",
+        "sha256": "eada7cdb8992f30047dbe30dd52ba5ba63e7fa5bca4d5e214859ce9037528554"
+      },
+      {
+        "filename": "libquadmath.0.dylib",
+        "sha256": "a171209468e2f83bf06d3ecae975218c7dc9d75a04714cda0178334b893cd555"
+      },
+      {
+        "filename": "libstdc++.6.dylib",
+        "sha256": "0e37fbd38ffb1e517e2a9ebe94404dd4b12b4dfcd099a5632c680fd673265cd3"
+      }
+    ],
+    "scope": "Phase 7B new per-library and QE global Project/Manifest hash baseline; checked before/after all six. Historical 7A has no per-library hashes to compare. Actual JLL-launcher paths observed in a fresh Julia process; QE child dyld not separately traced."
+  },
+  "raw_backup": {
+    "status": "PASS",
+    "saved_utc": "2026-09-07T11:24:05.604969+00:00",
+    "archive_label": "phase7b-20260907T111422Z",
+    "raw_files": 138,
+    "raw_bytes": 64866703,
+    "manifest_sha256": "70a3235baa0a7361ac7fe57fa6b76ff795670c3f6a91b472156d3a6a10d3a2e4",
+    "all_copy_hashes_verified": true,
+    "actual_sample_restored_files": 40,
+    "sample_restored_bytes": 14250165,
+    "sample_restore_status": "PASS",
+    "storage_scope": "Repository-external same-machine local archive, not offsite",
+    "protected_old_source_status": "PASS",
+    "historical_public_and_source_files": 220
+  },
+  "post_execution_adapter_notes": [
+    "No QE retry. Original recorder and parsed results retained in raw archive.",
+    "Exclude c_bands timing/profile headings from warnings; retain all real unconverged messages.",
+    "I36 hard/smooth grids read from actual config-init XML and crosschecked against printed dense grid.",
+    "All original numerical fields agree exactly with public reparse under Python 3.12. Native/public hashes remain distinct."
+  ],
+  "numerical_agreement_status": "REVIEW_REQUIRED",
+  "physical_convergence_status": "NOT_ESTABLISHED",
+  "warning_origin_status": "NOT_LOCALIZED",
+  "residual_attribution_status": "NOT_ESTABLISHED",
+  "fft_control_status": "EXECUTED_AND_MEASURED",
+  "public_sha256": {
+    "benchmarks/mg-soc-qe-diagnostics-v1/plan.json": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+    "benchmarks/mg-soc-qe-diagnostics-v1/I36.in": "9ecec125b7ed9b38a66abd7d8f03fb74a05440ffedafb311db847c7e90e078fe",
+    "benchmarks/mg-soc-qe-diagnostics-v1/D36.in": "71cadfff5f32b8c5828a6a640c7002f389a74eb95c26174f80f6a81c3800d768",
+    "benchmarks/mg-soc-qe-diagnostics-v1/C36.in": "2f22e4af5b11eb8acb5a6ffe7ac874dda0b8fb53bb0ef88c2e54c27cf7d5fa44",
+    "benchmarks/mg-soc-qe-diagnostics-v1/G40.in": "793d30bc6c0f3ee214ca8f6cc8ed0aa88a879ffc4284536ccf7e8584287b1677",
+    "benchmarks/mg-soc-qe-diagnostics-v1/D40.in": "a06a8a3900d447bebc11b7d11329f87efc23035202bf2740de61d7e9110d7679",
+    "benchmarks/mg-soc-qe-diagnostics-v1/C40.in": "2067a0f31cc547d0bc02b6f4d41214ed314527192ad141565f8439b78260a239",
+    "results/mg-soc-qe-diagnostics/I36/qe.stdout": "1ae497d7b0e3911b111a0f7c5fd2f720991875812a85eb837dae4faafe10fb59",
+    "results/mg-soc-qe-diagnostics/I36/qe.xml": "bc138ecd4c018f320866145523c9c79a9de687d575ee9487ca8db19ac98cdab9",
+    "results/mg-soc-qe-diagnostics/I36/qe.stderr": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+    "results/mg-soc-qe-diagnostics/D36/qe.stdout": "4ac66cf1406f4798b00ca44041843dca4e9a63d1a67e04518ad0cc24d404c3b2",
+    "results/mg-soc-qe-diagnostics/D36/qe.xml": "44ea992ace82e1f96f5a0081760e48a54f4a761c583292c7a55d64950a2d7e1b",
+    "results/mg-soc-qe-diagnostics/D36/qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "results/mg-soc-qe-diagnostics/C36/qe.stdout": "a2aef9b6535a8588bb466a6082794e572b1aa6c7f7a117faf67e0bc65040b813",
+    "results/mg-soc-qe-diagnostics/C36/qe.xml": "ef0eab5d1ded24b32fedddd4e9128b5b6150392c6cc798784abcaa9fc54deb86",
+    "results/mg-soc-qe-diagnostics/C36/qe.stderr": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+    "results/mg-soc-qe-diagnostics/G40/qe.stdout": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+    "results/mg-soc-qe-diagnostics/G40/qe.xml": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+    "results/mg-soc-qe-diagnostics/G40/qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "results/mg-soc-qe-diagnostics/D40/qe.stdout": "9e76b6679fc481f322891460a36f4380d362b3c2e204b8563c83abde22b83e99",
+    "results/mg-soc-qe-diagnostics/D40/qe.xml": "87e274496a9abfc4e5bff335f01d885a52acc64d0856d45d70764406e5b97816",
+    "results/mg-soc-qe-diagnostics/D40/qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "results/mg-soc-qe-diagnostics/C40/qe.stdout": "a8f706c1ea4d7f2f56f37a4a8abb178c04cbff79e592f52b6d0ec9041aa8b9db",
+    "results/mg-soc-qe-diagnostics/C40/qe.xml": "98ca35c003034ff2fb9c5e5cc89adb76d62494ad79e404d63a9c795c9a424547",
+    "results/mg-soc-qe-diagnostics/C40/qe.stderr": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+    "results/mg-soc-qe-diagnostics/canonical.json": "549023435154cdedd1bd568e649f4935455f7c1478638b0fa9dd74d300d58551",
+    "results/mg-soc-qe-diagnostics/comparison.json": "949128aef2f76424d5033eaf7b1bc5124a3b3dced051e596da95080b941b7054",
+    "results/mg-soc-qe-diagnostics/differences.csv": "a6aeebd92cb22ac48d8843c9c12a568e75bb8c87565e81715562a422672248a8"
+  },
+  "verifier_sha256": {
+    "scripts/run_qe_soc_diagnostics.py": "733c988bcf1da3b84fbaeb2dc44705ed5d3fcf5a18197bc8bf01f849574e8be8",
+    "scripts/parse_qe_soc_diagnostics.py": "1ca9b66093a39f7fa83174aedb801f57bc4224d90776434ba172066abfef8f15",
+    "scripts/compare_qe_soc_diagnostics.py": "2ed7c57b47cbf392adc7c5f73b0877bc9f610c3eea68c8173194550fea3abac4",
+    "scripts/check_qe_soc_diagnostics.py": "1cbf85c554883596d8b0766d25cd354a27491af848e936cd64545d9a1a8c9b37"
+  },
+  "tests": [
+    {
+      "check": "all-soc-tests",
+      "command": [
+        "python3.12",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_qe_soc_*.py",
+        "-v"
+      ],
+      "started_utc": "2026-09-07T11:43:33.183923+00:00",
+      "finished_utc": "2026-09-07T11:43:34.622840+00:00",
+      "exit_code": 0,
+      "log_path": ".agent-work/phase7b/all-soc-tests-verified.log",
+      "log_sha256": "bd924ed828b24e6be9e0c80c0da29a14652bb3e31b361d46c9abfb648776f627",
+      "tests_run": 175,
+      "result": "PASS"
+    },
+    {
+      "check": "publication-tests",
+      "command": [
+        "python3.12",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_publication.py",
+        "-v"
+      ],
+      "started_utc": "2026-09-07T11:43:34.623125+00:00",
+      "finished_utc": "2026-09-07T11:43:34.763899+00:00",
+      "exit_code": 0,
+      "log_path": ".agent-work/phase7b/publication-tests-verified.log",
+      "log_sha256": "4f344563d90189cd178c8d5a4c637095382fff5633dce462edb898d28d111d60",
+      "tests_run": 23,
+      "result": "PASS"
+    },
+    {
+      "check": "old7a-replay",
+      "command": [
+        "python3.12",
+        "scripts/check_qe_soc_evidence.py"
+      ],
+      "started_utc": "2026-09-07T11:43:34.764082+00:00",
+      "finished_utc": "2026-09-07T11:43:34.798258+00:00",
+      "exit_code": 0,
+      "log_path": ".agent-work/phase7b/old7a-replay-verified.log",
+      "log_sha256": "55ed2522275a17e8aa5151c78d9be5e373e41f063a57436ba8548d79774e6592"
+    },
+    {
+      "check": "publication-combined",
+      "command": [
+        "python3.12",
+        "scripts/check_qe_soc_diagnostics.py",
+        "--all",
+        "--legacy-python",
+        "/usr/bin/python3"
+      ],
+      "started_utc": "2026-09-07T11:43:34.798434+00:00",
+      "finished_utc": "2026-09-07T11:43:35.208969+00:00",
+      "exit_code": 0,
+      "log_path": ".agent-work/phase7b/publication-combined-verified.log",
+      "log_sha256": "2f4949d45d1fef1b09301af77eb6ee44972aa48391ab6d42d38d5d6286dd4f64"
+    },
+    {
+      "check": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_utc": "2026-09-07T11:43:35.209157+00:00",
+      "finished_utc": "2026-09-07T11:43:35.221051+00:00",
+      "exit_code": 0,
+      "log_path": ".agent-work/phase7b/diff-check-verified.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check": "clean-public-only",
+      "command": [
+        "python3.12",
+        "scripts/check_qe_soc_diagnostics.py",
+        "--all",
+        "--legacy-python",
+        "/usr/bin/python3"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-07T11:43:35.409069+00:00",
+      "finished_utc": "2026-09-07T11:43:35.828731+00:00",
+      "log_path": ".agent-work/phase7b/clean-public-only-verified.log",
+      "log_sha256": "2f4949d45d1fef1b09301af77eb6ee44972aa48391ab6d42d38d5d6286dd4f64",
+      "public_files_copied": 264,
+      "excluded_private_directories": true,
+      "physical_programs_invoked": false,
+      "scope": "Ordinary local clone with reviewed Git history, current public candidate bytes copied exactly; no .work, UPF, Julia, QE or private archive used by checker"
+    }
+  ],
+  "not_run": [
+    "New DFTK A/B or Julia/upstream numerical tests",
+    "Additional QE numerical solves, solver/threshold/grid scans",
+    "QE/DFTK density or wavefunction-array comparison",
+    "Native per-state eigenvector residuals (NOT_AVAILABLE)",
+    "QE runtime IEEE localization, debug/rebuild or floating-point flag suppression",
+    "Full cutoff/k/temperature/FFT convergence",
+    "Further SOC/spinor/material development"
+  ],
+  "python_versions": {
+    "legacy": "Python 3.9.6",
+    "diagnostics": "Python 3.12.14"
+  },
+  "clean_public_copy": {
+    "check": "clean-public-only",
+    "command": [
+      "python3.12",
+      "scripts/check_qe_soc_diagnostics.py",
+      "--all",
+      "--legacy-python",
+      "/usr/bin/python3"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-09-07T11:43:35.409069+00:00",
+    "finished_utc": "2026-09-07T11:43:35.828731+00:00",
+    "log_path": ".agent-work/phase7b/clean-public-only-verified.log",
+    "log_sha256": "2f4949d45d1fef1b09301af77eb6ee44972aa48391ab6d42d38d5d6286dd4f64",
+    "public_files_copied": 264,
+    "excluded_private_directories": true,
+    "physical_programs_invoked": false,
+    "scope": "Ordinary local clone with reviewed Git history, current public candidate bytes copied exactly; no .work, UPF, Julia, QE or private archive used by checker"
+  },
+  "test_counts": {
+    "soc_original_and_diagnostics": 175,
+    "publication": 23,
+    "total_distinct_test_methods": 198,
+    "new_diagnostics": 79,
+    "original_soc": 96,
+    "pre_execution_directed": 66
+  },
+  "numerical_execution_budget": {
+    "new_numerical_solves": 5,
+    "initialization_only_runs": 1,
+    "retries": 0,
+    "failed_or_blocked_slots": []
+  },
+  "execution_code_audit": {
+    "status": "PASS",
+    "checked_per_run_source_bindings": 36,
+    "source": "Immutable preparation commit Git blobs; post-execution verifier changes recorded separately"
+  },
+  "independent_arithmetic_audit": {
+    "status": "PASS",
+    "rows_checked": 1584,
+    "summaries_checked": 288,
+    "scope": "Independent offline arithmetic and original-array row binding; not a physical solve",
+    "log_sha256": "9f9302ba64b0fff8896a7de8235ce1dee36ebcc760e59fb36d0a12ae9f58a069"
+  },
+  "process_archive": {
+    "status": "PASS",
+    "files": 69,
+    "bytes": 2221056,
+    "manifest_sha256": "a92778069ae84b9406c5efe5dec654d023fde51c0c769a66e3ca5ae5a26867e5",
+    "all_files_restored_and_checked": true,
+    "scope": "Local process/source-audit/failed synthetic development tests/export recipes; repository-external same-machine archive"
+  }
+}

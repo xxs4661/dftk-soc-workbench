@@ -42,7 +42,9 @@ def diagnostic_xml(slot):
     for block, count in zip(root.findall('output/band_structure/ks_energies'), (2777, 2770, 2770)):
         block.find('npw').text = str(count)
     if slot == 'I36':
-        root.remove(root.find('output'))
+        output = root.find('output')
+        for child in list(output):
+            if child.tag != 'basis_set': output.remove(child)
         root.remove(root.find('step'))
         root.find('exit_status').text = '255'
     return root
@@ -198,6 +200,20 @@ class QeSocDiagnosticsParserTests(unittest.TestCase):
         self.assertEqual(result['native_solver_warning_status'], 'UNCONVERGED_WARNING')
         self.assertEqual(len(result['warning_diagnostics']['c_bands_lines']), 1)
 
+    def test_c_bands_profile_lines_are_not_warning_evidence(self):
+        output = ('     Called by c_bands:\n'
+                  '     c_bands      :      0.52s CPU      0.54s WALL (       1 calls)\n'
+                  '     c_bands      :      0.01s CPU      0.02s WALL (       1 call)\n'
+                  '---- Real-time Memory Report at c_bands before calling an iterative solver\n')
+        warning = native_warnings(output, '', 0)
+        self.assertEqual(warning['warning_lines'], [])
+        self.assertEqual(warning['c_bands_lines'], [])
+        self.assertFalse(warning['eigenvalues_not_converged'])
+        warning = native_warnings(output + '     c_bands: 2 eigenvalues not converged\n', '', 0)
+        self.assertEqual(len(warning['c_bands_lines']), 1)
+        self.assertEqual(warning['c_bands_lines'][0]['line'], 5)
+        self.assertTrue(warning['eigenvalues_not_converged'])
+
     def test_absent_report_is_not_ieee_absence_certificate(self):
         record = native_warnings('', '', 0)
         self.assertEqual(record['ieee_warning_status'], 'NOT_REPORTED')
@@ -227,6 +243,23 @@ class QeSocDiagnosticsParserTests(unittest.TestCase):
         for path, value in (('exit_status', '0'), ('input/control_variables/nstep', '1')):
             xml = diagnostic_xml('I36'); xml.find(path).text = value
             with self.subTest(path=path), self.assertRaisesRegex(ValueError, 'config-init'): self.parse('I36', xml)
+
+    def test_initialization_xml_supplies_smooth_grid_when_stdout_omits_it(self):
+        output = '\n'.join(line for line in diagnostic_stdout('I36').splitlines() if not line.startswith('Smooth'))
+        result = self.parse('I36', stdout=output)
+        self.assertEqual(result['fft_grid'], [36]*3)
+        self.assertEqual(result['fft_smooth_grid'], [36]*3)
+        self.assertEqual(result['fft_control_status'], 'PASS')
+        self.assertEqual(result['initialization_fft_evidence']['stdout'], {'dense': [36]*3})
+        self.assertEqual(result['initialization_fft_evidence']['xml']['smooth'], [36]*3)
+        self.assertEqual(result['numerical_solve_status'], 'NOT_RUN')
+
+    def test_initialization_wrong_xml_smooth_or_disagreeing_stdout_rejected(self):
+        xml = diagnostic_xml('I36')
+        xml.find('output/basis_set/fft_smooth').set('nr1', '40')
+        with self.assertRaisesRegex(ValueError, 'hard/smooth'): self.parse('I36', xml)
+        with self.assertRaisesRegex(ValueError, 'grid differs'):
+            self.parse('I36', stdout=diagnostic_stdout('I36').replace('Smooth grid: 100 G-vectors FFT dimensions: (36, 36, 36)', 'Smooth grid: 100 G-vectors FFT dimensions: (40, 40, 40)'))
 
     def test_initialization_refuses_scf_or_bands_numerical_markers(self):
         for marker in ('iteration # 1', 'Band Structure Calculation', 'ethr = 1.00E-13'):

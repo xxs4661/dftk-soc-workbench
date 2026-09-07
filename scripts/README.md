@@ -90,6 +90,8 @@ results in [UPF acceptance evidence](../results/upf-acceptance/README.md).
 | Full Hamiltonian / energy at fixed density | [FR integration](../prototypes/fr_integration/README.md) |
 | Charge-only SOC SCF / comparison | `run_soc_scf.jl`, `compare_soc_scf.jl`; [SOC prototype](../prototypes/soc_scf/README.md) |
 | First QE SOC run, parser and comparison | `run_qe_soc.py`, `parse_qe_soc.py`, `compare_qe_soc.py`; [fixed Mg case](../benchmarks/mg-soc-qe-v1/README.md) |
+| Bounded QE SOC diagnostics | `run_qe_soc_diagnostics.py`, `parse_qe_soc_diagnostics.py`, `compare_qe_soc_diagnostics.py`; [fixed slots and source prerequisites](../benchmarks/mg-soc-qe-diagnostics-v1/README.md) |
+| Diagnostics plus unchanged old publication checks | `python3.12 scripts/check_qe_soc_diagnostics.py --all --legacy-python python3.9`; [evidence](../results/mg-soc-qe-diagnostics/README.md) |
 | QE SOC offline native replay | `python3.12 scripts/check_qe_soc_evidence.py` |
 | QE SOC input preparation only | `prepare_soc_qe_input.py` (Python 3.12+); [checklist](../benchmarks/mg-soc-fermi/checklist.md) |
 | Public-only verification, no scientific run | `python3.9 scripts/check_publication.py` |
@@ -122,3 +124,8 @@ parser failure. Native stderr warnings remain public even when XML is finite.
 The current publication checker verifies the old UPF exporter from the fixed
 `ac22a64421c4a5444a399477b9a3215dbd913487` Git object. Its `--export-upf` now refuses
 to refresh frozen evidence; reproduce old export only from that historical checkout.
+
+Phase 7B uses `test_qe_soc_diagnostics_*.py` for directed synthetic contracts;
+its native evidence checker is public-only. I36 completion is initialization, not
+SCF success. Fixed-density bands never provide new E/F. Slot claims prevent
+unannounced repeats, and historical charge/wfc snapshots are protected by hashes.

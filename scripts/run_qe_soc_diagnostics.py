@@ -135,7 +135,7 @@ def checked_identity(identity, expected):
         require(identity.get(key) == expected[key], 'QE launch identity changed: ' + key)
 
 
-def prepare(root, historical_runs, raw_manifest, archive_data, launcher):
+def prepare(root, historical_runs, raw_manifest, archive_data, launcher, dependency_receipt):
     """Bind existing real sources to the previously published raw archive manifest.
 
     This never recreates a save from XML, installs software, or deletes a claim.
@@ -181,6 +181,14 @@ def prepare(root, historical_runs, raw_manifest, archive_data, launcher):
         historical_fixed_density_source_status='PASS', historical_manifest_sha256=expected_manifest,
         protected_sources=protected, frozen_public_sha256=frozen, upstream=upstream,
         launcher=str(Path(launcher).absolute()), environment=original['environment'])
+    # The per-library baseline comes from the actual fresh JLL identity audit,
+    # not inferred from a matching pw.x version or a directory's name.
+    dependencies = json.loads(Path(dependency_receipt).read_text())
+    require(dependencies['probe_exit_code'] == 0 and dependencies['binary_sha256'] == plan['qe_identity']['binary_sha256'],
+            'Dependency audit does not identify the actual prescribed executable')
+    receipt['dependency_sha256'] = dict(dependencies['dependency_sha256'])
+    receipt['dependency_sha256'].update({dependencies['active_project']:dependencies['project_sha256'],
+                                        dependencies['manifest']:dependencies['manifest_sha256']})
     parent = root / '.work/phase7b'
     parent.mkdir(parents=True, exist_ok=True)
     with (parent/'preparation.json').open('x') as handle:
@@ -201,7 +209,9 @@ def protected_sources(root, preparation):
         actual = subprocess.check_output(['git', '-C', str(root / path), 'rev-parse', 'HEAD'], text=True).strip()
         status = subprocess.check_output(['git', '-C', str(root / path), 'status', '--porcelain'], text=True)
         require(actual == item['commit'] == locked[path] and status == item['status'] == '', 'Frozen checkout identity/status changed')
-    for path, sha in preparation.get('dependency_sha256', {}).items():
+    dependencies = preparation.get('dependency_sha256')
+    require(isinstance(dependencies,dict) and len(dependencies) >= 21, 'Missing audited QE libraries and environment hash baseline')
+    for path, sha in dependencies.items():
         require(digest(path) == sha, 'Frozen QE dependency changed')
 
 
@@ -332,14 +342,15 @@ def main():
     parser.add_argument('--historical-runs', type=Path)
     parser.add_argument('--raw-manifest', type=Path)
     parser.add_argument('--archive-data', type=Path)
+    parser.add_argument('--dependency-receipt', type=Path, help='Local fresh-JLL identity audit with actual library/environment hashes')
     parser.add_argument('--pw-x', default=shutil.which('pw.x'))
     args = parser.parse_args()
     if args.prepare:
-        if args.slot or not all((args.historical_runs,args.raw_manifest,args.archive_data,args.pw_x)):
-            parser.error('Preparation requires historical runs, raw manifest, archive data and existing pw.x; no slot')
-        print(json.dumps(prepare(ROOT,args.historical_runs,args.raw_manifest,args.archive_data,args.pw_x)))
+        if args.slot or not all((args.historical_runs,args.raw_manifest,args.archive_data,args.pw_x,args.dependency_receipt)):
+            parser.error('Preparation requires historical runs, raw manifest, archive data, existing pw.x and dependency receipt; no slot')
+        print(json.dumps(prepare(ROOT,args.historical_runs,args.raw_manifest,args.archive_data,args.pw_x,args.dependency_receipt)))
         return 0
-    if not args.slot or any((args.historical_runs,args.raw_manifest,args.archive_data)):
+    if not args.slot or any((args.historical_runs,args.raw_manifest,args.archive_data,args.dependency_receipt)):
         parser.error('Choose one slot; source overrides belong only to preparation')
     state = run_slot(args.slot)
     print(json.dumps(state, allow_nan=False))

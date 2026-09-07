@@ -3,7 +3,9 @@
 This is the single complete current capability table. It describes evidence at
 the historical development snapshot `8658992afa936f6cdb1a8055699ae9aa47b32297` and
 the first Phase 7A QE SOC comparison based on published main
-`77bd2e151116bcc189b797e6da415d27a61d3a2b`. A/B remain HISTORICAL_REUSED.
+`77bd2e151116bcc189b797e6da415d27a61d3a2b`, plus Phase 7B diagnostics based on
+`9d49ca88bfe3c4add0e6c80c1376f006d065e306`. A/B and Phase 7A remain HISTORICAL_REUSED.
+Phase 7B is on its development branch; main is not changed by this task.
 Acceptance of a development starting point is not an independent expert rerun;
 historical `REVIEW_REQUIRED` fields remain unchanged.
 
@@ -17,6 +19,7 @@ historical `REVIEW_REQUIRED` fields remain unchanged.
 | Full FR Hamiltonian and energy | [Seven terms, orbital variations and fixed-density eigenpairs](../results/fr-hamiltonian-energy/README.md) | Fixed-density test is not SCF; density mismatch and old-spectrum energy mismatch are retained limitations. |
 | Charge-only SOC SCF | [Independent Mg A/B, 191 maps each, 24 target states per k point](../results/mg-soc-scf/README.md) | PBEsol Mg, three explicit k points, 15 Ha, tau=0.001 Ha; internal engineering closure only. No resolvable partial occupations in actual endpoint stationarity check. |
 | QE SOC comparison | [New Mg QE 7.5 SCF, one fixed-density refinement and Phase 6C A/B](../results/mg-soc-qe-comparison/README.md). QE execution: **PASS**. | E/F and raw/global-reference spectra compared; numerical agreement **REVIEW_REQUIRED**. FFT 36³ vs 40³; SCF eigenvalue warnings and native IEEE flags retained. Density L2 comparison NOT_RUN. |
+| QE solver/FFT/IEEE diagnostics | [Six prescribed slots, identical-density D/C and one 40³ SCF control](../results/mg-soc-qe-diagnostics/README.md). All slots executed; I36 is initialization only. | D/C stability observed at both grids; A−QE E/F remains +0.624440842 meV/cell at 40³. IEEE origin **NOT_LOCALIZED**; residual attribution **NOT_ESTABLISHED**, agreement **REVIEW_REQUIRED**. Same grids do not certify equal operators. |
 | Noncollinear magnetic XC | **NOT_IMPLEMENTED** | Charge-only closure does not validate magnetic XC. |
 | Physical cutoff/k/temperature convergence | **NOT_ESTABLISHED** | Limited scalar sensitivity and prescribed Mg cases do not establish converged material predictions. |
 | Upstream native support / architecture acceptance | **NOT_IMPLEMENTED_BY_THIS_WORKBENCH** / **NOT_ESTABLISHED** | Neither core checkout changed; no maintainer endorsement implied. [Open architectural questions](soc-upstream-risks.md). |
@@ -37,3 +40,8 @@ check and affected Python tests accompany the new QE run. The old
 PREPARED_NOT_EXECUTED; it is not relabeled as an earlier executed benchmark.
 See each case for original run identities, exact execution-file hashes, thresholds, adverse results and NOT_RUN
 items. AI-assisted checks do not substitute for external physical validation.
+
+Phase 7B reruns only affected Python checks and public arithmetic. New DFTK/Julia
+numerical suites and additional physical convergence scans are **NOT_RUN**.
+The public-only entry is `python3.12 scripts/check_qe_soc_diagnostics.py --all
+--legacy-python python3.9`; it preserves all old case checks.

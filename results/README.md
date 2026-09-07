@@ -1,8 +1,7 @@
 # Scientific evidence
 
-The new Phase 7A Mg case adds one QE SCF and a warning-triggered fixed-density
-spectral refinement. Earlier calculations remain historical, including the reused
-Phase 6C A/B references. Current [capability status](../docs/status.md) separates execution,
+Phase 7B adds the bounded QE solver/FFT/IEEE diagnostics. The Phase 7A SCF,
+its bands result and Phase 6C A/B remain historical references; none was rerun. Current [capability status](../docs/status.md) separates execution,
 internal checks, physical convergence and external validation.
 
 | Scientific question | Public case |
@@ -15,6 +14,7 @@ internal checks, physical convergence and external validation.
 | Are the full Hamiltonian and orbital energy interfaces consistent at fixed density? | [FR Hamiltonian and energy](fr-hamiltonian-energy/README.md) |
 | Do independent initial states close the prescribed charge-only SOC problem? | [Mg SOC SCF A/B](mg-soc-scf/README.md) |
 | What agrees in the first independent QE SOC comparison? | [Mg QE SOC: E/F/entropy, all 24 states and limits](mg-soc-qe-comparison/README.md) |
+| How sensitive is the fixed-density spectrum to solver choice and the SCF to 36³/40³ FFT? | [Mg QE diagnostics: original spectra, E/F, IEEE scope and unresolved residuals](mg-soc-qe-diagnostics/README.md) |
 
 Each case has one evidence/provenance entry and its required source data. The
 [shared environment](shared/environment.json) records the frozen Julia identity;
@@ -22,7 +22,7 @@ individual run receipts retain the fact and time of their own identity check.
 Case-specific QE identity and actual execution source hashes remain attached to
 the corresponding case. Input snapshots use immutable source references.
 
-Run `python3.9 scripts/check_publication.py` from the repository root to check
+Run `python3.12 scripts/check_qe_soc_diagnostics.py --all --legacy-python python3.9` from the repository root to check
 public paths/hashes and recompute the supported tables without `.work`, UPF files,
 Julia or QE. The individual curation scripts expose offline check commands too.
 Exact historical scalar RMS replay uses Python 3.9; newer Python summation can

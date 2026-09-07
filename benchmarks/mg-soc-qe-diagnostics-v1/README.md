@@ -42,6 +42,17 @@ from public XML are performed by the runner. Claims remain after a failed slot.
 Use the explicit source checklist in the result report when preparing another
 authorized reproduction; do not erase claims to repeat a numerical failure.
 
+The source preparation command is `run_qe_soc_diagnostics.py --prepare`, with
+`--historical-runs`, `--raw-manifest`, `--archive-data`, `--pw-x` and
+`--dependency-receipt` pointing to the existing audited local inputs. The last
+receipt must come from a fresh JLL identity audit: actual binary hash, successful
+probe exit, actual library path→hash map and active QE Project/Manifest paths and
+hashes. A matching version alone does not supply that evidence. Full probe and
+receipt are in the execution archive; the public evidence lists their sanitized
+identities. Preparation refuses to replace a previous receipt, and execution
+rejects a missing dependency baseline. This is a same-environment reproduction
+checklist, not an installer or portable environment reconstruction claim.
+
 The predeclared same-density D/C filter is maximum raw difference ≤1e-7 Ha
 over all 72 levels, with no eigensolver unconverged warnings. It is an engineering
 stability observation, not a residual certificate or an agreement threshold.

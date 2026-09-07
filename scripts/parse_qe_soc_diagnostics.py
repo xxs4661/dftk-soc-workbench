@@ -38,7 +38,9 @@ def native_warnings(stdout, stderr, process_exit_code):
     for stream, value in (('stdout', stdout), ('stderr', stderr)):
         for number, line in enumerate(value.splitlines(), 1):
             entry = {'stream': stream, 'line': number, 'text': line}
-            if re.search(r'warning|c_bands|not\s+converged|not\s+achieved|IEEE_|floating.point|error|%%%%', line, re.I):
+            profile = (re.fullmatch(r'\s*Called by c_bands:\s*', line, re.I)
+                       or re.fullmatch(r'\s*c_bands\s*:\s*[\d.]+s\s+CPU\s+[\d.]+s\s+WALL\s*\(\s*\d+\s+calls?\s*\)\s*', line, re.I))
+            if not profile and re.search(r'warning|^\s*c_bands\s*:|not\s+converged|not\s+achieved|IEEE_|floating.point|error|%%%%', line, re.I):
                 warnings.append(entry)
             if re.search(r'(?:eigenvalues?\s+not\s+converged|c_bands\s*:.*not\s+converged)', line, re.I):
                 unconverged.append(entry)
@@ -55,7 +57,7 @@ def native_warnings(stdout, stderr, process_exit_code):
             'eigenvalues_not_converged': bool(unconverged),
             'unconverged_eigenvalue_lines': unconverged,
             'fatal_native_lines': fatal,
-            'c_bands_lines': [x for x in warnings if 'c_bands' in x['text'].lower()],
+            'c_bands_lines': [x for x in warnings if re.match(r'\s*c_bands\s*:', x['text'], re.I)],
             'note': 'Reported flags are retained independently of exit code and spectral stability. Unreported flags are not proven absent.'}
 
 
@@ -149,6 +151,16 @@ def _initialization(xml_path, stdout, expected, process_exit_code):
     observed = {kind.lower(): [int(a), int(b), int(c)] for kind, a, b, c in grids}
     if any(grid != expected['fft_grid'] for grid in observed.values()):
         raise QeSocParseError('Initialization actual FFT grid differs from prescribed grid')
+    basis = root.find('output/basis_set')
+    xml_grids = {}
+    if basis is not None:
+        for kind, tag in (('dense', 'fft_grid'), ('smooth', 'fft_smooth')):
+            node = require(basis, tag)
+            grid = [positive_int(node.get(axis)) for axis in ('nr1', 'nr2', 'nr3')]
+            if grid != expected['fft_grid'] or (kind in observed and grid != observed[kind]):
+                raise QeSocParseError('Initialization native XML/stdout hard/smooth FFT grid mismatch')
+            xml_grids[kind] = grid
+    actual_grids = xml_grids or observed
     return {'schema_version': 1, 'code': 'QE', 'calculation': 'initialization_only',
             'execution_status': 'PASS', 'version': '7.5', 'exit_code': process_exit_code,
             'energy': None, 'scf': None, 'kpoints': None,
@@ -157,8 +169,10 @@ def _initialization(xml_path, stdout, expected, process_exit_code):
             'initialization_evidence': {'xml_exit_status': 255, 'xml_nstep': 0,
                  'no_numerical_solve_markers': True,
                  'scope': 'setup/pre_init/data_structure/summary/memory_report; not init_run/electrons or eigensolve'},
-            'fft_grid': observed.get('dense'), 'fft_smooth_grid': observed.get('smooth'),
-            'fft_control_status': 'PASS' if len(observed) == 2 else 'NOT_AVAILABLE',
+            'fft_grid': actual_grids.get('dense'), 'fft_smooth_grid': actual_grids.get('smooth'),
+            'fft_control_status': 'PASS' if len(actual_grids) == 2 else 'NOT_AVAILABLE',
+            'initialization_fft_evidence': {'xml': xml_grids, 'stdout': observed,
+                 'note': 'Use explicit native grid fields; an omitted stdout smooth-grid line is not an inferred equality.'},
             'actual_solver': {'namelist': expected['solver'], 'xml': None, 'stdout': None,
                               'execution_status': 'NOT_RUN'},
             'read_start_evidence': {'status': 'NOT_APPLICABLE_INITIALIZATION_ONLY'}}

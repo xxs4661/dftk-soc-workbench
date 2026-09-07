@@ -110,6 +110,14 @@ class SnapshotContracts(unittest.TestCase):
             changed=dict(original);changed[key]='different'
             with self.assertRaises(ValueError):runner.checked_identity(changed,original)
 
+    def test_missing_dependency_baseline_cannot_silently_skip_checks(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'config').mkdir();(root/'config/sources.lock').write_text('[source]\n')
+            for value in (None,{}):
+                preparation={'protected_sources':{},'frozen_public_sha256':{},'upstream':{},'dependency_sha256':value}
+                with self.assertRaisesRegex(ValueError,'Missing audited QE libraries'):
+                    runner.protected_sources(root,preparation)
+
 
 if __name__ == '__main__':
     unittest.main()
