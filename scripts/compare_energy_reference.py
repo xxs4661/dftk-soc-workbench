@@ -19,6 +19,32 @@ def split_response(a,q,historical,first_order=None):
     return record
 
 
+def check_radial_scalars(radial,constants,plan):
+    """Recompute published scalar factors only; UPF quadrature is not replayed."""
+    tol=plan['thresholds']['ledger_abs_ha']
+    require(radial['source_binding_status']=='PASS' and radial['source_bytes_unchanged'] and
+            radial['source']['source_sha256']==plan['pseudo_sha256'],'Wrong radial source')
+    rows=[radial['primary_full_native_grid'],radial['trapezoid_full_native_grid']]
+    qe=radial['qe_tagged_prediction']
+    if qe['status']=='PREDICTED_QE_7_5_TAGGED_CONVENTION': rows.append(qe)
+    else: require(qe['status']=='NOT_ESTABLISHED','Unknown QE radial evidence level')
+    for row in rows:
+        require(row['n_atoms']==1 and row['volume_bohr3']==1000 and row['n_electrons']==10,'Wrong radial factors')
+        close(row['C_ha'],row['alpha_ha_bohr3_per_atom']*row['n_atoms']/row['volume_bohr3'],tol,'Radial C factors')
+        close(row['Pc_neutral_candidate_ha'],row['n_electrons']*row['C_ha'],tol,'Radial Pc factors')
+    d=radial['dftk_bookkeeping'];n=d['native_constants']
+    for key in ('psp_correction_ha','alpha_from_common_native','psp_local_fourier_G0','volume_bohr3','natoms','model_ne','n_electrons_from_atoms_actual'):
+        require(n[key]==constants[key],'Radial native receipt differs from common terms')
+    close(d['native_C_ha'],constants['psp_correction_ha']/10,tol,'Native C/Pc')
+    primary=radial['primary_full_native_grid'];trap=radial['trapezoid_full_native_grid'];sens=radial['quadrature_sensitivity']
+    close(sens['alpha_primary_minus_trapezoid_ha_bohr3'],primary['alpha_ha_bohr3_per_atom']-trap['alpha_ha_bohr3_per_atom'],tol,'Quadrature scalar subtraction')
+    close(sens['Pc_primary_minus_trapezoid_ha'],primary['Pc_neutral_candidate_ha']-trap['Pc_neutral_candidate_ha'],tol,'Quadrature Pc scalar subtraction')
+    close(d['independent_primary_minus_native_Pc_ha'],primary['Pc_neutral_candidate_ha']-constants['psp_correction_ha'],tol,'Independent/native Pc subtraction')
+    if len(rows)==3:
+        close(d['Ne_times_C_D_minus_C_Q_tagged_ha'],10*(d['native_C_ha']-qe['C_ha']),tol,'Signed G0 candidate')
+        require(qe['actual_QE_table_status']=='NOT_EXTRACTED','Prediction became runtime measurement')
+
+
 def compare_saved(ledger,common,radial,plan):
     t=plan['thresholds'];tol=t['ledger_abs_ha']
     require(ledger['source_binding_status']=='PASS' and ledger['historical_energy_ledger_status']=='PASS','Unaccepted historical ledger')
@@ -28,6 +54,9 @@ def compare_saved(ledger,common,radial,plan):
     require(common['execution_status']=='PASS' and common['exit_code']==0 and common['xc_calls_completed']==5,'Incomplete fixed-density matrix')
     require(common['environment']['status']=='PASS' and common['environment_recheck_status']=='PASS','Environment identity not accepted')
     require(common['source_binding_status']=='PASS' and common['source_unchanged_status']=='PASS','Source binding/preservation failed')
+    for key in ('new_scf_status','new_eigensolve_status','new_qe_numerical_status'):
+        require(common.get(key)=='NOT_RUN','Unexpected new scientific execution claim')
+    require(common['constants'].get('source_sha256')==plan['pseudo_sha256'] and common['constants'].get('nlcc') is False,'Wrong common UPF/NLCC source')
     expected={'A_original_n_out','B_original_n_out','Q_rep','A_reconstructed','B_reconstructed'}
     require(set(common['evaluations'])==expected,'Wrong density evaluation matrix')
     for name,rep in common['reconstruction'].items():
@@ -74,10 +103,11 @@ def compare_saved(ledger,common,radial,plan):
         xc=split_response(a['xc_ha'],q['xc_ha'],h['XC'],response['xc_first_order_at_Q_ha'])
         ixc=split_response(a['integral_n_vxc_ha'],q['integral_n_vxc_ha'],h['Ixc'])
         for row,key,historical_A in ((xc,'xc_ha',ledger['native_values'][label]['terms']['Xc']),(ixc,'integral_n_vxc_ha',ledger['native_values'][label]['Ixc'])):
-            row['reevaluated_A_minus_historical_Q_ha']=row.pop('historical_difference_ha')
-            row['same_source_A_drift_ha']=a[key]-historical_A
+            row['reference_label']=label
+            row['reevaluated_reference_minus_historical_Q_ha']=row.pop('historical_difference_ha')
+            row['same_source_reference_drift_ha']=a[key]-historical_A
             row['historical_difference_ha']=historical_A-(h['XC'] if key=='xc_ha' else h['Ixc'])
-            row['historical_recombination_error_ha']=row['historical_difference_ha']-(row['density_response_in_D_ha']+row['evaluation_residual_at_Q_rep_ha']-row['same_source_A_drift_ha'])
+            row['historical_recombination_error_ha']=row['historical_difference_ha']-(row['density_response_in_D_ha']+row['evaluation_residual_at_Q_rep_ha']-row['same_source_reference_drift_ha'])
             close(row['historical_recombination_error_ha'],0,tol,'Historical split with explicit same-source drift')
         close(xc['density_response_in_D_ha'],response['xc_density_response_ha'],tol,'XC response')
         close(ixc['density_response_in_D_ha'],response['ixc_density_response_ha'],tol,'Ixc response')
@@ -95,6 +125,7 @@ def compare_saved(ledger,common,radial,plan):
             delta_electrons=response['delta_electrons'],
             original_L_plus_Pc_ha=a['atomic_local_ha']+const['psp_correction_ha'],
             reconstructed_minus_original_ha={key:reconstruction[key]-a[key] for key in ('atomic_local_ha','xc_ha','integral_n_vxc_ha')})
+    check_radial_scalars(radial,const,plan)
     require(radial['dftk_bookkeeping']['status']=='PASS','Native local correction bookkeeping failed')
     require(radial['applied_energy_correction'] is False,'Historical total energy must not be corrected')
     return dict(schema_version=1,case=plan['case'],new_data_status='NEW_POSTPROCESSING_OF_HISTORICAL_STATES',

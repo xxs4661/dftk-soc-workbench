@@ -1,0 +1,1981 @@
+{
+  "new_qe_numerical_status": "NOT_RUN",
+  "coefficient_transfers": {
+    "dftk": {
+      "sha256": "8c7a1e89efe190733c9b948a698e1cbe9dcd254d0096fde975a2d65d9349ceeb",
+      "public_sha256": "5a395b2d7312bc42a81bc7fcfa03ecad41ec7d71b8d9295eb1d1a5912d4e298a",
+      "bytes": 6405426,
+      "public_path": "results/mg-soc-density-hartree/dftk-nout.csv.gz",
+      "path": "<workbench>/.work/phase7d/20260907T144446657126Z-8fa3b4d2/dftk.csv",
+      "binding": "Exact bytes equal gzip.decompress of bound full public source"
+    },
+    "qe": {
+      "sha256": "7f0c62fd07f8db35f894b9c5232cc7a7f136397f0813900b4454180c0dd5be20",
+      "public_sha256": "b3985df7971c2ecd0c8f94afd6a86cabbfa6fcad27894f0666d71c71382a6568",
+      "bytes": 1192167,
+      "public_path": "results/mg-soc-density-hartree/qe-rho.csv.gz",
+      "path": "<workbench>/.work/phase7d/20260907T144446657126Z-8fa3b4d2/qe.csv",
+      "binding": "Exact bytes equal gzip.decompress of bound full public source"
+    }
+  },
+  "same_source_common_terms_status": "PASS",
+  "environment": {
+    "project_sha256": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "julia_version": "1.12.7",
+    "packages": {
+      "dftk": {
+        "worktree_status": "clean",
+        "expected_uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_path": "<workbench>/.work/DFTK.jl/src/DFTK.jl",
+        "checkout": "<workbench>/.work/DFTK.jl",
+        "expected_version": "0.8.0",
+        "version": "0.8.0",
+        "path": "<workbench>/.work/DFTK.jl/src/DFTK.jl"
+      },
+      "pseudopotentialio": {
+        "worktree_status": "clean",
+        "expected_uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl",
+        "checkout": "<workbench>/.work/PseudoPotentialIO.jl",
+        "expected_version": "0.3.3",
+        "version": "0.3.3",
+        "path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl"
+      }
+    },
+    "active_project": "<workbench>/environment/workbench/Project.toml",
+    "status": "PASS",
+    "source_lock_sha256": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "active_manifest": "<workbench>/environment/workbench/Manifest.toml",
+    "manifest_sha256": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "reasons": []
+  },
+  "reconstruction": {
+    "B": {
+      "missing_workspace_bins": 0,
+      "imaginary_relative_l2": 1.8031100678300021e-16,
+      "source_support_count": 64000,
+      "imaginary_max": 2.6491364828548333e-16,
+      "directional_checks": [
+        {
+          "direct": [
+            0.010000000000000005,
+            0.0
+          ],
+          "expected": [
+            0.010000000000000005,
+            0.0
+          ],
+          "source_present": true,
+          "absolute_error": 0.0,
+          "miller": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.004068985149247964,
+            -0.007401607102055042
+          ],
+          "expected": [
+            0.004068985149247964,
+            -0.0074016071020550425
+          ],
+          "source_present": true,
+          "absolute_error": 8.673617379884035e-19,
+          "miller": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.004068985149247964,
+            0.007401607102055042
+          ],
+          "expected": [
+            0.004068985149247964,
+            0.0074016071020550425
+          ],
+          "source_present": true,
+          "absolute_error": 8.673617379884035e-19,
+          "miller": [
+            -1,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.001057004118038453,
+            -0.00836647177720749
+          ],
+          "expected": [
+            0.001057004118038453,
+            -0.008366471777207491
+          ],
+          "source_present": true,
+          "absolute_error": 1.734723475976807e-18,
+          "miller": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.001057004118038453,
+            0.00836647177720749
+          ],
+          "expected": [
+            0.001057004118038453,
+            0.008366471777207491
+          ],
+          "source_present": true,
+          "absolute_error": 1.734723475976807e-18,
+          "miller": [
+            0,
+            -1,
+            0
+          ]
+        },
+        {
+          "direct": [
+            -0.003117660268095927,
+            -0.007874426598586908
+          ],
+          "expected": [
+            -0.0031176602680959274,
+            -0.00787442659858691
+          ],
+          "source_present": true,
+          "absolute_error": 1.788112030672749e-18,
+          "miller": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "direct": [
+            -0.003117660268095927,
+            0.007874426598586908
+          ],
+          "expected": [
+            -0.0031176602680959274,
+            0.00787442659858691
+          ],
+          "source_present": true,
+          "absolute_error": 1.788112030672749e-18,
+          "miller": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "direct": [
+            -0.003672371424434814,
+            0.0014540108237861803
+          ],
+          "expected": [
+            -0.0036723714244348135,
+            0.0014540108237861811
+          ],
+          "source_present": true,
+          "absolute_error": 9.69739903612216e-19,
+          "miller": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "direct": [
+            -0.003672371424434814,
+            -0.0014540108237861803
+          ],
+          "expected": [
+            -0.003672371424434814,
+            -0.0014540108237861811
+          ],
+          "source_present": true,
+          "absolute_error": 8.673617379884035e-19,
+          "miller": [
+            -1,
+            -2,
+            -3
+          ]
+        },
+        {
+          "direct": [
+            0.003825938880057443,
+            -0.0009823422089365482
+          ],
+          "expected": [
+            0.0038259388800574424,
+            -0.000982342208936549
+          ],
+          "source_present": true,
+          "absolute_error": 9.69739903612216e-19,
+          "miller": [
+            2,
+            -1,
+            3
+          ]
+        },
+        {
+          "direct": [
+            0.003825938880057443,
+            0.0009823422089365482
+          ],
+          "expected": [
+            0.003825938880057443,
+            0.0009823422089365495
+          ],
+          "source_present": true,
+          "absolute_error": 1.3010426069826053e-18,
+          "miller": [
+            -2,
+            1,
+            -3
+          ]
+        },
+        {
+          "direct": [
+            -0.0021163742994221467,
+            0.0033348501344775557
+          ],
+          "expected": [
+            -0.0021163742994221462,
+            0.0033348501344775553
+          ],
+          "source_present": true,
+          "absolute_error": 6.133173666733497e-19,
+          "miller": [
+            3,
+            2,
+            -1
+          ]
+        },
+        {
+          "direct": [
+            -0.0021163742994221467,
+            -0.0033348501344775557
+          ],
+          "expected": [
+            -0.0021163742994221467,
+            -0.0033348501344775557
+          ],
+          "source_present": true,
+          "absolute_error": 0.0,
+          "miller": [
+            -3,
+            -2,
+            1
+          ]
+        },
+        {
+          "direct": [
+            4.09628831070101e-05,
+            0.0002147694345421849
+          ],
+          "expected": [
+            4.0962883107010064e-05,
+            0.0002147694345421849
+          ],
+          "source_present": true,
+          "absolute_error": 3.3881317890172014e-20,
+          "miller": [
+            7,
+            -5,
+            4
+          ]
+        },
+        {
+          "direct": [
+            4.09628831070101e-05,
+            -0.0002147694345421849
+          ],
+          "expected": [
+            4.096288310701022e-05,
+            -0.00021476943454218486
+          ],
+          "source_present": true,
+          "absolute_error": 1.3347691281510182e-19,
+          "miller": [
+            -7,
+            5,
+            -4
+          ]
+        },
+        {
+          "direct": [
+            -1.7140592601955912e-18,
+            -1.6108110261229755e-18
+          ],
+          "expected": [
+            9.624863785549837e-20,
+            6.32268658675772e-20
+          ],
+          "source_present": true,
+          "absolute_error": 2.4656880479019094e-18,
+          "miller": [
+            17,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            -1.7140592601955912e-18,
+            1.6108110261229755e-18
+          ],
+          "expected": [
+            2.920400195543377e-20,
+            1.2598937464049913e-19
+          ],
+          "source_present": true,
+          "absolute_error": 2.2899043949205787e-18,
+          "miller": [
+            -17,
+            0,
+            0
+          ]
+        }
+      ],
+      "unsaved_physical_modes": "NOT_ESTABLISHED_ZERO",
+      "status": "PASS",
+      "fourier_roundtrip_relative_l2": 3.597538898310966e-16,
+      "representation": "Saved finite Fourier series on original zero-origin nodes, nbar -> sqrt(Omega)*nbar -> complex IFFT",
+      "original_QE_realspace_array": "NOT_INDEPENDENTLY_EXTRACTED",
+      "native_workspace_count": 64000,
+      "density_hash_scope": "Reconstructed Float64 array; not the original checkpoint byte identity",
+      "density": {
+        "clipping_applied": false,
+        "negative_roundoff_bound": 3.501023239291205e-14,
+        "status": "PASS",
+        "sha256": "1662b0d943ef43df6979fd9a331e761dc0d1e9c842024d66fed5b4a64ab3c9b4",
+        "l2": 3.3409422195093033,
+        "minimum": 0.00011639629357394879,
+        "electron_count": 10.000000000000004,
+        "negative_count": 0,
+        "electron_error": 3.552713678800501e-15,
+        "normalization_applied": false,
+        "maximum": 2.4636260868573934
+      },
+      "source_support_preserved": true
+    },
+    "A": {
+      "missing_workspace_bins": 0,
+      "imaginary_relative_l2": 1.6230942926611296e-16,
+      "source_support_count": 64000,
+      "imaginary_max": 3.241924981721058e-16,
+      "directional_checks": [
+        {
+          "direct": [
+            0.009999999999999998,
+            0.0
+          ],
+          "expected": [
+            0.009999999999999998,
+            0.0
+          ],
+          "source_present": true,
+          "absolute_error": 0.0,
+          "miller": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.004068985149247573,
+            -0.007401607102054384
+          ],
+          "expected": [
+            0.004068985149247573,
+            -0.007401607102054385
+          ],
+          "source_present": true,
+          "absolute_error": 8.673617379884035e-19,
+          "miller": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.004068985149247573,
+            0.007401607102054384
+          ],
+          "expected": [
+            0.004068985149247573,
+            0.007401607102054385
+          ],
+          "source_present": true,
+          "absolute_error": 8.673617379884035e-19,
+          "miller": [
+            -1,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.001057004118037708,
+            -0.008366471777205772
+          ],
+          "expected": [
+            0.0010570041180377075,
+            -0.008366471777205772
+          ],
+          "source_present": true,
+          "absolute_error": 4.336808689942018e-19,
+          "miller": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.001057004118037708,
+            0.008366471777205772
+          ],
+          "expected": [
+            0.001057004118037708,
+            0.008366471777205774
+          ],
+          "source_present": true,
+          "absolute_error": 1.734723475976807e-18,
+          "miller": [
+            0,
+            -1,
+            0
+          ]
+        },
+        {
+          "direct": [
+            -0.0031176602680954082,
+            -0.007874426598585576
+          ],
+          "expected": [
+            -0.0031176602680954087,
+            -0.007874426598585576
+          ],
+          "source_present": true,
+          "absolute_error": 4.336808689942018e-19,
+          "miller": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "direct": [
+            -0.0031176602680954082,
+            0.007874426598585576
+          ],
+          "expected": [
+            -0.0031176602680954087,
+            0.007874426598585576
+          ],
+          "source_present": true,
+          "absolute_error": 4.336808689942018e-19,
+          "miller": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "direct": [
+            -0.0036723714244383623,
+            0.001454010823786305
+          ],
+          "expected": [
+            -0.0036723714244383627,
+            0.001454010823786306
+          ],
+          "source_present": true,
+          "absolute_error": 1.1677214766175423e-18,
+          "miller": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "direct": [
+            -0.0036723714244383623,
+            -0.001454010823786305
+          ],
+          "expected": [
+            -0.0036723714244383627,
+            -0.001454010823786306
+          ],
+          "source_present": true,
+          "absolute_error": 1.1677214766175423e-18,
+          "miller": [
+            -1,
+            -2,
+            -3
+          ]
+        },
+        {
+          "direct": [
+            0.003825938880057346,
+            -0.0009823422089366041
+          ],
+          "expected": [
+            0.003825938880057346,
+            -0.0009823422089366052
+          ],
+          "source_present": true,
+          "absolute_error": 1.0842021724855044e-18,
+          "miller": [
+            2,
+            -1,
+            3
+          ]
+        },
+        {
+          "direct": [
+            0.003825938880057346,
+            0.0009823422089366041
+          ],
+          "expected": [
+            0.003825938880057346,
+            0.0009823422089366054
+          ],
+          "source_present": true,
+          "absolute_error": 1.3010426069826053e-18,
+          "miller": [
+            -2,
+            1,
+            -3
+          ]
+        },
+        {
+          "direct": [
+            -0.002116374299422051,
+            0.003334850134477696
+          ],
+          "expected": [
+            -0.0021163742994220512,
+            0.0033348501344776962
+          ],
+          "source_present": true,
+          "absolute_error": 6.133173666733497e-19,
+          "miller": [
+            3,
+            2,
+            -1
+          ]
+        },
+        {
+          "direct": [
+            -0.002116374299422051,
+            -0.003334850134477696
+          ],
+          "expected": [
+            -0.0021163742994220512,
+            -0.0033348501344776962
+          ],
+          "source_present": true,
+          "absolute_error": 6.133173666733497e-19,
+          "miller": [
+            -3,
+            -2,
+            1
+          ]
+        },
+        {
+          "direct": [
+            4.096288310694493e-05,
+            0.00021476943454214252
+          ],
+          "expected": [
+            4.0962883106944985e-05,
+            0.0002147694345421426
+          ],
+          "source_present": true,
+          "absolute_error": 9.772866314664846e-20,
+          "miller": [
+            7,
+            -5,
+            4
+          ]
+        },
+        {
+          "direct": [
+            4.096288310694493e-05,
+            -0.00021476943454214252
+          ],
+          "expected": [
+            4.0962883106944985e-05,
+            -0.0002147694345421426
+          ],
+          "source_present": true,
+          "absolute_error": 9.772866314664846e-20,
+          "miller": [
+            -7,
+            5,
+            -4
+          ]
+        },
+        {
+          "direct": [
+            -1.3822256327792465e-18,
+            -1.59008497693661e-18
+          ],
+          "expected": [
+            1.4295692894961199e-19,
+            -1.34207332212881e-19
+          ],
+          "source_present": true,
+          "absolute_error": 2.1084974657343356e-18,
+          "miller": [
+            17,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            -1.3822256327792465e-18,
+            1.59008497693661e-18
+          ],
+          "expected": [
+            1.4295692894961199e-19,
+            1.34207332212881e-19
+          ],
+          "source_present": true,
+          "absolute_error": 2.1084974657343356e-18,
+          "miller": [
+            -17,
+            0,
+            0
+          ]
+        }
+      ],
+      "unsaved_physical_modes": "NOT_ESTABLISHED_ZERO",
+      "status": "PASS",
+      "fourier_roundtrip_relative_l2": 3.649124287959466e-16,
+      "representation": "Saved finite Fourier series on original zero-origin nodes, nbar -> sqrt(Omega)*nbar -> complex IFFT",
+      "original_QE_realspace_array": "NOT_INDEPENDENTLY_EXTRACTED",
+      "native_workspace_count": 64000,
+      "density_hash_scope": "Reconstructed Float64 array; not the original checkpoint byte identity",
+      "density": {
+        "clipping_applied": false,
+        "negative_roundoff_bound": 3.50102323929109e-14,
+        "status": "PASS",
+        "sha256": "078d25d072ab087aa94f9aa9b343de40374563c93defe6c90664d3495def6093",
+        "l2": 3.3409422195093197,
+        "minimum": 0.00011639629358739237,
+        "electron_count": 9.999999999999996,
+        "negative_count": 0,
+        "electron_error": -3.552713678800501e-15,
+        "normalization_applied": false,
+        "maximum": 2.4636260868573125
+      },
+      "source_support_preserved": true
+    },
+    "Q": {
+      "missing_workspace_bins": 41881,
+      "imaginary_relative_l2": 1.2365589906909258e-16,
+      "source_support_count": 22119,
+      "imaginary_max": 2.9201118048641377e-16,
+      "directional_checks": [
+        {
+          "direct": [
+            0.010000000000000002,
+            0.0
+          ],
+          "expected": [
+            0.010000000000000002,
+            0.0
+          ],
+          "source_present": true,
+          "absolute_error": 0.0,
+          "miller": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.004068985659731643,
+            -0.0074016080798142555
+          ],
+          "expected": [
+            0.004068985659731643,
+            -0.0074016080798142555
+          ],
+          "source_present": true,
+          "absolute_error": 0.0,
+          "miller": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.004068985659731643,
+            0.0074016080798142555
+          ],
+          "expected": [
+            0.004068985659731643,
+            0.0074016080798142555
+          ],
+          "source_present": true,
+          "absolute_error": 0.0,
+          "miller": [
+            -1,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.0010570042533140254,
+            -0.008366472943186038
+          ],
+          "expected": [
+            0.0010570042533140254,
+            -0.00836647294318604
+          ],
+          "source_present": true,
+          "absolute_error": 1.734723475976807e-18,
+          "miller": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "direct": [
+            0.0010570042533140254,
+            0.008366472943186038
+          ],
+          "expected": [
+            0.0010570042533140254,
+            0.00836647294318604
+          ],
+          "source_present": true,
+          "absolute_error": 1.734723475976807e-18,
+          "miller": [
+            0,
+            -1,
+            0
+          ]
+        },
+        {
+          "direct": [
+            -0.0031176605538363223,
+            -0.007874427467113079
+          ],
+          "expected": [
+            -0.003117660553836323,
+            -0.007874427467113079
+          ],
+          "source_present": true,
+          "absolute_error": 8.673617379884035e-19,
+          "miller": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "direct": [
+            -0.0031176605538363223,
+            0.007874427467113079
+          ],
+          "expected": [
+            -0.003117660553836323,
+            0.007874427467113079
+          ],
+          "source_present": true,
+          "absolute_error": 8.673617379884035e-19,
+          "miller": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "direct": [
+            -0.0036723715357361753,
+            0.0014540108295487161
+          ],
+          "expected": [
+            -0.0036723715357361757,
+            0.0014540108295487174
+          ],
+          "source_present": true,
+          "absolute_error": 1.371419323662774e-18,
+          "miller": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "direct": [
+            -0.0036723715357361753,
+            -0.0014540108295487161
+          ],
+          "expected": [
+            -0.0036723715357361757,
+            -0.0014540108295487174
+          ],
+          "source_present": true,
+          "absolute_error": 1.371419323662774e-18,
+          "miller": [
+            -1,
+            -2,
+            -3
+          ]
+        },
+        {
+          "direct": [
+            0.0038259389705780056,
+            -0.0009823422312955179
+          ],
+          "expected": [
+            0.0038259389705780056,
+            -0.000982342231295519
+          ],
+          "source_present": true,
+          "absolute_error": 1.0842021724855044e-18,
+          "miller": [
+            2,
+            -1,
+            3
+          ]
+        },
+        {
+          "direct": [
+            0.0038259389705780056,
+            0.0009823422312955179
+          ],
+          "expected": [
+            0.0038259389705780056,
+            0.000982342231295519
+          ],
+          "source_present": true,
+          "absolute_error": 1.0842021724855044e-18,
+          "miller": [
+            -2,
+            1,
+            -3
+          ]
+        },
+        {
+          "direct": [
+            -0.0021163743221173726,
+            0.0033348502021368453
+          ],
+          "expected": [
+            -0.0021163743221173726,
+            0.0033348502021368453
+          ],
+          "source_present": true,
+          "absolute_error": 0.0,
+          "miller": [
+            3,
+            2,
+            -1
+          ]
+        },
+        {
+          "direct": [
+            -0.0021163743221173726,
+            -0.0033348502021368453
+          ],
+          "expected": [
+            -0.0021163743221173726,
+            -0.0033348502021368453
+          ],
+          "source_present": true,
+          "absolute_error": 0.0,
+          "miller": [
+            -3,
+            -2,
+            1
+          ]
+        },
+        {
+          "direct": [
+            4.096288024208911e-05,
+            0.0002147694237915234
+          ],
+          "expected": [
+            4.096288024208921e-05,
+            0.00021476942379152338
+          ],
+          "source_present": true,
+          "absolute_error": 1.0519589957331009e-19,
+          "miller": [
+            7,
+            -5,
+            4
+          ]
+        },
+        {
+          "direct": [
+            4.096288024208911e-05,
+            -0.0002147694237915234
+          ],
+          "expected": [
+            4.096288024208922e-05,
+            -0.00021476942379152338
+          ],
+          "source_present": true,
+          "absolute_error": 1.1175700191704681e-19,
+          "miller": [
+            -7,
+            5,
+            -4
+          ]
+        },
+        {
+          "direct": [
+            -1.0983510108364402e-18,
+            -1.6896647113146674e-18
+          ],
+          "expected": [
+            6.110203976249506e-20,
+            -1.348437526977171e-19
+          ],
+          "source_present": true,
+          "absolute_error": 1.9395359212702685e-18,
+          "miller": [
+            17,
+            0,
+            0
+          ]
+        },
+        {
+          "direct": [
+            -1.0983510108364402e-18,
+            1.6896647113146674e-18
+          ],
+          "expected": [
+            6.110203976249506e-20,
+            1.348437526977171e-19
+          ],
+          "source_present": true,
+          "absolute_error": 1.9395359212702685e-18,
+          "miller": [
+            -17,
+            0,
+            0
+          ]
+        }
+      ],
+      "unsaved_physical_modes": "NOT_ESTABLISHED_ZERO",
+      "status": "PASS",
+      "fourier_roundtrip_relative_l2": 3.6175270428542767e-16,
+      "representation": "Saved finite Fourier series on original zero-origin nodes, nbar -> sqrt(Omega)*nbar -> complex IFFT",
+      "original_QE_realspace_array": "NOT_INDEPENDENTLY_EXTRACTED",
+      "native_workspace_count": 64000,
+      "density_hash_scope": "Reconstructed Float64 array; not the original checkpoint byte identity",
+      "density": {
+        "clipping_applied": false,
+        "negative_roundoff_bound": 3.501023570263923e-14,
+        "status": "PASS",
+        "sha256": "249b8cb8e4c143274887a73e6fd996de2ab72bc388bc55ea2590f43dc472eb5c",
+        "l2": 3.3409424377500034,
+        "minimum": 0.00011640201905994439,
+        "electron_count": 10.000000000000004,
+        "negative_count": 0,
+        "electron_error": 3.552713678800501e-15,
+        "normalization_applied": false,
+        "maximum": 2.4636263197587387
+      },
+      "source_support_preserved": true
+    }
+  },
+  "exit_code": 0,
+  "local_arrays": {
+    "sha256": "09f440183eac2db99168a7729079471074f7f0b1536fa8e229732e268d029c93",
+    "path": "arrays.bin",
+    "public_replay": "NOT_PUBLIC; new field integrals are runner measurements"
+  },
+  "environment_recheck_status": "PASS",
+  "run_id": "20260907T144446657126Z-8fa3b4d2",
+  "source_unchanged_status": "PASS",
+  "xc_calls_completed": 5,
+  "source_binding_status": "PASS",
+  "plan_sha256": "bc05068d22cc0e409f75d3cb403fdfbca72ce47d88426eac4d957c2e623c0687",
+  "new_eigensolve_status": "NOT_RUN",
+  "responses": {
+    "B": {
+      "ixc_density_response_ha": 8.331691532248442e-07,
+      "delta_electrons": 3.200540884496449e-15,
+      "local_real_minus_fourier_ha": 1.0164395367051604e-20,
+      "status": "PASS",
+      "xc_curvature_remainder_ha": -5.132339420906614e-13,
+      "local_density_response_real_ha": 7.862333139411838e-06,
+      "xc_density_response_ha": 6.374752379301185e-07,
+      "public_replay": "RUNNER_REPORTED; complete new potential/gradient arrays remain local",
+      "potential_provenance": "Same DFTK native local potential, not a QE potential",
+      "local_density_response_fourier_ha": 7.862333139411828e-06,
+      "source_support": "All 64000 native bins including G=0 and Nyquist; no mean subtraction",
+      "xc_first_order_at_Q_ha": 6.374757511640606e-07
+    },
+    "A": {
+      "ixc_density_response_ha": 8.331691869756241e-07,
+      "delta_electrons": -6.739639990977495e-16,
+      "local_real_minus_fourier_ha": 3.8963515573697816e-20,
+      "status": "PASS",
+      "xc_curvature_remainder_ha": -5.155570005698783e-13,
+      "local_density_response_real_ha": 7.862332579611068e-06,
+      "xc_density_response_ha": 6.374752610227574e-07,
+      "public_replay": "RUNNER_REPORTED; complete new potential/gradient arrays remain local",
+      "potential_provenance": "Same DFTK native local potential, not a QE potential",
+      "local_density_response_fourier_ha": 7.862332579611029e-06,
+      "source_support": "All 64000 native bins including G=0 and Nyquist; no mean subtraction",
+      "xc_first_order_at_Q_ha": 6.37475776579758e-07
+    }
+  },
+  "evaluations": {
+    "A_original_n_out": {
+      "local_mean_ha": 0.0,
+      "local_integral_minus_native_energy_ha": 0.0,
+      "gradient_l2": 8.216120387450447,
+      "local_l2_ha_bohr32": 34.37096822609322,
+      "vxc_mean_ha": -0.14331938018184578,
+      "energy_scope": "Only AtomicLocal, Xc, Ewald and PspCorrection; no T/NL/total-energy claim",
+      "integral_n_vxc_ha": -9.371197354607219,
+      "vxc_l2_ha_bohr32": 5.488016046590641,
+      "local_fourier_G0": [
+        -4.4408920985006255e-18,
+        0.0
+      ],
+      "array_sha256": {
+        "sigma": "47ebd703a69d3de827f9483013dee196936cf03ceb820ea224fcf54d34b3d892",
+        "local_potential": "9a77f4e893eca3f0f2de003f9aad24debfb8fcff47a2199741eb51ac462533e4",
+        "gradient": "7da22ab50e775a4d50cd94af5758c1272ea42cd012d078e2817faa675b884083",
+        "vxc": "477c45b0b53f0dbdbfa97da9b720c4d62abbdb0fa82270fc32aca06aec93c69b",
+        "n": "38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130"
+      },
+      "backend": {
+        "libxc_library_sha256": "47e134ec6bebb5d27bd301e1f8fb43c2bc95472d07c01ab67fed185ff3e015bd",
+        "libxc_wrapper_uuid": "66e17ffc-8502-11e9-23b5-c9248d0eb96d",
+        "functional_dispatch_source_sha256": "129da4c6cf0af7608da857aaa952e1f333be4d9b97bd48400fd705c45764f39e",
+        "libxc_wrapper_version": "0.3.26",
+        "dftfunctionals_version": "0.3.2",
+        "divergence_convention": "Native divergence_real: FFT each vector component, multiply iG, sum, real(ifft)",
+        "generic_dftfunctionals_evaluation_used": false,
+        "gradient_convention": "Full native cubic FFT support; iG times orthonormal rho coefficients, then real(ifft); Nyquist real-part convention unchanged",
+        "potential_threshold": 0.0,
+        "full_gga_potential": true,
+        "xc_source_sha256": "1c60dd1969d843345fbab554ab541819787ec7c96435a1b04f8a6abe948b194b",
+        "libxc_library_path": "<home>/Documents/Codex/2026-09-04/files-pasted-by-the-user-you/work/dftk-soc-workbench/.work/julia-depot/artifacts/c8e2e4506036f733e9057901e6023fc770b0d142/lib/libxc.15.dylib",
+        "functionals": [
+          {
+            "native_family": "gga",
+            "below_sigma_threshold": 0,
+            "sigma_type": "Matrix{Float64}",
+            "functional_type": "DFTK.DispatchFunctional{:gga, :x}",
+            "parameter_scope": "Fresh default Libxc object with the same identifier/n_spin as the selected frozen method; no setter or parameter override",
+            "inner_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "backend": "Libxc Float64 CPU",
+            "parameters": [
+              {
+                "name": "_kappa",
+                "actual_default_object": 0.804,
+                "default": 0.804
+              },
+              {
+                "name": "_mu",
+                "actual_default_object": 0.12345679012345678,
+                "default": 0.12345679012345678
+              }
+            ],
+            "native_name": "Perdew, Burke & Ernzerhof SOL",
+            "dispatch_line": 479,
+            "dispatch_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "below_density_threshold": 0,
+            "density_type": "Matrix{Float64}",
+            "tau_threshold": 1e-20,
+            "sigma_threshold": 1.0000000000000027e-20,
+            "inner_line": 117,
+            "native_number": 116,
+            "inner_type": "DFTK.LibxcFunctional{:gga, :x}",
+            "zeta_threshold": 2.220446049250313e-16,
+            "identifier": "gga_x_pbe_sol",
+            "density_threshold": 1e-15
+          },
+          {
+            "native_family": "gga",
+            "below_sigma_threshold": 0,
+            "sigma_type": "Matrix{Float64}",
+            "functional_type": "DFTK.DispatchFunctional{:gga, :c}",
+            "parameter_scope": "Fresh default Libxc object with the same identifier/n_spin as the selected frozen method; no setter or parameter override",
+            "inner_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "backend": "Libxc Float64 CPU",
+            "parameters": [
+              {
+                "name": "_beta",
+                "actual_default_object": 0.046,
+                "default": 0.046
+              },
+              {
+                "name": "_gamma",
+                "actual_default_object": 0.031090690869654894,
+                "default": 0.031090690869654894
+              },
+              {
+                "name": "_B",
+                "actual_default_object": 1.0,
+                "default": 1.0
+              }
+            ],
+            "native_name": "Perdew, Burke & Ernzerhof SOL",
+            "dispatch_line": 479,
+            "dispatch_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "below_density_threshold": 0,
+            "density_type": "Matrix{Float64}",
+            "tau_threshold": 1e-20,
+            "sigma_threshold": 1.0000000000000021e-16,
+            "inner_line": 117,
+            "native_number": 133,
+            "inner_type": "DFTK.LibxcFunctional{:gga, :c}",
+            "zeta_threshold": 2.220446049250313e-16,
+            "identifier": "gga_c_pbe_sol",
+            "density_threshold": 1e-12
+          }
+        ],
+        "libxc_runtime_version": "7.0.0",
+        "dftfunctionals_uuid": "6bd331d2-b28d-4fd3-880e-1a1c7f37947f"
+      },
+      "status": "PASS",
+      "gradient_max_abs": 4.290103645508795,
+      "sigma_minimum": 2.6781242147813993e-11,
+      "xc_call_count": 1,
+      "atomic_local_ha": -79.43302742791043,
+      "xc_ha": -7.1770568580005945,
+      "sigma_maximum": 19.09580889104203,
+      "local_integral_ha": -79.43302742791043,
+      "source": "A_original_n_out",
+      "density": {
+        "clipping_applied": false,
+        "negative_roundoff_bound": 3.501023239291091e-14,
+        "status": "PASS",
+        "sha256": "38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130",
+        "l2": 3.3409422195093197,
+        "minimum": 0.00011639629358739996,
+        "electron_count": 10.000000000000002,
+        "negative_count": 0,
+        "electron_error": 1.7763568394002505e-15,
+        "normalization_applied": false,
+        "maximum": 2.463626086857313
+      }
+    },
+    "B_original_n_out": {
+      "local_mean_ha": 0.0,
+      "local_integral_minus_native_energy_ha": -4.263256414560601e-14,
+      "gradient_l2": 8.21612038745065,
+      "local_l2_ha_bohr32": 34.37096822609322,
+      "vxc_mean_ha": -0.1433193801815834,
+      "energy_scope": "Only AtomicLocal, Xc, Ewald and PspCorrection; no T/NL/total-energy claim",
+      "integral_n_vxc_ha": -9.371197354607252,
+      "vxc_l2_ha_bohr32": 5.488016046588649,
+      "local_fourier_G0": [
+        -4.4408920985006255e-18,
+        0.0
+      ],
+      "array_sha256": {
+        "sigma": "d7e380541d252d621a8777135d69dec803fff91c513bf615149562e25e702f85",
+        "local_potential": "9a77f4e893eca3f0f2de003f9aad24debfb8fcff47a2199741eb51ac462533e4",
+        "gradient": "9cb142b33e34b7e8ac0eca70ebf84e20c92603575bea74694d9d667f6e4205a6",
+        "vxc": "e08f0ba53f5d5f4f4379284ba916304387973ddb0196ab477d3e3afc1b6f5c1c",
+        "n": "bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3"
+      },
+      "backend": {
+        "libxc_library_sha256": "47e134ec6bebb5d27bd301e1f8fb43c2bc95472d07c01ab67fed185ff3e015bd",
+        "libxc_wrapper_uuid": "66e17ffc-8502-11e9-23b5-c9248d0eb96d",
+        "functional_dispatch_source_sha256": "129da4c6cf0af7608da857aaa952e1f333be4d9b97bd48400fd705c45764f39e",
+        "libxc_wrapper_version": "0.3.26",
+        "dftfunctionals_version": "0.3.2",
+        "divergence_convention": "Native divergence_real: FFT each vector component, multiply iG, sum, real(ifft)",
+        "generic_dftfunctionals_evaluation_used": false,
+        "gradient_convention": "Full native cubic FFT support; iG times orthonormal rho coefficients, then real(ifft); Nyquist real-part convention unchanged",
+        "potential_threshold": 0.0,
+        "full_gga_potential": true,
+        "xc_source_sha256": "1c60dd1969d843345fbab554ab541819787ec7c96435a1b04f8a6abe948b194b",
+        "libxc_library_path": "<home>/Documents/Codex/2026-09-04/files-pasted-by-the-user-you/work/dftk-soc-workbench/.work/julia-depot/artifacts/c8e2e4506036f733e9057901e6023fc770b0d142/lib/libxc.15.dylib",
+        "functionals": [
+          {
+            "native_family": "gga",
+            "below_sigma_threshold": 0,
+            "sigma_type": "Matrix{Float64}",
+            "functional_type": "DFTK.DispatchFunctional{:gga, :x}",
+            "parameter_scope": "Fresh default Libxc object with the same identifier/n_spin as the selected frozen method; no setter or parameter override",
+            "inner_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "backend": "Libxc Float64 CPU",
+            "parameters": [
+              {
+                "name": "_kappa",
+                "actual_default_object": 0.804,
+                "default": 0.804
+              },
+              {
+                "name": "_mu",
+                "actual_default_object": 0.12345679012345678,
+                "default": 0.12345679012345678
+              }
+            ],
+            "native_name": "Perdew, Burke & Ernzerhof SOL",
+            "dispatch_line": 479,
+            "dispatch_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "below_density_threshold": 0,
+            "density_type": "Matrix{Float64}",
+            "tau_threshold": 1e-20,
+            "sigma_threshold": 1.0000000000000027e-20,
+            "inner_line": 117,
+            "native_number": 116,
+            "inner_type": "DFTK.LibxcFunctional{:gga, :x}",
+            "zeta_threshold": 2.220446049250313e-16,
+            "identifier": "gga_x_pbe_sol",
+            "density_threshold": 1e-15
+          },
+          {
+            "native_family": "gga",
+            "below_sigma_threshold": 0,
+            "sigma_type": "Matrix{Float64}",
+            "functional_type": "DFTK.DispatchFunctional{:gga, :c}",
+            "parameter_scope": "Fresh default Libxc object with the same identifier/n_spin as the selected frozen method; no setter or parameter override",
+            "inner_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "backend": "Libxc Float64 CPU",
+            "parameters": [
+              {
+                "name": "_beta",
+                "actual_default_object": 0.046,
+                "default": 0.046
+              },
+              {
+                "name": "_gamma",
+                "actual_default_object": 0.031090690869654894,
+                "default": 0.031090690869654894
+              },
+              {
+                "name": "_B",
+                "actual_default_object": 1.0,
+                "default": 1.0
+              }
+            ],
+            "native_name": "Perdew, Burke & Ernzerhof SOL",
+            "dispatch_line": 479,
+            "dispatch_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "below_density_threshold": 0,
+            "density_type": "Matrix{Float64}",
+            "tau_threshold": 1e-20,
+            "sigma_threshold": 1.0000000000000021e-16,
+            "inner_line": 117,
+            "native_number": 133,
+            "inner_type": "DFTK.LibxcFunctional{:gga, :c}",
+            "zeta_threshold": 2.220446049250313e-16,
+            "identifier": "gga_c_pbe_sol",
+            "density_threshold": 1e-12
+          }
+        ],
+        "libxc_runtime_version": "7.0.0",
+        "dftfunctionals_uuid": "6bd331d2-b28d-4fd3-880e-1a1c7f37947f"
+      },
+      "status": "PASS",
+      "gradient_max_abs": 4.290103645508964,
+      "sigma_minimum": 2.6781242184578536e-11,
+      "xc_call_count": 1,
+      "atomic_local_ha": -79.43302742790986,
+      "xc_ha": -7.1770568580006175,
+      "sigma_maximum": 19.095808891043486,
+      "local_integral_ha": -79.4330274279099,
+      "source": "B_original_n_out",
+      "density": {
+        "clipping_applied": false,
+        "negative_roundoff_bound": 3.5010232392912056e-14,
+        "status": "PASS",
+        "sha256": "bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3",
+        "l2": 3.340942219509304,
+        "minimum": 0.00011639629357391922,
+        "electron_count": 10.000000000000004,
+        "negative_count": 0,
+        "electron_error": 3.552713678800501e-15,
+        "normalization_applied": false,
+        "maximum": 2.463626086857394
+      }
+    },
+    "B_reconstructed": {
+      "local_mean_ha": 0.0,
+      "local_integral_minus_native_energy_ha": -2.842170943040401e-14,
+      "gradient_l2": 8.21612038745065,
+      "local_l2_ha_bohr32": 34.37096822609322,
+      "vxc_mean_ha": -0.14331938018158347,
+      "energy_scope": "Only AtomicLocal, Xc, Ewald and PspCorrection; no T/NL/total-energy claim",
+      "integral_n_vxc_ha": -9.37119735460725,
+      "vxc_l2_ha_bohr32": 5.488016046588637,
+      "local_fourier_G0": [
+        -4.4408920985006255e-18,
+        0.0
+      ],
+      "array_sha256": {
+        "sigma": "d1f37ba92d9b7f63209de9354546208ede2bc4d743f60699c46796cf68b0724f",
+        "local_potential": "9a77f4e893eca3f0f2de003f9aad24debfb8fcff47a2199741eb51ac462533e4",
+        "gradient": "28fcbd3c0b26bca9c68fcdc290b417d7ee8febd1f125a20568cf69d01893a8cb",
+        "vxc": "10335a50c0c5c3212128ff087a3bb980b21a51e8bccfaaf6aa68424de3bbab5b",
+        "n": "1662b0d943ef43df6979fd9a331e761dc0d1e9c842024d66fed5b4a64ab3c9b4"
+      },
+      "backend": {
+        "libxc_library_sha256": "47e134ec6bebb5d27bd301e1f8fb43c2bc95472d07c01ab67fed185ff3e015bd",
+        "libxc_wrapper_uuid": "66e17ffc-8502-11e9-23b5-c9248d0eb96d",
+        "functional_dispatch_source_sha256": "129da4c6cf0af7608da857aaa952e1f333be4d9b97bd48400fd705c45764f39e",
+        "libxc_wrapper_version": "0.3.26",
+        "dftfunctionals_version": "0.3.2",
+        "divergence_convention": "Native divergence_real: FFT each vector component, multiply iG, sum, real(ifft)",
+        "generic_dftfunctionals_evaluation_used": false,
+        "gradient_convention": "Full native cubic FFT support; iG times orthonormal rho coefficients, then real(ifft); Nyquist real-part convention unchanged",
+        "potential_threshold": 0.0,
+        "full_gga_potential": true,
+        "xc_source_sha256": "1c60dd1969d843345fbab554ab541819787ec7c96435a1b04f8a6abe948b194b",
+        "libxc_library_path": "<home>/Documents/Codex/2026-09-04/files-pasted-by-the-user-you/work/dftk-soc-workbench/.work/julia-depot/artifacts/c8e2e4506036f733e9057901e6023fc770b0d142/lib/libxc.15.dylib",
+        "functionals": [
+          {
+            "native_family": "gga",
+            "below_sigma_threshold": 0,
+            "sigma_type": "Matrix{Float64}",
+            "functional_type": "DFTK.DispatchFunctional{:gga, :x}",
+            "parameter_scope": "Fresh default Libxc object with the same identifier/n_spin as the selected frozen method; no setter or parameter override",
+            "inner_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "backend": "Libxc Float64 CPU",
+            "parameters": [
+              {
+                "name": "_kappa",
+                "actual_default_object": 0.804,
+                "default": 0.804
+              },
+              {
+                "name": "_mu",
+                "actual_default_object": 0.12345679012345678,
+                "default": 0.12345679012345678
+              }
+            ],
+            "native_name": "Perdew, Burke & Ernzerhof SOL",
+            "dispatch_line": 479,
+            "dispatch_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "below_density_threshold": 0,
+            "density_type": "Matrix{Float64}",
+            "tau_threshold": 1e-20,
+            "sigma_threshold": 1.0000000000000027e-20,
+            "inner_line": 117,
+            "native_number": 116,
+            "inner_type": "DFTK.LibxcFunctional{:gga, :x}",
+            "zeta_threshold": 2.220446049250313e-16,
+            "identifier": "gga_x_pbe_sol",
+            "density_threshold": 1e-15
+          },
+          {
+            "native_family": "gga",
+            "below_sigma_threshold": 0,
+            "sigma_type": "Matrix{Float64}",
+            "functional_type": "DFTK.DispatchFunctional{:gga, :c}",
+            "parameter_scope": "Fresh default Libxc object with the same identifier/n_spin as the selected frozen method; no setter or parameter override",
+            "inner_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "backend": "Libxc Float64 CPU",
+            "parameters": [
+              {
+                "name": "_beta",
+                "actual_default_object": 0.046,
+                "default": 0.046
+              },
+              {
+                "name": "_gamma",
+                "actual_default_object": 0.031090690869654894,
+                "default": 0.031090690869654894
+              },
+              {
+                "name": "_B",
+                "actual_default_object": 1.0,
+                "default": 1.0
+              }
+            ],
+            "native_name": "Perdew, Burke & Ernzerhof SOL",
+            "dispatch_line": 479,
+            "dispatch_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "below_density_threshold": 0,
+            "density_type": "Matrix{Float64}",
+            "tau_threshold": 1e-20,
+            "sigma_threshold": 1.0000000000000021e-16,
+            "inner_line": 117,
+            "native_number": 133,
+            "inner_type": "DFTK.LibxcFunctional{:gga, :c}",
+            "zeta_threshold": 2.220446049250313e-16,
+            "identifier": "gga_c_pbe_sol",
+            "density_threshold": 1e-12
+          }
+        ],
+        "libxc_runtime_version": "7.0.0",
+        "dftfunctionals_uuid": "6bd331d2-b28d-4fd3-880e-1a1c7f37947f"
+      },
+      "status": "PASS",
+      "gradient_max_abs": 4.290103645508964,
+      "sigma_minimum": 2.6781242184694102e-11,
+      "xc_call_count": 1,
+      "atomic_local_ha": -79.43302742790985,
+      "xc_ha": -7.177056858000618,
+      "sigma_maximum": 19.095808891043486,
+      "local_integral_ha": -79.43302742790988,
+      "source": "B_reconstructed",
+      "density": {
+        "clipping_applied": false,
+        "negative_roundoff_bound": 3.501023239291205e-14,
+        "status": "PASS",
+        "sha256": "1662b0d943ef43df6979fd9a331e761dc0d1e9c842024d66fed5b4a64ab3c9b4",
+        "l2": 3.3409422195093033,
+        "minimum": 0.00011639629357394879,
+        "electron_count": 10.000000000000004,
+        "negative_count": 0,
+        "electron_error": 3.552713678800501e-15,
+        "normalization_applied": false,
+        "maximum": 2.4636260868573934
+      }
+    },
+    "A_reconstructed": {
+      "local_mean_ha": 0.0,
+      "local_integral_minus_native_energy_ha": 0.0,
+      "gradient_l2": 8.216120387450447,
+      "local_l2_ha_bohr32": 34.37096822609322,
+      "vxc_mean_ha": -0.1433193801818456,
+      "energy_scope": "Only AtomicLocal, Xc, Ewald and PspCorrection; no T/NL/total-energy claim",
+      "integral_n_vxc_ha": -9.371197354607219,
+      "vxc_l2_ha_bohr32": 5.488016046590645,
+      "local_fourier_G0": [
+        -4.4408920985006255e-18,
+        0.0
+      ],
+      "array_sha256": {
+        "sigma": "d10aa65468c82f0440ef8454692846912f3a1bcb2aeeff4411005890198a88e4",
+        "local_potential": "9a77f4e893eca3f0f2de003f9aad24debfb8fcff47a2199741eb51ac462533e4",
+        "gradient": "5cecb56f5bf8ad1a387ce923802d71f6a58391c100ae8d383b417b3eac65e34b",
+        "vxc": "0fba5cc2b25bd97cb6e715c1132be09044f0451663c1d378435821bf0ecf02a1",
+        "n": "078d25d072ab087aa94f9aa9b343de40374563c93defe6c90664d3495def6093"
+      },
+      "backend": {
+        "libxc_library_sha256": "47e134ec6bebb5d27bd301e1f8fb43c2bc95472d07c01ab67fed185ff3e015bd",
+        "libxc_wrapper_uuid": "66e17ffc-8502-11e9-23b5-c9248d0eb96d",
+        "functional_dispatch_source_sha256": "129da4c6cf0af7608da857aaa952e1f333be4d9b97bd48400fd705c45764f39e",
+        "libxc_wrapper_version": "0.3.26",
+        "dftfunctionals_version": "0.3.2",
+        "divergence_convention": "Native divergence_real: FFT each vector component, multiply iG, sum, real(ifft)",
+        "generic_dftfunctionals_evaluation_used": false,
+        "gradient_convention": "Full native cubic FFT support; iG times orthonormal rho coefficients, then real(ifft); Nyquist real-part convention unchanged",
+        "potential_threshold": 0.0,
+        "full_gga_potential": true,
+        "xc_source_sha256": "1c60dd1969d843345fbab554ab541819787ec7c96435a1b04f8a6abe948b194b",
+        "libxc_library_path": "<home>/Documents/Codex/2026-09-04/files-pasted-by-the-user-you/work/dftk-soc-workbench/.work/julia-depot/artifacts/c8e2e4506036f733e9057901e6023fc770b0d142/lib/libxc.15.dylib",
+        "functionals": [
+          {
+            "native_family": "gga",
+            "below_sigma_threshold": 0,
+            "sigma_type": "Matrix{Float64}",
+            "functional_type": "DFTK.DispatchFunctional{:gga, :x}",
+            "parameter_scope": "Fresh default Libxc object with the same identifier/n_spin as the selected frozen method; no setter or parameter override",
+            "inner_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "backend": "Libxc Float64 CPU",
+            "parameters": [
+              {
+                "name": "_kappa",
+                "actual_default_object": 0.804,
+                "default": 0.804
+              },
+              {
+                "name": "_mu",
+                "actual_default_object": 0.12345679012345678,
+                "default": 0.12345679012345678
+              }
+            ],
+            "native_name": "Perdew, Burke & Ernzerhof SOL",
+            "dispatch_line": 479,
+            "dispatch_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "below_density_threshold": 0,
+            "density_type": "Matrix{Float64}",
+            "tau_threshold": 1e-20,
+            "sigma_threshold": 1.0000000000000027e-20,
+            "inner_line": 117,
+            "native_number": 116,
+            "inner_type": "DFTK.LibxcFunctional{:gga, :x}",
+            "zeta_threshold": 2.220446049250313e-16,
+            "identifier": "gga_x_pbe_sol",
+            "density_threshold": 1e-15
+          },
+          {
+            "native_family": "gga",
+            "below_sigma_threshold": 0,
+            "sigma_type": "Matrix{Float64}",
+            "functional_type": "DFTK.DispatchFunctional{:gga, :c}",
+            "parameter_scope": "Fresh default Libxc object with the same identifier/n_spin as the selected frozen method; no setter or parameter override",
+            "inner_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "backend": "Libxc Float64 CPU",
+            "parameters": [
+              {
+                "name": "_beta",
+                "actual_default_object": 0.046,
+                "default": 0.046
+              },
+              {
+                "name": "_gamma",
+                "actual_default_object": 0.031090690869654894,
+                "default": 0.031090690869654894
+              },
+              {
+                "name": "_B",
+                "actual_default_object": 1.0,
+                "default": 1.0
+              }
+            ],
+            "native_name": "Perdew, Burke & Ernzerhof SOL",
+            "dispatch_line": 479,
+            "dispatch_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "below_density_threshold": 0,
+            "density_type": "Matrix{Float64}",
+            "tau_threshold": 1e-20,
+            "sigma_threshold": 1.0000000000000021e-16,
+            "inner_line": 117,
+            "native_number": 133,
+            "inner_type": "DFTK.LibxcFunctional{:gga, :c}",
+            "zeta_threshold": 2.220446049250313e-16,
+            "identifier": "gga_c_pbe_sol",
+            "density_threshold": 1e-12
+          }
+        ],
+        "libxc_runtime_version": "7.0.0",
+        "dftfunctionals_uuid": "6bd331d2-b28d-4fd3-880e-1a1c7f37947f"
+      },
+      "status": "PASS",
+      "gradient_max_abs": 4.290103645508797,
+      "sigma_minimum": 2.6781242147645542e-11,
+      "xc_call_count": 1,
+      "atomic_local_ha": -79.43302742791043,
+      "xc_ha": -7.177056858000593,
+      "sigma_maximum": 19.095808891042008,
+      "local_integral_ha": -79.43302742791043,
+      "source": "A_reconstructed",
+      "density": {
+        "clipping_applied": false,
+        "negative_roundoff_bound": 3.50102323929109e-14,
+        "status": "PASS",
+        "sha256": "078d25d072ab087aa94f9aa9b343de40374563c93defe6c90664d3495def6093",
+        "l2": 3.3409422195093197,
+        "minimum": 0.00011639629358739237,
+        "electron_count": 9.999999999999996,
+        "negative_count": 0,
+        "electron_error": -3.552713678800501e-15,
+        "normalization_applied": false,
+        "maximum": 2.4636260868573125
+      }
+    },
+    "Q_rep": {
+      "local_mean_ha": 0.0,
+      "local_integral_minus_native_energy_ha": 0.0,
+      "gradient_l2": 8.21612088303861,
+      "local_l2_ha_bohr32": 34.37096822609322,
+      "vxc_mean_ha": -0.14331937458504768,
+      "energy_scope": "Only AtomicLocal, Xc, Ewald and PspCorrection; no T/NL/total-energy claim",
+      "integral_n_vxc_ha": -9.371198187776406,
+      "vxc_l2_ha_bohr32": 5.488014809149597,
+      "local_fourier_G0": [
+        -4.4408920985006255e-18,
+        0.0
+      ],
+      "array_sha256": {
+        "sigma": "940f1e0f61a38232166f96b3f627d029bfe14faaa8badfa72ae4f26a926448be",
+        "local_potential": "9a77f4e893eca3f0f2de003f9aad24debfb8fcff47a2199741eb51ac462533e4",
+        "gradient": "9012bb163e5f6540f3ad20966e58af6d61a3984589ca1ac8d6d7bdd65aedcda1",
+        "vxc": "6cef165ed2f7d9a916762b5975f7e0957d7202517d96677099168891942a0b1d",
+        "n": "249b8cb8e4c143274887a73e6fd996de2ab72bc388bc55ea2590f43dc472eb5c"
+      },
+      "backend": {
+        "libxc_library_sha256": "47e134ec6bebb5d27bd301e1f8fb43c2bc95472d07c01ab67fed185ff3e015bd",
+        "libxc_wrapper_uuid": "66e17ffc-8502-11e9-23b5-c9248d0eb96d",
+        "functional_dispatch_source_sha256": "129da4c6cf0af7608da857aaa952e1f333be4d9b97bd48400fd705c45764f39e",
+        "libxc_wrapper_version": "0.3.26",
+        "dftfunctionals_version": "0.3.2",
+        "divergence_convention": "Native divergence_real: FFT each vector component, multiply iG, sum, real(ifft)",
+        "generic_dftfunctionals_evaluation_used": false,
+        "gradient_convention": "Full native cubic FFT support; iG times orthonormal rho coefficients, then real(ifft); Nyquist real-part convention unchanged",
+        "potential_threshold": 0.0,
+        "full_gga_potential": true,
+        "xc_source_sha256": "1c60dd1969d843345fbab554ab541819787ec7c96435a1b04f8a6abe948b194b",
+        "libxc_library_path": "<home>/Documents/Codex/2026-09-04/files-pasted-by-the-user-you/work/dftk-soc-workbench/.work/julia-depot/artifacts/c8e2e4506036f733e9057901e6023fc770b0d142/lib/libxc.15.dylib",
+        "functionals": [
+          {
+            "native_family": "gga",
+            "below_sigma_threshold": 0,
+            "sigma_type": "Matrix{Float64}",
+            "functional_type": "DFTK.DispatchFunctional{:gga, :x}",
+            "parameter_scope": "Fresh default Libxc object with the same identifier/n_spin as the selected frozen method; no setter or parameter override",
+            "inner_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "backend": "Libxc Float64 CPU",
+            "parameters": [
+              {
+                "name": "_kappa",
+                "actual_default_object": 0.804,
+                "default": 0.804
+              },
+              {
+                "name": "_mu",
+                "actual_default_object": 0.12345679012345678,
+                "default": 0.12345679012345678
+              }
+            ],
+            "native_name": "Perdew, Burke & Ernzerhof SOL",
+            "dispatch_line": 479,
+            "dispatch_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "below_density_threshold": 0,
+            "density_type": "Matrix{Float64}",
+            "tau_threshold": 1e-20,
+            "sigma_threshold": 1.0000000000000027e-20,
+            "inner_line": 117,
+            "native_number": 116,
+            "inner_type": "DFTK.LibxcFunctional{:gga, :x}",
+            "zeta_threshold": 2.220446049250313e-16,
+            "identifier": "gga_x_pbe_sol",
+            "density_threshold": 1e-15
+          },
+          {
+            "native_family": "gga",
+            "below_sigma_threshold": 0,
+            "sigma_type": "Matrix{Float64}",
+            "functional_type": "DFTK.DispatchFunctional{:gga, :c}",
+            "parameter_scope": "Fresh default Libxc object with the same identifier/n_spin as the selected frozen method; no setter or parameter override",
+            "inner_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "backend": "Libxc Float64 CPU",
+            "parameters": [
+              {
+                "name": "_beta",
+                "actual_default_object": 0.046,
+                "default": 0.046
+              },
+              {
+                "name": "_gamma",
+                "actual_default_object": 0.031090690869654894,
+                "default": 0.031090690869654894
+              },
+              {
+                "name": "_B",
+                "actual_default_object": 1.0,
+                "default": 1.0
+              }
+            ],
+            "native_name": "Perdew, Burke & Ernzerhof SOL",
+            "dispatch_line": 479,
+            "dispatch_file": "<workbench>/.work/DFTK.jl/src/DispatchFunctional.jl",
+            "below_density_threshold": 0,
+            "density_type": "Matrix{Float64}",
+            "tau_threshold": 1e-20,
+            "sigma_threshold": 1.0000000000000021e-16,
+            "inner_line": 117,
+            "native_number": 133,
+            "inner_type": "DFTK.LibxcFunctional{:gga, :c}",
+            "zeta_threshold": 2.220446049250313e-16,
+            "identifier": "gga_c_pbe_sol",
+            "density_threshold": 1e-12
+          }
+        ],
+        "libxc_runtime_version": "7.0.0",
+        "dftfunctionals_uuid": "6bd331d2-b28d-4fd3-880e-1a1c7f37947f"
+      },
+      "status": "PASS",
+      "gradient_max_abs": 4.290103976598127,
+      "sigma_minimum": 2.68283986931281e-11,
+      "xc_call_count": 1,
+      "atomic_local_ha": -79.43303529024301,
+      "xc_ha": -7.1770574954758555,
+      "sigma_maximum": 19.095811874946264,
+      "local_integral_ha": -79.43303529024301,
+      "source": "Q_rep",
+      "density": {
+        "clipping_applied": false,
+        "negative_roundoff_bound": 3.501023570263923e-14,
+        "status": "PASS",
+        "sha256": "249b8cb8e4c143274887a73e6fd996de2ab72bc388bc55ea2590f43dc472eb5c",
+        "l2": 3.3409424377500034,
+        "minimum": 0.00011640201905994439,
+        "electron_count": 10.000000000000004,
+        "negative_count": 0,
+        "electron_error": 3.552713678800501e-15,
+        "normalization_applied": false,
+        "maximum": 2.4636263197587387
+      }
+    }
+  },
+  "original_sources": {
+    "B": {
+      "checkpoint_sha256": "ff91020614a30d40a226194b95f041ee6120c1fb8398ad685712ca41ff4dddd9",
+      "status": "PASS",
+      "source_run_id": "20260906T153016Z-B-62835d43",
+      "same_source_reconstruction": {
+        "reconstructed_sha256": "1662b0d943ef43df6979fd9a331e761dc0d1e9c842024d66fed5b4a64ab3c9b4",
+        "status": "PASS",
+        "hash_equality_required": false,
+        "original_sha256": "bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3",
+        "relative_l2": 3.1094904176439093e-16,
+        "max_abs": 8.881784197001252e-16
+      },
+      "n_out_sha256": "bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3"
+    },
+    "A": {
+      "checkpoint_sha256": "5b138d68662fc6451ffd8b78bbd71939454ca30f8ad014623cb1d8e6720f5451",
+      "status": "PASS",
+      "source_run_id": "20260906T151940Z-A-270110aa",
+      "same_source_reconstruction": {
+        "reconstructed_sha256": "078d25d072ab087aa94f9aa9b343de40374563c93defe6c90664d3495def6093",
+        "status": "PASS",
+        "hash_equality_required": false,
+        "original_sha256": "38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130",
+        "relative_l2": 3.2610641616709525e-16,
+        "max_abs": 8.881784197001252e-16
+      },
+      "n_out_sha256": "38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130"
+    }
+  },
+  "basis": {
+    "temperature_ha": 0.001,
+    "fft_size": [
+      40,
+      40,
+      40
+    ],
+    "term_types": [
+      "DFTK.TermAtomicLocal{Array{Float64, 3}}",
+      "DFTK.TermXc{Float64, Nothing, Nothing}",
+      "DFTK.TermEwald{Float64}",
+      "DFTK.TermPspCorrection{Float64}"
+    ],
+    "kweights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "n_electrons": 10,
+    "ecut_ha": 15.0,
+    "volume_bohr3": 1000.0,
+    "kpoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.125,
+        0.0625,
+        -0.1875
+      ],
+      [
+        -0.125,
+        -0.0625,
+        0.1875
+      ]
+    ]
+  },
+  "data_status": "NEW_POSTPROCESSING_OF_HISTORICAL_STATES",
+  "execution_status": "PASS",
+  "constants": {
+    "ewald_eta": 0.18027756377319948,
+    "source_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "volume_bohr3": 1000.0,
+    "natoms": 1,
+    "psp_correction_scope": "One native per-cell constant; not added to density response or historical totals",
+    "alpha_from_common_native": 9.187494522099392,
+    "nlcc": false,
+    "psp_local_fourier_G0": 0.0,
+    "ewald_ha": -14.186487397403095,
+    "psp_correction_ha": 0.09187494522099392,
+    "n_electrons_from_atoms_actual": 10,
+    "model_ne": 10
+  },
+  "new_scf_status": "NOT_RUN",
+  "same_source": {
+    "A_original_n_out": {
+      "status": "PASS",
+      "rows": [
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-08,
+          "field": "atomic_local_ha",
+          "actual": -79.43302742791043,
+          "historical": -79.43302742791043
+        },
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-08,
+          "field": "xc_ha",
+          "actual": -7.1770568580005945,
+          "historical": -7.1770568580005945
+        },
+        {
+          "signed_difference_ha": -1.7763568394002505e-15,
+          "threshold_ha": 1e-08,
+          "field": "integral_n_vxc_ha",
+          "actual": -9.371197354607219,
+          "historical": -9.371197354607217
+        },
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-10,
+          "field": "psp_correction_ha",
+          "actual": 0.09187494522099392,
+          "historical": 0.09187494522099392
+        },
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-10,
+          "field": "ewald_ha",
+          "actual": -14.186487397403095,
+          "historical": -14.186487397403095
+        }
+      ]
+    },
+    "B_original_n_out": {
+      "status": "PASS",
+      "rows": [
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-08,
+          "field": "atomic_local_ha",
+          "actual": -79.43302742790986,
+          "historical": -79.43302742790986
+        },
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-08,
+          "field": "xc_ha",
+          "actual": -7.1770568580006175,
+          "historical": -7.1770568580006175
+        },
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-08,
+          "field": "integral_n_vxc_ha",
+          "actual": -9.371197354607252,
+          "historical": -9.371197354607252
+        },
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-10,
+          "field": "psp_correction_ha",
+          "actual": 0.09187494522099392,
+          "historical": 0.09187494522099392
+        },
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-10,
+          "field": "ewald_ha",
+          "actual": -14.186487397403095,
+          "historical": -14.186487397403095
+        }
+      ]
+    },
+    "B_reconstructed": {
+      "status": "PASS",
+      "rows": [
+        {
+          "signed_difference_ha": 1.4210854715202004e-14,
+          "threshold_ha": 1e-08,
+          "field": "atomic_local_ha",
+          "actual": -79.43302742790985,
+          "historical": -79.43302742790986
+        },
+        {
+          "signed_difference_ha": -8.881784197001252e-16,
+          "threshold_ha": 1e-08,
+          "field": "xc_ha",
+          "actual": -7.177056858000618,
+          "historical": -7.1770568580006175
+        },
+        {
+          "signed_difference_ha": 1.7763568394002505e-15,
+          "threshold_ha": 1e-08,
+          "field": "integral_n_vxc_ha",
+          "actual": -9.37119735460725,
+          "historical": -9.371197354607252
+        },
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-10,
+          "field": "psp_correction_ha",
+          "actual": 0.09187494522099392,
+          "historical": 0.09187494522099392
+        },
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-10,
+          "field": "ewald_ha",
+          "actual": -14.186487397403095,
+          "historical": -14.186487397403095
+        }
+      ]
+    },
+    "A_reconstructed": {
+      "status": "PASS",
+      "rows": [
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-08,
+          "field": "atomic_local_ha",
+          "actual": -79.43302742791043,
+          "historical": -79.43302742791043
+        },
+        {
+          "signed_difference_ha": 1.7763568394002505e-15,
+          "threshold_ha": 1e-08,
+          "field": "xc_ha",
+          "actual": -7.177056858000593,
+          "historical": -7.1770568580005945
+        },
+        {
+          "signed_difference_ha": -1.7763568394002505e-15,
+          "threshold_ha": 1e-08,
+          "field": "integral_n_vxc_ha",
+          "actual": -9.371197354607219,
+          "historical": -9.371197354607217
+        },
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-10,
+          "field": "psp_correction_ha",
+          "actual": 0.09187494522099392,
+          "historical": 0.09187494522099392
+        },
+        {
+          "signed_difference_ha": 0.0,
+          "threshold_ha": 1e-10,
+          "field": "ewald_ha",
+          "actual": -14.186487397403095,
+          "historical": -14.186487397403095
+        }
+      ]
+    }
+  },
+  "phase": "7D",
+  "executed_script_sha256": "ddda3e92e8fd1d099d4ed5342b13288603782767427ec9b5e12bbb3fb616c19f",
+  "schema_version": 1,
+  "density_representation_status": "PASS"
+}

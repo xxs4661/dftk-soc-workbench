@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "case": "mg-soc-energy-reference-v1",
+  "new_data_status": "NEW_POSTPROCESSING_OF_HISTORICAL_STATES",
+  "comparisons": {
+    "A_minus_G40": {
+      "xc": {
+        "density_response_in_D_ha": 6.374752610227574e-07,
+        "evaluation_residual_at_Q_rep_ha": 2.0096065398433893e-06,
+        "recombination_error_ha": 0.0,
+        "first_order_at_Q_ha": 6.37475776579758e-07,
+        "curvature_remainder_ha": -5.155570005698783e-13,
+        "reference_label": "A",
+        "reevaluated_reference_minus_historical_Q_ha": 2.6470818008661468e-06,
+        "same_source_reference_drift_ha": 0.0,
+        "historical_difference_ha": 2.6470818008661468e-06,
+        "historical_recombination_error_ha": 0.0
+      },
+      "ixc": {
+        "density_response_in_D_ha": 8.331691869756241e-07,
+        "evaluation_residual_at_Q_rep_ha": 2.5638080423107112e-06,
+        "recombination_error_ha": 0.0,
+        "reference_label": "A",
+        "reevaluated_reference_minus_historical_Q_ha": 3.3969772292863354e-06,
+        "same_source_reference_drift_ha": -1.7763568394002505e-15,
+        "historical_difference_ha": 3.3969772310626922e-06,
+        "historical_recombination_error_ha": 0.0
+      },
+      "ixc_evidence_tier": "Corresponding final-density full-GGA n*vxc by qe-7.5 tagged convention; installed source commit unknown",
+      "local_density_response_ha": 7.862332579611068e-06,
+      "local_fourier_identity_error_ha": 3.8963515573697816e-20,
+      "local_field_integral_evidence": "RUNNER_REPORTED; required new potential arrays remain local",
+      "delta_electrons": -6.739639990977495e-16,
+      "original_L_plus_Pc_ha": -79.34115248268944,
+      "reconstructed_minus_original_ha": {
+        "atomic_local_ha": 0.0,
+        "xc_ha": 1.7763568394002505e-15,
+        "integral_n_vxc_ha": 0.0
+      }
+    },
+    "B_minus_G40": {
+      "xc": {
+        "density_response_in_D_ha": 6.374752379301185e-07,
+        "evaluation_residual_at_Q_rep_ha": 2.0096065398433893e-06,
+        "recombination_error_ha": 0.0,
+        "first_order_at_Q_ha": 6.374757511640606e-07,
+        "curvature_remainder_ha": -5.132339420906614e-13,
+        "reference_label": "B",
+        "reevaluated_reference_minus_historical_Q_ha": 2.647081777773508e-06,
+        "same_source_reference_drift_ha": 0.0,
+        "historical_difference_ha": 2.647081777773508e-06,
+        "historical_recombination_error_ha": 0.0
+      },
+      "ixc": {
+        "density_response_in_D_ha": 8.331691532248442e-07,
+        "evaluation_residual_at_Q_rep_ha": 2.5638080423107112e-06,
+        "recombination_error_ha": 0.0,
+        "reference_label": "B",
+        "reevaluated_reference_minus_historical_Q_ha": 3.3969771955355554e-06,
+        "same_source_reference_drift_ha": 0.0,
+        "historical_difference_ha": 3.3969771955355554e-06,
+        "historical_recombination_error_ha": 0.0
+      },
+      "ixc_evidence_tier": "Corresponding final-density full-GGA n*vxc by qe-7.5 tagged convention; installed source commit unknown",
+      "local_density_response_ha": 7.862333139411838e-06,
+      "local_fourier_identity_error_ha": 1.0164395367051604e-20,
+      "local_field_integral_evidence": "RUNNER_REPORTED; required new potential arrays remain local",
+      "delta_electrons": 3.200540884496449e-15,
+      "original_L_plus_Pc_ha": -79.34115248268887,
+      "reconstructed_minus_original_ha": {
+        "atomic_local_ha": 1.4210854715202004e-14,
+        "xc_ha": -8.881784197001252e-16,
+        "integral_n_vxc_ha": 1.7763568394002505e-15
+      }
+    }
+  },
+  "Q_rep_L_plus_Pc_ha": -79.34116034502202,
+  "source_binding_status": "PASS",
+  "energy_field_semantics_status": "PASS_WITH_QE_TAGGED_SOURCE_LIMITATION",
+  "historical_energy_ledger_status": "PASS",
+  "density_representation_status": "PASS",
+  "same_source_common_terms_status": "PASS",
+  "xc_density_response_status": "MEASURED_IN_FROZEN_DFTK",
+  "xc_same_represented_density_residual_status": "MEASURED_WITH_REPRESENTATION_AND_TAGGED_SOURCE_LIMITS",
+  "local_gauge_bookkeeping_status": "PASS_DFTK_ONE_PC_QE_TAGGED_CONVENTION",
+  "g0_integral_diagnostic_status": "MEASURED",
+  "qe_native_local_potential_status": "NOT_EXTRACTED",
+  "qe_separate_kinetic_nonlocal_status": "NOT_AVAILABLE",
+  "numerical_review_status": "REVIEW_REQUIRED",
+  "numerical_agreement_status": "REVIEW_REQUIRED",
+  "physical_convergence_status": "NOT_ESTABLISHED",
+  "residual_attribution_status": "PARTIALLY_QUANTIFIED_COMBINATIONS_NOT_FULLY_ATTRIBUTED",
+  "ieee_warning_origin_status": "NOT_LOCALIZED",
+  "new_scf_status": "NOT_RUN",
+  "new_eigensolve_status": "NOT_RUN",
+  "new_qe_numerical_status": "NOT_RUN",
+  "python_replay_scope": "Bound saved scalar tables and algebra only, not independent XC/radial/full-field evaluation",
+  "Q_rep_scope": "Complete saved finite Fourier series on original zero-origin40^3 nodes; no proof of unsaved physical modes or independently extracted QE real-space array",
+  "residual_scope": "Q_rep residual contains evaluator, finite representation, gradients, thresholds and unconfirmed installed-source details; not an identified bug or SOC attribution",
+  "native_E_F_modified": false
+}

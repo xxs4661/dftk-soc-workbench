@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "g0_integral_diagnostic_status": "MEASURED",
+  "derivation_status": "NEW_POSTPROCESSING_OF_HISTORICAL_STATES",
+  "input_convention": {
+    "PP_LOCAL": "Ry potential energy, divided by two once",
+    "PP_R": "bohr",
+    "PP_RAB": "dr/di in bohr per unit index; unused by r-space rules",
+    "finite_integrand": "r^2 Vlocal_Ha + Z*r",
+    "z_valence": 10.0
+  },
+  "primary_full_native_grid": {
+    "alpha_ha_bohr3_per_atom": 9.187494522006666,
+    "C_ha": 0.009187494522006666,
+    "Pc_neutral_candidate_ha": 0.09187494522006666,
+    "n_atoms": 1,
+    "volume_bohr3": 1000.0,
+    "n_electrons": 10.0,
+    "n_electrons_from_atoms": 10.0,
+    "scope": "Finite local/background bookkeeping only, not an E/F correction",
+    "method": "Piecewise quadratic Newton interpolation on actual r, with final unmatched interval trapezoid when needed",
+    "point_count": 1510,
+    "integration_lower_bohr": 0.0,
+    "integration_upper_bohr": 15.09,
+    "rab_used": false
+  },
+  "trapezoid_full_native_grid": {
+    "alpha_ha_bohr3_per_atom": 9.186447322264812,
+    "C_ha": 0.00918644732226481,
+    "Pc_neutral_candidate_ha": 0.09186447322264811,
+    "n_atoms": 1,
+    "volume_bohr3": 1000.0,
+    "n_electrons": 10.0,
+    "n_electrons_from_atoms": 10.0,
+    "scope": "Finite local/background bookkeeping only, not an E/F correction",
+    "method": "Composite trapezoid on actual r, all native nodes",
+    "rab_used": false
+  },
+  "quadrature_sensitivity": {
+    "alpha_primary_minus_trapezoid_ha_bohr3": 0.001047199741854854,
+    "Pc_primary_minus_trapezoid_ha": 1.047199741854854e-05,
+    "scope": "Fixed-method sensitivity, not a strict error bound; no cutoff scan or resampling"
+  },
+  "radial_tail": {
+    "first_integrand": 0.0,
+    "last_integrand": 1.4761294551135506e-05,
+    "last_10_nodes_max_abs_integrand": 1.507875001038883e-05,
+    "full_grid_rmax_bohr": 15.09,
+    "lower_endpoint_status": "INCLUDES_ZERO",
+    "outside_grid_status": "NOT_INTEGRATED; finite-part interpretation assumes Coulomb tail beyond supplied range; no analytic tail patch or fitted constant"
+  },
+  "qe_tagged_prediction": {
+    "range_proof": {
+      "status": "ESTABLISHED_TO_QE_7_5_TAGGED_CONVENTION",
+      "msh_points": 1001,
+      "source_point_count": 1510,
+      "first_index_beyond_10_bohr": 1002,
+      "first_radius_beyond_10_bohr": 10.01,
+      "integration_lower_bohr": 0.0,
+      "integration_upper_bohr": 10.0,
+      "affine_step_bohr": 0.01,
+      "affine_grid_max_abs_bohr": 1.7763568394002505e-15,
+      "rab_minus_step_max_abs_bohr": 0.0,
+      "endpoint_rule": "First r>10 node index, capped to odd count; standard closed Simpson endpoints 1/3",
+      "jacobian_rule": "Actual PP_RAB=dr/di, once; no extra dr",
+      "source_scope": "qe-7.5 tag prediction; actual installed source commit/table not extracted"
+    },
+    "status": "PREDICTED_QE_7_5_TAGGED_CONVENTION",
+    "alpha_ha_bohr3_per_atom": 9.185827446037583,
+    "C_ha": 0.009185827446037584,
+    "Pc_neutral_candidate_ha": 0.09185827446037584,
+    "n_atoms": 1,
+    "volume_bohr3": 1000.0,
+    "n_electrons": 10.0,
+    "n_electrons_from_atoms": 10.0,
+    "scope": "Finite local/background bookkeeping only, not an E/F correction",
+    "finite_G0_definition": "Unscreened finite alpha/Omega: QE tab_vloc(0); convert internal Ry to Ha once",
+    "actual_QE_table_status": "NOT_EXTRACTED",
+    "periodic_context_proof": {
+      "status": "ESTABLISHED_TO_QE_7_5_TAGGED_CONVENTION",
+      "ordinary_periodic": true,
+      "source_scope": "Saved input plus qe-7.5 defaults; not an extracted runtime Coulomb flag",
+      "defaults_source": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/read_namelists.f90#L281-L308",
+      "caller_source": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/init_vloc.f90#L41-L70",
+      "assume_isolated": "none (tagged default; absent from saved input)",
+      "esm_bc": "pbc (tagged default; absent from saved input)",
+      "limitation": "Installed QE exact source commit is unknown; this certifies only the tagged prediction context",
+      "input_source": {
+        "path": "benchmarks/mg-soc-qe-diagnostics-v1/G40.in",
+        "sha256": "793d30bc6c0f3ee214ca8f6cc8ed0aa88a879ffc4284536ccf7e8584287b1677"
+      },
+      "xml_source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097"
+      }
+    }
+  },
+  "dftk_bookkeeping": {
+    "status": "PASS",
+    "native_constants": {
+      "psp_correction_ha": 0.09187494522099392,
+      "n_electrons_from_atoms_actual": 10.0,
+      "model_ne": 10.0,
+      "volume_bohr3": 1000.0,
+      "natoms": 1.0,
+      "alpha_from_common_native": 9.187494522099392,
+      "psp_local_fourier_G0": 0.0
+    },
+    "native_C_ha": 0.009187494522099392,
+    "native_Pc_minus_Ne_C_ha": -1.3877787807814457e-17,
+    "independent_primary_minus_native_alpha_ha_bohr3": -9.272582701669307e-11,
+    "independent_primary_minus_native_Pc_ha": -9.272582701669307e-13,
+    "independent_quadrature_scope": "Difference measured, no dependency or quadrature tuned to force agreement",
+    "Ne_times_C_D_minus_C_Q_tagged_ha": 1.6670760618082286e-05,
+    "candidate_scope": "Signed bookkeeping scale from independent known conventions, not a cause or correction to historical E/F"
+  },
+  "screened_short_range_q0": {
+    "status": "NOT_COMPUTED_NOT_THE_FINITE_G0_OBJECT",
+    "integrand_Ha": "r^2 Vlocal_Ha + Z*r*erf(r)",
+    "distinction": "For the infinite-domain unit-erf convention, unscreened alpha minus screened q->0 numerator is pi*Z; their tabulated zero entries are not interchangeable"
+  },
+  "qe_native_local_potential_status": "NOT_EXTRACTED",
+  "applied_energy_correction": false,
+  "public_replay_scope": "Arithmetic on saved summaries only unless the separately obtained hash-bound UPF is supplied; raw radial arrays are not redistributed",
+  "source": {
+    "source_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "source_bytes": 252203,
+    "filename": "Mg.upf",
+    "header": {
+      "generated": "Generated using ONCVPSP code by D. R. Hamann",
+      "author": "anonymous",
+      "date": "180509",
+      "comment": "",
+      "element": "Mg",
+      "pseudo_type": "NC",
+      "relativistic": "full",
+      "is_ultrasoft": "F",
+      "is_paw": "F",
+      "is_coulomb": "F",
+      "has_so": "T",
+      "has_wfc": "F",
+      "has_gipaw": "F",
+      "core_correction": "F",
+      "functional": "PBESOL",
+      "z_valence": "   10.00",
+      "total_psenergy": "  -1.18479378822E+02",
+      "rho_cutoff": "   1.50900000000E+01",
+      "l_max": "1",
+      "l_local": "-1",
+      "mesh_size": "  1510",
+      "number_of_wfc": "4",
+      "number_of_proj": "6"
+    },
+    "mesh_attributes": {}
+  },
+  "source_binding_status": "PASS",
+  "source_bytes_unchanged": true,
+  "run_id": "20260907T144446657126Z-8fa3b4d2",
+  "plan_sha256": "bc05068d22cc0e409f75d3cb403fdfbca72ce47d88426eac4d957c2e623c0687",
+  "native_constants_receipt_ref": "common-terms.json#/constants"
+}

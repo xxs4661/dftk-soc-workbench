@@ -47,3 +47,11 @@ It installs no packages or environments.
 New SOC offline replay: `python3.12 scripts/check_qe_soc_evidence.py`. The combined
 checker also requires the reviewed historical UPF exporter Git object retained
 in a normal clone. Its old evidence hash is not replaced by the evolving verifier.
+
+## Current energy/reference evidence
+
+[Existing Mg SOC endpoint energy audit](mg-soc-energy-reference/README.md):
+signed historical E/H/XC/Ewald/O ledger, fixed A/B/Q_rep common-term evaluation,
+self recovery, XC density/evaluator split, and local finite G=0 diagnostic.
+Only the source-convention candidate is inferred; QE separate T/NL/local are
+not measured and residual attribution remains open.

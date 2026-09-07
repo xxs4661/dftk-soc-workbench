@@ -17,6 +17,14 @@ are recovered within 1.1e-13 Ha; A−QE common-support density L2 is 2.97e-7
 electron/bohr^(3/2), with Hartree difference −0.16237 meV/cell. This does not
 explain the whole +0.62444 meV total-energy difference. Full cross-code real-space
 density is NOT_ASSESSED; residual attribution remains NOT_ESTABLISHED.
+The [energy/reference audit](results/mg-soc-energy-reference/README.md) now
+completes the signed native energy ledger and evaluates fixed historical A/B and
+QE finite-series densities with the frozen local/PBEsol implementation. A's
++0.62444 meV difference separates into Hartree −0.16237, XC +0.07203,
+Ewald +0.00050 and a still-combined single-electron +0.71428 meV. Five fixed-density
+XC evaluations restore same-source terms; a +0.45363 meV local G=0 candidate is
+source-convention evidence, not runtime attribution or an energy correction.
+Residual attribution stays open; no new SCF, eigen solve or QE run occurred.
 This development branch has not been published to main.
 
 - [Capabilities, evidence levels and limitations](docs/status.md)
@@ -28,7 +36,7 @@ This development branch has not been published to main.
 For an offline review using public files only, run from the repository root:
 
 ```sh
-python3.12 scripts/check_density_hartree.py --all --legacy-python python3.9
+python3.12 scripts/check_energy_reference.py --all --legacy-python python3.9
 ```
 
 Exact replay of historical scalar RMS values uses Python 3.9 (the recorded
@@ -60,3 +68,7 @@ The historical diagnostic checker wraps the unchanged publication checker;
 it does not refresh the Phase 7A verifier hashes. New-case-only replay is
 `python3.12 scripts/check_qe_soc_diagnostics.py`.
 The new array-only replay is `python3.12 scripts/check_density_hartree.py`.
+
+The current energy-table replay is `python3.12 scripts/check_energy_reference.py`.
+It replays saved scalar algebra; frozen Julia and authenticated private sources
+are required to independently repeat XC/field evaluation.

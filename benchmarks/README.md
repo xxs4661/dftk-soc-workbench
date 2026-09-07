@@ -16,3 +16,10 @@ under their licenses. Si uses SR-LDA with NLCC; Mg uses the recorded FR-PBEsol
 family and is not an LDA/LSDA numerical benchmark. No case establishes complete
 physical convergence. Public offline arithmetic checks require neither UPF
 files nor new SCF/QE runs; see [results](../results/README.md).
+
+## Existing-density energy audit
+
+[Mg fixed-density plan](mg-soc-energy-reference-v1/README.md) binds existing
+A/B/G40 sources, five allowed common-term calls and one fixed radial diagnostic.
+[Results](../results/mg-soc-energy-reference/README.md) preserve all prior SCFs as
+HISTORICAL_REUSED; no new solver, physical setting or dependency is introduced.

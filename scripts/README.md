@@ -138,3 +138,13 @@ historical bytes before Serialization, reads A/B before G40, and refuses existin
 output directories. It starts no SCF, eigensolve or QE program. The public checker
 requires only complete gzip CSV coefficients and standard-library Python;
 n_in/real-array extraction checks retain their separate runner-reported scope.
+
+## Fixed historical-density energy audit
+
+- `python3.12 scripts/check_energy_reference.py --all --legacy-python python3.9`: public saved-table/ledger replay, chaining unchanged older checks; no independent XC execution.
+- `python3.12 scripts/run_energy_reference_audit.py --julia julia`: authorized fixed-density reproduction with the existing frozen depot and authenticated private sources, unique run_id, no solver.
+- `audit_energy_ledger.py`, `compare_energy_reference.py`, `audit_local_g0.py`, and `evaluate_common_energy_terms.jl`: bounded new dictionary/algebra/radial/static-term components.
+
+Read the [plan](../benchmarks/mg-soc-energy-reference-v1/README.md) and
+[energy audit report](../results/mg-soc-energy-reference/README.md) for commands,
+source restoration, predeclared gates, failure records and evidence limits.
