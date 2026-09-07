@@ -19,6 +19,17 @@ const IDS = [:gga_x_pbe_sol, :gga_c_pbe_sol]
 array_hash(x::Array) = bytes2hex(sha256(reinterpret(UInt8,vec(x))))
 finite_number(x) = x isa Real && !(x isa Bool) && isfinite(x)
 
+function evaluation_grid(physics)
+    # JSON3's Dict conversion can represent the numeric token 1000.0 as Int64.
+    # FFTGrid's volume type selects the transform element type; this boundary
+    # must explicitly retain the predeclared Float64 arithmetic.
+    finite_number(physics["volume_bohr3"]) || error("Finite numeric volume required")
+    volume=Float64(physics["volume_bohr3"])
+    isfinite(volume) && volume>0 || error("Positive finite Float64 volume required")
+    shape=Tuple(Int.(physics["fft_size"]))
+    (;grid=DFTK.FFTGrid(shape,volume,DFTK.CPU()),volume)
+end
+
 function read_coefficient_csv(path, names)
     text=read(path,String);occursin('\r',text) && error("Coefficient CSV must retain LF encoding")
     lines=split(chomp(text),'\n')
@@ -277,7 +288,7 @@ function evaluate_request!(result,request,outdir)
     result["coefficient_transfers"]=request["transfers"]
     result["source_binding_status"]="PASS"
     physics=plan["physical"];thresholds=plan["thresholds"]
-    volume=physics["volume_bohr3"];grid=DFTK.FFTGrid(Tuple(Int.(physics["fft_size"])),volume,DFTK.CPU())
+    setup=evaluation_grid(physics);grid=setup.grid;volume=setup.volume
     reps=Dict{String,Any}();originals=Dict{String,Vector{Float64}}();endpoints=Dict{String,Any}()
     result["reconstruction"]=Dict{String,Any}();result["original_sources"]=Dict{String,Any}()
     for (name,key,column) in (("A","dftk","A_out"),("B","dftk","B_out"),("Q","qe","QE"))

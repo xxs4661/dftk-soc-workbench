@@ -25,6 +25,16 @@ function run_common_energy_tests()
     @testset "Synthetic static common density evaluation" begin
         shape=(40,40,40);volume=1000.;lattice=10Matrix{Float64}(I,3,3)
         field=synthetic_fields(shape)
+        # Regression for the actual request boundary: JSON3's typed Dict keeps
+        # integer-valued JSON numbers as Int64, even from a 1000.0 token.
+        parsed=JSON3.read("{\"volume_bohr3\":1000.0,\"fft_size\":[40,40,40]}",Dict{String,Any})
+        @test parsed["volume_bohr3"] isa Integer
+        setup=CE.evaluation_grid(parsed)
+        @test setup.volume isa Float64
+        @test setup.grid.fft_normalization isa Float64
+        parsed_fft=CE.DFTK.fft(setup.grid,fill(.01,shape))
+        @test eltype(parsed_fft)==ComplexF64
+        @test abs(real(parsed_fft[1])/sqrt(setup.volume)*setup.volume-10)<=1e-12
         grid=CE.DFTK.FFTGrid(shape,volume,CE.DFTK.CPU())
         modes=[Tuple(g) for g in vec(CE.DFTK.G_vectors(grid))]
         coefficients=vec(CE.DFTK.fft(grid,reshape(field.n,shape)))/sqrt(volume)
