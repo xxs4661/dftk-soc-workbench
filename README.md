@@ -86,3 +86,5 @@ The new array-only replay is `python3.12 scripts/check_density_hartree.py`.
 The current energy-table replay is `python3.12 scripts/check_energy_reference.py`.
 It replays saved scalar algebra; frozen Julia and authenticated private sources
 are required to independently repeat XC/field evaluation.
+
+Current development: [Si SOC splitting](results/si-soc-splitting/README.md), a prescribed two-atom FR-NLCC/PBE functional case; see its actual execution status.

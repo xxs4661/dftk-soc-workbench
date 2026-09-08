@@ -163,3 +163,11 @@ See the [Phase7E contract](../benchmarks/mg-soc-qe-local-potential-v1/README.md)
 and [evidence](../results/mg-soc-qe-local-potential/README.md). Synthetic tests
 are in `test_qe_filplot.py`, `test_qe_local_*.py` and
 `test_saved_local_field.jl`; synthetic workers are not physical calculations.
+
+Si SOC case: `run_si_dftk.py` records the prescribed Julia actions with an explicit
+execution commit and successful static receipt; `run_si_qe.py` records the two
+QE slots or a read-only build identity query. Select the existing frozen depot
+for the DFTK launcher; QE uses its unchanged original launcher environment.
+Both require new ignored output directories and refuse duplicate formal slots.
+`python3 scripts/check_si_soc.py` replays only published spectral statistics and
+historical boundaries; no solver. See [case/results](../results/si-soc-splitting/README.md).

@@ -44,10 +44,11 @@ function soc_map(ctx,n_in,settings,previous,target;seed,map_index,is_closure=fal
     hasproperty(hooks,:occupations) && (f=hooks.occupations(deepcopy(f),map_index))
     # Hooks are fault injection only: preserve exact capacity-one global FD values.
     f==solved.ensemble.f || error("Occupation hook changed the global Fermi ensemble")
-    orbital=FI.orbital_density(b,X,f)
+    stream_k=get(settings["solver"],"stream_k",false)
+    orbital=FI.orbital_density(b,X,f;stream_k)
     chosen=hasproperty(hooks,:density) ? hooks.density(deepcopy(orbital),copy(n_in),map_index) : orbital
     FI.integration_density_hash(chosen.n)==FI.integration_density_hash(orbital.n) || error("Stale or exchanged n_out; density must belong to current X/f")
-    energy=FI.energy_snapshot(ctx,X,f;expected_n=chosen.n)
+    energy=FI.energy_snapshot(ctx,X,f;expected_n=chosen.n,stream_k)
     FI.assert_energy_consistency(energy;energy_atol=t["energy_abs_ha"])
     thermal=ensemble_free_energy(energy.total,f,b.kweights,b.model.temperature)
     abs(thermal.arithmetic_error_ha)<=t["free_energy_arithmetic_relative"]*max(1,abs(thermal.free_energy_ha),abs(thermal.internal_energy_ha)) || error("Free-energy arithmetic failed")

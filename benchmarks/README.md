@@ -32,3 +32,5 @@ files nor new SCF/QE runs; see [results](../results/README.md).
 A/B/G40 sources, five allowed common-term calls and one fixed radial diagnostic.
 [Results](../results/mg-soc-energy-reference/README.md) preserve all prior SCFs as
 HISTORICAL_REUSED; no new solver, physical setting or dependency is introduced.
+
+- [Si SOC splitting v1](si-soc-splitting-v1/README.md): authenticated source, fixed five-slot matrix and predeclared gates; [current results](../results/si-soc-splitting/README.md).

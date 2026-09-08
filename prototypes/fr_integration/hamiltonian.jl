@@ -154,18 +154,28 @@ function _atom_ordered_fr(bundles, qcart, positions_cart, volume)
     RelativisticProjectors.FRNonlocalOperator(P, D; labels)
 end
 
+function _checked_context_fft_size(fft_size)
+    isnothing(fft_size) && return nothing
+    (fft_size isa Tuple || fft_size isa AbstractVector) && length(fft_size)==3 &&
+        all(n->n isa Integer && !(n isa Bool) && 0<n<=typemax(Int),fft_size) ||
+        throw(ArgumentError("fft_size must contain three positive integer dimensions"))
+    Tuple(Int.(fft_size))
+end
+
 """
 Build six explicit common terms, then one FR operator per physical k point.
 `bundles` has one issued bundle per atom in `positions` order. Scalar degeneration
 requires the explicit `:synthetic_scalar_limit` mode and the issued Si bundle.
 Default temperature is zero with no smearing, preserving Phase 6B. Positive
 `temperature` is tau=k_B*T in Ha and requires explicit `Smearing.FermiDirac()`.
-The six common terms exclude entropy at either temperature.
+The six common terms exclude entropy at either temperature. An explicit fft_size
+is checked against the resulting physical grid; omission retains DFTK's default.
 """
 function build_context(bundles, lattice, positions, kcoords, kweights;
                        Ecut, xc_identifiers, mode::Symbol,
-                       temperature=0.0, smearing=DFTK.Smearing.None())
+                       temperature=0.0, smearing=DFTK.Smearing.None(),fft_size=nothing)
     tau = _common_temperature(temperature, smearing)
+    requested_fft = _checked_context_fft_size(fft_size)
     bs = collect(bundles)
     !isempty(bs) && length(bs) == length(positions) ||
         throw(ArgumentError("one issued source bundle per atom is required"))
@@ -194,8 +204,11 @@ function build_context(bundles, lattice, positions, kcoords, kweights;
         model_name=iszero(tau) ? "Phase 6B common-only integration" : "Finite-temperature common-only integration",
         terms, n_electrons=ne,
         spin_polarization=:none, temperature=tau, smearing, symmetries=false)
-    basis = DFTK.PlaneWaveBasis(model; Ecut=Float64(Ecut),
-        kgrid=DFTK.ExplicitKpoints([Float64.(k) for k in kcoords], Float64.(kweights)))
+    kgrid=DFTK.ExplicitKpoints([Float64.(k) for k in kcoords], Float64.(kweights))
+    basis = isnothing(requested_fft) ? DFTK.PlaneWaveBasis(model; Ecut=Float64(Ecut),kgrid) :
+        DFTK.PlaneWaveBasis(model; Ecut=Float64(Ecut),kgrid,fft_size=requested_fft)
+    isnothing(requested_fft) || basis.fft_size==requested_fft ||
+        throw(ArgumentError("actual FFT grid differs from the explicit request"))
     length(basis.kpoints) == length(kcoords) &&
         [collect(k.coordinate) for k in basis.kpoints] == kcoords &&
         basis.kweights == kweights || throw(ArgumentError("actual explicit k-point order/weights differs from request"))

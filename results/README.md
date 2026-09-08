@@ -63,3 +63,5 @@ signed historical E/H/XC/Ewald/O ledger, fixed A/B/Q_rep common-term evaluation,
 self recovery, XC density/evaluator split, and local finite G=0 diagnostic.
 Only the source-convention candidate is inferred; QE separate T/NL/local are
 not measured and residual attribution remains open.
+
+- [Si SOC splitting](si-soc-splitting/README.md): new two-atom FR-PBE/NLCC case, with explicit full-SOC and fixed-density spin-trace scope.

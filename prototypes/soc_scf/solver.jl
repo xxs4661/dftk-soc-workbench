@@ -102,6 +102,8 @@ function solve_soc_targets(ctx,ham,previous,target,settings;seed,map_index,exten
 end
 
 function solve_with_band_check(ctx,ham,previous,target,settings;seed,map_index,solve_hook=nothing,progress=(record)->nothing)
+    allow_expansion=get(settings["solver"],"allow_band_expansion",true)
+    allow_expansion isa Bool || throw(ArgumentError("allow_band_expansion must be boolean"))
     attempts=NamedTuple[];warm=previous;expansion=0
     while true
         solved=solve_soc_targets(ctx,ham,warm,target,settings;seed,map_index,extension_index=expansion,solve_hook,progress)
@@ -111,6 +113,8 @@ function solve_with_band_check(ctx,ham,previous,target,settings;seed,map_index,s
         push!(attempts,(;target,band,occupation=ensemble.report,per_k=solved.records))
         progress((;map_index,event="band_completeness",attempt=last(attempts)))
         band.status=="PASS" && return (;solved,ensemble,band,attempts)
+        allow_expansion || throw(EnsembleError("INSUFFICIENT_BANDS",
+            "At $target targets, highest two occupations exceed the declared threshold; this case forbids band expansion"))
         band.status=="INSUFFICIENT_BANDS" && throw(EnsembleError("INSUFFICIENT_BANDS","At 48 targets, highest two occupations exceed the declared threshold"))
         warm=solved.all_X;target=band.next_target;expansion+=1
     end
