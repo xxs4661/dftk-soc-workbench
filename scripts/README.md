@@ -1,6 +1,6 @@
 # Workbench scripts
 
-- Phase 7G: `replay_public_independent.py` uses only new standard-library/NumPy readers and formulas; `run_cross_env_replay.py` runs frozen R and independent I separately on the declared Linux host. [Fixed plan and commands](../benchmarks/mg-soc-public-replay-v1/README.md). **BLOCKED** at GitHub workflow authorization; these real-data paths are **NOT_RUN** this phase. 47 synthetic tests passed on Mac.
+- Phase 7G: `replay_public_independent.py` uses only new standard-library/NumPy readers and formulas; `run_cross_env_replay.py` runs frozen R and independent I separately on the declared Linux host. [Fixed plan and commands](../benchmarks/mg-soc-public-replay-v1/README.md). First Linux run completed: **I PASS/0, R FAIL/1**, CI failure retained for two predeclared density hashes; 380 I gates and 47 Linux synthetic tests PASS. [Actual receipt](../results/mg-soc-public-replay/linux/README.md).
 - `run_orbital_energy_audit.py`: authenticated original G40/A/B extraction → density/kinetic gates → frozen FR only → signed ledger; requires existing NumPy and frozen Julia. `check_orbital_energy.py --all --legacy-python python3.9`: offline public Q coefficient/FR replay and full historical chain, no numerical solver. See [case](../benchmarks/mg-soc-wavefunction-energy-v1/README.md).
 
 Use the [workbench environment](../environment/workbench/README.md), not a modified DFTK

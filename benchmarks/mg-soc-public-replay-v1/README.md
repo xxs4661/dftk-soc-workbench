@@ -1,9 +1,11 @@
 # Phase 7G: complete public replay on Linux
 
-**Outcome: BLOCKED at workflow push authorization.** GitHub rejected the initial
-push because the existing OAuth credential has no `workflow` scope. No Linux
-job or real R/I replay ran. These are prepared methods, not executed numerical
-results. See the [receipt and limits](../../results/mg-soc-public-replay/README.md).
+**Outcome: I PASS/0, frozen R FAIL/1; CI failure retained.** The first standard
+Linux x86_64 run completed all 380 I gates and 47 synthetic tests. R differs
+only at the two predeclared derived-density hashes; its original failure is not
+relabeled. See [the Linux receipt](../../results/mg-soc-public-replay/linux/README.md).
+The [initial authorization block](../../results/mg-soc-public-replay/README.md)
+remains unchanged; the owner subsequently authorized workflow scope.
 
 This case checks reproducibility of the fixed Phase7F public evidence at
 `747d7d3e21dadd8a5fef0183d2375e7f1f82c176`. It adds no scientific state or
@@ -100,7 +102,7 @@ parameter scans or private scientific data access. Native QE NL stays NOT_MEASUR
 original Q input-H residual NOT_AVAILABLE, physical convergence NOT_ESTABLISHED,
 IEEE origin NOT_LOCALIZED and interpretation REVIEW_REQUIRED.
 
-## Prepared commands (real-data execution NOT_RUN)
+## Executed entry points
 
 In the declared ephemeral Linux environment, the wrapper is the execution entry:
 
@@ -118,5 +120,7 @@ The wrapper is intentionally not a generic local-platform bypass. Direct I uses:
 python scripts/replay_public_independent.py --source-root READ_ONLY_BASELINE --plan benchmarks/mg-soc-public-replay-v1/plan.json --output NEW_I_DIR
 ```
 
-Do not interpret an unexecuted entry as validated real-data integration. No
-permission expansion, substitute platform or second push was attempted here.
+The first successful branch push followed the owner's separate workflow-scope
+authorization. R and I ran once on the declared Linux host; no numerical retry
+or substitute platform was used. Original authorization-blocked receipts remain
+historical, with new Linux results at their own path.

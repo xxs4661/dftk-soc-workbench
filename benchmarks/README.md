@@ -1,6 +1,6 @@
 # Physical cases and reproduction
 
-- [mg-soc-public-replay-v1](mg-soc-public-replay-v1/README.md): prepared fixed Linux public replay; workflow push **BLOCKED**, real R/I **NOT_RUN**.
+- [mg-soc-public-replay-v1](mg-soc-public-replay-v1/README.md): executed fixed Linux public replay; **I PASS/0, R FAIL/1** for predeclared density fingerprints, CI failure retained; [results](../results/mg-soc-public-replay/linux/README.md).
 - [mg-soc-wavefunction-energy-v1](mg-soc-wavefunction-energy-v1/README.md): original G40/A/B static audit; plan and fixed engineering gates; no new SCF/QE/XC.
 
 | Case | Frozen inputs and commands | Evidence |

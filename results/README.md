@@ -1,6 +1,6 @@
 # Scientific evidence
 
-- [Phase 7G: public cross-environment replay](mg-soc-public-replay/README.md) — **BLOCKED** at workflow push authorization; 47 synthetic tests PASS, real Linux R/I **NOT_RUN**.
+- [Phase 7G: Linux public replay](mg-soc-public-replay/linux/README.md) — **I PASS/0, R FAIL/1**, CI failure; two predeclared density hashes, 380 I gates and 47 Linux synthetic tests PASS. [Initial authorization block](mg-soc-public-replay/README.md) preserved.
 - [Phase 7F: original wavefunctions, kinetic and frozen nonlocal audit](mg-soc-wavefunction-energy/README.md) — full Q coefficient replay, A/B scalar/projection checks; [review](phase7f-review.md).
 
 Phase 7C adds the [saved density/Hartree audit](mg-soc-density-hartree/README.md)

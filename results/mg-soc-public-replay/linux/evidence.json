@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "phase": "7G",
+  "execution_status": "FAIL_WITH_SEPARATE_PATH_RESULTS",
+  "R_exit_code": 1,
+  "I_exit_code": 0,
+  "base_commit": "747d7d3e21dadd8a5fef0183d2375e7f1f82c176",
+  "execution_commit": "58c1feae286c32e8ba017fdc2869eba908c9f4dc",
+  "CI": {
+    "run_id": 34227336460,
+    "job_id": 102064570465,
+    "run_attempt": 1,
+    "event": "push",
+    "conclusion": "failure",
+    "url": "https://github.com/xxs4661/dftk-soc-workbench/actions/runs/34227336460",
+    "job_url": "https://github.com/xxs4661/dftk-soc-workbench/actions/runs/34227336460/job/102064570465",
+    "runner_name": "GitHub Actions 1000000063",
+    "labels": [
+      "ubuntu-24.04"
+    ],
+    "runner_image_version": "20260831.293.1",
+    "artifact_id": 10056286699,
+    "artifact_sha256": "d8635e9324c6ca0105d79dfd1d56d825083575f3f743a3838d062cb264c85b39",
+    "formal_execution_count": 1,
+    "engineering_numeric_retry_count": 0,
+    "upload_artifact_status": "success"
+  },
+  "public_receipts": {
+    "results/mg-soc-public-replay/linux/replay.json": "b64facc0037da0113d3a3f7a1cfc2e2e899ec933f483cb0b0be668998052a5e2",
+    "results/mg-soc-public-replay/linux/README.md": "0987046956530dd955e3a7d0d8049b0e83a4767496d51d58d8812864cdc6b60a"
+  },
+  "execution_code_plan_lock_sha256": {
+    "benchmarks/mg-soc-public-replay-v1/plan.json": "056c11391f43f9438d02a67a869c3c93bc24b73eb2b634d996dc01df60cf6965",
+    "benchmarks/mg-soc-public-replay-v1/requirements.lock": "8723a458c6cdbd978ed15c95953149a019b86c5832dad7357788ef3a2154c2b4",
+    ".github/workflows/phase7g-public-replay.yml": "fd98c22585dec2b06437a806701eae40db0cbcad0cf8c503b018822e689b11b5",
+    "scripts/run_cross_env_replay.py": "7f30d275306991ecefb7d2b2a1dd2be5aa8762ead6a1e5d740f1a7125aaa7f1c",
+    "scripts/replay_public_independent.py": "c3ec57fa4661c2deea8af6e2be6099ae522892654a20e36d2086882d01490427",
+    "scripts/independent_orbital_io.py": "8efab9007e0a82db167c0d40784aa5aa74360f0abf1e7568cd4c285871965d58",
+    "scripts/independent_orbital_math.py": "435b43a2f66f58ee3a676dfab208b5fc48be81b2659422b7ae893df1f8728eb0",
+    "scripts/phase7g_observer/sitecustomize.py": "903cd577021d4c3d05ea8a76c69cb11bfe503eab0334d7f13e2f40db20779563",
+    "tests/test_independent_orbital_io.py": "cdb1bc0365f0032807dae24ec892d0bd00ffa063880ee20785b6664de13144ec",
+    "tests/test_independent_orbital_math.py": "40b2240994857b60861a388e3c77e481595da464df5a185886d9e5dcc925ea6a",
+    "tests/test_independent_replay.py": "840c954336f7287acf8caf3fbceefaa46fd3f52782f046793cd2f9d40dcb4e96",
+    "tests/test_phase7g_observer.py": "223626deeb367de9d152f5d3cf7f36ef9a38e5b127d17ac27e4917f8f91f694c",
+    "tests/test_cross_env_replay.py": "0a36645a3df82ad07fb4c8855f2893377b1e11761fb65a34c93ee1bfefab5da1"
+  },
+  "input_manifest": {
+    "path": "benchmarks/mg-soc-public-replay-v1/plan.json",
+    "sha256": "056c11391f43f9438d02a67a869c3c93bc24b73eb2b634d996dc01df60cf6965",
+    "fields": [
+      "input_sha256",
+      "input_bytes"
+    ],
+    "count": 59
+  },
+  "raw_artifact": {
+    "id": 10056286699,
+    "sha256": "d8635e9324c6ca0105d79dfd1d56d825083575f3f743a3838d062cb264c85b39",
+    "bytes": 2056423,
+    "archive_id": "phase7g-linux-replay-34227336460"
+  },
+  "raw_receipt_sha256": {
+    "replay.json": "ec66f230801b834ebed29abda8f9ee6771b0e6baf073aa8f7d4e5988b9a46686",
+    "environment.json": "d5d7d3e5114b1eaa5452cec068db57cbc3a35cf049649e1064fe17ffea36f627",
+    "I/independent.json": "338ff76859e474c9da575b65d6333d502f0cfbf78ec7f70d9db96d7d9d02efd7",
+    "R/stdout.txt": "3c278a39a8d3616ade2c29170fc592176a8766ca8b53926f263be7f0d3b5f5e0",
+    "R/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "platform-diagnostic.json": "005d17f5ba5df9af7fdba8e1069ccef883ee99ae32349aafacd47ad5408cdaf8"
+  },
+  "raw_vs_public": "Original process and environment hashes refer to untouched CI files; published commands replace ephemeral runner paths, selected environment fields omit vendorbuild paths. I whitelist policy embedded and rawsourcehash bound. All numericgate rows retained.",
+  "backup": {
+    "status": "PASS",
+    "archive_id": "phase7g-linux-replay-34227336460",
+    "scope": "This formal Linux attempt only; original ZIP, extracted receipts/derived diagnostics, GitHub logs, authorization-scope receipt without credentials",
+    "run_id": 34227336460,
+    "execution_commit": "58c1feae286c32e8ba017fdc2869eba908c9f4dc",
+    "manifest_sha256": "4d9531ece1064c482cd0f82cbcbdc88980dfe5d9aa6f56fabf41fa2a3668d4a7",
+    "tar_sha256": "5bf0abf788c23fa128e81b63f19a99070238b9698a5f028078a287e6fdcb8c2a",
+    "files_restored_and_verified": 48,
+    "original_artifact_zip_sha256": "d8635e9324c6ca0105d79dfd1d56d825083575f3f743a3838d062cb264c85b39",
+    "original_artifact_matches_GitHub_digest": true,
+    "source_archives_re_read": "NONE",
+    "initial_local_restore_failure": {
+      "operation": "Local archive restoration only, not a Linux/numerical retry",
+      "exit_code": 1,
+      "reason": "Initial system Python 3.9 tarfile.extractall has no filter keyword. Archive creation completed; verification did not.",
+      "recovery": "Use existing bundled Python 3.12.14 to verify the same archive; no package installation."
+    },
+    "delivery_backup": "Separate ordinary final commit bundle will be appended after commit"
+  },
+  "publication_whitelist": [
+    "README.md",
+    "replay.json",
+    "evidence.json"
+  ],
+  "old_numeric_payloads_copied": false,
+  "new_derived_dense_arrays_published": false,
+  "historical_block_receipts_preserved": {
+    "commit": "58c1feae286c32e8ba017fdc2869eba908c9f4dc",
+    "path": "results/mg-soc-public-replay/replay.json",
+    "sha256": "98c5a781d8e01f3a82ae48649e1e564883439923201ba043b0aa3d601cc58eff",
+    "scope": "Historical failedpush withnoCI; supersededonlybynewrecord, bytesunchanged"
+  },
+  "delivery_check_required": "All13 executed source/plan/lock hashes and59 input hashes match tested_commit; finalresultdocs notCIexecuted.",
+  "publication_validation": {
+    "summary": {
+      "status": "PASS",
+      "kind": "Publicreceipt/export/hash/link checks only; no mathematicalreplay onMac",
+      "candidate_code_files_unchanged": 13,
+      "original_public_files_unchanged": 59,
+      "frozen_scientific_files": 86,
+      "historical_block_receipts_unchanged": true,
+      "I_gates_bound": 380,
+      "Linux_synthetic_tests_bound": 47,
+      "R_changed_leaves_bound": 124,
+      "R_exit": 1,
+      "I_exit": 0,
+      "CI": "failure",
+      "diff_check_exit": 0,
+      "old_full_numerical_chain": "NOT_RUN",
+      "initial_local_link_failure": "Retained in publication-initial-failure.json; new README links corrected."
+    },
+    "archive_log": "finalization/publication-check.json",
+    "raw_sha256": "d11df41f1dc7c411d15d111795b69a91b438841a14c7cbb8678ae1c798064f23"
+  }
+}
