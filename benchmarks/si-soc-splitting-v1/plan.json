@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "phase": "8A",
+  "base_commit": "9342a5ea21a76acd0d74d228d4a2081394f702d0",
+  "branch": "codex/phase8a-si-soc-splitting",
+  "status": "PREDECLARED_NOT_EXECUTED",
+  "source": "source.json",
+  "case": "case.json",
+  "matrix": [
+    {
+      "slot": "D-SCF",
+      "kind": "new_charge_only_soc_scf",
+      "source": "uniform 8/Omega and new ComplexF64 seed81001",
+      "attempt_limit": 1
+    },
+    {
+      "slot": "Q-SCF",
+      "kind": "new_charge_only_soc_scf",
+      "source": "native atomic density/atomic+random orbitals",
+      "attempt_limit": 1
+    },
+    {
+      "slot": "D-SPECTRUM",
+      "kind": "fixed_density_full_soc",
+      "source": "D-SCF final n_out",
+      "kpoints": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        [
+          -0.125,
+          -0.0625,
+          0.1875
+        ]
+      ],
+      "attempt_limit": 1
+    },
+    {
+      "slot": "Q-SPECTRUM",
+      "kind": "fixed_density_full_soc",
+      "source": "independent copy of Q-SCF saved charge",
+      "kpoints": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        [
+          -0.125,
+          -0.0625,
+          0.1875
+        ]
+      ],
+      "attempt_limit": 1
+    },
+    {
+      "slot": "D-NULL-GAMMA",
+      "kind": "fixed_density_spin_trace_null",
+      "source": "same D-SCF final n_out; same common potential/core",
+      "kpoints": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "attempt_limit": 1
+    }
+  ],
+  "prerequisite_order": [
+    "byte_identity",
+    "frozen_environment",
+    "full_parser_channels_NLCC",
+    "geometry_G_grid_memory",
+    "source_FFT_null_regressions",
+    "static_NLCC_XC",
+    "execution_commit",
+    "serial_formal_matrix"
+  ],
+  "stops": [
+    "Source absent/mismatch/unsupported: BLOCKED, no substitute",
+    "48^3 insufficient for actual same-k G-Gprime or Nyquist: BLOCKED_GRID; do not enlarge",
+    "Estimated or measured peak >=8 GiB: RESOURCE_BLOCKED",
+    "Band tail fails at24: stop; no automatic extension",
+    "Actual convergence or numerical failure: retain original output; no parameter retry",
+    "Dependent fixed-density task requires successful bound parent SCF; missing parent BLOCKED",
+    "Any interrupted process inspected before decisions; no duplicate launch"
+  ],
+  "shared_code_allowlist": [
+    "prototypes/fr_integration/common_data.jl",
+    "prototypes/fr_integration/hamiltonian.jl",
+    "prototypes/soc_scf/solver.jl",
+    "prototypes/fr_integration/energy.jl",
+    "prototypes/soc_scf/scf.jl"
+  ],
+  "new_code_scope": [
+    "case-specific driver and publication/comparison",
+    "read-only spin-trace wrapper",
+    "source/FFT/case/spectrum/null/NLCC tests"
+  ],
+  "null": {
+    "formula": "W=(V_uu+V_dd)/2; V_null=I_spin tensor W; Wz=(P_u D P_u^H z + P_d D P_d^H z)/2",
+    "independent_check": "(V+sigma_x V sigma_x+sigma_y V sigma_y+sigma_z V sigma_z)/4",
+    "meaning": "fixed-density diagnostic only; no scalar UPF, no scalar SCF, no QE scalar equivalence",
+    "common_density_core": "identical to D full; no context block replacement"
+  },
+  "nlcc": {
+    "formula": "n_core(G)=single_core_radial(|G|)*sum_atoms exp(-i G.R_atom), with native DFTK normalization",
+    "Ne": "sum actual z_valence=8; core excluded",
+    "xc_direction": "n0=8/Omega*(1+0.02*cos(2pi*(x+2y+3z))); d=8/Omega*(cos(2pi*(x+2y+3z))-grid_mean); core fixed",
+    "steps": [
+      0.0001,
+      1e-05
+    ],
+    "allowed_density_evaluations": 5,
+    "derivative": "[Exc(n0+h*d)-Exc(n0-h*d)]/(2h) versus dvol*sum(d*vxc_full_GGA(n0))",
+    "positive_density": "check no clipping or normalization",
+    "double_count": "integral n_valence*vxc only; frozen core XC convention unchanged",
+    "derivative_identifiable_min_abs_ha": 1e-10
+  },
+  "grid_memory": {
+    "fft": [
+      48,
+      48,
+      48
+    ],
+    "product_support": "enumerate actual per-k integer G; extrema of differences must lie strictly inside +/-24; no fit/cropping",
+    "peak_limit_bytes": 8589934592,
+    "storage": "sequential k, reuse solver; conservatively account retained orbitals/projectors and all FFT workspaces",
+    "implementation": "Opt-in one-k lazy FFT collection passed to the unchanged density accumulator, preserving summation order and old eager default. SCF and energy forward the new memory-only option."
+  },
+  "gates": {
+    "case_scf": {
+      "electron_count_abs": 1e-08,
+      "density_fixedpoint_l2": 1e-08,
+      "residual_ha": 1e-09,
+      "self_density_residual_ha": 1e-07,
+      "gram_norm": 1e-09,
+      "pauli_density_relative": 1e-07,
+      "ab_density_relative": 1e-06,
+      "ab_energy_abs_ha": 1e-07,
+      "ab_spectrum_abs_ha": 1e-06,
+      "comparison_lowest_states": 16,
+      "energy_abs_ha": 1e-08,
+      "free_energy_arithmetic_relative": 1e-12,
+      "self_rayleigh_occupation_abs": 1e-06,
+      "kramers_ha": 1e-07,
+      "time_reversed_spectrum_ha": 1e-07,
+      "time_reversal_normalized": 1e-11,
+      "paired_occupation_abs": 1e-06,
+      "hermiticity_normalized": 1e-11,
+      "hamiltonian_decomposition_normalized": 1e-11,
+      "spin_flip_min_signal": 1e-12,
+      "spin_flip_relative": 1e-08
+    },
+    "operator_normalized": 1e-11,
+    "xc_directional_relative": 1e-06,
+    "manifold_isolation_ev": 0.02,
+    "manifold_doublet_width_ev": 1e-05,
+    "manifold_quartet_width_ev": 1e-05,
+    "split_min_ev": 0.005,
+    "null_six_width_ev": 1e-05,
+    "full_to_null_width_min_ratio": 100,
+    "split_D_minus_Q_abs_ev": 0.0001,
+    "kramers_and_pm_ha": 1e-07,
+    "qe_spectrum": "native CG1e-13Ry normal exit/no unconverged target warnings; threshold not explicit residual"
+  },
+  "grouping": {
+    "lower_doublet_one_based": [
+      3,
+      4
+    ],
+    "upper_quartet_one_based": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "isolation_neighbors_one_based": [
+      2,
+      9
+    ],
+    "split": "mean(e5:e8)-mean(e3:e4)",
+    "diagnostic_occupations": "evaluate FD using each parent SCF global mu; never impose8electrons at each probe",
+    "occupation_near_full_min": 0.99999999,
+    "reference": "one Gamma upper quartet mean per program for every probe; no per-k/per-band fitting",
+    "null": "conditional same states3:8; preserve all24",
+    "failure": "MANIFOLD_ASSIGNMENT_REVIEW_REQUIRED; never change window",
+    "background": "44meV literature scale is not a threshold or fit target; no spatial irreducible representation computed"
+  },
+  "evidence": {
+    "public": [
+      "source/case/plan/code identity",
+      "compact complete iterations and warnings",
+      "all24 full spectra at3k and nullGamma",
+      "per-state D residuals/Gram and parent density hashes",
+      "Gamma group statistics and all comparisons",
+      "static NLCC/core data identity + five XC evaluations",
+      "native QE XML/stdout sanitized with distinct hashes",
+      "offline comparison"
+    ],
+    "local_only": [
+      "UPF/companions",
+      "all checkpoints/orbitals/densities/QE save directories",
+      "full process/failed output"
+    ],
+    "array_measurements": "RUNNER_REPORTED unless public replay sufficient",
+    "backup": "separate same-machine archive, per-file hashes and sample restore; not offsite"
+  },
+  "frozen": [
+    "all historical Phase4-7 numeric/config/evidence/checker bytes",
+    "source lock; Project/Manifest/checksums; upstream checkouts and binary build",
+    "original Mg and scalar Si defaults; physical formulas"
+  ],
+  "not_run": [
+    "Mg SCF",
+    "Phase7G CI",
+    "additional cases/retries/scans",
+    "independent scalar pseudo calculation",
+    "full upstream suites"
+  ],
+  "limitations": {
+    "numerical_review_status": "REVIEW_REQUIRED",
+    "physical_convergence": "NOT_ESTABLISHED",
+    "native_QE_NL_independent": "NOT_MEASURED",
+    "noncollinear_magnetic_XC": "NOT_IMPLEMENTED",
+    "upstream_acceptance": "NOT_ESTABLISHED"
+  }
+}
