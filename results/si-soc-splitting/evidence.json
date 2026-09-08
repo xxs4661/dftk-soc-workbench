@@ -1,0 +1,423 @@
+{
+  "schema_version": 1,
+  "case": "si-soc-splitting-v1",
+  "phase": "8A",
+  "branch": "codex/phase8a-si-soc-splitting",
+  "base_commit": "9342a5ea21a76acd0d74d228d4a2081394f702d0",
+  "preparation_commit": "e5b940c7fb0234d4cb97572ee3f8225e9e8b6087",
+  "execution_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+  "status": {
+    "source_status": "PASS",
+    "case_generalization_regression_status": "PASS",
+    "nlcc_status": "PASS",
+    "D_scf_status": "PASS",
+    "Q_scf_status": "PASS",
+    "D_full_spectrum_status": "PASS",
+    "Q_full_spectrum_status": "PASS",
+    "spin_trace_control_status": "PASS",
+    "structural_manifold_assignment_status": "PASS",
+    "physical_manifold_interpretation": "REVIEW_REQUIRED",
+    "gamma_occupation_diagnostic_status": "REVIEW_REQUIRED",
+    "splitting_comparison_status": "PASS",
+    "time_reversal_status": "PASS",
+    "Q_scf_eigensolver_status": "EIGENSOLVER_REVIEW_REQUIRED",
+    "Q_fixed_spectrum_eigensolver_status": "REPORTED_THRESHOLD_AVAILABLE",
+    "numerical_review_status": "REVIEW_REQUIRED",
+    "physical_convergence": "NOT_ESTABLISHED",
+    "native_QE_NL_independent": "NOT_MEASURED",
+    "IEEE_origin": "NOT_LOCALIZED",
+    "noncollinear_magnetic_XC": "NOT_IMPLEMENTED",
+    "upstream_acceptance": "NOT_ESTABLISHED"
+  },
+  "source_spec": "benchmarks/si-soc-splitting-v1/source.json",
+  "pseudo_sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+  "bindings": {
+    "D": {
+      "scf_run_id": "D-SCF-20260908T1420Z-dftk",
+      "density_sha256": "af88f351f21b8ddd5136958d0ad5cb4f46578cfbe9f0cf5018feeff593862412",
+      "spectrum_run_id": "D-SPECTRUM-20260908T145347Z-dftk",
+      "null_run_id": "D-NULL-GAMMA-20260908T145524Z-dftk"
+    },
+    "Q": {
+      "scf_run_id": "Q-SCF-20260908T145232Z",
+      "density_sha256": "3c6841bed3f23b45b421a966c449bbeae859a27293d4adb020f5d4ed19068630",
+      "spectrum_run_id": "Q-SPECTRUM-20260908T145443Z"
+    }
+  },
+  "comparison_status": "EXECUTED",
+  "formal_runs": [
+    {
+      "action": "static",
+      "run_id": "static-20260908T1418Z",
+      "numerical_run_id": "static-20260908T1418Z-dftk",
+      "execution_status": "PASS",
+      "recorder_exit_code": 0,
+      "worker_exit_code": 0,
+      "raw_directory": ".work/phase8a/static-20260908T1418Z",
+      "raw_process_log": ".work/phase8a/static-20260908T1418Z.log",
+      "receipt": "D-static.json"
+    },
+    {
+      "action": "D-SCF",
+      "run_id": "D-SCF-20260908T1420Z",
+      "numerical_run_id": "D-SCF-20260908T1420Z-dftk",
+      "execution_status": "PASS",
+      "recorder_exit_code": 0,
+      "worker_exit_code": 0,
+      "raw_directory": ".work/phase8a/D-SCF-20260908T1420Z",
+      "raw_process_log": ".work/phase8a/D-SCF-20260908T1420Z.log",
+      "receipt": "D-SCF.json"
+    },
+    {
+      "action": "Q-SCF",
+      "run_id": "Q-SCF-20260908T145232Z",
+      "numerical_run_id": "Q-SCF-20260908T145232Z",
+      "execution_status": "PASS",
+      "recorder_exit_code": 0,
+      "worker_exit_code": 0,
+      "raw_directory": ".work/phase8a/Q-SCF-20260908T145232Z",
+      "raw_process_log": ".work/phase8a/Q-SCF-20260908T145232Z.log",
+      "receipt": "Q-SCF/result.json"
+    },
+    {
+      "action": "D-SPECTRUM",
+      "run_id": "D-SPECTRUM-20260908T145347Z",
+      "numerical_run_id": "D-SPECTRUM-20260908T145347Z-dftk",
+      "execution_status": "PASS",
+      "recorder_exit_code": 0,
+      "worker_exit_code": 0,
+      "raw_directory": ".work/phase8a/D-SPECTRUM-20260908T145347Z",
+      "raw_process_log": ".work/phase8a/D-SPECTRUM-20260908T145347Z.log",
+      "receipt": "D-spectrum-receipt.json"
+    },
+    {
+      "action": "Q-SPECTRUM",
+      "run_id": "Q-SPECTRUM-20260908T145443Z",
+      "numerical_run_id": "Q-SPECTRUM-20260908T145443Z",
+      "execution_status": "PASS",
+      "recorder_exit_code": 0,
+      "worker_exit_code": 0,
+      "raw_directory": ".work/phase8a/Q-SPECTRUM-20260908T145443Z",
+      "raw_process_log": ".work/phase8a/Q-SPECTRUM-20260908T145443Z.log",
+      "receipt": "Q-SPECTRUM/result.json"
+    },
+    {
+      "action": "D-NULL-GAMMA",
+      "run_id": "D-NULL-GAMMA-20260908T145524Z",
+      "numerical_run_id": "D-NULL-GAMMA-20260908T145524Z-dftk",
+      "execution_status": "PASS",
+      "recorder_exit_code": 0,
+      "worker_exit_code": 0,
+      "raw_directory": ".work/phase8a/D-NULL-GAMMA-20260908T145524Z",
+      "raw_process_log": ".work/phase8a/D-NULL-GAMMA-20260908T145524Z.log",
+      "receipt": "D-null-receipt.json"
+    }
+  ],
+  "commands": {
+    "D_environment": "JULIA_DEPOT_PATH=<new-writable-log-cache>:<existing-frozen-package-cache>; no package installation or dependency changes",
+    "D_template": [
+      "python3.12",
+      "scripts/run_si_dftk.py",
+      "ACTION",
+      ".work/phase8a/RUN_ID",
+      "--execution-commit",
+      "3948ed5d37660fe1e909aa6d12983234e317a479",
+      "--static-receipt",
+      ".work/phase8a/static-20260908T1418Z/receipt.json"
+    ],
+    "D_spectrum_parent_args": [
+      "--parent",
+      ".work/phase8a/D-SCF-20260908T1420Z"
+    ],
+    "static_command": "D template with action=static, without --static-receipt",
+    "Q_scf": [
+      "python3.12",
+      "scripts/run_si_qe.py",
+      "Q-SCF",
+      ".work/phase8a/Q-SCF-20260908T145232Z"
+    ],
+    "Q_spectrum": [
+      "python3.12",
+      "scripts/run_si_qe.py",
+      "Q-SPECTRUM",
+      ".work/phase8a/Q-SPECTRUM-20260908T145443Z",
+      "--parent",
+      ".work/phase8a/Q-SCF-20260908T145232Z"
+    ],
+    "Q_environment": "Original frozen launcher environment; no inherited Julia/library override. Single thread/MPI process set by recorder.",
+    "offline": [
+      "python3",
+      "scripts/check_si_soc.py"
+    ],
+    "physical_reproduction_scope": "Commands record executed slots; their claims prohibit another attempt in this workspace. Archived exact resolved commands retain private runtime/cache paths."
+  },
+  "source_provenance": [
+    "D-source-attestation.json",
+    "D-evidence-index.json",
+    "Q-SCF/evidence.json",
+    "Q-SPECTRUM/evidence.json",
+    "Q-source-preservation.json"
+  ],
+  "evidence_levels": {
+    "public_replay": "All 3x24 D/Q and 1x24 null energies, grouping, differences, references and saved energy arithmetic",
+    "runner_reported": "Bound source parsing, core/Pauli/density/Gram/residual/operator-action measurements needing private arrays",
+    "Q_native": "XML/stdout/stderr, exact current process, unchanged original save hashes; CG threshold is not explicit WFC residual"
+  },
+  "not_run": [
+    "Mg SCF",
+    "Phase 7G CI",
+    "Full upstream suites",
+    "Independent scalar-UPF calculation",
+    "Additional SCF/eigensolve retry or parameter/material scan",
+    "IEEE localization",
+    "Continuous band-crossing or space-group irrep analysis",
+    "Native QE independent NL energy measurement"
+  ],
+  "predeclared_order_discrepancy": "Static was executed after the clean execution commit because its wrapper binds that commit; it still preceded all formal SCF. Original plan bytes preserved.",
+  "validation": {
+    "workbench_tests": {
+      "status": "PASS",
+      "count": 2427,
+      "reference": "tests.json"
+    },
+    "comparison_process": {
+      "exit_code": 0,
+      "scope": "Public data only",
+      "raw_receipt": ".work/phase8a/comparison-process-check/receipt.json"
+    },
+    "offline_public_replay": {
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "Public saved statistics only; no wavefunction reconstruction or physical certification",
+      "raw_log": ".work/phase8a/public-replay-initial.json"
+    },
+    "publication_boundary": {
+      "status": "PASS",
+      "historical_files": 383,
+      "reference_raw": ".work/phase8a/frozen-after-numerics.json"
+    },
+    "independent_saved_arithmetic": {
+      "status": "PASS_WITH_SCOPE_REVIEW_REQUIRED",
+      "checks": 107,
+      "production_functions_called": false,
+      "scope": "Saved scalar tables and independent XML/k conversion only; no numerical worker",
+      "raw_receipt": ".work/phase8a/public-arithmetic-review.json",
+      "numeric_checks_status": "PASS"
+    },
+    "isolated_public_replay": {
+      "status": "PASS",
+      "work_directory_present": false,
+      "upf_present": false,
+      "julia_or_qe_executed": false,
+      "scope": "Fresh normal clone of public Git content plus exact explicit publication overlay; no .work/archive/checkpoint/depot accessed by replay",
+      "exit_code": 0
+    },
+    "diff_check": {
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    "nested_public_hashes_and_relocation": "PASS",
+    "execution_source_and_upstream_final": {
+      "status": "PASS",
+      "execution_source_files": 45,
+      "upstream": {
+        "DFTK.jl": {
+          "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+          "worktree_status": "clean"
+        },
+        "PseudoPotentialIO.jl": {
+          "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+          "worktree_status": "clean"
+        }
+      }
+    },
+    "native_Q_publication": {
+      "status": "PASS",
+      "exact_raw_public_files": [
+        "Q-SCF/qe.xml",
+        "Q-SCF/qe.stderr",
+        "Q-SPECTRUM/qe.xml",
+        "Q-SPECTRUM/qe.stderr"
+      ],
+      "stdout_transforms": {
+        "Q-SCF": {
+          "raw_sha256": "cdab42624502beacbe59be1244ca9562d5f5cb1475243dbddb9268ec6af0ac6a",
+          "public_sha256": "85d8541bd7ee051c9ed9e39eaedfe78fd47020c7c45f9c20c85e2eead3dceae3",
+          "raw_bytes": 22691,
+          "public_bytes": 22619,
+          "line_count": 537,
+          "transformation": "Trailing ASCII spaces/tabs at line ends removed in public copy only; all tokens and line numbers preserved",
+          "token_sequence_equality": "PASS",
+          "raw_files_modified": false
+        },
+        "Q-SPECTRUM": {
+          "raw_sha256": "fca3d0c5b82b5231ce3f7288f71fbeee7cf267f30eeb08e224b3b520a805b7ac",
+          "public_sha256": "226ba0dac2da67f7b1f2d0930b27bbb0d800094ec32611f3e4bc0321fdd08861",
+          "raw_bytes": 9518,
+          "public_bytes": 9454,
+          "line_count": 249,
+          "transformation": "Trailing ASCII spaces/tabs at line ends removed in public copy only; all tokens and line numbers preserved",
+          "token_sequence_equality": "PASS",
+          "raw_files_modified": false
+        }
+      },
+      "all_original_files": "UNCHANGED"
+    },
+    "initial_staged_diff_check": {
+      "exit_code": 2,
+      "reason": "Native stdout trailing whitespace; public formatting normalized without removing any tokens or lines",
+      "raw_log": ".work/phase8a/staged-whitespace-initial.stdout"
+    },
+    "public_native_reparse": {
+      "status": "PASS",
+      "exit_code": 0,
+      "scf_fields_exact_equal": 31,
+      "spectrum_fields_exact_equal": 30,
+      "raw_receipt": ".work/phase8a/native-public-reparse.json",
+      "exclusions": "Raw byte hashes differ for documented public stdout whitespace; bands mu is explicitly inherited from original SCF after parsing"
+    }
+  },
+  "public_sha256": {
+    "README.md": "e147a42e960f49ffcea6daf8ead39eb74bd8e0163d4f302ddd1ba15954b08c54",
+    "benchmarks/README.md": "3cc96de3caa885918c109605dab08ad2a5bedc99cbd7a7795677614b8dbb37d0",
+    "benchmarks/si-soc-splitting-v1/README.md": "f27c8bff174ccbe64602aa411544c4d2879a247456b5f49663b68fc8e1cb38fc",
+    "benchmarks/si-soc-splitting-v1/case.json": "a04e20b22748462fef0f0eccee93cff5a616fa3e11aa6606018d11e40d2f8cac",
+    "benchmarks/si-soc-splitting-v1/plan.json": "9f3fcf577f0cbc7b7e432f92be2add76d8f8b8128877122d951d8e2d13936a89",
+    "benchmarks/si-soc-splitting-v1/qe-scf.in": "6ac28bdf476113dcba353b4c354817db69034a2c64cce4eb50f5a524adbed707",
+    "benchmarks/si-soc-splitting-v1/qe-spectrum.in": "5c0fc060f912239ee162c6db3c6780c0d6a35e2833e6f1cd5860a965d81ebb96",
+    "benchmarks/si-soc-splitting-v1/replay-contract.json": "89d475b3561ff1ca91d21e320c5d2be4fdf9037a78ef78ca8a8db3f837b590c3",
+    "benchmarks/si-soc-splitting-v1/source.json": "e88ec3d6f0f1407d4d6b7b75c0bcc8f04ed1536c9c1ea3a67e4e23232e5a55e3",
+    "docs/status.md": "3ddf6e7448caf34cbe4f988dedfddc8c97072ec2afc44d9d4269dd12269e8bc6",
+    "prototypes/crystal_soc/SpinTrace.jl": "5753483f2c7efb69f7d5ff08f3e69a3ced4ba7c4df49d3c98503e7ad6474429a",
+    "prototypes/fr_integration/FRIntegration.jl": "efcb54e838d07ce01669f4e60703b69675fd21f259ff4aec5e0be5e1f9e1d2f8",
+    "prototypes/fr_integration/common_data.jl": "870b13a8ed9258d5d1b37ac9b5c4f8d91bad495b479b542b3e815ec3163b24e1",
+    "prototypes/fr_integration/energy.jl": "f0b02853efc9e7430a6a0ccfff63a750a99ed6c3e0429440368a9ef773274afc",
+    "prototypes/fr_integration/hamiltonian.jl": "4c5cff8e24d8bf204fbfc9e5883916146d6a9efb6b0592dd8f3377920dcd28cc",
+    "prototypes/fr_integration/runtime_checks.jl": "c0fbba8a06de748ba537469863bcc5676360b41c41dddcf2d8838f49e97a3bb2",
+    "prototypes/fr_integration/variational.jl": "9642bcb94ac5e75c2e72a419ffbd9fcee38c3a14a54eac45d0284fbd0d440c21",
+    "prototypes/relativistic/RelativisticProjectors.jl": "c24c2382e5bb112bc428fd59ce1995e6470caa25e657030f67aefa34d45b5de5",
+    "prototypes/relativistic/angular.jl": "1428a4a6a50f9f68cfa0f099827d0a606cceab1d7d72be4247062bf41fe2eb63",
+    "prototypes/relativistic/channels.jl": "15950a9168504dac483bcdc9c588e9db0555ea547f77b34163a491d07ba0bb10",
+    "prototypes/relativistic/operator.jl": "b7d8ac06984de7ae3485fa70b9243fcd3c074804dc7343d172c5c0295472ca5c",
+    "prototypes/relativistic/radial.jl": "2384619bc8fcd437fd455e7f13442cfe1e2f88dbd2eeda94cf02a134f9d3c292",
+    "prototypes/soc_scf/SOCSCF.jl": "fb3bc260a9b1bb33b7a2f82148858264d60f38768c98980644bbab57c264dafe",
+    "prototypes/soc_scf/ensemble.jl": "527c303f5455269487e45ce38e02bb473939ad25ccfa576cc2cb7dc6193c8c9b",
+    "prototypes/soc_scf/phase6c.toml": "fed341560f53663f580c37a8f691298aa24784957b49270c5e3f71289736c58c",
+    "prototypes/soc_scf/scf.jl": "83e4e046e8080cb2afb7032c7dd492e9c568144cd159afe9c8ad04bc97f212df",
+    "prototypes/soc_scf/solver.jl": "d8140d28a20d4623684ec6fb33ede6a44a040e0246bbe39484e510710052255c",
+    "prototypes/spinor/SpinorPrototype.jl": "6febe1c9122548282cda9ddcf35266a45b519e4d91c3f54a4fbe523abd255698",
+    "prototypes/spinor/SpinorSCFPrototype.jl": "ecaf2dad038d41bf609a76f3095745a461ce1db7b138b695272e0e3078ef79f6",
+    "prototypes/spinor/b0_support.jl": "807edeffe446dd8b9473ce322126ad50cdbd1062c0b2540354edffb28d7bcd2e",
+    "prototypes/spinor/checks.jl": "f77b9f0e84aab6c8a443dc2f03c5d510f212ce5e1e4db25da37da6c5f6c24361",
+    "prototypes/spinor/density.jl": "54e9410800a874d9ba2aea0d2bec80b520b7c6fcca8e9c396c1a164e8dbf8dc4",
+    "prototypes/spinor/energy.jl": "16bfe425958fd91adcd0d7eb8bf57d19820f752aca6e1244e3446e6936f0e436",
+    "prototypes/spinor/fft.jl": "a1462a3f5ceeb9065a9b2f6513cbbc7282794dc1b432739517046c6d59cb9126",
+    "prototypes/spinor/operators.jl": "f12296c929e42a290188044485d1e8006f82fa0a3be9e312afc334bcb5581b0e",
+    "prototypes/spinor/scf.jl": "5321aa6af014bd2fea85a8858fdfe54ed4d66b564e7c979642c4943c1b6d79a9",
+    "results/README.md": "8fb8f4e8eb3d3d26c7513a5c1f5dadcd22432525ef6badd876b5964b5169396c",
+    "results/si-soc-splitting/D-SCF.json": "0860661c4383d80a6767981476cf8c3fa0f996d69e8e1174df39d0bed83e9ab2",
+    "results/si-soc-splitting/D-code-217a04713c3e.json": "217a04713c3e79b9ca42879ac9461a649765d6496dbf17cd19474d0a381a5a18",
+    "results/si-soc-splitting/D-environment-eb873073c5ca.json": "eb873073c5ca3f7b42324dc69637298e75b5b3e61544b17025604ba40cfda940",
+    "results/si-soc-splitting/D-evidence-index.json": "86764101ea220e531700b9c46476161b60dda7c47489410d13149a3a42ae7ac3",
+    "results/si-soc-splitting/D-null-receipt.json": "a4d1aa1afa281611cbabdc09811f56f78675dad932199f39a454b33fe7643fde",
+    "results/si-soc-splitting/D-null.json": "c891e32a6b0c0111ca8bbe29d40c27572ed0e437c28a0fd11db985e3b258c832",
+    "results/si-soc-splitting/D-source-attestation.json": "a9d3d60fae776b9a608d23d40bfd5272ca72e81bcf925f21d7de137b659d9daa",
+    "results/si-soc-splitting/D-spectrum-receipt.json": "687169f52958471805e81cc9852d788fc89544694d4935e85f801d347e316039",
+    "results/si-soc-splitting/D-spectrum.json": "a286b1087e1ff776301ac826e4aeac3b7bdb1eb8cec2c0e141437e0402db0d41",
+    "results/si-soc-splitting/D-static.json": "7bf8a7566266cb61b0a33ea7e3c574588c2321ef2bafc1fa3a9aad2d7b672065",
+    "results/si-soc-splitting/D-trace.json": "9d723917d06446022f8762ec822e97f78b71b6ebbee6135350ffc70f1044ad1f",
+    "results/si-soc-splitting/Q-SCF/evidence.json": "d00727431dc16069a2980daf3bd3e12bc43bd7396f19dadded52b465289797b4",
+    "results/si-soc-splitting/Q-SCF/qe-result.json": "6e48758483e522514719bf13efcf47be2ccfda317e00d2626563b9e0d645fc47",
+    "results/si-soc-splitting/Q-SCF/qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "results/si-soc-splitting/Q-SCF/qe.stdout": "85d8541bd7ee051c9ed9e39eaedfe78fd47020c7c45f9c20c85e2eead3dceae3",
+    "results/si-soc-splitting/Q-SCF/qe.xml": "5cfb7274ceccf9c4a76757bd6226b97dd25e84f02cf184884d0d2b82800c6da5",
+    "results/si-soc-splitting/Q-SCF/result.json": "3795f6097c7651df0d3c6f9ebe92b7ae953665ccb3e254f5319a44e304fd6633",
+    "results/si-soc-splitting/Q-SPECTRUM/evidence.json": "7a006b42f7e721aeac17434612165c1b6d226ad32ca0e4e7b5f01a455dcefdce",
+    "results/si-soc-splitting/Q-SPECTRUM/qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "results/si-soc-splitting/Q-SPECTRUM/qe.stdout": "226ba0dac2da67f7b1f2d0930b27bbb0d800094ec32611f3e4bc0321fdd08861",
+    "results/si-soc-splitting/Q-SPECTRUM/qe.xml": "397a6eed61924b3e250b35e5bd8af0cfb6917d4579c03e5fc76601d57d69f086",
+    "results/si-soc-splitting/Q-SPECTRUM/result.json": "406864d73d8b68d2e04245e064055af0c767737782cba92c2443ce9a1c5aa804",
+    "results/si-soc-splitting/Q-environment.json": "2f73eab24e3e08dcc9cd0a5c8440928e008f27a339fa536a920c1850a98b465f",
+    "results/si-soc-splitting/Q-source-preservation.json": "968a5b8dfa9ddbfb2b2cd5cf082847535d20386c409062a5c5d2916e4f117923",
+    "results/si-soc-splitting/Q-spectrum.json": "93f5d681d196d25766a69ce94fdfcc049f28f52ee04fe4a98b4c428ab6f5fa0a",
+    "results/si-soc-splitting/README.md": "18d472a750916dd8f26bb17487829f42a92cc5819ad7f89ae1865b12e07b3354",
+    "results/si-soc-splitting/archive-receipt.json": "a269affaf21e9af3128aebadadb8d7ce58f55ad6e96404ccd49e55ced04adebf",
+    "results/si-soc-splitting/comparison.json": "d8bf9a475c805d1ed0d6610770f5c153d0390c5d01fa8119f5dd66ea49e7817e",
+    "results/si-soc-splitting/energy.json": "4cb9ddd108dd20a4a2f340903ff9fa723873c17f6bdbedfa0ac3f88220981eaa",
+    "results/si-soc-splitting/platform.json": "6e45f5c16fa80e4a1d5eb8aee33061205bf913cc7f0b341a188d0a229eecb376",
+    "results/si-soc-splitting/pre-execution-events.json": "e86f7e9319904990af237c7925a6dce5626fe5f60317141e19652b7344d1638d",
+    "results/si-soc-splitting/tests.json": "5acd0f305bf9db9e2554aa0374b1f99fd184375d8df3e5a49049722c6d78efd8",
+    "scripts/README.md": "c123901dab819899e439ecfd2269c7ef59536262ec9ced7ed53cfc81bffbc305",
+    "scripts/check_si_soc.py": "d4b31a6b4554759b6fbdcdc1ec8747905c4e43ec74d8d101ad081b3e1be682a3",
+    "scripts/parse_qe_baseline.py": "689c9b51f4e619eee6977caa8548c2f14b3a6e8438b6ee5e51e309f54aa9a639",
+    "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+    "scripts/parse_qe_soc_diagnostics.py": "1ca9b66093a39f7fa83174aedb801f57bc4224d90776434ba172066abfef8f15",
+    "scripts/probe_qe_postprocess_build.jl": "28e3c773a61e82585d39ed0edef9b550de0c2066f760d7d6518bd594ce17cf58",
+    "scripts/run_fr_integration.jl": "1f2b45f5b695de092cde0ab8dddf9e8b4e1e7fa238206fd3beeada7da28a2e1d",
+    "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+    "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185",
+    "scripts/run_si_dftk.py": "4ab5e6c3e73ff1c69bd29e5236cd6a8cee31b163e9ec796819b0fdbe6cf1f0b1",
+    "scripts/run_si_qe.py": "a6e47583c6b26a169d4c7c367eebfe543132f0d64c48bca7c4a833c331655627",
+    "scripts/run_si_soc.jl": "35a72865c063c8db3da20472e21cbe17b623ffb0e1b37a7c3393d1491aabf9ca",
+    "scripts/run_soc_scf.jl": "6bd6a74ec7c4bc1e835306070c2b15b9e94af39193fd9ca8000397aabe219d52",
+    "scripts/si_soc_comparison.py": "3dd219b78ab19a3d6e272dac11a62ad7269e3ae1e954f098963074a2cd508584",
+    "scripts/upf_runtime.jl": "75e30175b9fe89d9bff39a429a1d474169c1d4a403b5ac55994dd972b5480934",
+    "scripts/upf_validation.jl": "c703419f5aea896b55544fa01a542adb6199e566d60db9c5c5aa3270a306e08e",
+    "scripts/workbench_environment.jl": "0f57d8930b56a01e534623cab662f96c9a0a66d8e1215503404c49cd09f8e850",
+    "tests/crystal_soc/runtests.jl": "acb9e8c0430812d6851745b9bde6f93dfa1f7fc0db0c3b4bbc8a2f09e2223061",
+    "tests/crystal_soc/test_spin_trace.jl": "015b944cb22dd733fd36e718e09db0de0a3a236b210d630a0e4be0fa5d24f766",
+    "tests/si_soc/runtests_boundary_mapping.jl": "8a7d9dd4848fe1569e74163d430597879baa9daa81ebf3ee0f86837a7375c87f",
+    "tests/si_soc/runtests_interfaces.jl": "c08e13417ec29bda05656e66940a51361450946fae0d2c7a972ac734d33152c7",
+    "tests/si_soc/test_boundary_mapping.jl": "5c5a1bd096e7f7cb495dc4264bc2872103f78a6223cf336cc440959490c29d46",
+    "tests/si_soc/test_driver.jl": "3dec7cc1c9fbcd143a374d7ce5ff5e4750793f3d9bd2a21f7b2694d54b41a13e",
+    "tests/si_soc/test_interfaces.jl": "96de43fe7661fb8a0adaaad4fb6fd3a1932a2181bb6e944597a8311fd1913af3",
+    "tests/test_si_qe_runner.py": "5c81ba6c13dd5a00d4b7ff88ac21e6d90094f398bc01f5ac26007729284f0b65",
+    "tests/test_si_soc_comparison.py": "90c9dcf5e66241cde05ecd1bf34cdbef54701a2b807d06abe1918dd6c2ab52f7",
+    "tests/test_si_soc_driver.py": "3efcdb1f7ba44ca24279056b5160f6a943bb11c502916661cf4ff618182f5028"
+  },
+  "archive": {
+    "status": "PASS",
+    "receipt": "archive-receipt.json",
+    "snapshot_kind": "execution",
+    "snapshot_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+    "file_count": 343,
+    "sample_restores": 9,
+    "scope": "External same-machine execution snapshot; source files preserved; final delivery proof appended separately"
+  },
+  "publication_whitelist": [
+    "D-SCF.json",
+    "D-code-217a04713c3e.json",
+    "D-environment-eb873073c5ca.json",
+    "D-evidence-index.json",
+    "D-null-receipt.json",
+    "D-null.json",
+    "D-source-attestation.json",
+    "D-spectrum-receipt.json",
+    "D-spectrum.json",
+    "D-static.json",
+    "D-trace.json",
+    "Q-SCF/evidence.json",
+    "Q-SCF/qe-result.json",
+    "Q-SCF/qe.stderr",
+    "Q-SCF/qe.stdout",
+    "Q-SCF/qe.xml",
+    "Q-SCF/result.json",
+    "Q-SPECTRUM/evidence.json",
+    "Q-SPECTRUM/qe.stderr",
+    "Q-SPECTRUM/qe.stdout",
+    "Q-SPECTRUM/qe.xml",
+    "Q-SPECTRUM/result.json",
+    "Q-environment.json",
+    "Q-source-preservation.json",
+    "Q-spectrum.json",
+    "README.md",
+    "archive-receipt.json",
+    "comparison.json",
+    "energy.json",
+    "evidence.json",
+    "platform.json",
+    "pre-execution-events.json",
+    "tests.json"
+  ],
+  "publication_whitespace_change": "D-trace: one full map per line; original export and raw inputs archived; parsed numeric values unchanged, transformation indexed in D-evidence-index."
+}

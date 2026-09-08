@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "case": "si-soc-splitting-v1",
+  "action": "D-NULL-GAMMA",
+  "run_id": "D-NULL-GAMMA-20260908T145524Z-dftk",
+  "base_commit": "9342a5ea21a76acd0d74d228d4a2081394f702d0",
+  "execution_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+  "started_utc": "2026-09-08T14:55:33.028",
+  "finished_utc": "2026-09-08T14:55:47.419",
+  "exit_code": 0,
+  "numerical_review_status": "REVIEW_REQUIRED",
+  "parallelism": {
+    "julia": 1,
+    "blas": 1,
+    "fft": 1,
+    "mpi": 1
+  },
+  "peak_rss_bytes": 1683013632,
+  "input": {
+    "functional": "PBE",
+    "radial_points": 1528,
+    "has_so": true,
+    "g0_local": 0.0,
+    "correction_per_electron_volume": 9.346977114634537,
+    "core_fourier_zero": 0.7242548580428518,
+    "mode": "real_fr",
+    "nlcc_present": true,
+    "r_last_bohr": 15.27,
+    "relativistic": "full",
+    "r_first_bohr": 0.0,
+    "core_semantics": "PP_NLCC = n_core; Fourier integrand stores r\u00b2 n_core",
+    "element": "Si",
+    "local_unit": "PP_LOCAL / 2, Ry to Ha",
+    "header_note": "Exact PP_HEADER text retained; reported functional follows frozen PPIO whitespace normalization",
+    "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+    "binding": "Loader-issued object capability plus unchanged full source/common/channel snapshots; one parse",
+    "xc_identifiers": [
+      "gga_x_pbe",
+      "gga_c_pbe"
+    ],
+    "z_valence": 4,
+    "beta_cutoff_indices": [
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196
+    ],
+    "valence_fourier_zero": 3.9999981732989602,
+    "valence_semantics": "PP_RHOATOM / (4pi) = r\u00b2 n_valence",
+    "quadrature": "simpson_uniform",
+    "source": "https://raw.githubusercontent.com/PseudoDojo/ONCVPSP-PBE-FR-PDv0.4/7aa01a3fcf5ad226caf25bd387a9be9612be9f27/Si/Si_r.upf",
+    "cutoff_indices": {
+      "local_potential": 1528,
+      "core": 1528,
+      "correction": 1528,
+      "valence": 1528
+    }
+  },
+  "grid": {
+    "status": "PASS",
+    "rows": [
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "g_sha256": "5dfa0f638f02a30560cb89a6bac111d2a2bb9dbb0069c8d585bd260c04a4afe1",
+        "ng": 2085,
+        "max_kinetic_ha": 29.06475842840249,
+        "max_product_component": [
+          16,
+          16,
+          16
+        ]
+      }
+    ],
+    "nyquist": "All actual same-k component difference extrema strictly below24; sufficient for every G-Gprime",
+    "memory_estimate_bytes": {
+      "retained_orbitals_and_solver": 144115200,
+      "projectors_and_snapshots": 19215360,
+      "density_core_local_fields": 88473600,
+      "bounded_fft_workspaces": 679477248,
+      "runtime_library_margin": 2147483648
+    },
+    "conservative_peak_bytes": 3078765056,
+    "basis": {
+      "kpoints": [
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ng": 2085,
+          "weight_spatial": 1.0,
+          "g_order_sha256": "5dfa0f638f02a30560cb89a6bac111d2a2bb9dbb0069c8d585bd260c04a4afe1"
+        }
+      ],
+      "lattice_bohr": [
+        [
+          0.0,
+          5.13,
+          5.13
+        ],
+        [
+          5.13,
+          0.0,
+          5.13
+        ],
+        [
+          5.13,
+          5.13,
+          0.0
+        ]
+      ],
+      "native_nonlocal_terms": 0,
+      "ecut_ha": 30.0,
+      "n_electrons": 8,
+      "positions_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.25,
+          0.25,
+          0.25
+        ]
+      ],
+      "term_types": [
+        "DFTK.TermKinetic",
+        "DFTK.TermAtomicLocal{Array{Float64, 3}}",
+        "DFTK.TermEwald{Float64}",
+        "DFTK.TermPspCorrection{Float64}",
+        "DFTK.TermHartree",
+        "DFTK.TermXc{Float64, Array{Float64, 4}, Nothing}"
+      ],
+      "volume_bohr3": 270.011394,
+      "fft_grid": [
+        48,
+        48,
+        48
+      ]
+    }
+  },
+  "execution_status": "PASS",
+  "worker_execution_status": "PASS",
+  "outer_run_id": "D-NULL-GAMMA-20260908T145524Z",
+  "outer_execution_status": "PASS",
+  "wrapper_exit_code": 0,
+  "worker_exit_code": 0,
+  "process_exit_observed": true,
+  "environment_ref": "D-environment-eb873073c5ca.json",
+  "environment_evidence_status": "PASS",
+  "executed_code_ref": "D-code-217a04713c3e.json",
+  "identity_fields_missing": [],
+  "raw_result_sha256": "cec8d0809462809c17540a8f636b33651dbea377f00f507ff28eaba9fd6a4b22",
+  "raw_wrapper_sha256": "ee812cec293cd543a4bf069be35261d26a3b6303627b71d39549d54db7da9ecc",
+  "raw_arrays_evidence_level": "RUNNER_REPORTED; no checkpoint or wavefunction read by this exporter",
+  "source_scf_run_id": "D-SCF-20260908T1420Z-dftk",
+  "density_source_sha256": "af88f351f21b8ddd5136958d0ad5cb4f46578cfbe9f0cf5018feeff593862412",
+  "parent_checkpoint_sha256": "f61fc954fa373fd8bac27c8e89bb9f42530a65c6ce378c85bb0a2aecf6fe97d5",
+  "parent_result_sha256": "11e76623a835927fb86d5b6409f494603dc9fd0622a4d5de58c2a3daed4b1dff",
+  "spin_trace": {
+    "checks": {
+      "full_nonlocal_hermiticity": 8.456776945386935e-18,
+      "common_plus_null": 0.0,
+      "global_spin_rotation": 4.01076192400231e-16,
+      "spin_trace_preservation": 3.042493778054941e-13,
+      "pauli_twirl": 3.6693995763048096e-16,
+      "null_nonlocal_hermiticity": 1.2822954019765554e-17
+    },
+    "context_valid_after": true,
+    "spin_dependent_signal_status": "PASS",
+    "null_hermiticity": 3.9448084808579573e-16,
+    "nonlocal_action_norm": 0.23702069804060047,
+    "status": "PASS",
+    "spin_dependent_signal_threshold": 1e-12,
+    "null_trace": -2.2084087052184174,
+    "common_scalar_object_identical": true,
+    "spin_dependent_action_norm": 0.0016864389984009244,
+    "scope": "RUNNER_REPORTED actual-source fixed-density random actions; no solve",
+    "input_unchanged": true,
+    "nprobe": 3,
+    "issued_fr_object_identical": true,
+    "full_trace": -2.2084087052190893,
+    "threshold": 1e-11,
+    "seed": 81021,
+    "full_hermiticity": 3.251669631848525e-16,
+    "original_counts_before": {
+      "full_columns": 0,
+      "fr_columns": 0,
+      "common": {
+        "operator_columns": 0,
+        "operator_mul_calls": 0,
+        "scalar_columns": 0,
+        "scalar_mul_calls": 0
+      },
+      "full_mul_calls": 0,
+      "fr_mul_calls": 0
+    }
+  },
+  "solver_records": [
+    {
+      "map_index": 1,
+      "k_index": 1,
+      "target_states": 24,
+      "auxiliary_states": 6,
+      "ng": 2085,
+      "initial_source": "Independent ComplexF64 Gaussian whole-column QR",
+      "initial_seed": 81301,
+      "initial_sha256": "64f141cfdb8537423af6f2b86b44ddd068ceef97577922bdb768a0c86c05d3f9",
+      "initial_unchanged": true,
+      "converged": true,
+      "iterations": 30,
+      "elapsed_seconds": 4.850586891174316,
+      "solver_n_matvec": 781,
+      "eigenvalues_ha": [
+        -0.27088435653681564,
+        -0.2708843565368151,
+        0.17107387853219463,
+        0.17107387853219522,
+        0.17107387853222503,
+        0.17107387853222566,
+        0.171073878532254,
+        0.17107387853225445,
+        0.2605053447349576,
+        0.26050534473495823,
+        0.2605053447349892,
+        0.26050534473499093,
+        0.260505344735024,
+        0.2605053447350244,
+        0.29482278448762683,
+        0.2948227844876269,
+        0.44972323066675435,
+        0.4497232306667569,
+        0.4497232306667579,
+        0.4497232306667596,
+        0.46370086932251897,
+        0.46370086932251914,
+        0.578752037573852,
+        0.5787520375738531
+      ],
+      "explicit_residuals_ha": [
+        4.217535189152124e-11,
+        2.302996909096165e-11,
+        5.640690105395324e-11,
+        6.049572077448778e-11,
+        4.2716148132019016e-11,
+        4.3146219499659854e-11,
+        5.335664726735045e-11,
+        4.9122468076775464e-11,
+        5.440190646641302e-11,
+        2.5311337134868533e-11,
+        3.891960726253129e-11,
+        1.3888811781570867e-11,
+        5.518942487408667e-11,
+        1.560336021614048e-11,
+        5.909133751214862e-11,
+        7.098498490595627e-11,
+        9.083977959901833e-11,
+        6.816018695491688e-11,
+        5.6620423449505505e-11,
+        5.2618408956761564e-11,
+        8.698730299459483e-11,
+        6.916269476937926e-11,
+        4.6845532032631394e-11,
+        6.797429684735863e-11
+      ],
+      "orthogonality_frobenius": 2.8211464743650872e-14
+    }
+  ]
+}

@@ -3,6 +3,15 @@
 A research workbench for norm-conserving UPF pseudopotentials, two-component
 spinors and spin–orbit coupling on top of a frozen DFTK environment.
 
+Phase 8A [Si SOC splitting](results/si-soc-splitting/README.md) completed its
+five prescribed slots once each: D/Q Γ splits **47.4576152 / 47.4576124 meV**,
+difference **2.7336e-9 eV**; same-density spin-trace six-state width **1.6276e-12 eV**.
+The fixed-case numerical gates pass. Physical manifold/scientific interpretation
+remains **REVIEW_REQUIRED**: extra occupation-saturation diagnostic unmet, QE SCF
+eigensolver warnings and IEEE flags retained, physical convergence not established.
+All 2427 current workbench test assertions pass. Public-only replay:
+`python3 scripts/check_si_soc.py`. No additional calculation is started.
+
 Phase 7G [Linux public replay](results/mg-soc-public-replay/linux/README.md)
 completed: **I PASS / exit 0**, all 380 numerical gates; **R FAIL / exit 1**
 for the two predeclared derived-density hashes. CI remains **failure**.
@@ -30,7 +39,7 @@ not independently measured QE kinetic/nonlocal energy. Numerical review is
 **NOT_LOCALIZED**. No new SCF/eigensolve or independent XC run was performed;
 normal pp initialization did reconstruct potentials. Main is unchanged.
 
-The current [original-wavefunction audit](results/mg-soc-wavefunction-energy/README.md)
+The earlier [original-wavefunction audit](results/mg-soc-wavefunction-energy/README.md)
 reads the bound original G40 and A/B endpoints without new solves. All finite
 orbital-density, direct/gradient kinetic and frozen FR gates pass. The A−Q
 common-evaluator T+NL response is −0.068920107 meV/cell; the remaining
@@ -87,4 +96,6 @@ The current energy-table replay is `python3.12 scripts/check_energy_reference.py
 It replays saved scalar algebra; frozen Julia and authenticated private sources
 are required to independently repeat XC/field evaluation.
 
-Current development: [Si SOC splitting](results/si-soc-splitting/README.md), a prescribed two-atom FR-NLCC/PBE functional case; see its actual execution status.
+[Si source and fixed matrix](benchmarks/si-soc-splitting-v1/README.md) bind the new
+two-atom FR-NC-PBE/NLCC case. The spin-trace control is fixed-density only,
+not an independent scalar pseudopotential or SCF.

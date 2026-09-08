@@ -1,0 +1,14 @@
+{
+  "status": "PASS_READ_ONLY_AUDIT",
+  "run_id": "Q-SPECTRUM-20260908T145443Z",
+  "source_scf_run_id": "Q-SCF-20260908T145232Z",
+  "source_preservation_status": "PASS",
+  "original_save_all_files_rehashed": 11,
+  "original_result_and_parsed_hashes_unchanged": true,
+  "no_alias_files_rechecked": 11,
+  "charge_sha256_original_and_copy": "3c6841bed3f23b45b421a966c449bbeae859a27293d4adb020f5d4ed19068630",
+  "pre_execution_copy_identity_scope": "RUNNER_REPORTED: frozen copy_parent verified all copied bytes and independent inodes before parent-binding.json/preflight/worker. Post-run original and inode identity independently rechecked here.",
+  "execution_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+  "scope": "Post-run read-only source identity audit; no additional QE execution",
+  "raw_audit_sha256": "f476c2e864de2b3d8d969f9c89becebbc3c6639a39c3fdefad75d72cba851f34"
+}

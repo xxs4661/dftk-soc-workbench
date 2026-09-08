@@ -1,0 +1,41 @@
+{
+  "scope": "Engineering failures before the one-attempt formal numerical matrix; originals retained",
+  "events": [
+    {
+      "artifact": "preparation/environment.json",
+      "recorded_process_exit": 6,
+      "phase": "PRE_EXECUTION_ENGINEERING",
+      "reason": "Environment identity rejected default cache before any Si numerical task; Roots source unavailable",
+      "sha256": "2ea5760d454300282b0abf7ba28627c60abec51c4dcdff48651775847885d55c"
+    },
+    {
+      "artifact": "preparation/environment-locked-depot.json",
+      "recorded_process_exit": 6,
+      "phase": "PRE_EXECUTION_ENGINEERING",
+      "reason": "Environment log lock not writable in cache-only attempt; no Si numerical task",
+      "sha256": "e3f5a56c8afb7a5ff1ba6ad56b6ab1724c4d245ab670c44cc483fc0a849e8a52"
+    },
+    {
+      "artifact": "test-null-synthetic-20260908T1347.log",
+      "recorded_process_exit": 143,
+      "phase": "PRE_EXECUTION_ENGINEERING",
+      "reason": "Synthetic startup interrupted by sandbox MPI/OFI interface permissions; original RUNNING marker retained, no assertions executed",
+      "sha256": "0a4fb9b4d52c6d8a4477086d9beba40ce97164e5af17e794bbe4f3c9a68f0384"
+    },
+    {
+      "artifact": "geometry-preflight-20260908T1359Z.log",
+      "recorded_process_exit": 1,
+      "phase": "PRE_EXECUTION_ENGINEERING",
+      "reason": "Julia numeric literal parse error before model/result; corrected before execution commit",
+      "sha256": "2cb5ea6f5ea20c1a67a11e5d1bf1502663e2dd6055a77c3007af9934217abaf1"
+    },
+    {
+      "artifact": "test-driver-python-initial.log",
+      "recorded_process_exit": 1,
+      "phase": "PRE_EXECUTION_ENGINEERING",
+      "reason": "Recorder negative fixture exposed insufficient nested type validation; fixed before execution commit",
+      "sha256": "5029c6f4ef895b904d20be957f7e47d039a8df7e9cfc3f2fdb975bf1f810d0a1"
+    }
+  ],
+  "additional_draft_comparator_event": "Two early positive synthetic fixtures had occupations below the predeclared 0.99999999 gate. Only synthetic mu was corrected; the physical gate and inputs were not changed. The actual final comparison retains an explicit review diagnostic if this extra conservative gate fails."
+}

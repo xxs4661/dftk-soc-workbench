@@ -21,7 +21,8 @@ The completed local claims forbid rerunning either pp slot.
 
 The [frozen environment](../environment/workbench/README.md) and recorded UPF hashes
 are prerequisites for physical reproduction. UPF bytes are acquired separately
-under their licenses. Si uses SR-LDA with NLCC; Mg uses the recorded FR-PBEsol
+under their licenses. The historical scalar Si case uses SR-LDA with NLCC; the new Si SOC case
+uses its separately authenticated FR-NC-PBE source and NLCC. Mg uses the recorded FR-PBEsol
 family and is not an LDA/LSDA numerical benchmark. No case establishes complete
 physical convergence. Public offline arithmetic checks require neither UPF
 files nor new SCF/QE runs; see [results](../results/README.md).
@@ -33,4 +34,4 @@ A/B/G40 sources, five allowed common-term calls and one fixed radial diagnostic.
 [Results](../results/mg-soc-energy-reference/README.md) preserve all prior SCFs as
 HISTORICAL_REUSED; no new solver, physical setting or dependency is introduced.
 
-- [Si SOC splitting v1](si-soc-splitting-v1/README.md): authenticated source, fixed five-slot matrix and predeclared gates; [current results](../results/si-soc-splitting/README.md).
+- [Si SOC splitting v1](si-soc-splitting-v1/README.md): authenticated source and fixed five-slot matrix, now executed once each with numerical splitting/null gates passing and explicit review limitations; [current results](../results/si-soc-splitting/README.md).

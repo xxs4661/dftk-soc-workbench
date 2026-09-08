@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "scope": "This turn only: distinct workbench regression and synthetic assertions; not upstream suites or physical evidence",
+  "status": "PASS",
+  "exit_code": 0,
+  "suites": [
+    {
+      "run_id": "test-null-synthetic-20260908T1350",
+      "tests": 53,
+      "exit_code": 0,
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--project=environment/workbench",
+        "tests/crystal_soc/runtests.jl",
+        "NEW_OUTPUT_DIRECTORY"
+      ],
+      "result_raw_sha256": "90195c3d2e7d3e22a4859ac3f3162d249c6fbeb736d79403fd0e3c2420310025",
+      "test_source_sha256": {
+        "tests/crystal_soc/runtests.jl": "acb9e8c0430812d6851745b9bde6f93dfa1f7fc0db0c3b4bbc8a2f09e2223061",
+        "prototypes/crystal_soc/SpinTrace.jl": "5753483f2c7efb69f7d5ff08f3e69a3ced4ba7c4df49d3c98503e7ad6474429a",
+        "tests/crystal_soc/test_spin_trace.jl": "015b944cb22dd733fd36e718e09db0de0a3a236b210d630a0e4be0fa5d24f766"
+      },
+      "log_raw_sha256": "eb774a514d9d94c30870821878c5f641df0d2e1d97010444298a345951689760",
+      "archive_log_path": ".work/phase8a/test-null-synthetic-20260908T1350.log"
+    },
+    {
+      "run_id": "interfaces-20260908T135607Z",
+      "tests": 87,
+      "exit_code": 0,
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "tests/si_soc/runtests_interfaces.jl",
+        "<workbench>/.work/phase8a/interfaces-20260908T135607Z"
+      ],
+      "result_raw_sha256": "5341d4dca4c9fe38b4e20e321ca877dbefe64ef6dee4f70e7d0b492f4554bb03",
+      "test_source_sha256": {},
+      "log_raw_sha256": "33ffc07e024e52870a8498b34288ba0e20b66ff15d9056f1953eaead053e2e39",
+      "archive_log_path": ".work/phase8a/interfaces-20260908T135607Z.log"
+    },
+    {
+      "run_id": "boundary-mapping-20260908T140941Z",
+      "tests": 156,
+      "exit_code": 0,
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "tests/si_soc/runtests_boundary_mapping.jl",
+        "<workbench>/.work/phase8a/boundary-mapping-20260908T140941Z"
+      ],
+      "result_raw_sha256": "536e984038d3015c037fa71932ebf9fc54fcc4272d80817a8ebb6d5254fc4845",
+      "test_source_sha256": {},
+      "log_raw_sha256": "44b73e3e046f56d2d9e4c72f917d7dae7b498fb9f6ff44f7b7393024d3d40891",
+      "archive_log_path": ".work/phase8a/boundary-mapping-20260908T140941Z.log"
+    },
+    {
+      "run_id": "phase6a-regression-20260908T140315Z",
+      "tests": 1272,
+      "exit_code": 0,
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "tests/relativistic/runtests.jl",
+        "<workbench>/.work/phase8a/phase6a-regression-20260908T140315Z"
+      ],
+      "result_raw_sha256": "432d3398139e5c8df094f44807078c70c3512fd5149d957e3789554875bfafe0",
+      "test_source_sha256": {},
+      "log_raw_sha256": "0d3e2d18a78dc3aa2e36a8c2af0e77fd385c8dacde6db64aef43effef51a3082",
+      "archive_log_path": ".work/phase8a/phase6a-regression-20260908T140315Z.log"
+    },
+    {
+      "run_id": "phase6b-regression-20260908T140415Z",
+      "tests": 241,
+      "exit_code": 0,
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "tests/fr_integration/runtests.jl",
+        "<workbench>/.work/phase8a/phase6b-regression-20260908T140415Z"
+      ],
+      "result_raw_sha256": "4c9913f3d865a0f36b66599b81d3ab0ebf7a988be9f62fd72968e4f733053b9d",
+      "test_source_sha256": {},
+      "log_raw_sha256": "a77157877ea2172b15165f6188511ec4daa83288240f9b21f7152ed0ca7b128c",
+      "archive_log_path": ".work/phase8a/phase6b-regression-20260908T140415Z.log"
+    },
+    {
+      "run_id": "phase6c-regression-20260908T140516Z",
+      "tests": 438,
+      "exit_code": 0,
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "tests/soc_scf/runtests.jl",
+        "<workbench>/.work/phase8a/phase6c-regression-20260908T140516Z"
+      ],
+      "result_raw_sha256": "65c40c65fba59dcde06067a8890cd5e60de6501b4e718dfcfee4e472c824dde4",
+      "test_source_sha256": {},
+      "log_raw_sha256": "1abd7e0b71caff1651530f4eae84ff3526eb7c7bcd56aaa5e14884402546b01c",
+      "archive_log_path": ".work/phase8a/phase6c-regression-20260908T140516Z.log"
+    },
+    {
+      "run_id": "test-driver-synthetic-20260908T1412",
+      "tests": 118,
+      "exit_code": 0,
+      "result_raw_sha256": "ed604328ef1728d8ab86dcfc2fc06e477e37bd3181f6026793372759b5ddb24b",
+      "log_raw_sha256": "4ee4e5de0665be0915d0216fc5d5fdf2ca5875d9c8ce26bee05976f5741ca16c",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "tests/si_soc/test_driver.jl",
+        "OUTPUT_JSON"
+      ],
+      "test_source_sha256": {
+        "tests/si_soc/test_driver.jl": "3dec7cc1c9fbcd143a374d7ce5ff5e4750793f3d9bd2a21f7b2694d54b41a13e",
+        "scripts/run_si_soc.jl": "35a72865c063c8db3da20472e21cbe17b623ffb0e1b37a7c3393d1491aabf9ca"
+      },
+      "archive_log_path": ".work/phase8a/test-driver-synthetic-20260908T1412.log"
+    },
+    {
+      "run_id": "python-targeted-tests",
+      "tests": 62,
+      "subcounts": {
+        "comparison_parser": 28,
+        "d_recorder": 11,
+        "q_recorder": 23
+      },
+      "exit_code": 0,
+      "log_raw_sha256": "4a0bb7a98b46b159fb55b555237009724d87607c3530fc7a43a7078d59b5add8",
+      "command": [
+        "python3.12",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_si_*.py",
+        "-v"
+      ],
+      "archive_log_path": ".work/phase8a/python-targeted-tests.log"
+    }
+  ],
+  "distinct_total": 2427,
+  "not_run": [
+    "Full upstream suites",
+    "Mg SCF",
+    "Phase 7G CI",
+    "Independent scalar UPF SCF",
+    "Parameter scans"
+  ],
+  "runtime": {
+    "julia": "1.12.7",
+    "python": "3.12.14",
+    "cpu": "macOS arm64",
+    "parallelism": "Julia/BLAS/OMP/FFT/MPI1; numerical tasks serial",
+    "package_policy": "Existing frozen cache only, no install or resolution change"
+  }
+}

@@ -1,0 +1,249 @@
+
+     Program PWSCF v.7.5 starts on  8Sep2026 at 22:54:46
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org",
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI), running on     1 processors
+
+     MPI processes distributed on     1 nodes
+     0 MiB available memory on the printing compute node when the environment starts
+
+     Reading input from qe.in
+
+     Current dimensions of program PWSCF are:
+     Max number of different atomic species (ntypx) = 10
+     Max number of k-points (npk) =  40000
+     Max angular momentum in pseudopotentials (lmaxx) =  4
+
+     Atomic positions and unit cell read from directory:
+     ./scratch/si8a.save/
+
+
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     a serial algorithm will be used
+
+
+     G-vector sticks info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Sum         859     859    241                16865    16865    2421
+
+     Using Slab Decomposition
+
+
+
+     bravais-lattice index     =            0
+     lattice parameter (alat)  =       7.2549  a.u.
+     unit-cell volume          =     270.0114 (a.u.)^3
+     number of atoms/cell      =            2
+     number of atomic types    =            1
+     number of electrons       =         8.00
+     number of Kohn-Sham states=           24
+     kinetic-energy cutoff     =      60.0000  Ry
+     charge density cutoff     =     240.0000  Ry
+     Exchange-correlation= PBE
+                           (   1   4   3   4   0   0   0)
+     Non magnetic calculation with spin-orbit
+
+
+     celldm(1)=   7.254916  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   0.000000   0.707107   0.707107 )
+               a(2) = (   0.707107   0.000000   0.707107 )
+               a(3) = (   0.707107   0.707107   0.000000 )
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = ( -0.707107  0.707107  0.707107 )
+               b(2) = (  0.707107 -0.707107  0.707107 )
+               b(3) = (  0.707107  0.707107 -0.707107 )
+
+
+     PseudoPot. # 1 for Si read from file:
+     ./pseudo/Si_r.upf
+     MD5 check sum: d8e8ea3dd55db7858206a05f373c9c65
+     Pseudo is Norm-conserving + core correction, Zval =  4.0
+     Generated using ONCVPSP code by D. R. Hamann
+     Using radial grid of 1528 points, 10 beta functions with:
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   1
+                l(6) =   1
+                l(7) =   2
+                l(8) =   2
+                l(9) =   2
+               l(10) =   2
+
+     atomic species   valence    mass     pseudopotential
+     Si                4.00    28.08550     Si( 1.00)
+
+     No symmetry found
+
+
+                                    s                        frac. trans.
+
+      isym =  1     identity
+
+ cryst.   s( 1) = (     1          0          0      )
+                  (     0          1          0      )
+                  (     0          0          1      )
+
+ cart.    s( 1) = (  1.0000000 -0.0000000  0.0000000 )
+                  ( -0.0000000  1.0000000  0.0000000 )
+                  ( -0.0000000  0.0000000  1.0000000 )
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1        Si     tau(   1) = (   0.0000000   0.0000000   0.0000000  )
+         2        Si     tau(   2) = (   0.3535534   0.3535534   0.3535534  )
+
+   Crystallographic axes
+
+     site n.     atom                  positions (cryst. coord.)
+         1        Si     tau(   1) = (  0.0000000  0.0000000  0.0000000  )
+         2        Si     tau(   2) = (  0.2500000  0.2500000  0.2500000  )
+
+     number of k points=     3  Fermi-Dirac smearing, width (Ry)=  0.0020
+                       cart. coord. in units 2pi/alat
+        k(    1) = (   0.0000000   0.0000000   0.0000000), wk =   0.3333333
+        k(    2) = (  -0.1767767  -0.0883883   0.2651650), wk =   0.3333333
+        k(    3) = (   0.1767767   0.0883883  -0.2651650), wk =   0.3333333
+
+                       cryst. coord.
+        k(    1) = (   0.0000000   0.0000000   0.0000000), wk =   0.3333333
+        k(    2) = (   0.1250000   0.0625000  -0.1875000), wk =   0.3333333
+        k(    3) = (  -0.1250000  -0.0625000   0.1875000), wk =   0.3333333
+
+     Dense  grid:    16865 G-vectors     FFT dimensions: (  48,  48,  48)
+
+     Dynamical RAM for                 wfc:       1.55 MB
+
+     Dynamical RAM for     wfc (w. buffer):       6.21 MB
+
+     Dynamical RAM for           str. fact:       0.26 MB
+
+     Dynamical RAM for           local pot:       0.00 MB
+
+     Dynamical RAM for          nlocal pot:       2.20 MB
+
+     Dynamical RAM for                qrad:       3.26 MB
+
+     Dynamical RAM for          rho,v,vnew:      13.21 MB
+
+     Dynamical RAM for           G-vectors:       1.09 MB
+
+     Dynamical RAM for          h,s,v(r/c):       0.03 MB
+
+     Dynamical RAM for          <psi|beta>:       0.05 MB
+
+     Dynamical RAM for      wfcinit/wfcrot:       2.34 MB
+
+     Estimated static dynamical RAM per process >      33.49 MB
+
+     Estimated max dynamical RAM per process >      35.84 MB
+
+     The potential is recalculated from file :
+     ./scratch/si8a.save/charge-density
+
+     Starting wfcs are   16 randomized atomic wfcs +    8 random wfcs
+
+     Band Structure Calculation
+     CG style diagonalization
+
+     Computing kpt #:     1  of     3
+     total cpu time spent up to now is        2.0 secs
+
+     Computing kpt #:     2  of     3
+     total cpu time spent up to now is        3.5 secs
+
+     Computing kpt #:     3  of     3
+     total cpu time spent up to now is        5.0 secs
+
+     ethr =  1.00E-13,  avg # of iterations = 32.3
+
+     total cpu time spent up to now is        5.0 secs
+
+     End of band structure calculation
+
+          k = 0.0000 0.0000 0.0000 (  2085 PWs)   bands (ev):
+
+    -5.4873  -5.4873   6.5074   6.5074   6.5548   6.5548   6.5548   6.5548
+     8.9497   8.9497   8.9840   8.9840   8.9840   8.9840   9.9064   9.9064
+    14.1215  14.1215  14.1215  14.1215  14.5018  14.5018  17.6255  17.6255
+
+          k =-0.1768-0.0884 0.2652 (  2104 PWs)   bands (ev):
+
+    -4.5486  -4.5486   2.5650   2.5650   4.7261   4.7261   5.6921   5.6921
+     9.0767   9.0767   9.7343   9.7343  10.6295  10.6295  11.8200  11.8200
+    13.6662  13.6662  15.2759  15.2759  16.2489  16.2489  18.4776  18.4776
+
+          k = 0.1768 0.0884-0.2652 (  2104 PWs)   bands (ev):
+
+    -4.5486  -4.5486   2.5650   2.5650   4.7261   4.7261   5.6921   5.6921
+     9.0767   9.0767   9.7343   9.7343  10.6295  10.6295  11.8200  11.8200
+    13.6662  13.6662  15.2759  15.2759  16.2489  16.2489  18.4776  18.4776
+
+     Writing all to output data dir ./scratch/si8a.save/ :
+     XML data file, pseudopotentials, collected wavefunctions
+
+     init_run     :      0.39s CPU      0.40s WALL (       1 calls)
+     electrons    :      4.06s CPU      4.54s WALL (       1 calls)
+
+     Called by init_run:
+     wfcinit      :      0.00s CPU      0.00s WALL (       1 calls)
+     wfcinit:atom :      0.00s CPU      0.00s WALL (       3 calls)
+     wfcinit:wfcr :      0.37s CPU      0.38s WALL (       3 calls)
+     potinit      :      0.01s CPU      0.02s WALL (       1 calls)
+     hinit0       :      0.37s CPU      0.38s WALL (       1 calls)
+
+     Called by electrons:
+     c_bands      :      4.06s CPU      4.54s WALL (       1 calls)
+     v_of_rho     :      0.01s CPU      0.01s WALL (       1 calls)
+     v_h          :      0.00s CPU      0.00s WALL (       1 calls)
+     v_xc         :      0.01s CPU      0.01s WALL (       1 calls)
+
+     Called by c_bands:
+     init_us_2    :      0.00s CPU      0.00s WALL (       3 calls)
+     ccgdiagg     :      3.69s CPU      4.16s WALL (       3 calls)
+     wfcrot       :      0.37s CPU      0.38s WALL (       3 calls)
+
+     Called by sum_band:
+
+     Called by *cgdiagg:
+     h_psi        :      3.57s CPU      4.03s WALL (    2330 calls)
+
+     Called by h_psi:
+     h_psi:calbec :      0.29s CPU      0.31s WALL (    2330 calls)
+     vloc_psi     :      3.01s CPU      3.45s WALL (    2330 calls)
+                                        0.00s GPU  (    2330 calls)
+     add_vuspsi   :      0.26s CPU      0.27s WALL (    2330 calls)
+     hs_1psi      :      3.22s CPU      3.67s WALL (    2327 calls)
+     s_1psi       :      0.26s CPU      0.27s WALL (    2327 calls)
+
+     General routines
+     calbec       :      0.55s CPU      0.57s WALL (    4657 calls)
+     fft          :      0.33s CPU      0.34s WALL (      14 calls)
+     fftw         :      2.68s CPU      2.77s WALL (    9596 calls)
+
+     Parallel routines
+
+     PWSCF        :      4.48s CPU      4.98s WALL
+
+
+   This run was terminated on:  22:54:51   8Sep2026
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=

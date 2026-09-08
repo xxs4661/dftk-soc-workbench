@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "case": "si-soc-splitting-v1",
+  "slot": "Q-SPECTRUM",
+  "run_id": "Q-SPECTRUM-20260908T145443Z",
+  "export_status": "PASS",
+  "underlying_execution_status": "PASS",
+  "worker_exit_code": 0,
+  "recorder_exit_code": 0,
+  "expected_execution_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+  "execution_binding_status": "PASS",
+  "preparation_commit": "e5b940c7fb0234d4cb97572ee3f8225e9e8b6087",
+  "native_files": {
+    "qe.xml": {
+      "raw_sha256": "397a6eed61924b3e250b35e5bd8af0cfb6917d4579c03e5fc76601d57d69f086",
+      "public_sha256": "397a6eed61924b3e250b35e5bd8af0cfb6917d4579c03e5fc76601d57d69f086",
+      "raw_bytes": 41226,
+      "public_bytes": 41226,
+      "line_count": 860,
+      "transformation": "Private path strings only"
+    },
+    "qe.stdout": {
+      "raw_sha256": "fca3d0c5b82b5231ce3f7288f71fbeee7cf267f30eeb08e224b3b520a805b7ac",
+      "public_sha256": "226ba0dac2da67f7b1f2d0930b27bbb0d800094ec32611f3e4bc0321fdd08861",
+      "raw_bytes": 9518,
+      "public_bytes": 9454,
+      "line_count": 249,
+      "transformation": "Trailing ASCII spaces/tabs at line ends removed in public copy only; all tokens and line numbers preserved",
+      "token_sequence_equality": "PASS",
+      "raw_files_modified": false
+    },
+    "qe.stderr": {
+      "raw_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "public_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "raw_bytes": 119,
+      "public_bytes": 119,
+      "line_count": 1,
+      "transformation": "Private path strings only"
+    }
+  },
+  "parsed_values": {
+    "status": "EXACT_VALUE_PASS",
+    "leaf_count": 302,
+    "typed_numeric_leaf_sha256": "bfa7f019cbec6366838ba396c8f2c66458a2dcb06e249d9c35961a690c021a19",
+    "raw_sha256": "93f5d681d196d25766a69ce94fdfcc049f28f52ee04fe4a98b4c428ab6f5fa0a",
+    "public_sha256": "93f5d681d196d25766a69ce94fdfcc049f28f52ee04fe4a98b4c428ab6f5fa0a",
+    "omitted_fields": [],
+    "warning_and_iteration_rows": "ALL_RETAINED"
+  },
+  "raw_approved_files": {
+    "qe.xml": {
+      "sha256": "397a6eed61924b3e250b35e5bd8af0cfb6917d4579c03e5fc76601d57d69f086",
+      "bytes": 41226
+    },
+    "qe.stdout": {
+      "sha256": "fca3d0c5b82b5231ce3f7288f71fbeee7cf267f30eeb08e224b3b520a805b7ac",
+      "bytes": 9518
+    },
+    "qe.stderr": {
+      "sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "bytes": 119
+    },
+    "qe-result.json": {
+      "sha256": "93f5d681d196d25766a69ce94fdfcc049f28f52ee04fe4a98b4c428ab6f5fa0a",
+      "bytes": 10506
+    },
+    "result.json": {
+      "sha256": "af383a6b8480ff7515aa1ba36d900c059ea40a8788c6544f82d1e7e435580e24",
+      "bytes": 6422
+    },
+    "preflight.json": {
+      "sha256": "6d769288689d1603cb6b80839ad3303c3ca14470919cf825c2eb0e98da2c5a84",
+      "bytes": 23244
+    },
+    "process-start.json": {
+      "sha256": "3f748bccc243e4a26fa35d4117c649f3b5d585de15a1409174c99f6717b04a62",
+      "bytes": 148
+    },
+    "process-exit.json": {
+      "sha256": "c2ae1777e9a8b016d946fc16a94371f917a811693d4ae7bcabeb0581a892fbd4",
+      "bytes": 99
+    },
+    "save-manifest.json": {
+      "sha256": "6b95aa7fc53b58f98fbb4da0a4136b027589d1ee59284a60e331a4d17f3d3f4b",
+      "bytes": 1385
+    }
+  },
+  "public_sha256": {
+    "qe.xml": "397a6eed61924b3e250b35e5bd8af0cfb6917d4579c03e5fc76601d57d69f086",
+    "qe.stdout": "226ba0dac2da67f7b1f2d0930b27bbb0d800094ec32611f3e4bc0321fdd08861",
+    "qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "result.json": "406864d73d8b68d2e04245e064055af0c767737782cba92c2443ce9a1c5aa804",
+    "../Q-spectrum.json": "93f5d681d196d25766a69ce94fdfcc049f28f52ee04fe4a98b4c428ab6f5fa0a"
+  },
+  "public_bytes": {
+    "qe.xml": 41226,
+    "qe.stdout": 9454,
+    "qe.stderr": 119,
+    "result.json": 5971,
+    "../Q-spectrum.json": 10506
+  },
+  "whitelist": [
+    "../Q-spectrum.json",
+    "qe.stderr",
+    "qe.stdout",
+    "qe.xml",
+    "result.json"
+  ],
+  "scope": "Native streams, every normalized spectrum/occupation/iteration/warning, compact current receipt; no density/wavefunction/UPF payload",
+  "raw_files_modified": false,
+  "raw_save_tree_read_or_copied": false,
+  "publication_relocation": {
+    "source_filename": "qe-result.json",
+    "canonical_public_path": "../Q-spectrum.json",
+    "numeric_values_and_bytes": "UNCHANGED",
+    "reason": "One canonical copy for public replay",
+    "pre_relocation_export_receipt_sha256": "4824b22d28b7f2f2f3792b07c95e8e95ff1d72c70a8dda2d9c515883986adf82"
+  },
+  "publication_stdout_whitespace": "Raw original is archived unchanged; public stdout preserves every token, line and warning; only trailing horizontal whitespace removed"
+}

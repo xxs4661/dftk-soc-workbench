@@ -171,3 +171,11 @@ for the DFTK launcher; QE uses its unchanged original launcher environment.
 Both require new ignored output directories and refuse duplicate formal slots.
 `python3 scripts/check_si_soc.py` replays only published spectral statistics and
 historical boundaries; no solver. See [case/results](../results/si-soc-splitting/README.md).
+
+Phase8A completed the five-slot matrix with exits0. Public Si-only replay uses
+standard-library Python and neither `.work`, UPF, Julia nor QE. It authenticates
+all published inputs before comparison; offline PASS does not override
+REVIEW_REQUIRED occupation/scientific fields or historical Phase7G R FAIL.
+The actual slot IDs, source receipts, commands and archive are in the
+[Si results](../results/si-soc-splitting/README.md). Existing claims forbid a second
+formal attempt; no new SCF is part of public replay.
