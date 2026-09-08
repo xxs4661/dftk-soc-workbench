@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "phase": "7G",
+  "status": "BLOCKED",
+  "source_commit": "747d7d3e21dadd8a5fef0183d2375e7f1f82c176",
+  "input_manifest": {
+    "path": "benchmarks/mg-soc-public-replay-v1/plan.json",
+    "sha256": "056c11391f43f9438d02a67a869c3c93bc24b73eb2b634d996dc01df60cf6965",
+    "field": "input_sha256",
+    "count": 59
+  },
+  "execution_candidate_commit": "95334efbab69fe97006ac76cbf4d676d4a7efd9f",
+  "actual_execution_commit": null,
+  "synthetic_test_code_matches_commit": "95334efbab69fe97006ac76cbf4d676d4a7efd9f",
+  "execution_code_plan_lock_sha256": {
+    "benchmarks/mg-soc-public-replay-v1/plan.json": "056c11391f43f9438d02a67a869c3c93bc24b73eb2b634d996dc01df60cf6965",
+    "benchmarks/mg-soc-public-replay-v1/requirements.lock": "8723a458c6cdbd978ed15c95953149a019b86c5832dad7357788ef3a2154c2b4",
+    ".github/workflows/phase7g-public-replay.yml": "fd98c22585dec2b06437a806701eae40db0cbcad0cf8c503b018822e689b11b5",
+    "scripts/independent_orbital_io.py": "8efab9007e0a82db167c0d40784aa5aa74360f0abf1e7568cd4c285871965d58",
+    "scripts/independent_orbital_math.py": "435b43a2f66f58ee3a676dfab208b5fc48be81b2659422b7ae893df1f8728eb0",
+    "scripts/phase7g_observer/sitecustomize.py": "903cd577021d4c3d05ea8a76c69cb11bfe503eab0334d7f13e2f40db20779563",
+    "scripts/replay_public_independent.py": "c3ec57fa4661c2deea8af6e2be6099ae522892654a20e36d2086882d01490427",
+    "scripts/run_cross_env_replay.py": "7f30d275306991ecefb7d2b2a1dd2be5aa8762ead6a1e5d740f1a7125aaa7f1c",
+    "tests/test_cross_env_replay.py": "0a36645a3df82ad07fb4c8855f2893377b1e11761fb65a34c93ee1bfefab5da1",
+    "tests/test_independent_orbital_io.py": "cdb1bc0365f0032807dae24ec892d0bd00ffa063880ee20785b6664de13144ec",
+    "tests/test_independent_orbital_math.py": "40b2240994857b60861a388e3c77e481595da464df5a185886d9e5dcc925ea6a",
+    "tests/test_independent_replay.py": "840c954336f7287acf8caf3fbceefaa46fd3f52782f046793cd2f9d40dcb4e96",
+    "tests/test_phase7g_observer.py": "223626deeb367de9d152f5d3cf7f36ef9a38e5b127d17ac27e4917f8f91f694c"
+  },
+  "public_receipts": {
+    "results/mg-soc-public-replay/replay.json": "98c5a781d8e01f3a82ae48649e1e564883439923201ba043b0aa3d601cc58eff",
+    "results/mg-soc-public-replay/README.md": "4ba56b4a8b2566f005d3562f9a8883e99dd1adf163ea59c5b0a4215afbda83bd"
+  },
+  "required_prior_numeric_evidence": [
+    {
+      "path": "results/mg-soc-wavefunction-energy/evidence.json",
+      "sha256": "beae6676820ac9794cbf88ec6414175e5075a5c3f9d13ed5dce68cc31a175969",
+      "status": "HISTORICAL_REUSED_FILE_REFERENCE_ONLY_THIS_PHASE"
+    },
+    {
+      "path": "results/mg-soc-wavefunction-energy/qe-orbitals.npz",
+      "sha256": "1273abb0a6781ae1e743cc01141aca90ba81a9f84d2f492fc382622a88ffec8e",
+      "status": "HISTORICAL_REUSED_FILE_REFERENCE_ONLY_THIS_PHASE"
+    },
+    {
+      "path": "results/mg-soc-wavefunction-energy/nonlocal-operator.npz",
+      "sha256": "1b94546291385c269328107c46d9c68ba2d1c1cefb397d694b97918af953d662",
+      "status": "HISTORICAL_REUSED_FILE_REFERENCE_ONLY_THIS_PHASE"
+    },
+    {
+      "path": "results/mg-soc-wavefunction-energy/comparison.json",
+      "sha256": "e51568ff61ebe57447bf30e314bd7dffdc65a4d8458984171f35bfaf20e59f36",
+      "status": "HISTORICAL_REUSED_FILE_REFERENCE_ONLY_THIS_PHASE"
+    }
+  ],
+  "local_process_receipts_sha256": {
+    "push-attempt.json": "fa698992c94034c1b61ad68a680d891b8ce3d8197ac378445a7a27ff9666a80c",
+    "authorization-block.json": "b64504c6ef9f9eae7b57f4f4ca80b85c490ebaab2908a52efade63df4c861e7e",
+    "ci-runs-for-candidate.json": "a2790a384d7d281e7395679000c35d27768d89dbd7052f725b8f4688beb59915",
+    "input-file-identity.json": "605d42ef475cfa1897f0d0f13590e1c7f810b76eff9fee933e223781459a0bfc",
+    "preparation-host.json": "ff2b15758326a045bed1101713f0c588eb8651c538cfe39fe1d95a441e1978f4",
+    "ci-contract-audit.json": "db7f83590c4cef0ee53cce55385df4badd819b55119794a78fc4dfb4cead8d99"
+  },
+  "external_archive": {
+    "status": "PASS",
+    "archive_id": "phase7g-public-replay-20260908-blocked",
+    "scope": "New preparation/execution-candidate commits and this-phase process records only; no private historical inputs accessed",
+    "public_base_prerequisite": "747d7d3e21dadd8a5fef0183d2375e7f1f82c176",
+    "restored_candidate_commit": "95334efbab69fe97006ac76cbf4d676d4a7efd9f",
+    "bundle_sha256": "ec122673f42e052ecabb3e7dd4a41473b45804ab3800fdb3022c964c53a2f873",
+    "bundle_bytes": 59957,
+    "new_files_restored": 14,
+    "process_file_count": 41,
+    "process_manifest_sha256": "55cd8a0cdfa5f44abcadebcb16490ea389f75acd61c088b74d7ff498e4550b07",
+    "process_tar_sha256": "1f0fd15adcda63a33e4f230e744a5ff5e2f1769ce160b4b4dffe6ff879abbe1a",
+    "all_process_file_hashes_restored": true,
+    "delivery_commit_archive": "Will be appended after ordinary final commit; not included in this candidate receipt"
+  },
+  "publication_whitelist": [
+    "README.md",
+    "replay.json",
+    "evidence.json"
+  ],
+  "large_original_arrays_copied_to_new_public_case": false,
+  "claim_scope": "Prepared implementation and synthetic tests plus exact public file-byte binding; no cross-environment numeric execution",
+  "self_hash_policy": "Evidence.json is bound by its ordinary Git commit, not a self-referential checksum."
+}

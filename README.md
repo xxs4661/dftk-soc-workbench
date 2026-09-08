@@ -3,6 +3,12 @@
 A research workbench for norm-conserving UPF pseudopotentials, two-component
 spinors and spin–orbit coupling on top of a frozen DFTK environment.
 
+Phase 7G [public cross-environment replay](results/mg-soc-public-replay/README.md) is
+**BLOCKED**: GitHub rejected the workflow push because the existing OAuth
+credential lacks `workflow` scope. The 47 synthetic tests passed on the existing
+Mac environment; Linux execution, frozen R and independent I are **NOT_RUN**.
+No new numerical agreement or cross-platform result is claimed.
+
 The scalar Si baseline and restricted spinor/SOC prototypes use frozen dependencies.
 Phase 6C A/B and the [first QE SOC comparison](results/mg-soc-qe-comparison/README.md)
 remain **HISTORICAL_REUSED**. Historical Phase 7A QE execution: **PASS**.

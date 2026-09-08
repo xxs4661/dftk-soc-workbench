@@ -1,5 +1,10 @@
 # Phase 7G: complete public replay on Linux
 
+**Outcome: BLOCKED at workflow push authorization.** GitHub rejected the initial
+push because the existing OAuth credential has no `workflow` scope. No Linux
+job or real R/I replay ran. These are prepared methods, not executed numerical
+results. See the [receipt and limits](../../results/mg-soc-public-replay/README.md).
+
 This case checks reproducibility of the fixed Phase7F public evidence at
 `747d7d3e21dadd8a5fef0183d2375e7f1f82c176`. It adds no scientific state or
 projector. [plan.json](plan.json) fixes the59 required public file hashes,
@@ -94,3 +99,24 @@ No SCF, eigen/occupation solve, QE/pp, Julia science, XC, UPF/P generation,
 parameter scans or private scientific data access. Native QE NL stays NOT_MEASURED,
 original Q input-H residual NOT_AVAILABLE, physical convergence NOT_ESTABLISHED,
 IEEE origin NOT_LOCALIZED and interpretation REVIEW_REQUIRED.
+
+## Prepared commands (real-data execution NOT_RUN)
+
+In the declared ephemeral Linux environment, the wrapper is the execution entry:
+
+```sh
+python scripts/run_cross_env_replay.py --output NEW_RUN_DIR --wheel FIXED_WHEEL
+```
+
+It verifies the Actions event/commit, installed environment and fixed input
+worktree; runs the five synthetic suites; then invokes R without `--all` and I
+with `--source-root READ_ONLY_BASELINE --plan benchmarks/mg-soc-public-replay-v1/plan.json
+--output NEW_I_DIR`. It returns nonzero if either path or diagnostics fail.
+The wrapper is intentionally not a generic local-platform bypass. Direct I uses:
+
+```sh
+python scripts/replay_public_independent.py --source-root READ_ONLY_BASELINE --plan benchmarks/mg-soc-public-replay-v1/plan.json --output NEW_I_DIR
+```
+
+Do not interpret an unexecuted entry as validated real-data integration. No
+permission expansion, substitute platform or second push was attempted here.
