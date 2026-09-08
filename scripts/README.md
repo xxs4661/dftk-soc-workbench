@@ -182,3 +182,7 @@ REVIEW_REQUIRED occupation/scientific fields or historical Phase7G R FAIL.
 The actual slot IDs, source receipts, commands and archive are in the
 [Si results](../results/si-soc-splitting/README.md). Existing claims forbid a second
 formal attempt; no new SCF is part of public replay.
+
+Phase8B [restricted sensitivity profiles](../benchmarks/si-soc-sensitivity-v1/README.md)
+are prepared before implementation. New entries will explicitly select
+E40/T05/K4; B0 defaults and historical-checker snapshots remain distinct.

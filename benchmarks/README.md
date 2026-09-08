@@ -35,3 +35,6 @@ A/B/G40 sources, five allowed common-term calls and one fixed radial diagnostic.
 HISTORICAL_REUSED; no new solver, physical setting or dependency is introduced.
 
 - [Si SOC splitting v1](si-soc-splitting-v1/README.md): authenticated source and fixed five-slot matrix, now executed once each with numerical splitting/null gates passing and explicit review limitations; [current results](../results/si-soc-splitting/README.md).
+
+- [Si SOC finite sensitivity](si-soc-sensitivity-v1/README.md): E40/T05/K4,
+  each relative to historical B0; at most12 sequential formal slots.

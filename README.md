@@ -3,6 +3,10 @@
 A research workbench for norm-conserving UPF pseudopotentials, two-component
 spinors and spin–orbit coupling on top of a frozen DFTK environment.
 
+Phase 8B [Si SOC sensitivity](results/si-soc-sensitivity/README.md) is
+**PREPARED_NOT_EXECUTED**: E40/T05/K4 are fixed independently relative to
+historical B0; no new numerical result is claimed at preparation.
+
 Phase 8A [Si SOC splitting](results/si-soc-splitting/README.md) completed its
 five prescribed slots once each: D/Q Γ splits **47.4576152 / 47.4576124 meV**,
 difference **2.7336e-9 eV**; same-density spin-trace six-state width **1.6276e-12 eV**.

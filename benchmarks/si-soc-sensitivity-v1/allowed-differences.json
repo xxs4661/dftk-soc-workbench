@@ -1,0 +1,188 @@
+{
+  "E40": {
+    "/case": {
+      "B0": "si-soc-splitting-v1",
+      "variant": "si-soc-sensitivity-v1/E40"
+    },
+    "/cutoffs/dftk_ecut_ha": {
+      "B0": 30,
+      "variant": 40
+    },
+    "/cutoffs/qe_ecutrho_ry": {
+      "B0": 240,
+      "variant": 320
+    },
+    "/cutoffs/qe_ecutwfc_ry": {
+      "B0": 60,
+      "variant": 80
+    },
+    "/probe_kpoints": {
+      "B0": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        [
+          -0.125,
+          -0.0625,
+          0.1875
+        ]
+      ],
+      "variant": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    "/probe_weights": {
+      "B0": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "variant": [
+        1.0
+      ]
+    },
+    "/qe/prefix": {
+      "B0": null,
+      "variant": "si8b_e40"
+    },
+    "/sensitivity_profile": {
+      "B0": null,
+      "variant": "E40"
+    },
+    "/source_reference": {
+      "B0": null,
+      "variant": "benchmarks/si-soc-splitting-v1/source.json"
+    }
+  },
+  "T05": {
+    "/case": {
+      "B0": "si-soc-splitting-v1",
+      "variant": "si-soc-sensitivity-v1/T05"
+    },
+    "/electrons/temperature_ha": {
+      "B0": 0.001,
+      "variant": 0.0005
+    },
+    "/probe_kpoints": {
+      "B0": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        [
+          -0.125,
+          -0.0625,
+          0.1875
+        ]
+      ],
+      "variant": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    "/probe_weights": {
+      "B0": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "variant": [
+        1.0
+      ]
+    },
+    "/qe/prefix": {
+      "B0": null,
+      "variant": "si8b_t05"
+    },
+    "/sensitivity_profile": {
+      "B0": null,
+      "variant": "T05"
+    },
+    "/settings/ensemble/tau_ha": {
+      "B0": 0.001,
+      "variant": 0.0005
+    },
+    "/source_reference": {
+      "B0": null,
+      "variant": "benchmarks/si-soc-splitting-v1/source.json"
+    }
+  },
+  "K4": {
+    "/case": {
+      "B0": "si-soc-splitting-v1",
+      "variant": "si-soc-sensitivity-v1/K4"
+    },
+    "/kpoints": {
+      "B0": "case.json kpoints: 8 explicit points, weights1/8",
+      "variant": "K4/case.json kpoints: 64 explicit points, weights1/64"
+    },
+    "/probe_kpoints": {
+      "B0": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        [
+          -0.125,
+          -0.0625,
+          0.1875
+        ]
+      ],
+      "variant": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    "/probe_weights": {
+      "B0": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "variant": [
+        1.0
+      ]
+    },
+    "/qe/prefix": {
+      "B0": null,
+      "variant": "si8b_k4"
+    },
+    "/sensitivity_profile": {
+      "B0": null,
+      "variant": "K4"
+    },
+    "/source_reference": {
+      "B0": null,
+      "variant": "benchmarks/si-soc-splitting-v1/source.json"
+    }
+  }
+}

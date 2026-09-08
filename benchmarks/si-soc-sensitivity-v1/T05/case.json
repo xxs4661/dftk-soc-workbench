@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "case": "si-soc-sensitivity-v1/T05",
+  "pseudo": {
+    "source_spec": "source.json",
+    "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+    "filename": "Si_r.upf",
+    "element": "Si",
+    "z_valence": 4,
+    "nlcc": true
+  },
+  "geometry": {
+    "lattice_parameter_bohr": 10.26,
+    "lattice_vectors_bohr": [
+      [
+        0,
+        5.13,
+        5.13
+      ],
+      [
+        5.13,
+        0,
+        5.13
+      ],
+      [
+        5.13,
+        5.13,
+        0
+      ]
+    ],
+    "positions_fractional": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0.25,
+        0.25,
+        0.25
+      ]
+    ],
+    "species": [
+      "Si",
+      "Si"
+    ],
+    "n_atoms": 2
+  },
+  "electrons": {
+    "n_electrons": 8,
+    "n_bands": 24,
+    "auxiliary_states": 6,
+    "occupation_capacity": 1,
+    "temperature_ha": 0.0005,
+    "smearing": "FermiDirac",
+    "feedback": "charge_only"
+  },
+  "xc": {
+    "dftk_identifiers": [
+      "gga_x_pbe",
+      "gga_c_pbe"
+    ],
+    "qe": "PBE",
+    "upf_functional": "PBE",
+    "nlcc": true
+  },
+  "cutoffs": {
+    "dftk_ecut_ha": 30,
+    "qe_ecutwfc_ry": 60,
+    "qe_ecutrho_ry": 240
+  },
+  "fft_size": [
+    48,
+    48,
+    48
+  ],
+  "kpoints": [
+    {
+      "coordinate_fractional": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "weight_spatial": 0.125
+    },
+    {
+      "coordinate_fractional": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "weight_spatial": 0.125
+    },
+    {
+      "coordinate_fractional": [
+        0.0,
+        -0.5,
+        0.0
+      ],
+      "weight_spatial": 0.125
+    },
+    {
+      "coordinate_fractional": [
+        0.0,
+        -0.5,
+        -0.5
+      ],
+      "weight_spatial": 0.125
+    },
+    {
+      "coordinate_fractional": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "weight_spatial": 0.125
+    },
+    {
+      "coordinate_fractional": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "weight_spatial": 0.125
+    },
+    {
+      "coordinate_fractional": [
+        -0.5,
+        -0.5,
+        0.0
+      ],
+      "weight_spatial": 0.125
+    },
+    {
+      "coordinate_fractional": [
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "weight_spatial": 0.125
+    }
+  ],
+  "probe_kpoints": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "probe_weights": [
+    1.0
+  ],
+  "symmetries": false,
+  "settings": {
+    "ensemble": {
+      "tau_ha": 0.0005,
+      "smearing": "FermiDirac",
+      "capacity_per_spinor_state": 1,
+      "root_maxiter": 256,
+      "root_electron_atol": 1e-12,
+      "boundary_states": 2,
+      "boundary_occupation_max": 1e-10,
+      "stationarity_endpoint_margin": 1e-08,
+      "stationarity_abs_ha": 1e-08
+    },
+    "solver": {
+      "initial_target_states": 24,
+      "auxiliary_states": 6,
+      "target_increment": 8,
+      "max_target_states": 48,
+      "tolerance_ha": 1e-10,
+      "maxiter": 300,
+      "preconditioner_shift_ha": 1.0,
+      "allow_band_expansion": false,
+      "stream_k": true
+    },
+    "scf": {
+      "alpha": 0.1,
+      "max_maps": 400,
+      "feedback": "valence charge only; no renormalization, clipping, magnetization clearing or symmetrization",
+      "initial_A": "Uniform actual Si valence Ne/Omega; no prior arrays",
+      "closure": "Actual additional map from candidate n_out, included in max_maps"
+    },
+    "seeds": {
+      "A": 81001,
+      "B": 64001,
+      "symmetry_probe": 81021,
+      "potential_probe": 81041,
+      "extension_stride": 100000
+    },
+    "thresholds": {
+      "electron_count_abs": 1e-08,
+      "density_fixedpoint_l2": 1e-08,
+      "residual_ha": 1e-09,
+      "self_density_residual_ha": 1e-07,
+      "gram_norm": 1e-09,
+      "pauli_density_relative": 1e-07,
+      "ab_density_relative": 1e-06,
+      "ab_energy_abs_ha": 1e-07,
+      "ab_spectrum_abs_ha": 1e-06,
+      "comparison_lowest_states": 16,
+      "energy_abs_ha": 1e-08,
+      "free_energy_arithmetic_relative": 1e-12,
+      "self_rayleigh_occupation_abs": 1e-06,
+      "kramers_ha": 1e-07,
+      "time_reversed_spectrum_ha": 1e-07,
+      "time_reversal_normalized": 1e-11,
+      "paired_occupation_abs": 1e-06,
+      "hermiticity_normalized": 1e-11,
+      "hamiltonian_decomposition_normalized": 1e-11,
+      "spin_flip_min_signal": 1e-12,
+      "spin_flip_relative": 1e-08
+    }
+  },
+  "qe": {
+    "version": "7.5",
+    "noncolin": true,
+    "lspinorb": true,
+    "nosym": true,
+    "noinv": true,
+    "starting_magnetization": 0,
+    "scf": {
+      "conv_thr_ry": 1e-12,
+      "electron_maxstep": 200,
+      "mixing_beta": 0.3,
+      "diagonalization": "david",
+      "diago_full_acc": true,
+      "diago_thr_init_ry": 1e-10,
+      "startingpot": "atomic",
+      "startingwfc": "atomic+random"
+    },
+    "spectrum": {
+      "calculation": "bands",
+      "diagonalization": "cg",
+      "diago_thr_init_ry": 1e-13,
+      "diago_cg_maxiter": 300,
+      "diago_full_acc": true,
+      "startingpot": "file",
+      "startingwfc": "atomic+random"
+    },
+    "prefix": "si8b_t05"
+  },
+  "sensitivity_profile": "T05",
+  "source_reference": "benchmarks/si-soc-splitting-v1/source.json"
+}

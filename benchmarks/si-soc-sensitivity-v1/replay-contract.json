@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "original_files": "Exact bytes/SHA-256; state/types/indices/counts/units exact",
+  "derived_floats": "abs(a-b)<=1e-11*max(1,abs(a),abs(b)); historical Si replay rule unchanged",
+  "physics_gates": "plan.json, fixed before execution; not relaxed by replay tolerance",
+  "negative_results": "Faithful offline replay can exit0 while scientific MISMATCH/REVIEW_REQUIRED remains; failed worker exit never replaced",
+  "public_arrays": "Published SCF endpoint e/f and complete Gamma spectra; source-array residual/core/Pauli claims RUNNER_REPORTED"
+}
