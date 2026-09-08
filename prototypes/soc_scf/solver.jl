@@ -1,7 +1,23 @@
 # Matrix-free target-state solves. Auxiliary states never enter occupations.
-function validate_soc_settings(settings)
+function validate_soc_settings(settings;case_contract=nothing)
     e,s,c=settings["ensemble"],settings["solver"],settings["scf"]
-    e["tau_ha"]==0.001 && e["smearing"]=="FermiDirac" && e["capacity_per_spinor_state"]==1 || error("Fixed Phase 6C ensemble changed")
+    tau=0.001
+    if !isnothing(case_contract)
+        case_contract isa AbstractDict || error("Expected an authenticated Si sensitivity case")
+        profile=get(case_contract,"sensitivity_profile",nothing)
+        profile in ("E40","T05","K4") || error("Unregistered SOC settings profile")
+        get(case_contract,"case",nothing)=="si-soc-sensitivity-v1/"*profile || error("SOC case/profile mismatch")
+        settings===case_contract["settings"] || error("Settings must belong to the authenticated case")
+        root=normpath(joinpath(@__DIR__,"../.."))
+        ref="4a58286183e4625ad7ae69b44eb80097e8ad6c7d:benchmarks/si-soc-sensitivity-v1/$profile/case.json"
+        expected=JSON3.read(read(`git -C $root show $ref`,String),Dict{String,Any})
+        exact(a,b)=typeof(a)===typeof(b) && (a isa AbstractDict ? keys(a)==keys(b) && all(exact(a[k],b[k]) for k in keys(a)) :
+            a isa AbstractVector ? length(a)==length(b) && all(exact(x,y) for (x,y) in zip(a,b)) : isequal(a,b))
+        exact(case_contract,expected) || error("SOC case differs from its fixed preparation")
+        tau=profile=="T05" ? 0.0005 : 0.001
+        case_contract["electrons"]["temperature_ha"]==tau || error("Case temperature differs from its registered profile")
+    end
+    e["tau_ha"]==tau && e["smearing"]=="FermiDirac" && e["capacity_per_spinor_state"]==1 || error("Fixed Phase 6C ensemble changed")
     e["root_maxiter"]==256 && e["root_electron_atol"]==1e-12 || error("Global occupation root settings changed")
     (s["initial_target_states"],s["auxiliary_states"],s["target_increment"],s["max_target_states"])==(24,6,8,48) || error("Target-band chain changed")
     s["tolerance_ha"]==1e-10 && s["maxiter"]==300 || error("Eigensolver settings changed")

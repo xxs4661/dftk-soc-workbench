@@ -92,8 +92,8 @@ function soc_map(ctx,n_in,settings,previous,target;seed,map_index,is_closure=fal
     (;n_out=energy.density.n,raw,diagnostics=diag,closure_ok,potential,target=solved.band.target)
 end
 
-function soc_scf(ctx,n0,settings;seed,callback=(r,raw)->nothing,progress=(r)->nothing,hooks=NamedTuple())
-    validate_soc_settings(settings);FI.validate_context(ctx)
+function soc_scf(ctx,n0,settings;seed,callback=(r,raw)->nothing,progress=(r)->nothing,hooks=NamedTuple(),case_contract=nothing)
+    validate_soc_settings(settings;case_contract);FI.validate_context(ctx)
     ctx.basis.model.temperature==settings["ensemble"]["tau_ha"] && ctx.basis.model.smearing isa DFTK.Smearing.FermiDirac || error("Actual model and ensemble settings disagree")
     previous=nothing;target=settings["solver"]["initial_target_states"];previous_potential=nothing
     probe=randn(MersenneTwister(settings["seeds"]["potential_probe"]),ComplexF64,2length(ctx.basis.kpoints[1].G_vectors),1);probe/=norm(probe)

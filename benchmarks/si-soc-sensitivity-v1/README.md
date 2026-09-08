@@ -44,3 +44,36 @@ execution and results will be separate ordinary commits.
 [Current result entry](../../results/si-soc-sensitivity/README.md) will retain
 actual exits, warnings and missing slots. Raw save/checkpoints stay ignored and
 in verified incremental same-machine external backups; no UPF is published.
+
+
+## Restricted execution entry
+
+The preparation is `4a58286183e4625ad7ae69b44eb80097e8ad6c7d`.
+After the tested execution commit is clean, select the existing frozen depot
+and run `run_si_dftk.py prepare NEW_DIR --profile PROFILE --execution-commit SHA`
+for all three profiles. `NEW_DIR` is a unique child of
+`.work/phase8b/PROFILE/`. Each receipt binds its actual SCF and Gamma basis,
+source, temperature, conservative memory and measured peak. No eigensolve is
+part of preparation. A JSON manifest under `.work/phase8b/` binds all three
+receipt paths/hashes, preparation and execution commits; formal entries refuse
+an incomplete or changed manifest.
+
+Use `run_si_dftk.py D-SCF NEW_DIR --profile PROFILE --execution-commit SHA
+--preflight-manifest MANIFEST`, followed by `run_si_qe.py Q-SCF NEW_DIR --profile
+PROFILE --preflight-manifest MANIFEST`. Then use the same two launchers with
+`D-GAMMA`/`Q-GAMMA` and `--parent OWN_SCF_DIR`; the D launcher still requires
+`--execution-commit SHA`. QE uses the unchanged launcher environment without
+inherited Julia/depot/library overrides. These are authorized reproduction
+commands, not public-only replay; existing slot claims prevent repeated attempts.
+
+Public response arithmetic uses `si_soc_sensitivity.py --profile PROFILE`
+with explicit `--d-scf`, `--q-scf`, `--d-gamma`, `--q-gamma` and `--binding`
+JSON paths. It reads only public source/case/result bytes and calls the existing
+fixed-window/FD formulas. Exit0 certifies arithmetic replay; scientific statuses
+and the 0.1meV observation remain separate.
+
+Implementation naming correction, made before numerical execution: the planned
+`tests/test_si_sensitivity.py` already belongs to Phase4C. It remains byte-for-byte
+unchanged; the new comparison tests use `tests/test_si_soc_sensitivity.py`.
+The preparation plan remains unchanged so this correction is explicit. Synthetic
+recorder/solver-interface fixtures are not physical Si calculation evidence.

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Run only the two predeclared Si QE slots, retaining current failure evidence.
+"""Run predeclared Si QE slots, retaining current failure evidence.
 
 The existing launcher identity and process-group helper are reused. The identity
 action queries Julia/JLL metadata only; it never starts a QE numerical product.
-No retry, environment installation, historical-save access or parameter override.
+The default Phase 8A contract remains fixed; explicit Phase 8B profiles add only
+their prepared SCF/Gamma pair. No retry, installation or arbitrary override.
 """
 import argparse
 import datetime
@@ -44,6 +45,14 @@ FORBIDDEN_ENV = ('JULIA_PROJECT', 'JULIA_LOAD_PATH', 'JULIA_DEPOT_PATH',
 SAVE = Path('scratch/si8a.save')
 
 
+def profile_layout(profile=None):
+    if profile is None:
+        return CASE_DIR, SAVE, '.work/phase8a'
+    from si_soc_sensitivity import CASE_DIR as sensitivity_dir, PROFILE_IDS
+    require(profile in PROFILE_IDS, 'Unregistered Si sensitivity profile')
+    return sensitivity_dir+'/'+profile, Path('scratch/si8b_'+profile.lower()+'.save'), '.work/phase8b/'+profile
+
+
 def require(ok, reason):
     if not ok:
         raise ValueError(reason)
@@ -61,11 +70,11 @@ def committed_hash(root, revision, path):
     return hashlib.sha256(git(root, 'show', revision+':'+path)).hexdigest()
 
 
-def confined_run(root, path):
-    area = root/'.work/phase8a'
+def confined_run(root, path, profile=None):
+    area = root/profile_layout(profile)[2]
     path = Path(path).absolute()
     require(area.resolve() == area and path.resolve() == path, 'Run path aliases are not permitted')
-    require(path != area and area in path.parents, 'Run and parent paths must be inside current .work/phase8a')
+    require(path != area and area in path.parents, 'Run and parent paths must be inside the current phase/profile area')
     return path
 
 
@@ -94,17 +103,23 @@ def required_save(directory, nk):
     return mapping
 
 
-def frozen_inputs(root, *, require_execution_commit):
+def frozen_inputs(root, *, require_execution_commit, profile=None):
     root = Path(root).resolve()
+    case_dir, save, _ = profile_layout(profile)
+    preparation, prep_files, source_files = PREPARATION, PREP_FILES, SOURCES
+    if profile is not None:
+        from si_soc_sensitivity import PREPARATION as preparation, prepared_paths, load_case
+        prep_files = (*prepared_paths(), CASE_DIR+'/source.json')
+        source_files = (*SOURCES, 'scripts/si_soc_sensitivity.py', 'scripts/run_si_dftk.py')
     head = git(root, 'rev-parse', 'HEAD').decode().strip()
-    require(subprocess.run(['git', 'merge-base', '--is-ancestor', PREPARATION, head], cwd=root,
+    require(subprocess.run(['git', 'merge-base', '--is-ancestor', preparation, head], cwd=root,
                            stdout=subprocess.PIPE, stderr=subprocess.PIPE).returncode == 0,
             'Preparation commit is not an ancestor of execution HEAD')
-    prep = {p: committed_hash(root, PREPARATION, p) for p in PREP_FILES}
+    prep = {p: committed_hash(root, preparation, p) for p in prep_files}
     frozen = {p: committed_hash(root, BASE, p) for p in (*ENV_FILES, *HISTORICAL)}
     for path, expected in {**prep, **frozen}.items():
         require(digest(root/path) == expected, 'Prepared/frozen file mismatch: '+path)
-    case = json.loads((root/CASE_DIR/'case.json').read_text())
+    case = load_case(root, profile) if profile is not None else json.loads((root/CASE_DIR/'case.json').read_text())
     _contract(case)
     source = json.loads((root/CASE_DIR/'source.json').read_text())
     relative = Path(source['local_path'])
@@ -130,14 +145,18 @@ def frozen_inputs(root, *, require_execution_commit):
         status = git(checkout, 'status', '--porcelain', '--untracked-files=all').decode()
         require(actual == spec['commit'] and status == '', 'Frozen upstream commit/worktree mismatch: '+label)
         upstream[label] = {'commit': actual, 'status': status, 'checkout': spec['checkout']}
-    sources = {p: digest(root/p) for p in SOURCES}
+    sources = {p: digest(root/p) for p in source_files}
     if require_execution_commit:
         clean_execution(root, head)
         for p, value in sources.items():
             require(committed_hash(root, head, p) == value, 'Execution source must be committed: '+p)
-    return {'case': case, 'source': source, 'pseudo_path': str(pseudo),
-            'preparation_commit': PREPARATION, 'execution_commit': head,
+    result = {'case': case, 'source': source, 'pseudo_path': str(pseudo),
+            'preparation_commit': preparation, 'execution_commit': head,
             'prepared_sha256': prep, 'frozen_sha256': frozen, 'source_sha256': sources, 'upstream': upstream}
+    if profile is not None:
+        result.update(sensitivity_profile=profile, case_sha256=prep[case_dir+'/case.json'],
+                      case_directory=case_dir, save_path=save.as_posix())
+    return result
 
 
 def identity(root, directory, prepared, env):
@@ -205,7 +224,7 @@ def bind_parent(parent, prepared):
             and result.get('input_comparability_status') == 'PASS' and result.get('exit_code') == 0
             and type(result.get('process_exit_code')) is int and result['process_exit_code'] == 0,
             'Parent is not a successfully parsed new Si Q-SCF')
-    require(result.get('run_id') == parent.name and result.get('preparation_commit') == PREPARATION,
+    require(result.get('run_id') == parent.name and result.get('preparation_commit') == prepared['preparation_commit'],
             'Parent run/preparation identity mismatch')
     require(result.get('execution_commit') == prepared['execution_commit']
             and result.get('executed_source_sha256') == prepared['source_sha256'],
@@ -213,21 +232,41 @@ def bind_parent(parent, prepared):
     require(result['prepared_sha256'] == prepared['prepared_sha256'], 'Parent physical case/input differs')
     record = json.loads((parent/'qe-result.json').read_text())
     require(digest(parent/'qe-result.json') == result['parsed_sha256'] and record['kind'] == 'scf'
-            and record['case'] == 'si-soc-splitting-v1' and record['scf']['converged'], 'Parent parsed SCF source mismatch')
+            and record['case'] == prepared['case']['case'] and record['scf']['converged'], 'Parent parsed SCF source mismatch')
     require(record['run_id'] == result['run_id'], 'Parent parsed run mismatch')
-    mapping = required_save(parent/SAVE, 8)
+    sensitivity = 'sensitivity_profile' in prepared
+    if sensitivity:
+        case = prepared['case']
+        for value in (result, record):
+            require(value.get('case') == case['case'] and value.get('sensitivity_profile') == prepared['sensitivity_profile']
+                    and value.get('case_sha256') == prepared['case_sha256'], 'Parent case/profile/hash mismatch')
+        require(record['temperature_ha'] == case['electrons']['temperature_ha']
+                and record['cutoffs'] == case['cutoffs'] and record['requested_kpoint_count'] == len(case['kpoints']),
+                'Parent cutoff/k/temperature mismatch')
+        require(record.get('density_source_sha256') == result.get('density_source_sha256')
+                and record.get('n_electrons') == 8 and record.get('n_bands') == 24
+                and record.get('occupation_capacity') == 1, 'Parent density/electron/state binding mismatch')
+    save = Path(prepared.get('save_path', SAVE))
+    mapping = required_save(parent/save, len(prepared['case']['kpoints']) if sensitivity else 8)
     require(mapping == result['save_files'], 'Original parent save files differ from completion receipt')
     require(mapping['Si_r.upf']['sha256'] == prepared['source']['sha256'], 'Saved parent UPF mismatch')
     require(mapping['data-file-schema.xml']['sha256'] == record['raw_sha256']['xml'], 'Parent XML differs from its parsed final SCF')
-    return {'directory': str(parent), 'run_id': result['run_id'], 'save_files': mapping,
+    if sensitivity:
+        require(record['density_source_sha256'] == mapping['charge-density.dat']['sha256'], 'Parent recorded density differs from saved charge')
+    binding = {'directory': str(parent), 'run_id': result['run_id'], 'save_files': mapping,
             'parent_result_sha256': digest(parent/'result.json'), 'parent_parsed_sha256': digest(parent/'qe-result.json'),
             'charge_sha256': mapping['charge-density.dat']['sha256'], 'fermi_energy_ha': record['fermi_energy_ha']}
+    if sensitivity:
+        binding.update(save_path=save.as_posix(), sensitivity_profile=prepared['sensitivity_profile'],
+                       case_sha256=prepared['case_sha256'])
+    return binding
 
 
 def copy_parent(parent, destination):
-    source = Path(parent['directory'])/SAVE
+    save = Path(parent.get('save_path', SAVE))
+    source = Path(parent['directory'])/save
     require(file_map(source) == parent['save_files'], 'Parent changed before copying')
-    destination = Path(destination)/SAVE
+    destination = Path(destination)/save
     destination.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(source, destination, copy_function=shutil.copyfile)
     require(file_map(destination) == parent['save_files'], 'Copied save bytes differ')
@@ -238,13 +277,13 @@ def copy_parent(parent, destination):
 
 def parent_unchanged(parent):
     directory = Path(parent['directory'])
-    require(file_map(directory/SAVE) == parent['save_files'], 'Original Q-SCF save changed')
+    require(file_map(directory/parent.get('save_path', SAVE)) == parent['save_files'], 'Original Q-SCF save changed')
     require(digest(directory/'result.json') == parent['parent_result_sha256']
             and digest(directory/'qe-result.json') == parent['parent_parsed_sha256'], 'Original Q-SCF receipts changed')
 
 
 def claim_slot(root, action, run_id, preparation):
-    registry = root/'.work/phase8a/slots'
+    registry = root/profile_layout(preparation.get('sensitivity_profile'))[2]/'slots'
     registry.mkdir(parents=True, exist_ok=True)
     with (registry/(action+'.json')).open('x') as handle:
         json.dump({'action': action, 'run_id': run_id, 'execution_commit': preparation['execution_commit'],
@@ -252,48 +291,59 @@ def claim_slot(root, action, run_id, preparation):
         handle.write('\n')
 
 
-def run(action, directory, *, parent=None, root=ROOT):
+def run(action, directory, *, parent=None, root=ROOT, profile=None, preflight_manifest=None):
     root, directory = Path(root).resolve(), Path(directory).absolute()
-    state = {'schema_version': 1, 'case': 'si-soc-splitting-v1', 'action': action,
+    case_id = 'si-soc-splitting-v1' if profile is None else 'si-soc-sensitivity-v1/'+str(profile)
+    state = {'schema_version': 1, 'case': case_id, 'action': action,
              'run_id': directory.name, 'execution_status': 'INCOMPLETE', 'exit_code': 9,
              'process_exit_code': None, 'worker_started': False, 'created_utc': now(),
              'input_comparability_status': 'NOT_RUN', 'scientific_review': 'REVIEW_REQUIRED'}
     owned, source, prepared, observed = False, None, None, None
     try:
-        require(action in ('identity', 'Q-SCF', 'Q-SPECTRUM'), 'Unsupported Si QE slot')
-        require((parent is not None) == (action == 'Q-SPECTRUM'), 'Spectrum needs its own Q-SCF parent; other actions reject parents')
-        directory = confined_run(root, directory)
+        case_dir, save, _ = profile_layout(profile)
+        spectrum_action = 'Q-SPECTRUM' if profile is None else 'Q-GAMMA'
+        require(action in ('identity', 'Q-SCF', spectrum_action), 'Unsupported Si QE slot')
+        require((parent is not None) == (action == spectrum_action), 'Spectrum needs its own Q-SCF parent; other actions reject parents')
+        require(profile is not None or preflight_manifest is None, 'B0 rejects sensitivity preflight override')
+        directory = confined_run(root, directory, profile)
         if parent is not None:
-            parent = confined_run(root, parent)
+            parent = confined_run(root, parent, profile)
             require(parent != directory, 'Parent and new output directory cannot be identical')
         directory.mkdir(parents=True, exist_ok=False)
         owned = True
         write_json(directory/'result.json', state)
         require(not any(k in os.environ for k in FORBIDDEN_ENV), 'Inherited Julia/library override is not allowed for frozen QE')
         env = dict(os.environ, **{k: '1' for k in THREADS})
-        prepared = frozen_inputs(root, require_execution_commit=action != 'identity')
+        prepared = frozen_inputs(root, require_execution_commit=action != 'identity', profile=profile)
         observed = identity(root, directory, prepared, env)
         write_json(directory/'identity.json', observed)
-        state.update(preparation_commit=PREPARATION, execution_commit=prepared['execution_commit'],
+        state.update(preparation_commit=prepared['preparation_commit'], execution_commit=prepared['execution_commit'],
                      prepared_sha256=prepared['prepared_sha256'], frozen_sha256=prepared['frozen_sha256'],
                      executed_source_sha256=prepared['source_sha256'], pseudo_sha256=prepared['source']['sha256'],
                      parallelism={'thread_environment': {k: env[k] for k in THREADS}, 'mpi_processes_requested': 1})
+        if profile is not None:
+            state.update(sensitivity_profile=profile, case_sha256=prepared['case_sha256'])
         if action == 'identity':
             _recheck(root, prepared, observed)
             state.update(execution_status='PASS', input_comparability_status='NOT_APPLICABLE_IDENTITY',
                          identity_status='PASS', numerical_executions=0, exit_code=0)
             write_json(directory/'result.json', state)
             return state
+        if profile is not None:
+            require(preflight_manifest is not None, 'All three sensitivity preflights are required before any formal slot')
+            from run_si_dftk import verify_sensitivity_preflights
+            verify_sensitivity_preflights(root, Path(preflight_manifest), prepared['execution_commit'])
+            state['preflight_manifest_sha256'] = digest(preflight_manifest)
         if parent is not None:
             source = bind_parent(parent, prepared)
             copy_parent(source, directory)
             write_json(directory/'parent-binding.json', source)
-        filename = 'qe-scf.in' if action == 'Q-SCF' else 'qe-spectrum.in'
-        shutil.copyfile(root/CASE_DIR/filename, directory/'qe.in')
+        filename = 'qe-scf.in' if action == 'Q-SCF' else ('qe-spectrum.in' if profile is None else 'qe-gamma.in')
+        shutil.copyfile(root/case_dir/filename, directory/'qe.in')
         (directory/'pseudo').mkdir()
         shutil.copyfile(prepared['pseudo_path'], directory/'pseudo/Si_r.upf')
         require(digest(directory/'pseudo/Si_r.upf') == prepared['source']['sha256'], 'Copied actual UPF mismatch')
-        require(digest(directory/'qe.in') == prepared['prepared_sha256'][CASE_DIR+'/'+filename], 'Copied QE input mismatch')
+        require(digest(directory/'qe.in') == prepared['prepared_sha256'][case_dir+'/'+filename], 'Copied QE input mismatch')
         command = [observed['qe_identity']['selected_path'], '-in', 'qe.in']
         write_json(directory/'preflight.json', {'action': action, 'run_id': state['run_id'],
             'preparation': prepared, 'identity': observed, 'command': command,
@@ -307,10 +357,13 @@ def run(action, directory, *, parent=None, root=ROOT):
         write_json(directory/'result.json', state)
         require(type(code) is int and code == 0, 'Actual QE worker failed with code '+str(code))
         require(digest(directory/'pseudo/Si_r.upf') == prepared['source']['sha256'], 'Worker pseudo copy changed')
-        saved = required_save(directory/SAVE, 8 if action == 'Q-SCF' else 3)
-        require(saved['Si_r.upf']['sha256'] == prepared['source']['sha256'], 'QE saved a different UPF')
-        shutil.copyfile(directory/SAVE/'data-file-schema.xml', directory/'qe.xml')
         case = dict(prepared['case'], verified_pseudo_sha256=prepared['source']['sha256'])
+        nk = (len(case['kpoints']) if action == 'Q-SCF' else 1) if profile is not None else (8 if action == 'Q-SCF' else 3)
+        saved = required_save(directory/save, nk)
+        require(saved['Si_r.upf']['sha256'] == prepared['source']['sha256'], 'QE saved a different UPF')
+        shutil.copyfile(directory/save/'data-file-schema.xml', directory/'qe.xml')
+        if profile is not None:
+            case['case_sha256'] = prepared['case_sha256']
         stdout = (directory/'qe.stdout').read_text()
         mpi = re.findall(r'Parallel version \(MPI\), running on\s+(\d+) processors', stdout)
         nodes = re.findall(r'MPI processes distributed on\s+(\d+) nodes', stdout)
@@ -330,6 +383,9 @@ def run(action, directory, *, parent=None, root=ROOT):
         else:
             parsed['density_source_sha256'] = saved['charge-density.dat']['sha256']
         _recheck(root, prepared, observed)
+        if profile is not None:
+            clean_execution(root, prepared['execution_commit'])
+            require(digest(preflight_manifest) == state['preflight_manifest_sha256'], 'Preflight manifest changed during run')
         # Construct/serialize all success payloads before the canonical result.
         json.dumps(parsed, allow_nan=False)
         state.update(execution_status='PASS', input_comparability_status='PASS', exit_code=0,
@@ -345,12 +401,14 @@ def run(action, directory, *, parent=None, root=ROOT):
         if owned and (directory/'process-exit.json').is_file():
             try: code = json.loads((directory/'process-exit.json').read_text())['exit_code']
             except (ValueError, KeyError, OSError): pass
-        failure = {'schema_version': 1, 'case': 'si-soc-splitting-v1', 'action': action, 'run_id': directory.name,
+        failure = {'schema_version': 1, 'case': case_id, 'action': action, 'run_id': directory.name,
                    'execution_status': 'FAIL' if state['worker_started'] else 'BLOCKED',
                    'input_comparability_status': 'NOT_ESTABLISHED', 'scientific_review': 'REVIEW_REQUIRED',
                    'exit_code': code if type(code) is int and 0 < code < 256 else 9,
                    'process_exit_code': code, 'worker_started': state['worker_started'],
                    'reason': str(error), 'error_type': type(error).__name__, 'failed_utc': now()}
+        if profile is not None:
+            failure['sensitivity_profile'] = profile
         if owned:
             failure['worker_process_start_recorded'] = (directory/'process-start.json').is_file()
             if (directory/'qe.stdout').is_file() and (directory/'qe.stderr').is_file():
@@ -383,11 +441,14 @@ def run(action, directory, *, parent=None, root=ROOT):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action', choices=('identity', 'Q-SCF', 'Q-SPECTRUM'))
+    parser.add_argument('action', choices=('identity', 'Q-SCF', 'Q-SPECTRUM', 'Q-GAMMA'))
     parser.add_argument('directory', type=Path, help='New unique run directory; existing paths refused')
     parser.add_argument('--parent', type=Path)
+    parser.add_argument('--profile', choices=('E40', 'T05', 'K4'))
+    parser.add_argument('--preflight-manifest', type=Path)
     args = parser.parse_args(argv)
-    state = run(args.action, args.directory, parent=args.parent)
+    state = run(args.action, args.directory, parent=args.parent, profile=args.profile,
+                preflight_manifest=args.preflight_manifest)
     print(json.dumps(state, allow_nan=False))
     return state['exit_code']
 

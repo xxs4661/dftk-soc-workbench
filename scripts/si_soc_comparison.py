@@ -45,6 +45,10 @@ def hash_string(value):
 
 
 def _contract(case):
+    if isinstance(case, dict) and 'sensitivity_profile' in case:
+        from si_soc_sensitivity import validate_case
+        validate_case(case)  # Only the three prepared profiles; no arbitrary overrides.
+        return case['pseudo']
     check(isinstance(case, dict) and case.get('case') == CASE, 'Wrong Si case')
     p, e, g = case['pseudo'], case['electrons'], case['geometry']
     expected = {'element': 'Si', 'z_valence': 4, 'nlcc': True, 'filename': 'Si_r.upf'}
@@ -67,6 +71,9 @@ def _contract(case):
 
 
 def _expected_points(case, kind):
+    if 'sensitivity_profile' in case:
+        _contract(case)
+        return case['probe_kpoints'] if kind == 'spectrum' else [p['coordinate_fractional'] for p in case['kpoints']]
     if kind == 'spectrum':
         return PROBES
     points = [p['coordinate_fractional'] for p in case.get('kpoints',
@@ -91,6 +98,12 @@ def parse_si_qe(xml_path, stdout, stderr, *, kind, case, process_exit_code):
     A bands output never supplies new SCF E/F or solves an occupation problem.
     """
     pseudo = _contract(case)
+    sensitivity = 'sensitivity_profile' in case
+    tau = case['electrons']['temperature_ha'] if sensitivity else .001
+    ecutwfc = case['cutoffs']['qe_ecutwfc_ry']/2 if sensitivity else 30.
+    ecutrho = case['cutoffs']['qe_ecutrho_ry']/2 if sensitivity else 120.
+    if sensitivity:
+        check(hash_string(case.get('case_sha256')), 'Missing authenticated prepared case hash')
     check(kind in ('scf', 'spectrum'), 'Unsupported Si QE action')
     check(type(process_exit_code) is int and process_exit_code == 0, 'QE process exit was not zero')
     check(isinstance(stdout, str) and isinstance(stderr, str), 'Native streams must be text')
@@ -118,6 +131,8 @@ def parse_si_qe(xml_path, stdout, stderr, *, kind, case, process_exit_code):
     out, inp = outputs[-1], require(root, 'input')
     control = require(inp, 'control_variables')
     check(text(control, 'calculation') == calc, 'SCF/spectrum output kind mismatch')
+    if sensitivity:
+        check(text(control, 'prefix') == case['qe']['prefix'], 'Wrong native profile prefix')
     check(text(control, 'restart_mode') == 'from_scratch', 'Unexpected restart mode')
     check(text(control, 'verbosity') == 'high' and text(control, 'disk_io') == 'low', 'Wrong output/save controls')
     check(not boolean(control, 'forces') and not boolean(control, 'stress'), 'Unexpected force/stress calculation')
@@ -146,7 +161,7 @@ def parse_si_qe(xml_path, stdout, stderr, *, kind, case, process_exit_code):
     check(text(inp, 'bands/occupations') == text(bands, 'occupations_kind') == 'smearing', 'FD smearing missing')
     for parent in (require(inp, 'bands'), bands):
         smear = require(parent, 'smearing')
-        check((smear.text or '').strip() == 'fd' and finite(smear.get('degauss', 'nan')) == .001,
+        check((smear.text or '').strip() == 'fd' and finite(smear.get('degauss', 'nan')) == tau,
               'Wrong native FD temperature/units')
     _float_field(inp, 'bands/tot_charge', 0.)
     ne = _float_field(bands, 'nelec', 8., 1e-8)
@@ -167,8 +182,8 @@ def parse_si_qe(xml_path, stdout, stderr, *, kind, case, process_exit_code):
     positions = [[dot(vector(a, 3), b)/alat for b in reciprocal] for a in atoms]
     match_points(POSITIONS, positions, 1e-10)
     for parent, prefix in ((inp, 'basis/'), (out, 'basis_set/')):
-        _float_field(parent, prefix + 'ecutwfc', 30.)
-        _float_field(parent, prefix + 'ecutrho', 120.)
+        _float_field(parent, prefix + 'ecutwfc', ecutwfc)
+        _float_field(parent, prefix + 'ecutrho', ecutrho)
         for grid in ('fft_grid', 'fft_smooth'):
             check([positive_int(require(parent, prefix + grid).get('nr' + str(i))) for i in (1, 2, 3)] == [48]*3,
                   'Native hard/smooth FFT must be explicitly 48 cubed')
@@ -244,7 +259,7 @@ def parse_si_qe(xml_path, stdout, stderr, *, kind, case, process_exit_code):
         check(bool(mtokens), 'Missing native chemical potential')
         fields['fermi'] = text_consistency(mu, mtokens[-1], 'eV', 1e-10)
         energy = {'internal_ha': f-demet, 'free_ha': f, 'minus_TS_ha': demet,
-                  'entropy_dimensionless': -demet/.001, 'native_components_ha': native,
+                  'entropy_dimensionless': -demet/tau, 'native_components_ha': native,
                   'native_stdout': fields, 'convention': 'Native F=etot; E=F-demet; no constant correction'}
         iteration_matches = list(re.finditer(r'iteration\s*#\s*(\d+)', stdout, re.I))
         for i, m in enumerate(iteration_matches):
@@ -262,9 +277,9 @@ def parse_si_qe(xml_path, stdout, stderr, *, kind, case, process_exit_code):
         mnode = bands.find('fermi_energy')
         mu = None if mnode is None else finite(mnode.text or '')
         scf_record = None
-    result = {'schema_version': 1, 'case': CASE, 'kind': kind, 'code': 'QE', 'execution_status': 'PASS',
+    result = {'schema_version': 1, 'case': case['case'], 'kind': kind, 'code': 'QE', 'execution_status': 'PASS',
               'process_exit_code': 0, 'input_comparability_status': 'PASS', 'physical_operator': 'full_soc',
-              'n_electrons': 8, 'n_bands': 24, 'occupation_capacity': 1, 'temperature_ha': .001,
+              'n_electrons': 8, 'n_bands': 24, 'occupation_capacity': 1, 'temperature_ha': tau,
               'pseudo_sha256': pseudo['sha256'], 'nlcc': True, 'z_valence': 4, 'n_atoms': 2,
               'xc': 'PBE', 'fft_grid': [48]*3, 'lattice_vectors_bohr': lattice, 'positions_fractional': positions,
               'kpoints': [points[i] for i in order], 'requested_to_xml_indices': order,
@@ -276,6 +291,9 @@ def parse_si_qe(xml_path, stdout, stderr, *, kind, case, process_exit_code):
               'eigensolver_status': 'EIGENSOLVER_REVIEW_REQUIRED' if warning['eigenvalues_not_converged'] else 'REPORTED_THRESHOLD_AVAILABLE',
               'raw_sha256': {'xml': hashlib.sha256(Path(xml_path).read_bytes()).hexdigest(),
                              'stdout': hashlib.sha256(stdout.encode()).hexdigest(), 'stderr': hashlib.sha256(stderr.encode()).hexdigest()}}
+    if sensitivity:
+        result.update(sensitivity_profile=case['sensitivity_profile'], case_sha256=case['case_sha256'],
+                      cutoffs=dict(case['cutoffs']), requested_kpoint_count=len(expected_points))
     json.dumps(result, allow_nan=False)
     return result
 
@@ -337,12 +355,13 @@ def _receipt(receipt, label, case, null=False):
     return points
 
 
-def _fd_diagnostic(levels, mu):
+def _fd_diagnostic(levels, mu, tau=.001):
     # Evaluate the declared FD function at the existing SCF chemical potential;
     # no electron constraint is solved on the diagnostic probe point set.
+    check(number(tau) > 0, 'FD diagnostic temperature must be finite and positive')
     result = []
     for value in levels:
-        x = (value-mu)/.001
+        x = (value-mu)/tau
         e = math.exp(-abs(x))
         result.append(e/(1+e) if x >= 0 else 1/(1+e))
     return result
