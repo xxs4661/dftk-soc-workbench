@@ -169,8 +169,11 @@ execution commit and successful static receipt; `run_si_qe.py` records the two
 QE slots or a read-only build identity query. Select the existing frozen depot
 for the DFTK launcher; QE uses its unchanged original launcher environment.
 Both require new ignored output directories and refuse duplicate formal slots.
-`python3 scripts/check_si_soc.py` replays only published spectral statistics and
-historical boundaries; no solver. See [case/results](../results/si-soc-splitting/README.md).
+`check_si_soc_status.py --source-root <fixed-historical-snapshot>` adds version2
+status semantics over the unchanged `si_soc_comparison.py`. The old
+`check_si_soc.py` runs only at fixed61cb1c2 because its hashes bind old docs.
+[Current commands and exit contract](../results/si-soc-splitting/status-correction/README.md)
+include default validation and `--require-manifold-pass`; no solver.
 
 Phase8A completed the five-slot matrix with exits0. Public Si-only replay uses
 standard-library Python and neither `.work`, UPF, Julia nor QE. It authenticates

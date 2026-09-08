@@ -1,5 +1,9 @@
 # Phase 8A — Si SOC splitting and fixed-density control
 
+[Current version 2 status and replay](status-correction/README.md) qualify the
+old structural machine field: occupation and full manifold prerequisites remain
+REVIEW_REQUIRED. The numerical report below is historical and unchanged.
+
 **Five prescribed numerical slots executed once, all worker/recorder exits 0.**
 The fixed-window splitting comparison and spin-trace control meet the predeclared
 engineering gates. **Scientific and physical manifold interpretation remain
@@ -165,7 +169,8 @@ Phase7G CI or full upstream suite was rerun; historical R FAIL/I PASS is unchang
 cache/log-lock issues, sandbox MPI startup, the corrected driver syntax defect
 and recorder negative-test failure. None was a retried formal numerical attempt.
 
-Public-only entry: `python3 scripts/check_si_soc.py` from repository root.
+Historical public-only entry: `python3 scripts/check_si_soc.py` from the fixed
+61cb1c2 snapshot root; use the [current replay instructions](status-correction/README.md).
 It authenticates public bytes, replays spectral statistics under the declared
 floating contract and checks all383 historical files against the accepted base.
 Both the current worktree and a fresh public-only clone passed (exit0), with

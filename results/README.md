@@ -1,6 +1,6 @@
 # Scientific evidence
 
-- [Phase 8A: Si SOC splitting](si-soc-splitting/README.md) — five slots PASS/0; D/Q Δ=47.4576152/47.4576124 meV, same-density null restores near-sixfold Γ structure. Fixed-case numerical gates pass; occupation diagnostic, QE warnings and physical interpretation remain REVIEW_REQUIRED. Public replay: `python3 scripts/check_si_soc.py`.
+- [Phase 8A: Si SOC splitting](si-soc-splitting/README.md) — five slots PASS/0; D/Q Δ=47.4576152/47.4576124 meV, same-density null restores near-sixfold Γ structure. Fixed-window structure, splitting and null gates pass; occupation diagnostic, QE warnings and physical interpretation remain REVIEW_REQUIRED. [Current semantics/replay](si-soc-splitting/status-correction/README.md): complete manifold prerequisites REVIEW_REQUIRED; original checker runs at the fixed historical commit.
 
 - [Phase 7G: Linux public replay](mg-soc-public-replay/linux/README.md) — **I PASS/0, R FAIL/1**, CI failure; two predeclared density hashes, 380 I gates and 47 Linux synthetic tests PASS. [Initial authorization block](mg-soc-public-replay/README.md) preserved.
 - [Phase 7F: original wavefunctions, kinetic and frozen nonlocal audit](mg-soc-wavefunction-energy/README.md) — full Q coefficient replay, A/B scalar/projection checks; [review](phase7f-review.md).

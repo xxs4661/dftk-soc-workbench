@@ -31,7 +31,7 @@ historical `REVIEW_REQUIRED` fields remain unchanged.
 | QE reconstructed local ionic potential | [Same-build P2/P0, complete fields, all-node registration and signed local ledger](../results/mg-soc-qe-local-potential/README.md). Both pp calls PASS; 64000 nodes/17 modes register. | P2 mean supports tagged G=0; A local response/shape/G0 = +0.213945/+0.115610/+0.453635 meV, remaining O = −0.068909 meV. Historical memory/tab_vloc NOT_EXTRACTED; independent T/NL NOT_AVAILABLE. Attribution PARTIALLY_QUANTIFIED, review REVIEW_REQUIRED, IEEE NOT_LOCALIZED. |
 | Original G40/A/B orbital and energy audit | [Complete Q spinors, density/direct T and frozen FR expectation](../results/mg-soc-wavefunction-energy/README.md). All finite representation and same-source gates PASS; 3 density-independent FR blocks, no new electronic solve. | A response −0.068920107 meV/cell; J +0.000011267 meV/cell within print halfwidth0.000520741. Q expectation uses DFTK FR, independent native QE NL NOT_MEASURED. Original H[n_in] residual NOT_AVAILABLE; A/B X extraction RUNNER_REPORTED, public scalar/projection sums replayable. No newly identified scientific implementation bug; REVIEW_REQUIRED. |
 | Phase 7G public cross-environment replay | [First Linux x86_64 public R/I run](../results/mg-soc-public-replay/linux/README.md): 59 inputs/45 members/3 whole-WFC identities, 47 synthetic tests and 380 I gates PASS. | **I PASS/0; R FAIL/1; CI failure**. Two predeclared derived-density hash mismatches; all 122 numeric deltas meet the unchanged old close. A/B SCALAR_AND_PROJECTED_ONLY; native QE NL NOT_MEASURED, convergence NOT_ESTABLISHED, interpretation REVIEW_REQUIRED. |
-| Si crystal SOC splitting | [Five prescribed slots PASS/0; actual s/p/d, two atoms and NLCC](../results/si-soc-splitting/README.md). D/Q Δ=47.4576152/47.4576124 meV, difference2.7336e-9 eV; null six-width1.6276e-12 eV. 2427 current workbench assertions PASS. | Structural/splitting/null/TR gates pass; extra Γ occupation diagnostic and physical manifold interpretation **REVIEW_REQUIRED**. SCF eigensolver/IEEE warnings retained; no irreps or continuous band tracking, convergence **NOT_ESTABLISHED**, native QE NL **NOT_MEASURED**. |
+| Si crystal SOC splitting | [Five prescribed slots PASS/0; actual s/p/d, two atoms and NLCC](../results/si-soc-splitting/README.md). D/Q Δ=47.4576152/47.4576124 meV, difference2.7336e-9 eV; null six-width1.6276e-12 eV. 2427 historical Phase 8A workbench assertions PASS. | Structural/splitting/null/TR gates pass; [Version 2](../results/si-soc-splitting/status-correction/README.md): Γ occupation, complete measured manifold prerequisites and physical interpretation **REVIEW_REQUIRED**. SCF eigensolver/IEEE warnings retained; no irreps or continuous band tracking, convergence **NOT_ESTABLISHED**, native QE NL **NOT_MEASURED**. |
 | Noncollinear magnetic XC | **NOT_IMPLEMENTED** | Charge-only closure does not validate magnetic XC. |
 | Physical cutoff/k/temperature convergence | **NOT_ESTABLISHED** | Limited scalar sensitivity and prescribed Mg cases do not establish converged material predictions. |
 | Upstream native support / architecture acceptance | **NOT_IMPLEMENTED_BY_THIS_WORKBENCH** / **NOT_ESTABLISHED** | Neither core checkout changed; no maintainer endorsement implied. [Open architectural questions](soc-upstream-risks.md). |
@@ -84,8 +84,11 @@ Phase 7F complete Q coefficients supersede the generic private-orbital limitatio
 for the explicitly bound original G40 three-k/24-state package. All prior evidence
 keeps its original scope; physical convergence and IEEE localization remain open.
 
-Phase 8A public replay is `python3 scripts/check_si_soc.py`. It recomputes saved
-spectral statistics, authenticates bytes and preserves historical boundaries;
+The [current Si status entry](../results/si-soc-splitting/status-correction/README.md)
+is `check_si_soc_status.py --source-root <fixed-historical-snapshot>`. It reuses
+original arithmetic and runs `check_si_soc.py` only at fixed commit61cb1c2;
+updated navigation is checked separately. Default semantic validation and strict
+measured-manifold acceptance have different exit semantics;
 density/Gram/residual/operator/core measurements remain RUNNER_REPORTED.
 The same-density null is not a scalar-UPF SCF. No Mg SCF, Phase7G CI or full
 upstream suite was rerun; historical R FAIL/I PASS is unchanged.

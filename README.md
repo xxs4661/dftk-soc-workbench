@@ -6,11 +6,14 @@ spinors and spin–orbit coupling on top of a frozen DFTK environment.
 Phase 8A [Si SOC splitting](results/si-soc-splitting/README.md) completed its
 five prescribed slots once each: D/Q Γ splits **47.4576152 / 47.4576124 meV**,
 difference **2.7336e-9 eV**; same-density spin-trace six-state width **1.6276e-12 eV**.
-The fixed-case numerical gates pass. Physical manifold/scientific interpretation
+The fixed-window structure, splitting and null gates pass. Physical manifold/scientific interpretation
 remains **REVIEW_REQUIRED**: extra occupation-saturation diagnostic unmet, QE SCF
 eigensolver warnings and IEEE flags retained, physical convergence not established.
-All 2427 current workbench test assertions pass. Public-only replay:
-`python3 scripts/check_si_soc.py`. No additional calculation is started.
+The 2427 Phase 8A assertions are historical. [Version 2 status semantics and
+public replay](results/si-soc-splitting/status-correction/README.md) separate
+fixed-window PASS from occupation and complete manifold prerequisites
+**REVIEW_REQUIRED**. The old checker requires the fixed historical snapshot.
+No additional physical calculation is started.
 
 Phase 7G [Linux public replay](results/mg-soc-public-replay/linux/README.md)
 completed: **I PASS / exit 0**, all 380 numerical gates; **R FAIL / exit 1**
