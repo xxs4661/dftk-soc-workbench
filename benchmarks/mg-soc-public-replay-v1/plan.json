@@ -1,0 +1,490 @@
+{
+  "schema_version": 1,
+  "phase": "7G",
+  "case": "mg-soc-public-replay-v1",
+  "repository": "xxs4661/dftk-soc-workbench",
+  "input_commit": "747d7d3e21dadd8a5fef0183d2375e7f1f82c176",
+  "branch": "codex/phase7g-public-cross-env-replay",
+  "created_utc": "2026-09-08T11:44:44.331954+00:00",
+  "physical": {
+    "lattice_vectors_bohr": [
+      [
+        10.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        10.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        10.0
+      ]
+    ],
+    "volume_bohr3": 1000.0,
+    "atoms": 1,
+    "element": "Mg",
+    "position_fractional": [
+      0.17,
+      0.23,
+      0.31
+    ],
+    "expected_electrons": 10.0,
+    "functionals": [
+      "gga_x_pbe_sol",
+      "gga_c_pbe_sol"
+    ],
+    "nlcc": false,
+    "ecut_ha": 15.0,
+    "fft_size": [
+      40,
+      40,
+      40
+    ],
+    "tau_ha": 0.001,
+    "kpoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.125,
+        0.0625,
+        -0.1875
+      ],
+      [
+        -0.125,
+        -0.0625,
+        0.1875
+      ]
+    ],
+    "kweights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "charge_spin_components": 1,
+    "target_states": 24,
+    "n_states": 24,
+    "occupation_capacity": 1,
+    "pseudopotential_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256"
+  },
+  "direct_fourier_miller_points": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      -1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      -1
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      -1,
+      -2,
+      -3
+    ],
+    [
+      2,
+      -1,
+      3
+    ],
+    [
+      -2,
+      1,
+      -3
+    ],
+    [
+      3,
+      2,
+      -1
+    ],
+    [
+      -3,
+      -2,
+      1
+    ],
+    [
+      7,
+      -5,
+      4
+    ],
+    [
+      -7,
+      5,
+      -4
+    ],
+    [
+      17,
+      0,
+      0
+    ],
+    [
+      -17,
+      0,
+      0
+    ]
+  ],
+  "input_sha256": {
+    "benchmarks/mg-soc-density-hartree-v1/plan.json": "7f1d157de21c89046f4257c1a391432d0e970625b037d444b330521e9d91b428",
+    "benchmarks/mg-soc-density-hartree-v1/source-conventions.md": "460be8197887f900af64bd0d334aa51885554ab64b24c1cd6bc27de603a5e59a",
+    "benchmarks/mg-soc-energy-reference-v1/plan.json": "bc05068d22cc0e409f75d3cb403fdfbca72ce47d88426eac4d957c2e623c0687",
+    "benchmarks/mg-soc-fermi/parameters.json": "560ce58d1906b344b4ae9db82d52abb44026c4c23d23a3eb895580dbf5252f8e",
+    "benchmarks/mg-soc-qe-diagnostics-v1/G40.in": "793d30bc6c0f3ee214ca8f6cc8ed0aa88a879ffc4284536ccf7e8584287b1677",
+    "benchmarks/mg-soc-qe-local-potential-v1/plan.json": "ea225f5eed7e691450e45e3801fc81dd6c2e5db174e1daaf9cdcf5055aad5c37",
+    "benchmarks/mg-soc-qe-v1/case.json": "d6909ab6fc42aebab68486959df974ee9301b0dafa75b3d6a2bbe5304c9ef3c4",
+    "benchmarks/mg-soc-wavefunction-energy-v1/plan.json": "8cdbd0303e2900152a96cfc1ac38477b041b7a61dfdf666072c435c055efbb6a",
+    "config/sources.lock": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "environment/workbench/Manifest.toml": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "environment/workbench/Project.toml": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "environment/workbench/checksums.toml": "3a0cb9974084e96224a77baf167ed653bf4e435714dbc6c8a0578ac84006f180",
+    "prototypes/relativistic/RelativisticProjectors.jl": "c24c2382e5bb112bc428fd59ce1995e6470caa25e657030f67aefa34d45b5de5",
+    "prototypes/relativistic/angular.jl": "1428a4a6a50f9f68cfa0f099827d0a606cceab1d7d72be4247062bf41fe2eb63",
+    "prototypes/relativistic/channels.jl": "15950a9168504dac483bcdc9c588e9db0555ea547f77b34163a491d07ba0bb10",
+    "prototypes/relativistic/operator.jl": "b7d8ac06984de7ae3485fa70b9243fcd3c074804dc7343d172c5c0295472ca5c",
+    "prototypes/relativistic/probe_checks.jl": "1ba37ea0d145d4d2d5c1c2cf333440363d17a1e32e09c9edd18a7e983aeb8556",
+    "prototypes/relativistic/radial.jl": "2384619bc8fcd437fd455e7f13442cfe1e2f88dbd2eeda94cf02a134f9d3c292",
+    "results/mg-soc-density-hartree/comparison.json": "eef425149d63aafa6b1996b50ead09c8fcbfd8edd148130ca9256c1e1bfb0c38",
+    "results/mg-soc-density-hartree/dftk-nout.csv.gz": "5a395b2d7312bc42a81bc7fcfa03ecad41ec7d71b8d9295eb1d1a5912d4e298a",
+    "results/mg-soc-density-hartree/evidence.json": "8dc5d15e512ed1a3923b51ade2690db6ce9201876f77e2549ab7c4e486daa084",
+    "results/mg-soc-density-hartree/qe-rho.csv.gz": "b3985df7971c2ecd0c8f94afd6a86cabbfa6fcad27894f0666d71c71382a6568",
+    "results/mg-soc-energy-reference/common-terms.json": "238340ab5b7dd2885260f13d38f1bfc8874fd83aa510de2cc713bee3587064ce",
+    "results/mg-soc-energy-reference/comparison.json": "7a151d4f76ab91a42276ef528eb5dd24b4359623e96d38e5b355370d97a0a865",
+    "results/mg-soc-energy-reference/evidence.json": "bf11084b145793f250cbc3cd7d7eeb9bdb8fb0f2e417edebac3b6f5e8343aed5",
+    "results/mg-soc-energy-reference/ledger.json": "ccce1790aceac94437e50fd4eef29434aecd764e593b35160fe4553af0fa951b",
+    "results/mg-soc-energy-reference/local-g0.json": "7a1f75c0e6ccb723ad390f20344e21769d044b8fc543f5a6ebdcfae7cb724300",
+    "results/mg-soc-qe-diagnostics/G40/qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "results/mg-soc-qe-diagnostics/G40/qe.stdout": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+    "results/mg-soc-qe-diagnostics/G40/qe.xml": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+    "results/mg-soc-qe-diagnostics/canonical.json": "549023435154cdedd1bd568e649f4935455f7c1478638b0fa9dd74d300d58551",
+    "results/mg-soc-qe-diagnostics/evidence.json": "12782022024f1e00fb9a834863685ffab871dadd1b8fbeec5617d2021fc287c2",
+    "results/mg-soc-qe-local-potential/P2/local-ionic.pp.gz": "f24d3084238019b5a4dd95147a9bd82ca997aa3114d89624db91cb9a7ff50d8c",
+    "results/mg-soc-qe-local-potential/comparison.json": "f93c78a88e6d8cbb7a2dc421b405c23bbff928a77853656874efb517575eb4b3",
+    "results/mg-soc-qe-local-potential/evidence.json": "9ab512079b0dce0d2f871a06a829e22f33d229913ffea4a511c35404121cc13a",
+    "results/mg-soc-qe-local-potential/potentials.csv.gz": "18c3e3f6fa9e986fcea1214672d287b8413c70e24d7425ed92ef34976829020b",
+    "results/mg-soc-qe-local-potential/saved-field-receipt.json": "7cbd64f765d157fb28175e9d98b9eee2f8d9b7ed99f4aa98a99dd9d5cd025388",
+    "results/mg-soc-scf/A/endpoint.json": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+    "results/mg-soc-scf/B/endpoint.json": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+    "results/mg-soc-scf/evidence.json": "437e2424d8ce7d8d11b5732b7b52815910853d7d43307215b5fbc466e321e243",
+    "results/mg-soc-wavefunction-energy/comparison.json": "e51568ff61ebe57447bf30e314bd7dffdc65a4d8458984171f35bfaf20e59f36",
+    "results/mg-soc-wavefunction-energy/evidence.json": "beae6676820ac9794cbf88ec6414175e5075a5c3f9d13ed5dce68cc31a175969",
+    "results/mg-soc-wavefunction-energy/execution.json": "e4e037c67140e88b1c26265e77d13e8236279fdd1e26c80861461be6a3c11603",
+    "results/mg-soc-wavefunction-energy/nonlocal-checks.json": "12178ffd8142737b5088deea02c46c2453581443011b72149a1af208f4fbe3d2",
+    "results/mg-soc-wavefunction-energy/nonlocal-operator.npz": "1b94546291385c269328107c46d9c68ba2d1c1cefb397d694b97918af953d662",
+    "results/mg-soc-wavefunction-energy/qe-orbitals.npz": "1273abb0a6781ae1e743cc01141aca90ba81a9f84d2f492fc382622a88ffec8e",
+    "results/mg-soc-wavefunction-energy/state-checks.json": "ddeaf6faac22510293f9d8503afbcc76e337c882e4713458fb0eff5e6c815b1a",
+    "scripts/audit_orbital_kinetics.py": "ce29ad6437ba6c246a3401d928fd11068ec53128dc6449905723131c41790155",
+    "scripts/check_orbital_energy.py": "469c9d2ddf069406bf18f6a2b6c776d2124b2631e9e62b4bea5366ad4e7b781e",
+    "scripts/compare_density_hartree.py": "c7794d94f2842553fead6ee3baf784a1eb53b63603a034a4508619e3059836d9",
+    "scripts/compare_orbital_energy.py": "94775976d9ddf69506f8488673124904704127bfa83f885d2d8cd757fbb573d9",
+    "scripts/compare_qe_local_potential.py": "dab08e8d708a6de2eb464c32653a3bc2cb30bc64b2789218f0d8c842acaae42f",
+    "scripts/extract_orbital_nonlocal.jl": "b9df291c9a7487eadd588c719ccb4c2f5636cd621efa7e0ce55ad163c3ce3363",
+    "scripts/extract_soc_density.jl": "bacb2f32ea8e80d1783369cca7c1b6fc78087647b8335c5132f74c9710d30fc8",
+    "scripts/orbital_evidence.py": "57d2d6e9b0e0201922eac768622529d6bee5a984197bd853e9ab64a16fd10721",
+    "scripts/parse_qe_filplot.py": "b29bcf0efc3acd66519ee8be09d0217a0be1a341125f9f58d7fb1756d154ff6c",
+    "scripts/parse_qe_wavefunction.py": "c974d35582e217a65b52c3acadfce2ee5c53cdffde41f9eabcf03ea1b1269c75",
+    "scripts/replay_qe_local_fields.py": "7d2738fd8c899328e3e5e1afc4cb546fa36044f18023dc51e6d89bbfa78028e7",
+    "scripts/run_orbital_energy_audit.py": "7ffd79112e52105470929f85132ccf5aaad1a8ae1afdeec55ddefcd9dcc49a82"
+  },
+  "input_bytes": {
+    "benchmarks/mg-soc-density-hartree-v1/plan.json": 7925,
+    "benchmarks/mg-soc-density-hartree-v1/source-conventions.md": 4280,
+    "benchmarks/mg-soc-energy-reference-v1/plan.json": 13911,
+    "benchmarks/mg-soc-fermi/parameters.json": 2477,
+    "benchmarks/mg-soc-qe-diagnostics-v1/G40.in": 988,
+    "benchmarks/mg-soc-qe-local-potential-v1/plan.json": 18503,
+    "benchmarks/mg-soc-qe-v1/case.json": 4638,
+    "benchmarks/mg-soc-wavefunction-energy-v1/plan.json": 46024,
+    "config/sources.lock": 3468,
+    "environment/workbench/Manifest.toml": 44517,
+    "environment/workbench/Project.toml": 341,
+    "environment/workbench/checksums.toml": 257,
+    "prototypes/relativistic/RelativisticProjectors.jl": 643,
+    "prototypes/relativistic/angular.jl": 4678,
+    "prototypes/relativistic/channels.jl": 9110,
+    "prototypes/relativistic/operator.jl": 8425,
+    "prototypes/relativistic/probe_checks.jl": 13663,
+    "prototypes/relativistic/radial.jl": 2878,
+    "results/mg-soc-density-hartree/comparison.json": 44681,
+    "results/mg-soc-density-hartree/dftk-nout.csv.gz": 2377865,
+    "results/mg-soc-density-hartree/evidence.json": 53976,
+    "results/mg-soc-density-hartree/qe-rho.csv.gz": 493611,
+    "results/mg-soc-energy-reference/common-terms.json": 67188,
+    "results/mg-soc-energy-reference/comparison.json": 5143,
+    "results/mg-soc-energy-reference/evidence.json": 13679,
+    "results/mg-soc-energy-reference/ledger.json": 54846,
+    "results/mg-soc-energy-reference/local-g0.json": 7023,
+    "results/mg-soc-qe-diagnostics/G40/qe.stderr": 119,
+    "results/mg-soc-qe-diagnostics/G40/qe.stdout": 20846,
+    "results/mg-soc-qe-diagnostics/G40/qe.xml": 42675,
+    "results/mg-soc-qe-diagnostics/canonical.json": 105512,
+    "results/mg-soc-qe-diagnostics/evidence.json": 48254,
+    "results/mg-soc-qe-local-potential/P2/local-ionic.pp.gz": 299074,
+    "results/mg-soc-qe-local-potential/comparison.json": 44897,
+    "results/mg-soc-qe-local-potential/evidence.json": 9593,
+    "results/mg-soc-qe-local-potential/potentials.csv.gz": 2633007,
+    "results/mg-soc-qe-local-potential/saved-field-receipt.json": 18339,
+    "results/mg-soc-scf/A/endpoint.json": 26994,
+    "results/mg-soc-scf/B/endpoint.json": 26992,
+    "results/mg-soc-scf/evidence.json": 30583,
+    "results/mg-soc-wavefunction-energy/comparison.json": 8918,
+    "results/mg-soc-wavefunction-energy/evidence.json": 52079,
+    "results/mg-soc-wavefunction-energy/execution.json": 1997,
+    "results/mg-soc-wavefunction-energy/nonlocal-checks.json": 176135,
+    "results/mg-soc-wavefunction-energy/nonlocal-operator.npz": 2467249,
+    "results/mg-soc-wavefunction-energy/qe-orbitals.npz": 6171082,
+    "results/mg-soc-wavefunction-energy/state-checks.json": 159088,
+    "scripts/audit_orbital_kinetics.py": 21458,
+    "scripts/check_orbital_energy.py": 18918,
+    "scripts/compare_density_hartree.py": 28880,
+    "scripts/compare_orbital_energy.py": 19363,
+    "scripts/compare_qe_local_potential.py": 20418,
+    "scripts/extract_orbital_nonlocal.jl": 24685,
+    "scripts/extract_soc_density.jl": 20229,
+    "scripts/orbital_evidence.py": 16944,
+    "scripts/parse_qe_filplot.py": 13838,
+    "scripts/parse_qe_wavefunction.py": 13305,
+    "scripts/replay_qe_local_fields.py": 15110,
+    "scripts/run_orbital_energy_audit.py": 15170
+  },
+  "input_scope": "59 exact public files required by frozen R including hash-only historical dependencies; no private pointer dereference",
+  "environment": {
+    "os": "Linux",
+    "architecture": "x86_64",
+    "runner": "ubuntu-24.04",
+    "python_version": "3.12.14",
+    "numpy_version": "2.3.5",
+    "numpy_wheel": {
+      "filename": "numpy-2.3.5-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/b6/23/2a1b231b8ff672b4c450dac27164a8b2ca7d9b7144f9c02d2396518352eb/numpy-2.3.5-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "digests": {
+        "blake2b_256": "b6232a1b231b8ff672b4c450dac27164a8b2ca7d9b7144f9c02d2396518352eb",
+        "md5": "de782dd125ea5f41fca0290526dcac03",
+        "sha256": "0d8163f43acde9a73c2a33605353a4f1bc4798745a8b1d73183b28e5b435ae28"
+      },
+      "size": 16606086,
+      "packagetype": "bdist_wheel"
+    },
+    "available_official_python_build": {
+      "assets": [
+        {
+          "browser_download_url": "https://github.com/actions/python-versions/releases/download/3.12.14-31661455385/python-3.12.14-linux-24.04-x64.tar.gz",
+          "digest": "sha256:5a03168292516f6dd6dcf630f4bf5369b108abd7c699a7e1db37f1e622257fff",
+          "name": "python-3.12.14-linux-24.04-x64.tar.gz",
+          "size": 95088884
+        }
+      ],
+      "html_url": "https://github.com/actions/python-versions/releases/tag/3.12.14-31661455385",
+      "tag_name": "3.12.14-31661455385"
+    },
+    "python_build_policy": "setup-python exact version; actual sys.version/build/compiler/executable/package/shared-library hashes recorded, do not infer installed asset solely from available release",
+    "thread_environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "user_site_packages": false,
+    "bytecode_writes": false,
+    "network": "Only checkout, fixed dependency preparation and artifact upload; numerical processes make no network calls; no OS-level network isolation claim unless actually enforced"
+  },
+  "actions": {
+    "actions/checkout": {
+      "ref_resolved": "v6",
+      "sha": "d23441a48e516b6c34aea4fa41551a30e30af803",
+      "url": "https://github.com/actions/checkout/commit/d23441a48e516b6c34aea4fa41551a30e30af803",
+      "date": "2026-07-16T19:43:33Z"
+    },
+    "actions/setup-python": {
+      "ref_resolved": "v6",
+      "sha": "ece7cb06caefa5fff74198d8649806c4678c61a1",
+      "url": "https://github.com/actions/setup-python/commit/ece7cb06caefa5fff74198d8649806c4678c61a1",
+      "date": "2026-06-23T18:01:57Z"
+    },
+    "actions/upload-artifact": {
+      "ref_resolved": "v4",
+      "sha": "ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "url": "https://github.com/actions/upload-artifact/commit/ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "date": "2025-03-19T17:34:59Z"
+    }
+  },
+  "preflight": {
+    "repository": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "xxs4661/dftk-soc-workbench",
+      "permissions": {
+        "admin": true,
+        "maintain": true,
+        "pull": true,
+        "push": true,
+        "triage": true
+      },
+      "private": false,
+      "visibility": "public"
+    },
+    "actions": {
+      "enabled": true,
+      "allowed_actions": "all",
+      "sha_pinning_required": false
+    },
+    "remote_main_before": "77bd2e151116bcc189b797e6da415d27a61d3a2b"
+  },
+  "thresholds": {
+    "geometry_abs": 1e-12,
+    "cutoff_slack_ha": 1e-10,
+    "norm_abs": 1e-09,
+    "gram_frobenius": 1e-09,
+    "electron_abs": 1e-08,
+    "density_coefficient_max_abs": 1e-10,
+    "density_nonzero_relative_l2": 1e-09,
+    "correlation_abs": 1e-11,
+    "kinetic_abs_ha": 1e-09,
+    "nonlocal_abs_ha": 1e-09,
+    "AB_scalar_projected_abs_ha": 1e-09,
+    "local_ledger_abs_ha": 1e-10,
+    "J_print_relative": 1e-10,
+    "J_print_absolute_floor_ha": 1e-22,
+    "imaginary_density_abs": 1e-12,
+    "imaginary_density_relative": 1e-12,
+    "synthetic_abs": 1e-12
+  },
+  "platform_field_contract": {
+    "candidates": [
+      {
+        "path": "state-checks.Q.backend.numpy_version",
+        "historical_value": "2.3.5",
+        "class": "ENVIRONMENT_METADATA_STRING",
+        "generation": "audit_orbital_kinetics.py:304 reads np.__version__",
+        "comparison": "check_orbital_energy.py:212 close; leaf exact equality; failure occurs before nonlocal_replay/evaluate_comparison",
+        "note": "Pinned 2.3.5 should match. Different actual version also violates Phase7G environment lock; string classification alone cannot excuse that."
+      },
+      {
+        "path": "comparison.local_state.field_fingerprints.n_wfc",
+        "historical_value": "9f34eb4b8ff1672f9703b55453477f7789f6f18645cdbdb389dcc9c5eb5496f0",
+        "class": "RECOMPUTED_FFT_DENSITY_BYTES",
+        "generation": "evaluate_orbitals: inverse FFT of c then spin/band sums; local compare SHA256 of float64 n_wfc.tobytes() in physical first-index-fast node order",
+        "comparison": "check_orbital_energy.py:216 close; exact hash string equality; comparison calculations completed before this strict comparison"
+      },
+      {
+        "path": "comparison.local_state.field_fingerprints.n_saved",
+        "historical_value": "780de08d2145ee849736ac5492d7d202a83c125aaa4b3d97fa7d700edcbc7400",
+        "class": "RECOMPUTED_FFT_DENSITY_BYTES",
+        "generation": "replay_qe_local_fields.coefficients_to_field: complex128 workspace populated from all saved QE rho coefficients; ifftn*Ngrid, imaginary gate then real copy and F-node flatten; float64 .tobytes() hash",
+        "comparison": "check_orbital_energy.py:216 close; exact hash string equality; could be masked by earlier n_wfc mismatch"
+      }
+    ],
+    "exact_nonexempt_fields": {
+      "P2_field_hashes": {
+        "comparison.local_state.field_fingerprints.V_Qpp": "48db91863aad7f7f08da4de9a8f49b3daa32eb47b0377e5d741c82535449b54c",
+        "comparison.local_state.field_fingerprints.uV": "5703201abd0facec73b01592ed47bacab3cdcc0d2e6d03dae4b42d3ed171aa9a"
+      },
+      "P2_reason": "parse_qe_filplot.py:245-247 converts identical Decimal native token and Decimal halfwidth times exact Decimal 0.5 to float64; physical token selection/units and their hashes remain exact under the fixed CPython/NumPy little-endian contract",
+      "patterns": [
+        "state-checks.Q.input_array_fingerprints.*.(sha256|shape|dtype)",
+        "Q_source_metadata.xml.native_tokens.*",
+        "Q_source_metadata.xml.source_xml_sha256",
+        "evidence/public_sha256/*",
+        "execution/code_sha256/*",
+        "plan/source_sha256/*",
+        "comparison.source_sha256.*",
+        "comparison.P2_source.source_sha256",
+        "comparison.P2_source.stored_sha256",
+        "all original WFC whole-file/header/Miller/coefficient hashes and byte counts",
+        "all npz container and declared expanded-byte hashes",
+        "semantic/status/unit/format strings and all exact integer state/G/support dimensions"
+      ]
+    },
+    "rules": [
+      "Only the three exact paths above are candidates. Never use a wildcard covering fingerprints, hashes, strings, statuses, or report subtrees.",
+      "A derived density hash mismatch may be explained only after complete exact input/WFC/member identity, exact support/dimensions/state/occupation/unit checks and every required numerical check succeed; R retains FAIL and its original nonzero returncode.",
+      "Missing/extra dictionary keys or list entries, semantic strings, state counts, units, PASS/FAIL/status changes, source hashes and original array bytes are not platform metadata.",
+      "Numerical report differences must all be recorded with original 1e-11 close tolerance and the separate Phase7G field-specific contract. A large substantive discrepancy cannot be waived as a string/hash issue.",
+      "Both historical derived density arrays are absent from public repository. Exact historical nodewise old/new difference norms cannot be inferred from hashes. Label them NOT_AVAILABLE and report current diagnostic vs independent path norms, original saved coefficient residuals and historical scalar deltas with their true comparison scopes."
+    ],
+    "historical_dense_comparison": "NOT_AVAILABLE: historical derived n_wfc/n_saved arrays are not public; do not infer node norms from hashes; compare this-run R versus I nodes plus saved coefficients and historical scalar deltas"
+  },
+  "R": {
+    "command": [
+      "python",
+      "scripts/check_orbital_energy.py"
+    ],
+    "source_root": "read-only detached input_commit worktree",
+    "full_phase7f": true,
+    "all_historical_chain": false,
+    "observer": "Separate disclosed read-only sys.setprofile return observer via R-only sitecustomize; no function replacement, input mutation, exception suppression or numerical re-execution; raw subprocess status retained. Capture errors reported separately.",
+    "status_rule": "Raw checker exit/status unchanged, including platform fingerprint failures"
+  },
+  "I": {
+    "independence": "New standard-library/NumPy reader and streamed formulas; no calls/copy of frozen parsers/density/T/NL/comparison helpers; no new projector generation",
+    "shared_components": [
+      "public input coefficients and P/D",
+      "NumPy2.3.5",
+      "possibly FFT/BLAS implementation"
+    ],
+    "expected_values": "Read only for comparison after independent implementation and synthetic tests; no fitted or hardcoded expected energies",
+    "AB_scope": "SCALAR_AND_PROJECTED_ONLY"
+  },
+  "execution_contract": {
+    "formal_runs": 1,
+    "maximum_engineering_retry": 1,
+    "numerical_failure": "Preserve and stop; no version or threshold scan",
+    "job_exit": "Any tests/R/I/observer/identity failure produces nonzero; always-upload success cannot hide it; I PASS never rewrites R FAIL",
+    "execution_commit": "Exact push head recorded by GitHub Actions; final docs/receipts may be a later unchanged-code delivery commit"
+  },
+  "prohibited": [
+    "private scientific inputs including .work/.agent-work/archives/UPF/checkpoints/save",
+    "SCF",
+    "eigensolve",
+    "occupation solve",
+    "QE/pp",
+    "Julia science",
+    "XC",
+    "P/D regeneration",
+    "scan",
+    "historical or frozen code/data mutation"
+  ],
+  "official_references": [
+    "https://docs.github.com/en/billing/concepts/product-billing/github-actions",
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow",
+    "https://numpy.org/doc/stable/reference/generated/numpy.load.html"
+  ]
+}
