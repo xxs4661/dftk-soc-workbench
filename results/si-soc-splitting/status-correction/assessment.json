@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "phase": "8A.1",
+  "run_id": "si-status-v2-20260908T161930Z",
+  "scope": "NEW_STATUS_ASSESSMENT_OF_HISTORICAL_PUBLIC_DATA; no new physics execution",
+  "platform": {
+    "python": "3.12.14",
+    "system": "macOS-26.6.2-arm64-arm-64bit",
+    "environment_install_or_change": false
+  },
+  "assessment": {
+    "semantics_version": 2,
+    "fixed_window_structure_status": "PASS",
+    "fixed_window_splitting_comparison_status": "PASS",
+    "spin_trace_control_status": "PASS",
+    "gamma_occupation_diagnostic_status": "REVIEW_REQUIRED",
+    "manifold_prerequisites_status": "REVIEW_REQUIRED",
+    "manifold_assignment_status": "MANIFOLD_ASSIGNMENT_REVIEW_REQUIRED",
+    "physical_manifold_interpretation": "REVIEW_REQUIRED",
+    "unmet_measured_prerequisites": [
+      "D_occupation",
+      "Q_occupation"
+    ],
+    "occupation_rule": {
+      "plan": "benchmarks/si-soc-splitting-v1/plan.json",
+      "indices_one_based": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "minimum_inclusive": 0.99999999,
+      "minimum_FD": {
+        "D": 0.99995952494121,
+        "Q": 0.9999595238092915
+      },
+      "scope": "FD function at each existing SCF global mu; no mu solve"
+    },
+    "key_numbers": {
+      "D_delta_so_ev": 0.04745761517555575,
+      "Q_delta_so_ev": 0.04745761244197689,
+      "D_minus_Q_delta_so_ev": 2.7335788632676383e-09,
+      "null_six_width_ev": 1.627601868839064e-12
+    },
+    "legacy": {
+      "manifold_assignment_status": "PASS",
+      "definition": "Historical v1 aggregate: window isolation and group widths only; excludes occupation"
+    },
+    "limits": {
+      "numerical_review_status": "REVIEW_REQUIRED",
+      "physical_convergence": "NOT_ESTABLISHED",
+      "band_crossing_between_sampled_probes": "NOT_MEASURED; no continuous-path or irrep tracking claimed",
+      "native_QE_NL_independent": "NOT_MEASURED",
+      "noncollinear_magnetic_XC": "NOT_IMPLEMENTED",
+      "space_group_irrep_assignment": "NOT_COMPUTED",
+      "warning_evidence": "results/si-soc-splitting/comparison.json#Q_warnings",
+      "array_measurements": "Original RUNNER_REPORTED scope unchanged"
+    },
+    "historical_input_commit": "61cb1c226dcfa8dbeccc63e8f43e33b2790a07c6",
+    "historical_physical_execution_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+    "semantic_execution_commit": "a03f91f56875a80e5b058fd86377ee0cd9317939",
+    "semantic_code_sha256": "226672c2aee629f071be5515e11b1b75a602501832e4d37b884617dc4bfad090",
+    "source_sha256": {
+      "benchmarks/si-soc-splitting-v1/plan.json": "9f3fcf577f0cbc7b7e432f92be2add76d8f8b8128877122d951d8e2d13936a89",
+      "benchmarks/si-soc-splitting-v1/case.json": "a04e20b22748462fef0f0eccee93cff5a616fa3e11aa6606018d11e40d2f8cac",
+      "benchmarks/si-soc-splitting-v1/source.json": "e88ec3d6f0f1407d4d6b7b75c0bcc8f04ed1536c9c1ea3a67e4e23232e5a55e3",
+      "benchmarks/si-soc-splitting-v1/replay-contract.json": "89d475b3561ff1ca91d21e320c5d2be4fdf9037a78ef78ca8a8db3f837b590c3",
+      "results/si-soc-splitting/evidence.json": "901c17499220bb78e92b2d735de0ee51652db2f2a66e5f18a650ec0b7cc6681a",
+      "results/si-soc-splitting/comparison.json": "d8bf9a475c805d1ed0d6610770f5c153d0390c5d01fa8119f5dd66ea49e7817e",
+      "results/si-soc-splitting/energy.json": "4cb9ddd108dd20a4a2f340903ff9fa723873c17f6bdbedfa0ac3f88220981eaa",
+      "results/si-soc-splitting/D-spectrum.json": "a286b1087e1ff776301ac826e4aeac3b7bdb1eb8cec2c0e141437e0402db0d41",
+      "results/si-soc-splitting/Q-spectrum.json": "93f5d681d196d25766a69ce94fdfcc049f28f52ee04fe4a98b4c428ab6f5fa0a",
+      "results/si-soc-splitting/D-null.json": "c891e32a6b0c0111ca8bbe29d40c27572ed0e437c28a0fd11db985e3b258c832",
+      "results/si-soc-splitting/D-SCF.json": "0860661c4383d80a6767981476cf8c3fa0f996d69e8e1174df39d0bed83e9ab2",
+      "results/si-soc-splitting/Q-SCF/qe-result.json": "6e48758483e522514719bf13efcf47be2ccfda317e00d2626563b9e0d645fc47"
+    },
+    "current_navigation_sha256": {
+      "README.md": "cabba912b73dacede8eeda636aa69aa4522147f72284b5b2f629e79386b1a688",
+      "benchmarks/si-soc-splitting-v1/README.md": "2d17e3275fdcf7c2a2924a524b9a1a25fc902bea58a494546b031977cfac46de",
+      "docs/status.md": "15c9906dc2e1e58739d2191c4583422d84e2aec8c4a132fa9cf0ce424d266763",
+      "results/README.md": "10af1065512325aeb0989c7965ac8df11abe508fc2c30fa43d63135e98acae10",
+      "results/si-soc-splitting/README.md": "21c2a50ea45143c0dfc7fff8ca358f9f9ff96cdc2444348b1a14272a8f0c49d4",
+      "scripts/README.md": "0f970e38778ea01c070be93c619195baa07e21bb0d92951fa952fd901322ba2e"
+    },
+    "historical_files_authenticated": 439,
+    "historical_replay_status": "PASS",
+    "historical_process": {
+      "exit_code": 0,
+      "stdout": "{\n  \"offline_status\": \"PASS\",\n  \"scope\": \"All public spectral statistics replayed; runner-reported arrays not independently resolved\",\n  \"splitting_comparison_status\": \"PASS\",\n  \"numerical_review_status\": \"REVIEW_REQUIRED\",\n  \"boundary\": {\n    \"status\": \"PASS\",\n    \"base_commit\": \"9342a5ea21a76acd0d74d228d4a2081394f702d0\",\n    \"historical_files_checked\": 383,\n    \"authorized_changes\": [\n      \"README.md\",\n      \"benchmarks/README.md\",\n      \"docs/status.md\",\n      \"prototypes/fr_integration/common_data.jl\",\n      \"prototypes/fr_integration/energy.jl\",\n      \"prototypes/fr_integration/hamiltonian.jl\",\n      \"prototypes/soc_scf/scf.jl\",\n      \"prototypes/soc_scf/solver.jl\",\n      \"results/README.md\",\n      \"scripts/README.md\"\n    ],\n    \"historical_upstream_results\": \"Unchanged; current static regressions are separate\"\n  }\n}\n",
+      "stderr": ""
+    },
+    "semantic_validation_status": "PASS",
+    "semantic_rules_sha256": "63847a9092add9352cc6a657138eddeb8276403f4e631915cf57d27a85ec8310"
+  },
+  "executed_checks": {
+    "tests-execution-commit": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T16:17:54.697287+00:00",
+      "finished_utc": "2026-09-08T16:17:54.884049+00:00",
+      "streams_sha256": {
+        "stdout": "80ca676277dd4e016eead75d3f0d056072cef637fa6eb65d23c529cfec1c15b6",
+        "stderr": "a0dac251c396987286897c83fdc7da4849a4095fe8c8cb59d13b476f3101243e"
+      }
+    },
+    "historical-original": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T16:18:02.140057+00:00",
+      "finished_utc": "2026-09-08T16:18:06.323559+00:00",
+      "streams_sha256": {
+        "stdout": "d2fee733aa4d21306539470cfb591b739985e5ac0639fe72bcfd72a62f0af9fb",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "semantics-default": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T16:18:14.978207+00:00",
+      "finished_utc": "2026-09-08T16:18:20.223616+00:00",
+      "streams_sha256": {
+        "stdout": "9910f4a7c52de1a61504c822c7b29d505650f5a75b6f8c948ca3e4cb0bb4a2ab",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "semantics-strict": {
+      "exit_code": 1,
+      "started_utc": "2026-09-08T16:18:29.781742+00:00",
+      "finished_utc": "2026-09-08T16:18:34.971481+00:00",
+      "streams_sha256": {
+        "stdout": "5d111d5aa67d3f327cc6c79fb4aec79bfe4e08ed52a413a76d1c038af2b23b42",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "record-roundtrip": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T16:19:30.672218+00:00",
+      "finished_utc": "2026-09-08T16:19:35.935826+00:00",
+      "streams_sha256": {
+        "stdout": "9910f4a7c52de1a61504c822c7b29d505650f5a75b6f8c948ca3e4cb0bb4a2ab",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "clean-source-record-replay": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T16:20:12.283985+00:00",
+      "finished_utc": "2026-09-08T16:20:17.546872+00:00",
+      "streams_sha256": {
+        "stdout": "9910f4a7c52de1a61504c822c7b29d505650f5a75b6f8c948ca3e4cb0bb4a2ab",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "cli-help": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T16:20:50.587779+00:00",
+      "finished_utc": "2026-09-08T16:20:50.617597+00:00",
+      "streams_sha256": {
+        "stdout": "4e9e4f6f4c9e334fc483a81deafce05c64986c7c50660861e5036588b046575d",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "cli-missing-source": {
+      "exit_code": 2,
+      "started_utc": "2026-09-08T16:20:50.591897+00:00",
+      "finished_utc": "2026-09-08T16:20:50.620704+00:00",
+      "streams_sha256": {
+        "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "6b711965766aa995252f13cd3f1792850b21ec6117850aa3cfa5134929d2de3d"
+      }
+    },
+    "diff-check": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T16:22:05.931135+00:00",
+      "finished_utc": "2026-09-08T16:22:05.943111+00:00",
+      "streams_sha256": {
+        "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "final-publication": {
+      "exit_code": 1,
+      "started_utc": "2026-09-08T16:23:31.040818+00:00",
+      "finished_utc": "2026-09-08T16:23:31.551024+00:00",
+      "streams_sha256": {
+        "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "2b6c2093ff9d0a6073d122429de8fed2df9a683f9e4b8d6ef64b0486d17df348"
+      }
+    },
+    "legacy-freeze-at-base": {
+      "exit_code": 1,
+      "started_utc": "2026-09-08T16:23:56.189542+00:00",
+      "finished_utc": "2026-09-08T16:23:56.213213+00:00",
+      "streams_sha256": {
+        "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "cacf0b43679701bc01b7ec6faed28c15e50da83ff5c50c5285a7195f89251671"
+      }
+    },
+    "final-current-boundary": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T16:24:21.025233+00:00",
+      "finished_utc": "2026-09-08T16:24:21.530098+00:00",
+      "streams_sha256": {
+        "stdout": "cf860c116513e2130075117c4f3520bdb8b0da03e893abb12c12e705556b5fba",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "tests": {
+    "status": "PASS",
+    "total": 60,
+    "existing_comparator": 28,
+    "existing_driver_protocol": 11,
+    "new_status": 21,
+    "nature": "Workbench Python arithmetic/synthetic protocols; no upstream or numerical workers"
+  },
+  "frozen_bytes": {
+    "status": "PASS",
+    "source_files": 439,
+    "current_exemptions": "Six explicitly named navigation README/status files only; all scientific/old checker/test/input/numerical/warning bytes equal historical Git blobs"
+  },
+  "not_run": [
+    "new SCF",
+    "eigenvalue solve",
+    "occupation solve",
+    "Julia numerical tasks",
+    "QE pw.x/pp.x",
+    "XC",
+    "projector construction",
+    "parameter scan",
+    "CI",
+    "full upstream suites",
+    "IEEE localization",
+    "Phase8B"
+  ],
+  "clean_checkout_replay": {
+    "status": "PASS",
+    "exit_code": 0,
+    "execution_commit": "a03f91f56875a80e5b058fd86377ee0cd9317939",
+    "scope": "Clean independent normal clone at semantic source commit; separate copy of public assessment JSON passed --check-record; no tracked overlay, .work, UPF or private arrays; no install",
+    "record_core_equality": "PASS; mode/exit_code are separate CLI fields",
+    "final_delivery_commit_replay": "NOT_RUN at this pre-commit record; the final-commit check must be recorded afterward in the delivery archive and final reply"
+  },
+  "incremental_archive": {
+    "phase": "pre-delivery",
+    "status": "PASS",
+    "file_count": 55,
+    "restored_samples": 6,
+    "manifest_sha256": "439ae90294bc3cdd2a0adcfdae6a9b14c78507029314458765929272e2681562",
+    "git_bundle_sha256": "2998b2c14cba864d370797638b16cc4ed80132669fd81a56d3376d0186194ac2",
+    "snapshot_head": "a03f91f56875a80e5b058fd86377ee0cd9317939",
+    "base_commit": "61cb1c226dcfa8dbeccc63e8f43e33b2790a07c6",
+    "scope": "This task delta only; same-machine external archive, not offsite; no old UPF/WFC/checkpoint/raw datasets repacked",
+    "public_scope": "Verified pre-delivery snapshot plus working delta; final commit/bundle and final replay receipt belong to later delivery increment"
+  },
+  "commands": {
+    "tests": "python3 -B -m unittest discover -s tests -p 'test_si_soc*.py' -v",
+    "historical": "python3 -B scripts/check_si_soc.py (cwd: detached historical snapshot)",
+    "default": "python3 -B scripts/check_si_soc_status.py --source-root <historical-snapshot>",
+    "strict": "python3 -B scripts/check_si_soc_status.py --source-root <historical-snapshot> --require-manifold-pass",
+    "record": "python3 -B scripts/check_si_soc_status.py --source-root <historical-snapshot> --check-record <public-assessment.json>",
+    "python_identity": "Existing Python 3.12.14; exact resolved executable paths and full stdout/stderr are in the local incremental archive"
+  },
+  "additional_legacy_check": {
+    "status": "FAIL_INHERITED_AT_ACCEPTED_BASE",
+    "current_exit_code": 1,
+    "fixed_61cb_exit_code": 1,
+    "function": "scripts/check_publication.py:check_frozen",
+    "reason": "Older frozen-science.json remains tied to the Phase6C curation snapshot; it rejects Phase8A-approved common_data.jl even at61cb1c2. Original Si complete checker succeeds and permits its historical interface scope. No frozen file/hash/checker was altered.",
+    "current_required_boundary": "Every one of439 baseline files is independently Git-blob authenticated, with only six named navigation exemptions; all433 non-navigation files unchanged"
+  }
+}

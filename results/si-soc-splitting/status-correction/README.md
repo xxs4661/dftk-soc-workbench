@@ -60,8 +60,58 @@ The snapshot contains only public Git files, without .work/UPF/cache/checkpoints
 `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_si_soc*.py'`
 runs the affected comparator and synthetic status regressions.
 
-Preparation status: formal historical replay, default/strict assessment and
-clean-checkout verification **NOT_RUN** at this source-preparation step.
+At source preparation, formal evaluations were NOT_RUN. The following results
+were obtained only after ordinary source commit
+`a03f91f56875a80e5b058fd86377ee0cd9317939` on macOS arm64 / existing Python3.12.14.
+The compact [assessment](assessment.json) separates execution from science.
+
+| Actual check | Exit / observation |
+| --- | --- |
+| Original complete checker, detached61cb1c2 | **0 / PASS** under its old contract; all old fields reproduced. |
+| New default semantics | **0 / PASS** for faithful evidence/status derivation. |
+| New strict manifold mode | **1 / REVIEW_REQUIRED**, preserved without suppression. |
+| Existing comparator / driver protocol / new status tests | **0; 28 + 11 + 21 = 60 Python tests PASS**; synthetic negatives remain rejected inputs. |
+| Saved assessment round trip | **0**; complete original derived result unchanged under original replay contract. |
+| Clean source-commit clone and separate public JSON | **0**, --check-record; clone stayed clean, no private data or environment installation. |
+| Help / missing required source argument | **0 / 2** respectively. |
+
+Both new modes report fixed-window structure, split comparison and spin-trace
+control **PASS**. The only unmet measured prerequisites are D and Q occupations:
+minimum FD **0.99995952494121 / 0.9999595238092915**, below the unchanged
+**0.99999999** threshold. Occupation and complete prerequisites are
+**REVIEW_REQUIRED**; assignment is **MANIFOLD_ASSIGNMENT_REVIEW_REQUIRED**.
+D/Q splits remain **0.04745761517555575 / 0.04745761244197689 eV**; signed
+difference **2.7335788632676383e-9 eV**, null width **1.627601868839064e-12 eV**.
+No spectrum/occupation/E/F/warning byte changed. All439 baseline files were
+authenticated; only the six named current navigation documents may differ.
+Frozen kernels, original comparator/checker/tests and dependency records match
+the base exactly. Original physical execution remains3948ed5, not this run.
+
+To verify this compact record after the historical worktree is prepared:
+
+```sh
+python3 -B scripts/check_si_soc_status.py --source-root "$snapshot/source" --check-record results/si-soc-splitting/status-correction/assessment.json
+```
+
+Physical interpretation remains **REVIEW_REQUIRED**, convergence
+**NOT_ESTABLISHED**, irreps **NOT_COMPUTED**, continuous-path assignment and
+independent native QE nonlocal energy **NOT_MEASURED**. Historical QE warnings
+and IEEE **NOT_LOCALIZED** are unchanged. The initial new-document link check
+failed and was corrected before the source commit; no historical hashes or
+assertions were weakened. An additional invocation of the older `check_publication.check_frozen` returned
+**1** both here and at fixed61cb1c2: its Phase6C frozen list rejects the
+Phase8A-approved `common_data.jl` change. This inherited compatibility failure
+is retained; that component is **not PASS**. The required original Si complete
+checker and this phase's439-file comparison against61cb1c2 pass; no older
+checker or hash was rewritten. Complete logs remain outside public results.
+`git diff --check` and current
+publication/link checks pass. A pre-delivery incremental archive verified **55
+files and 6 restored samples**, including the code, new JSON and Git delta
+bundle; manifest identity is in assessment.json. It is an external same-machine
+backup, **not offsite**. Only this task delta was copied; no old UPF/WFC/raw
+array archive was repacked. The final results commit and its clean replay are
+recorded in a later delivery increment, without amending this report to name
+its own commit.
 New SCF, eigen/occupation solves, Julia, QE/pp, XC, projector construction,
 parameter scans, CI, upstream suites and IEEE localization are **NOT_RUN**.
 No Phase 8B work is authorized. Material AI assistance follows the
