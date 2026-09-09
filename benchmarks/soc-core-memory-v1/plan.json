@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "base": "c764311a5422b5c3cab5a7b78a02d420910c4e56",
+  "branch": "codex/phase9a-soc-core-memory",
+  "status": "PREPARED_NOT_EXECUTED",
+  "sequence": [
+    "Commit plan/source/contracts",
+    "REF-B0 then REF-K4 using authenticated base modules in isolated Julia processes",
+    "Implement core/owned runtime and regressions; at most two retained development profiling rounds",
+    "Commit exact candidate; CORE-B0 then CORE-K4 with same source arrays",
+    "Only if identity/equivalence/allocation/resource gates pass: OPT-B0-SCF then OPT-B0-GAMMA once each",
+    "Public arithmetic replay, outside incremental backup/restore, ordinary result commit, final clean public clone, branch-only push; stop"
+  ],
+  "allowed_existing_code": [
+    "prototypes/relativistic/operator.jl",
+    "prototypes/spinor/operators.jl",
+    "prototypes/spinor/fft.jl",
+    "prototypes/spinor/density.jl",
+    "prototypes/fr_integration/common_data.jl",
+    "prototypes/fr_integration/hamiltonian.jl",
+    "prototypes/fr_integration/energy.jl",
+    "prototypes/fr_integration/FRIntegration.jl",
+    "prototypes/soc_scf/scf.jl",
+    "prototypes/soc_scf/solver.jl",
+    "prototypes/soc_scf/SOCSCF.jl",
+    "scripts/run_si_soc.jl",
+    "scripts/run_si_dftk.py",
+    "scripts/run_soc_scf.jl"
+  ],
+  "allowed_navigation": [
+    "README.md",
+    "docs/status.md",
+    "results/README.md",
+    "scripts/README.md",
+    "benchmarks/README.md"
+  ],
+  "allowed_new_paths": [
+    "src/SOCKernels.jl",
+    "src/soc_kernels/",
+    "prototypes/fr_integration/runtime.jl",
+    "benchmarks/soc-core-memory-v1/",
+    "tests/soc_core_memory/",
+    "tests/test_soc_core_memory.py",
+    "scripts/replay_soc_core_memory.py",
+    "results/soc-core-memory/",
+    "docs/soc-core-runtime.md",
+    "examples/soc_kernels.jl"
+  ],
+  "forbidden_changes": "All other old implementation, all old tests/checkers/science records and inputs, upstream checkout, dependencies, algorithms/formulas/tolerances; no fastmath, GC tuning, density adjustment, magnetic XC, extra scan",
+  "slots": [
+    {
+      "label": "OPT-B0-SCF",
+      "formal_attempts": 1,
+      "seed": 81001,
+      "initial": "Fresh uniform valence density and independent random orbitals; no historical warm start",
+      "case_ref": "benchmarks/si-soc-splitting-v1/case.json"
+    },
+    {
+      "label": "OPT-B0-GAMMA",
+      "formal_attempts": 1,
+      "seed": 81201,
+      "kpoints": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "weights": [
+        1
+      ],
+      "parent": "Only successful new OPT-B0-SCF authenticated n_out; original parent mu, no occupation solve"
+    }
+  ],
+  "not_run": [
+    "DFTK K6/K8 construction or SCF",
+    "QE/pp",
+    "new material",
+    "extra SCF/bands/null/p+-",
+    "CI",
+    "upstream suite",
+    "Phase9B"
+  ],
+  "resource_limit_bytes": 8589934592,
+  "disk_reserve_bytes": 10737418240,
+  "legacy_runtime_margin_bytes": 2147483648,
+  "profiling_round_max": 2
+}
