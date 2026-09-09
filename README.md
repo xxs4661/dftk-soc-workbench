@@ -4,8 +4,11 @@ A research workbench for norm-conserving UPF pseudopotentials, two-component
 spinors and spin–orbit coupling on top of a frozen DFTK environment.
 
 Phase 8B [Si SOC sensitivity](results/si-soc-sensitivity/README.md) is
-**PREPARED_NOT_EXECUTED**: E40/T05/K4 are fixed independently relative to
-historical B0; no new numerical result is claimed at preparation.
+complete: 12 prescribed slots exited 0. E40/T05 changes stay within the
+0.1 meV observation window; K4 changes the splitting by about **+0.331506 meV**
+in both programs, exceeding that window while their responses agree.
+Physical interpretation remains **REVIEW_REQUIRED** and convergence
+**NOT_ESTABLISHED**; occupation diagnostics and QE warnings are reported separately.
 
 Phase 8A [Si SOC splitting](results/si-soc-splitting/README.md) completed its
 five prescribed slots once each: D/Q Γ splits **47.4576152 / 47.4576124 meV**,
@@ -17,7 +20,7 @@ The 2427 Phase 8A assertions are historical. [Version 2 status semantics and
 public replay](results/si-soc-splitting/status-correction/README.md) separate
 fixed-window PASS from occupation and complete manifold prerequisites
 **REVIEW_REQUIRED**. The old checker requires the fixed historical snapshot.
-No additional physical calculation is started.
+Phase 8A.1 added no physical calculation; the new Phase 8B slots are reported separately.
 
 Phase 7G [Linux public replay](results/mg-soc-public-replay/linux/README.md)
 completed: **I PASS / exit 0**, all 380 numerical gates; **R FAIL / exit 1**

@@ -1,0 +1,380 @@
+{
+  "invocation": {
+    "profile": "T05",
+    "action": "Q-SCF",
+    "run_id": "Q-SCF-20260909T002844Z-fbb97f24",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "started_utc": "2026-09-09T00:28:44.248211+00:00",
+    "finished_utc": "2026-09-09T00:29:04.931518+00:00",
+    "exit_code": 0,
+    "status": "PASS",
+    "peak_rss_bytes": 307888128,
+    "streams_sha256": {
+      "stdout": "dc513af30f9cd65c34d4edd950b56ac51bc56957fd32a6831f9ec6c4bd8a70d6",
+      "stderr": "54b5a640d19b13434e6a092947cb6165ba32523b5b0e809c49e7702e2fe81744"
+    },
+    "resource_status": "PASS"
+  },
+  "wrapper": {
+    "schema_version": 1,
+    "case": "si-soc-sensitivity-v1/T05",
+    "sensitivity_profile": "T05",
+    "case_sha256": "171f8381a2576f05c0e87af46a58c552a73a17acf829e69e09e1c1d3f14eefc3",
+    "run_id": "Q-SCF-20260909T002844Z-fbb97f24",
+    "action": "Q-SCF",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "preparation_commit": "4a58286183e4625ad7ae69b44eb80097e8ad6c7d",
+    "created_utc": "2026-09-09T00:28:44.282684+00:00",
+    "completed_utc": "2026-09-09T00:29:04.925858+00:00",
+    "exit_code": 0,
+    "process_exit_code": 0,
+    "worker_started": true,
+    "execution_status": "PASS",
+    "input_comparability_status": "PASS",
+    "parallelism": {
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "JULIA_NUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1"
+      },
+      "mpi_processes_requested": 1,
+      "native_mpi_processes": 1,
+      "native_nodes": 1
+    },
+    "preflight_manifest_sha256": "19e5160c1e5a26bab049abf285a97fe89e9e9a130be36e33283d608e94eae0fc",
+    "source_preservation_status": "NOT_APPLICABLE"
+  },
+  "export_checks_status": "PASS",
+  "raw_result_sha256": "a5c12e4886f29720fe889ced9dd000c5f0a485abe4338ac5ff5947f757de21dd",
+  "native_process": {
+    "exit_code": 0,
+    "interrupted": false,
+    "finished_utc": "2026-09-09T00:29:04.826626+00:00"
+  },
+  "parent_binding": null,
+  "prepared_sha256": {
+    "benchmarks/si-soc-sensitivity-v1/plan.json": "ab37e46717e5e87e54ee443e5a0507155e1b2e146c1a5a2bb93e73231b39db2e",
+    "benchmarks/si-soc-sensitivity-v1/allowed-differences.json": "e733c76f41e074ca68e249506f44165e7c788b5e130573b5f8918967a3a67525",
+    "benchmarks/si-soc-sensitivity-v1/replay-contract.json": "2ad8ff3a703440d843921e1e642594d0ed5ec01eadd41a6236d1ccafe53086b4",
+    "benchmarks/si-soc-sensitivity-v1/E40/case.json": "d5e6af621e58297bf62825ee37bbb6021cee59f969d44f524bf8b86d176f51bc",
+    "benchmarks/si-soc-sensitivity-v1/E40/qe-scf.in": "9cfa7694799b5c68d30dd6f8a7fa2aab90b0b9eba17ef81b3248a5a03914fc63",
+    "benchmarks/si-soc-sensitivity-v1/E40/qe-gamma.in": "2e009e2fa332da90b1f8c153c3f4e1268581aa181b0178f2541b0dcb775c67f8",
+    "benchmarks/si-soc-sensitivity-v1/T05/case.json": "171f8381a2576f05c0e87af46a58c552a73a17acf829e69e09e1c1d3f14eefc3",
+    "benchmarks/si-soc-sensitivity-v1/T05/qe-scf.in": "23f0c17e7fb9a3eb785cde5b88db98c1575fd89db797683f681ffc7f3a0a8752",
+    "benchmarks/si-soc-sensitivity-v1/T05/qe-gamma.in": "3dd2729cecb8b6eea078e83f99168ae7204dd2331033e32e67ee2990e2ee5e1e",
+    "benchmarks/si-soc-sensitivity-v1/K4/case.json": "7874f0007f8df69763b7a7032d580bb05a6b39bdcba412c72cc155a8b2e039ce",
+    "benchmarks/si-soc-sensitivity-v1/K4/qe-scf.in": "7a4a3f7dce88db6152ec0d61e07eed4e232736ca0e91b8c027fa4483d56833c0",
+    "benchmarks/si-soc-sensitivity-v1/K4/qe-gamma.in": "f577c89b355d5101f33976b0adebd312ac32eafef4c44a78b3568c6c6f5c48ed",
+    "benchmarks/si-soc-splitting-v1/source.json": "e88ec3d6f0f1407d4d6b7b75c0bcc8f04ed1536c9c1ea3a67e4e23232e5a55e3"
+  },
+  "frozen_sha256": {
+    "config/sources.lock": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "environment/workbench/Project.toml": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "environment/workbench/Manifest.toml": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "environment/workbench/checksums.toml": "3a0cb9974084e96224a77baf167ed653bf4e435714dbc6c8a0578ac84006f180",
+    "benchmarks/mg-soc-qe-diagnostics-v1/plan.json": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+    "results/mg-soc-qe-diagnostics/evidence.json": "12782022024f1e00fb9a834863685ffab871dadd1b8fbeec5617d2021fc287c2"
+  },
+  "executed_source_sha256": {
+    "scripts/run_si_qe.py": "22071a7b76a217756959fb8e3acec1097fdde287094f6ae036af957955fbd0c6",
+    "scripts/si_soc_comparison.py": "91f71a01c693ef31f856ee4893a824578ce290deffe2f0287e368502c9e93906",
+    "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+    "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185",
+    "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+    "scripts/parse_qe_baseline.py": "689c9b51f4e619eee6977caa8548c2f14b3a6e8438b6ee5e51e309f54aa9a639",
+    "scripts/parse_qe_soc_diagnostics.py": "1ca9b66093a39f7fa83174aedb801f57bc4224d90776434ba172066abfef8f15",
+    "scripts/probe_qe_postprocess_build.jl": "28e3c773a61e82585d39ed0edef9b550de0c2066f760d7d6518bd594ce17cf58",
+    "scripts/si_soc_sensitivity.py": "4b3a2a90717cc06227f99bb40e8bdb845c138017696438884cd2dcf76b497fe6",
+    "scripts/run_si_dftk.py": "b476dec53c88ca485fb742b34a05e6a72456a64054fa797cbbdf1d3e5a13bad1"
+  },
+  "pseudo_sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+  "warnings": {
+    "process_exit_code": 0,
+    "stderr_lines": [
+      "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+    ],
+    "warning_lines": [
+      {
+        "stream": "stdout",
+        "line": 191,
+        "text": "     c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 192,
+        "text": "     c_bands:  3 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 193,
+        "text": "     c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 194,
+        "text": "     c_bands:  4 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 195,
+        "text": "     c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 196,
+        "text": "     c_bands:  3 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 197,
+        "text": "     c_bands:  4 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 198,
+        "text": "     c_bands:  3 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 289,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 320,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 321,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 337,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "stream": "stderr",
+        "line": 1,
+        "text": "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+      }
+    ],
+    "ieee_flags": {
+      "IEEE_INVALID_FLAG": {
+        "reported": true,
+        "stdout": false,
+        "stderr": true
+      },
+      "IEEE_DIVIDE_BY_ZERO": {
+        "reported": true,
+        "stdout": false,
+        "stderr": true
+      },
+      "IEEE_OVERFLOW_FLAG": {
+        "reported": true,
+        "stdout": false,
+        "stderr": true
+      },
+      "IEEE_UNDERFLOW_FLAG": {
+        "reported": false,
+        "stdout": false,
+        "stderr": false
+      },
+      "IEEE_INEXACT_FLAG": {
+        "reported": false,
+        "stdout": false,
+        "stderr": false
+      }
+    },
+    "ieee_warning_status": "REPORTED",
+    "ieee_localization_status": "NOT_LOCALIZED",
+    "eigenvalues_not_converged": true,
+    "unconverged_eigenvalue_lines": [
+      {
+        "stream": "stdout",
+        "line": 191,
+        "text": "     c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 192,
+        "text": "     c_bands:  3 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 193,
+        "text": "     c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 194,
+        "text": "     c_bands:  4 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 195,
+        "text": "     c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 196,
+        "text": "     c_bands:  3 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 197,
+        "text": "     c_bands:  4 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 198,
+        "text": "     c_bands:  3 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 289,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 320,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 321,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 337,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      }
+    ],
+    "fatal_native_lines": [],
+    "c_bands_lines": [
+      {
+        "stream": "stdout",
+        "line": 191,
+        "text": "     c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 192,
+        "text": "     c_bands:  3 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 193,
+        "text": "     c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 194,
+        "text": "     c_bands:  4 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 195,
+        "text": "     c_bands:  2 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 196,
+        "text": "     c_bands:  3 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 197,
+        "text": "     c_bands:  4 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 198,
+        "text": "     c_bands:  3 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 289,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 320,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 321,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      },
+      {
+        "stream": "stdout",
+        "line": 337,
+        "text": "     c_bands:  1 eigenvalues not converged"
+      }
+    ],
+    "note": "Reported flags are retained independently of exit code and spectral stability. Unreported flags are not proven absent."
+  },
+  "eigensolver_status": "EIGENSOLVER_REVIEW_REQUIRED",
+  "source_preservation_status": "NOT_APPLICABLE",
+  "density_source_sha256": "e1a86a7a0b6df54769ce08666533a5e7a09c8d9a49bdfb61c3e9bb2cfcd08d30",
+  "save_manifest": {
+    "Si_r.upf": {
+      "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+      "bytes": 291215
+    },
+    "charge-density.dat": {
+      "sha256": "e1a86a7a0b6df54769ce08666533a5e7a09c8d9a49bdfb61c3e9bb2cfcd08d30",
+      "bytes": 472336
+    },
+    "data-file-schema.xml": {
+      "sha256": "7e3286c3d0d1d6c2ba180a952919adac674bddf2c7a820ec5bf0f474ff408e39",
+      "bytes": 51640
+    },
+    "wfc1.dat": {
+      "sha256": "49da8ec22718d3675fc78d2f641b7446f645d4a69bb4f16e81d3106b15f61267",
+      "bytes": 1626656
+    },
+    "wfc2.dat": {
+      "sha256": "7eda62aa1e3208ede0730be5c10cfcc183cc0b644263e618b7b8c78ab8c30c12",
+      "bytes": 1653956
+    },
+    "wfc3.dat": {
+      "sha256": "e86de9b99d9d065da86e6ace26a2d572bf8607a5f8d0c756ad91934d2c2c8c9e",
+      "bytes": 1653956
+    },
+    "wfc4.dat": {
+      "sha256": "3604f1e2bac4e75801fcbe334cc1acba25abc27f8f06236bf4458f5479de5ec3",
+      "bytes": 1638356
+    },
+    "wfc5.dat": {
+      "sha256": "2dabc71666ea2e883d6b59ebb82c74d8481a8d8e36a021d9c48f7808a89b5eb6",
+      "bytes": 1653956
+    },
+    "wfc6.dat": {
+      "sha256": "03c45f5d540c1c468e33c58ad115dc3e72a8cff3882132890a5357cb73f136d8",
+      "bytes": 1638356
+    },
+    "wfc7.dat": {
+      "sha256": "03be84281413e22635ec5ae411a3389bccfff5de7d08de433b0dc82d380cf0db",
+      "bytes": 1638356
+    },
+    "wfc8.dat": {
+      "sha256": "38a927af08af2f33afc06b25ffae00f08fd57dbe447ba132a7a13f2d76236a82",
+      "bytes": 1653956
+    }
+  },
+  "save_array_scope": "Hash inventory recorded by original worker; arrays not read by exporter",
+  "environment_reference": {
+    "path": "../Q-environment.json",
+    "sha256": "ab15512328813705856bd42c8cf6e75c22b2fbc7d3bf714bd0081e16df565ad8",
+    "raw_identity_sha256": "213b901ec976656b225569a4dba1dcdd683d8fa1c6975b5dc46804cc12df73c7",
+    "status": "PASS",
+    "real_paths_checked_before_redaction": true
+  }
+}

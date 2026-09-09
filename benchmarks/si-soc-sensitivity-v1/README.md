@@ -1,6 +1,7 @@
 # Phase 8B: finite Si SOC parameter sensitivity
 
-PREDECLARED_NOT_EXECUTED. Three independent changes relative to historical
+The 12 predeclared slots are now [executed and reported](../../results/si-soc-sensitivity/README.md).
+Three independent changes relative to historical
 [Si B0](../si-soc-splitting-v1/README.md); B0 is not rerun. The immutable
 [plan](plan.json), [complete difference table](allowed-differences.json) and
 [replay contract](replay-contract.json) precede every new numerical slot.
@@ -39,9 +40,9 @@ Only the six old code files listed in plan.json may change. The two SOC core
 files are restricted to explicit settings-contract validation/forwarding;
 formulas, solvers and old defaults stay fixed. Original checkers run in their
 61cb1c2/bc68aaf historical worktrees, not in this evolving tree. Source/plan,
-execution and results will be separate ordinary commits.
+execution and results use separate ordinary commits.
 
-[Current result entry](../../results/si-soc-sensitivity/README.md) will retain
+[Current result entry](../../results/si-soc-sensitivity/README.md) retains
 actual exits, warnings and missing slots. Raw save/checkpoints stay ignored and
 in verified incremental same-machine external backups; no UPF is published.
 
@@ -49,7 +50,10 @@ in verified incremental same-machine external backups; no UPF is published.
 ## Restricted execution entry
 
 The preparation is `4a58286183e4625ad7ae69b44eb80097e8ad6c7d`.
-After the tested execution commit is clean, select the existing frozen depot
+The actual scientific execution is `48da17f47e998030a50c954c3abc38bca3a9df8f`.
+For a separately authorized physical reproduction, use a clean checkout of that
+execution commit, fetch locked local sources and use the unchanged workbench
+environment and authenticated UPF. Select the existing frozen depot
 and run `run_si_dftk.py prepare NEW_DIR --profile PROFILE --execution-commit SHA`
 for all three profiles. `NEW_DIR` is a unique child of
 `.work/phase8b/PROFILE/`. Each receipt binds its actual SCF and Gamma basis,

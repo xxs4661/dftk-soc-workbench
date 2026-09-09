@@ -184,5 +184,8 @@ The actual slot IDs, source receipts, commands and archive are in the
 formal attempt; no new SCF is part of public replay.
 
 Phase8B [restricted sensitivity profiles](../benchmarks/si-soc-sensitivity-v1/README.md)
-are prepared before implementation. New entries will explicitly select
-E40/T05/K4; B0 defaults and historical-checker snapshots remain distinct.
+explicitly select authenticated E40/T05/K4 cases, require all three preflights
+before SCF and bind each Γ-only spectrum to its own new parent density.
+B0 defaults and historical-checker snapshots remain distinct.
+[Results and public-only replay](../results/si-soc-sensitivity/README.md)
+separate arithmetic exit codes, code agreement and finite-step observations.

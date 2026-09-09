@@ -1,0 +1,466 @@
+{
+  "schema_version": 1,
+  "checks": {
+    "current-environment": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T23:05:39.290983+00:00",
+      "finished_utc": "2026-09-08T23:05:43.828813+00:00",
+      "command": [
+        "<home>/.juliaup/bin/julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "scripts/inspect_relativistic_upf.jl",
+        "--check-environment"
+      ],
+      "receipt_sha256": "73928c462de722bb9ec66230cac50118b30415d03ccf5d916058c592f8bc3484",
+      "streams_sha256": {
+        "stdout": "f5cf827d7c37b3dae5de0c3245764a3aeba4d33cd3a03ec9b63deaf1fd3eef50",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "qe-build-identity": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T23:06:20.655429+00:00",
+      "finished_utc": "2026-09-08T23:06:22.645319+00:00",
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        "scripts/run_si_qe.py",
+        "identity",
+        ".work/phase8b/E40/identity-20260908T2310Z",
+        "--profile",
+        "E40"
+      ],
+      "receipt_sha256": "ab20c237687ae4624186fb014bbcabe17a2b6282ae3521ef1222b7c4c0b2f9d8",
+      "streams_sha256": {
+        "stdout": "82f27776036a1738b9dcd0bfe7363183fc7f2edd2f99521f8b18807a35afcae3",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "historical-si-original": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T22:56:18.631982+00:00",
+      "finished_utc": "2026-09-08T22:56:22.822064+00:00",
+      "command": [
+        "<home>/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "scripts/check_si_soc.py"
+      ],
+      "receipt_sha256": "225d7fd777b84ba4d47f90733532935aebacc795db4ded3910f7cc14e41fe550",
+      "streams_sha256": {
+        "stdout": "d2fee733aa4d21306539470cfb591b739985e5ac0639fe72bcfd72a62f0af9fb",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "historical-status-default": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T22:56:56.111235+00:00",
+      "finished_utc": "2026-09-08T22:57:01.472847+00:00",
+      "command": [
+        "<home>/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "scripts/check_si_soc_status.py",
+        "--source-root",
+        "<fixed-numerical-snapshot>",
+        "--check-record",
+        "results/si-soc-splitting/status-correction/assessment.json"
+      ],
+      "receipt_sha256": "074b8aa4d13225f43fef5392616d22f0d77a98eb0edb61840f585ea8a02d29c8",
+      "streams_sha256": {
+        "stdout": "9910f4a7c52de1a61504c822c7b29d505650f5a75b6f8c948ca3e4cb0bb4a2ab",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "historical-status-strict": {
+      "exit_code": 1,
+      "started_utc": "2026-09-08T23:04:39.023974+00:00",
+      "finished_utc": "2026-09-08T23:04:43.645134+00:00",
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        "scripts/check_si_soc_status.py",
+        "--source-root",
+        "<fixed-numerical-snapshot>",
+        "--check-record",
+        "results/si-soc-splitting/status-correction/assessment.json",
+        "--require-manifold-pass"
+      ],
+      "receipt_sha256": "c120fa073b4441738b5a98644e482736e5fa4a2aaac40395679888edccd65ba1",
+      "streams_sha256": {
+        "stdout": "5d111d5aa67d3f327cc6c79fb4aec79bfe4e08ed52a413a76d1c038af2b23b42",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "julia-synthetic-interfaces": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T23:09:33.758963+00:00",
+      "finished_utc": "2026-09-08T23:09:41.357526+00:00",
+      "command": [
+        "<home>/.juliaup/bin/julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "-e",
+        "include(\"tests/test_si_sensitivity.jl\"); include(\"tests/si_soc/test_driver.jl\"); run_si_driver_tests()"
+      ],
+      "receipt_sha256": "01a092c3d8ff62c791ce7fee921458a1ff272a9939a1ac25172053140367ee03",
+      "streams_sha256": {
+        "stdout": "1261f74b830058cc50cd56288921f3d06a3a75e60add851fb5a2e598e2877715",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "all-affected-python": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T23:10:09.476116+00:00",
+      "finished_utc": "2026-09-08T23:10:10.530550+00:00",
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_si*.py",
+        "-v"
+      ],
+      "receipt_sha256": "e1d9df172e88471c365eeee4a834cc5123d36cbb29ff40c329d8548d9adffda8",
+      "streams_sha256": {
+        "stdout": "80ca676277dd4e016eead75d3f0d056072cef637fa6eb65d23c529cfec1c15b6",
+        "stderr": "37e54a319f9ce957fa7312d6d0e2c8cdde6eb48efc6ce120f2cf284f372b1552"
+      }
+    },
+    "implementation-boundary": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T23:08:53.654679+00:00",
+      "finished_utc": "2026-09-08T23:08:58.622249+00:00",
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        ".work/phase8b/check_boundary.py"
+      ],
+      "receipt_sha256": "7b02bd8e4fd130ef473eafa4f344a34eb89b55656885d6e39d78ae129bcc6f14",
+      "streams_sha256": {
+        "stdout": "a82053101fe0242f7c3006d4942dbfa979be05e94e7723b841654f99617b7fbb",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "all-preflights-gate": {
+      "exit_code": 0,
+      "started_utc": "2026-09-08T23:16:13.166310+00:00",
+      "finished_utc": "2026-09-08T23:16:13.212962+00:00",
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        ".work/phase8b/assemble_preflights.py"
+      ],
+      "receipt_sha256": "10459ac542a4833f806e8f1768326b59bbc5d8e14dfef84f39d453c411d1045d",
+      "streams_sha256": {
+        "stdout": "d326c520a79b8a4fb64cd7ee2ab3ad37eea659797eae6256d045a44f62605c5c",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "final-affected-python": {
+      "exit_code": 0,
+      "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+      "started_utc": "2026-09-09T04:32:19.122126+00:00",
+      "finished_utc": "2026-09-09T04:32:20.157703+00:00",
+      "streams_sha256": {
+        "stdout": "80ca676277dd4e016eead75d3f0d056072cef637fa6eb65d23c529cfec1c15b6",
+        "stderr": "01741f270834b86b2e605959a3c6834f5c568f82e900acb6fc91e8d9205d11d7"
+      },
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_si*.py",
+        "-v"
+      ],
+      "receipt_sha256": "ab15ceec607c20fd9248fa3ed680eff7c0bebb27b9cd9972f8b92f1f6e85c1fd",
+      "scope": "Final affected synthetic regression rerun; no scientific slot executed; separate from preparation test invocation"
+    },
+    "final-julia-synthetic-interfaces": {
+      "exit_code": 0,
+      "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+      "started_utc": "2026-09-09T04:32:49.553416+00:00",
+      "finished_utc": "2026-09-09T04:32:56.000669+00:00",
+      "streams_sha256": {
+        "stdout": "2ddd1c9f7b98b03888d4169ffc17a3caf8d40e537acc018e81b056801224f19f",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "command": [
+        "<home>/.juliaup/bin/julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "-e",
+        "include(\"tests/test_si_sensitivity.jl\"); include(\"tests/si_soc/test_driver.jl\"); run_si_driver_tests()"
+      ],
+      "receipt_sha256": "4f0028e19bec8fe117ff1f08ad7e2eaddc61ce9768979c7a8d7f76e0a9df4e01",
+      "scope": "Final affected synthetic regression rerun; no scientific slot executed; separate from preparation test invocation"
+    },
+    "final-current-boundary": {
+      "exit_code": 0,
+      "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+      "started_utc": "2026-09-09T04:43:01.477735+00:00",
+      "finished_utc": "2026-09-09T04:43:06.483714+00:00",
+      "streams_sha256": {
+        "stdout": "811b934e9cce2772dcf152b02d5e775cdeae19a67de6015a81e44b8ad38022bc",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "receipt_sha256": "80527ae96e1633df6629a8bae64cd0c6965827b6f0390a51e942a4bce153425c",
+      "local_archive_key": "final-current-boundary",
+      "scope": "Pre-commit publication candidate; final exact-commit clone is separate",
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        ".work/phase8b/check_boundary.py"
+      ]
+    },
+    "publication-candidate-replay": {
+      "exit_code": 0,
+      "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+      "started_utc": "2026-09-09T04:43:38.225778+00:00",
+      "finished_utc": "2026-09-09T04:43:41.658800+00:00",
+      "streams_sha256": {
+        "stdout": "d97c15efc9770e17144fc20a3d8f87ee2a1bf71ad0ebab48977ef3e9d5b1e9ba",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "receipt_sha256": "aa72221858a2e42a6cbf0ca8280090623ddeb03d051e8993540f2688566cdce8",
+      "local_archive_key": "publication-candidate-replay",
+      "scope": "Pre-commit publication candidate; final exact-commit clone is separate",
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        ".work/phase8b/review_public.py",
+        "--root",
+        "."
+      ],
+      "input_evidence_sha256": "933af945567b4d2278e7b8adc8470fd81b5832a5455279879cbe4781d6a3e54c"
+    },
+    "public-readme-command": {
+      "exit_code": 0,
+      "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+      "started_utc": "2026-09-09T04:43:38.219555+00:00",
+      "finished_utc": "2026-09-09T04:43:38.392428+00:00",
+      "streams_sha256": {
+        "stdout": "8d0610f0b9a3a16994d2f35e8d19c8a5f10b42a9fde922d775dec95958659cd7",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "receipt_sha256": "2159e68841efc217283263537e4c0f7235849cd58232644a91682d50d6990abe",
+      "local_archive_key": "public-readme-command",
+      "scope": "Pre-commit publication candidate; final exact-commit clone is separate",
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        ".work/phase8b/.archive-control/public-readme-replay.py"
+      ]
+    }
+  },
+  "synthetic_python_tests": {
+    "total": 156,
+    "new": 49,
+    "existing": 107
+  },
+  "julia_synthetic_assertions": {
+    "new": 105,
+    "existing": 118
+  },
+  "scope": "Workbench synthetic regressions and identity/preflight/history checks; no extra scientific slot. Counts are per invocation, not accumulated.",
+  "final_test_rerun_summary": {
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "python": {
+      "check_ref": "final-affected-python",
+      "total": 156,
+      "existing": 107,
+      "new": 49,
+      "exit_code": 0
+    },
+    "julia": {
+      "check_ref": "final-julia-synthetic-interfaces",
+      "total_assertions": 223,
+      "existing_assertions": 118,
+      "new_assertions": 105,
+      "exit_code": 0
+    },
+    "scope": "Per-rerun counts. Original preparation records retained; do not sum two invocations into a larger test suite. Final-commit clone replay and archive/restore are not represented as completed here."
+  },
+  "public_stage_replay": {
+    "schema_version": 1,
+    "phase": "8B",
+    "check_id": "PUBLIC_STAGE_ALL_THREE_PROFILE_REPLAY_20260909T043325Z",
+    "created_utc": "2026-09-09T04:35:21.498147+00:00",
+    "check_execution_status": "PASS",
+    "actual_exit_code": 0,
+    "scope": "All three completed profiles replayed in fresh isolated public-data checkout. Top-level evidence and final delivery commit have not yet been reviewed.",
+    "clone_id": "phase8b-three-profile-public-l7f556n6",
+    "clone_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "platform": {
+      "system": "Darwin",
+      "architecture": "arm64",
+      "os_version": "26.6.2",
+      "python": "3.12.14"
+    },
+    "same_host_not_cross_platform": true,
+    "data_isolation": {
+      "fresh_clone": true,
+      "private_arrays_or_UPF_read": false,
+      "clone_dot_work_present": false,
+      "public_staged_files_copied": 70,
+      "copied_files_sha256_map_digest": "db06cf08a3783b4f957f6813895843379e884e131ac629b0656871698eec3b04",
+      "digest_serialization": "UTF-8 json.dumps(sorted keys,separators comma/colon) of the complete copied_sha256 object in raw receipt",
+      "helper_location": "External ignored local QA helper; public scientific inputs and Git objects only"
+    },
+    "source_identity": {
+      "scientific_execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+      "review_script": {
+        "local_archive_key_relative_to_phase8b": "review_public.py",
+        "sha256": "156b7d41b4da03211e720a9f3bdb2ece143ef94f55c6f6981579bd972e32425d",
+        "bytes": 50020
+      },
+      "executed_review_script_sha256": "156b7d41b4da03211e720a9f3bdb2ece143ef94f55c6f6981579bd972e32425d",
+      "frozen_sources_and_prepared_bytes": "PASS; actual clone bytes and all per-run source maps checked against recorded execution/preparation identities"
+    },
+    "log": {
+      "local_archive_key_relative_to_phase8b": "three-profile-public-stage-replay-20260909T043325Z.log",
+      "sha256": "0607bbe1796f7387894b96c86fe9cc4f601b32d5cb8e5ab263b6ed58d2673ef1",
+      "bytes": 11626
+    },
+    "receipt": {
+      "local_archive_key_relative_to_phase8b": "three-profile-public-stage-replay-20260909T043325Z.json",
+      "sha256": "b07ba1b0b3334c0114ea1865cfb7141bcbf033bbb8c85d8228f30c56849fc52e",
+      "bytes": 19562
+    },
+    "scientific_workers_run_by_this_check": 0,
+    "qa_test_count_added_by_this_check": 0,
+    "limits": [
+      "Original orbitals/density/core/Pauli/operator action diagnostics remain RUNNER_REPORTED; serialized table review is not raw-wavefunction recomputation",
+      "K4 D/Q response exceeds the declared 0.1meV finite-step window and remains so; cross-code agreement does not establish k-grid convergence",
+      "Gamma FD near-full diagnostics remain per-program REVIEW_REQUIRED where measured; thresholds unchanged",
+      "This is the completed public stage, not the final commit/top-level evidence main invocation",
+      "Earlier reviewer-only exit2 for valid zero-bisection plateau remains preserved in prior records and was not overwritten"
+    ],
+    "profile_replay_statuses": {
+      "E40": "PASS",
+      "T05": "PASS",
+      "K4": "PASS"
+    }
+  },
+  "retained_local_reviewer_failure": [
+    {
+      "review_id": "E40_T05_INITIAL_REVIEWER_FAILURE",
+      "profiles_requested": [
+        "E40",
+        "T05"
+      ],
+      "scope": "INTERMEDIATE_PUBLIC_REPLAY; NOT_FINAL_THREE_PROFILE_ACCEPTANCE",
+      "execution_status": "FAIL",
+      "actual_exit_code": 2,
+      "clone_id": "phase8b-e40-t05-public-dom_8x8n",
+      "clone_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+      "platform": {
+        "operating_system": "Darwin",
+        "architecture": "arm64",
+        "os_version": "26.6.2",
+        "python_implementation": "CPython",
+        "python_version": "3.12.14"
+      },
+      "platform_capture": "Same host/interpreter used by the recorded local runs; rechecked while drafting. No cross-platform claim.",
+      "data_isolation": {
+        "clone_has_dot_work": false,
+        "clone_has_upf": false,
+        "private_arrays_read": false,
+        "review_helper_location": "Outside clone, ignored local QA script; only public scientific data and Git byte bindings read"
+      },
+      "executed_review_script_sha256": "962b4c20b16f5b7344521ff33de0c09ca35e71ae4bd0b8fe250b8afc5808b1eb",
+      "record": {
+        "local_archive_key_relative_to_phase8b": "e40-t05-public-replay-20260909T003211Z.json",
+        "sha256": "e823465eda2bb3877e80cf003fca0de84a32de29a5293fa8ffa959b9644d70fa",
+        "bytes": 5318,
+        "publication_role": "HASH_REFERENCE_ONLY; complete local artifact to repository-external archive"
+      },
+      "log": {
+        "local_archive_key_relative_to_phase8b": "e40-t05-public-replay-20260909T003211Z.log",
+        "sha256": "9dabadc76c34e8176e9519569c9ab2c55af605e7ce033ae7d0cf58ee4dfab750",
+        "bytes": 1294,
+        "publication_role": "HASH_REFERENCE_ONLY; complete local artifact to repository-external archive"
+      },
+      "failure": {
+        "error_type": "ValueError",
+        "exact_reason": "Invalid D occupation root iteration count",
+        "responsible_component": "Ignored review_public.py occupation_check, not DFTK/QE production worker",
+        "scientific_run_status_changed": false,
+        "frozen_source_basis": {
+          "path": "prototypes/soc_scf/ensemble.jl",
+          "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+          "sha256": "527c303f5455269487e45ce38e02bb473939ad25ccfa576cc2cb7dc6193c8c9b",
+          "rule": "Numerical global-gap plateau selects the saved gap midpoint without bisection; iterations remains 0. Ordinary bisection uses 1..256."
+        },
+        "correction": "Recognize iterations=0 only when numerical_plateau=true and the saved gap midpoint and middle-half interval are consistent; preserve original electron, residual, state-count, entropy and physics thresholds."
+      }
+    }
+  ],
+  "local_QA_scope": "Ignored reviewer/export/archive tools have separate synthetic checks in the external increment; not added to the 156 Python or 223 Julia workbench counts.",
+  "retained_export_preparation_failure": {
+    "recorded_utc": "2026-09-09T04:31:07.281536+00:00",
+    "stage": "local_export_preparation",
+    "initial_index_preparation_exit": 1,
+    "reason": "The string filter /prepare/ did not exclude historical key E40/prepare; action-based selection correctly finds 12 completed formal slots. No source or numerical data changed.",
+    "initial_export_exit": 1,
+    "export_failure_log": "export-K4/",
+    "correction": "Select records with action != prepare; save immutable index before retrying text-only export",
+    "formal_slots": 12,
+    "exit_codes": {
+      "E40/D-SCF": 0,
+      "E40/Q-SCF": 0,
+      "E40/D-GAMMA": 0,
+      "E40/Q-GAMMA": 0,
+      "T05/D-SCF": 0,
+      "T05/Q-SCF": 0,
+      "T05/D-GAMMA": 0,
+      "T05/Q-GAMMA": 0,
+      "K4/D-SCF": 0,
+      "K4/Q-SCF": 0,
+      "K4/D-GAMMA": 0,
+      "K4/Q-GAMMA": 0
+    }
+  },
+  "current_boundary_summary": {
+    "status": "PASS",
+    "base": "bc68aaf655d96dfd4335f6fa1a8e5ee76477c2a3",
+    "unchanged_old_files": 432,
+    "authorized_modified_old_files": [
+      "README.md",
+      "benchmarks/README.md",
+      "docs/status.md",
+      "prototypes/soc_scf/scf.jl",
+      "prototypes/soc_scf/solver.jl",
+      "results/README.md",
+      "scripts/README.md",
+      "scripts/run_si_dftk.py",
+      "scripts/run_si_qe.py",
+      "scripts/run_si_soc.jl",
+      "scripts/si_soc_comparison.py"
+    ],
+    "links_and_privacy": "PASS",
+    "upstreams": {
+      "DFTK.jl": {
+        "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "status": "clean"
+      },
+      "PseudoPotentialIO.jl": {
+        "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "status": "clean"
+      }
+    },
+    "reviewed_core_interface_diff": "Only validate_soc_settings case authentication and soc_scf keyword forwarding; model/settings temperature equality remains. No scientific formula changed.",
+    "execution_code_unchanged_since_formal_runs": true
+  }
+}

@@ -37,4 +37,5 @@ HISTORICAL_REUSED; no new solver, physical setting or dependency is introduced.
 - [Si SOC splitting v1](si-soc-splitting-v1/README.md): authenticated source and fixed five-slot matrix, now executed once each with numerical splitting/null gates passing and explicit review limitations; [current results](../results/si-soc-splitting/README.md).
 
 - [Si SOC finite sensitivity](si-soc-sensitivity-v1/README.md): E40/T05/K4,
-  each relative to historical B0; at most12 sequential formal slots.
+  each relative to historical B0; [12 executed slots and finite responses](../results/si-soc-sensitivity/README.md).
+  K4 exceeds the 0.1 meV observation window despite matching code responses.

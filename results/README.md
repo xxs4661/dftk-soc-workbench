@@ -1,6 +1,6 @@
 # Scientific evidence
 
-- [Phase 8B: Si finite SOC sensitivity](si-soc-sensitivity/README.md) — PREPARED_NOT_EXECUTED; three independent variants, historical B0.
+- [Phase 8B: Si finite SOC sensitivity](si-soc-sensitivity/README.md) — 12 slots PASS/0; D/Q responses agree, but K4 raises splitting by about 0.331506 meV beyond the 0.1 meV window. E40/T05 within; B0 historical, physical convergence not established.
 
 - [Phase 8A: Si SOC splitting](si-soc-splitting/README.md) — five slots PASS/0; D/Q Δ=47.4576152/47.4576124 meV, same-density null restores near-sixfold Γ structure. Fixed-window structure, splitting and null gates pass; occupation diagnostic, QE warnings and physical interpretation remain REVIEW_REQUIRED. [Current semantics/replay](si-soc-splitting/status-correction/README.md): complete manifold prerequisites REVIEW_REQUIRED; original checker runs at the fixed historical commit.
 
