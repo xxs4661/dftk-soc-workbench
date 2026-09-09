@@ -528,7 +528,7 @@ def iteration_rows(stdout, parsed):
     return rows
 
 
-def parse_public_native(root, profile, native, metadata, parent=None):
+def parse_public_native(root, profile, native, metadata, parent=None, parent_metadata=None):
     from si_qe_reference import load_case, case_sha256, validate_q_scf, validate_q_gamma
     from si_soc_comparison import parse_si_qe
     case=load_case(root,profile);case.update(verified_pseudo_sha256=case['pseudo']['sha256'],case_sha256=case_sha256(profile,root))
@@ -536,11 +536,15 @@ def parse_public_native(root, profile, native, metadata, parent=None):
     input_path=Path(root)/'benchmarks/si-soc-k-reference-v1'/profile/('qe-scf.in' if action=='Q-SCF' else 'qe-gamma.in')
     require(native['qe.in']==input_path.read_bytes(),'Native input differs from predeclared profile bytes')
     require(metadata['execution_status']=='PASS' and type(metadata['process_exit_code'])is int and metadata['process_exit_code']==0,'Failed native process is not a successful endpoint')
+    require(metadata.get('case_sha256')==case['case_sha256'],'Public metadata case identity differs')
     with tempfile.TemporaryDirectory(prefix='si-q-reference-native-') as directory:
         xml=Path(directory)/'qe.xml';xml.write_bytes(native['qe.xml'])
         value=parse_si_qe(xml,native['qe.stdout'].decode(),native['qe.stderr'].decode(),kind='scf' if action=='Q-SCF' else 'spectrum',case=case,process_exit_code=metadata['process_exit_code'])
     stdout=native['qe.stdout'].decode()
     require(re.findall(r'Parallel version \(MPI\), running on\s+(\d+) processors',stdout)==['1'] and re.findall(r'MPI processes distributed on\s+(\d+) nodes',stdout)==['1'],'Native parallelism differs from single process/node')
+    geometry=json.loads((Path(root)/'benchmarks/si-soc-k-reference-v1/resource-geometry.json').read_text())['profiles'][profile]
+    expected_npw=geometry['ng_in_declared_order'] if action=='Q-SCF' else [geometry['ng_in_declared_order'][0]]
+    require([point['npw'] for point in value['kpoints']]==expected_npw,'Native npw differs from predeclared complete geometry')
     value.update(run_id=metadata['run_id'],density_source_sha256=metadata['density_source_sha256'])
     save=metadata['save_files']
     require(save['charge-density.dat']['sha256']==value['density_source_sha256'],'Native saved charge binding differs')
@@ -554,6 +558,13 @@ def parse_public_native(root, profile, native, metadata, parent=None):
     else:
         require(parent is not None and metadata['source_preservation_status']=='PASS','Gamma lacks unchanged successful parent')
         binding=metadata['parent_binding']
+        require(isinstance(parent_metadata,dict),'Gamma lacks published original SCF provenance')
+        expected={'run_id':parent_metadata['run_id'],'save_files':parent_metadata['save_files'],
+            'parent_result_sha256':parent_metadata['raw_result_sha256'],'parent_parsed_sha256':parent_metadata['raw_parsed_sha256'],
+            'charge_sha256':parent_metadata['density_source_sha256'],'case_sha256':parent_metadata['case_sha256'],
+            'qe_reference_profile':profile,'profile_type':'QE_REFERENCE','save_path':'scratch/'+case['qe']['prefix']+'.save',
+            'directory':'<WORKBENCH>/'+parent_metadata['source_run_path']}
+        require(all(binding.get(k)==v for k,v in expected.items()),'Gamma complete original parent binding differs')
         require(binding['run_id']==parent['run_id'] and binding['charge_sha256']==parent['density_source_sha256'],'Wrong own-SCF Gamma binding')
         require(binding['fermi_energy_ha']==parent['fermi_energy_ha'],'Gamma replaced original SCF mu')
         value.update(source_scf_run_id=parent['run_id'],fermi_energy_ha=parent['fermi_energy_ha'],
@@ -567,6 +578,8 @@ def export_runs(root,index_path):
     from si_qe_reference import load_history, compare_trend, BASE, PREPARATION
     root=Path(root).resolve();out=root/PUBLIC_DIR
     index=json.loads(Path(index_path).read_text())
+    declared_execution=index.get('expected_execution_commit');index=index.get('profiles',index)
+    require(declared_execution is None or isinstance(declared_execution,str) and re.fullmatch('[0-9a-f]{40}',declared_execution),'Invalid declared execution identity')
     require(set(index)=={'K6','K8'} and all(set(x)=={'Q-SCF','Q-GAMMA'} for x in index.values()),'Exactly four declared slot references required')
     manifest={'schema_version':1,'base':BASE,'preparation_commit':PREPARATION,'created_utc':utc(),'profiles':{},
               'canonical_scope':'Full native parse, all final SCF k/e/f, Gamma24 and original parent mu; no private array replay',
@@ -574,15 +587,20 @@ def export_runs(root,index_path):
     points=load_history(root)
     execution=None
     for profile in ('K6','K8'):
-        manifest['profiles'][profile]={};parent=None
+        manifest['profiles'][profile]={};parent=None;parent_metadata=None
         for action in ('Q-SCF','Q-GAMMA'):
             directory=root/index[profile][action];require(directory.resolve()==directory,'Raw directory alias')
             require(root/'.work/phase8c'/profile in directory.parents,'Wrong profile run path')
             receipt=json.loads((directory/'result.json').read_text())
             require(receipt['run_id']==directory.name and receipt['action']==action,'Stale or wrong slot receipt')
-            execution=execution or receipt['execution_commit'];require(receipt['execution_commit']==execution,'Mixed execution commits')
+            observed=receipt.get('execution_commit')
+            if observed is not None:
+                require(isinstance(observed,str) and re.fullmatch('[0-9a-f]{40}',observed),'Invalid actual execution SHA')
+                execution=execution or observed;require(observed==execution,'Mixed execution commits')
+                require(declared_execution is None or observed==declared_execution,'Observed execution differs from explicitly declared index')
+            else:require(receipt['execution_status']!='PASS','Successful slot lacks observed execution identity')
             entry={'action':action,'run_id':receipt['run_id'],'execution_status':receipt['execution_status'],'exit_code':receipt['exit_code'],
-                'process_exit_code':receipt['process_exit_code'],'execution_commit':execution,'case_sha256':receipt.get('case_sha256'),
+                'process_exit_code':receipt['process_exit_code'],'execution_commit':observed,'case_sha256':receipt.get('case_sha256'),
                 'native_files':{},'payloads':{}}
             for name in NATIVE_NAMES:
                 if not (directory/name).exists():continue
@@ -592,6 +610,8 @@ def export_runs(root,index_path):
                 entry['native_files'][name]=idn
             if receipt['execution_status']!='PASS':
                 entry['failure_reason']=redacted(receipt.get('reason'),root)
+                rel=f'{PUBLIC_DIR}/{profile}/{action}/failure.json.gz';idn=packed(root/rel,(json.dumps(redacted(receipt,root),separators=(',',':'),allow_nan=False)+'\n').encode())
+                idn.update(path=rel,raw_sha256=sha(directory/'result.json'));entry['payloads']['failure']=idn
                 manifest['profiles'][profile][action]=entry
                 if action=='Q-GAMMA':points[profile]=None
                 continue
@@ -599,10 +619,12 @@ def export_runs(root,index_path):
             metadata=redacted({k:receipt[k] for k in ('action','run_id','execution_status','exit_code','process_exit_code','execution_commit',
                 'preparation_commit','case_sha256','density_source_sha256','save_files','source_preservation_status','resource','source_sha256','prepared_sha256','frozen_sha256','upstream','parallelism') if k in receipt},root)
             metadata['source_sha256']=receipt['executed_source_sha256']
+            metadata.update(raw_result_sha256=sha(directory/'result.json'),raw_parsed_sha256=sha(directory/'qe-result.json'),source_run_path=directory.relative_to(root).as_posix())
+            metadata['upstream']=json.loads((directory/'preflight.json').read_text())['preparation']['upstream']
             metadata['native_files']=entry['native_files']
             if action=='Q-GAMMA':metadata['parent_binding']=redacted(json.loads((directory/'parent-binding.json').read_text()),root)
             native={k:unpacked(root,v['path'],v) for k,v in entry['native_files'].items()}
-            actual=parse_public_native(root,profile,native,metadata,parent)
+            actual=parse_public_native(root,profile,native,metadata,parent,parent_metadata)
             require(sha(directory/'qe-result.json')==receipt['parsed_sha256'],'Worker endpoint bytes changed after completion')
             original=redacted(json.loads((directory/'qe-result.json').read_text()),root)
             for key,name in (('xml','qe.xml'),('stdout','qe.stdout'),('stderr','qe.stderr')):
@@ -617,9 +639,10 @@ def export_runs(root,index_path):
             entry.update(density_source_sha256=actual['density_source_sha256'],scf_iterations=actual['scf']['iterations'] if actual['scf'] else None,
                          resource=redacted(receipt['resource'],root))
             manifest['profiles'][profile][action]=entry
-            if action=='Q-SCF':parent=actual
+            if action=='Q-SCF':parent=actual;parent_metadata=metadata
             else:points[profile]=actual['gamma_validation']
-    manifest['execution_commit']=execution
+    manifest.update(execution_commit=execution,expected_execution_commit=declared_execution,provenance_schema_version=2,
+        replay_commit=head(root),replay_source_sha256=sha(Path(__file__)))
     trend=compare_trend(points);write(out/'trend.json',trend,exclusive=True)
     manifest['trend_sha256']=sha(out/'trend.json')
     write(out/'evidence.json',manifest,exclusive=True)
@@ -631,15 +654,24 @@ def replay(root):
     from si_qe_reference import load_history, compare_trend
     root=Path(root).resolve();out=root/PUBLIC_DIR;manifest=json.loads((out/'evidence.json').read_text());points=load_history(root)
     require(manifest['schema_version']==1 and set(manifest['profiles'])=={'K6','K8'},'Invalid public evidence schema')
+    require(manifest.get('provenance_schema_version')==2,'Missing complete public parent provenance')
+    require(isinstance(manifest.get('replay_commit'),str) and re.fullmatch('[0-9a-f]{40}',manifest['replay_commit']),'Replay commit must be a full SHA')
+    for key in ('execution_commit','expected_execution_commit'):
+        require(manifest.get(key) is None or isinstance(manifest[key],str) and re.fullmatch('[0-9a-f]{40}',manifest[key]),'Invalid execution SHA: '+key)
+    replay_path='scripts/si_qe_reference_evidence.py'
+    require(sha(root/replay_path)==manifest['replay_source_sha256']==hashlib.sha256(subprocess.check_output(['git','show',manifest['replay_commit']+':'+replay_path],cwd=root)).hexdigest(),'Public replay implementation identity differs')
     checked=0
     for profile in ('K6','K8'):
-        parent=None
+        parent=None;parent_metadata=None
         for action in ('Q-SCF','Q-GAMMA'):
             entry=manifest['profiles'][profile][action]
-            require(entry['action']==action and entry['execution_commit']==manifest['execution_commit'],'Mixed public slot identity')
+            require(type(entry.get('exit_code')) is int and (entry.get('process_exit_code') is None or type(entry['process_exit_code']) is int),'Invalid native/wrapper exit type')
+            require(entry['action']==action and (entry['execution_commit']==manifest['execution_commit'] or entry['execution_commit'] is None and entry['execution_status']!='PASS'),'Mixed public slot identity')
             native={k:unpacked(root,v['path'],v) for k,v in entry['native_files'].items()}
             if entry['execution_status']!='PASS':
                 require(entry['exit_code']!=0 and entry.get('failure_reason'),'Unexplained failed slot')
+                failure=json.loads(unpacked(root,entry['payloads']['failure']['path'],entry['payloads']['failure']))
+                require(all(failure[k]==entry[k] for k in ('action','run_id','execution_status','exit_code','process_exit_code')),'Failure discriminator differs from complete failure receipt')
                 if action=='Q-GAMMA':points[profile]=None
                 continue
             payload={k:json.loads(unpacked(root,v['path'],v)) for k,v in entry['payloads'].items()}
@@ -652,7 +684,10 @@ def replay(root):
             for category in ('source_sha256','prepared_sha256','frozen_sha256'):
                 require(set(metadata.get(category,{}))==expected_sets[category],'Incomplete executed source/input map: '+category)
                 require(isinstance(metadata.get(category),dict) and metadata[category],'Missing executed source/input hash map')
-                for rel,expected_hash in metadata[category].items():require(sha(root/rel)==expected_hash,'Public replay source/input bytes differ: '+rel)
+                for rel,expected_hash in metadata[category].items():
+                    actual_hash=hashlib.sha256(subprocess.check_output(['git','show',metadata['execution_commit']+':'+rel],cwd=root)).hexdigest() if category=='source_sha256' else sha(root/rel)
+                    require(actual_hash==expected_hash,'Recorded execution source/input bytes differ: '+rel)
+                    if category=='source_sha256' and rel!=replay_path:require(sha(root/rel)==expected_hash,'Current scientific/parser source differs from actual execution: '+rel)
             require(metadata['run_id']==entry['run_id'] and metadata['execution_commit']==manifest['execution_commit'],'Wrong current slot metadata')
             identity=payload['identity'];require(identity['status']=='PASS' and identity['numerical_executions']==0,'Missing read-only build identity')
             locked=json.loads((root/'benchmarks/si-soc-k-reference-v1/sources.json').read_text())
@@ -665,10 +700,10 @@ def replay(root):
             for field,value in reference['qe_identity'].items():require(identity['qe_identity'][field]==value,'Different launcher/JLL identity: '+field)
             resource=metadata['resource']
             require(resource['status']=='PASS' and resource['owned_process_cleanup_status']=='PASS' and type(resource['peak_aggregate_rss_bytes']) is int and 0<resource['peak_aggregate_rss_bytes']<MAX_RSS and resource['nonempty_samples']>0,'Missing or failed resource measurement')
-            value=parse_public_native(root,profile,native,metadata,parent)
+            value=parse_public_native(root,profile,native,metadata,parent,parent_metadata)
             close(value,payload['endpoint'],profile+'/'+action+'/all-native-fields')
             close(iteration_rows(native['qe.stdout'].decode(),value),payload['iterations'],profile+'/'+action+'/iterations')
-            if action=='Q-SCF':parent=value
+            if action=='Q-SCF':parent=value;parent_metadata=metadata
             else:points[profile]=value['gamma_validation']
             checked+=1
     expected=json.loads((out/'trend.json').read_text());require(sha(out/'trend.json')==manifest['trend_sha256'],'Trend source hash differs')
