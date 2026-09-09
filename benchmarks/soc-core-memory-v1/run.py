@@ -104,6 +104,25 @@ def prior_contract(record, directory):
     worker_contract(read(directory / 'worker-result.json'), record, directory)
 
 
+def premeasurement_failure(record, directory, execution):
+    """A different committed launcher may correct a failure before measurement.
+
+    Preserve and link the original failure. A started scientific operation, a
+    zero native exit or an unconfirmed cleanup is never eligible for retry.
+    """
+    require(record.get('run_id') == directory.name and record.get('overall_status') == 'FAIL' and record.get('exit_code') != 0 and record.get('execution_commit') != execution, 'Prior attempt is not a superseded premeasurement failure')
+    require(not list(directory.glob('worker-result.json*')) and not list(directory.glob('*.bin*')), 'Prior worker entered measurement preparation; no automatic retry')
+    native = read(directory / 'process-exit.json')
+    require(type(native.get('exit_code')) is int and native['exit_code'] != 0 and native['exit_code'] == record.get('process_exit_code') and native.get('interrupted') is False, 'Prior native failure not authenticated')
+    resource = read(directory / 'resource.json')
+    require(resource == record.get('resource') and resource.get('owned_process_cleanup_status') == 'PASS' and resource.get('native_exit_code') == native['exit_code'], 'Prior failed process cleanup not authenticated')
+    require(type(resource.get('peak_aggregate_rss_bytes')) is int and 0 < resource['peak_aggregate_rss_bytes'] < 8 * 1024**3 and resource.get('remaining_observed_processes') == [], 'Prior failure exceeded memory budget or has remaining descendants')
+    require('failed to find source of parent package: "Roots"' in (directory / 'qe.stderr').read_text(), 'Only the retained missing-cache package-load failure is eligible')
+    return dict(run_id=record['run_id'], execution_commit=record['execution_commit'],
+                process_exit_code=native['exit_code'], result_sha256=sha(directory / 'result.json'),
+                reason='Preserved package-load failure before any worker preparation, canonical input or measured operation; corrected explicit existing cache selection')
+
+
 def preparation(root):
     directory = root / 'benchmarks/soc-core-memory-v1'
     for name in PREPARED:
@@ -136,12 +155,20 @@ def run(suite, julia, root=ROOT):
         require(subprocess.run(['git', '-C', str(root), 'merge-base', '--is-ancestor', BASE, execution]).returncode == 0, 'Accepted base missing')
         sources = preparation(root)
         state['execution_commit'] = execution
+        depot = os.environ.get('JULIA_DEPOT_PATH')
+        require(bool(depot) and all(bool(p) and Path(p).is_dir() for p in depot.split(os.pathsep)), 'Select the existing frozen package cache explicitly with JULIA_DEPOT_PATH')
         prior = [(read(p), p.parent) for p in area.glob('*/result.json') if p.parent != directory]
-        require(not any(r.get('suite') == suite and r.get('worker_started') for r, _ in prior), 'This formal static suite already started; inspect its retained record before any further action')
+        earlier = [(r, d) for r, d in prior if r.get('suite') == suite and r.get('worker_started')]
+        state['retained_premeasurement_failures'] = [premeasurement_failure(r, d, execution) for r, d in earlier]
         for previous in SUITES[:SUITES.index(suite)]:
-            records = [(r, d) for r, d in prior if r.get('suite') == previous and r.get('worker_started')]
+            attempts = [(r, d) for r, d in prior if r.get('suite') == previous and r.get('worker_started')]
+            records = [(r, d) for r, d in attempts if r.get('overall_status') == 'PASS']
             require(len(records) == 1, 'Prior static suite has no unique PASS: ' + previous)
             prior_contract(*records[0])
+            for record, path in attempts:
+                if record.get('overall_status') != 'PASS':
+                    linked = premeasurement_failure(record, path, records[0][0]['execution_commit'])
+                    require(linked in records[0][0].get('retained_premeasurement_failures', []), 'Prior failure not bound by successful rerun')
             if previous.startswith(suite.split('-')[0]):
                 require(records[0][0]['execution_commit'] == execution, 'Paired static suites require the same execution commit')
         code_root = root / '.work/phase9a/reference-tree' if suite.startswith('REF-') else root
@@ -157,7 +184,7 @@ def run(suite, julia, root=ROOT):
             json.dump(dict(run_id=run_id, owner_pid=os.getpid()), stream)
         owns_lock = True
         env = dict(os.environ, OMP_NUM_THREADS='1', OPENBLAS_NUM_THREADS='1', MKL_NUM_THREADS='1',
-                   VECLIB_MAXIMUM_THREADS='1', JULIA_NUM_THREADS='1', JULIA_PKG_OFFLINE='true')
+                   VECLIB_MAXIMUM_THREADS='1', JULIA_NUM_THREADS='1', JULIA_PKG_OFFLINE='true', JULIA_LOAD_PATH='@:@stdlib')
         command = [str(Path(julia).absolute()), '--startup-file=no', '--color=no', '--threads=1',
                    '--project=' + str(root / 'environment/workbench'),
                    str(root / 'benchmarks/soc-core-memory-v1/measure.jl'),
@@ -166,6 +193,7 @@ def run(suite, julia, root=ROOT):
             execution_commit=execution, code_commit=git(code_root, 'rev-parse', 'HEAD'),
             free_disk_bytes=free, disk_extra_reserve_bytes=20 * checkpoint.stat().st_size,
             command=command, thread_environment={k: env[k] for k in ('OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS', 'VECLIB_MAXIMUM_THREADS', 'JULIA_NUM_THREADS')},
+            selected_existing_depot=depot,
             tooling_sha256={str(p.relative_to(root)): sha(p) for p in (root / 'benchmarks/soc-core-memory-v1').glob('*') if p.is_file()},
             log_labels='qe.stdout and qe.stderr are inherited generic executor names; actual command is Julia, no QE execution'))
         state['worker_started'] = True

@@ -72,6 +72,10 @@ class StaticLauncherContract(unittest.TestCase):
         self.reference = self.root / '.work/phase9a/reference-tree'
         self.git('worktree', 'add', '--quiet', '--detach', str(self.reference), self.base)
         self.worker_calls = []
+        self.cache = self.root / '.work/synthetic-julia-depot'
+        self.cache.mkdir()
+        p = patch.dict(launcher.os.environ, {'JULIA_DEPOT_PATH': str(self.cache)})
+        p.start(); self.addCleanup(p.stop)
         self.native_code = 0
         self.worker_mutation = lambda value: value
         self.resource_mutation = lambda value: value
@@ -103,7 +107,11 @@ class StaticLauncherContract(unittest.TestCase):
         return dict(bytes=len(data), sha256=hashlib.sha256(data).hexdigest())
 
     def synthetic_worker(self, executor, command, directory, env):
-        self.worker_calls.append((command, directory, env))
+        # Keep only asserted controls, so an assertion failure cannot dump the
+        # host's unrelated environment (or any future credential variables).
+        controls = {key: env[key] for key in ('OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS',
+            'MKL_NUM_THREADS', 'VECLIB_MAXIMUM_THREADS', 'JULIA_NUM_THREADS')}
+        self.worker_calls.append((command, directory, controls))
         suite = command[command.index('--suite') + 1]
         value = dict(schema_version=1, phase='9A', suite=suite, run_id=directory.name,
             base_commit=self.base, preparation_commit=self.plan, execution_commit=self.head,
@@ -167,6 +175,29 @@ class StaticLauncherContract(unittest.TestCase):
         area = self.root / '.work/phase9a/static'
         if area.exists(): shutil.rmtree(area)
         self.worker_calls.clear()
+
+    def preload_failure(self, *, execution=None, native=1, resource_changes=None):
+        """Fabricate only a missing-cache startup protocol, no worker or arrays."""
+        directory = self.root / '.work/phase9a/static/REF-B0-synthetic-load-failure'
+        directory.mkdir(parents=True)
+        resource = dict(status='RESOURCE_BLOCKED', owned_process_cleanup_status='PASS',
+            native_exit_code=native, peak_aggregate_rss_bytes=1024 * 1024,
+            nonempty_samples=2, remaining_observed_processes=[],
+            reason='RESOURCE_BLOCKED: numerical descendants survived their recorded leader')
+        resource.update(resource_changes or {})
+        record = dict(schema_version=1, suite='REF-B0', run_id=directory.name,
+            overall_status='FAIL', exit_code=9, process_exit_code=native, worker_started=True,
+            execution_commit=execution or self.plan, resource=resource,
+            failure_type='ValueError', reason='Synthetic package load failed before worker entry')
+        for name, value in (
+            ('result.json', record), ('resource.json', resource),
+            ('process-exit.json', dict(exit_code=native, interrupted=False)),
+            ('process-start.json', dict(synthetic_only=True, pid=123))):
+            (directory / name).write_text(json.dumps(value))
+        (directory / 'qe.stderr').write_text(
+            'ERROR: LoadError: failed to find source of parent package: "Roots"\n'
+            'Synthetic import failure; no source modules or physical inputs evaluated.\n')
+        return record, directory
 
     def test_valid_ref_launch_is_synthetic_and_single_threaded(self):
         code, state, _ = self.invoke()
@@ -394,6 +425,64 @@ class StaticLauncherContract(unittest.TestCase):
             self.reset_synthetic_runs()
             self.worker_mutation = lambda value, updates=updates: dict(value, **updates)
             with self.subTest(updates=updates): self.assert_rejected(started=True)
+
+    def test_explicit_existing_cache_is_a_pre_worker_gate(self):
+        for value in (None, '', str(self.root / 'missing-cache'), str(self.cache) + launcher.os.pathsep):
+            with self.subTest(value=value), patch.dict(launcher.os.environ):
+                if value is None: launcher.os.environ.pop('JULIA_DEPOT_PATH', None)
+                else: launcher.os.environ['JULIA_DEPOT_PATH'] = value
+                self.assert_rejected()
+        self.assertFalse(self.worker_calls)
+
+    def test_preload_retry_after_different_commit_is_linked_and_old_failure_preserved(self):
+        record, old = self.preload_failure(); original = (old / 'result.json').read_bytes()
+        code, state, new = self.invoke()
+        self.assertEqual(code, 0); self.assertNotEqual(new, old)
+        linked = state['retained_premeasurement_failures']
+        self.assertEqual(len(linked), 1)
+        self.assertEqual(linked[0]['run_id'], record['run_id'])
+        self.assertEqual(linked[0]['process_exit_code'], 1)
+        self.assertEqual(linked[0]['result_sha256'], hashlib.sha256(original).hexdigest())
+        self.assertEqual((old / 'result.json').read_bytes(), original)
+        self.assertEqual(json.loads(original)['resource']['status'], 'RESOURCE_BLOCKED')
+        code, _, _ = self.invoke('REF-K4')
+        self.assertEqual(code, 0)  # Linked startup failure does not replace a measured REF PASS.
+
+    def test_preload_retry_same_commit_is_forbidden(self):
+        self.preload_failure(execution=self.head)
+        self.assert_rejected(); self.assertFalse(self.worker_calls)
+
+    def test_preload_retry_rejects_any_worker_or_input_measurement_trace(self):
+        for filename in ('inputs.bin', 'inputs.bin.tmp', 'density.bin',
+                         'worker-result.json', 'worker-result.json.tmp'):
+            self.reset_synthetic_runs(); _, old = self.preload_failure()
+            (old / filename).write_text('SYNTHETIC STARTED WORKER TRACE')
+            with self.subTest(filename=filename): self.assert_rejected()
+        self.assertFalse(self.worker_calls)
+
+    def test_preload_retry_rejects_native_zero_unclean_cleanup_or_rss_limit(self):
+        variants = (
+            dict(native=0),
+            dict(resource_changes={'owned_process_cleanup_status': 'UNCONFIRMED'}),
+            dict(resource_changes={'peak_aggregate_rss_bytes': 8 * 1024**3,
+                                   'reason': 'RESOURCE_BLOCKED: peak exceeds limit'}),
+        )
+        for arguments in variants:
+            self.reset_synthetic_runs(); self.preload_failure(**arguments)
+            with self.subTest(arguments=arguments): self.assert_rejected()
+        self.assertFalse(self.worker_calls)
+
+    def test_preload_retry_wrong_cause_or_native_receipt_change_is_refused(self):
+        _, old = self.preload_failure()
+        (old / 'qe.stderr').write_text('Synthetic numerical failure after evaluation')
+        self.assert_rejected(); self.reset_synthetic_runs(); _, old = self.preload_failure()
+        (old / 'process-exit.json').write_text(json.dumps(dict(exit_code=2, interrupted=False)))
+        self.assert_rejected(); self.assertFalse(self.worker_calls)
+
+    def test_next_suite_rechecks_linked_premeasurement_failure_bytes(self):
+        _, old = self.preload_failure(); code, _, _ = self.invoke(); self.assertEqual(code, 0)
+        path = old / 'result.json'; path.write_text(path.read_text() + '\n')
+        self.assert_rejected('REF-K4'); self.assertEqual(len(self.worker_calls), 1)
 
 
 if __name__ == '__main__':
