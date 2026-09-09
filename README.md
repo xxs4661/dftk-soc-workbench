@@ -1,5 +1,7 @@
 # DFTK SOC workbench
 
+Phase 8C [QE k-grid reference](results/si-soc-k-reference/README.md) is prepared for K6/K8 only. Numerical slots are NOT_RUN; the predeclared four-slot matrix and resource gate preserve the fixed K4 physical settings. No new DFTK dense-grid calculation is authorized.
+
 A research workbench for norm-conserving UPF pseudopotentials, two-component
 spinors and spin–orbit coupling on top of a frozen DFTK environment.
 

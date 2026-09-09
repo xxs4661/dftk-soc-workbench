@@ -45,6 +45,11 @@ def hash_string(value):
 
 
 def _contract(case):
+    if isinstance(case, dict) and 'qe_reference_profile' in case:
+        check('sensitivity_profile' not in case, 'Mixed reference/sensitivity case is not allowed')
+        from si_qe_reference import validate_case
+        validate_case(case)  # Explicit QE-only K6/K8 request; never a paired D/Q profile.
+        return case['pseudo']
     if isinstance(case, dict) and 'sensitivity_profile' in case:
         from si_soc_sensitivity import validate_case
         validate_case(case)  # Only the three prepared profiles; no arbitrary overrides.
@@ -71,7 +76,7 @@ def _contract(case):
 
 
 def _expected_points(case, kind):
-    if 'sensitivity_profile' in case:
+    if 'sensitivity_profile' in case or 'qe_reference_profile' in case:
         _contract(case)
         return case['probe_kpoints'] if kind == 'spectrum' else [p['coordinate_fractional'] for p in case['kpoints']]
     if kind == 'spectrum':
@@ -98,11 +103,12 @@ def parse_si_qe(xml_path, stdout, stderr, *, kind, case, process_exit_code):
     A bands output never supplies new SCF E/F or solves an occupation problem.
     """
     pseudo = _contract(case)
-    sensitivity = 'sensitivity_profile' in case
-    tau = case['electrons']['temperature_ha'] if sensitivity else .001
-    ecutwfc = case['cutoffs']['qe_ecutwfc_ry']/2 if sensitivity else 30.
-    ecutrho = case['cutoffs']['qe_ecutrho_ry']/2 if sensitivity else 120.
-    if sensitivity:
+    sensitivity, reference = 'sensitivity_profile' in case, 'qe_reference_profile' in case
+    registered = sensitivity or reference
+    tau = case['electrons']['temperature_ha'] if registered else .001
+    ecutwfc = case['cutoffs']['qe_ecutwfc_ry']/2 if registered else 30.
+    ecutrho = case['cutoffs']['qe_ecutrho_ry']/2 if registered else 120.
+    if registered:
         check(hash_string(case.get('case_sha256')), 'Missing authenticated prepared case hash')
     check(kind in ('scf', 'spectrum'), 'Unsupported Si QE action')
     check(type(process_exit_code) is int and process_exit_code == 0, 'QE process exit was not zero')
@@ -131,7 +137,7 @@ def parse_si_qe(xml_path, stdout, stderr, *, kind, case, process_exit_code):
     out, inp = outputs[-1], require(root, 'input')
     control = require(inp, 'control_variables')
     check(text(control, 'calculation') == calc, 'SCF/spectrum output kind mismatch')
-    if sensitivity:
+    if registered:
         check(text(control, 'prefix') == case['qe']['prefix'], 'Wrong native profile prefix')
     check(text(control, 'restart_mode') == 'from_scratch', 'Unexpected restart mode')
     check(text(control, 'verbosity') == 'high' and text(control, 'disk_io') == 'low', 'Wrong output/save controls')
@@ -294,6 +300,10 @@ def parse_si_qe(xml_path, stdout, stderr, *, kind, case, process_exit_code):
     if sensitivity:
         result.update(sensitivity_profile=case['sensitivity_profile'], case_sha256=case['case_sha256'],
                       cutoffs=dict(case['cutoffs']), requested_kpoint_count=len(expected_points))
+    if reference:
+        result.update(qe_reference_profile=case['qe_reference_profile'], profile_type='QE_REFERENCE',
+                      case_sha256=case['case_sha256'], cutoffs=dict(case['cutoffs']),
+                      requested_kpoint_count=len(expected_points), dftk_execution_status='NOT_RUN')
     json.dumps(result, allow_nan=False)
     return result
 

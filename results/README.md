@@ -1,5 +1,7 @@
 # Scientific evidence
 
+- [Phase 8C: Si QE k-grid reference](si-soc-k-reference/README.md) — K6/K8 preparation; four numerical slots NOT_RUN. B0/K4 HISTORICAL_REUSED; DFTK dense grids NOT_RUN, same-grid cross-code agreement NOT_ASSESSED.
+
 - [Phase 8B: Si finite SOC sensitivity](si-soc-sensitivity/README.md) — 12 slots PASS/0; D/Q responses agree, but K4 raises splitting by about 0.331506 meV beyond the 0.1 meV window. E40/T05 within; B0 historical, physical convergence not established.
 
 - [Phase 8A: Si SOC splitting](si-soc-splitting/README.md) — five slots PASS/0; D/Q Δ=47.4576152/47.4576124 meV, same-density null restores near-sixfold Γ structure. Fixed-window structure, splitting and null gates pass; occupation diagnostic, QE warnings and physical interpretation remain REVIEW_REQUIRED. [Current semantics/replay](si-soc-splitting/status-correction/README.md): complete manifold prerequisites REVIEW_REQUIRED; original checker runs at the fixed historical commit.

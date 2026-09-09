@@ -4,9 +4,11 @@
 The existing launcher identity and process-group helper are reused. The identity
 action queries Julia/JLL metadata only; it never starts a QE numerical product.
 The default Phase 8A contract remains fixed; explicit Phase 8B profiles add only
-their prepared SCF/Gamma pair. No retry, installation or arbitrary override.
+their prepared SCF/Gamma pair. The separate Phase 8C QE-reference route has no
+DFTK execution. No retry, installation or arbitrary override.
 """
 import argparse
+from contextlib import nullcontext
 import datetime
 import hashlib
 import json
@@ -45,7 +47,13 @@ FORBIDDEN_ENV = ('JULIA_PROJECT', 'JULIA_LOAD_PATH', 'JULIA_DEPOT_PATH',
 SAVE = Path('scratch/si8a.save')
 
 
-def profile_layout(profile=None):
+def profile_layout(profile=None, qe_reference_profile=None):
+    require(profile is None or qe_reference_profile is None, 'Sensitivity and QE-reference routes are mutually exclusive')
+    if qe_reference_profile is not None:
+        from si_qe_reference import CASE_DIR as reference_dir, PROFILE_IDS
+        require(qe_reference_profile in PROFILE_IDS, 'Unregistered Si QE-reference profile')
+        return (reference_dir+'/'+qe_reference_profile,
+                Path('scratch/si8c_'+qe_reference_profile.lower()+'.save'), '.work/phase8c/'+qe_reference_profile)
     if profile is None:
         return CASE_DIR, SAVE, '.work/phase8a'
     from si_soc_sensitivity import CASE_DIR as sensitivity_dir, PROFILE_IDS
@@ -56,6 +64,10 @@ def profile_layout(profile=None):
 def require(ok, reason):
     if not ok:
         raise ValueError(reason)
+
+
+class BlockedParent(ValueError):
+    """The new reference Gamma slot cannot use a failed, missing or mismatched SCF."""
 
 
 def now():
@@ -70,8 +82,8 @@ def committed_hash(root, revision, path):
     return hashlib.sha256(git(root, 'show', revision+':'+path)).hexdigest()
 
 
-def confined_run(root, path, profile=None):
-    area = root/profile_layout(profile)[2]
+def confined_run(root, path, profile=None, qe_reference_profile=None):
+    area = root/profile_layout(profile, qe_reference_profile)[2]
     path = Path(path).absolute()
     require(area.resolve() == area and path.resolve() == path, 'Run path aliases are not permitted')
     require(path != area and area in path.parents, 'Run and parent paths must be inside the current phase/profile area')
@@ -103,23 +115,29 @@ def required_save(directory, nk):
     return mapping
 
 
-def frozen_inputs(root, *, require_execution_commit, profile=None):
+def frozen_inputs(root, *, require_execution_commit, profile=None, qe_reference_profile=None):
     root = Path(root).resolve()
-    case_dir, save, _ = profile_layout(profile)
+    case_dir, save, _ = profile_layout(profile, qe_reference_profile)
     preparation, prep_files, source_files = PREPARATION, PREP_FILES, SOURCES
+    baseline = BASE
     if profile is not None:
         from si_soc_sensitivity import PREPARATION as preparation, prepared_paths, load_case
         prep_files = (*prepared_paths(), CASE_DIR+'/source.json')
         source_files = (*SOURCES, 'scripts/si_soc_sensitivity.py', 'scripts/run_si_dftk.py')
+    if qe_reference_profile is not None:
+        from si_qe_reference import BASE as baseline, PREPARATION as preparation, prepared_paths, load_case
+        prep_files = (*prepared_paths(), CASE_DIR+'/source.json')
+        source_files = (*SOURCES, 'scripts/si_qe_reference.py', 'scripts/si_qe_reference_evidence.py', 'scripts/si_soc_sensitivity.py')
     head = git(root, 'rev-parse', 'HEAD').decode().strip()
     require(subprocess.run(['git', 'merge-base', '--is-ancestor', preparation, head], cwd=root,
                            stdout=subprocess.PIPE, stderr=subprocess.PIPE).returncode == 0,
             'Preparation commit is not an ancestor of execution HEAD')
     prep = {p: committed_hash(root, preparation, p) for p in prep_files}
-    frozen = {p: committed_hash(root, BASE, p) for p in (*ENV_FILES, *HISTORICAL)}
+    frozen = {p: committed_hash(root, baseline, p) for p in (*ENV_FILES, *HISTORICAL)}
     for path, expected in {**prep, **frozen}.items():
         require(digest(root/path) == expected, 'Prepared/frozen file mismatch: '+path)
-    case = load_case(root, profile) if profile is not None else json.loads((root/CASE_DIR/'case.json').read_text())
+    requested_profile = qe_reference_profile if qe_reference_profile is not None else profile
+    case = load_case(root, requested_profile) if requested_profile is not None else json.loads((root/CASE_DIR/'case.json').read_text())
     _contract(case)
     source = json.loads((root/CASE_DIR/'source.json').read_text())
     relative = Path(source['local_path'])
@@ -156,6 +174,9 @@ def frozen_inputs(root, *, require_execution_commit, profile=None):
     if profile is not None:
         result.update(sensitivity_profile=profile, case_sha256=prep[case_dir+'/case.json'],
                       case_directory=case_dir, save_path=save.as_posix())
+    if qe_reference_profile is not None:
+        result.update(qe_reference_profile=qe_reference_profile, profile_type='QE_REFERENCE',
+                      case_sha256=prep[case_dir+'/case.json'], case_directory=case_dir, save_path=save.as_posix())
     return result
 
 
@@ -217,7 +238,7 @@ def _recheck(root, prepared, observed):
                 'Frozen upstream changed during run: '+label)
 
 
-def bind_parent(parent, prepared):
+def bind_parent(parent, prepared, *, root=ROOT):
     parent = Path(parent).resolve()
     result = json.loads((parent/'result.json').read_text())
     require(result.get('action') == 'Q-SCF' and result.get('execution_status') == 'PASS'
@@ -234,11 +255,13 @@ def bind_parent(parent, prepared):
     require(digest(parent/'qe-result.json') == result['parsed_sha256'] and record['kind'] == 'scf'
             and record['case'] == prepared['case']['case'] and record['scf']['converged'], 'Parent parsed SCF source mismatch')
     require(record['run_id'] == result['run_id'], 'Parent parsed run mismatch')
-    sensitivity = 'sensitivity_profile' in prepared
-    if sensitivity:
+    sensitivity, reference = 'sensitivity_profile' in prepared, 'qe_reference_profile' in prepared
+    registered = sensitivity or reference
+    if registered:
         case = prepared['case']
+        profile_key = 'qe_reference_profile' if reference else 'sensitivity_profile'
         for value in (result, record):
-            require(value.get('case') == case['case'] and value.get('sensitivity_profile') == prepared['sensitivity_profile']
+            require(value.get('case') == case['case'] and value.get(profile_key) == prepared[profile_key]
                     and value.get('case_sha256') == prepared['case_sha256'], 'Parent case/profile/hash mismatch')
         require(record['temperature_ha'] == case['electrons']['temperature_ha']
                 and record['cutoffs'] == case['cutoffs'] and record['requested_kpoint_count'] == len(case['kpoints']),
@@ -246,12 +269,19 @@ def bind_parent(parent, prepared):
         require(record.get('density_source_sha256') == result.get('density_source_sha256')
                 and record.get('n_electrons') == 8 and record.get('n_bands') == 24
                 and record.get('occupation_capacity') == 1, 'Parent density/electron/state binding mismatch')
+    if reference:
+        from si_qe_reference import validate_q_scf
+        require(all(value.get('profile_type') == 'QE_REFERENCE' and 'sensitivity_profile' not in value
+                    for value in (result, record)), 'Parent is not the explicit QE-reference route')
+        require(result.get('resource_status') == 'PASS' and record.get('scf_acceptance_status') == 'PASS',
+                'Parent reference SCF resource/acceptance gate failed')
+        validate_q_scf(record, case, root=root)
     save = Path(prepared.get('save_path', SAVE))
-    mapping = required_save(parent/save, len(prepared['case']['kpoints']) if sensitivity else 8)
+    mapping = required_save(parent/save, len(prepared['case']['kpoints']) if registered else 8)
     require(mapping == result['save_files'], 'Original parent save files differ from completion receipt')
     require(mapping['Si_r.upf']['sha256'] == prepared['source']['sha256'], 'Saved parent UPF mismatch')
     require(mapping['data-file-schema.xml']['sha256'] == record['raw_sha256']['xml'], 'Parent XML differs from its parsed final SCF')
-    if sensitivity:
+    if registered:
         require(record['density_source_sha256'] == mapping['charge-density.dat']['sha256'], 'Parent recorded density differs from saved charge')
     binding = {'directory': str(parent), 'run_id': result['run_id'], 'save_files': mapping,
             'parent_result_sha256': digest(parent/'result.json'), 'parent_parsed_sha256': digest(parent/'qe-result.json'),
@@ -259,6 +289,9 @@ def bind_parent(parent, prepared):
     if sensitivity:
         binding.update(save_path=save.as_posix(), sensitivity_profile=prepared['sensitivity_profile'],
                        case_sha256=prepared['case_sha256'])
+    if reference:
+        binding.update(save_path=save.as_posix(), qe_reference_profile=prepared['qe_reference_profile'],
+                       profile_type='QE_REFERENCE', case_sha256=prepared['case_sha256'])
     return binding
 
 
@@ -283,7 +316,7 @@ def parent_unchanged(parent):
 
 
 def claim_slot(root, action, run_id, preparation):
-    registry = root/profile_layout(preparation.get('sensitivity_profile'))[2]/'slots'
+    registry = root/profile_layout(preparation.get('sensitivity_profile'), preparation.get('qe_reference_profile'))[2]/'slots'
     registry.mkdir(parents=True, exist_ok=True)
     with (registry/(action+'.json')).open('x') as handle:
         json.dump({'action': action, 'run_id': run_id, 'execution_commit': preparation['execution_commit'],
@@ -291,30 +324,49 @@ def claim_slot(root, action, run_id, preparation):
         handle.write('\n')
 
 
-def run(action, directory, *, parent=None, root=ROOT, profile=None, preflight_manifest=None):
+def run(action, directory, *, parent=None, root=ROOT, profile=None, preflight_manifest=None,
+        qe_reference_profile=None):
     root, directory = Path(root).resolve(), Path(directory).absolute()
-    case_id = 'si-soc-splitting-v1' if profile is None else 'si-soc-sensitivity-v1/'+str(profile)
+    reference = qe_reference_profile is not None
+    registered = profile is not None or reference
+    case_id = ('si-soc-k-reference-v1-'+str(qe_reference_profile) if reference else
+               'si-soc-splitting-v1' if profile is None else 'si-soc-sensitivity-v1/'+str(profile))
     state = {'schema_version': 1, 'case': case_id, 'action': action,
              'run_id': directory.name, 'execution_status': 'INCOMPLETE', 'exit_code': 9,
              'process_exit_code': None, 'worker_started': False, 'created_utc': now(),
              'input_comparability_status': 'NOT_RUN', 'scientific_review': 'REVIEW_REQUIRED'}
     owned, source, prepared, observed = False, None, None, None
     try:
-        case_dir, save, _ = profile_layout(profile)
-        spectrum_action = 'Q-SPECTRUM' if profile is None else 'Q-GAMMA'
+        case_dir, save, _ = profile_layout(profile, qe_reference_profile)
+        spectrum_action = 'Q-GAMMA' if registered else 'Q-SPECTRUM'
         require(action in ('identity', 'Q-SCF', spectrum_action), 'Unsupported Si QE slot')
-        require((parent is not None) == (action == spectrum_action), 'Spectrum needs its own Q-SCF parent; other actions reject parents')
-        require(profile is not None or preflight_manifest is None, 'B0 rejects sensitivity preflight override')
-        directory = confined_run(root, directory, profile)
-        if parent is not None:
+        if not reference:
+            require((parent is not None) == (action == spectrum_action), 'Spectrum needs its own Q-SCF parent; other actions reject parents')
+        require(registered or preflight_manifest is None, 'B0 rejects sensitivity preflight override')
+        directory = confined_run(root, directory, profile, qe_reference_profile)
+        if parent is not None and not reference:
             parent = confined_run(root, parent, profile)
             require(parent != directory, 'Parent and new output directory cannot be identical')
         directory.mkdir(parents=True, exist_ok=False)
         owned = True
         write_json(directory/'result.json', state)
+        if reference:
+            state.update(qe_reference_profile=qe_reference_profile, profile_type='QE_REFERENCE',
+                         dftk_execution_status='NOT_RUN', slot_id=None if action == 'identity' else
+                         'Q'+qe_reference_profile[1:]+'-'+action.removeprefix('Q-'))
+            if action == spectrum_action:
+                try:
+                    require(parent is not None, 'Reference Gamma requires its own successful new Q-SCF parent')
+                    parent = confined_run(root, parent, qe_reference_profile=qe_reference_profile)
+                    require(parent != directory, 'Parent and new output directory cannot be identical')
+                except (ValueError, OSError) as error:
+                    raise BlockedParent(str(error)) from error
+            else:
+                require(parent is None, 'Reference SCF/identity rejects a parent override')
         require(not any(k in os.environ for k in FORBIDDEN_ENV), 'Inherited Julia/library override is not allowed for frozen QE')
         env = dict(os.environ, **{k: '1' for k in THREADS})
-        prepared = frozen_inputs(root, require_execution_commit=action != 'identity', profile=profile)
+        prepared = frozen_inputs(root, require_execution_commit=action != 'identity', profile=profile,
+                                 **({'qe_reference_profile': qe_reference_profile} if reference else {}))
         observed = identity(root, directory, prepared, env)
         write_json(directory/'identity.json', observed)
         state.update(preparation_commit=prepared['preparation_commit'], execution_commit=prepared['execution_commit'],
@@ -323,6 +375,8 @@ def run(action, directory, *, parent=None, root=ROOT, profile=None, preflight_ma
                      parallelism={'thread_environment': {k: env[k] for k in THREADS}, 'mpi_processes_requested': 1})
         if profile is not None:
             state.update(sensitivity_profile=profile, case_sha256=prepared['case_sha256'])
+        if reference:
+            state['case_sha256'] = prepared['case_sha256']
         if action == 'identity':
             _recheck(root, prepared, observed)
             state.update(execution_status='PASS', input_comparability_status='NOT_APPLICABLE_IDENTITY',
@@ -334,11 +388,22 @@ def run(action, directory, *, parent=None, root=ROOT, profile=None, preflight_ma
             from run_si_dftk import verify_sensitivity_preflights
             verify_sensitivity_preflights(root, Path(preflight_manifest), prepared['execution_commit'])
             state['preflight_manifest_sha256'] = digest(preflight_manifest)
+        if reference:
+            require(preflight_manifest is not None, 'Both QE-reference preflights are required before any formal slot')
+            from si_qe_reference_evidence import verify_preflights, reference_execution_guard, monitored_execute
+            verify_preflights(root, Path(preflight_manifest), prepared['execution_commit'])
+            state['preflight_manifest_sha256'] = digest(preflight_manifest)
         if parent is not None:
-            source = bind_parent(parent, prepared)
+            if reference:
+                try:
+                    source = bind_parent(parent, prepared, root=root)
+                except (ValueError, OSError, KeyError, TypeError) as error:
+                    raise BlockedParent(str(error)) from error
+            else:
+                source = bind_parent(parent, prepared)
             copy_parent(source, directory)
             write_json(directory/'parent-binding.json', source)
-        filename = 'qe-scf.in' if action == 'Q-SCF' else ('qe-spectrum.in' if profile is None else 'qe-gamma.in')
+        filename = 'qe-scf.in' if action == 'Q-SCF' else ('qe-gamma.in' if registered else 'qe-spectrum.in')
         shutil.copyfile(root/case_dir/filename, directory/'qe.in')
         (directory/'pseudo').mkdir()
         shutil.copyfile(prepared['pseudo_path'], directory/'pseudo/Si_r.upf')
@@ -349,58 +414,85 @@ def run(action, directory, *, parent=None, root=ROOT, profile=None, preflight_ma
             'preparation': prepared, 'identity': observed, 'command': command,
             'parent': source, 'environment': {k: env[k] for k in THREADS},
             'fresh_scf_scratch': not (directory/'scratch').exists() if action == 'Q-SCF' else None})
-        claim_slot(root, action, state['run_id'], prepared)
-        state['worker_started'] = True
-        write_json(directory/'result.json', state)
-        code = execute(command, directory, env)
-        state['process_exit_code'] = code
-        write_json(directory/'result.json', state)
-        require(type(code) is int and code == 0, 'Actual QE worker failed with code '+str(code))
-        require(digest(directory/'pseudo/Si_r.upf') == prepared['source']['sha256'], 'Worker pseudo copy changed')
-        case = dict(prepared['case'], verified_pseudo_sha256=prepared['source']['sha256'])
-        nk = (len(case['kpoints']) if action == 'Q-SCF' else 1) if profile is not None else (8 if action == 'Q-SCF' else 3)
-        saved = required_save(directory/save, nk)
-        require(saved['Si_r.upf']['sha256'] == prepared['source']['sha256'], 'QE saved a different UPF')
-        shutil.copyfile(directory/save/'data-file-schema.xml', directory/'qe.xml')
-        if profile is not None:
-            case['case_sha256'] = prepared['case_sha256']
-        stdout = (directory/'qe.stdout').read_text()
-        mpi = re.findall(r'Parallel version \(MPI\), running on\s+(\d+) processors', stdout)
-        nodes = re.findall(r'MPI processes distributed on\s+(\d+) nodes', stdout)
-        require(mpi == ['1'] and nodes == ['1'], 'Native MPI process/node count is not one')
-        state['parallelism'].update(native_mpi_processes=1, native_nodes=1)
-        parsed = parse_si_qe(directory/'qe.xml', stdout, (directory/'qe.stderr').read_text(),
-                             kind='scf' if action == 'Q-SCF' else 'spectrum', case=case, process_exit_code=code)
-        parsed['run_id'] = state['run_id']
-        if source is not None:
-            parent_unchanged(source)
-            parsed.update(source_scf_run_id=source['run_id'], density_source_sha256=source['charge_sha256'],
-                          fermi_energy_ha=source['fermi_energy_ha'],
-                          density_binding_scope='Original Q-SCF saved charge copied exactly before bands; atomic+random new-k orbitals')
-            # Bands is not authorized to create new feedback density. Its saved
-            # charge may be rewritten in-place only if bytes remain identical.
-            require(saved['charge-density.dat']['sha256'] == source['charge_sha256'], 'Bands changed its saved charge density')
-        else:
-            parsed['density_source_sha256'] = saved['charge-density.dat']['sha256']
-        _recheck(root, prepared, observed)
-        if profile is not None:
-            clean_execution(root, prepared['execution_commit'])
-            require(digest(preflight_manifest) == state['preflight_manifest_sha256'], 'Preflight manifest changed during run')
-        # Construct/serialize all success payloads before the canonical result.
-        json.dumps(parsed, allow_nan=False)
-        state.update(execution_status='PASS', input_comparability_status='PASS', exit_code=0,
-                     completed_utc=now(), save_files=saved, warnings=parsed['warning_evidence'],
-                     eigensolver_status=parsed['eigensolver_status'], source_preservation_status='PASS' if source else 'NOT_APPLICABLE',
-                     density_source_sha256=parsed['density_source_sha256'])
-        write_json(directory/'qe-result.json', parsed)
-        state['parsed_sha256'] = digest(directory/'qe-result.json')
-        write_json(directory/'save-manifest.json', saved)
-        write_json(directory/'result.json', state)  # Success discriminator is last.
+        guard = reference_execution_guard(root, directory, action, qe_reference_profile) if reference else nullcontext()
+        with guard:
+            claim_slot(root, action, state['run_id'], prepared)
+            state['worker_started'] = True
+            write_json(directory/'result.json', state)
+            if reference:
+                code, resource = monitored_execute(execute, command, directory, env)
+                state.update(resource=resource, resource_status=resource.get('status'))
+            else:
+                code = execute(command, directory, env)
+            state['process_exit_code'] = code
+            write_json(directory/'result.json', state)
+            if reference:
+                require(state['resource_status'] == 'PASS', 'QE reference resource monitoring: '+str(state['resource_status']))
+            require(type(code) is int and code == 0, 'Actual QE worker failed with code '+str(code))
+            require(digest(directory/'pseudo/Si_r.upf') == prepared['source']['sha256'], 'Worker pseudo copy changed')
+            case = dict(prepared['case'], verified_pseudo_sha256=prepared['source']['sha256'])
+            nk = (len(case['kpoints']) if action == 'Q-SCF' else 1) if registered else (8 if action == 'Q-SCF' else 3)
+            saved = required_save(directory/save, nk)
+            require(saved['Si_r.upf']['sha256'] == prepared['source']['sha256'], 'QE saved a different UPF')
+            shutil.copyfile(directory/save/'data-file-schema.xml', directory/'qe.xml')
+            if registered:
+                case['case_sha256'] = prepared['case_sha256']
+            stdout = (directory/'qe.stdout').read_text()
+            mpi = re.findall(r'Parallel version \(MPI\), running on\s+(\d+) processors', stdout)
+            nodes = re.findall(r'MPI processes distributed on\s+(\d+) nodes', stdout)
+            require(mpi == ['1'] and nodes == ['1'], 'Native MPI process/node count is not one')
+            state['parallelism'].update(native_mpi_processes=1, native_nodes=1)
+            parsed = parse_si_qe(directory/'qe.xml', stdout, (directory/'qe.stderr').read_text(),
+                                 kind='scf' if action == 'Q-SCF' else 'spectrum', case=case, process_exit_code=code)
+            parsed['run_id'] = state['run_id']
+            if source is not None:
+                parent_unchanged(source)
+                parsed.update(source_scf_run_id=source['run_id'], density_source_sha256=source['charge_sha256'],
+                              fermi_energy_ha=source['fermi_energy_ha'],
+                              density_binding_scope='Original Q-SCF saved charge copied exactly before bands; atomic+random new-k orbitals')
+                # Bands is not authorized to create new feedback density. Its saved
+                # charge may be rewritten in-place only if bytes remain identical.
+                require(saved['charge-density.dat']['sha256'] == source['charge_sha256'], 'Bands changed its saved charge density')
+            else:
+                parsed['density_source_sha256'] = saved['charge-density.dat']['sha256']
+            if reference:
+                from si_qe_reference import validate_q_scf, validate_q_gamma
+                if action == 'Q-SCF':
+                    parsed['scf_validation'] = validate_q_scf(parsed, case, root=root)
+                    parsed['scf_acceptance_status'] = 'PASS'
+                else:
+                    parent_record = json.loads((Path(source['directory'])/'qe-result.json').read_text())
+                    require(digest(Path(source['directory'])/'qe-result.json') == source['parent_parsed_sha256'],
+                            'Parent parsed SCF changed before Gamma validation')
+                    parsed['gamma_validation'] = validate_q_gamma(parsed, parent_record, case, root=root)
+            _recheck(root, prepared, observed)
+            if registered:
+                clean_execution(root, prepared['execution_commit'])
+                require(digest(preflight_manifest) == state['preflight_manifest_sha256'], 'Preflight manifest changed during run')
+            # Construct/serialize all success payloads before the canonical result.
+            json.dumps(parsed, allow_nan=False)
+            state.update(execution_status='PASS', input_comparability_status='PASS', exit_code=0,
+                         completed_utc=now(), save_files=saved, warnings=parsed['warning_evidence'],
+                         eigensolver_status=parsed['eigensolver_status'], source_preservation_status='PASS' if source else 'NOT_APPLICABLE',
+                         density_source_sha256=parsed['density_source_sha256'])
+            write_json(directory/'qe-result.json', parsed)
+            state['parsed_sha256'] = digest(directory/'qe-result.json')
+            write_json(directory/'save-manifest.json', saved)
+            write_json(directory/'result.json', state)  # Success discriminator is last.
     except (Exception, KeyboardInterrupt) as error:
         code = state.get('process_exit_code')
         if owned and (directory/'process-exit.json').is_file():
             try: code = json.loads((directory/'process-exit.json').read_text())['exit_code']
             except (ValueError, KeyError, OSError): pass
+        if reference and owned and (directory/'resource.json').is_file():
+            try:
+                resource = json.loads((directory/'resource.json').read_text())
+                require(isinstance(resource, dict) and resource.get('status') in ('PASS', 'RESOURCE_BLOCKED'),
+                        'Malformed current resource receipt')
+                state.update(resource=resource, resource_status=resource['status'])
+            except (ValueError, OSError, TypeError) as resource_error:
+                state.update(resource={'status': 'RESOURCE_BLOCKED', 'reason': str(resource_error),
+                                       'error_type': type(resource_error).__name__}, resource_status='RESOURCE_BLOCKED')
         failure = {'schema_version': 1, 'case': case_id, 'action': action, 'run_id': directory.name,
                    'execution_status': 'FAIL' if state['worker_started'] else 'BLOCKED',
                    'input_comparability_status': 'NOT_ESTABLISHED', 'scientific_review': 'REVIEW_REQUIRED',
@@ -409,6 +501,20 @@ def run(action, directory, *, parent=None, root=ROOT, profile=None, preflight_ma
                    'reason': str(error), 'error_type': type(error).__name__, 'failed_utc': now()}
         if profile is not None:
             failure['sensitivity_profile'] = profile
+        if reference:
+            failure.update(qe_reference_profile=qe_reference_profile, profile_type='QE_REFERENCE',
+                           dftk_execution_status='NOT_RUN')
+            for key in ('slot_id', 'case_sha256', 'preparation_commit', 'execution_commit', 'prepared_sha256',
+                        'frozen_sha256', 'executed_source_sha256', 'pseudo_sha256', 'parallelism',
+                        'preflight_manifest_sha256'):
+                if key in state:
+                    failure[key] = state[key]
+            if isinstance(error, BlockedParent):
+                failure['execution_status'] = 'BLOCKED_PARENT'
+            if 'resource' in state:
+                failure.update(resource=state['resource'], resource_status=state['resource_status'])
+                if state['resource_status'] != 'PASS':
+                    failure['execution_status'] = 'RESOURCE_BLOCKED'
         if owned:
             failure['worker_process_start_recorded'] = (directory/'process-start.json').is_file()
             if (directory/'qe.stdout').is_file() and (directory/'qe.stderr').is_file():
@@ -444,11 +550,14 @@ def main(argv=None):
     parser.add_argument('action', choices=('identity', 'Q-SCF', 'Q-SPECTRUM', 'Q-GAMMA'))
     parser.add_argument('directory', type=Path, help='New unique run directory; existing paths refused')
     parser.add_argument('--parent', type=Path)
-    parser.add_argument('--profile', choices=('E40', 'T05', 'K4'))
+    route = parser.add_mutually_exclusive_group()
+    route.add_argument('--profile', choices=('E40', 'T05', 'K4'))
+    route.add_argument('--qe-reference-profile', choices=('K6', 'K8'))
     parser.add_argument('--preflight-manifest', type=Path)
     args = parser.parse_args(argv)
     state = run(args.action, args.directory, parent=args.parent, profile=args.profile,
-                preflight_manifest=args.preflight_manifest)
+                preflight_manifest=args.preflight_manifest,
+                **({'qe_reference_profile': args.qe_reference_profile} if args.qe_reference_profile is not None else {}))
     print(json.dumps(state, allow_nan=False))
     return state['exit_code']
 
