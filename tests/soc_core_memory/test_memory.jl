@@ -128,3 +128,22 @@ end
     @test any(row->occursin(".registry.",row["first_path"]),report["storage"])
     @test report["combined_summarysize_bytes"]==Base.summarysize((;registry,matrix);exclude=SOCCoreMemory._SKIP)
 end
+
+@testset "Incremental observer runs outside samples and preserves failures" begin
+    calls=Ref(0);rows=Int[]
+    result=measure_operation(()->(calls[]+=1);consume=identity,on_sample=r->push!(rows,length(r["samples"])))
+    @test calls[]==6 && rows==collect(0:5)
+    calls[]=0
+    failure=try
+        measure_operation(()->(calls[]+=1);consume=identity,on_sample=r->length(r["samples"])==2 && error("synthetic disk failure"))
+        nothing
+    catch error
+        error
+    end
+    @test calls[]==3
+    @test failure isa MeasurementFailure
+    @test failure.partial_report["status"]=="FAIL"
+    @test failure.partial_report["completed_samples"]==2
+    @test length(failure.partial_report["samples"])==2
+    @test occursin("synthetic disk failure",sprint(showerror,failure))
+end

@@ -84,7 +84,7 @@ On error stop immediately and throw MeasurementFailure containing partial_report
 including the failed measured sample and all preceding records. A caller must
 persist that failure; this helper never turns an exception into a successful run.
 """
-function measure_operation(f; consume, name="operation", warmup=1, samples=5)
+function measure_operation(f; consume, name="operation", warmup=1, samples=5,on_sample=(report)->nothing)
     warmup isa Integer && !(warmup isa Bool) && warmup==1 ||
         throw(ArgumentError("The frozen contract requires exactly one warmup"))
     samples isa Integer && !(samples isa Bool) && samples==5 ||
@@ -96,6 +96,14 @@ function measure_operation(f; consume, name="operation", warmup=1, samples=5)
         "warmup_scope"=>"Recorded separately; not included in warmed statistics")
     first=_one_sample(f,consume,false,0)
     report["warmup"]=first.record
+    notify_sample()=try
+        on_sample(report)  # Optional persistence outside every measured operation.
+    catch error
+        report["status"]="FAIL"
+        report["completed_samples"]=count(s->s["status"]=="PASS",report["samples"])
+        throw(MeasurementFailure(report,error,catch_backtrace()))
+    end
+    notify_sample()
     if first.cause!==nothing
         report["status"]="FAIL";report["completed_samples"]=0
         throw(MeasurementFailure(report,first.cause,first.backtrace))
@@ -104,6 +112,7 @@ function measure_operation(f; consume, name="operation", warmup=1, samples=5)
     for index in 1:5
         sample=_one_sample(f,consume,index==5,index)
         push!(report["samples"],sample.record)
+        notify_sample()
         if sample.cause!==nothing
             report["status"]="FAIL";report["completed_samples"]=index-1
             throw(MeasurementFailure(report,sample.cause,sample.backtrace))

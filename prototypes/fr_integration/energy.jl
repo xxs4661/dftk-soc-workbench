@@ -76,6 +76,9 @@ function orbital_density(basis,X,f;stream_k=false)
     SpinorPrototype.density_from_real_states(states,basis.kweights,f)
 end
 
+context_orbital_density(ctx,X,f;stream_k=false)=orbital_density(ctx.basis,X,f;stream_k)
+_context_nonlocal_operators(ctx)=ctx.fr_blocks
+
 function energy_valence_rho(basis,n)
     n isa AbstractVector && length(n)==prod(basis.fft_size) ||
         throw(DimensionMismatch("Valence density needs the basis real-grid length"))
@@ -132,7 +135,7 @@ function energy_snapshot(ctx,X,f;expected_n=nothing,stream_k=false)
     validate_context(ctx)
     basis=ctx.basis
     factors=energy_factors(basis,X,f)
-    density=orbital_density(basis,X,f;stream_k)
+    density=context_orbital_density(ctx,X,f;stream_k)
     rho=energy_valence_rho(basis,density.n)
     if !isnothing(expected_n)
         expected_n isa AbstractVector && length(expected_n)==length(density.n) &&
@@ -144,7 +147,8 @@ function energy_snapshot(ctx,X,f;expected_n=nothing,stream_k=false)
     terms=Dict{String,Float64}(pairs(common.energies))
     Set(keys(terms))==COMMON_ENERGY_NAMES || throw(ArgumentError("Common energy must contain exactly six terms without native nonlocal"))
     ham=compose_full_hamiltonian(ctx,common.ham)
-    nl=nonlocal_spin_decomposition(ctx.fr_blocks,X,basis.kweights,f)
+    _context_density_binding!(ctx,rho)
+    nl=nonlocal_spin_decomposition(_context_nonlocal_operators(ctx),X,basis.kweights,f)
     terms["AtomicNonlocalFR"]=nl.full_ha
     total=Float64(common.energies.total)+nl.full_ha
     all(isfinite,values(terms)) && isfinite(total) || throw(ArgumentError("Nonfinite full energy"))

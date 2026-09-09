@@ -1,4 +1,72 @@
 # Reuse the small Phase 5B density-map controller, not its Si filling or energies.
+# These guards run at experiment/session boundaries, never in a matrix action.
+# Legacy dispatch is a no-op; no original numerical control rule is changed.
+_runtime_settings_stamp(ctx,settings)=FI.runtime_enabled(ctx) ? FI._source_snapshot(settings) : nothing
+function _runtime_check_settings(ctx,settings,stamp)
+    isnothing(stamp) || FI._source_snapshot(settings)==stamp ||
+        throw(ArgumentError("SOC settings changed inside the owned runtime session"))
+    nothing
+end
+function _runtime_call(f,ctx,event;ham=nothing,settings=nothing,stamp=nothing,payload=nothing)
+    FI.runtime_boundary!(ctx,Symbol(event,"_entry");ham)
+    isnothing(settings) || _runtime_check_settings(ctx,settings,stamp)
+    payload_stamp=FI.runtime_enabled(ctx) && !isnothing(payload) ? FI._source_snapshot(payload) : nothing
+    check_payload()=isnothing(payload_stamp) || FI._source_snapshot(payload)==payload_stamp ||
+        throw(ArgumentError("SOC callback changed a borrowed numerical payload"))
+    result=try
+        f()
+    catch original
+        # Preserve the original exception if a callback also damaged a binding.
+        try
+            FI.runtime_boundary!(ctx,Symbol(event,"_error");ham)
+            isnothing(settings) || _runtime_check_settings(ctx,settings,stamp)
+            check_payload()
+        catch boundary_error
+            throw(CompositeException([original,boundary_error]))
+        end
+        rethrow()
+    end
+    FI.runtime_boundary!(ctx,Symbol(event,"_return");ham)
+    isnothing(settings) || _runtime_check_settings(ctx,settings,stamp)
+    check_payload()
+    result
+end
+
+# A callback may observe all saved numerical diagnostics, including rho and
+# potentials separately retained by energy_snapshot. Only native handles are
+# excluded; do not assume the other arrays alias diag or raw.density.
+function _runtime_callback_payload(record,raw)
+    energy=(; (key=>getproperty(raw.energy,key) for key in propertynames(raw.energy)
+                if !(key in (:ham,:common_ham)))...)
+    (;X=raw.X,all_X=raw.all_X,f=raw.f,e=raw.eigenvalues,n_in=raw.n_in,n_out=raw.n_out,
+      density=raw.density,energy,thermal=raw.thermal,ensemble=raw.ensemble,diag=raw.diag,record)
+end
+
+# The frozen controller calls the callback again with a failure record. An
+# owned boundary can reject that second entry before the original callback
+# exception is reported; retain both causes, including controller history.
+function _runtime_iterate_density_map(ctx,map,n0;callback,kwargs...)
+    FI.runtime_enabled(ctx) || return Controller.iterate_density_map(map,n0;callback,kwargs...)
+    first_callback_error=Ref{Any}(nothing)
+    tracked_callback=function(record,raw)
+        try
+            callback(record,raw)
+        catch err
+            isnothing(first_callback_error[]) && (first_callback_error[]=err)
+            rethrow()
+        end
+    end
+    try
+        Controller.iterate_density_map(map,n0;callback=tracked_callback,kwargs...)
+    catch err
+        original=first_callback_error[]
+        if !isnothing(original) && original!==err
+            throw(CompositeException([original,err]))
+        end
+        rethrow()
+    end
+end
+
 function assert_current_hamiltonian(fresh,selected,probe;
     expected_potentials=[copy(DFTK.total_local_potential(h)) for h in fresh.common.blocks],expected_action=fresh.full[1]*probe)
     length(fresh.full)==length(selected.full) || error("Hamiltonian hook changed k blocks")
@@ -27,6 +95,8 @@ end
 
 function soc_map(ctx,n_in,settings,previous,target;seed,map_index,is_closure=false,
                  previous_potential=nothing,probe,hooks=NamedTuple(),progress=(r)->nothing)
+    FI.runtime_boundary!(ctx,:map_entry)
+    settings_stamp=_runtime_settings_stamp(ctx,settings)
     b=ctx.basis;t=settings["thresholds"]
     sin=Controller.density_summary(n_in,b.dvol;n_electrons=b.model.n_electrons,electron_tol=t["electron_count_abs"])
     fresh=FI.build_full_hamiltonian(ctx,n_in)
@@ -34,19 +104,22 @@ function soc_map(ctx,n_in,settings,previous,target;seed,map_index,is_closure=fal
     if hasproperty(hooks,:ham)
         expected_potentials=[copy(DFTK.total_local_potential(h)) for h in fresh.common.blocks]
         expected_action=fresh.full[1]*probe
-        selected=hooks.ham(fresh,copy(n_in),map_index)
+        selected=_runtime_call(()->hooks.ham(fresh,copy(n_in),map_index),ctx,:ham_callback;
+            ham=fresh.full,settings,stamp=settings_stamp)
         assert_current_hamiltonian(fresh,selected,probe;expected_potentials,expected_action)
     end
     potential=vec(DFTK.total_local_potential(selected.common));action=selected.full[1]*probe
     solve_hook=hasproperty(hooks,:solve) ? hooks.solve : nothing
     solved=solve_with_band_check(ctx,selected.full,previous,target,settings;seed,map_index,solve_hook,progress)
     X=solved.solved.X;f=solved.ensemble.f
-    hasproperty(hooks,:occupations) && (f=hooks.occupations(deepcopy(f),map_index))
+    hasproperty(hooks,:occupations) && (f=_runtime_call(()->hooks.occupations(deepcopy(f),map_index),ctx,:occupation_callback;
+        ham=selected.full,settings,stamp=settings_stamp))
     # Hooks are fault injection only: preserve exact capacity-one global FD values.
     f==solved.ensemble.f || error("Occupation hook changed the global Fermi ensemble")
     stream_k=get(settings["solver"],"stream_k",false)
-    orbital=FI.orbital_density(b,X,f;stream_k)
-    chosen=hasproperty(hooks,:density) ? hooks.density(deepcopy(orbital),copy(n_in),map_index) : orbital
+    orbital=FI.context_orbital_density(ctx,X,f;stream_k)
+    chosen=hasproperty(hooks,:density) ? _runtime_call(()->hooks.density(deepcopy(orbital),copy(n_in),map_index),ctx,:density_callback;
+        ham=selected.full,settings,stamp=settings_stamp) : orbital
     FI.integration_density_hash(chosen.n)==FI.integration_density_hash(orbital.n) || error("Stale or exchanged n_out; density must belong to current X/f")
     energy=FI.energy_snapshot(ctx,X,f;expected_n=chosen.n,stream_k)
     FI.assert_energy_consistency(energy;energy_atol=t["energy_abs_ha"])
@@ -89,23 +162,36 @@ function soc_map(ctx,n_in,settings,previous,target;seed,map_index,is_closure=fal
         energy_density_source="Same physical X/f and n_out; seven-term E plus spinor entropy once; no n_next terms")
     raw=(;X,all_X=solved.solved.all_X,f,eigenvalues=solved.solved.eigenvalues,n_in=copy(n_in),n_out=copy(energy.density.n),
         density=energy.density,energy,thermal,ensemble=solved.ensemble,diag)
+    FI.runtime_boundary!(ctx,:map_return;ham=energy.ham)
+    _runtime_check_settings(ctx,settings,settings_stamp)
     (;n_out=energy.density.n,raw,diagnostics=diag,closure_ok,potential,target=solved.band.target)
 end
 
 function soc_scf(ctx,n0,settings;seed,callback=(r,raw)->nothing,progress=(r)->nothing,hooks=NamedTuple(),case_contract=nothing)
     validate_soc_settings(settings;case_contract);FI.validate_context(ctx)
+    settings_stamp=_runtime_settings_stamp(ctx,settings)
     ctx.basis.model.temperature==settings["ensemble"]["tau_ha"] && ctx.basis.model.smearing isa DFTK.Smearing.FermiDirac || error("Actual model and ensemble settings disagree")
     previous=nothing;target=settings["solver"]["initial_target_states"];previous_potential=nothing
     probe=randn(MersenneTwister(settings["seeds"]["potential_probe"]),ComplexF64,2length(ctx.basis.kpoints[1].G_vectors),1);probe/=norm(probe)
     map=function(n_in,imap,closing)
-        progress((;event="map_input_checkpoint",map_index=imap,is_closure=closing,n_in=copy(n_in)))
+        _runtime_check_settings(ctx,settings,settings_stamp)
+        _runtime_call(()->progress((;event="map_input_checkpoint",map_index=imap,is_closure=closing,n_in=copy(n_in))),ctx,:progress_callback;
+            settings,stamp=settings_stamp)
         mapped=soc_map(ctx,n_in,settings,previous,target;seed,map_index=imap,is_closure=closing,previous_potential,probe,hooks,progress)
         previous=mapped.raw.all_X;target=mapped.target;previous_potential=copy(mapped.potential)
         mapped
     end
-    Controller.iterate_density_map(map,n0;dvol=ctx.basis.dvol,alpha=settings["scf"]["alpha"],max_maps=settings["scf"]["max_maps"],
+    # Only plain numerical data are fingerprinted. Never serialize a native
+    # Hamiltonian/FFT handle to verify a callback's observation-only contract.
+    guarded_callback=function(record,raw)
+        payload=FI.runtime_enabled(ctx) && !isnothing(raw) ?
+            _runtime_callback_payload(record,raw) : nothing
+        _runtime_call(()->callback(record,raw),ctx,:map_callback;
+            ham=isnothing(raw) ? nothing : raw.energy.ham,settings,stamp=settings_stamp,payload)
+    end
+    _runtime_iterate_density_map(ctx,map,n0;dvol=ctx.basis.dvol,alpha=settings["scf"]["alpha"],max_maps=settings["scf"]["max_maps"],
         density_tol=settings["thresholds"]["density_fixedpoint_l2"],electron_tol=settings["thresholds"]["electron_count_abs"],
-        n_electrons=ctx.basis.model.n_electrons,callback)
+        n_electrons=ctx.basis.model.n_electrons,callback=guarded_callback)
 end
 
 function endpoint_time_reversal(ctx,raw,settings)

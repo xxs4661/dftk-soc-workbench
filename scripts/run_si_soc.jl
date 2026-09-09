@@ -3,6 +3,8 @@
 include("run_soc_scf.jl")
 include("../prototypes/crystal_soc/SpinTrace.jl")
 const SI_CASE_DIR=joinpath(PHASE6C_ROOT,"benchmarks/si-soc-splitting-v1")
+const SI_CORE_BASE="c764311a5422b5c3cab5a7b78a02d420910c4e56"
+const SI_CORE_PREPARATION="e4f16a51a0304f5e70f5ae038563d6760409c2c4"
 const SI_BASE="9342a5ea21a76acd0d74d228d4a2081394f702d0"
 const SI_SENSITIVITY_BASE="bc68aaf655d96dfd4335f6fa1a8e5ee76477c2a3"
 const SI_SENSITIVITY_PREPARATION="4a58286183e4625ad7ae69b44eb80097e8ad6c7d"
@@ -26,7 +28,7 @@ function si_case(profile=nothing)
     SOC.validate_soc_settings(case["settings"];case_contract=case)
     case
 end
-function si_sources(profile=nothing)
+function si_sources(profile=nothing;backend=nothing)
     files=collect(keys(phase6c_sources()))
     append!(files,["prototypes/crystal_soc/SpinTrace.jl","scripts/run_si_soc.jl"])
     append!(files,["benchmarks/si-soc-splitting-v1/"*f for f in ("case.json","source.json","plan.json","qe-scf.in","qe-spectrum.in")])
@@ -38,9 +40,28 @@ function si_sources(profile=nothing)
         foreach(si_prepared_bytes,prepared)
         append!(files,prepared)
     end
+    if !isnothing(backend)
+        backend=="soc-core" && isnothing(profile) || error("Unregistered core source/backend combination")
+        append!(files,["src/SOCKernels.jl","prototypes/fr_integration/runtime.jl","scripts/run_si_dftk.py","benchmarks/soc-core-memory-v1/run.py"])
+        for (directory,_,names) in walkdir(joinpath(PHASE6C_ROOT,"src/soc_kernels"))
+            append!(files,[relpath(joinpath(directory,f),PHASE6C_ROOT) for f in names if endswith(f,".jl")])
+        end
+        for file in ("README.md","plan.json","sources.json","contract.json")
+            path="benchmarks/soc-core-memory-v1/$file"
+            read(joinpath(PHASE6C_ROOT,path))==read(`git -C $PHASE6C_ROOT show $(SI_CORE_PREPARATION*":"*path)`) || error("Core preparation changed")
+            push!(files,path)
+        end
+    end
     Dict(f=>filehash(joinpath(PHASE6C_ROOT,f)) for f in unique(files))
 end
-function si_context(case,kind)
+function si_core_gate(path,execution)
+    isnothing(path) && error("Core static gate is required")
+    python=get(ENV,"SOC_CORE_PYTHON","");isfile(python) || error("Explicit recorder Python required for static gate authentication")
+    record=JSON3.read(read(`$python -B $(joinpath(PHASE6C_ROOT,"scripts/run_si_dftk.py")) --verify-core-gate $PHASE6C_ROOT $path $execution`,String),Dict{String,Any})
+    record["sha256"]==filehash(path) || error("Core gate changed during verification")
+    record["sha256"]
+end
+function si_context(case,kind;backend=nothing)
     if haskey(case,"sensitivity_profile")
         SOC.validate_soc_settings(case["settings"];case_contract=case)
         kind in ("scf","spectrum") || error("Sensitivity cases allow only SCF or Gamma contexts")
@@ -54,7 +75,7 @@ function si_context(case,kind)
         w=Float64[p["weight_spatial"] for p in case["kpoints"]]
     elseif kind=="spectrum"
         k=[Float64.(p) for p in case["probe_kpoints"]];w=Float64.(case["probe_weights"])
-    elseif kind=="null"
+    elseif kind=="null" || (kind=="core_gamma" && backend=="soc-core")
         k=[[0.,0.,0.]];w=[1.]
     else;error("Unknown fixed Si grid");end
     ctx=FI.build_context(fill(bundle,length(pos)),lat,pos,k,w;Ecut=case["cutoffs"]["dftk_ecut_ha"],
@@ -239,11 +260,16 @@ function si_append(path,x)
     phase6b_finite(x);open(path,"a") do io;write(io,JSON3.write(x)*"\n");flush(io);end
 end
 """Check a new Si D-SCF receipt before admitting its final density as a parent."""
-function si_validate_parent_receipt(receipt,case,sources,execution_commit)
+function si_validate_parent_receipt(receipt,case,sources,execution_commit;backend=nothing,core_gate_sha256=nothing)
     receipt isa AbstractDict || error("Parent must be a result object")
     profile=get(case,"sensitivity_profile",nothing)
     expected_case=isnothing(profile) ? "si-soc-splitting-v1" : case["case"]
-    expected_base=isnothing(profile) ? SI_BASE : SI_SENSITIVITY_BASE
+    expected_base=backend=="soc-core" ? SI_CORE_BASE : isnothing(profile) ? SI_BASE : SI_SENSITIVITY_BASE
+    if !isnothing(backend)
+        backend=="soc-core" && isnothing(profile) || error("Wrong parent backend/profile")
+        get(receipt,"backend",nothing)==backend && get(receipt,"core_gate_sha256",nothing)==core_gate_sha256 &&
+            get(receipt,"runtime_closed",nothing)===true && get(receipt,"runtime_dispatch_status",nothing)=="PASS" || error("BLOCKED_PARENT: parent did not complete the current owned backend")
+    end
     if !isnothing(profile)
         SOC.validate_soc_settings(case["settings"];case_contract=case)
         get(receipt,"sensitivity_profile",nothing)==profile &&
@@ -252,7 +278,7 @@ function si_validate_parent_receipt(receipt,case,sources,execution_commit)
     end
     get(receipt,"schema_version",nothing) === 1 && get(receipt,"case",nothing)==expected_case &&
         get(receipt,"base_commit",nothing)==expected_base || error("Wrong parent schema/case/base")
-    get(receipt,"action",nothing)=="D-SCF" && get(receipt,"execution_status",nothing)=="PASS" &&
+    get(receipt,"action",nothing)==(backend=="soc-core" ? "OPT-B0-SCF" : "D-SCF") && get(receipt,"execution_status",nothing)=="PASS" &&
         get(receipt,"exit_code",nothing) === 0 || error("Parent SCF is not successful")
     get(receipt,"execution_commit",nothing)==execution_commit &&
         get(receipt,"executed_source_sha256",nothing)==sources || error("Parent code/input execution binding differs")
@@ -294,23 +320,35 @@ function si_spin_trace_report(full,settings)
         spin_dependent_signal_threshold=threshold))
 end
 
-function si_run(action,outdir,parent=nothing;profile=nothing)
+function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,core_gate=nothing)
+    owned=backend=="soc-core"
+    isnothing(backend) || owned || error("Unknown explicit backend")
+    owned && !isnothing(profile) && error("Core backend cannot impersonate an old profile")
+    !owned && !isnothing(core_gate) && error("Core gate requires explicit backend")
     !isnothing(profile) && si_profile(profile)
-    allowed=isnothing(profile) ? ("prepare","static","D-SCF","D-SPECTRUM","D-NULL-GAMMA") : ("prepare","D-SCF","D-GAMMA")
+    work_action=owned ? action=="OPT-B0-SCF" ? "D-SCF" : action=="OPT-B0-GAMMA" ? "D-GAMMA" : "INVALID" : action
+    allowed=owned ? ("OPT-B0-SCF","OPT-B0-GAMMA") :isnothing(profile) ? ("prepare","static","D-SCF","D-SPECTRUM","D-NULL-GAMMA") : ("prepare","D-SCF","D-GAMMA")
     action in allowed || error("Unknown Si action")
-    area=isnothing(profile) ? ".work/phase8a" : ".work/phase8b/$profile"
+    area=owned ? ".work/phase9a/endpoints" : isnothing(profile) ? ".work/phase8a" : ".work/phase8b/$profile"
     caseid=isnothing(profile) ? "si-soc-splitting-v1" : "si-soc-sensitivity-v1/$profile"
     outdir=abspath(outdir)
     startswith(outdir,joinpath(PHASE6C_ROOT,area)*"/") || error("Si runs require ignored $area path")
     ispath(outdir) && error("Refusing existing run directory; no prior PASS reused")
     mkpath(outdir)
     result=Dict{String,Any}("schema_version"=>1,"case"=>caseid,"run_id"=>basename(outdir),
-        "action"=>action,"base_commit"=>(isnothing(profile) ? SI_BASE : SI_SENSITIVITY_BASE),"execution_status"=>"RUNNING","exit_code"=>1,
+        "action"=>action,"base_commit"=>(owned ? SI_CORE_BASE : isnothing(profile) ? SI_BASE : SI_SENSITIVITY_BASE),"execution_status"=>"RUNNING","exit_code"=>1,
         "started_utc"=>string(now(UTC)),"numerical_review_status"=>"REVIEW_REQUIRED")
+    owned && merge!(result,Dict("phase"=>"9A","backend"=>"soc-core","preparation_commit"=>SI_CORE_PREPARATION,"runtime_closed"=>false))
     phase6b_write(joinpath(outdir,"result.json"),result)
+    runtime=nothing
     try
-        result["executed_source_sha256"]=si_sources(profile)
+        result["executed_source_sha256"]=si_sources(profile;backend)
         result["execution_commit"]=strip(read(`git -C $PHASE6C_ROOT rev-parse HEAD`,String))
+        if owned
+            result["core_gate_sha256"]=si_core_gate(core_gate,result["execution_commit"])
+            isempty(strip(read(`git -C $PHASE6C_ROOT status --porcelain`,String))) || error("Core endpoint needs a clean execution tree")
+            result["case_sha256"]=filehash(joinpath(PHASE6C_ROOT,"benchmarks/si-soc-splitting-v1/case.json"))
+        end
         identity=environment_identity(PHASE6C_ROOT,(DFTK,PseudoPotentialIO));result["environment"]=identity
         phase6b_write(joinpath(outdir,"identity.raw.json"),identity;redact=false)
         identity.status=="PASS" || error("Frozen environment mismatch")
@@ -322,13 +360,22 @@ function si_run(action,outdir,parent=nothing;profile=nothing)
             result["case_sha256"]=filehash(joinpath(PHASE6C_ROOT,si_case_path(profile)))
             result["temperature_ha"]=case["electrons"]["temperature_ha"]
         end
-        kind=action in ("prepare","D-SCF") ? "scf" : action=="D-NULL-GAMMA" ? "null" : "spectrum"
-        built=si_context(case,kind);ctx=built.ctx;b=ctx.basis
+        kind=work_action in ("prepare","D-SCF") ? "scf" : owned ? "core_gamma" : work_action=="D-NULL-GAMMA" ? "null" : "spectrum"
+        built=si_context(case,kind;backend);ctx=built.ctx;b=ctx.basis
         b.model.temperature==settings["ensemble"]["tau_ha"] || error("Actual Si context/ensemble temperature mismatch")
         result["input"]=FI.common_data_summary(built.bundle);result["grid"]=si_grid(ctx)
+        if owned
+            runtime=FI.owned_runtime(ctx;max_rhs=30);ctx=runtime;built=(;ctx,bundle=built.bundle)
+            FI.runtime_boundary!(runtime,:driver_entry)
+        end
+        checkpoint=function(path,value)
+            owned && FI.runtime_boundary!(runtime,:before_serialization)
+            phase6c_checkpoint(path,value)
+            owned && FI.runtime_boundary!(runtime,:after_serialization)
+        end
         result["parallelism"]=(;julia=Threads.nthreads(),blas=BLAS.get_num_threads(),fft=DFTK.FFTW.get_num_threads(),mpi=1)
         phase6b_write(joinpath(outdir,"result.json"),result)
-        if action=="prepare" && !isnothing(profile)
+        if work_action=="prepare" && !isnothing(profile)
             gamma=si_context(case,"spectrum")
             result["gamma_grid"]=si_grid(gamma.ctx)
             qe_support=si_qe_grid_support(ctx,case)
@@ -351,7 +398,7 @@ function si_run(action,outdir,parent=nothing;profile=nothing)
                 context_source_binding="Both contexts use independently issued identical frozen Si source bytes",
                 scope="Source/context/basis/static FR only; no XC evaluation, eigensolve or density feedback")
             FI.validate_context(gamma.ctx);FI.assert_bound_sources(gamma.bundle)
-        elseif action=="static"
+        elseif work_action=="static"
             progress=report->begin
                 result["nlcc"]=report
                 phase6b_write(joinpath(outdir,"result.json"),result)
@@ -362,61 +409,63 @@ function si_run(action,outdir,parent=nothing;profile=nothing)
             result["time_reversal"]=FI.full_hamiltonian_checks(ctx,static.full,settings)
             result["nlcc"]["status"]=="PASS" || error("INCONCLUSIVE static XC direction")
             result["time_reversal"].status=="PASS" || error("Static TR check failed")
-        elseif action=="D-SCF"
+        elseif work_action=="D-SCF"
             n=fill(8/b.model.unit_cell_volume,prod(b.fft_size))
-            phase6c_checkpoint(joinpath(outdir,"initial.bin"),(;n,seed=81001))
+            checkpoint(joinpath(outdir,"initial.bin"),(;n,seed=81001))
             progress=function(event)
                 if hasproperty(event,:event) && event.event=="map_input_checkpoint"
-                    phase6c_checkpoint(joinpath(outdir,"current-map-input.bin"),event)
+                    checkpoint(joinpath(outdir,"current-map-input.bin"),event)
                 elseif hasproperty(event,:event) && event.event in ("target_solve","failed_target_solve")
                     if event.event=="target_solve"
-                        phase6c_checkpoint(joinpath(outdir,"latest-k$(event.record.k_index).bin"),event.state)
+                        checkpoint(joinpath(outdir,"latest-k$(event.record.k_index).bin"),event.state)
                         si_append(joinpath(outdir,"solver.jsonl"),event.record)
                     else
-                        phase6c_checkpoint(joinpath(outdir,"failed-solve.bin"),event)
+                        checkpoint(joinpath(outdir,"failed-solve.bin"),event)
                     end
                 else
                     si_append(joinpath(outdir,"events.jsonl"),event)
                 end
             end
             callback=function(record,raw)
+                owned && FI.runtime_boundary!(runtime,:callback_entry)
                 si_append(joinpath(outdir,"maps.jsonl"),record)
                 result["completed_maps"]=record["map_index"];result["latest_map"]=record
                 if !isnothing(raw)
                     state=(;X=raw.X,all_X=raw.all_X,f=raw.f,eigenvalues=raw.eigenvalues,n_in=raw.n_in,n_out=raw.n_out,
                         diagnostics=raw.diag,mu=raw.ensemble.mu,record)
-                    phase6c_checkpoint(joinpath(outdir,"latest.bin"),state)
+                    checkpoint(joinpath(outdir,"latest.bin"),state)
                     if record["map_index"]==1 || get(record,"density_candidate",false) || record["map_role"]=="closure" || record["status"]=="FAIL"
-                        phase6c_checkpoint(joinpath(outdir,"map-$(lpad(record["map_index"],3,'0')).bin"),state)
+                        checkpoint(joinpath(outdir,"map-$(lpad(record["map_index"],3,'0')).bin"),state)
                     end
                     println(stderr,"Si map=$(record["map_index"]) $(record["map_role"]) $(record["status"]) residual=$(get(record,"unmixed_residual_l2",nothing)) E=$(raw.thermal.internal_energy_ha)")
                 end
                 Sys.maxrss()<8*1024^3 || error("RESOURCE_BLOCKED: measured peak exceeds8GiB")
                 phase6b_write(joinpath(outdir,"result.json"),result)
+                owned && FI.runtime_boundary!(runtime,:callback_return)
             end
             solved=SOC.soc_scf(ctx,n,settings;seed=81001,callback,progress,case_contract=isnothing(profile) ? nothing : case);raw=solved.raw
             result["final"]=(;map_count=solved.map_count,n_in_sha256=FI.integration_density_hash(raw.n_in),
                 n_out_sha256=FI.integration_density_hash(raw.n_out),mu_ha=raw.ensemble.mu,
                 eigenvalues_ha=raw.eigenvalues,occupations=raw.f,diagnostics=raw.diag,
                 unmixed_residual_l2=last(solved.history)["unmixed_residual_l2"])
-            phase6c_checkpoint(joinpath(outdir,"final.bin"),(;n_in=raw.n_in,n_out=raw.n_out,X=raw.X,f=raw.f,
+            checkpoint(joinpath(outdir,"final.bin"),(;n_in=raw.n_in,n_out=raw.n_out,X=raw.X,f=raw.f,
                 eigenvalues=raw.eigenvalues,mu=raw.ensemble.mu,final=result["final"]))
             result["checkpoint_sha256"]=filehash(joinpath(outdir,"final.bin"))
-        elseif action in ("D-SPECTRUM","D-NULL-GAMMA","D-GAMMA")
+        elseif work_action in ("D-SPECTRUM","D-NULL-GAMMA","D-GAMMA")
             isnothing(parent) && error("Missing successful D-SCF parent")
             parent=abspath(parent);receipt=si_json(joinpath(parent,"result.json"))
             startswith(realpath(parent),realpath(joinpath(PHASE6C_ROOT,area))*"/") || error("Parent must belong to the same Si run area")
-            si_validate_parent_receipt(receipt,case,result["executed_source_sha256"],result["execution_commit"])
+            si_validate_parent_receipt(receipt,case,result["executed_source_sha256"],result["execution_commit"];backend,core_gate_sha256=owned ? result["core_gate_sha256"] : nothing)
             get(receipt,"run_id",nothing)==basename(parent) || error("Parent run ID differs from its directory")
             cp=joinpath(parent,"final.bin");filehash(cp)==receipt["checkpoint_sha256"] || error("Parent checkpoint hash mismatch")
             raw=deserialize(cp);FI.integration_density_hash(raw.n_out)==receipt["final"]["n_out_sha256"] || error("Wrong parent final density")
             H=FI.build_full_hamiltonian(ctx,raw.n_out)
-            null=action=="D-NULL-GAMMA";ham=null ? SpinTrace.spin_trace_hamiltonian.(H.full) : H.full
+            null=work_action=="D-NULL-GAMMA";ham=null ? SpinTrace.spin_trace_hamiltonian.(H.full) : H.full
             result["source_scf_run_id"]=receipt["run_id"];result["density_source_sha256"]=receipt["final"]["n_out_sha256"]
             result["parent_checkpoint_sha256"]=receipt["checkpoint_sha256"]
             result["parent_result_sha256"]=filehash(joinpath(parent,"result.json"))
             if !null
-                result["time_reversal"]=action=="D-GAMMA" ? si_gamma_time_reversal(ctx,H.full,settings) : FI.full_hamiltonian_checks(ctx,H.full,settings)
+                result["time_reversal"]=work_action=="D-GAMMA" ? si_gamma_time_reversal(ctx,H.full,settings) : FI.full_hamiltonian_checks(ctx,H.full,settings)
                 result["time_reversal"].status=="PASS" || error("Final-density full-H time reversal failed")
             else
                 result["spin_trace"]=si_spin_trace_report(first(H.full),settings)
@@ -425,16 +474,16 @@ function si_run(action,outdir,parent=nothing;profile=nothing)
             progress=function(event)
                 if event.event=="target_solve"
                     si_append(joinpath(outdir,"solver.jsonl"),event.record)
-                    phase6c_checkpoint(joinpath(outdir,"k$(event.record.k_index).bin"),event.state)
+                    checkpoint(joinpath(outdir,"k$(event.record.k_index).bin"),event.state)
                 else
-                    phase6c_checkpoint(joinpath(outdir,"failed-solve.bin"),event)
+                    checkpoint(joinpath(outdir,"failed-solve.bin"),event)
                 end
             end
             sol=SOC.solve_soc_targets(ctx,ham,nothing,24,settings;seed=null ? 81301 : 81201,map_index=1,progress)
             points=[(;coordinate_fractional=collect(k.coordinate),eigenvalues_ha=sol.eigenvalues[i],
                 residuals_ha=sol.records[i].explicit_residuals_ha,gram_frobenius=sol.records[i].orthogonality_frobenius,
                 occupations=si_probe_occupations(sol.eigenvalues[i],raw.mu,case["electrons"]["temperature_ha"])) for (i,k) in enumerate(b.kpoints)]
-            if !isnothing(profile)
+            if !isnothing(profile) || owned
                 points=[merge(point,(;weight_spatial=b.kweights[i])) for (i,point) in enumerate(points)]
             end
             spectrum=(;schema_version=1,case=caseid,kind=null ? "null" : "spectrum",code="DFTK",
@@ -446,13 +495,26 @@ function si_run(action,outdir,parent=nothing;profile=nothing)
                 spectrum=merge(spectrum,(;sensitivity_profile=profile,case_sha256=result["case_sha256"],
                     temperature_ha=b.model.temperature,occupations_use="DIAGNOSTIC_ONLY_NOT_DENSITY_FEEDBACK"))
             end
+            if owned
+                spectrum=merge(spectrum,(;backend="soc-core",temperature_ha=b.model.temperature,occupations_use="DIAGNOSTIC_ONLY_NOT_DENSITY_FEEDBACK"))
+                filehash(cp)==result["parent_checkpoint_sha256"] && filehash(joinpath(parent,"result.json"))==result["parent_result_sha256"] || error("Parent changed during Gamma evaluation")
+            end
             # Only the final outer result is authoritative. Do not publish a
             # standalone PASS spectrum before all source/environment/I/O gates.
             result["spectrum"]=spectrum
         end
         Sys.maxrss()<8*1024^3 || error("RESOURCE_BLOCKED: measured peak exceeds8GiB")
-        FI.validate_context(ctx);FI.assert_bound_sources(built.bundle)
-        si_sources(profile)==result["executed_source_sha256"] || error("Execution source/config changed")
+        if owned
+            FI.runtime_boundary!(runtime,:final)
+            result["runtime"]=FI.runtime_summary(runtime)
+            counts=result["runtime"].counters
+            all(getproperty(counts,k)>0 for k in (:fr_mul_calls,:component_mul_calls,:full_mul_calls)) || error("Owned core dispatch counters were not exercised")
+            result["runtime_dispatch_status"]="PASS"
+            si_core_gate(core_gate,result["execution_commit"])==result["core_gate_sha256"] || error("Core static gate changed")
+        else
+            FI.validate_context(ctx);FI.assert_bound_sources(built.bundle)
+        end
+        si_sources(profile;backend)==result["executed_source_sha256"] || error("Execution source/config changed")
         environment_identity(PHASE6C_ROOT,(DFTK,PseudoPotentialIO)).status=="PASS" || error("Environment changed")
         result["execution_status"]="PASS";result["exit_code"]=0
     catch err
@@ -462,6 +524,21 @@ function si_run(action,outdir,parent=nothing;profile=nothing)
         end
         haskey(result,"spectrum") && (result["spectrum"]=merge(result["spectrum"],(;execution_status="FAIL",process_exit_code=1)))
         showerror(stderr,err,catch_backtrace());println(stderr)
+    finally
+        if owned && !isnothing(runtime)
+            try
+                haskey(result,"runtime") || (result["runtime"]=FI.runtime_summary(runtime))
+                FI.close_runtime!(runtime)
+                result["runtime_after_close"]=FI.runtime_summary(runtime)
+                result["runtime_closed"]=result["runtime_after_close"].closed
+                result["runtime_closed"] || error("Owned runtime did not close")
+            catch err
+                result["execution_status"]="FAIL";result["exit_code"]=1;result["cleanup_reason"]=sprint(showerror,err)
+                get!(result,"reason","Owned runtime cleanup failed")
+                haskey(result,"spectrum") && (result["spectrum"]=merge(result["spectrum"],(;execution_status="FAIL",process_exit_code=1)))
+                println(stderr,"Runtime cleanup failed: ",sprint(showerror,err))
+            end
+        end
     end
     result["finished_utc"]=string(now(UTC));result["peak_rss_bytes"]=Sys.maxrss()
     try
@@ -478,6 +555,12 @@ function si_run(action,outdir,parent=nothing;profile=nothing)
 end
 function si_main(args)
     args==["--help"] && (println("run_si_soc.jl ACTION NEW_RUN_DIR [PARENT_D_SCF_DIR] [--profile E40|T05|K4]; profile actions: prepare|D-SCF|D-GAMMA; legacy: prepare|static|D-SCF|D-SPECTRUM|D-NULL-GAMMA");return 0)
+    if "--backend" in args || "--core-gate" in args
+        length(args) in (6,7) && args[end-3]=="--backend" && args[end-2]=="soc-core" && args[end-1]=="--core-gate" || return 2
+        positional=args[1:end-4]
+        length(positional)==(first(positional)=="OPT-B0-SCF" ? 2 : first(positional)=="OPT-B0-GAMMA" ? 3 : 0) || return 2
+        return si_run(positional[1],positional[2],length(positional)==3 ? positional[3] : nothing;backend="soc-core",core_gate=args[end])
+    end
     profile=nothing;positional=args
     if "--profile" in args
         length(args)>=2 && args[end-1]=="--profile" && count(==("--profile"),args)==1 || return 2

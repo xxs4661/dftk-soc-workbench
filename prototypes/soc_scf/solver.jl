@@ -77,6 +77,7 @@ end
 
 function solve_soc_targets(ctx,ham,previous,target,settings;seed,map_index,extension_index=0,
                            solve_hook=nothing,progress=(record)->nothing)
+    settings_stamp=_runtime_settings_stamp(ctx,settings)
     s,t=settings["solver"],settings["thresholds"]
     ncolumns=target+s["auxiliary_states"]
     kinetic=only(filter(x->x isa DFTK.TermKinetic,ctx.basis.terms)).kinetic_energies
@@ -89,12 +90,15 @@ function solve_soc_targets(ctx,ham,previous,target,settings;seed,map_index,exten
         initial_gram<=t["gram_norm"] || error("Initial whole-spinor QR Gram check failed")
         prec=ComponentKineticPreconditioner(kinetic[ik],2;shift=s["preconditioner_shift_ha"])
         FI.reset_full_counters!(H);started=time()
-        eig=isnothing(solve_hook) ? DFTK.lobpcg_hyper(H,initial;prec,tol=s["tolerance_ha"],maxiter=s["maxiter"],miniter=1,n_conv_check=target) :
-            solve_hook(H,initial,prec,ik,map_index)
+        eig=_runtime_call(ctx,:eigensolve;ham=(H,),settings,stamp=settings_stamp) do
+            isnothing(solve_hook) ? DFTK.lobpcg_hyper(H,initial;prec,tol=s["tolerance_ha"],maxiter=s["maxiter"],miniter=1,n_conv_check=target) :
+                solve_hook(H,initial,prec,ik,map_index)
+        end
         counts=FI.full_operator_stats(H)
         if eig.converged!==true || eig.n_iter<=0
             state=hasproperty(eig,:X) && hasproperty(eig,:λ) ? (;X=eig.X,eigenvalues_ha=eig.λ) : nothing
-            progress((;event="failed_target_solve",map_index,k_index=ik,converged=eig.converged,iterations=eig.n_iter,state))
+            _runtime_call(()->progress((;event="failed_target_solve",map_index,k_index=ik,converged=eig.converged,iterations=eig.n_iter,state)),ctx,:progress_callback;
+                ham=(H,),settings,stamp=settings_stamp,payload=state)
             error("SOC diagonalization failed or used zero iterations")
         end
         initial==saved || error("Eigensolver changed its input subspace")
@@ -110,7 +114,10 @@ function solve_soc_targets(ctx,ham,previous,target,settings;seed,map_index,exten
             converged=eig.converged,iterations=eig.n_iter,elapsed_seconds=time()-started,
             solver_n_matvec=eig.n_matvec,operator_counts=counts,counts_after_explicit_residual=FI.full_operator_stats(H),
             eigenvalues_ha=lambda,explicit_residuals_ha=residuals,orthogonality_frobenius=norm(x'x-I))
-        progress((;event="target_solve",record,state=(;X=x,all_X=Matrix(eig.X),eigenvalues_ha=lambda))) # Raw arrays stay in ignored checkpoints.
+        # Raw arrays stay in ignored checkpoints; callback mutation cannot cross
+        # the owned runtime's source/potential/settings boundary unnoticed.
+        _runtime_call(()->progress((;event="target_solve",record,state=(;X=x,all_X=Matrix(eig.X),eigenvalues_ha=lambda))),ctx,:progress_callback;
+            ham=(H,),settings,stamp=settings_stamp,payload=(;x,all_X=eig.X,lambda,record))
         FI.assert_eigensolve_record(record,settings)
         push!(orbitals,x);push!(all_X,Matrix(eig.X));push!(eigenvalues,lambda);push!(records,record)
     end
@@ -118,6 +125,7 @@ function solve_soc_targets(ctx,ham,previous,target,settings;seed,map_index,exten
 end
 
 function solve_with_band_check(ctx,ham,previous,target,settings;seed,map_index,solve_hook=nothing,progress=(record)->nothing)
+    settings_stamp=_runtime_settings_stamp(ctx,settings)
     allow_expansion=get(settings["solver"],"allow_band_expansion",true)
     allow_expansion isa Bool || throw(ArgumentError("allow_band_expansion must be boolean"))
     attempts=NamedTuple[];warm=previous;expansion=0
@@ -127,7 +135,8 @@ function solve_with_band_check(ctx,ham,previous,target,settings;seed,map_index,s
             electron_tol=settings["ensemble"]["root_electron_atol"],maxiter=settings["ensemble"]["root_maxiter"])
         band=band_completeness(ensemble.f;threshold=settings["ensemble"]["boundary_occupation_max"])
         push!(attempts,(;target,band,occupation=ensemble.report,per_k=solved.records))
-        progress((;map_index,event="band_completeness",attempt=last(attempts)))
+        _runtime_call(()->progress((;map_index,event="band_completeness",attempt=last(attempts))),ctx,:progress_callback;
+            ham,settings,stamp=settings_stamp,payload=last(attempts))
         band.status=="PASS" && return (;solved,ensemble,band,attempts)
         allow_expansion || throw(EnsembleError("INSUFFICIENT_BANDS",
             "At $target targets, highest two occupations exceed the declared threshold; this case forbids band expansion"))

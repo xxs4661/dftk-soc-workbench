@@ -56,3 +56,72 @@ function component_fft(basis, kpt, u::AbstractArray)
     end
     output
 end
+
+"""Opt-in bounded orbital FFT/density scratch, one physical state at a time.
+
+No input is owned here. The caller's session authenticates basis/k/mapping/source
+at its explicit boundaries. Returned density arrays are workspace-borrowed until
+next use; a retained endpoint needs an explicit owned snapshot. No legacy FFT or
+density function changes dispatch. This serial workspace cannot be shared across
+concurrent calls.
+"""
+mutable struct OrbitalDensityWorkspace
+    coefficients::Vector{ComplexF64}
+    grid::Array{ComplexF64,3}
+    real_state::Array{ComplexF64,3}
+    density::SOCKernels.DensityWorkspace
+    inverse_fft_calls::Int
+    transformed_states::Int
+    density_calls::Int
+end
+function OrbitalDensityWorkspace(max_ng,nr,fft_size,ncomp=2)
+    ng=SOCKernels._positive(max_ng,"FFT coefficient capacity")
+    r=SOCKernels._positive(nr,"FFT real grid size")
+    n=SOCKernels._positive(ncomp,"Density component count")
+    fft_size isa Tuple && length(fft_size)==3 && all(x->x isa Integer && !(x isa Bool) && x>0,fft_size) && prod(fft_size)==r ||
+        throw(DimensionMismatch("Explicit three-dimensional FFT size differs from nr"))
+    n in (1,2) || throw(ArgumentError("Physical density supports one or two components"))
+    OrbitalDensityWorkspace(Vector{ComplexF64}(undef,ng),Array{ComplexF64}(undef,fft_size),
+        Array{ComplexF64}(undef,n,r,1),SOCKernels.DensityWorkspace(n,r),0,0,0)
+end
+SOCKernels.workspace_stats(ws::OrbitalDensityWorkspace)=(;ws.inverse_fft_calls,ws.transformed_states,ws.density_calls,
+    density=SOCKernels.workspace_stats(ws.density))
+function SOCKernels.reset_workspace_counters!(ws::OrbitalDensityWorkspace)
+    ws.inverse_fft_calls=ws.transformed_states=ws.density_calls=0
+    SOCKernels.reset_workspace_counters!(ws.density);ws
+end
+function _orbital_workspace_buffers(ws)
+    (ws.coefficients,ws.grid,ws.real_state,SOCKernels._density_buffers(ws.density)...)
+end
+function _orbital_density_request(ws,basis,X,weights,f;atol=1e-11)
+    nk=length(basis.kpoints);ncomp=size(ws.real_state,1);nr=prod(basis.fft_size)
+    length(X)==length(f)==nk>0 || throw(DimensionMismatch("One matrix/occupation set per physical k required"))
+    SOCKernels.validate_weights(weights,nk;atol)
+    weights==basis.kweights || throw(ArgumentError("Weights differ from the supplied actual basis"))
+    size(ws.grid)==basis.fft_size && size(ws.real_state)==(ncomp,nr,1) && length(ws.density.n)==nr &&
+        size(ws.density.R)==(ncomp,ncomp,nr) || throw(DimensionMismatch("Density workspace FFT/component shape changed"))
+    buffers=_orbital_workspace_buffers(ws);SOCKernels._no_overlap(buffers)
+    for ik in eachindex(X)
+        x=X[ik];occ=f[ik];kpt=basis.kpoints[ik];ng=length(DFTK.G_vectors(basis,kpt))
+        x isa AbstractMatrix && eltype(x)===ComplexF64 && size(x,1)==ncomp*ng && size(x,2)>0 && ng<=length(ws.coefficients) ||
+            throw(DimensionMismatch("Physical component/G/state or workspace capacity mismatch"))
+        Base.require_one_based_indexing(x,occ)
+        all(isfinite,x) || throw(ArgumentError("Nonfinite reciprocal orbital"))
+        SOCKernels._occupations(occ,size(x,2);capacity=ncomp==1 ? 2.0 : 1.0)
+        SOCKernels._protect_scratch(buffers,(x,occ,weights))
+        length(kpt.mapping)==ng && all(i->1<=i<=nr,kpt.mapping) || throw(ArgumentError("Invalid actual k/FFT mapping"))
+    end
+    ncomp,nr
+end
+function _orbital_real_state!(ws,basis,kpt,x,state,ncomp,nr)
+    ng=size(x,1)÷ncomp;coefficients=@view ws.coefficients[1:ng]
+    for component in 1:ncomp
+        for g in 1:ng;coefficients[g]=x[component+ncomp*(g-1),state];end
+        DFTK.ifft!(ws.grid,basis,kpt,coefficients)
+        all(isfinite,ws.grid) || throw(ArgumentError("Nonfinite periodic Bloch component"))
+        for r in 1:nr;ws.real_state[component,r,1]=ws.grid[r];end
+        ws.inverse_fft_calls+=1
+    end
+    ws.transformed_states+=1
+    ws.real_state
+end

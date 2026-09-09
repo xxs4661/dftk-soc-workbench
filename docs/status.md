@@ -17,6 +17,7 @@ historical `REVIEW_REQUIRED` fields remain unchanged.
 
 | Capability | Evidence and scope | Limit / next validation |
 | --- | --- | --- |
+| Reusable SOC numerical runtime | [Explicit opt-in core and owned DFTK adapter](soc-core-runtime.md); [Phase 9A evidence](../results/soc-core-memory/README.md). Fixed-base REF suites completed; new core regressions and gates tracked separately. | Candidate static and endpoint status must be read from the linked result. No new physics, upstream API endorsement, K6/K8 SCF or physical-convergence claim. |
 | Si QE dense-k reference | [K6/K8 four slots PASS/0](../results/si-soc-k-reference/README.md); B0/K4 HISTORICAL_REUSED. 4→6 / 6→8 Δ response +0.047128386 / +0.008621197 meV; both within0.1 meV; three-point range0.055749582 meV. Complete native text and e/f public replay. | DFTK K6/K8 NOT_RUN (unchanged budget exceeds8 GiB); new-grid same-parameter agreement NOT_ASSESSED, physical convergence NOT_ESTABLISHED. Γ occupation/manifold REVIEW_REQUIRED, SCF eigensolver warnings and IEEE flags retained; explicit QE wavefunction residuals NOT_AVAILABLE. |
 | FR-NC UPF acceptance and recorder | [Strict Mg metadata acceptance, exact native SOC rejection, regression code](../results/upf-acceptance/README.md) | Native DFTK constructor rejection remains intact; information-only parsing is not acceptance. |
 | Scalar Si / QE 7.5 | [B0 matched 30 Ha, eight-point input and raw spectra](../results/scalar-si-baseline/README.md) | One Si SR-LDA NC input; raw eigenvalue reference differs. |

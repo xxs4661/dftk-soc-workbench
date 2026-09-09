@@ -1,5 +1,7 @@
 # Physical cases and reproduction
 
+- [SOC core memory v1](soc-core-memory-v1/README.md): authenticated historical B0/K4 static pairs and two gated new B0 endpoints; [current status](../results/soc-core-memory/README.md).
+
 - [Si QE k-grid reference](si-soc-k-reference-v1/README.md): frozen K6/K8 inputs and four-slot plan; [current status](../results/si-soc-k-reference/README.md). Four prescribed QE slots completed once; finite trends and limits are in the linked result. No new DFTK context or worker.
 
 - [mg-soc-public-replay-v1](mg-soc-public-replay-v1/README.md): executed fixed Linux public replay; **I PASS/0, R FAIL/1** for predeclared density fingerprints, CI failure retained; [results](../results/mg-soc-public-replay/linux/README.md).

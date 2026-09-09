@@ -72,6 +72,12 @@ end
 
 function assert_bound_identity(bundle::BoundPspBundle;common=bundle.common,channels=bundle.channels)
     entry=get(_BOUND_PSP_SOURCES,bundle._token,nothing)
+    _assert_bound_identity(bundle,entry;common,channels)
+end
+
+# The scoped runtime supplies the original issued entry explicitly. The legacy
+# entry point still uses its original registry and rejection semantics.
+function _assert_bound_identity(bundle::BoundPspBundle,entry;common=bundle.common,channels=bundle.channels)
     isnothing(entry) && throw(ArgumentError("Pseudopotential bundle was not issued by the controlled loader"))
     bundle===entry.bundle && common===entry.common && channels===entry.channels &&
         bundle.parsed===entry.parsed && common._token===bundle._token ||
@@ -80,8 +86,12 @@ function assert_bound_identity(bundle::BoundPspBundle;common=bundle.common,chann
 end
 
 function assert_bound_sources(bundle::BoundPspBundle;common=bundle.common,channels=bundle.channels)
-    assert_bound_identity(bundle;common,channels)
-    entry=_BOUND_PSP_SOURCES[bundle._token]
+    entry=get(_BOUND_PSP_SOURCES,bundle._token,nothing)
+    _assert_bound_sources(bundle,entry;common,channels)
+end
+
+function _assert_bound_sources(bundle::BoundPspBundle,entry;common=bundle.common,channels=bundle.channels)
+    _assert_bound_identity(bundle,entry;common,channels)
     _source_snapshot(common)==entry.common_snapshot && _source_snapshot(channels)==entry.channel_snapshot &&
         _source_snapshot(bundle.parsed)==entry.parsed_snapshot &&
         (bundle.mode,bundle.xc_identifiers,bundle.sha256)==entry.metadata ||

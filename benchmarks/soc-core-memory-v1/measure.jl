@@ -19,7 +19,10 @@ function msnapshot(x)
 end
 function mpublic(x, root, reference)
     if x isa AbstractString
-        replace(x, reference=>"<reference-root>", root=>"<workbench>", homedir()=>"<home>")
+        # CORE loads the execution root itself: preserve the same public
+        # environment identity prefix as REF, not a fictitious second root.
+        root==reference ? replace(x,root=>"<workbench>",homedir()=>"<home>") :
+            replace(x,reference=>"<reference-root>",root=>"<workbench>",homedir()=>"<home>")
     elseif x isa NamedTuple || x isa AbstractDict
         Dict(string(k)=>mpublic(v,root,reference) for (k,v) in pairs(x))
     elseif x isa AbstractArray || x isa Tuple
@@ -51,14 +54,22 @@ function authenticate(root,reference,suite)
     for (path,spec) in sources["frozen_inputs_and_history"]
         checked_bytes(root,path,spec)
     end
-    mrequire(strip(mgit(reference,"rev-parse","HEAD"))==MEASUREMENT_BASE,"Reference checkout is not the accepted base")
-    mrequire(isempty(strip(mgit(reference,"status","--porcelain","--untracked-files=all"))),"Reference checkout is dirty")
-    for (path,spec) in sources["reference_implementation"]["files"]
-        bytes=checked_bytes(reference,path,spec)
-        mrequire(bytes==read(`git -C $reference show $(MEASUREMENT_BASE*":"*path)`),"Reference file differs from complete Git blob")
+    mrequire(isempty(strip(mgit(reference,"status","--porcelain","--untracked-files=all"))),"Code checkout is dirty")
+    if startswith(suite,"REF-")
+        mrequire(strip(mgit(reference,"rev-parse","HEAD"))==MEASUREMENT_BASE,"Reference checkout is not the accepted base")
+        for (path,spec) in sources["reference_implementation"]["files"]
+            bytes=checked_bytes(reference,path,spec)
+            mrequire(bytes==read(`git -C $reference show $(MEASUREMENT_BASE*":"*path)`),"Reference file differs from complete Git blob")
+        end
+    else
+        mrequire(realpath(reference)==realpath(root),"Candidate must load the actual execution checkout")
+        head=strip(mgit(root,"rev-parse","HEAD"))
+        plan=mjson(joinpath(root,MEASUREMENT_DIR,"plan.json"))
+        for (path,spec) in sources["reference_implementation"]["files"]
+            path in plan["allowed_existing_code"] || checked_bytes(root,path,spec)
+            mrequire(read(joinpath(root,path))==read(`git -C $root show $(head*":"*path)`),"Candidate source differs from exact committed blob")
+        end
     end
-    # There is intentionally no candidate alias or fallback before REF measurements.
-    startswith(suite,"CORE-") && error("NOT_IMPLEMENTED: candidate measurement backend is not enabled")
     sources
 end
 function load_reference_modules(reference)
@@ -114,6 +125,21 @@ function build_original_context(root,case,source)
         mode=:real_fr,temperature=case["electrons"]["temperature_ha"],smearing=DFTK.Smearing.FermiDirac(),fft_size=case["fft_size"])
     (;ctx,bundle)
 end
+function build_static_context(root,case,source,core)
+    built=build_original_context(root,case,source)
+    core || return built
+    (;ctx=Main.FRIntegration.owned_runtime(built.ctx;max_rhs=30),bundle=built.bundle)
+end
+static_core(ctx)=isdefined(Main.FRIntegration,:runtime_enabled) && Main.FRIntegration.runtime_enabled(ctx)
+static_operators(ctx)=static_core(ctx) ? Main.FRIntegration.runtime_fr_blocks(ctx) : ctx.fr_blocks
+function static_boundary(built,event;ham=nothing)
+    FI=Main.FRIntegration
+    if static_core(built.ctx)
+        FI.runtime_boundary!(built.ctx,event;ham)
+    else
+        FI.validate_context(built.ctx);FI.assert_bound_sources(built.bundle)
+    end
+end
 function authenticate_basis(ctx,state,historical)
     FI=Main.FRIntegration;b=ctx.basis;old=historical["grid"]["basis"]
     actual=JSON3.read(JSON3.write(FI.basis_summary(ctx)),Dict{String,Any})
@@ -148,10 +174,16 @@ function save_payload(directory,name,value)
     serialize(path,value)
     (;path=basename(path),sha256=msha(path),bytes=filesize(path),format="Julia 1.12.7 native Serialization; ignored private numerical outputs",source="Actual fixed-input measured operation, unshifted/unrenormalized")
 end
+function operator_payload(ctx)
+    [(;coordinate=collect(k.coordinate),weight=ctx.basis.kweights[i],
+       G=collect(DFTK.G_vectors(ctx.basis,k)),P=op.P,D=op.D,labels=op.labels)
+     for (i,(k,op)) in enumerate(zip(ctx.basis.kpoints,ctx.fr_blocks))]
+end
 function fixed_nonlocal(ctx,state)
     R=Main.RelativisticProjectors
-    direct=R.nonlocal_energy(ctx.fr_blocks,state.X,ctx.basis.kweights,state.f)
-    projected=R.projected_nonlocal_energy(ctx.fr_blocks,state.X,ctx.basis.kweights,state.f)
+    operators=static_operators(ctx)
+    direct=R.nonlocal_energy(operators,state.X,ctx.basis.kweights,state.f)
+    projected=R.projected_nonlocal_energy(operators,state.X,ctx.basis.kweights,state.f)
     mrequire(abs(direct-projected)/max(abs(direct),abs(projected),1)<=1e-11,"Independent projector contraction differs")
     (;direct_ha=direct,projected_ha=projected)
 end
@@ -179,25 +211,30 @@ function micro_action!(Y,operator,X)
     mul!(Y,operator,X,1,0)
     Y
 end
-function reference_pipeline(root,case,source,state,rhs,historical)
+function reference_pipeline(root,case,source,state,rhs,historical;core=false)
     FI=Main.FRIntegration
-    built=build_original_context(root,case,source);ctx=built.ctx
+    built=build_static_context(root,case,source,core);ctx=built.ctx
+    try
     authenticate_basis(ctx,state,historical)
     H=FI.build_full_hamiltonian(ctx,state.n_out)
     actions=Dict{String,Any}()
-    for (label,operator) in (("FR",ctx.fr_blocks[1]),("component",H.full[1].common),("full_H",H.full[1]))
+    for (label,operator) in (("FR",static_operators(ctx)[1]),("component",H.full[1].common),("full_H",H.full[1]))
         for n in (1,24,30)
             Y=similar(rhs[n]);micro_action!(Y,operator,rhs[n]);actions["$(label)_$n"]=Y
         end
     end
-    density=FI.orbital_density(ctx.basis,state.X,state.f;stream_k=true)
+    density=core ? FI.context_orbital_density(ctx,state.X,state.f;stream_k=true) : FI.orbital_density(ctx.basis,state.X,state.f;stream_k=true)
     nl=fixed_nonlocal(ctx,state);energy=fixed_energy(ctx,state)
-    FI.validate_context(ctx);FI.assert_bound_sources(built.bundle)
+    static_boundary(built,:pipeline_final;ham=energy.snapshot.ham)
     (;values=(;actions,density,nonlocal=nl,energy=energy.values),built,H,energy=energy.snapshot)
+    finally
+        core && FI.close_runtime!(ctx)
+    end
 end
 
 function run_loaded(root,reference,suite,outdir,result,sources)
     FI=Main.FRIntegration;WE=Main.WorkbenchEnvironment
+    core=startswith(suite,"CORE-")
     identity=WE.environment_identity(root,(DFTK,PseudoPotentialIO))
     result["environment"]=identity; mrequire(identity.status=="PASS","Frozen loaded environment mismatch")
     mrequire(VERSION==v"1.12.7","Native Serialization requires frozen Julia1.12.7")
@@ -219,10 +256,12 @@ function run_loaded(root,reference,suite,outdir,result,sources)
     result["measurements"]=Dict{String,Any}();result["outputs"]=Dict{String,Any}();result["live_memory"]=Dict{String,Any}()
     persist()=mwrite(joinpath(outdir,"worker-result.json"),result;root,reference)
     persist()
-    cold=@timed build_original_context(root,case,source)
+    cold=@timed build_static_context(root,case,source,core)
     built=cold.value;ctx=built.ctx
+    try
     result["cold_initialization"]=Dict("context_construction"=>cold_report(cold))
     authenticate_basis(ctx,state,endpoint.result)
+    core && (result["canonical_operators"]=save_payload(outdir,"operators",operator_payload(ctx)))
     result["live_memory"]["context_ready"]=SOCCoreMemory.unique_memory(old_roots(data=payload,built=built))
     hcold=@timed FI.build_full_hamiltonian(ctx,state.n_out);H=hcold.value
     result["cold_initialization"]["H_construction"]=cold_report(hcold)
@@ -232,7 +271,15 @@ function run_loaded(root,reference,suite,outdir,result,sources)
     function measure(name,f;consume=compact_consume,canonical=Base.identity)
         result["active_operation"]=name;persist()
         try
-            measured=SOCCoreMemory.measure_operation(f;consume,name,warmup=1,samples=5)
+            # Compact incremental evidence survives an externally stopped
+            # candidate worker; file I/O is outside every @timed region.
+            on_sample=function(report)
+                row=isempty(report["samples"]) ? report["warmup"] : last(report["samples"])
+                open(joinpath(outdir,"measurement-progress.jsonl"),"a") do io
+                    println(io,JSON3.write((;operation=name,sample=row)))
+                end
+            end
+            measured=SOCCoreMemory.measure_operation(f;consume,name,warmup=1,samples=5,on_sample)
             result["measurements"][name]=measured.report
             mrequire(Sys.maxrss()<8*1024^3,"RESOURCE_BLOCKED: Julia peak RSS reached8GiB")
             result["outputs"][name]=save_payload(outdir,name,canonical(measured.last_value))
@@ -244,7 +291,7 @@ function run_loaded(root,reference,suite,outdir,result,sources)
             rethrow()
         end
     end
-    for (name,op) in (("FR",ctx.fr_blocks[1]),("component",H.full[1].common),("full_H",H.full[1]))
+    for (name,op) in (("FR",static_operators(ctx)[1]),("component",H.full[1].common),("full_H",H.full[1]))
         for n in (1,24,30)
             Y=similar(rhs[n]);fill!(Y,ComplexF64(NaN,NaN))
             before_counts=FI.full_operator_stats(H.full[1])
@@ -254,34 +301,45 @@ function run_loaded(root,reference,suite,outdir,result,sources)
                 call_count_including_warmup=6,columns_per_call=n,standalone_FR_counter="No native counter; direct six sampler calls",before_counts,after_counts=FI.full_operator_stats(H.full[1]))
         end
     end
-    density=measure("density",()->FI.orbital_density(ctx.basis,state.X,state.f;stream_k=true))
+    density=measure("density",()->core ? FI.context_orbital_density(ctx,state.X,state.f;stream_k=true) : FI.orbital_density(ctx.basis,state.X,state.f;stream_k=true))
     result["live_memory"]["density"]=SOCCoreMemory.unique_memory(old_roots(data=(;payload,rhs),built=built,H=H,outputs=density))
     measure("nonlocal",()->fixed_nonlocal(ctx,state))
     energy=measure("energy",()->fixed_energy(ctx,state);consume=x->compact_consume(x.values),canonical=x->x.values)
     result["live_memory"]["energy"]=SOCCoreMemory.unique_memory(old_roots(data=(;payload,rhs),built=built,H=H,outputs=density,energy=energy))
-    FI.validate_context(ctx);FI.assert_bound_sources(built.bundle)
+    static_boundary(built,:callback_or_save_boundary;ham=energy.snapshot.ham)
     result["live_memory"]["callback_or_save_boundary"]=SOCCoreMemory.unique_memory(old_roots(data=(;payload,rhs),built=built,H=H,outputs=density,energy=energy))
-    pipeline=measure("pipeline",()->reference_pipeline(root,case,source,state,rhs,endpoint.result);consume=x->compact_consume(x.values),canonical=x->x.values)
+    pipeline=measure("pipeline",()->reference_pipeline(root,case,source,state,rhs,endpoint.result;core);consume=x->compact_consume(x.values),canonical=x->x.values)
     result["live_memory"]["next_map_boundary"]=SOCCoreMemory.unique_memory(old_roots(data=(;payload,rhs),built=built,H=H,outputs=(;density,pipeline),energy=energy))
-    # Deliberately do not empty the historical registries or force GC.
+    # The legacy lacks a close API; the opt-in path must close its private
+    # owners while retaining metadata and numerical outputs for review.
+    static_boundary(built,:session_final;ham=energy.snapshot.ham)
+    if core
+        result["runtime_before_close"]=FI.runtime_summary(ctx)
+        FI.close_runtime!(ctx)
+        result["runtime_after_close"]=FI.runtime_summary(ctx)
+    end
     result["live_memory"]["session_closed"]=SOCCoreMemory.unique_memory(old_roots(data=(;payload,rhs),built=built,H=H,outputs=(;density,pipeline),energy=energy))
-    result["legacy_lifetime"]=(;close_api="NONE",global_source_registrations=length(FI._BOUND_PSP_SOURCES),global_context_registrations=length(FI._FR_CONTEXT_CERTIFICATES),
-        expected_contexts=7,registry_cleared=false,forced_gc=false,release_boundary="Julia process exit; session_closed observes legacy retained roots")
-    mrequire(length(FI._FR_CONTEXT_CERTIFICATES)==7,"Unexpected legacy context lifetime count")
+    result["legacy_lifetime"]=(;close_api=core ? "SCOPED_PRIVATE_OWNERS" : "NONE",global_source_registrations=length(FI._BOUND_PSP_SOURCES),global_context_registrations=length(FI._FR_CONTEXT_CERTIFICATES),
+        expected_contexts=core ? 0 : 7,registry_cleared=false,forced_gc=false,release_boundary=core ? "Explicit owned close; unrelated legacy entries are never cleared" : "Julia process exit; session_closed observes legacy retained roots")
+    mrequire(length(FI._FR_CONTEXT_CERTIFICATES)==(core ? 0 : 7),"Unexpected context lifetime count")
+    core && mrequire(isempty(FI._BOUND_PSP_SOURCES),"Owned source still held by legacy registry")
     result["input_unchanged"]=(;payload=msnapshot(payload)==before,rhs=msnapshot(rhs)==rhs_before,checkpoint=msha(endpoint.checkpoint)==endpoint.spec["checkpoint_sha256"],original_result=msha(endpoint.resultpath)==endpoint.spec["raw_result_sha256"])
     mrequire(all(values(result["input_unchanged"])),"Original input or operator-only probes changed")
     mrequire(length(result["measurements"])==13,"Incomplete static operation matrix")
-    FI.validate_context(ctx);FI.assert_bound_sources(built.bundle)
+    core || static_boundary(built,:worker_final)
     authenticate(root,reference,suite)
     mrequire(WE.environment_identity(root,(DFTK,PseudoPotentialIO)).status=="PASS","Loaded environment changed")
     result["active_operation"]=nothing
     mrequire(Sys.maxrss()<8*1024^3,"RESOURCE_BLOCKED: Julia peak RSS reached8GiB")
     result["measurement_status"]="COMPLETE";result["execution_status"]="PASS";result["overall_status"]="PASS";result["exit_code"]=0
     nothing
+    finally
+        core && FI.close_runtime!(ctx)
+    end
 end
 
 function measurement_main(args)
-    args==["--help"] && (println("measure.jl --root ORIGINAL_ROOT --code-root DETACHED_REFERENCE_ROOT --suite REF-B0|REF-K4 --output NEW_OUTDIR; CORE labels fail NOT_IMPLEMENTED until enabled after REF");return 0)
+    args==["--help"] && (println("measure.jl --root ORIGINAL_ROOT --code-root EXACT_CODE_ROOT --suite REF-B0|REF-K4|CORE-B0|CORE-K4 --output NEW_OUTDIR; use run.py for ordered authenticated execution");return 0)
     expected=Set(("--root","--code-root","--suite","--output"))
     if length(args)!=8 || Set(args[1:2:end])!=expected
         println(stderr,"Expected exactly --root, --code-root, --suite and --output");return 9
@@ -293,12 +351,12 @@ function measurement_main(args)
     mkpath(outdir);mrequire(realpath(outdir)==outdir,"Measurement output cannot use a path alias")
     # The durable launcher owns result.json/preflight.json in this directory.
     # No existing worker result or prior canonical output is ever reused.
-    outputs=vcat(["worker-result.json","worker-result.json.tmp","inputs.bin","density.bin","nonlocal.bin","energy.bin","pipeline.bin"],
+    outputs=vcat(["worker-result.json","worker-result.json.tmp","inputs.bin","operators.bin","measurement-progress.jsonl","density.bin","nonlocal.bin","energy.bin","pipeline.bin"],
         ["$(name)_$n.bin" for name in ("FR","component","full_H") for n in (1,24,30)])
     mrequire(all(!ispath(joinpath(outdir,name)) for name in outputs),"Existing measurement worker output is never reused")
     result=Dict{String,Any}("schema_version"=>1,"phase"=>"9A","suite"=>suite,"run_id"=>basename(outdir),"started_utc"=>string(now(UTC)),
         "base_commit"=>MEASUREMENT_BASE,"preparation_commit"=>MEASUREMENT_PREPARATION,"execution_status"=>"RUNNING","overall_status"=>"RUNNING","exit_code"=>9,
-        "measurement_status"=>"NOT_RUN","backend"=>"LEGACY_REFERENCE","comparison_status"=>"NOT_RUN","evidence_level"=>"RUNNER_REPORTED_PRIVATE_ARRAY_EVALUATION")
+        "measurement_status"=>"NOT_RUN","backend"=>startswith(suite,"CORE-") ? "OWNED_CORE" : "LEGACY_REFERENCE","comparison_status"=>"NOT_RUN","evidence_level"=>"RUNNER_REPORTED_PRIVATE_ARRAY_EVALUATION")
     mwrite(joinpath(outdir,"worker-result.json"),result;root,reference)
     try
         execution=strip(mgit(root,"rev-parse","HEAD"));result["execution_commit"]=execution
@@ -311,6 +369,10 @@ function measurement_main(args)
         sources=authenticate(root,reference,suite)
         result["reference_source_sha256"]=sources["reference_implementation"]["files"]
         result["included_entry_modules"]=load_reference_modules(reference)
+        if startswith(suite,"CORE-")
+            paths=split(strip(mgit(root,"ls-files","src","prototypes","scripts/workbench_environment.jl","scripts/upf_validation.jl","scripts/upf_runtime.jl")),'\n')
+            result["candidate_source_sha256"]=Dict(p=>msha(joinpath(root,p)) for p in paths if endswith(p,".jl"))
+        end
         Base.invokelatest(run_loaded,root,reference,suite,outdir,result,sources)
         mrequire(strip(mgit(root,"rev-parse","HEAD"))==execution,"Harness execution HEAD changed")
     catch err

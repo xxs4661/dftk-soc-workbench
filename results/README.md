@@ -1,5 +1,7 @@
 # Scientific evidence
 
+- [Phase 9A: reusable SOC core and memory](soc-core-memory/README.md) — fixed-base static references completed; candidate and endpoint results are tracked separately.
+
 - [Phase 8C: Si QE k-grid reference](si-soc-k-reference/README.md) — four K6/K8 slots PASS/0; both new finite steps within0.1 meV, three-point span0.055749582 meV. Complete compressed native replay. B0/K4 HISTORICAL_REUSED; new DFTK dense grids NOT_RUN, same-grid cross-code agreement NOT_ASSESSED, physical convergence NOT_ESTABLISHED; FD/solver/IEEE reviews retained.
 
 - [Phase 8B: Si finite SOC sensitivity](si-soc-sensitivity/README.md) — 12 slots PASS/0; D/Q responses agree, but K4 raises splitting by about 0.331506 meV beyond the 0.1 meV window. E40/T05 within; B0 historical, physical convergence not established.

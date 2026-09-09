@@ -1,5 +1,7 @@
 # DFTK SOC workbench
 
+Phase 9A introduces an explicit [owned SOC numerical runtime](docs/soc-core-runtime.md). [Current measurement and endpoint status](results/soc-core-memory/README.md) separates engineering checks from historical physical claims. The old default entry remains available.
+
 Phase 8C [QE k-grid reference](results/si-soc-k-reference/README.md) completed all four prescribed K6/K8 slots once. The Γ splitting changes are **+0.047128386 meV (4→6)** and **+0.008621197 meV (6→8)**, both within the fixed 0.1 meV observation window; three-point span **0.055749582 meV**. DFTK K6/K8 remain NOT_RUN, new-grid cross-code comparison NOT_ASSESSED, physical convergence NOT_ESTABLISHED. Occupation reviews, SCF solver warnings and IEEE flags remain explicit.
 
 A research workbench for norm-conserving UPF pseudopotentials, two-component

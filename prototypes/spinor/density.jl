@@ -153,3 +153,29 @@ function apply_local_pauli(states, v, B)
     all(isfinite, output) || throw(ArgumentError("Nonfinite local Pauli result"))
     output
 end
+
+"""Opt-in statewise FFT and exact-order R/n/m accumulation.
+
+The scope uses actual supplied k points, all physical states and capacity-one
+spinor occupations (or the legacy supported scalar capacity two). It never
+solves occupations, clips density or introduces core density. Returned arrays
+are borrowed from ws until the next reset; no result is valid on an exception.
+"""
+function orbital_density!(ws::OrbitalDensityWorkspace,basis,X,weights,f;atol=1e-11)
+    ncomp,nr=_orbital_density_request(ws,basis,X,weights,f;atol)
+    SOCKernels.reset_density!(ws.density)
+    try
+        for ik in eachindex(X)
+            x=X[ik];kpt=basis.kpoints[ik]
+            for state in axes(x,2)
+                u=_orbital_real_state!(ws,basis,kpt,x,state,ncomp,nr)
+                SOCKernels.accumulate_density!(ws.density,u,weights[ik],@view(f[ik][state:state]))
+            end
+        end
+        result=SOCKernels.finish_density!(ws.density)
+        ws.density_calls+=1
+        result
+    catch
+        ws.density.active=false;ws.density.failed=true;rethrow()
+    end
+end

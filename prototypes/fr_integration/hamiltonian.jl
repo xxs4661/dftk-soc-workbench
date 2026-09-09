@@ -73,6 +73,9 @@ function _context_certificate(ctx)
     _FR_CONTEXT_CERTIFICATES[ctx]
 end
 
+_context_assert_bound_identity(ctx,bundle)=assert_bound_identity(bundle)
+_context_assert_bound_sources(ctx,bundle)=assert_bound_sources(bundle)
+
 function _validate_live_binding(ctx)
     cert = _context_certificate(ctx)
     basis = ctx.basis
@@ -91,7 +94,7 @@ function _validate_live_binding(ctx)
     for ia in eachindex(ctx.bundles)
         bundle = ctx.bundles[ia]
         bundle === cert.bundles[ia] || throw(ArgumentError("atom-ordered source bundle identity mismatch"))
-        assert_bound_identity(bundle)
+        _context_assert_bound_identity(ctx,bundle)
         basis.model.atoms[ia] === snap.atoms[ia] &&
             basis.model.atoms[ia].psp === bundle.common ||
             throw(ArgumentError("atom order or common pseudopotential object mismatch"))
@@ -124,7 +127,7 @@ function validate_context(ctx)
     _validate_live_binding(ctx)
     cert = _context_certificate(ctx)
     for bundle in ctx.bundles
-        assert_bound_sources(bundle)
+        _context_assert_bound_sources(ctx,bundle)
         Symbol.(bundle.xc_identifiers) == ctx.xc_identifiers && bundle.mode == ctx.mode ||
             throw(ArgumentError("bundle mode or XC family mismatch"))
     end
@@ -352,8 +355,12 @@ function build_full_hamiltonian(ctx, n)
     # With no orbitals the temporary kinetic energy is Inf; only the Hamiltonian
     # is retained. This is construction of one fixed-density operator, not SCF.
     common = DFTK.energy_hamiltonian(ctx.basis, nothing, nothing; ρ=rho).ham
-    (; common, full=compose_full_hamiltonian(ctx, common), rho)
+    full=compose_full_hamiltonian(ctx, common)
+    _context_density_binding!(ctx,rho)
+    (; common, full, rho)
 end
+
+_context_density_binding!(ctx,rho)=nothing
 
 """Effect-based replacement check, also usable on explicit missing/double fault objects."""
 function check_full_decomposition(H, common, fr, X; atol=1e-10)
