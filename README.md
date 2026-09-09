@@ -1,6 +1,6 @@
 # DFTK SOC workbench
 
-Phase 8C [QE k-grid reference](results/si-soc-k-reference/README.md) is prepared for K6/K8 only. Numerical slots are NOT_RUN; the predeclared four-slot matrix and resource gate preserve the fixed K4 physical settings. No new DFTK dense-grid calculation is authorized.
+Phase 8C [QE k-grid reference](results/si-soc-k-reference/README.md) completed all four prescribed K6/K8 slots once. The Γ splitting changes are **+0.047128386 meV (4→6)** and **+0.008621197 meV (6→8)**, both within the fixed 0.1 meV observation window; three-point span **0.055749582 meV**. DFTK K6/K8 remain NOT_RUN, new-grid cross-code comparison NOT_ASSESSED, physical convergence NOT_ESTABLISHED. Occupation reviews, SCF solver warnings and IEEE flags remain explicit.
 
 A research workbench for norm-conserving UPF pseudopotentials, two-component
 spinors and spin–orbit coupling on top of a frozen DFTK environment.

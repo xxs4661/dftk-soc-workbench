@@ -1,6 +1,6 @@
 # Physical cases and reproduction
 
-- [Si QE k-grid reference](si-soc-k-reference-v1/README.md): frozen K6/K8 inputs and four-slot plan; [current status](../results/si-soc-k-reference/README.md). Preparation only, no new DFTK context or worker.
+- [Si QE k-grid reference](si-soc-k-reference-v1/README.md): frozen K6/K8 inputs and four-slot plan; [current status](../results/si-soc-k-reference/README.md). Four prescribed QE slots completed once; finite trends and limits are in the linked result. No new DFTK context or worker.
 
 - [mg-soc-public-replay-v1](mg-soc-public-replay-v1/README.md): executed fixed Linux public replay; **I PASS/0, R FAIL/1** for predeclared density fingerprints, CI failure retained; [results](../results/mg-soc-public-replay/linux/README.md).
 - [mg-soc-wavefunction-energy-v1](mg-soc-wavefunction-energy-v1/README.md): original G40/A/B static audit; plan and fixed engineering gates; no new SCF/QE/XC.
