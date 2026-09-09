@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "scope": "Read-only working-tree byte-boundary snapshot; not final-tree approval or scientific validation",
+  "snapshot_utc": "2026-09-09T12:05:42.346747+00:00",
+  "observed_head": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+  "accepted_base": "c764311a5422b5c3cab5a7b78a02d420910c4e56",
+  "preparation_commit": "e4f16a51a0304f5e70f5ae038563d6760409c2c4",
+  "status": "PASS",
+  "source_boundary_status": "PASS",
+  "changed_preexisting_implementation": [
+    "prototypes/fr_integration/FRIntegration.jl",
+    "prototypes/fr_integration/common_data.jl",
+    "prototypes/fr_integration/energy.jl",
+    "prototypes/fr_integration/hamiltonian.jl",
+    "prototypes/relativistic/operator.jl",
+    "prototypes/soc_scf/scf.jl",
+    "prototypes/soc_scf/solver.jl",
+    "prototypes/spinor/density.jl",
+    "prototypes/spinor/fft.jl",
+    "prototypes/spinor/operators.jl",
+    "scripts/run_si_dftk.py",
+    "scripts/run_si_soc.jl"
+  ],
+  "changed_current_navigation": [
+    "README.md",
+    "benchmarks/README.md",
+    "docs/status.md",
+    "results/README.md",
+    "scripts/README.md"
+  ],
+  "forbidden_preexisting_changes": [],
+  "checked_preexisting_file_count": 591,
+  "unchanged_preexisting_file_count": 574,
+  "canonical_full_path_and_hash_ledger_sha256": "fd872b8d49a0603eedb1a8ea6da5fb06d55c70f8c77b62469ae7fb8a36874065",
+  "new_file_count": 47,
+  "observed_new_prefixes_or_singletons": [
+    "benchmarks/soc-core-memory-v1/",
+    "docs/soc-core-runtime.md",
+    "examples/",
+    "prototypes/fr_integration/runtime.jl",
+    "results/soc-core-memory/",
+    "scripts/replay_soc_core_memory.py",
+    "src/",
+    "tests/soc_core_memory/",
+    "tests/test_soc_core_memory.py"
+  ],
+  "new_outside_declared_prefixes": [],
+  "new_fr_integration_files": [
+    "prototypes/fr_integration/runtime.jl"
+  ],
+  "runtime_checks_jl_preexisting_unchanged": true,
+  "frozen_groups": {
+    "all_other_preexisting_files": {
+      "checked_count": 572,
+      "unchanged_count": 572,
+      "status": "PASS",
+      "canonical_path_and_hash_ledger_sha256": "b6b91c527afb5ade4b99b0c99bef3ec2e5d9bae9279bfe532ca17ca9dcd99c61"
+    },
+    "preexisting_tests": {
+      "checked_count": 98,
+      "unchanged_count": 98,
+      "status": "PASS",
+      "canonical_path_and_hash_ledger_sha256": "f865da162d16bf9893efe7039665be0e072b0a18ad8a306c4f1ccc73334dbca0"
+    },
+    "historical_results_except_navigation": {
+      "checked_count": 282,
+      "unchanged_count": 282,
+      "status": "PASS",
+      "canonical_path_and_hash_ledger_sha256": "a3aca336226abfa4730dc22b6c75ad1da3e6654235fb90fbf34e70771759179a"
+    },
+    "historical_benchmarks_except_navigation": {
+      "checked_count": 75,
+      "unchanged_count": 75,
+      "status": "PASS",
+      "canonical_path_and_hash_ledger_sha256": "4c09f6d95602dbadf9298318aaf325fd809167747b507e902a743586a55ba9dc"
+    },
+    "frozen_environment_and_source_lock": {
+      "checked_count": 8,
+      "unchanged_count": 8,
+      "status": "PASS",
+      "canonical_path_and_hash_ledger_sha256": "6dbe2b33d76220c24d2598053d73225af781d4f3ed7d357ab1de07ea2b644470"
+    },
+    "historical_checkers": {
+      "checked_count": 12,
+      "unchanged_count": 12,
+      "status": "PASS",
+      "canonical_path_and_hash_ledger_sha256": "285d9917ab03fcc4f11d6e991cdd5025fca877d3a6f34c36432371f9855bd63b"
+    },
+    "angular_radial_channels_ensemble_controller_and_spin_trace": {
+      "checked_count": 6,
+      "unchanged_count": 6,
+      "status": "PASS",
+      "canonical_path_and_hash_ledger_sha256": "857ed3bb11a984ffc3b23010832d0169298adcd6c0163c89e34c618176802110"
+    }
+  },
+  "immutable_preparation": {
+    "checked_count": 4,
+    "unchanged_count": 4,
+    "status": "PASS",
+    "canonical_path_and_hash_ledger_sha256": "0662209144cf6dbd4aedad73cab85c60d17bbb4424f9b4ce58e772ddd0a1008a"
+  },
+  "upstream_checkouts": {
+    "dftk": {
+      "expected_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+      "actual_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+      "worktree_status": "clean",
+      "status": "PASS"
+    },
+    "pseudopotentialio": {
+      "expected_commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+      "actual_commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+      "worktree_status": "clean",
+      "status": "PASS"
+    }
+  },
+  "existing_Si_UPF": {
+    "status": "PASS",
+    "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+    "bytes": 291215,
+    "scope": "Read-only bytes/hash check; raw UPF not published"
+  },
+  "original_publication_checker": {
+    "status": "FAIL",
+    "records": [
+      {
+        "label": "current-authorized-refactor",
+        "exit_code": 1,
+        "status": "FAIL",
+        "reason": "Frozen scientific file changed: prototypes/fr_integration/FRIntegration.jl"
+      },
+      {
+        "label": "historical-accepted-base",
+        "exit_code": 1,
+        "status": "FAIL",
+        "reason": "Frozen scientific file changed: prototypes/fr_integration/common_data.jl"
+      }
+    ],
+    "scope": "Original checker was not modified or relabeled; this authorized-source boundary check is separate"
+  },
+  "final_delivery_recheck": "REQUIRED",
+  "concurrent_delivery_work": "Root is still writing the new replay/docs/evidence; final source and path checks must rerun after completion. This snapshot is not a clean final checkout claim."
+}

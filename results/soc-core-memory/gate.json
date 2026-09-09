@@ -1,0 +1,49 @@
+{
+  "allocation_status": "PASS",
+  "comparison": {
+    "path": ".work/phase9a/comparison-20260909T114322Z-2344098c/comparison.json",
+    "sha256": "f5d61f46217026bd62c63e9bbd09c8ca19d986967b3cffb30a224d7aa8d2373b"
+  },
+  "equivalence_status": "PASS",
+  "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+  "exit_code": 0,
+  "gate_tool_sources": {
+    "benchmarks/soc-core-memory-v1/run.py": "175fa8c5ae8d0a9296c066800b8f8472452aa82b5419c804e5b2c746b1f634ff",
+    "scripts/replay_soc_core_memory.py": "3f81ac0222f3ac73112afe834ef083a5577db65a5aeca529ace393ff8fed6eb6"
+  },
+  "identity_status": "PASS",
+  "live_storage_reduction_status": "PASS",
+  "overall_status": "PASS",
+  "performance": {
+    "bytes": 45635,
+    "path": ".work/phase9a/gate-20260909T114412Z-4b88f642/performance.json",
+    "sha256": "94db81bce0a31d2e29b3b75c664f77644d272ade81109b2766af1308a6a29668"
+  },
+  "phase": "9A",
+  "replay_data": {
+    "bytes": 1197348,
+    "path": ".work/phase9a/gate-20260909T114412Z-4b88f642/replay-data.json",
+    "sha256": "329c4eec4f0f1ce958be6796794cc563bc022313dfbcff89f8902e0779cc90a9"
+  },
+  "resource_status": "PASS",
+  "schema_version": 1,
+  "suite_receipts": {
+    "CORE-B0": {
+      "path": ".work/phase9a/static/CORE-B0-20260909T113339230728Z-6007a16c/result.json",
+      "sha256": "34ce865af26619301db6dfc01b64f188ad7e8d3cf37111b17ba633c0f824070e"
+    },
+    "CORE-K4": {
+      "path": ".work/phase9a/static/CORE-K4-20260909T113543161223Z-f1a5bdb1/result.json",
+      "sha256": "c5582bae14f0e8993827280036ebbc61311cb4ba4cfec257798c2fb6180df266"
+    },
+    "REF-B0": {
+      "path": ".work/phase9a/static/REF-B0-20260909T103314263290Z-c672b973/result.json",
+      "sha256": "b7d520ec0cf0b6909a79107793896f6c0a50574035e3fe0b30e7cd12e96f253d"
+    },
+    "REF-K4": {
+      "path": ".work/phase9a/static/REF-K4-20260909T103452759115Z-43829d19/result.json",
+      "sha256": "33c9a7141bd165b65ce549d1a3a96a81400e71aeb861ddcd9ce4e7ef0497a09c"
+    }
+  },
+  "time_status": "PERFORMANCE_REVIEW_REQUIRED"
+}

@@ -327,7 +327,7 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
     !owned && !isnothing(core_gate) && error("Core gate requires explicit backend")
     !isnothing(profile) && si_profile(profile)
     work_action=owned ? action=="OPT-B0-SCF" ? "D-SCF" : action=="OPT-B0-GAMMA" ? "D-GAMMA" : "INVALID" : action
-    allowed=owned ? ("OPT-B0-SCF","OPT-B0-GAMMA") :isnothing(profile) ? ("prepare","static","D-SCF","D-SPECTRUM","D-NULL-GAMMA") : ("prepare","D-SCF","D-GAMMA")
+    allowed=owned ? ("OPT-B0-SCF","OPT-B0-GAMMA") : isnothing(profile) ? ("prepare","static","D-SCF","D-SPECTRUM","D-NULL-GAMMA") : ("prepare","D-SCF","D-GAMMA")
     action in allowed || error("Unknown Si action")
     area=owned ? ".work/phase9a/endpoints" : isnothing(profile) ? ".work/phase8a" : ".work/phase8b/$profile"
     caseid=isnothing(profile) ? "si-soc-splitting-v1" : "si-soc-sensitivity-v1/$profile"

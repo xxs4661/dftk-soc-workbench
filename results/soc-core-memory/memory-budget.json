@@ -1,0 +1,470 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "model_version": "k6-owned-lifetime-final-static-v1",
+  "status": "INSUFFICIENT_EVIDENCE",
+  "created_utc": "2026-09-09T11:56:24.183288+00:00",
+  "DFTK_K6_SCF": "NOT_RUN",
+  "DFTK_K6_context_created": false,
+  "scientific_arrays_read": false,
+  "scope": "Incomplete K6 lifetime accounting from committed source and completed B0/K4 static metadata; no K6 context, scientific array access or run authorization. Actual static savings are not a complete SCF peak bound.",
+  "geometry": {
+    "source": "benchmarks/si-soc-k-reference-v1/resource-geometry.json",
+    "sha256": "60d1cfa53ce2051fad10bc0369f6abe5133834ecb2b81987015d21f9d7be3775",
+    "nk": 216,
+    "ng_max": 2138,
+    "sum_ng": 457287,
+    "fft_size": [
+      48,
+      48,
+      48
+    ],
+    "projectors_per_k": 72,
+    "target_states": 24,
+    "solver_columns": 30
+  },
+  "original_legacy_estimate": {
+    "source": "scripts/run_si_soc.jl:si_grid, frozen source_base; coefficients unchanged",
+    "terms_bytes": {
+      "retained_orbitals_and_solver": 5443176960,
+      "projectors_and_snapshots": 4256022528,
+      "bounded_fft_workspaces": 679477248,
+      "density_core_local_fields": 88473600,
+      "runtime_library_margin": 2147483648
+    },
+    "total_bytes": 12614633984,
+    "total_gib": 11.748293399810791,
+    "budget_status": "BUDGET_EXCEEDS_EXISTING_LIMIT",
+    "execution_status": "NOT_RUN",
+    "measured_peak_bytes": null
+  },
+  "hard_limit_bytes": 8589934592,
+  "margin_bytes": 2147483648,
+  "new_estimated_peak_bytes": null,
+  "accounting_terms": {
+    "one_retained_P_set": {
+      "bytes": 1053589248,
+      "equation": "16 bytes complex * 2 components * 72 projector columns * sum_NG",
+      "certainty": "shape-derived; actual one-owner pattern observed only B0/K4"
+    },
+    "one_retained_D_per_k": {
+      "bytes": 17915904,
+      "equation": "16 * 72^2 * nk",
+      "certainty": "no sharing credited; source layout and REF owner count"
+    },
+    "kinetic_vectors": {
+      "bytes": 3658296,
+      "equation": "8 * sum_NG",
+      "certainty": "one retained original scalar kinetic vector per k"
+    },
+    "live_padded_G_and_mapping": {
+      "bytes": 95551488,
+      "equation": "(3*8 + 8) * (N_r/8) * nk",
+      "certainty": "frozen Kpoint sizehint! capacity; same exact13824 observed REF; mapping_device CPU alias not added"
+    },
+    "copied_G_mapping_device_snapshots": {
+      "bytes": 18291480,
+      "equation": "(3*8 + 8 + 8) * sum_NG",
+      "certainty": "copy G, mapping and mapping_device remain; no certificate reduction credited"
+    },
+    "both_inverse_mapping_tables": {
+      "bytes": 30081024,
+      "equation": "2 dictionaries * (1-byte slot +8-byte key+8-byte val) *4096 observed capacity *nk",
+      "certainty": "capacity extrapolation from REF-K4, not a proven K6 dictionary bound"
+    },
+    "prior_current_X24_allX30_and_energy_factors": {
+      "bytes": 1931580288,
+      "equation": "32 * sum_NG *(prior X24 + prior all_X30 + current X24 + current all_X30 + energy chi equivalent24)",
+      "certainty": "conservative distinct storage by role; possible aliases not credited; no full history orbitals assumed"
+    },
+    "one_k_solver_allowance_unchanged": {
+      "bytes": 123148800,
+      "equation": "16*2*NGmax*30*60",
+      "certainty": "unchanged60 from frozen legacy model, not measured LOBPCG live graph"
+    },
+    "three_common_H_local_potential_sets": {
+      "bytes": 573308928,
+      "equation": "3 *8*N_r*nk for prior raw H[n_out], current fresh H[n_in], current energy H[n_out]",
+      "certainty": "possible overlap conservative; per-k optimized potential owners observed REF"
+    },
+    "core_nonlocal_workspace": {
+      "bytes": 2121600,
+      "equation": "16*(two72x30 coefficient buffers + (2NGmax)x30 candidate)",
+      "certainty": "actual new workspace fields, once per serial runtime"
+    },
+    "core_component_workspace": {
+      "bytes": 4104960,
+      "equation": "16*(two NGmax x30 + one2NGmax x30)",
+      "certainty": "actual new workspace fields"
+    },
+    "core_full_H_staging": {
+      "bytes": 4104960,
+      "equation": "16 * two (2NGmax)x30",
+      "certainty": "actual new workspace fields"
+    },
+    "core_density_FFT_workspace": {
+      "bytes": 15959456,
+      "equation": "16*NGmax + N_r*(16 grid +32 single spinor state +64 R +8 n+24 m)",
+      "certainty": "actual new workspace; independent returned density copies remain"
+    },
+    "frozen_broad_FFT_allowance_retained": {
+      "bytes": 679477248,
+      "equation": "16*2*N_r*24*8",
+      "certainty": "old allowance retained in full despite reduced density tensor requirement; not a claim of8 actual retained arrays"
+    },
+    "frozen_broad_field_allowance_retained": {
+      "bytes": 88473600,
+      "equation": "8*N_r*100",
+      "certainty": "old100-field allowance retained; intentionally overlaps some explicitly inventoried buffers"
+    },
+    "runtime_library_margin_unchanged": {
+      "bytes": 2147483648,
+      "equation": "2*1024^3",
+      "certainty": "predeclared reserve, not a proven native malloc/JIT/GC bound"
+    }
+  },
+  "known_terms_plus_retained_allowances_subtotal_bytes": 6788850928,
+  "subtotal_is_upper_bound": false,
+  "incomplete_subtotal_is_not_a_pass": true,
+  "unpriced_or_unbounded": [
+    {
+      "item": "Original controller history through400 maps",
+      "reason": "Per-map arrays and boxed records grow with actual map count; static REF/CORE suites contain no SCF history. At maximum400, six24-by-nk floating diagnostic tables alone total99,532,800bytes; two global-FD report array groups add6,912,000; up to66,355,200bytes of stationarity scalar fields precede headers/boxes/Dict capacity. These are payload illustrations, not complete bounds."
+    },
+    {
+      "item": "Boundary snapshot/checkpoint transient buffers",
+      "reason": "New observation-only callback fingerprints X/all_X and energy diagnostics through Serialization into IOBuffer. Lifetime/capacity before GC and overlap with prior mapped.raw/current raw are not captured by static fake callback boundary. No zero-cost claim."
+    },
+    {
+      "item": "One-k eigensolver actual live workspace",
+      "reason": "Frozen60 allowance retained, but no LOBPCG active-loop union graph measured in static REF/CORE. Needed unchanged solver arrays/QR temporaries are not identified by13 static tasks."
+    },
+    {
+      "item": "Native/JIT/allocator/GC peak",
+      "reason": "2GiB reserve preserved; pointer payload is excluded by Julia graph. REF sampled peak and union snapshots are different quantities/times, so their subtraction is not a measured native allocation bound."
+    },
+    {
+      "item": "SCF lifetime validation remains absent",
+      "reason": "Completed CORE-B0/K4 static censuses now verify all 14 bounded workspace owners, one P/D set per k while open, and explicit source/workspace release. The sole OPT-B0-SCF attempt failed during parsing before initialization, so map/solver/callback/history overlap has no new real SCF observation. Static close savings do not bound a full SCF peak."
+    },
+    {
+      "item": "K6 dictionary and container spare capacity",
+      "reason": "K4 mapping dictionaries had4096-slot backing. K6 extrapolation has not been instantiated or independently proven an upper bound. Source sizehint storage observed atN_r/8 must not be confused with logical NG."
+    },
+    {
+      "item": "Constructor/boundary temporary peaks",
+      "reason": "Legacy builder still constructs P before transferring ownership. Original\u00d74 projector allowance was not4 simultaneously retained P copies; no arbitrary division of it is credited as measured improvement."
+    }
+  ],
+  "required_measurement_support": [
+    "Completed: source and actual B0/K4 14-owner workspace shapes, open P/D owner counts and explicit close lifecycle; see completed_static_observations.",
+    "Completed: same REF/CORE static allocation ratios and RSS records; these do not measure unmatched native bytes or certify a single-SCF peak.",
+    "NOT OBTAINED: actual OPT-B0 map count/history/solver-overlap data because the one permitted endpoint attempt failed before initialization. No retry or extra measurement is authorized by this ledger.",
+    "Unknown: active eigensolver, prior/current raw callback payload, checkpoint/Serialization buffering and native/GC lifetime overlap in a real SCF.",
+    "K6 context and SCF remain NOT_RUN; capacity extrapolations and the incomplete subtotal do not constitute an upper bound."
+  ],
+  "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+  "source_sha256": {
+    "benchmarks/soc-core-memory-v1/plan.json": "09887791d1b76b0d59ca4735264a05f8f8f924edb5073a94fae1b0f5f5d7c52c",
+    "benchmarks/soc-core-memory-v1/contract.json": "aa1956cba470f6ac1a7f88bfffdfefeebdad1a87831e1ce7e04f3e70dd904ec7",
+    "benchmarks/soc-core-memory-v1/budget.py": "5af00dec378df4812a3eac801276e221ec608a0dde794e8e6e8df6396457d45e",
+    "benchmarks/si-soc-k-reference-v1/resource-geometry.json": "60d1cfa53ce2051fad10bc0369f6abe5133834ecb2b81987015d21f9d7be3775",
+    "scripts/run_si_soc.jl": "4232ff06df04519fd45136c2b7f4d0a81623aa5df7c827d6fc9658af27e20ea6",
+    "scripts/si_qe_reference_evidence.py": "1c7480df90296ba4ee8fbb99d4d17f8bfbbfe4fa17c50b88ae33ab8378a06314",
+    "prototypes/fr_integration/runtime.jl": "1db41377c994206af38c31bf5c72f0a8bf47dc6225ce8098238361c1c631d43c",
+    "prototypes/fr_integration/hamiltonian.jl": "028e6740b79197731a9d99852edbff28fe498c428654632b110a5134cd8f2deb",
+    "prototypes/fr_integration/energy.jl": "3f6fd361c5d2139fc7bd680c13e519b0be27e5da5af6d1258b00138135219c43",
+    "prototypes/soc_scf/scf.jl": "ff8e2ad164f698185cb64a93e10208288f57f71cb0607637d6a6ffc904e6238d",
+    "prototypes/soc_scf/solver.jl": "83b87e2d4762973bbd2a18b41bcc821a35dfb866665863c683a1925b0bd4bbfc",
+    "prototypes/spinor/scf.jl": "5321aa6af014bd2fea85a8858fdfe54ed4d66b564e7c979642c4943c1b6d79a9",
+    "prototypes/spinor/fft.jl": "7cffc78fc39c3b84320b697de631a8fd9c9e9efb03dae633a131c9d6583b3ccb",
+    "src/soc_kernels/nonlocal.jl": "8ac5ecd587e34bfd3d8dc7010cf4726ba4a2c10e41d0c7463bd128c934d0bd91",
+    "src/soc_kernels/components.jl": "628aeb2586d5aa99d4366949b366a21fa2061bef9a08ddb7589f489b3691d0b3",
+    "src/soc_kernels/density.jl": "eb27a9aa4d1cf604ae2b597b74307ee5aee2cd72bf52caf3e38d2f2345202137"
+  },
+  "upstream_source_reference": {
+    "package": "DFTK",
+    "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+    "path": "src/Kpoint.jl",
+    "sha256": "5da30a1549b1bc69598e5c3177c27cf6372ceb82a0ca4d44f084e9fcd3d3b29b",
+    "scope": "Read-only existing frozen source; sizehint capacity, no copy of upstream source"
+  },
+  "static_evidence_reference": {
+    "gate": {
+      "sha256": "29621b5bc01245edd6bc1de0a5871636b9851240c271213676f6db3227d06efd",
+      "bytes": 2019,
+      "selector": "phase9a public gate"
+    },
+    "performance": {
+      "sha256": "94db81bce0a31d2e29b3b75c664f77644d272ade81109b2766af1308a6a29668",
+      "bytes": 45635,
+      "selector": "phase9a public performance"
+    },
+    "replay_data": {
+      "sha256": "329c4eec4f0f1ce958be6796794cc563bc022313dfbcff89f8902e0779cc90a9",
+      "bytes": 1197348,
+      "selector": "phase9a public replay_data"
+    },
+    "scope": "Reference existing public gate/performance/replay package by exact bytes; no repeated samples or raw array payloads in this ledger."
+  },
+  "completed_static_observations": {
+    "CORE-B0": {
+      "run_id": "CORE-B0-20260909T113339230728Z-6007a16c",
+      "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+      "raw_worker_sha256": "8bd223adfd84650ed02a3640403441635627664a2983e076a001d3e4dbfcd866",
+      "raw_outer_sha256": "34ce865af26619301db6dfc01b64f188ad7e8d3cf37111b17ba633c0f824070e",
+      "status": "PASS",
+      "worker_exit_code": 0,
+      "recorder_exit_code": 0,
+      "sampled_peak_rss_bytes": 2117042176,
+      "resource_status": "PASS",
+      "owned_cleanup_status": "PASS",
+      "phases": {
+        "context_ready": {
+          "combined_summarysize_bytes": 94632405,
+          "recognized_unique_payload_bytes": 94581992,
+          "P_owners": 8,
+          "P_payload_bytes": 38856960,
+          "D_owners": 8,
+          "D_payload_bytes": 663552,
+          "opaque_pointer_fields": 4,
+          "unaccounted_arrays": 0
+        },
+        "session_closed": {
+          "combined_summarysize_bytes": 149222185,
+          "recognized_unique_payload_bytes": 148972672,
+          "P_owners": 0,
+          "P_payload_bytes": 0,
+          "D_owners": 0,
+          "D_payload_bytes": 0,
+          "opaque_pointer_fields": 8,
+          "unaccounted_arrays": 0
+        }
+      },
+      "evidence_level": "RUNNER_REPORTED_OBJECT_IDENTITY_AND_SAMPLED_RSS; compact integer observations copied from hash-bound raw workers",
+      "scope": "Static 13-operation suite, one warmup and five samples; no SCF/eigensolver loop",
+      "owned_runtime": {
+        "workspace_capacity": {
+          "max_projectors": 72,
+          "max_ng": 2120,
+          "max_rhs": 30,
+          "n_real": 110592,
+          "n_components": 2
+        },
+        "workspace_owner_payload_bytes": {
+          "nonlocal.coefficients": 34560,
+          "nonlocal.weighted": 34560,
+          "nonlocal.candidate": 2035200,
+          "component.spatial_input": 1017600,
+          "component.spatial_output": 1017600,
+          "component.candidate": 2035200,
+          "density.coefficients": 33920,
+          "density.grid": 1769472,
+          "density.real_state": 3538944,
+          "density.density.R": 7077888,
+          "density.density.n": 884736,
+          "density.density.m": 2654208,
+          "common_action": 2035200,
+          "fr_action": 2035200
+        },
+        "workspace_payload_sum_bytes": 26204288,
+        "workspace_formula_check": "PASS",
+        "owned_sources_before": 1,
+        "owned_sources_after": 0,
+        "workspace_released": true,
+        "legacy_contexts": 0,
+        "legacy_sources": 0
+      }
+    },
+    "CORE-K4": {
+      "run_id": "CORE-K4-20260909T113543161223Z-f1a5bdb1",
+      "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+      "raw_worker_sha256": "b5a79ba27a40c825171c0858efb25ea393043013c93822abccd80466414d98f3",
+      "raw_outer_sha256": "c5582bae14f0e8993827280036ebbc61311cb4ba4cfec257798c2fb6180df266",
+      "status": "PASS",
+      "worker_exit_code": 0,
+      "recorder_exit_code": 0,
+      "sampled_peak_rss_bytes": 3590062080,
+      "resource_status": "PASS",
+      "owned_cleanup_status": "PASS",
+      "phases": {
+        "context_ready": {
+          "combined_summarysize_bytes": 502451108,
+          "recognized_unique_payload_bytes": 502145672,
+          "P_owners": 64,
+          "P_payload_bytes": 312171264,
+          "D_owners": 64,
+          "D_payload_bytes": 5308416,
+          "opaque_pointer_fields": 4,
+          "unaccounted_arrays": 0
+        },
+        "session_closed": {
+          "combined_summarysize_bytes": 499399817,
+          "recognized_unique_payload_bytes": 497577824,
+          "P_owners": 0,
+          "P_payload_bytes": 0,
+          "D_owners": 0,
+          "D_payload_bytes": 0,
+          "opaque_pointer_fields": 8,
+          "unaccounted_arrays": 0
+        }
+      },
+      "evidence_level": "RUNNER_REPORTED_OBJECT_IDENTITY_AND_SAMPLED_RSS; compact integer observations copied from hash-bound raw workers",
+      "scope": "Static 13-operation suite, one warmup and five samples; no SCF/eigensolver loop",
+      "owned_runtime": {
+        "workspace_capacity": {
+          "max_projectors": 72,
+          "max_ng": 2148,
+          "max_rhs": 30,
+          "n_real": 110592,
+          "n_components": 2
+        },
+        "workspace_owner_payload_bytes": {
+          "nonlocal.coefficients": 34560,
+          "nonlocal.weighted": 34560,
+          "nonlocal.candidate": 2062080,
+          "component.spatial_input": 1031040,
+          "component.spatial_output": 1031040,
+          "component.candidate": 2062080,
+          "density.coefficients": 34368,
+          "density.grid": 1769472,
+          "density.real_state": 3538944,
+          "density.density.R": 7077888,
+          "density.density.n": 884736,
+          "density.density.m": 2654208,
+          "common_action": 2062080,
+          "fr_action": 2062080
+        },
+        "workspace_payload_sum_bytes": 26339136,
+        "workspace_formula_check": "PASS",
+        "owned_sources_before": 1,
+        "owned_sources_after": 0,
+        "workspace_released": true,
+        "legacy_contexts": 0,
+        "legacy_sources": 0
+      }
+    },
+    "REF-B0": {
+      "run_id": "REF-B0-20260909T103314263290Z-c672b973",
+      "execution_commit": "bbe9aa7755f052900e6e9c4618252a410e1cc8f0",
+      "raw_worker_sha256": "efeb4eb4aa3fddbef721d2749fc4eeb5dbbfa4289c664dcfd6307b37048370f0",
+      "raw_outer_sha256": "b7d520ec0cf0b6909a79107793896f6c0a50574035e3fe0b30e7cd12e96f253d",
+      "status": "PASS",
+      "worker_exit_code": 0,
+      "recorder_exit_code": 0,
+      "sampled_peak_rss_bytes": 3212132352,
+      "resource_status": "PASS",
+      "owned_cleanup_status": "PASS",
+      "phases": {
+        "context_ready": {
+          "combined_summarysize_bytes": 68424199,
+          "recognized_unique_payload_bytes": 68376816,
+          "P_owners": 8,
+          "P_payload_bytes": 38856960,
+          "D_owners": 8,
+          "D_payload_bytes": 663552,
+          "opaque_pointer_fields": 4,
+          "unaccounted_arrays": 0
+        },
+        "session_closed": {
+          "combined_summarysize_bytes": 499322725,
+          "recognized_unique_payload_bytes": 498751472,
+          "P_owners": 56,
+          "P_payload_bytes": 271998720,
+          "D_owners": 56,
+          "D_payload_bytes": 4644864,
+          "opaque_pointer_fields": 28,
+          "unaccounted_arrays": 0
+        }
+      },
+      "evidence_level": "RUNNER_REPORTED_OBJECT_IDENTITY_AND_SAMPLED_RSS; compact integer observations copied from hash-bound raw workers",
+      "scope": "Static 13-operation suite, one warmup and five samples; no SCF/eigensolver loop"
+    },
+    "REF-K4": {
+      "run_id": "REF-K4-20260909T103452759115Z-43829d19",
+      "execution_commit": "bbe9aa7755f052900e6e9c4618252a410e1cc8f0",
+      "raw_worker_sha256": "71cd1fe94c95f83aeb2665e6dc2610a4dbb667a647e4f79c3dcc6c39ddb5e319",
+      "raw_outer_sha256": "33c9a7141bd165b65ce549d1a3a96a81400e71aeb861ddcd9ce4e7ef0497a09c",
+      "status": "PASS",
+      "worker_exit_code": 0,
+      "recorder_exit_code": 0,
+      "sampled_peak_rss_bytes": 4603723776,
+      "resource_status": "PASS",
+      "owned_cleanup_status": "PASS",
+      "phases": {
+        "context_ready": {
+          "combined_summarysize_bytes": 476100775,
+          "recognized_unique_payload_bytes": 475805200,
+          "P_owners": 64,
+          "P_payload_bytes": 312171264,
+          "D_owners": 64,
+          "D_payload_bytes": 5308416,
+          "opaque_pointer_fields": 4,
+          "unaccounted_arrays": 0
+        },
+        "session_closed": {
+          "combined_summarysize_bytes": 3006170949,
+          "recognized_unique_payload_bytes": 3002204752,
+          "P_owners": 448,
+          "P_payload_bytes": 2185198848,
+          "D_owners": 448,
+          "D_payload_bytes": 37158912,
+          "opaque_pointer_fields": 28,
+          "unaccounted_arrays": 0
+        }
+      },
+      "evidence_level": "RUNNER_REPORTED_OBJECT_IDENTITY_AND_SAMPLED_RSS; compact integer observations copied from hash-bound raw workers",
+      "scope": "Static 13-operation suite, one warmup and five samples; no SCF/eigensolver loop"
+    }
+  },
+  "observed_static_changes": {
+    "B0": {
+      "closed_unique_payload_reduction_bytes": 349778800,
+      "FR24_allocation_median_ratio": 0.0015260305597401835,
+      "pipeline_allocation_median_ratio": 0.30777101273106294,
+      "time_review_status": "PERFORMANCE_REVIEW_REQUIRED",
+      "scope": "Same-case static observations. Allocation is cumulative Julia bytes; object graph and sampled process RSS are distinct quantities. No K6 extrapolated peak or SCF reduction is inferred."
+    },
+    "K4": {
+      "closed_unique_payload_reduction_bytes": 2504626928,
+      "FR24_allocation_median_ratio": 0.0015260305597401835,
+      "pipeline_allocation_median_ratio": 0.27440899933961366,
+      "time_review_status": "PERFORMANCE_REVIEW_REQUIRED",
+      "scope": "Same-case static observations. Allocation is cumulative Julia bytes; object graph and sampled process RSS are distinct quantities. No K6 extrapolated peak or SCF reduction is inferred."
+    }
+  },
+  "endpoint_resource_observation": {
+    "run_id": "OPT-B0-SCF-20260909T114559Z-0600f2bf",
+    "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+    "status": "FAIL",
+    "native_exit_code": 1,
+    "recorder_exit_code": 9,
+    "failure_kind": "JULIA_PARSE_ERROR_BEFORE_DRIVER_INITIALIZATION",
+    "failure_location": "scripts/run_si_soc.jl:330",
+    "sampled_peak_rss_bytes": 741703680,
+    "elapsed_seconds": 3.7200854169932427,
+    "resource_observer_status": "PASS",
+    "owned_cleanup_status": "PASS",
+    "scf_resource_measurement": "NOT_OBTAINED",
+    "actual_scf_maps": 0,
+    "scope": "Failed parsing before driver initialization. RSS and duration describe startup failure only and cannot calibrate a real SCF budget.",
+    "raw_receipt_sha256": "7e76ea3b3d928ddb1f5e1c73943a47cf3af306d1299e7e07be0d1158ba8fa31b",
+    "raw_resource_sha256": "176ebbbee33c7aa31fef2d92fd35b08cb8d0cb707344ff643693d0597e98e3f9",
+    "raw_native_exit_sha256": "4459c5a69fd6efbf4c32c2743ac3b4f7c2c39ccbe6a5dda4b75e8e280e1ec2dd",
+    "raw_stderr_sha256": "1f7c7e02568b3ce5fa25be38b3970e1c022897f3e3ec7cb37a775f5507849fb7"
+  },
+  "dependent_Gamma": {
+    "status": "BLOCKED_PARENT",
+    "execution_status": "NOT_RUN",
+    "source": "No successful OPT-B0-SCF parent; no Gamma resource observation is available"
+  },
+  "arithmetic_verification": {
+    "status": "INSUFFICIENT_EVIDENCE",
+    "arithmetic_status": "PASS",
+    "subtotal_bytes": 6788850928,
+    "DFTK_K6_SCF": "NOT_RUN",
+    "scope": "Incomplete integer accounting; no estimated peak bound",
+    "implementation_sha256": "5af00dec378df4812a3eac801276e221ec608a0dde794e8e6e8df6396457d45e",
+    "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed"
+  }
+}

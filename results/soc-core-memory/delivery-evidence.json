@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+  "static_evidence": {
+    "path": "results/soc-core-memory/static-evidence.json",
+    "sha256": "c638f67e695a15e213f0c7d1fd13504b65d5574c93359caadc1a68df9b6f3d38",
+    "bytes": 818
+  },
+  "memory_budget": {
+    "path": "results/soc-core-memory/memory-budget.json",
+    "sha256": "87db0af845b707e0575b6ed0ac989872c8ba72c83e4693382af1d6b05f474c0e",
+    "bytes": 22230
+  },
+  "endpoints": {
+    "path": "results/soc-core-memory/endpoints/endpoint-status.json",
+    "sha256": "16dd3aeb52b304ba1444e5f12b3e3e5283834e092862a8ca1b5c1787d76a232a",
+    "bytes": 14374
+  },
+  "endpoint_stderr_gzip": {
+    "path": "results/soc-core-memory/endpoints/OPT-B0-SCF.stderr.txt.gz",
+    "sha256": "5cd9ae09cf966d1373c3baf9f416be133a94bed836c3b38a116023d8c929a55a",
+    "bytes": 409
+  },
+  "tests": {
+    "path": "results/soc-core-memory/tests.json",
+    "sha256": "b778e6ff2031ebbd6ba878b21319fec89fd772705bdff58ff5e707d8ed964f91",
+    "bytes": 26597
+  }
+}

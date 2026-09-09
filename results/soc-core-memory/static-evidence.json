@@ -1,0 +1,25 @@
+{
+  "comparison": {
+    "bytes": 87892,
+    "path": "results/soc-core-memory/comparison.json",
+    "sha256": "f5d61f46217026bd62c63e9bbd09c8ca19d986967b3cffb30a224d7aa8d2373b"
+  },
+  "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+  "gate": {
+    "bytes": 2019,
+    "path": "results/soc-core-memory/gate.json",
+    "sha256": "29621b5bc01245edd6bc1de0a5871636b9851240c271213676f6db3227d06efd"
+  },
+  "performance": {
+    "bytes": 45635,
+    "path": "results/soc-core-memory/performance.json",
+    "sha256": "94db81bce0a31d2e29b3b75c664f77644d272ade81109b2766af1308a6a29668"
+  },
+  "phase": "9A",
+  "replay_data": {
+    "bytes": 1197348,
+    "path": "results/soc-core-memory/replay-data.json",
+    "sha256": "329c4eec4f0f1ce958be6796794cc563bc022313dfbcff89f8902e0779cc90a9"
+  },
+  "schema_version": 1
+}
