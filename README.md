@@ -5,8 +5,8 @@ passed native/recorder checks and historical B0 regressions: SCF attempt 2 took
 180 maps; Gamma attempt 1 used its final density. E/F differences are
 +1.7764e-15 Ha/cell, density quotient 7.1841e-14 and raw Gamma maximum
 7.7716e-15 Ha. Original static results are HISTORICAL_REUSED; timing review,
-K6 insufficiency and physical interpretation review remain. Final public-clone
-and archive verification are PENDING at this reporting step. The original
+K6 insufficiency and physical interpretation review remain. Clean public-clone replay returned default/strict 0/0; the incremental archive
+restored and verified all 185 files. The original
 Phase 9A partial-delivery paragraph below describes the preserved 98781fd
 snapshot, not the newly completed numerical tasks.
 

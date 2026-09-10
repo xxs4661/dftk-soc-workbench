@@ -3,7 +3,7 @@
 - [Phase 9A continuation: new SCF and Gamma regression](soc-core-memory/completion/README.md)
   — both authorized slots PASS/0; 180-map SCF, unchanged historical B0 regression
   thresholds met. Static performance is HISTORICAL_REUSED, time/K6/physical
-  interpretation limits retained. Final public-clone/archive verification PENDING.
+  interpretation limits retained. Clean public-clone default/strict replay 0/0; incremental archive restore 185/185.
   The next original Phase 9A entry describes the preserved 98781fd partial snapshot.
 
 

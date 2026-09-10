@@ -4,7 +4,7 @@
   inputs, explicit static inheritance and once-only SCF attempt 2 / Gamma attempt 1.
   [Both new endpoints and original regression gates passed](../results/soc-core-memory/completion/README.md).
   Performance remains HISTORICAL_REUSED and time/K6/physical review limits remain;
-  final public-clone/archive verification is PENDING. The original core-memory
+  clean public-clone replay returned 0/0; incremental archive restore verified 185/185 files. The original core-memory
   case summary below retains its earlier partial-delivery scope.
 
 

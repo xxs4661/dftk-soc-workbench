@@ -562,6 +562,110 @@
           "bytes": 1069
         }
       ]
+    },
+    {
+      "name": "Completion clean-clone clone",
+      "status": "PASS",
+      "exit_code": 0,
+      "execution_commit": "d5e93c86646bb30143766df36023fae3cc6435dd",
+      "scope": "Actual clean public-clone scalar/source replay; no scientific solver or private density evaluation",
+      "command": [
+        "git",
+        "clone",
+        "--no-local",
+        "--branch",
+        "codex/phase9a-soc-core-memory",
+        "<source-repository>",
+        "<new-clean-clone>"
+      ],
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/clone.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/clone.stderr",
+          "sha256": "12c2a349b65f374f606ef076626ff97ebc9d9cdc2d7bde6f9d175907f96a63a6",
+          "bytes": 165
+        }
+      ]
+    },
+    {
+      "name": "Completion clean-clone default",
+      "status": "PASS",
+      "exit_code": 0,
+      "execution_commit": "d5e93c86646bb30143766df36023fae3cc6435dd",
+      "scope": "Actual clean public-clone scalar/source replay; no scientific solver or private density evaluation",
+      "command": [
+        "python3.12",
+        "-B",
+        "benchmarks/soc-core-memory-v1/resume/replay.py",
+        "--root",
+        "."
+      ],
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/default.stdout",
+          "sha256": "47601b52bab02f236e2fcedcaa8f66d2be41bb4e2607fe68885a59a64676b00e",
+          "bytes": 7628
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/default.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "Completion clean-clone strict",
+      "status": "PASS",
+      "exit_code": 0,
+      "execution_commit": "d5e93c86646bb30143766df36023fae3cc6435dd",
+      "scope": "Actual clean public-clone scalar/source replay; no scientific solver or private density evaluation",
+      "command": [
+        "python3.12",
+        "-B",
+        "benchmarks/soc-core-memory-v1/resume/replay.py",
+        "--root",
+        ".",
+        "--require-endpoints"
+      ],
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/strict.stdout",
+          "sha256": "53020e828dfc4731d4ef2361bf1dbd06f55fcd1f94e93b74c85382b15fa70f9f",
+          "bytes": 7628
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/strict.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "Completion links/privacy/frozen-source and git diff --check",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "Read-only current public tree and continuation diff; no scientific tasks",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/prepublication-20260910T142931Z-1db710ad/receipt.private.json",
+          "sha256": "626f1322e994f4082f51b8d281c603c22f2858526d682769d41e1d63355db317",
+          "bytes": 781
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/prepublication-20260910T142931Z-1db710ad/1.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/prepublication-20260910T142931Z-1db710ad/1.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
     }
   ],
   "counting_policy": "Do not add dedicated20/15/4 repetitions to the latest38/88 suite counts; older Phase9A551/2495 are historical, not rerun here.",
@@ -717,6 +821,32 @@
           "bytes": 0
         }
       ]
+    },
+    {
+      "command": [
+        "python3.9",
+        "-B",
+        "scripts/check_publication.py",
+        "--root",
+        ".",
+        "--modern-python",
+        "python3.12"
+      ],
+      "source_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+      "status": "FAIL",
+      "exit_code": 1,
+      "reason": "Frozen scientific file changed: prototypes/fr_integration/FRIntegration.jl",
+      "scope": "Old checker and old manifest preserved; observed again during completion publication",
+      "stdout": {
+        "path": ".work/phase9a/resume-20260910/final-checks/prepublication-20260910T142931Z-1db710ad/0.stdout",
+        "sha256": "409373fb299feac92486abd32c9d1b099edd161b9ef354c08fdb7ffc37c8c0d8",
+        "bytes": 135
+      },
+      "stderr": {
+        "path": ".work/phase9a/resume-20260910/final-checks/prepublication-20260910T142931Z-1db710ad/0.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
     }
   ]
 }

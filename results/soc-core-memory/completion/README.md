@@ -5,8 +5,9 @@ attempt completed 180 maps; the first actual Gamma attempt used its final
 `n_out`. Both native workers and recorders exited 0. The four original static
 suites remain **HISTORICAL_REUSED**. **PERFORMANCE_REVIEW_REQUIRED**, the
 insufficient K6 budget and physical interpretation limits remain separate.
-The repository-external incremental backup restored and verified **185/185**
-files. Final clean-public-clone verification is **PENDING** at this reporting step.
+The clean public-clone replay returned **default 0 / strict 0**. The
+repository-external incremental backup restored and verified **185/185** files.
+The agreed core/static/endpoint work is complete and awaits human review.
 
 ## Identity, inheritance and entry
 
@@ -166,8 +167,8 @@ context created from this one peak.
 ## Tests, failures, public replay and delivery
 
 Preparation passed 38 new Python protocol tests, 88 affected Python tests,
-39 whole-source syntax assertions,21 actual driver-definition/CLI assertions
-and13 synthetic authentication-bridge assertions. Dedicated 20/15/4 reruns
+39 whole-source syntax assertions, 21 actual driver-definition/CLI assertions
+and 13 synthetic authentication-bridge assertions. Dedicated 20/15/4 reruns
 overlap those counts. These are workbench checks, not newly run upstream tests;
 historical 551/2495 and 1387/1387 remain historical.
 
@@ -184,8 +185,10 @@ The [original partial report](../README.md) and
 [first failed slot](../endpoints/endpoint-status.json) are preserved:
 SCF 1 native 1 / recorder 9 before driver entry, Gamma then BLOCKED_PARENT. Original
 public replay, actually run at detached 98781fd without private files, returned
-**default 0 / strict 1** and still says PARTIAL/end_to_end FAIL. Original publication
-checker incompatibilities likewise remain historical failures.
+**default 0 / strict 1** and still says PARTIAL/end_to_end FAIL. The unchanged original publication checker was run again during publication
+and returned **1**: `Frozen scientific file changed:
+prototypes/fr_integration/FRIntegration.jl`. Its old manifest and checker were
+not edited to hide this accepted-base incompatibility.
 
 New public-only replay uses a complete Git clone and existing Python 3.12:
 
@@ -198,8 +201,17 @@ The new default validates the recorded delivery, including a properly recorded
 failure. Strict 0 requires both new endpoints and all source/resource/regression
 gates; malformed evidence exits 2. Public energy/spectrum and reported norm
 arithmetic is distinct from private density, orbital, ownership and RSS
-measurements. Final clean-clone replay and its test receipt remain **PENDING**
-at this reporting step. [Incremental backup verification](archive.json) records
+measurements. [Actual delivery checks](delivery-checks.json) record a new clean
+Git transport clone of publication `d5e93c86646bb30143766df36023fae3cc6435dd`
+on macOS 26.6.2 arm64, Python 3.12.14. Both default and strict replay returned
+**0**, `COMPLETE` / end-to-end `PASS`, while timing/K6/physical reviews remained.
+The clone had no `.work`, UPF or private data and stayed clean.
+The [test ledger](tests.json) preserves command exits, 13 replay and 7 export
+synthetic tests, plus intermediate export/path failures. Public paths, links,
+gzip privacy, unchanged src/prototypes/environment/config and `git diff --check`
+also passed. Publication/replay commits do not replace numerical execution E.
+The final delivery commit receives one further clean-clone replay; its actual
+SHA and exits accompany the delivery without amending earlier identities. [Incremental backup verification](archive.json) records
 185/185 restored files (191,680,654 source bytes), their manifest and the 164,673,892-byte
 compressed archive. The execution Git bundle retains 98781fd through E. This is
 a verified same-machine repository-external backup, not an off-site backup.

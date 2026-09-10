@@ -44,8 +44,8 @@
   },
   "tests": {
     "path": "results/soc-core-memory/completion/tests.json",
-    "sha256": "078c80e1937a50930fcfed2c8d9981ec5d97c680e22e87b1afe9b86bacfb2216",
-    "bytes": 31575
+    "sha256": "db311231e9d72da932b9612bc85cc3d5329cb256c1959ad8d930f7cedc93dfef",
+    "bytes": 36556
   },
   "public_files": {
     "results/soc-core-memory/completion/OPT-B0-GAMMA/initial-solver-identities.json": {
@@ -125,16 +125,20 @@
       "bytes": 101848
     },
     "results/soc-core-memory/completion/README.md": {
-      "sha256": "bccef089f18e1b557fb476c2c6ecf26263c8118604c2885745baca1d3fe98575",
-      "bytes": 11947
+      "sha256": "28af6a853a031145a255a58941f553bf01022689dc5e9c6d1b985dd882055078",
+      "bytes": 12937
     },
     "results/soc-core-memory/completion/archive.json": {
-      "sha256": "6f1f74673275379a5c5bdb077261c55c3c0f0385553b3d84c73bb803e4bcc710",
-      "bytes": 1131
+      "sha256": "8ffc5e0f0a79a640a8919c4bc80c12a86f921e49b2a9bc11b6ab5a8e675d18ac",
+      "bytes": 2162
     },
     "results/soc-core-memory/completion/authorization.json": {
       "sha256": "72f1bcbdd0db75ce2b32b77a84e683ac38fef74474ebcca391b2bc27b05264c6",
       "bytes": 37496
+    },
+    "results/soc-core-memory/completion/delivery-checks.json": {
+      "sha256": "22ae8d8be107716064e19f48121dc33c917b72eafaec0d1707017eb0daf07bef",
+      "bytes": 5278
     },
     "results/soc-core-memory/completion/density-comparison.json": {
       "sha256": "d67d721fe906f7a6e330888fbea838877ad003ac190b168798419f84a848e467",
@@ -153,8 +157,8 @@
       "bytes": 6749
     },
     "results/soc-core-memory/completion/tests.json": {
-      "sha256": "078c80e1937a50930fcfed2c8d9981ec5d97c680e22e87b1afe9b86bacfb2216",
-      "bytes": 31575
+      "sha256": "db311231e9d72da932b9612bc85cc3d5329cb256c1959ad8d930f7cedc93dfef",
+      "bytes": 36556
     }
   },
   "replay_source": {
@@ -162,7 +166,8 @@
     "sha256": "85412c2f0102513704f9739a856c76b88a3a37a54e1299b26ca076001f311c97",
     "scope": "New public arithmetic tool; scientific execution remains pinned to endpoint_execution_commit"
   },
-  "publication_status": "CANDIDATE_PENDING_FINAL_COMMIT_REPLAY",
+  "publication_status": "CLEAN_PUBLIC_CLONE_REPLAY_PASS",
   "archive_status": "PASS",
-  "scope": "Public original final scalar tables, endpoint metadata and hashes; private density/ownership/RSS observations RUNNER_REPORTED; original partial static/failure records unchanged"
+  "scope": "Public original final scalar tables, endpoint metadata and hashes; private density/ownership/RSS observations RUNNER_REPORTED; original partial static/failure records unchanged",
+  "verified_publication_commit": "d5e93c86646bb30143766df36023fae3cc6435dd"
 }

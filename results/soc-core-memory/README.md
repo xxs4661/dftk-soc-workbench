@@ -4,8 +4,8 @@
 records the explicitly authorized SCF attempt 2 and Gamma attempt 1 at E=281c535…:
 both native/recorder exits are 0 and all original B0 regression limits pass.
 Static results remain HISTORICAL_REUSED; time, K6 and physical interpretation
-reviews remain. Final public-clone/archive verification is PENDING at this
-reporting step. The complete original account below retains its original
+reviews remain. Clean public-clone replay returned default/strict 0/0; the incremental
+archive restored and verified 185/185 files. The complete original account below retains its original
 1b42a270… execution and 98781fd partial-publication scope, including SCF attempt 1
 FAIL and its unstarted Gamma. Those historical records were not relabeled.
 

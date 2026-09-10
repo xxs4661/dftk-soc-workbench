@@ -5,7 +5,8 @@ at E=281c535… records SCF attempt 2 and Gamma attempt 1 PASS/0, with all origi
 B0 endpoint regression limits met. The four static suites are HISTORICAL_REUSED;
 time remains PERFORMANCE_REVIEW_REQUIRED, K6 budget INSUFFICIENT_EVIDENCE and
 K6/K8 NOT_RUN. Gamma occupation/manifold interpretation remains REVIEW_REQUIRED.
-Final public-clone/archive verification is PENDING at this reporting step. The
+Clean public-clone replay returned default/strict 0/0; the incremental archive
+restored and verified 185/185 files. The
 SOC runtime row in the historical table below retains the original partial
 snapshot; this dated continuation supersedes its unexecuted-endpoint scope.
 

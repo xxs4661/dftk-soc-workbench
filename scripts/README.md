@@ -6,8 +6,8 @@
   reservations are now consumed: SCF attempt 2 and Gamma attempt 1 PASS/0;
   [endpoint evidence](../results/soc-core-memory/completion/README.md).
   New public replay is `python3.12 -B benchmarks/soc-core-memory-v1/resume/replay.py --root .`,
-  with `--require-endpoints` for strict completion. Final public-clone/archive
-  validation is PENDING. The original replay described below is pinned to
+  with `--require-endpoints` for strict completion. Clean public-clone default/strict replay
+  returned 0/0; incremental archive restore verified 185/185 files. The original replay described below is pinned to
   98781fd: its default/strict exits were actually 0/1, preserving the old failure.
   No further scientific invocation or static remeasurement is authorized.
 
