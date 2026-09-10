@@ -1,5 +1,15 @@
 # Capability and validation status
 
+**Phase 9A continuation update:** [new evidence](../results/soc-core-memory/completion/README.md)
+at E=281c535… records SCF attempt 2 and Gamma attempt 1 PASS/0, with all original
+B0 endpoint regression limits met. The four static suites are HISTORICAL_REUSED;
+time remains PERFORMANCE_REVIEW_REQUIRED, K6 budget INSUFFICIENT_EVIDENCE and
+K6/K8 NOT_RUN. Gamma occupation/manifold interpretation remains REVIEW_REQUIRED.
+Final public-clone/archive verification is PENDING at this reporting step. The
+SOC runtime row in the historical table below retains the original partial
+snapshot; this dated continuation supersedes its unexecuted-endpoint scope.
+
+
 This is the single complete current capability table. It describes evidence at
 the historical development snapshot `8658992afa936f6cdb1a8055699ae9aa47b32297` and
 the first Phase 7A QE SOC comparison based on published main

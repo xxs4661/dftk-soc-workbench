@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "run_id": "OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be-dftk",
+  "rows": [
+    {
+      "map_index": 1,
+      "k_index": 1,
+      "target_states": 24,
+      "auxiliary_states": 6,
+      "ng": 2085,
+      "initial_source": "Independent ComplexF64 Gaussian whole-column QR",
+      "initial_seed": 81001,
+      "initial_gram_norm": 1.3713766615539469e-14,
+      "initial_imaginary_norm": 3.8752518929047035,
+      "initial_sha256": "01abdd7750f3bd1da2d8c4488affafb987342ea6fa16948c8ac9bb955dfcb4c3",
+      "initial_unchanged": true
+    },
+    {
+      "map_index": 1,
+      "k_index": 2,
+      "target_states": 24,
+      "auxiliary_states": 6,
+      "ng": 2120,
+      "initial_source": "Independent ComplexF64 Gaussian whole-column QR",
+      "initial_seed": 81002,
+      "initial_gram_norm": 1.3769840712033473e-14,
+      "initial_imaginary_norm": 3.8722950794110242,
+      "initial_sha256": "37591d83bab33e3cca4f34c0fb1eaf6e19323f646e88caba4c33ce0b6523f7e8",
+      "initial_unchanged": true
+    },
+    {
+      "map_index": 1,
+      "k_index": 3,
+      "target_states": 24,
+      "auxiliary_states": 6,
+      "ng": 2120,
+      "initial_source": "Independent ComplexF64 Gaussian whole-column QR",
+      "initial_seed": 81003,
+      "initial_gram_norm": 1.2589999601329101e-14,
+      "initial_imaginary_norm": 3.86933748455203,
+      "initial_sha256": "8f60004dd34aff6124f7860cef5e77aae0a11beaf3343463ef0784d42af412e0",
+      "initial_unchanged": true
+    },
+    {
+      "map_index": 1,
+      "k_index": 4,
+      "target_states": 24,
+      "auxiliary_states": 6,
+      "ng": 2100,
+      "initial_source": "Independent ComplexF64 Gaussian whole-column QR",
+      "initial_seed": 81004,
+      "initial_gram_norm": 1.3476999690007269e-14,
+      "initial_imaginary_norm": 3.8691405490938138,
+      "initial_sha256": "c4e7eeac1038fada514ad68b8e1f4844fcd450267969c79402ec9c1a61e9d245",
+      "initial_unchanged": true
+    },
+    {
+      "map_index": 1,
+      "k_index": 5,
+      "target_states": 24,
+      "auxiliary_states": 6,
+      "ng": 2120,
+      "initial_source": "Independent ComplexF64 Gaussian whole-column QR",
+      "initial_seed": 81005,
+      "initial_gram_norm": 1.2858557646639095e-14,
+      "initial_imaginary_norm": 3.8748383113345857,
+      "initial_sha256": "64220c6c16beb32c7405d9c5b0c91b71db6f63f8883797615086ff4ed61890e6",
+      "initial_unchanged": true
+    },
+    {
+      "map_index": 1,
+      "k_index": 6,
+      "target_states": 24,
+      "auxiliary_states": 6,
+      "ng": 2100,
+      "initial_source": "Independent ComplexF64 Gaussian whole-column QR",
+      "initial_seed": 81006,
+      "initial_gram_norm": 1.306748380428328e-14,
+      "initial_imaginary_norm": 3.872240002951308,
+      "initial_sha256": "ece632b293a49292a91ee34c47a39d7d85292a53f4075a63486e4ac0d2a251be",
+      "initial_unchanged": true
+    },
+    {
+      "map_index": 1,
+      "k_index": 7,
+      "target_states": 24,
+      "auxiliary_states": 6,
+      "ng": 2100,
+      "initial_source": "Independent ComplexF64 Gaussian whole-column QR",
+      "initial_seed": 81007,
+      "initial_gram_norm": 1.1827489549952936e-14,
+      "initial_imaginary_norm": 3.879742100357683,
+      "initial_sha256": "7369384cdc07f6c57ad33b45667189c8eac32b305f992df055306fd2737ded79",
+      "initial_unchanged": true
+    },
+    {
+      "map_index": 1,
+      "k_index": 8,
+      "target_states": 24,
+      "auxiliary_states": 6,
+      "ng": 2120,
+      "initial_source": "Independent ComplexF64 Gaussian whole-column QR",
+      "initial_seed": 81008,
+      "initial_gram_norm": 1.2548754733651646e-14,
+      "initial_imaginary_norm": 3.869951269850021,
+      "initial_sha256": "456f3630880c1d3ac284195d3bfeeaceea409cac624489ccd56504c3fe65522e",
+      "initial_unchanged": true
+    }
+  ],
+  "observed_solver_record_count": 1440,
+  "evidence_level": "RUNNER_REPORTED",
+  "scope": "Original first-map subspace identities only; no orbital arrays or re-solve"
+}

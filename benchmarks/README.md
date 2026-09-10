@@ -1,5 +1,13 @@
 # Physical cases and reproduction
 
+- [SOC core continuation](soc-core-memory-v1/resume/README.md): unchanged Si B0
+  inputs, explicit static inheritance and once-only SCF attempt 2 / Gamma attempt 1.
+  [Both new endpoints and original regression gates passed](../results/soc-core-memory/completion/README.md).
+  Performance remains HISTORICAL_REUSED and time/K6/physical review limits remain;
+  final public-clone/archive verification is PENDING. The original core-memory
+  case summary below retains its earlier partial-delivery scope.
+
+
 - [SOC core memory v1](soc-core-memory-v1/README.md): authenticated historical B0/K4 static pairs passed; the sole new B0 attempt failed at parser entry and Gamma is blocked; [current status](../results/soc-core-memory/README.md).
 
 - [Si QE k-grid reference](si-soc-k-reference-v1/README.md): frozen K6/K8 inputs and four-slot plan; [current status](../results/si-soc-k-reference/README.md). Four prescribed QE slots completed once; finite trends and limits are in the linked result. No new DFTK context or worker.

@@ -1,5 +1,16 @@
 # DFTK SOC workbench
 
+**Phase 9A continuation:** [new Si endpoints](results/soc-core-memory/completion/README.md)
+passed native/recorder checks and historical B0 regressions: SCF attempt 2 took
+180 maps; Gamma attempt 1 used its final density. E/F differences are
++1.7764e-15 Ha/cell, density quotient 7.1841e-14 and raw Gamma maximum
+7.7716e-15 Ha. Original static results are HISTORICAL_REUSED; timing review,
+K6 insufficiency and physical interpretation review remain. Final public-clone
+and archive verification are PENDING at this reporting step. The original
+Phase 9A partial-delivery paragraph below describes the preserved 98781fd
+snapshot, not the newly completed numerical tasks.
+
+
 Phase 9A is a **partial delivery**: [owned SOC core](docs/soc-core-runtime.md) static equivalence and allocation gates passed, but the sole new B0 attempt failed before SCF and Gamma is blocked. [Results and limitations](results/soc-core-memory/README.md) retain the failure, timing review and unresolved K6 budget. The old default entry remains available.
 
 Phase 8C [QE k-grid reference](results/si-soc-k-reference/README.md) completed all four prescribed K6/K8 slots once. The Γ splitting changes are **+0.047128386 meV (4→6)** and **+0.008621197 meV (6→8)**, both within the fixed 0.1 meV observation window; three-point span **0.055749582 meV**. DFTK K6/K8 remain NOT_RUN, new-grid cross-code comparison NOT_ASSESSED, physical convergence NOT_ESTABLISHED. Occupation reviews, SCF solver warnings and IEEE flags remain explicit.

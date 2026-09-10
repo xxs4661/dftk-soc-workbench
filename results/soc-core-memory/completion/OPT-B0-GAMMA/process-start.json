@@ -1,0 +1,20 @@
+{
+  "pid": 15086,
+  "command": [
+    "julia",
+    "--startup-file=no",
+    "--color=no",
+    "--project=<workbench>/environment/workbench",
+    "<workbench>/scripts/run_si_soc.jl",
+    "OPT-B0-GAMMA",
+    "<workbench>/.work/phase9a/endpoints/OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8/OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8-dftk",
+    "<workbench>/.work/phase9a/endpoints/OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be/OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be-dftk",
+    "--backend",
+    "soc-core",
+    "--core-gate",
+    "<workbench>/.work/phase9a/gate-20260909T114412Z-4b88f642/gate.json",
+    "--resume-authorization",
+    "<workbench>/.work/phase9a/resume-authorizations/234fe85d4e9386d9889bd1af256a28394ba88089/authorization.json"
+  ],
+  "started_utc": "2026-09-10T14:12:06.129190+00:00"
+}

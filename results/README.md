@@ -1,5 +1,12 @@
 # Scientific evidence
 
+- [Phase 9A continuation: new SCF and Gamma regression](soc-core-memory/completion/README.md)
+  — both authorized slots PASS/0; 180-map SCF, unchanged historical B0 regression
+  thresholds met. Static performance is HISTORICAL_REUSED, time/K6/physical
+  interpretation limits retained. Final public-clone/archive verification PENDING.
+  The next original Phase 9A entry describes the preserved 98781fd partial snapshot.
+
+
 - [Phase 9A: reusable SOC core and memory](soc-core-memory/README.md) — static equivalence/allocation PASS; new B0 parser failure, Gamma BLOCKED_PARENT, time review and K6 budget unresolved. Partial delivery.
 
 - [Phase 8C: Si QE k-grid reference](si-soc-k-reference/README.md) — four K6/K8 slots PASS/0; both new finite steps within0.1 meV, three-point span0.055749582 meV. Complete compressed native replay. B0/K4 HISTORICAL_REUSED; new DFTK dense grids NOT_RUN, same-grid cross-code agreement NOT_ASSESSED, physical convergence NOT_ESTABLISHED; FD/solver/IEEE reviews retained.

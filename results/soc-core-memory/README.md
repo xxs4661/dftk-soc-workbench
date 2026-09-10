@@ -1,5 +1,15 @@
 # SOC core and memory audit — Phase 9A
 
+**Continuation after this preserved partial snapshot:** [new Si endpoint report](completion/README.md)
+records the explicitly authorized SCF attempt 2 and Gamma attempt 1 at E=281c535…:
+both native/recorder exits are 0 and all original B0 regression limits pass.
+Static results remain HISTORICAL_REUSED; time, K6 and physical interpretation
+reviews remain. Final public-clone/archive verification is PENDING at this
+reporting step. The complete original account below retains its original
+1b42a270… execution and 98781fd partial-publication scope, including SCF attempt 1
+FAIL and its unstarted Gamma. Those historical records were not relabeled.
+
+
 **PARTIAL_DELIVERY.** Four authenticated static suites passed numerical,
 allocation and sampled resource gates. The one authorized new Si B0 attempt
 failed while parsing its Julia driver, before any SCF map. Gamma is
