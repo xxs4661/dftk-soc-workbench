@@ -1,126 +1,97 @@
 # DFTK SOC workbench
 
-**Phase 9A continuation:** [new Si endpoints](results/soc-core-memory/completion/README.md)
-passed native/recorder checks and historical B0 regressions: SCF attempt 2 took
-180 maps; Gamma attempt 1 used its final density. E/F differences are
-+1.7764e-15 Ha/cell, density quotient 7.1841e-14 and raw Gamma maximum
-7.7716e-15 Ha. Original static results are HISTORICAL_REUSED; timing review,
-K6 insufficiency and physical interpretation review remain. Clean public-clone replay returned default/strict 0/0; the incremental archive
-restored and verified all 185 files. The original
-Phase 9A partial-delivery paragraph below describes the preserved 98781fd
-snapshot, not the newly completed numerical tasks.
+An experimental plane-wave spin–orbit coupling workbench for researchers studying
+norm-conserving pseudopotentials, spinor operators and numerical agreement between
+electronic-structure codes. It implements nonmagnetic, **charge-only SOC** using
+fully relativistic NC-UPF data and a frozen DFTK environment. Mg and diamond Si
+provide concrete test cases, with Quantum ESPRESSO comparisons and public
+numerical evidence.
 
+This is a separate research workbench, not an official DFTK SOC feature or a
+stable package for arbitrary materials. You can inspect the mathematics, call
+the existing matrix core and replay specified public results without running a
+new material calculation.
 
-Phase 9A is a **partial delivery**: [owned SOC core](docs/soc-core-runtime.md) static equivalence and allocation gates passed, but the sole new B0 attempt failed before SCF and Gamma is blocked. [Results and limitations](results/soc-core-memory/README.md) retain the failure, timing review and unresolved K6 budget. The old default entry remains available.
+## What is implemented
 
-Phase 8C [QE k-grid reference](results/si-soc-k-reference/README.md) completed all four prescribed K6/K8 slots once. The Γ splitting changes are **+0.047128386 meV (4→6)** and **+0.008621197 meV (6→8)**, both within the fixed 0.1 meV observation window; three-point span **0.055749582 meV**. DFTK K6/K8 remain NOT_RUN, new-grid cross-code comparison NOT_ASSESSED, physical convergence NOT_ESTABLISHED. Occupation reviews, SCF solver warnings and IEEE flags remain explicit.
+- FR channel parsing, spin-angular projectors and a matrix-free nonlocal action
+  with independent angular and dense-matrix references.
+- Two-component wavefunctions, charge-density construction, capacity-one
+  Fermi–Dirac occupations and a charge-only self-consistent energy loop.
+- A reusable `SOCKernels` matrix core with explicit ownership and workspace
+  interfaces, connected to the DFTK adapter and exercised by a real Si SCF and
+  its own-final-density Γ spectrum.
+- Fixed-input Si/QE spectral comparisons and Mg density, Hartree, local-potential
+  and orbital-energy audits, with distinct public and runner-reported evidence.
 
-A research workbench for norm-conserving UPF pseudopotentials, two-component
-spinors and spin–orbit coupling on top of a frozen DFTK environment.
+The [capability table](docs/status.md) separates implemented functions, numerical
+comparisons, sensitivity, replay coverage and open work.
 
-Phase 8B [Si SOC sensitivity](results/si-soc-sensitivity/README.md) is
-complete: 12 prescribed slots exited 0. E40/T05 changes stay within the
-0.1 meV observation window; K4 changes the splitting by about **+0.331506 meV**
-in both programs, exceeding that window while their responses agree.
-Physical interpretation remains **REVIEW_REQUIRED** and convergence
-**NOT_ESTABLISHED**; occupation diagnostics and QE warnings are reported separately.
+## Representative validation
 
-Phase 8A [Si SOC splitting](results/si-soc-splitting/README.md) completed its
-five prescribed slots once each: D/Q Γ splits **47.4576152 / 47.4576124 meV**,
-difference **2.7336e-9 eV**; same-density spin-trace six-state width **1.6276e-12 eV**.
-The fixed-window structure, splitting and null gates pass. Physical manifold/scientific interpretation
-remains **REVIEW_REQUIRED**: extra occupation-saturation diagnostic unmet, QE SCF
-eigensolver warnings and IEEE flags retained, physical convergence not established.
-The 2427 Phase 8A assertions are historical. [Version 2 status semantics and
-public replay](results/si-soc-splitting/status-correction/README.md) separate
-fixed-window PASS from occupation and complete manifold prerequisites
-**REVIEW_REQUIRED**. The old checker requires the fixed historical snapshot.
-Phase 8A.1 added no physical calculation; the new Phase 8B slots are reported separately.
+| Question | Recorded observation | Scope and main limitation |
+| --- | --- | --- |
+| Does the Si calculation resolve an SOC split at Γ? | Workbench / QE fixed-window splits: **47.4576 / 47.4576 meV**. The same-density spin-trace control removes the resolved six-state split. | [Si spectra and corrected status](results/si-soc-splitting/status-correction/README.md): fixed-window checks pass; occupation saturation and complete manifold interpretation remain under review. The control is not a separate scalar-UPF calculation. |
+| How sensitive is that statistic to settings? | Increasing the SCF k-point grid from 2³ to 4³ changes it by about **+0.3315 meV** in both programs, above the declared 0.1 meV observation window. | [Limited paired sensitivity](results/si-soc-sensitivity/README.md): tested cutoff and temperature changes stay within that window; a few directions do not establish convergence. |
+| What does a denser QE reference show? | 4³→6³: **+0.04713 meV**; 6³→8³: **+0.00862 meV**. | [QE-only trend](results/si-soc-k-reference/README.md): DFTK 6³/8³ were not run, so these are not new dense-grid cross-code comparisons. |
+| Does the extracted core preserve the existing calculation? | A fresh Si SCF and Γ calculation meet the original energy, density and all-24-level regression limits. | [Core endpoint regression](results/soc-core-memory/completion/README.md): comparison against the earlier workbench, not a new QE pair or a measured overall speedup. |
 
-Phase 7G [Linux public replay](results/mg-soc-public-replay/linux/README.md)
-completed: **I PASS / exit 0**, all 380 numerical gates; **R FAIL / exit 1**
-for the two predeclared derived-density hashes. CI remains **failure**.
-All 47 Linux synthetic tests passed. Input/WFC identities match; no unclassified
-numerical difference remains. Native QE NL and physical convergence retain
-their limitations. The earlier authorization-blocked records remain unchanged.
+Small differences under one fixed input are not estimates of absolute physical
+accuracy. Raw values, warnings and the original comparison thresholds remain in
+the linked records.
 
-The scalar Si baseline and restricted spinor/SOC prototypes use frozen dependencies.
-Phase 6C A/B and the [first QE SOC comparison](results/mg-soc-qe-comparison/README.md)
-remain **HISTORICAL_REUSED**. Historical Phase 7A QE execution: **PASS**.
-The [solver/FFT diagnostics](results/mg-soc-qe-diagnostics/README.md),
-[saved density/Hartree audit](results/mg-soc-density-hartree/README.md) and
-[energy/reference ledger](results/mg-soc-energy-reference/README.md) preserve
-all earlier results and limitations.
+## Start here
 
-The preceding [QE local-potential audit](results/mg-soc-qe-local-potential/README.md)
-executed two same-build pp.x slots on independent G40 copies. All 64000 P0
-nodes and 17 complex modes register. The pp-reconstructed mean supports the
-prior G=0 prediction; it is not extraction of historical SCF memory.
-A−G40 local bookkeeping separates into density response +0.213944969,
-nonzero G shape +0.115609946 and G=0 +0.453634725 meV/cell, leaving a derived
-O residual −0.068908841 meV/cell. Native E/F is unchanged. This residual is
-not independently measured QE kinetic/nonlocal energy. Numerical review is
-**REVIEW_REQUIRED**, physical convergence **NOT_ESTABLISHED**, and IEEE origin
-**NOT_LOCALIZED**. No new SCF/eigensolve or independent XC run was performed;
-normal pp initialization did reconstruct potentials. Main is unchanged.
-
-The earlier [original-wavefunction audit](results/mg-soc-wavefunction-energy/README.md)
-reads the bound original G40 and A/B endpoints without new solves. All finite
-orbital-density, direct/gradient kinetic and frozen FR gates pass. The A−Q
-common-evaluator T+NL response is −0.068920107 meV/cell; the remaining
-cross-source combination J is +0.000011267 meV/cell, with P2/token halfwidth
-0.000520741 meV/cell. Native QE NL is **NOT_MEASURED** and the original
-input-Hamiltonian residual **NOT_AVAILABLE**. Complete canonical Q coefficients
-and one P/D set permit public replay; A/B source extraction remains runner-reported.
-
-- [Capabilities, evidence levels and limitations](docs/status.md)
-- [Scientific results and offline review](results/README.md)
-- [Physical inputs and reproduction](benchmarks/README.md)
-- [Frozen Julia environment](environment/workbench/README.md)
-- [Commands](scripts/README.md) · [Contributing](CONTRIBUTING.md)
-
-For an offline review using public files only, run from the repository root:
+**Review public results** with Git history and an existing Python 3.12:
 
 ```sh
-python_numpy scripts/check_orbital_energy.py --all --legacy-python python3.9
+python3.12 -B scripts/review.py core-regression
 ```
 
-`python_numpy` is an existing Python 3.12 interpreter with NumPy (tested 2.3.5);
-no dependency installation is performed. Full fields, registration and precision
-propagation are replayed. Exact historical scalar RMS values use Python 3.9 (the recorded
-summation behavior); Python 3.12 or later is required by the QE-input preparer.
-No calculation is started by the publication check. Physical reproduction
-requires Julia 1.12.7, the locked checkouts, and separately acquired UPF files;
-see the environment and case instructions before running a scientific driver.
+This read-only entry runs the original strict checker in a fixed, clean
+historical snapshot outside your checkout. It recomputes public energy/spectrum
+arithmetic and checks provenance; it does not rerun SOC SCF, recover private
+arrays or certify convergence. It preserves nonzero exits and scientific review
+flags. No automatic downloads or dependency installation occur.
 
-Material AI assistance included GPT-5.6 Pro planning/review and Codex
-implementation and testing. This is not independent expert certification;
-see [the disclosure](docs/ai-assistance.md). The
-[historical curation](docs/evidence-migration.md) performed no SCF/QE;
-Phase 7A and Phase 7B have separate execution identities and preserve older results.
-Phase 7C publishes complete native n_out/rho Fourier coefficients for offline
-arithmetic; original source extraction and n_in closure checks remain separately
-identified runner-performed measurements.
+**Call the numerical core** using Julia (tested with 1.12.7):
 
-The combined publication check uses Python 3.9 for exact historical scalar
-arithmetic and `python3.12` on PATH for standard-library TOML in the prototype
-checks (`--modern-python PATH` selects an existing Python 3.11+ interpreter).
-It installs no packages or environments.
+```sh
+julia --startup-file=no --project=@stdlib examples/soc_kernels.jl
+```
 
-The combined verifier now binds the historical UPF exporter to its reviewed Git
-object at `ac22a64421c4a5444a399477b9a3215dbd913487`. Use a normal clone retaining
-that history; no private execution archive is needed. The new SOC-only replay is
-`python3.12 scripts/check_qe_soc_evidence.py`.
+The existing example uses small synthetic complex matrices and Julia's standard
+library. It checks a nonlocal action against a dense oracle and compares two
+expectation contractions. No DFTK, UPF or registered workbench package is needed.
+[Getting started](docs/getting-started.md) explains prerequisites and invocation
+from another directory; [reproduction scopes](docs/reproducibility.md) cover
+historical checks and the additional requirements of native experiments.
 
-The historical diagnostic checker wraps the unchanged publication checker;
-it does not refresh the Phase 7A verifier hashes. New-case-only replay is
-`python3.12 scripts/check_qe_soc_diagnostics.py`.
-The new array-only replay is `python3.12 scripts/check_density_hartree.py`.
+## Limits that matter for research
 
-The current energy-table replay is `python3.12 scripts/check_energy_reference.py`.
-It replays saved scalar algebra; frozen Julia and authenticated private sources
-are required to independently repeat XC/field evaluation.
+Magnetic noncollinear XC, forces/stress, USPP/PAW, GPU/automatic differentiation
+and MLP are outside the validated implementation. The tested path is CPU
+Float64/ComplexF64. Full physical convergence and Si manifold interpretation
+are not established. DFTK dense-k memory remains insufficiently bounded;
+static allocation reductions do not establish an overall SCF speedup.
 
-[Si source and fixed matrix](benchmarks/si-soc-splitting-v1/README.md) bind the new
-two-atom FR-NC-PBE/NLCC case. The spin-trace control is fixed-density only,
-not an independent scalar pseudopotential or SCF.
+Mg's independent Linux public replay passed its numerical contract while the
+original checker failed two derived-density hashes. That is not a Linux SOC SCF
+run. QE warnings and unresolved IEEE origins remain documented, and the Mg
+orbital audit does not independently measure QE's native nonlocal energy.
+
+## Find the implementation and evidence
+
+- [Methods and conventions](docs/methods.md) → spinors, projectors, density and energy.
+- [Core interfaces and ownership](docs/soc-core-runtime.md) → [`src/SOCKernels.jl`](src/SOCKernels.jl) and its adapter.
+- [Results](results/README.md) · [Case inputs](benchmarks/README.md) · [Commands](scripts/README.md).
+- [Frozen environment](environment/workbench/README.md) · [Historical snapshots](docs/history.md).
+- [Contributing and reporting problems](CONTRIBUTING.md) · [Open integration questions](docs/soc-upstream-risks.md).
+
+The repository owner is **xxs4661**. The workbench uses the [MIT license](LICENSE);
+third-party software and pseudopotentials retain their own terms. Cite
+[DFTK SOC workbench](https://github.com/xxs4661/dftk-soc-workbench) with the actual
+commit used, and cite the DFTK, QE and pseudopotential work relevant to your study.
+Substantial AI assistance supported planning, implementation and review; the
+[disclosure](docs/ai-assistance.md) explains the division of work and human
+responsibility.

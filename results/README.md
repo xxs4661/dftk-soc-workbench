@@ -1,80 +1,85 @@
-# Scientific evidence
+# Scientific results
 
-- [Phase 9A continuation: new SCF and Gamma regression](soc-core-memory/completion/README.md)
-  — both authorized slots PASS/0; 180-map SCF, unchanged historical B0 regression
-  thresholds met. Static performance is HISTORICAL_REUSED, time/K6/physical
-  interpretation limits retained. Clean public-clone default/strict replay 0/0; incremental archive restore 185/185.
-  The next original Phase 9A entry describes the preserved 98781fd partial snapshot.
+This index separates material comparisons, mathematical checks and implementation
+regressions. Case reports, native warnings and numerical files retain their
+original identities. A successful replay verifies its stated public-data scope;
+it does not rerun SCF or establish physical convergence.
 
+For an executable starting point, see [public reproduction](../docs/reproducibility.md).
+The [history index](../docs/history.md) identifies the clean snapshots required by
+older checkers. [Current capabilities](../docs/status.md) describes supported use.
 
-- [Phase 9A: reusable SOC core and memory](soc-core-memory/README.md) — static equivalence/allocation PASS; new B0 parser failure, Gamma BLOCKED_PARENT, time review and K6 budget unresolved. Partial delivery.
+## Silicon SOC spectra and sensitivity
 
-- [Phase 8C: Si QE k-grid reference](si-soc-k-reference/README.md) — four K6/K8 slots PASS/0; both new finite steps within0.1 meV, three-point span0.055749582 meV. Complete compressed native replay. B0/K4 HISTORICAL_REUSED; new DFTK dense grids NOT_RUN, same-grid cross-code agreement NOT_ASSESSED, physical convergence NOT_ESTABLISHED; FD/solver/IEEE reviews retained.
+The two-atom diamond Si case uses one authenticated fully relativistic NC-PBE
+pseudopotential with NLCC. Workbench and QE solve the nonmagnetic, charge-only
+SOC problem; their fixed-density probes use each program's own final density.
 
-- [Phase 8B: Si finite SOC sensitivity](si-soc-sensitivity/README.md) — 12 slots PASS/0; D/Q responses agree, but K4 raises splitting by about 0.331506 meV beyond the 0.1 meV window. E40/T05 within; B0 historical, physical convergence not established.
+| Question | Recorded result and evidence | Interpretation |
+| --- | --- | --- |
+| Does SOC resolve the fixed Γ valence window? | [Full spectra and same-density spin-trace control](si-soc-splitting/README.md): Δ = 47.4576152 meV (workbench), 47.4576124 meV (QE). | Fixed-window structure and splitting comparison pass. The [occupation-aware assessment](si-soc-splitting/status-correction/README.md) retains manifold interpretation as **REVIEW_REQUIRED**. |
+| Does removing the spin-dependent nonlocal action restore the degeneracy? | The same-density control's six-state width is about 1.63×10⁻¹² eV; see [canonical comparison](si-soc-splitting/comparison.json). | A spin-trace operator diagnostic, not a separate scalar-pseudopotential calculation. |
+| How sensitive is Δ to the selected settings? | [Paired cutoff, temperature and k-grid changes](si-soc-sensitivity/README.md): E40/T05 changes fall within the declared 0.1 meV window; K4 raises Δ by about 0.331506 meV in both programs. | Agreement between programs does not make the k-grid change small. These are three finite checks, not a convergence study. |
+| Does the denser QE sequence change that picture? | [QE K6/K8 reference](si-soc-k-reference/README.md): K4→K6 and K6→K8 changes are +0.0471284 and +0.0086212 meV. | Both are within the observation window. DFTK K6/K8 were **NOT_RUN**; no dense-grid cross-code agreement or full convergence is established. |
 
-- [Phase 8A: Si SOC splitting](si-soc-splitting/README.md) — five slots PASS/0; D/Q Δ=47.4576152/47.4576124 meV, same-density null restores near-sixfold Γ structure. Fixed-window structure, splitting and null gates pass; occupation diagnostic, QE warnings and physical interpretation remain REVIEW_REQUIRED. [Current semantics/replay](si-soc-splitting/status-correction/README.md): complete manifold prerequisites REVIEW_REQUIRED; original checker runs at the fixed historical commit.
+Raw spectra and single-global-reference diagnostics remain available. No fitted
+potential offset or empirical total-energy correction was applied. QE warnings,
+FD diagnostics and uncomputed irreducible representations remain explicit in the
+case reports. [Fixed snapshots](../docs/history.md#silicon-spectra-and-sensitivity)
+keep the original numerical and corrected-status checks distinct.
 
-- [Phase 7G: Linux public replay](mg-soc-public-replay/linux/README.md) — **I PASS/0, R FAIL/1**, CI failure; two predeclared density hashes, 380 I gates and 47 Linux synthetic tests PASS. [Initial authorization block](mg-soc-public-replay/README.md) preserved.
-- [Phase 7F: original wavefunctions, kinetic and frozen nonlocal audit](mg-soc-wavefunction-energy/README.md) — full Q coefficient replay, A/B scalar/projection checks; [review](phase7f-review.md).
+## Magnesium cross-code comparison and energy reference
 
-Phase 7C adds the [saved density/Hartree audit](mg-soc-density-hartree/README.md)
-and complete native Fourier coefficients for offline replay, without new solves.
-Phase 7B supplied the bounded QE solver/FFT/IEEE diagnostics. The Phase 7A SCF,
-its bands result and Phase 6C A/B remain historical references; none was rerun. Current [capability status](../docs/status.md) separates execution,
-internal checks, physical convergence and external validation.
+Mg uses the recorded FR-PBEsol family; it is not an LDA/LSDA benchmark. The
+[charge-only A/B SCFs](mg-soc-scf/README.md) and
+[independent QE comparison](mg-soc-qe-comparison/README.md) supply the states for
+the following audits. Their remaining differences are retained rather than
+removed by fitting an energy constant.
 
-| Scientific question | Public case |
+| Evidence | What can be checked |
 | --- | --- |
-| Does the input satisfy FR-NC metadata acceptance while native DFTK rejects SOC? | [UPF acceptance and recorder](upf-acceptance/README.md) |
-| What agrees for one matched scalar Si input? | [Si scalar baseline](scalar-si-baseline/README.md) |
-| What accounts for the common energy reference; how sensitive are cutoff and k integration? | [Si finite sensitivity](scalar-si-sensitivity/README.md) |
-| Does the no-SOC spinor representation and SCF recover the scalar problem? | [No-SOC spinor](spinor-no-soc/README.md) |
-| Are angular/radial projectors and independent kernels consistent? | [Relativistic projectors](relativistic-projectors/README.md) |
-| Are the full Hamiltonian and orbital energy interfaces consistent at fixed density? | [FR Hamiltonian and energy](fr-hamiltonian-energy/README.md) |
-| Do independent initial states close the prescribed charge-only SOC problem? | [Mg SOC SCF A/B](mg-soc-scf/README.md) |
-| What agrees in the first independent QE SOC comparison? | [Mg QE SOC: E/F/entropy, all 24 states and limits](mg-soc-qe-comparison/README.md) |
-| How sensitive is the fixed-density spectrum to solver choice and the SCF to 36³/40³ FFT? | [Mg QE diagnostics: original spectra, E/F, IEEE scope and unresolved residuals](mg-soc-qe-diagnostics/README.md) |
-| Does the remaining difference appear in saved density/Hartree, and do native energies reconstruct? | [Mg density/Hartree: bound A/B/G40, complete coefficients, support and signed decomposition](mg-soc-density-hartree/README.md) |
+| [Solver and FFT controls](mg-soc-qe-diagnostics/README.md) | Same-saved-density solver comparisons, explicit grid control and the observed scope of native IEEE warnings. Their cause remains unlocalized. |
+| [Density and Hartree](mg-soc-density-hartree/README.md) | Full published Fourier coefficients, electron counts, common/noncommon support and each native Hartree reconstruction. |
+| [Energy ledger and common terms](mg-soc-energy-reference/README.md) | Signed energy bookkeeping, finite G=0 terms, density response and evaluation differences. |
+| [Local-potential reconstruction](mg-soc-qe-local-potential/README.md) | Bound pp.x P2/P0 fields, direct integrals and propagated native print precision; these are reconstructed fields, not the old SCF in-memory potential. |
+| [Original-orbital audit](mg-soc-wavefunction-energy/README.md) | Full public Q coefficients, kinetic sums and the frozen workbench nonlocal operator acting on Q orbitals. A/B replay is limited to published per-state and projected data. |
+| [Linux public replay](mg-soc-public-replay/linux/README.md) | Independent path **I PASS/0**, frozen path **R FAIL/1** on derived density fingerprints; the failed CI result remains recorded. No Linux SOC SCF was run. |
 
-Current [bound QE local-potential audit](mg-soc-qe-local-potential/README.md):
-P2/P0 completed once each; complete native potential/token evidence supports
-all-node and full Fourier replay, exact signed local decomposition and print
-bounds. Remaining O residual and IEEE cause remain unresolved; no new SCF.
+The workbench nonlocal expectation on QE orbitals is not an independent QE
+native nonlocal energy. Derived energy combinations do not identify separate
+operators or uniquely locate an error. See the
+[Mg snapshots and replay scopes](../docs/history.md#magnesium-comparison-and-audits).
 
-Each case has one evidence/provenance entry and its required source data. The
-[shared environment](shared/environment.json) records the frozen Julia identity;
-individual run receipts retain the fact and time of their own identity check.
-Case-specific QE identity and actual execution source hashes remain attached to
-the corresponding case. Input snapshots use immutable source references.
+## Representation, operators and energy consistency
 
-Run `python3.12 scripts/check_density_hartree.py --all --legacy-python python3.9` from the repository root to check
-public paths/hashes and recompute the supported tables without `.work`, UPF files,
-Julia or QE. The individual curation scripts expose offline check commands too.
-Exact historical scalar RMS replay uses Python 3.9; newer Python summation can
-change final bits, which is reported rather than hidden by relaxed assertions.
+| Validation layer | Evidence and limit |
+| --- | --- |
+| Input acceptance | [FR-NC metadata and recorder checks](upf-acceptance/README.md) distinguish valid metadata from the frozen upstream DFTK SOC rejection. |
+| Scalar reference | [Matched Si SR-LDA baseline](scalar-si-baseline/README.md) and [finite reference/cutoff/k checks](scalar-si-sensitivity/README.md); a different source family from SOC Si. |
+| Spinor representation | [No-SOC fixed-H and SCF checks](spinor-no-soc/README.md) recover the scalar problem within their declared contracts. |
+| FR nonlocal operator | [Projector tests](relativistic-projectors/README.md) cover channels, spin-angular conventions, degeneracy and time reversal. Synthetic tests are labeled separately from material evidence. |
+| Full Hamiltonian and energy | [Fixed-density integration checks](fr-hamiltonian-energy/README.md) connect operator action and orbital energy, preceding the material SCFs. |
 
-Public data is sufficient for these arithmetic checks, including Phase 7C's
-complete native n_out/rho coefficient arithmetic. It does not reconstruct
-unpublished wavefunctions or n_in fields, nor independently authenticate raw
-checkpoint extraction. Small near-native logs retain actual
-scientific warnings; full working arrays and process transcripts belong in an
-independent local archive. [Publication policy](../docs/evidence-policy.md) and
-[historical path mapping](../docs/evidence-migration.md) describe that boundary.
+[Methods](../docs/methods.md) links these conventions to their implementations;
+[early review snapshots](../docs/history.md#representation-and-initial-validation)
+preserve the original reports and historical test counts.
 
-The combined publication check uses Python 3.9 for exact historical scalar
-arithmetic and `python3.12` on PATH for standard-library TOML in the prototype
-checks (`--modern-python PATH` selects an existing Python 3.11+ interpreter).
-It installs no packages or environments.
+## Core allocation and endpoint regression
 
-New SOC offline replay: `python3.12 scripts/check_qe_soc_evidence.py`. The combined
-checker also requires the reviewed historical UPF exporter Git object retained
-in a normal clone. Its old evidence hash is not replaced by the evolving verifier.
+The [static core measurements](soc-core-memory/README.md) compare the old and new
+implementations on authenticated B0/K4 inputs. Five warmed samples per operation
+and separate cold costs are public. FR-24 median allocation is about 0.153% of
+the reference; complete-pipeline ratios are about 30.8% (B0) and 27.4% (K4).
+These allocation results do not establish an overall speedup:
+**PERFORMANCE_REVIEW_REQUIRED** remains the timing conclusion.
 
-## Historical energy/reference evidence
-
-[Existing Mg SOC endpoint energy audit](mg-soc-energy-reference/README.md):
-signed historical E/H/XC/Ewald/O ledger, fixed A/B/Q_rep common-term evaluation,
-self recovery, XC density/evaluator split, and local finite G=0 diagnostic.
-Only the source-convention candidate is inferred; QE separate T/NL/local are
-not measured and residual attribution remains open.
+The [completed Si SCF and own-density Γ regression](soc-core-memory/completion/README.md)
+meets the original new-versus-old workbench energy, density and spectrum gates.
+It is an actual endpoint calculation, not a new QE pair. The initial parser
+failure remains in the [earlier partial report](soc-core-memory/README.md).
+Private-array differences and observed memory ownership are runner-reported;
+public replay checks their recorded scalar arithmetic and published endpoints.
+K6 resource evidence remains insufficient, and occupation/manifold and physical
+convergence limits are unchanged. Use the
+[completed snapshot](../docs/history.md#core-allocation-and-endpoint-regression)
+for strict public replay.

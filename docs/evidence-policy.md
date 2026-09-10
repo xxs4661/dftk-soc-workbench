@@ -1,34 +1,59 @@
-# Evidence and maintenance policy
+# Evidence and documentation
 
-Public results must support a scientific or tool claim with its concrete input,
-execution code identity, original run ID, units, declared thresholds and limits.
-Keep complete necessary data and adverse results, including independent initial
-states, references and parameter settings. A PASS label or checksum cannot
-replace the data required for offline review.
+Current explanations describe the software as it exists now. The root README,
+capability table, user guides and top-level navigation may be rewritten when
+capabilities or presentation change. Scientific case inputs, execution code
+identities, results, native warnings and recorded failures describe a particular
+experiment and must not be backfilled to match a newer page.
 
-Use one canonical dataset per case and a single complete capability table in
-[status.md](status.md). Shared environments and identical data use path/hash
-references; independent runs keep their own identity-check receipts. Summaries
-must be derived from or checked against the canonical data. Preserve the
-independence of mathematical reference implementations. Mark array-dependent
-claims as runner-reported when arrays are not public, and provide reproduction
-commands. Synthetic tests are never real pseudopotential or physical evidence.
+## What a result needs
 
-Raw runs, large arrays, local process logs, prompts and handoffs belong in ignored
-working directories and a separately verified external archive. Publication is
-an explicit file/field whitelist, not a recursive copy of a run directory. Before
-removal, classify dependencies and unique claims, back up actual data and Git refs,
-verify hashes and perform a restore. Missing unique evidence blocks its removal.
-Do not overwrite historical outputs or disguise a historical run as a new run.
+A scientific claim needs its input and units, exact execution identity, declared
+comparison method and tolerances, necessary numerical data, and limitations.
+Publish enough numerical information and replay code to check the claim. Retain
+native warnings and meaningful failed experiments as well as successful ones.
+A successful process or a PASS summary does not by itself establish physical
+convergence, cross-code agreement or an accepted upstream design.
 
-Freeze existing source locks, environments, input bytes and thresholds. Register a
-new reviewed case/version separately when scientific scope changes; do not edit
-old records to describe a new environment. Never refresh hashes to bypass a failed
-identity check. Obtain pseudopotentials under their licenses without publishing
-unverified payloads. Do not copy or translate QE algorithms.
+Distinguish three forms of evidence:
 
-Complete a change by updating affected entry points and status in the same change,
-checking links, public evidence and relevant tests, and stating NOT_RUN items.
-Do not mechanically refresh unrelated dates. No external validation means no
-claim of external agreement. Updating documentation does not authorize merging
-main; after review the owner integrates through a separate explicit action.
+- **Raw identity:** a hash binds the original bytes read by an execution.
+- **Public projection identity:** a separate hash binds the selected, sanitized
+  or compressed public representation. It need not equal the raw hash.
+- **Recomputed numbers:** replay evaluates the stated arithmetic from available
+  data under its recorded floating-point contract. This is different from either
+  byte identity or a new electronic-structure calculation.
+
+Array-dependent measurements remain runner-reported when their necessary source
+arrays are not public. Say which arrays and acquisition steps would be required
+for independent repetition. Synthetic functions and matrices establish numerical
+properties of a test, not a real pseudopotential or material prediction.
+
+## Current pages and historical snapshots
+
+Use one canonical dataset and one main explanation for each result; other pages
+link to them. Do not copy numerical packs to simplify navigation. Existing case
+reports, plans, datasets and their paths are historical records. An authorized
+new result or corrected interpretation gets a distinct version and references
+its predecessor.
+
+Some old checkers bind documentation bytes or the entire Git tree. Run them in
+their fixed, clean snapshots with the original exit semantics. Do not broaden an
+old allowlist, change a recorded hash or suppress a failed checker to let current
+documentation pass. [Reproduction scopes](reproducibility.md) and the
+[history index](history.md) identify these boundaries.
+
+## What belongs outside the repository
+
+Large raw arrays, original save directories, private inputs, repetitive process
+transcripts, agent handoffs and complete operational backup manifests normally
+belong in ignored local storage and a verified repository-external archive.
+Existing public operational files that are replay dependencies remain available;
+this curation does not delete them. A same-machine backup is not an off-site copy.
+Before removing unique data, classify its dependencies, preserve it and its Git
+identity, verify hashes and perform an actual restore.
+
+Use an explicit file/field selection for publication. Do not commit credentials,
+private machine paths, package caches, unlicensed UPF payloads or upstream source
+copies. Keep frozen dependency and input records intact. Licensing, interpretation
+and the accuracy of AI-assisted work remain the contributor's responsibility.

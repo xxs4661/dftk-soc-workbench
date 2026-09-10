@@ -1,53 +1,69 @@
-# Physical cases and reproduction
+# Cases and inputs
 
-- [SOC core continuation](soc-core-memory-v1/resume/README.md): unchanged Si B0
-  inputs, explicit static inheritance and once-only SCF attempt 2 / Gamma attempt 1.
-  [Both new endpoints and original regression gates passed](../results/soc-core-memory/completion/README.md).
-  Performance remains HISTORICAL_REUSED and time/K6/physical review limits remain;
-  clean public-clone replay returned 0/0; incremental archive restore verified 185/185 files. The original core-memory
-  case summary below retains its earlier partial-delivery scope.
+This catalogue links the fixed inputs behind the published comparisons. It is
+not a general material-submission interface. Case README files preserve the
+original experiment's settings, commands and execution restrictions; editing this
+navigation does not change those restrictions.
 
+To check published results now, use the [public reproduction guide](../docs/reproducibility.md).
+To call the existing matrix core, use the [synthetic example](../examples/soc_kernels.jl)
+and [runtime guide](../docs/soc-core-runtime.md). Neither performs a new material SCF.
 
-- [SOC core memory v1](soc-core-memory-v1/README.md): authenticated historical B0/K4 static pairs passed; the sole new B0 attempt failed at parser entry and Gamma is blocked; [current status](../results/soc-core-memory/README.md).
+## Silicon spectroscopy and sensitivity
 
-- [Si QE k-grid reference](si-soc-k-reference-v1/README.md): frozen K6/K8 inputs and four-slot plan; [current status](../results/si-soc-k-reference/README.md). Four prescribed QE slots completed once; finite trends and limits are in the linked result. No new DFTK context or worker.
-
-- [mg-soc-public-replay-v1](mg-soc-public-replay-v1/README.md): executed fixed Linux public replay; **I PASS/0, R FAIL/1** for predeclared density fingerprints, CI failure retained; [results](../results/mg-soc-public-replay/linux/README.md).
-- [mg-soc-wavefunction-energy-v1](mg-soc-wavefunction-energy-v1/README.md): original G40/A/B static audit; plan and fixed engineering gates; no new SCF/QE/XC.
-
-| Case | Frozen inputs and commands | Evidence |
+| Fixed case | Inputs and scope | Published result |
 | --- | --- | --- |
-| Si SR-LDA, two atoms, B0 | [Si baseline](si-sr-lda/README.md) | [Scalar comparison](../results/scalar-si-baseline/README.md) |
-| Si C1/C2/C3, limited cutoff/k sensitivity | [Three fixed cases](si-sr-lda/phase4c/README.md) | [Reference and sensitivity](../results/scalar-si-sensitivity/README.md) |
-| No-SOC spinor / FR operator / energy fixtures | [Prototype entry points](../scripts/README.md) | [Scientific index](../results/README.md) |
-| Historical Mg charge-only SOC and prepared QE input | [Parameters](mg-soc-fermi/parameters.json), [QE checklist](mg-soc-fermi/checklist.md) | [A/B SCF](../results/mg-soc-scf/README.md); QE **PREPARED_NOT_EXECUTED** |
-| First executed Mg QE SOC comparison | [New fixed case and commands](mg-soc-qe-v1/README.md) | [SCF/refined spectra, E/F and unresolved differences](../results/mg-soc-qe-comparison/README.md) |
-| Bounded Mg QE solver/FFT diagnostics | [Six predeclared inputs](mg-soc-qe-diagnostics-v1/README.md) | [Same-density D/C, grid control and IEEE limitations](../results/mg-soc-qe-diagnostics/README.md) |
-| Existing Mg density/Hartree audit; no new solves | [Bound source plan, Fourier formulas and gates](mg-soc-density-hartree-v1/README.md) | [Complete coefficients and signed support decomposition](../results/mg-soc-density-hartree/README.md) |
+| Si scalar baseline and finite checks | [SR-LDA B0](si-sr-lda/README.md), [C1/C2/C3](si-sr-lda/phase4c/README.md): matched geometry/source and a limited cutoff/k matrix. | [Baseline](../results/scalar-si-baseline/README.md), [reference and sensitivity](../results/scalar-si-sensitivity/README.md) |
+| Si SOC B0 | [FR-NC-PBE case](si-soc-splitting-v1/README.md): two-atom diamond primitive cell, NLCC, full SOC, Γ/p/−p probes and same-density spin-trace control. | [Spectra](../results/si-soc-splitting/README.md), [corrected interpretation](../results/si-soc-splitting/status-correction/README.md) |
+| Si SOC E40/T05/K4 | [Three paired variants](si-soc-sensitivity-v1/README.md): cutoff, temperature and k-grid changes relative to B0. | [Finite responses](../results/si-soc-sensitivity/README.md) |
+| Si QE K6/K8 | [QE-only reference cases](si-soc-k-reference-v1/README.md): fixed other settings, 216/512 SCF k points and own-density Γ probes. | [Trend and limits](../results/si-soc-k-reference/README.md); no DFTK K6/K8 calculation |
 
-[Phase 7E local-potential plan](mg-soc-qe-local-potential-v1/README.md) fixes
-exactly P2 then P0 from independently copied original G40 saves and reads the
-bound Phase 7D DFTK local field. Its [results](../results/mg-soc-qe-local-potential/README.md)
-separate pp reconstruction, direct integrals and derived ledger remainders.
-The completed local claims forbid rerunning either pp slot.
+The scalar Si and SOC Si cases use different, separately authenticated sources.
+The spin-trace control is not a scalar-pseudopotential SCF. Physical convergence
+is not established by this collection.
 
-The [frozen environment](../environment/workbench/README.md) and recorded UPF hashes
-are prerequisites for physical reproduction. UPF bytes are acquired separately
-under their licenses. The historical scalar Si case uses SR-LDA with NLCC; the new Si SOC case
-uses its separately authenticated FR-NC-PBE source and NLCC. Mg uses the recorded FR-PBEsol
-family and is not an LDA/LSDA numerical benchmark. No case establishes complete
-physical convergence. Public offline arithmetic checks require neither UPF
-files nor new SCF/QE runs; see [results](../results/README.md).
+## Magnesium comparison and reference audits
 
-## Existing-density energy audit
+| Fixed case or audit | Input record | Published result |
+| --- | --- | --- |
+| Charge-only A/B SCF | [Mg parameters](mg-soc-fermi/parameters.json), [original QE checklist](mg-soc-fermi/checklist.md) | [Mg SCF](../results/mg-soc-scf/README.md); the QE input in this original checklist was prepared, not executed |
+| Independent QE comparison | [Executed QE case](mg-soc-qe-v1/README.md) | [E/F/entropy and spectra](../results/mg-soc-qe-comparison/README.md) |
+| Solver/FFT diagnostics | [Prescribed controls](mg-soc-qe-diagnostics-v1/README.md) | [Saved-density, grid and warning checks](../results/mg-soc-qe-diagnostics/README.md) |
+| Density and Hartree | [Bound-source Fourier plan](mg-soc-density-hartree-v1/README.md) | [Native support and energy decomposition](../results/mg-soc-density-hartree/README.md) |
+| Energy reference | [Existing-density/common-term plan](mg-soc-energy-reference-v1/README.md) | [Signed ledger and G=0 audit](../results/mg-soc-energy-reference/README.md) |
+| Local ionic potential | [P2/P0 postprocessing inputs](mg-soc-qe-local-potential-v1/README.md) | [Reconstructed fields and local integrals](../results/mg-soc-qe-local-potential/README.md) |
+| Original wavefunctions | [Static orbital audit](mg-soc-wavefunction-energy-v1/README.md) | [Kinetic and frozen-operator comparison](../results/mg-soc-wavefunction-energy/README.md) |
+| Cross-environment replay | [Fixed Linux replay plan](mg-soc-public-replay-v1/README.md) | [Independent pass and frozen-checker failure](../results/mg-soc-public-replay/linux/README.md) |
 
-[Mg fixed-density plan](mg-soc-energy-reference-v1/README.md) binds existing
-A/B/G40 sources, five allowed common-term calls and one fixed radial diagnostic.
-[Results](../results/mg-soc-energy-reference/README.md) preserve all prior SCFs as
-HISTORICAL_REUSED; no new solver, physical setting or dependency is introduced.
+Mg uses the recorded FR-PBEsol source family. Later audits reuse bound original
+states; the listed plans do not authorize fresh calculations or replacements for
+missing arrays.
 
-- [Si SOC splitting v1](si-soc-splitting-v1/README.md): authenticated source and fixed five-slot matrix, now executed once each with numerical splitting/null gates passing and explicit review limitations; [current results](../results/si-soc-splitting/README.md).
+## Mathematical and implementation checks
 
-- [Si SOC finite sensitivity](si-soc-sensitivity-v1/README.md): E40/T05/K4,
-  each relative to historical B0; [12 executed slots and finite responses](../results/si-soc-sensitivity/README.md).
-  K4 exceeds the 0.1 meV observation window despite matching code responses.
+The [representation/operator evidence index](../results/README.md#representation-operators-and-energy-consistency)
+links no-SOC, spin-angular, nonlocal and full-Hamiltonian checks. Their existing
+fixtures and synthetic tests are distinct from physical input cases.
+
+[Core static measurements](soc-core-memory-v1/README.md) use authenticated
+historical Si B0/K4 orbitals. The [endpoint continuation](soc-core-memory-v1/resume/README.md)
+uses unchanged B0 settings; its [completed regression](../results/soc-core-memory/completion/README.md)
+is the current result. Static timing and dense-grid resource limits remain.
+
+## What reproduction requires
+
+- **Public checks:** use the stated clean [historical snapshots](../docs/history.md)
+  and existing Python prerequisites. Published tables, spectra and selected
+  coefficient packs support their documented offline arithmetic.
+- **Recorded physical experiments:** source checkouts and separately acquired,
+  hash-verified UPFs require the [frozen environment](../environment/workbench/README.md).
+  Old launchers retain their source, parent-state and one-time execution guards;
+  they are not unrestricted repeatable commands for new users.
+- **Private-state audits:** original A/B checkpoints, some density/field arrays
+  and static benchmark orbitals are not public. Their acquisition and extraction
+  cannot be independently repeated from scalar receipts alone. The Mg public Q
+  coefficient pack has the broader scope described in its report.
+
+A general driver for new materials remains future work. See [scripts](../scripts/README.md)
+for the distinction between runnable checks, environment preparation and archived
+experiment drivers.
