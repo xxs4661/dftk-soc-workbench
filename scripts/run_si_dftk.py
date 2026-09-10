@@ -141,6 +141,36 @@ def core_tools(root):
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     return module
 
+def resume_tools(root):
+    """Load the explicit continuation contract; the default gate is unchanged."""
+    path=Path(root)/'benchmarks/soc-core-memory-v1/resume/control.py'
+    spec=importlib.util.spec_from_file_location('soc_core_resume_control',path)
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    return module
+
+def resume_fields(auth,action):
+    require(action in CORE_ACTIONS,'Unregistered continuation action')
+    fields={key:auth[key] for key in ('resume_id','resume_preparation_commit','resume_from_commit',
+                                    'static_execution_commit','endpoint_execution_commit')}
+    fields.update(resume_authorization_sha256=auth['authorization_sha256'],attempt=2 if action=='OPT-B0-SCF' else 1)
+    return fields
+
+def validate_entry_worker(record,code,action,run_id,*,root,execution_commit,auth):
+    """A definitions/source check is never a successful physical worker."""
+    require(isinstance(record,dict) and type(record.get('schema_version')) is int and record['schema_version']==1,'Invalid entry-check schema')
+    require(type(record.get('exit_code')) is int and record['exit_code']==code==0,'Entry-check process failed')
+    require(record.get('phase')=='9A' and record.get('backend')=='soc-core' and record.get('case')=='si-soc-splitting-v1','Wrong entry-check case/backend')
+    require(record.get('action')==action and record.get('run_id')==run_id and record.get('execution_commit')==execution_commit,'Wrong entry-check run/action/execution')
+    require(record.get('base_commit')==CORE_BASE and record.get('preparation_commit')==CORE_PREPARATION,'Wrong entry-check original identity')
+    require(record.get('core_gate_sha256')==auth['core_gate_sha256'],'Entry-check static gate differs')
+    require(record.get('case_sha256')==digest(Path(root)/'benchmarks/si-soc-splitting-v1/case.json'),'Entry-check B0 case differs')
+    require(record.get('execution_status')=='CHECK_ONLY_PASS' and record.get('check_status')=='PASS' and record.get('check_only') is True,'Entry-check status contradiction')
+    require(record.get('numerical_execution_status')=='NOT_RUN' and record.get('formal_slot_reserved') is False and record.get('context_constructed') is False,'Entry-check performed or claimed numerical work')
+    require(all(type(record.get(k)) is int and record[k]==0 for k in ('context_registrations','source_registrations')),'Entry-check created a physical context/source bundle')
+    require(isinstance(record.get('environment'),dict) and record['environment'].get('status')=='PASS','Entry-check environment failed')
+    require(record.get('source_status')==record.get('settings_status')=='PASS' and isinstance(record.get('executed_source_sha256'),dict) and bool(record['executed_source_sha256']),'Entry-check source/settings missing')
+    resume_tools(root).verify_worker_resume(record,auth,action)
+
 def core_file(root,relative,expected=None):
     root=Path(root).resolve();part=Path(relative)
     require(not part.is_absolute() and '..' not in part.parts,'Unconfined core evidence path')
@@ -178,7 +208,7 @@ def verify_core_gate(root,path,execution_commit):
     tool.preparation(root)
     return digest(gate_path)
 
-def validate_core_worker(record,code,action,run_id,*,root,execution_commit,gate_sha256):
+def validate_core_worker(record,code,action,run_id,*,root,execution_commit,gate_sha256,resume_auth=None):
     require(isinstance(record,dict) and record.get('backend')=='soc-core' and record.get('phase')=='9A','Wrong worker backend/phase')
     require(record.get('execution_commit')==execution_commit and record.get('core_gate_sha256')==gate_sha256,'Worker candidate/gate mismatch')
     require(record.get('base_commit')==CORE_BASE and record.get('preparation_commit')==CORE_PREPARATION,'Worker core base/preparation mismatch')
@@ -187,6 +217,7 @@ def validate_core_worker(record,code,action,run_id,*,root,execution_commit,gate_
     view=dict(record,action='D-SCF' if action=='OPT-B0-SCF' else 'D-GAMMA')
     validate_worker(view,code,view['action'],run_id,root=root)
     if code:return
+    if resume_auth is not None:resume_tools(root).verify_worker_resume(record,resume_auth,action)
     require(record.get('runtime_closed') is True,'Owned runtime did not close')
     runtime=record.get('runtime');require(isinstance(runtime,dict) and runtime.get('backend')=='soc-core','Missing actual owned runtime dispatch')
     require(record.get('runtime_dispatch_status')=='PASS','Owned backend was not actually exercised')
@@ -202,28 +233,33 @@ def validate_core_worker(record,code,action,run_id,*,root,execution_commit,gate_
             require(isinstance(record.get(key),str) and bool(record[key]) and spectrum.get(key)==record[key],'Gamma parent binding missing: '+key)
         require(spectrum.get('occupations_use')=='DIAGNOSTIC_ONLY_NOT_DENSITY_FEEDBACK','Gamma occupations must remain diagnostic')
 
-def checked_core_parent(parent,*,root,execution_commit,gate_sha256):
+def checked_core_parent(parent,*,root,execution_commit,gate_sha256,resume_auth=None):
     root=Path(root).resolve();p=Path(parent).resolve();area=root/'.work/phase9a/endpoints'
     require(area in p.parents and p.is_dir() and not Path(parent).is_symlink(),'BLOCKED_PARENT: parent outside current endpoint area')
     r=json.loads((p/'receipt.json').read_text())
     require(r.get('run_id')==p.name and r.get('action')=='OPT-B0-SCF' and r.get('backend')=='soc-core' and
             r.get('execution_status')=='PASS' and type(r.get('exit_code')) is int and r['exit_code']==0,'BLOCKED_PARENT: successful owned SCF required')
     require(r.get('execution_commit')==execution_commit and r.get('core_gate_sha256')==gate_sha256,'BLOCKED_PARENT: parent candidate/gate differs')
+    if resume_auth is not None:
+        resume_tools(root).verify_worker_resume(r,resume_auth,'OPT-B0-SCF')
+        resume_tools(root).process_proof(root,p/'receipt.json',r)
     require(r.get('worker_directory')==r['run_id']+'-dftk','BLOCKED_PARENT: worker directory mismatch')
     worker=p/r['worker_directory'];result=worker/'result.json'
     require(not worker.is_symlink() and digest(result)==r.get('worker_result_sha256'),'BLOCKED_PARENT: parent worker bytes changed')
-    value=json.loads(result.read_text());validate_core_worker(value,0,'OPT-B0-SCF',worker.name,root=root,execution_commit=execution_commit,gate_sha256=gate_sha256)
+    value=json.loads(result.read_text());validate_core_worker(value,0,'OPT-B0-SCF',worker.name,root=root,execution_commit=execution_commit,gate_sha256=gate_sha256,resume_auth=resume_auth)
     require(digest(worker/'final.bin')==value.get('checkpoint_sha256'),'BLOCKED_PARENT: original final checkpoint changed')
     tool=core_tools(root);tool.resource_contract(r.get('resource'),r.get('worker_exit_code'))
     require(tool.read(p/'resource.json')==r['resource'],'BLOCKED_PARENT: resource receipt changed')
     return worker
 
 
-def launch(action,directory,*,parent=None,execution_commit=None,static_receipt=None,root=ROOT,profile=None,preflight_manifest=None,backend=None,core_gate=None):
+def launch(action,directory,*,parent=None,execution_commit=None,static_receipt=None,root=ROOT,profile=None,preflight_manifest=None,backend=None,core_gate=None,resume_authorization=None,check_entry=False):
     require(backend is None or backend=='soc-core','Unknown explicit backend')
     owned=backend=='soc-core'
     require(not owned or profile is None,'Core backend cannot impersonate a sensitivity profile')
     require(owned or core_gate is None,'Core gate requires explicit core backend')
+    require(resume_authorization is None or owned,'Continuation requires explicit core backend')
+    require(type(check_entry) is bool and (not check_entry or resume_authorization is not None),'Entry check requires explicit continuation authorization')
     require(profile is None or profile in ('E40','T05','K4'),'Unregistered sensitivity profile')
     root=Path(root).resolve()
     directory=Path(directory).resolve();base=(root/('.work/phase9a/endpoints' if owned else '.work/phase8a' if profile is None else '.work/phase8b/'+profile)).resolve()
@@ -233,8 +269,9 @@ def launch(action,directory,*,parent=None,execution_commit=None,static_receipt=N
     rec=dict(schema_version=1,case='si-soc-splitting-v1' if profile is None else 'si-soc-sensitivity-v1/'+profile,run_id=directory.name,action=action,
              started_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),execution_status='RUNNING',exit_code=1,worker_directory=directory.name+'-dftk')
     if owned:rec.update(phase='9A',backend=backend,base_commit=CORE_BASE,preparation_commit=CORE_PREPARATION,worker_started=False)
+    if check_entry:rec.update(check_only=True,check_status='RUNNING',numerical_execution_status='NOT_RUN',formal_slot_reserved=False,check_process_started=False,worker_directory=directory.name+'-entry-check')
     write_json(directory/'receipt.json',rec)
-    child=None;active_lock=None;owns_lock=False
+    child=None;active_lock=None;owns_lock=False;resume_auth=None
     try:
         require(action in (CORE_ACTIONS if owned else ACTIONS if profile is None else ('prepare','D-SCF','D-GAMMA')),'Unknown Si action/profile combination')
         require((parent is not None)==(action in ('D-SPECTRUM','D-NULL-GAMMA','D-GAMMA','OPT-B0-GAMMA')),'BLOCKED_PARENT: missing own SCF parent' if owned and action=='OPT-B0-GAMMA' else 'Wrong action/parent arguments')
@@ -250,9 +287,14 @@ def launch(action,directory,*,parent=None,execution_commit=None,static_receipt=N
             require(not subprocess.check_output(['git','status','--porcelain'],cwd=root,text=True),'Execution tree must be clean')
         if owned:
             require(static_receipt is None and preflight_manifest is None,'Core endpoints require only their own static gate')
-            rec['core_gate_sha256']=verify_core_gate(root,core_gate,head)
+            if resume_authorization is None:
+                rec['core_gate_sha256']=verify_core_gate(root,core_gate,head)
+            else:
+                resume_auth=resume_tools(root).verify_authorization(root,resume_authorization,head,core_gate)
+                rec['core_gate_sha256']=resume_auth['core_gate_sha256'];rec.update(resume_fields(resume_auth,action))
+                if not check_entry:resume_tools(root).validate_entry_receipt(root,resume_auth)
             rec['case_sha256']=digest(root/'benchmarks/si-soc-splitting-v1/case.json')
-            try:core_parent=checked_core_parent(parent,root=root,execution_commit=head,gate_sha256=rec['core_gate_sha256']) if parent is not None else None
+            try:core_parent=checked_core_parent(parent,root=root,execution_commit=head,gate_sha256=rec['core_gate_sha256'],resume_auth=resume_auth) if parent is not None else None
             except (OSError,ValueError,KeyError,TypeError) as exc:raise ValueError('BLOCKED_PARENT: '+str(exc)) from exc
             core_gate_path=Path(core_gate) if Path(core_gate).is_absolute() else root/core_gate
         if profile is not None:
@@ -273,12 +315,18 @@ def launch(action,directory,*,parent=None,execution_commit=None,static_receipt=N
             tool=core_tools(root);tool.ps_rows()
             require(not (root/'.work/phase9a/static/active.json').exists(),'A static measurement session is still active')
             active_lock=base/'active.json'
-            with active_lock.open('x') as stream:json.dump(dict(run_id=directory.name,owner_pid=os.getpid()),stream)
-            owns_lock=True
-        if action!='prepare':
-            slots=base/'slots';slots.mkdir(exist_ok=True)
+            if check_entry:
+                require(not active_lock.exists(),'An endpoint session is still active')
+            else:
+                with active_lock.open('x') as stream:json.dump(dict(run_id=directory.name,owner_pid=os.getpid()),stream)
+                owns_lock=True
+        if action!='prepare' and not check_entry:
+            slots=resume_tools(root).reservation_directory(root,resume_auth) if resume_auth is not None else base/'slots'
+            slots.mkdir(parents=True,exist_ok=True)
             with (slots/(action+'.json')).open('x') as f:
-                json.dump(dict(run_id=directory.name,execution_commit=head),f)
+                reservation=dict(run_id=directory.name,execution_commit=head)
+                if resume_auth is not None:reservation.update(resume_fields(resume_auth,action))
+                json.dump(reservation,f)
         env=os.environ.copy()
         if owned:env['SOC_CORE_PYTHON']=sys.executable
         env.update(JULIA_LOAD_PATH='@:@stdlib',JULIA_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',JULIA_PKG_OFFLINE='true')
@@ -287,9 +335,11 @@ def launch(action,directory,*,parent=None,execution_commit=None,static_receipt=N
         if parent is not None: cmd.append(str(core_parent if owned else checked_parent(parent) if profile is None else checked_parent(parent,profile=profile,root=root,execution_commit=head)))
         if profile is not None: cmd.extend(['--profile',profile])
         if owned:cmd.extend(['--backend','soc-core','--core-gate',str(core_gate_path.resolve())])
+        if resume_auth is not None:cmd.extend(['--resume-authorization',str((root/resume_auth['authorization_path']).resolve())])
+        if check_entry:cmd.append('--check-entry')
         rec['command']=cmd;write_json(directory/'receipt.json',rec)
         if owned:
-            rec['worker_started']=True
+            rec['check_process_started' if check_entry else 'worker_started']=True
             rec['log_labels']='qe.stdout/qe.stderr are inherited executor names containing Julia output; no QE command'
             write_json(directory/'receipt.json',rec)
             code,resource=tool.monitored_execute(tool.execute,cmd,directory,env)
@@ -307,18 +357,25 @@ def launch(action,directory,*,parent=None,execution_commit=None,static_receipt=N
         path=directory/rec['worker_directory']/'result.json'
         require(path.is_file(),'Worker produced no current result; see raw logs')
         worker=json.loads(path.read_text())
-        if owned:validate_core_worker(worker,code,action,rec['worker_directory'],root=root,execution_commit=head,gate_sha256=rec['core_gate_sha256'])
+        if check_entry:validate_entry_worker(worker,code,action,rec['worker_directory'],root=root,execution_commit=head,auth=resume_auth)
+        elif owned:validate_core_worker(worker,code,action,rec['worker_directory'],root=root,execution_commit=head,gate_sha256=rec['core_gate_sha256'],resume_auth=resume_auth)
         else:validate_worker(worker,code,action,rec['worker_directory'],profile=profile,root=root)
         rec['worker_result_sha256']=digest(path)
         verify_preparation(root) if profile is None else verify_preparation(root,profile)
         require(subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()==head,'HEAD changed during task')
         if owned:
-            require(verify_core_gate(root,core_gate,head)==rec['core_gate_sha256'],'Core gate changed during endpoint')
+            if resume_auth is None:
+                require(verify_core_gate(root,core_gate,head)==rec['core_gate_sha256'],'Core gate changed during endpoint')
+            else:
+                require(resume_tools(root).verify_authorization(root,resume_authorization,head,core_gate)==resume_auth,'Continuation authorization changed during endpoint')
             require(not subprocess.check_output(['git','status','--porcelain'],cwd=root,text=True),'Execution source changed')
         rec['execution_status']=worker['execution_status'];rec['exit_code']=code
+        if check_entry:
+            rec.update(check_status='PASS',original_receipt_path=(directory/'receipt.json').relative_to(root).as_posix(),check_worker_result_path=path.relative_to(root).as_posix())
         if code: rec['reason']=worker['reason']
     except BaseException as exc:
         rec['execution_status']='FAIL';rec['exit_code']=9 if owned else 1;rec['reason']=type(exc).__name__+': '+str(exc)
+        if check_entry:rec['check_status']='FAIL'
         if owned:
             rec['failure_status']='BLOCKED_PARENT' if 'BLOCKED_PARENT' in str(exc) else 'FAIL'
             for filename,key in (('resource.json','resource'),('process-exit.json','native_process')):
@@ -342,6 +399,13 @@ def launch(action,directory,*,parent=None,execution_commit=None,static_receipt=N
     return rec['exit_code'] if 0<=rec['exit_code']<=255 else 1
 
 def main():
+    if sys.argv[1:2]==['--verify-resume']:
+        if len(sys.argv)!=6:return 9
+        try:
+            value=resume_tools(Path(sys.argv[2])).verify_authorization(Path(sys.argv[2]),sys.argv[3],sys.argv[4],sys.argv[5])
+            print(json.dumps(value));return 0
+        except (OSError,ValueError,KeyError,TypeError) as exc:
+            print('Continuation authorization rejected: '+str(exc),file=sys.stderr);return 9
     if sys.argv[1:2]==['--verify-core-gate']:
         if len(sys.argv)!=5:return 9
         try:
@@ -349,6 +413,6 @@ def main():
             print(json.dumps({'sha256':value}));return 0
         except (OSError,ValueError,KeyError,TypeError) as exc:
             print('Core gate rejected: '+str(exc),file=sys.stderr);return 9
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=ACTIONS+('D-GAMMA',)+CORE_ACTIONS);p.add_argument('directory');p.add_argument('--parent');p.add_argument('--execution-commit');p.add_argument('--static-receipt');p.add_argument('--profile',choices=('E40','T05','K4'));p.add_argument('--preflight-manifest');p.add_argument('--backend',choices=('soc-core',));p.add_argument('--core-gate');a=p.parse_args()
-    return launch(a.action,a.directory,parent=a.parent,execution_commit=a.execution_commit,static_receipt=a.static_receipt,profile=a.profile,preflight_manifest=a.preflight_manifest,backend=a.backend,core_gate=a.core_gate)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=ACTIONS+('D-GAMMA',)+CORE_ACTIONS);p.add_argument('directory');p.add_argument('--parent');p.add_argument('--execution-commit');p.add_argument('--static-receipt');p.add_argument('--profile',choices=('E40','T05','K4'));p.add_argument('--preflight-manifest');p.add_argument('--backend',choices=('soc-core',));p.add_argument('--core-gate');p.add_argument('--resume-authorization');p.add_argument('--check-entry',action='store_true');a=p.parse_args()
+    return launch(a.action,a.directory,parent=a.parent,execution_commit=a.execution_commit,static_receipt=a.static_receipt,profile=a.profile,preflight_manifest=a.preflight_manifest,backend=a.backend,core_gate=a.core_gate,resume_authorization=a.resume_authorization,check_entry=a.check_entry)
 if __name__=='__main__':sys.exit(main())

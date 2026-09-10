@@ -4,16 +4,34 @@ import argparse
 import json
 import math
 from pathlib import Path
+import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT/'scripts'))
 from si_soc_comparison import analyze_gamma, number
+HISTORICAL_SCF = 'results/si-soc-splitting/D-SCF.json'
+HISTORICAL_SPECTRUM = 'results/si-soc-splitting/D-spectrum.json'
 
 
 def require(ok, reason):
     if not ok:
         raise ValueError(reason)
+
+
+def historical_path(root, relative):
+    """Require the exact Git path even on a case-insensitive host volume."""
+    require(relative in (HISTORICAL_SCF, HISTORICAL_SPECTRUM), 'Unregistered historical endpoint path')
+    root = root.resolve()
+    tracked = subprocess.check_output(['git', '-C', str(root), 'ls-files', '-z', '--', relative], text=True).split('\0')
+    require(relative in tracked, 'Historical endpoint is not tracked with exact case: ' + relative)
+    current = root
+    for component in Path(relative).parts:
+        require(component in {entry.name for entry in current.iterdir()}, 'Historical endpoint component case differs: ' + component)
+        current /= component
+        require(not current.is_symlink(), 'Aliased historical endpoint path')
+    require(current.is_file(), 'Historical endpoint file is missing')
+    return current
 
 
 def evaluate(old_scf, new_scf, old_spectrum, new_spectrum, density, contract):
@@ -85,8 +103,8 @@ def main():
     parser.add_argument('--density',type=Path,required=True);parser.add_argument('--output',type=Path,required=True)
     args=parser.parse_args();read=lambda p:json.loads(p.read_text())
     require(not args.output.exists(),'Refusing existing endpoint arithmetic record')
-    result=evaluate(read(args.root/'results/si-soc-splitting/D-SCF.json'),read(args.scf),
-        read(args.root/'results/si-soc-splitting/D-SPECTRUM.json'),read(args.gamma),read(args.density),
+    result=evaluate(read(historical_path(args.root,HISTORICAL_SCF)),read(args.scf),
+        read(historical_path(args.root,HISTORICAL_SPECTRUM)),read(args.gamma),read(args.density),
         read(args.root/'benchmarks/soc-core-memory-v1/contract.json'))
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(result,indent=2,allow_nan=False)+'\n')

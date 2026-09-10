@@ -28,7 +28,7 @@ function si_case(profile=nothing)
     SOC.validate_soc_settings(case["settings"];case_contract=case)
     case
 end
-function si_sources(profile=nothing;backend=nothing)
+function si_sources(profile=nothing;backend=nothing,resume=false)
     files=collect(keys(phase6c_sources()))
     append!(files,["prototypes/crystal_soc/SpinTrace.jl","scripts/run_si_soc.jl"])
     append!(files,["benchmarks/si-soc-splitting-v1/"*f for f in ("case.json","source.json","plan.json","qe-scf.in","qe-spectrum.in")])
@@ -52,6 +52,10 @@ function si_sources(profile=nothing;backend=nothing)
             push!(files,path)
         end
     end
+    if resume
+        backend=="soc-core" && isnothing(profile) || error("Continuation source set requires explicit core backend")
+        append!(files,["benchmarks/soc-core-memory-v1/resume/$f" for f in ("control.py","plan.json","README.md")])
+    end
     Dict(f=>filehash(joinpath(PHASE6C_ROOT,f)) for f in unique(files))
 end
 function si_core_gate(path,execution)
@@ -60,6 +64,21 @@ function si_core_gate(path,execution)
     record=JSON3.read(read(`$python -B $(joinpath(PHASE6C_ROOT,"scripts/run_si_dftk.py")) --verify-core-gate $PHASE6C_ROOT $path $execution`,String),Dict{String,Any})
     record["sha256"]==filehash(path) || error("Core gate changed during verification")
     record["sha256"]
+end
+function si_resume_authorization(path,execution,gate)
+    isnothing(path) && error("Continuation authorization is required")
+    isnothing(gate) && error("Original core static gate is required")
+    python=get(ENV,"SOC_CORE_PYTHON","");isfile(python) || error("Explicit recorder Python required for continuation authentication")
+    JSON3.read(read(`$python -B $(joinpath(PHASE6C_ROOT,"scripts/run_si_dftk.py")) --verify-resume $PHASE6C_ROOT $path $execution $gate`,String),Dict{String,Any})
+end
+function si_resume_fields(auth,action)
+    action in ("OPT-B0-SCF","OPT-B0-GAMMA") || error("Unregistered continuation action")
+    fields=Dict{String,Any}(k=>auth[k] for k in ("resume_id","resume_preparation_commit","resume_from_commit","static_execution_commit","endpoint_execution_commit"))
+    merge!(fields,Dict("resume_authorization_sha256"=>auth["authorization_sha256"],"attempt"=>(action=="OPT-B0-SCF" ? 2 : 1)))
+end
+function si_resume_parent(receipt,auth)
+    all(typeof(get(receipt,k,nothing))===typeof(v) && receipt[k]==v for (k,v) in si_resume_fields(auth,"OPT-B0-SCF")) || error("BLOCKED_PARENT: continuation authorization/attempt differs")
+    receipt
 end
 function si_context(case,kind;backend=nothing)
     if haskey(case,"sensitivity_profile")
@@ -320,11 +339,12 @@ function si_spin_trace_report(full,settings)
         spin_dependent_signal_threshold=threshold))
 end
 
-function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,core_gate=nothing)
+function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,core_gate=nothing,resume_authorization=nothing)
     owned=backend=="soc-core"
     isnothing(backend) || owned || error("Unknown explicit backend")
     owned && !isnothing(profile) && error("Core backend cannot impersonate an old profile")
     !owned && !isnothing(core_gate) && error("Core gate requires explicit backend")
+    !owned && !isnothing(resume_authorization) && error("Continuation requires explicit core backend")
     !isnothing(profile) && si_profile(profile)
     work_action=owned ? action=="OPT-B0-SCF" ? "D-SCF" : action=="OPT-B0-GAMMA" ? "D-GAMMA" : "INVALID" : action
     allowed=owned ? ("OPT-B0-SCF","OPT-B0-GAMMA") : isnothing(profile) ? ("prepare","static","D-SCF","D-SPECTRUM","D-NULL-GAMMA") : ("prepare","D-SCF","D-GAMMA")
@@ -340,12 +360,18 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
         "started_utc"=>string(now(UTC)),"numerical_review_status"=>"REVIEW_REQUIRED")
     owned && merge!(result,Dict("phase"=>"9A","backend"=>"soc-core","preparation_commit"=>SI_CORE_PREPARATION,"runtime_closed"=>false))
     phase6b_write(joinpath(outdir,"result.json"),result)
-    runtime=nothing
+    runtime=nothing;resume_auth=nothing
     try
-        result["executed_source_sha256"]=si_sources(profile;backend)
+        result["executed_source_sha256"]=si_sources(profile;backend,resume=!isnothing(resume_authorization))
         result["execution_commit"]=strip(read(`git -C $PHASE6C_ROOT rev-parse HEAD`,String))
         if owned
-            result["core_gate_sha256"]=si_core_gate(core_gate,result["execution_commit"])
+            if isnothing(resume_authorization)
+                result["core_gate_sha256"]=si_core_gate(core_gate,result["execution_commit"])
+            else
+                resume_auth=si_resume_authorization(resume_authorization,result["execution_commit"],core_gate)
+                result["core_gate_sha256"]=resume_auth["core_gate_sha256"]
+                merge!(result,si_resume_fields(resume_auth,action))
+            end
             isempty(strip(read(`git -C $PHASE6C_ROOT status --porcelain`,String))) || error("Core endpoint needs a clean execution tree")
             result["case_sha256"]=filehash(joinpath(PHASE6C_ROOT,"benchmarks/si-soc-splitting-v1/case.json"))
         end
@@ -456,6 +482,7 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
             parent=abspath(parent);receipt=si_json(joinpath(parent,"result.json"))
             startswith(realpath(parent),realpath(joinpath(PHASE6C_ROOT,area))*"/") || error("Parent must belong to the same Si run area")
             si_validate_parent_receipt(receipt,case,result["executed_source_sha256"],result["execution_commit"];backend,core_gate_sha256=owned ? result["core_gate_sha256"] : nothing)
+            isnothing(resume_auth) || si_resume_parent(receipt,resume_auth)
             get(receipt,"run_id",nothing)==basename(parent) || error("Parent run ID differs from its directory")
             cp=joinpath(parent,"final.bin");filehash(cp)==receipt["checkpoint_sha256"] || error("Parent checkpoint hash mismatch")
             raw=deserialize(cp);FI.integration_density_hash(raw.n_out)==receipt["final"]["n_out_sha256"] || error("Wrong parent final density")
@@ -510,11 +537,15 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
             counts=result["runtime"].counters
             all(getproperty(counts,k)>0 for k in (:fr_mul_calls,:component_mul_calls,:full_mul_calls)) || error("Owned core dispatch counters were not exercised")
             result["runtime_dispatch_status"]="PASS"
-            si_core_gate(core_gate,result["execution_commit"])==result["core_gate_sha256"] || error("Core static gate changed")
+            if isnothing(resume_auth)
+                si_core_gate(core_gate,result["execution_commit"])==result["core_gate_sha256"] || error("Core static gate changed")
+            else
+                si_resume_authorization(resume_authorization,result["execution_commit"],core_gate)==resume_auth || error("Continuation authorization changed")
+            end
         else
             FI.validate_context(ctx);FI.assert_bound_sources(built.bundle)
         end
-        si_sources(profile;backend)==result["executed_source_sha256"] || error("Execution source/config changed")
+        si_sources(profile;backend,resume=!isnothing(resume_authorization))==result["executed_source_sha256"] || error("Execution source/config changed")
         environment_identity(PHASE6C_ROOT,(DFTK,PseudoPotentialIO)).status=="PASS" || error("Environment changed")
         result["execution_status"]="PASS";result["exit_code"]=0
     catch err
@@ -553,7 +584,85 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
     end
     result["exit_code"]
 end
+"""Load and authenticate the real entry without constructing any physical context."""
+function si_check_entry(action,outdir,parent;core_gate,resume_authorization)
+    action in ("OPT-B0-SCF","OPT-B0-GAMMA") || error("Invalid entry-check action")
+    outdir=abspath(outdir)
+    startswith(outdir,joinpath(PHASE6C_ROOT,".work/phase9a/endpoints")*"/") || error("Entry check needs its own ignored endpoint directory")
+    ispath(outdir) && error("Entry check cannot reuse an output directory")
+    mkpath(outdir)
+    result=Dict{String,Any}("schema_version"=>1,"phase"=>"9A","case"=>"si-soc-splitting-v1",
+        "backend"=>"soc-core","base_commit"=>SI_CORE_BASE,"preparation_commit"=>SI_CORE_PREPARATION,
+        "action"=>action,"run_id"=>basename(outdir),"check_only"=>true,"check_status"=>"RUNNING",
+        "execution_status"=>"RUNNING","exit_code"=>1,"numerical_execution_status"=>"NOT_RUN",
+        "formal_slot_reserved"=>false,"context_constructed"=>false,"started_utc"=>string(now(UTC)))
+    phase6b_write(joinpath(outdir,"result.json"),result)
+    try
+        result["execution_commit"]=strip(read(`git -C $PHASE6C_ROOT rev-parse HEAD`,String))
+        auth=si_resume_authorization(resume_authorization,result["execution_commit"],core_gate)
+        merge!(result,si_resume_fields(auth,action));result["core_gate_sha256"]=auth["core_gate_sha256"]
+        result["executed_source_sha256"]=si_sources(;backend="soc-core",resume=true)
+        result["case_sha256"]=filehash(joinpath(PHASE6C_ROOT,si_case_path(nothing)))
+        case=si_case();SOC.validate_soc_settings(case["settings"])
+        result["settings_status"]="PASS";result["source_status"]="PASS"
+        identity=environment_identity(PHASE6C_ROOT,(DFTK,PseudoPotentialIO));result["environment"]=identity
+        phase6b_write(joinpath(outdir,"identity.raw.json"),identity;redact=false)
+        identity.status=="PASS" || error("Frozen environment mismatch")
+        DFTK.disable_threading();Threads.nthreads()==BLAS.get_num_threads()==1 || error("Single CPU thread required")
+        DFTK.mpi_nprocs(DFTK.MPI.COMM_WORLD)==1 || error("Single MPI process required")
+        if action=="OPT-B0-GAMMA"
+            isnothing(parent) && error("BLOCKED_PARENT: missing own SCF parent")
+            parent=abspath(parent);receipt=si_json(joinpath(parent,"result.json"))
+            startswith(realpath(parent),realpath(joinpath(PHASE6C_ROOT,".work/phase9a/endpoints"))*"/") || error("BLOCKED_PARENT: parent outside endpoint area")
+            si_validate_parent_receipt(receipt,case,result["executed_source_sha256"],result["execution_commit"];backend="soc-core",core_gate_sha256=result["core_gate_sha256"])
+            si_resume_parent(receipt,auth)
+            get(receipt,"run_id",nothing)==basename(parent) || error("BLOCKED_PARENT: parent run differs")
+            filehash(joinpath(parent,"final.bin"))==receipt["checkpoint_sha256"] || error("BLOCKED_PARENT: checkpoint changed")
+        else
+            isnothing(parent) || error("SCF entry cannot have a parent")
+        end
+        result["context_registrations"]=length(FI._FR_CONTEXT_CERTIFICATES)
+        result["source_registrations"]=length(FI._BOUND_PSP_SOURCES)
+        result["context_registrations"]==result["source_registrations"]==0 || error("Entry check constructed a physical context/source bundle")
+        si_sources(;backend="soc-core",resume=true)==result["executed_source_sha256"] || error("Entry source changed")
+        si_resume_authorization(resume_authorization,result["execution_commit"],core_gate)==auth || error("Entry authorization changed")
+        environment_identity(PHASE6C_ROOT,(DFTK,PseudoPotentialIO)).status=="PASS" || error("Environment changed")
+        result["check_status"]="PASS";result["execution_status"]="CHECK_ONLY_PASS";result["exit_code"]=0
+    catch err
+        result["check_status"]="FAIL";result["execution_status"]="FAIL";result["exit_code"]=1;result["reason"]=sprint(showerror,err)
+        showerror(stderr,err,catch_backtrace());println(stderr)
+    end
+    result["finished_utc"]=string(now(UTC))
+    try
+        phase6b_finite(result);phase6b_write(joinpath(outdir,"result.json"),result)
+    catch err
+        println(stderr,"Entry-check persistence failure: ",sprint(showerror,err));return 1
+    end
+    result["exit_code"]
+end
+
 function si_main(args)
+    if args==["--check-definitions"]
+        length(FI._FR_CONTEXT_CERTIFICATES)==length(FI._BOUND_PSP_SOURCES)==0 || return 1
+        println(JSON3.write((;schema_version=1,check_only=true,check_status="DEFINITIONS_LOADED",
+            execution_status="CHECK_ONLY_DEFINITIONS",numerical_execution_status="NOT_RUN",
+            complete_preflight=false,formal_slot_reserved=false,context_constructed=false,
+            context_registrations=0,source_registrations=0,exit_code=0)))
+        return 0
+    end
+    if "--resume-authorization" in args || "--check-entry" in args
+        check_entry=!isempty(args) && last(args)=="--check-entry"
+        positional=check_entry ? args[1:end-1] : args
+        length(positional) in (8,9) && positional[end-5]=="--backend" && positional[end-4]=="soc-core" &&
+            positional[end-3]=="--core-gate" && positional[end-1]=="--resume-authorization" || return 2
+        callargs=positional[1:end-6]
+        length(callargs)==(first(callargs)=="OPT-B0-SCF" ? 2 : first(callargs)=="OPT-B0-GAMMA" ? 3 : 0) || return 2
+        parent=length(callargs)==3 ? callargs[3] : nothing
+        if check_entry
+            return si_check_entry(callargs[1],callargs[2],parent;core_gate=positional[end-2],resume_authorization=positional[end])
+        end
+        return si_run(callargs[1],callargs[2],parent;backend="soc-core",core_gate=positional[end-2],resume_authorization=positional[end])
+    end
     args==["--help"] && (println("run_si_soc.jl ACTION NEW_RUN_DIR [PARENT_D_SCF_DIR] [--profile E40|T05|K4]; profile actions: prepare|D-SCF|D-GAMMA; legacy: prepare|static|D-SCF|D-SPECTRUM|D-NULL-GAMMA");return 0)
     if "--backend" in args || "--core-gate" in args
         length(args) in (6,7) && args[end-3]=="--backend" && args[end-2]=="soc-core" && args[end-1]=="--core-gate" || return 2

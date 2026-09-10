@@ -1,6 +1,20 @@
 #!/usr/bin/env julia
 # Only authenticated endpoint-array arithmetic; no numerical operator/solver.
 include("compare.jl")
+function endpoint_resume_authorization(root,authorization,scf_outer,gamma_outer,execution)
+    python=get(ENV,"SOC_CORE_PYTHON","")
+    require_value(!isempty(python) && isabspath(python) && isfile(python),"Explicit SOC_CORE_PYTHON interpreter required")
+    path=abspath(authorization)
+    require_value(!islink(path) && realpath(path)==path,"Aliased continuation authorization")
+    before=digest(path)
+    command=Cmd([python,joinpath(root,"benchmarks/soc-core-memory-v1/resume/control.py"),"verify-endpoints",
+        "--root",root,"--authorization",path,"--execution-commit",execution,
+        "--scf",abspath(scf_outer),"--gamma",abspath(gamma_outer)])
+    verified=JSON3.read(read(command,String),Dict{String,Any})
+    require_value(verified["status"]=="PASS" && verified["endpoint_execution_commit"]==execution &&
+        verified["authorization_sha256"]==before && digest(path)==before,"Continuation endpoint authentication differs")
+    verified
+end
 function endpoint_worker(root,outerpath,action,execution)
     path=realpath(outerpath)
     require_value(startswith(path,joinpath(root,".work/phase9a/endpoints")*"/"),"Endpoint outside this phase")
@@ -20,13 +34,19 @@ function endpoint_worker(root,outerpath,action,execution)
     worker,workerpath
 end
 function endpoint_main(args)
-    length(args)==4 || error("endpoint_compare.jl ROOT SCF_OUTER_JSON GAMMA_OUTER_JSON NEW_OUTPUT_JSON")
+    length(args) in (4,5) || error("endpoint_compare.jl ROOT SCF_OUTER_JSON GAMMA_OUTER_JSON NEW_OUTPUT_JSON [AUTHORIZATION_JSON]")
     root=realpath(args[1]);output=abspath(args[4]);require_value(!ispath(output),"Endpoint comparison exists")
     execution=strip(read(`git -C $root rev-parse HEAD`,String))
     result=Dict{String,Any}("schema_version"=>1,"phase"=>"9A","execution_commit"=>execution,"overall_status"=>"FAIL","exit_code"=>9)
     try
         paths=["benchmarks/soc-core-memory-v1/endpoint_compare.jl","benchmarks/soc-core-memory-v1/compare.jl","scripts/workbench_environment.jl"]
+        if length(args)==5
+            append!(paths,["benchmarks/soc-core-memory-v1/resume/control.py","benchmarks/soc-core-memory-v1/resume/plan.json"])
+        end
         identity=arithmetic_source_identity(root,paths);result["arithmetic_sources"]=identity
+        if length(args)==5
+            result["resume_authentication"]=endpoint_resume_authorization(root,args[5],args[2],args[3],execution)
+        end
         environment=WorkbenchEnvironment.environment_identity(root,(DFTK,PseudoPotentialIO))
         require_value(environment.status=="PASS","Endpoint arithmetic environment mismatch")
         result["environment"]=WorkbenchEnvironment.public_data(environment,root)
@@ -56,6 +76,9 @@ function endpoint_main(args)
             new_checkpoint_sha256=scf["checkpoint_sha256"],new_scf_run_id=scf["run_id"],new_gamma_run_id=gamma["run_id"],
             scf_result_sha256=digest(scfpath),gamma_result_sha256=digest(gammapath))
         require_value(arithmetic_source_identity(root,paths)==identity,"Endpoint arithmetic source changed")
+        if length(args)==5
+            require_value(digest(abspath(args[5]))==result["resume_authentication"]["authorization_sha256"],"Continuation authorization changed during arithmetic")
+        end
         passed=result["n_out"].status=="PASS"
         result["overall_status"]=passed ? "PASS" : "FAIL";result["exit_code"]=passed ? 0 : 9
     catch err
