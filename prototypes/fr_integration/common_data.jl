@@ -72,6 +72,12 @@ end
 
 function assert_bound_identity(bundle::BoundPspBundle;common=bundle.common,channels=bundle.channels)
     entry=get(_BOUND_PSP_SOURCES,bundle._token,nothing)
+    _assert_bound_identity(bundle,entry;common,channels)
+end
+
+# The scoped runtime supplies the original issued entry explicitly. The legacy
+# entry point still uses its original registry and rejection semantics.
+function _assert_bound_identity(bundle::BoundPspBundle,entry;common=bundle.common,channels=bundle.channels)
     isnothing(entry) && throw(ArgumentError("Pseudopotential bundle was not issued by the controlled loader"))
     bundle===entry.bundle && common===entry.common && channels===entry.channels &&
         bundle.parsed===entry.parsed && common._token===bundle._token ||
@@ -80,8 +86,12 @@ function assert_bound_identity(bundle::BoundPspBundle;common=bundle.common,chann
 end
 
 function assert_bound_sources(bundle::BoundPspBundle;common=bundle.common,channels=bundle.channels)
-    assert_bound_identity(bundle;common,channels)
-    entry=_BOUND_PSP_SOURCES[bundle._token]
+    entry=get(_BOUND_PSP_SOURCES,bundle._token,nothing)
+    _assert_bound_sources(bundle,entry;common,channels)
+end
+
+function _assert_bound_sources(bundle::BoundPspBundle,entry;common=bundle.common,channels=bundle.channels)
+    _assert_bound_identity(bundle,entry;common,channels)
     _source_snapshot(common)==entry.common_snapshot && _source_snapshot(channels)==entry.channel_snapshot &&
         _source_snapshot(bundle.parsed)==entry.parsed_snapshot &&
         (bundle.mode,bundle.xc_identifiers,bundle.sha256)==entry.metadata ||
@@ -100,9 +110,50 @@ function validate_common_request(bundle::BoundPspBundle;mode=bundle.mode,element
     nothing
 end
 
-"""Hash bytes, parse once, and bind both common data and channels to that object."""
-function load_bound_psp(root;mode::Symbol=:real_fr)
-    if mode==:real_fr
+"""Only the separately registered Phase 8A source may extend the two historical defaults."""
+function _checked_source_spec(spec)
+    spec isa AbstractDict || throw(ArgumentError("source_spec must be a parsed source object"))
+    expected=Dict{String,Any}(
+        "schema_version"=>1,"repository"=>"PseudoDojo/ONCVPSP-PBE-FR-PDv0.4",
+        "commit"=>"7aa01a3fcf5ad226caf25bd387a9be9612be9f27","path"=>"Si/Si_r.upf",
+        "git_blob_sha1"=>"0bba6c59d28251b59bf831079a340f7147308611","bytes"=>291215,
+        "sha256"=>"cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+        "local_path"=>".work/pseudos/si-soc-splitting-v1/Si_r.upf",
+        "source_url"=>"https://raw.githubusercontent.com/PseudoDojo/ONCVPSP-PBE-FR-PDv0.4/7aa01a3fcf5ad226caf25bd387a9be9612be9f27/Si/Si_r.upf")
+    for (key,value) in expected
+        actual=get(spec,key,nothing)
+        valid_type=value isa Integer ? actual isa Integer && !(actual isa Bool) : actual isa AbstractString
+        valid_type && actual==value || throw(ArgumentError("Unregistered or malformed source_spec field: $key"))
+    end
+    xc=get(spec,"xc_identifiers",nothing)
+    xc isa AbstractVector && all(x->x isa AbstractString,xc) &&
+        xc==["gga_x_pbe","gga_c_pbe"] || throw(ArgumentError("Registered Si source requires PBE XC"))
+    header=get(spec,"expected_header",nothing)
+    expected_header=(;element="Si",pseudo_type="NC",relativistic="full",has_so=true,
+        functional="PBE",z_valence=4,core_correction=true,l_max=2,number_of_proj=10,mesh_size=1528)
+    header isa AbstractDict && Set(keys(header))==Set(string.(keys(expected_header))) ||
+        throw(ArgumentError("Registered Si source requires its complete expected header"))
+    for (key,value) in pairs(expected_header)
+        actual=header[string(key)]
+        valid_type=value isa Bool ? actual isa Bool : value isa Integer ?
+            actual isa Integer && !(actual isa Bool) : actual isa AbstractString
+        valid_type && actual==value || throw(ArgumentError("Registered Si header changed: $key"))
+    end
+    (;source=expected,header=expected_header,xc=Symbol.(xc))
+end
+
+"""Hash bytes, parse once, and bind both common data and channels to that object.
+Omitting source_spec preserves the locked Mg and synthetic scalar-Si paths.
+"""
+function load_bound_psp(root;mode::Symbol=:real_fr,source_spec=nothing)
+    registered=nothing
+    if !isnothing(source_spec)
+        mode==:real_fr || throw(ArgumentError("Registered Si source is real FR, never a scalar-limit input"))
+        registered=_checked_source_spec(source_spec);source=registered.source
+        path=joinpath(root,source["local_path"]);expected=source["sha256"]
+        element=:Si;functional="PBE";relativity="full";has_so=true
+        xc=registered.xc;origin=source["source_url"]
+    elseif mode==:real_fr
         source=TOML.parsefile(joinpath(root,"config/sources.lock"))["pseudopotentials"]
         path=joinpath(root,source["local_path"]); expected=source["file_sha256"]
         element=:Mg; functional="PBESOL"; relativity="full"; has_so=true
@@ -125,6 +176,11 @@ function load_bound_psp(root;mode::Symbol=:real_fr)
     isfile(path) || throw(ArgumentError("BLOCKED: locked pseudopotential is missing"))
     bytes=read(path); digest=bytes2hex(sha256(bytes))
     digest==expected || throw(ArgumentError("Locked UPF SHA-256 mismatch"))
+    if !isnothing(registered)
+        length(bytes)==registered.source["bytes"] || throw(ArgumentError("Registered UPF byte count mismatch"))
+        blob=bytes2hex(sha1(vcat(Vector{UInt8}(codeunits("blob $(length(bytes))\0")),bytes)))
+        blob==registered.source["git_blob_sha1"] || throw(ArgumentError("Registered UPF Git blob mismatch"))
+    end
     # Retain the exact source tag as provenance only, without a second UPF parse
     # or changing PPIO's normalized header. Both locked files use this XML tag.
     header_match=match(r"<PP_HEADER\b[^>]*>"s,String(copy(bytes)))
@@ -133,6 +189,13 @@ function load_bound_psp(root;mode::Symbol=:real_fr)
     h=parsed.header
     (Symbol(strip(h.element)),h.functional,h.relativistic,h.has_so,h.pseudo_type)==
         (element,functional,relativity,has_so,"NC") || throw(ArgumentError("Actual UPF header does not match selected mode/family"))
+    if !isnothing(registered)
+        for (key,value) in pairs(registered.header)
+            actual=getproperty(h,key)
+            actual isa AbstractString && (actual=strip(actual))
+            actual==value || throw(ArgumentError("Actual registered UPF header mismatch: $key"))
+        end
+    end
     isfinite(h.z_valence) && isinteger(h.z_valence) && h.z_valence>0 ||
         throw(ArgumentError("Positive integral header valence charge required"))
     # The actual source header, including its original has_so, remains untouched.

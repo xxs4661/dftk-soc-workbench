@@ -1,0 +1,147 @@
+{
+  "status": "PASS",
+  "qe_identity": {
+    "selected_path": "[home]/.local/bin/pw.x",
+    "resolved_launcher": "[home]/.local/bin/qe-jll",
+    "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+    "source_commit": null,
+    "source_commit_note": "Not confirmed; record actual startup version and binary hash",
+    "jll_version": "7.5.1+0",
+    "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+    "jll_source": "[home]/.julia/packages/QuantumEspresso_jll/T1wk0/src/QuantumEspresso_jll.jl",
+    "active_project": "[home]/.julia/environments/v1.12/Project.toml",
+    "binary": "[home]/.julia/artifacts/273d3312b2a70e6223250dbf4a39ab3f28b04104/bin/pw.x",
+    "artifacts_file": "[home]/.julia/packages/QuantumEspresso_jll/T1wk0/Artifacts.toml",
+    "runner_path": "[home]/.local/share/qe-jll/qe-runner.jl",
+    "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+    "probe": {
+      "command": [
+        "[home]/.juliaup/bin/julia",
+        "--startup-file=no",
+        "-e",
+        "using QuantumEspresso_jll, SHA, TOML; println(\"jll_version=\",pkgversion(QuantumEspresso_jll)); println(\"jll_uuid=\",Base.PkgId(QuantumEspresso_jll).uuid); println(\"jll_source=\",pathof(QuantumEspresso_jll)); println(\"active_project=\",Base.active_project()); QuantumEspresso_jll.pwscf() do executable; println(\"binary=\",realpath(executable)); end; p=joinpath(dirname(dirname(pathof(QuantumEspresso_jll))),\"Artifacts.toml\"); println(\"artifacts_file=\",p)"
+      ],
+      "cwd": "[run]",
+      "exit_code": 0,
+      "stdout": "qe-jll-probe.stdout",
+      "stderr": "qe-jll-probe.stderr"
+    },
+    "installation_source": "Existing QuantumEspresso_jll installation (not installed or upgraded by this run)",
+    "binary_path": "[home]/.julia/artifacts/273d3312b2a70e6223250dbf4a39ab3f28b04104/bin/pw.x",
+    "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0"
+  },
+  "dependency_sha256": {
+    "[home]/.julia/environments/v1.12/Project.toml": "283d923b892d1fb37bac1e54d97f9ceec9b95b35e5dc452178f2b312a7c34f70",
+    "[home]/.julia/environments/v1.12/Manifest.toml": "944648a95f9c59804a87277d6850a966b1a6d434ac7435d508c394bf5d7b1582",
+    "[home]/.local/bin/pw.x": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+    "[home]/.local/share/qe-jll/qe-runner.jl": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+    "[home]/.julia/artifacts/273d3312b2a70e6223250dbf4a39ab3f28b04104/bin/pw.x": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+    "[home]/.julia/artifacts/0a4714a5cb9f46e0867e7c6c3a26521447f8fae0/lib/libxml2.2.dylib": "a283c005013c75c802fae6277442f8e34128eb2feb10c3ad37615b4193e4b8bb",
+    "[home]/.julia/artifacts/49bed26d3df75ef9b7c400e45242692617f6df0e/lib/libopenblas.0.3.34.dylib": "ac05907431fd80143551e697b799ff01230554d07301bb5c157a61ab24bc4455",
+    "[home]/.julia/artifacts/57bf2e972613ddabdd4e01ec54c2a8cbadb9e681/lib/libfftw3.3.dylib": "3cf70e7d10448c14a9206a9ab8f0c9524bb65746501518c63f11a63627071d99",
+    "[home]/.julia/artifacts/57bf2e972613ddabdd4e01ec54c2a8cbadb9e681/lib/libfftw3f.3.dylib": "53006b141989b91d032430b5747165caa1989d7ecc4e8efd48b108b08e5d93c9",
+    "[home]/.julia/artifacts/ab07a96801d935d7e51cbbcb24a07df19a53b4d4/lib/libscalapack32.dylib": "309fbad60a6aacb4b1eb8291461c929b342f212423cf8fac2f52499c52e85cef",
+    "[home]/.julia/artifacts/b820a0a437e8501d06a17439abd84feaa5b6cca3/lib/libcharset.1.dylib": "802b21ee31cc89c30605d1b35009a06f66435952f39e2bd104e0053fea9fc811",
+    "[home]/.julia/artifacts/b820a0a437e8501d06a17439abd84feaa5b6cca3/lib/libiconv.2.dylib": "8647fe6b4e8a1b9bd096ff027cfda5c92cff3d9f25a18abd08c834ff838d7c5d",
+    "[home]/.julia/artifacts/ba59ec3eab768a1d8e4041987a23d081195ac264/lib/libhwloc.15.dylib": "20b200744c3abc58b2d6bc1273ce7eeab3411bc17e3b7fb04f898539105b6b5e",
+    "[home]/.julia/artifacts/c8e2e4506036f733e9057901e6023fc770b0d142/lib/libxc.15.dylib": "47e134ec6bebb5d27bd301e1f8fb43c2bc95472d07c01ab67fed185ff3e015bd",
+    "[home]/.julia/artifacts/c8e2e4506036f733e9057901e6023fc770b0d142/lib/libxcf03.15.dylib": "9760508b8ab781d2aea27d3f82a7c2ed6abb932362fdb681ffed3619acdba9d1",
+    "[home]/.julia/artifacts/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libmpi.12.dylib": "f330a193737480dd26f44368fbad96f9aec75f7eff0f16b650c39e7a5c2ef53a",
+    "[home]/.julia/artifacts/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libmpicxx.12.dylib": "b5ec6bfd535e5c8574735cc12d5854648aecdad58a285eda1a179f135a299c63",
+    "[home]/.julia/artifacts/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libmpifort.12.dylib": "7d69f53bcf003d2b89fe7a0dc987f8edb4b90ee8a199ee4c6bc9b8e74cdf4b6e",
+    "[home]/.julia/artifacts/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libpmpi.12.dylib": "a59d657156d7aae08de09bc207adaf7c57b67f36f136af79b905b061915382af",
+    "[home]/.julia/juliaup/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libgcc_s.1.1.dylib": "145a5cae0f20adcc2287120e626c6c137b550c491c5cdab636af957ea90e14c1",
+    "[home]/.julia/juliaup/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libgfortran.5.dylib": "a72b8368e6ba2f9e37ac14f9c10cafb0d6d0d9746fae0c479a7990a5a4e3bfb1",
+    "[home]/.julia/juliaup/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libgomp.1.dylib": "eada7cdb8992f30047dbe30dd52ba5ba63e7fa5bca4d5e214859ce9037528554",
+    "[home]/.julia/juliaup/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libquadmath.0.dylib": "a171209468e2f83bf06d3ecae975218c7dc9d75a04714cda0178334b893cd555",
+    "[home]/.julia/juliaup/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libstdc++.6.dylib": "0e37fbd38ffb1e517e2a9ebe94404dd4b12b4dfcd099a5632c680fd673265cd3"
+  },
+  "selected_libraries": [
+    {
+      "filename": "libxml2.2.dylib",
+      "sha256": "a283c005013c75c802fae6277442f8e34128eb2feb10c3ad37615b4193e4b8bb"
+    },
+    {
+      "filename": "libopenblas.0.3.34.dylib",
+      "sha256": "ac05907431fd80143551e697b799ff01230554d07301bb5c157a61ab24bc4455"
+    },
+    {
+      "filename": "libfftw3.3.dylib",
+      "sha256": "3cf70e7d10448c14a9206a9ab8f0c9524bb65746501518c63f11a63627071d99"
+    },
+    {
+      "filename": "libfftw3f.3.dylib",
+      "sha256": "53006b141989b91d032430b5747165caa1989d7ecc4e8efd48b108b08e5d93c9"
+    },
+    {
+      "filename": "libscalapack32.dylib",
+      "sha256": "309fbad60a6aacb4b1eb8291461c929b342f212423cf8fac2f52499c52e85cef"
+    },
+    {
+      "filename": "libcharset.1.dylib",
+      "sha256": "802b21ee31cc89c30605d1b35009a06f66435952f39e2bd104e0053fea9fc811"
+    },
+    {
+      "filename": "libiconv.2.dylib",
+      "sha256": "8647fe6b4e8a1b9bd096ff027cfda5c92cff3d9f25a18abd08c834ff838d7c5d"
+    },
+    {
+      "filename": "libhwloc.15.dylib",
+      "sha256": "20b200744c3abc58b2d6bc1273ce7eeab3411bc17e3b7fb04f898539105b6b5e"
+    },
+    {
+      "filename": "libxc.15.dylib",
+      "sha256": "47e134ec6bebb5d27bd301e1f8fb43c2bc95472d07c01ab67fed185ff3e015bd"
+    },
+    {
+      "filename": "libxcf03.15.dylib",
+      "sha256": "9760508b8ab781d2aea27d3f82a7c2ed6abb932362fdb681ffed3619acdba9d1"
+    },
+    {
+      "filename": "libmpi.12.dylib",
+      "sha256": "f330a193737480dd26f44368fbad96f9aec75f7eff0f16b650c39e7a5c2ef53a"
+    },
+    {
+      "filename": "libmpicxx.12.dylib",
+      "sha256": "b5ec6bfd535e5c8574735cc12d5854648aecdad58a285eda1a179f135a299c63"
+    },
+    {
+      "filename": "libmpifort.12.dylib",
+      "sha256": "7d69f53bcf003d2b89fe7a0dc987f8edb4b90ee8a199ee4c6bc9b8e74cdf4b6e"
+    },
+    {
+      "filename": "libpmpi.12.dylib",
+      "sha256": "a59d657156d7aae08de09bc207adaf7c57b67f36f136af79b905b061915382af"
+    },
+    {
+      "filename": "libgcc_s.1.1.dylib",
+      "sha256": "145a5cae0f20adcc2287120e626c6c137b550c491c5cdab636af957ea90e14c1"
+    },
+    {
+      "filename": "libgfortran.5.dylib",
+      "sha256": "a72b8368e6ba2f9e37ac14f9c10cafb0d6d0d9746fae0c479a7990a5a4e3bfb1"
+    },
+    {
+      "filename": "libgomp.1.dylib",
+      "sha256": "eada7cdb8992f30047dbe30dd52ba5ba63e7fa5bca4d5e214859ce9037528554"
+    },
+    {
+      "filename": "libquadmath.0.dylib",
+      "sha256": "a171209468e2f83bf06d3ecae975218c7dc9d75a04714cda0178334b893cd555"
+    },
+    {
+      "filename": "libstdc++.6.dylib",
+      "sha256": "0e37fbd38ffb1e517e2a9ebe94404dd4b12b4dfcd099a5632c680fd673265cd3"
+    }
+  ],
+  "julia_version": "1.12.7",
+  "global_project_sha256": "283d923b892d1fb37bac1e54d97f9ceec9b95b35e5dc452178f2b312a7c34f70",
+  "global_manifest_sha256": "944648a95f9c59804a87277d6850a966b1a6d434ac7435d508c394bf5d7b1582",
+  "numerical_executions": 0,
+  "probe_command": [
+    "[home]/.juliaup/bin/julia",
+    "--startup-file=no",
+    "[workbench]/scripts/probe_qe_postprocess_build.jl"
+  ],
+  "scope": "Same existing launcher/JLL/binary and all Phase7B library hashes; no new installation or QE identity run"
+}

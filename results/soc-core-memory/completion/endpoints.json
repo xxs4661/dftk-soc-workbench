@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "resume_id": "phase9a-completion-20260910",
+  "endpoint_execution_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+  "slots": {
+    "OPT-B0-SCF": {
+      "status": "PASS",
+      "attempt": 2,
+      "run_id": "OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be",
+      "formal_slot_reserved": true,
+      "native_process_started": true,
+      "native_exit_code": 0,
+      "recorder_exit_code": 0,
+      "outer": {
+        "path": "results/soc-core-memory/completion/OPT-B0-SCF/outer.json",
+        "sha256": "168ee39f7e75e09e6919bfbecf65383b4b2da90b050224f92773c8e5f135440b",
+        "bytes": 2910,
+        "raw_sha256": "2ff7e3f32d0922e2a89da918084913bc6caba9cbc5a29606bd386fb32888abbc",
+        "raw_bytes": 3089
+      },
+      "worker": {
+        "path": "results/soc-core-memory/completion/OPT-B0-SCF/worker.json",
+        "sha256": "cd7457c4af7e14289c32626fe46a4533857c60abb816f24dc6d43884b58a7bbe",
+        "bytes": 101848,
+        "raw_sha256": "c31e0ca50b5eb9314cb0bfd448176ca1cfb987277485b9ecd07af94d9353634c",
+        "raw_bytes": 107016
+      },
+      "trace": {
+        "path": "results/soc-core-memory/completion/OPT-B0-SCF/trace.json",
+        "sha256": "00c31050987a2a45676942a1755b9de2a4666c08ba1dc85d76d4ec00c676a78f",
+        "bytes": 1006648,
+        "raw_sha256": "33e5332da4f3ddf8ceae798b8ea0b14909c9f6792ed8398295697fc7d3bc2921",
+        "raw_bytes": 7669624
+      },
+      "reservation": {
+        "path": "results/soc-core-memory/completion/OPT-B0-SCF/reservation.json",
+        "sha256": "81e48cd1e75a46c0e46d5ea97a3d6286c46fbd477e6531ca0307396a7a5976bb",
+        "bytes": 582,
+        "raw_sha256": "a8131378bbfe5810401fcfd8251b24f6b2385ac7f742707df12b7ea14e8cc87f",
+        "raw_bytes": 561
+      },
+      "process": {
+        "process-start.json": {
+          "path": "results/soc-core-memory/completion/OPT-B0-SCF/process-start.json",
+          "sha256": "f4e542329e7a49266f71e90bb4b14e531674d2de300395e1ad82be25580c1de0",
+          "bytes": 664,
+          "raw_sha256": "fbb444ef7c8895b2140a750dbc73a5bb0977353cbb7cf03048043f66f68e5cda",
+          "raw_bytes": 884
+        },
+        "process-exit.json": {
+          "path": "results/soc-core-memory/completion/OPT-B0-SCF/process-exit.json",
+          "sha256": "71a91292aa2eb1684e1d45b0e3a590d73a9ad45b9f488416b5290b4c0e55ea73",
+          "bytes": 99,
+          "raw_sha256": "71a91292aa2eb1684e1d45b0e3a590d73a9ad45b9f488416b5290b4c0e55ea73",
+          "raw_bytes": 99
+        },
+        "resource.json": {
+          "path": "results/soc-core-memory/completion/OPT-B0-SCF/resource.json",
+          "sha256": "6cebb2cac91ced8ef288686c60962e4b807a38104ae338d05e099aa9e03277e9",
+          "bytes": 650,
+          "raw_sha256": "e0bd7455f4c200028991f5de3e55b0f71c6fcc79fd1329208c3bf8f027b65134",
+          "raw_bytes": 585
+        }
+      },
+      "streams": [
+        {
+          "path": "results/soc-core-memory/completion/OPT-B0-SCF/qe.stdout.txt.gz",
+          "sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+          "bytes": 20,
+          "public_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "public_text_bytes": 0,
+          "public_text_lines": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_lines": 0,
+          "evidence_scope": "Complete native text; path redaction only; inherited qe.* filenames do not indicate a QE run"
+        },
+        {
+          "path": "results/soc-core-memory/completion/OPT-B0-SCF/qe.stderr.txt.gz",
+          "sha256": "f6fd991051d56cabd420938060ef1d4b76876320c7c87604da515368c5e2f8c8",
+          "bytes": 3715,
+          "public_text_sha256": "59f7c10826e99fbda53a40cf99b937a01ffcadde001fcc8b0a1212f7fe83cb6a",
+          "public_text_bytes": 14594,
+          "public_text_lines": 185,
+          "raw_sha256": "59f7c10826e99fbda53a40cf99b937a01ffcadde001fcc8b0a1212f7fe83cb6a",
+          "raw_bytes": 14594,
+          "raw_lines": 185,
+          "evidence_scope": "Complete native text; path redaction only; inherited qe.* filenames do not indicate a QE run"
+        }
+      ],
+      "initial_solver": {
+        "path": "results/soc-core-memory/completion/OPT-B0-SCF/initial-solver-identities.json",
+        "sha256": "6c92d59f91fdc84b10244df5caf78a731ebb3dec515dc4de2691e208ba35acbd",
+        "bytes": 3948,
+        "raw_sha256": "f97ffdca593d6ef2ca1ba22ecbd74885aa8783578e9f9080dfb3d2bd3976e6f4",
+        "raw_bytes": 2850130
+      }
+    },
+    "OPT-B0-GAMMA": {
+      "status": "PASS",
+      "attempt": 1,
+      "run_id": "OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8",
+      "formal_slot_reserved": true,
+      "native_process_started": true,
+      "native_exit_code": 0,
+      "recorder_exit_code": 0,
+      "outer": {
+        "path": "results/soc-core-memory/completion/OPT-B0-GAMMA/outer.json",
+        "sha256": "5ec99300c569520453e6bf24c269863df633ce6cc4145a8c735805402d1b91ab",
+        "bytes": 3054,
+        "raw_sha256": "9d3410586084207363e746a77a1c3dd187c90d0112b2bfe355c0843bda868696",
+        "raw_bytes": 3277
+      },
+      "worker": {
+        "path": "results/soc-core-memory/completion/OPT-B0-GAMMA/worker.json",
+        "sha256": "a9b2dc6f69eca72d28eb871a34ea9f9b408ec8faaa55143081e119198e9b0546",
+        "bytes": 18665,
+        "raw_sha256": "6ba3e958baebb8a37f315df814e00d4df168942b24542e198e21f7ad3e0c2a48",
+        "raw_bytes": 15074
+      },
+      "trace": null,
+      "reservation": {
+        "path": "results/soc-core-memory/completion/OPT-B0-GAMMA/reservation.json",
+        "sha256": "9808220afbada59fba393f203d60427e807b68cbad284f7369281f621cb54b63",
+        "bytes": 584,
+        "raw_sha256": "ba11ad28a5b7e687c21fd1db8b8bad2240954031cda000b7a9e945bbbf9403f6",
+        "raw_bytes": 563
+      },
+      "process": {
+        "process-start.json": {
+          "path": "results/soc-core-memory/completion/OPT-B0-GAMMA/process-start.json",
+          "sha256": "50fe0669b122c305734bf45c0d9c151d0c026cbbb6ef1389b8023e037bff9e4d",
+          "bytes": 806,
+          "raw_sha256": "ffda8f1fd7e13bd61366b0c725c3a72fb651ae91a0d0684cf0572819f6bf5d74",
+          "raw_bytes": 1070
+        },
+        "process-exit.json": {
+          "path": "results/soc-core-memory/completion/OPT-B0-GAMMA/process-exit.json",
+          "sha256": "c3703663de5930619196b5735e24ad3cdbca96f64c1173ed13515b1756a626e0",
+          "bytes": 99,
+          "raw_sha256": "c3703663de5930619196b5735e24ad3cdbca96f64c1173ed13515b1756a626e0",
+          "raw_bytes": 99
+        },
+        "resource.json": {
+          "path": "results/soc-core-memory/completion/OPT-B0-GAMMA/resource.json",
+          "sha256": "de6e8fc84e13d21d9e71b148604aaeabbe2da48abd108117f81e6eec0738aa09",
+          "bytes": 646,
+          "raw_sha256": "c50b73d82126072f42e2d3e709586c4f47310ed868c7869eca2dbdf590cfef71",
+          "raw_bytes": 581
+        }
+      },
+      "streams": [
+        {
+          "path": "results/soc-core-memory/completion/OPT-B0-GAMMA/qe.stdout.txt.gz",
+          "sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+          "bytes": 20,
+          "public_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "public_text_bytes": 0,
+          "public_text_lines": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_lines": 0,
+          "evidence_scope": "Complete native text; path redaction only; inherited qe.* filenames do not indicate a QE run"
+        },
+        {
+          "path": "results/soc-core-memory/completion/OPT-B0-GAMMA/qe.stderr.txt.gz",
+          "sha256": "22317f0ba1de3b615b3691a008d7dc321b71720fb254a1911653e7c9d235eac1",
+          "bytes": 90,
+          "public_text_sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+          "public_text_bytes": 107,
+          "public_text_lines": 5,
+          "raw_sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+          "raw_bytes": 107,
+          "raw_lines": 5,
+          "evidence_scope": "Complete native text; path redaction only; inherited qe.* filenames do not indicate a QE run"
+        }
+      ],
+      "initial_solver": {
+        "path": "results/soc-core-memory/completion/OPT-B0-GAMMA/initial-solver-identities.json",
+        "sha256": "1fc21a72e29f96a51d9599a49aaa3a15f0b1bc07405a830e0a9e23b58cfc2900",
+        "bytes": 733,
+        "raw_sha256": "24415d47779cff008f7799a8360ff8f70d5e2a7f1b01c765de1504afa407b1d0",
+        "raw_bytes": 1997
+      }
+    }
+  }
+}

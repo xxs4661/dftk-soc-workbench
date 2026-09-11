@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "julia_version": "1.12.7",
+  "global_project_sha256": "283d923b892d1fb37bac1e54d97f9ceec9b95b35e5dc452178f2b312a7c34f70",
+  "global_manifest_sha256": "944648a95f9c59804a87277d6850a966b1a6d434ac7435d508c394bf5d7b1582",
+  "selected_libraries": [
+    {
+      "filename": "libxml2.2.dylib",
+      "sha256": "a283c005013c75c802fae6277442f8e34128eb2feb10c3ad37615b4193e4b8bb"
+    },
+    {
+      "filename": "libopenblas.0.3.34.dylib",
+      "sha256": "ac05907431fd80143551e697b799ff01230554d07301bb5c157a61ab24bc4455"
+    },
+    {
+      "filename": "libfftw3.3.dylib",
+      "sha256": "3cf70e7d10448c14a9206a9ab8f0c9524bb65746501518c63f11a63627071d99"
+    },
+    {
+      "filename": "libfftw3f.3.dylib",
+      "sha256": "53006b141989b91d032430b5747165caa1989d7ecc4e8efd48b108b08e5d93c9"
+    },
+    {
+      "filename": "libscalapack32.dylib",
+      "sha256": "309fbad60a6aacb4b1eb8291461c929b342f212423cf8fac2f52499c52e85cef"
+    },
+    {
+      "filename": "libcharset.1.dylib",
+      "sha256": "802b21ee31cc89c30605d1b35009a06f66435952f39e2bd104e0053fea9fc811"
+    },
+    {
+      "filename": "libiconv.2.dylib",
+      "sha256": "8647fe6b4e8a1b9bd096ff027cfda5c92cff3d9f25a18abd08c834ff838d7c5d"
+    },
+    {
+      "filename": "libhwloc.15.dylib",
+      "sha256": "20b200744c3abc58b2d6bc1273ce7eeab3411bc17e3b7fb04f898539105b6b5e"
+    },
+    {
+      "filename": "libxc.15.dylib",
+      "sha256": "47e134ec6bebb5d27bd301e1f8fb43c2bc95472d07c01ab67fed185ff3e015bd"
+    },
+    {
+      "filename": "libxcf03.15.dylib",
+      "sha256": "9760508b8ab781d2aea27d3f82a7c2ed6abb932362fdb681ffed3619acdba9d1"
+    },
+    {
+      "filename": "libmpi.12.dylib",
+      "sha256": "f330a193737480dd26f44368fbad96f9aec75f7eff0f16b650c39e7a5c2ef53a"
+    },
+    {
+      "filename": "libmpicxx.12.dylib",
+      "sha256": "b5ec6bfd535e5c8574735cc12d5854648aecdad58a285eda1a179f135a299c63"
+    },
+    {
+      "filename": "libmpifort.12.dylib",
+      "sha256": "7d69f53bcf003d2b89fe7a0dc987f8edb4b90ee8a199ee4c6bc9b8e74cdf4b6e"
+    },
+    {
+      "filename": "libpmpi.12.dylib",
+      "sha256": "a59d657156d7aae08de09bc207adaf7c57b67f36f136af79b905b061915382af"
+    },
+    {
+      "filename": "libgcc_s.1.1.dylib",
+      "sha256": "145a5cae0f20adcc2287120e626c6c137b550c491c5cdab636af957ea90e14c1"
+    },
+    {
+      "filename": "libgfortran.5.dylib",
+      "sha256": "a72b8368e6ba2f9e37ac14f9c10cafb0d6d0d9746fae0c479a7990a5a4e3bfb1"
+    },
+    {
+      "filename": "libgomp.1.dylib",
+      "sha256": "eada7cdb8992f30047dbe30dd52ba5ba63e7fa5bca4d5e214859ce9037528554"
+    },
+    {
+      "filename": "libquadmath.0.dylib",
+      "sha256": "a171209468e2f83bf06d3ecae975218c7dc9d75a04714cda0178334b893cd555"
+    },
+    {
+      "filename": "libstdc++.6.dylib",
+      "sha256": "0e37fbd38ffb1e517e2a9ebe94404dd4b12b4dfcd099a5632c680fd673265cd3"
+    }
+  ],
+  "qe_identity": {
+    "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+    "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+    "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+    "jll_version": "7.5.1+0",
+    "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c"
+  }
+}

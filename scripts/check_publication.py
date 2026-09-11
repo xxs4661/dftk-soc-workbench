@@ -17,9 +17,13 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = '8658992afa936f6cdb1a8055699ae9aa47b32297'
+UPF_EXTRACTOR_COMMIT = 'ac22a64421c4a5444a399477b9a3215dbd913487'
+UPF_EXTRACTOR_PATH = 'scripts/check_publication.py'
+UPF_EXTRACTOR_BLOB = '062aa1660a9bc1366d1bdbe181c05885aa57e575'
 BASE_FILES, BASE_BYTES, BASE_DUPLICATE_GROUPS = 442, 5420130, 13
 CASES = ('upf-acceptance', 'scalar-si-baseline', 'scalar-si-sensitivity',
-         'spinor-no-soc', 'relativistic-projectors', 'fr-hamiltonian-energy', 'mg-soc-scf')
+         'spinor-no-soc', 'relativistic-projectors', 'fr-hamiltonian-energy', 'mg-soc-scf',
+         'mg-soc-qe-comparison')
 LOCAL_PREFIXES = ('.work/', '.agent-work/', 'local_archive/', 'private_data/',
                   'source-trees/', 'downloads/', 'results/runs/')
 PRIVATE = re.compile(r'/(?:Users|home)/[^/\s<>]+/|[A-Za-z]:\\Users\\[^\\\s]+\\')
@@ -81,45 +85,31 @@ def check_frozen(root):
 
 
 def export_upf(root):
-    """Explicit historical tool-evidence whitelist, read from immutable Git blobs."""
-    directory = root / 'results/upf-acceptance'
-    directory.mkdir(parents=True, exist_ok=True)
-    selections = [
-        ('results/upf-inspection.json', 'phase3-inspection.json'),
-        ('results/phase4a1/mg-20260905T030611379883Z-0094f2da.json', 'strict-mg.json'),
-        ('results/logs/dftk-minimal-20260904T170554Z.log', 'historical-minimal.log')]
-    entries = []
-    for old, new in selections:
-        raw = subprocess.check_output(['git', 'show', BASE + ':' + old], cwd=root)
-        published = raw
-        if new == 'strict-mg.json':
-            record = json.loads(raw)
-            env = record.pop('environment')
-            assert env == json.loads((root / 'results/shared/environment.json').read_text())
-            record['environment_reference'] = {'path': 'results/shared/environment.json',
-                'sha256': digest(root / 'results/shared/environment.json'), 'status': env['status']}
-            published = (json.dumps(record, indent=2) + '\n').encode()
-        (directory / new).write_bytes(published)
-        entries.append({'source_path': old, 'source_commit': BASE,
-            'source_blob': subprocess.check_output(['git', 'rev-parse', BASE + ':' + old], cwd=root, text=True).strip(),
-            'source_sha256': hashlib.sha256(raw).hexdigest(), 'public_path': str((directory / new).relative_to(root)),
-            'public_sha256': digest(directory / new),
-            'transformation': 'environment replaced by equal shared object reference' if new == 'strict-mg.json' else 'byte-identical'})
-    data = {'schema_version': 1, 'scope': 'HISTORICAL_REUSED; export performs no Julia/UPF check',
-        'sources': entries, 'extractor': {'path': 'scripts/check_publication.py',
-                                       'sha256': digest(root / 'scripts/check_publication.py')},
-        'historical_minimal': {'started_utc': '2026-09-04T17:05:54Z', 'ended_utc': '2026-09-04T17:21:27Z',
-            'dftk_commit': '2f51b91213e26726fb9c6a17e5fae235a1412d01', 'selection': ':minimal',
-            'passed': 1387, 'total': 1387, 'exit_code': 0},
-        'strict_mg_run_id': '20260905T030611379883Z-0094f2da'}
-    (directory / 'evidence.json').write_text(json.dumps(data, indent=2) + '\n')
-    return {'status': 'EXPORTED_HISTORICAL_ONLY', 'files': 3}
+    """The evolving verifier must never rewrite evidence of the old exporter."""
+    raise ValueError('Historical UPF export is frozen; use the reviewed checkout '
+                     + UPF_EXTRACTOR_COMMIT + ' to reproduce that export')
+
+
+def check_historical_upf_extractor(root, extractor):
+    if extractor['path'] != UPF_EXTRACTOR_PATH:
+        raise ValueError('Historical UPF extractor path differs from its fixed binding')
+    try:
+        raw = subprocess.check_output(['git', 'show',
+            UPF_EXTRACTOR_COMMIT + ':' + UPF_EXTRACTOR_PATH], cwd=root,
+            stderr=subprocess.PIPE)
+    except subprocess.CalledProcessError as error:
+        raise ValueError('Historical UPF extractor Git object is unavailable: '
+                         + UPF_EXTRACTOR_COMMIT) from error
+    blob = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+    if blob != UPF_EXTRACTOR_BLOB or hashlib.sha256(raw).hexdigest() != extractor['sha256']:
+        raise ValueError('Historical UPF extractor hash differs from its fixed Git blob')
+    return {'commit': UPF_EXTRACTOR_COMMIT, 'blob': blob, 'path': UPF_EXTRACTOR_PATH}
 
 
 def check_upf(root):
     directory = root / 'results/upf-acceptance'
     evidence = json.loads((directory / 'evidence.json').read_text())
-    assert digest(root / evidence['extractor']['path']) == evidence['extractor']['sha256']
+    extractor = check_historical_upf_extractor(root, evidence['extractor'])
     for entry in evidence['sources']:
         assert digest(root / entry['public_path']) == entry['public_sha256']
     strict = json.loads((directory / 'strict-mg.json').read_text())
@@ -131,22 +121,54 @@ def check_upf(root):
     assert digest(root / ref['path']) == ref['sha256'] and ref['status'] == 'PASS'
     assert evidence['historical_minimal']['passed'] == evidence['historical_minimal']['total'] == 1387
     assert '1387/1387' in (directory / 'README.md').read_text()
-    return {'scope': 'historical schema/provenance only; Julia/UPF checks NOT_RUN', 'sources': 3}
+    return {'scope': 'historical schema/provenance only; Julia/UPF checks NOT_RUN', 'sources': 3,
+            'historical_extractor': extractor}
 
 
-def check_status(root):
+def check_prepared_qe_input(root):
     data = json.loads((root / 'benchmarks/mg-soc-fermi/parameters.json').read_text())
     assert data['qe_soc_input_status'] == 'PREPARED_NOT_EXECUTED'
     assert data['qe_soc_benchmark_status'] == 'NOT_RUN'
-    for path in ('README.md', 'docs/status.md'):
-        text = (root / path).read_text()
-        assert 'NOT_RUN' in text, path
     checklist = (root / 'benchmarks/mg-soc-fermi/checklist.md').read_text()
     assert 'Status: **PREPARED_NOT_EXECUTED**. QE SOC benchmark: **NOT RUN**.' in checklist
-    status = (root / 'docs/status.md').read_text()
-    for text in ('PREPARED_NOT_EXECUTED', 'NOT_ESTABLISHED', 'NOT_IMPLEMENTED', '191', '24'):
-        assert text in status
-    return 'QE SOC prepared only; no new physical-validation claim'
+    return 'Historical input remains PREPARED_NOT_EXECUTED; historical benchmark NOT_RUN'
+
+
+def check_status(root):
+    historical = check_prepared_qe_input(root)
+    data = json.loads((root / 'results/mg-soc-qe-comparison/evidence.json').read_text())
+    execution = data['qe_execution_status']
+    comparison = data['comparison_execution_status']
+    if execution not in ('PASS', 'FAIL', 'BLOCKED', 'INCOMPLETE'):
+        raise ValueError('Unsupported current QE execution status')
+    if data['numerical_agreement_status'] != 'REVIEW_REQUIRED':
+        raise ValueError('Current numerical agreement requires human review')
+    if data['physical_convergence_status'] != 'NOT_ESTABLISHED':
+        raise ValueError('Current physical convergence is not established')
+    if data['historical_reference_status'] != 'HISTORICAL_REUSED':
+        raise ValueError('DFTK A/B must remain historical references')
+    if execution == 'PASS':
+        if comparison not in ('PASS', 'FAIL', 'BLOCKED'):
+            raise ValueError('Successful QE execution requires an explicit comparison outcome')
+        if data['process']['exit_code'] != 0:
+            raise ValueError('Successful QE status contradicts process exit code')
+    elif comparison != 'NOT_RUN':
+        raise ValueError('Unsuccessful QE execution cannot publish a completed comparison')
+    if execution != 'PASS' or comparison != 'PASS':
+        reasons = data.get('reasons', [])
+        if not isinstance(reasons, list) or not reasons or any(
+                not isinstance(reason, str) or not reason.strip() for reason in reasons):
+            raise ValueError('Unsuccessful current result requires explicit reasons')
+    for path in ('README.md', 'docs/status.md'):
+        text = (root / path).read_text()
+        for marker in ('mg-soc-qe-comparison/', 'QE execution: **' + execution + '**',
+                       'REVIEW_REQUIRED', 'NOT_ESTABLISHED', 'HISTORICAL_REUSED'):
+            if marker not in text:
+                raise ValueError('Current QE state missing or inconsistent in ' + path + ': ' + marker)
+    return {'historical_preparation': historical, 'current_qe_execution_status': execution,
+            'comparison_execution_status': comparison,
+            'numerical_agreement_status': 'REVIEW_REQUIRED',
+            'physical_convergence_status': 'NOT_ESTABLISHED'}
 
 
 def check(root=ROOT, modern_python="python3.12"):
@@ -162,6 +184,12 @@ def check(root=ROOT, modern_python="python3.12"):
         if result.returncode:
             raise ValueError(name + ' offline check failed (exit ' + str(result.returncode) + '): ' + result.stderr.strip())
         checks[name] = json.loads(result.stdout)
+    command = [modern_python, str(root / 'scripts/check_qe_soc_evidence.py'), '--root', str(root)]
+    result = subprocess.run(command, cwd=root, capture_output=True, text=True)
+    if result.returncode:
+        raise ValueError('QE SOC offline check failed (exit ' + str(result.returncode) + '): '
+                         + (result.stderr.strip() or result.stdout.strip()))
+    checks['qe_soc'] = json.loads(result.stdout)
     groups = defaultdict(list)
     for path in paths:
         groups[digest(root / path)].append(path)
@@ -182,7 +210,7 @@ def main():
     parser.add_argument('--root', type=Path, default=ROOT)
     parser.add_argument('--modern-python', default='python3.12',
                         help='Python 3.11+ with stdlib tomllib for prototype/SOC checks')
-    parser.add_argument('--export-upf', action='store_true', help='export only historical UPF/minimal whitelist from the fixed Git snapshot')
+    parser.add_argument('--export-upf', action='store_true', help='refused by this evolving verifier; historical reproduction requires the reviewed checkout')
     args = parser.parse_args()
     try:
         result = export_upf(args.root.resolve()) if args.export_upf else check(args.root, args.modern_python)

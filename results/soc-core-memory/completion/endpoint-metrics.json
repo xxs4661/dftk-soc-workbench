@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "execution_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+  "overall_status": "PASS",
+  "exit_code": 0,
+  "energy": [
+    {
+      "field": "internal_energy_ha",
+      "reference": -8.368023851835549,
+      "candidate": -8.368023851835547,
+      "difference": 1.7763568394002505e-15,
+      "unit": "Ha/cell",
+      "limit": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "field": "free_energy_ha",
+      "reference": -8.368024366448916,
+      "candidate": -8.368024366448914,
+      "difference": 1.7763568394002505e-15,
+      "unit": "Ha/cell",
+      "limit": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "field": "entropy_energy_ha",
+      "reference": -5.146133665457469e-07,
+      "candidate": -5.146133665408945e-07,
+      "difference": 4.852439996583073e-18,
+      "unit": "Ha/cell",
+      "limit": null,
+      "status": "DIAGNOSTIC_ONLY"
+    }
+  ],
+  "energy_terms": [
+    {
+      "term": "AtomicLocal",
+      "reference": -2.427739923417198,
+      "candidate": -2.4277399234172576,
+      "difference": -5.950795411990839e-14,
+      "unit": "Ha/cell"
+    },
+    {
+      "term": "AtomicNonlocalFR",
+      "reference": 1.1312348165653807,
+      "candidate": 1.1312348165652446,
+      "difference": -1.361133428190442e-13,
+      "unit": "Ha/cell"
+    },
+    {
+      "term": "Ewald",
+      "reference": -8.400464786186092,
+      "candidate": -8.400464786186092,
+      "difference": 0.0,
+      "unit": "Ha/cell"
+    },
+    {
+      "term": "Hartree",
+      "reference": 0.6314798777223463,
+      "candidate": 0.631479877722398,
+      "difference": 5.1736392947532295e-14,
+      "unit": "Ha/cell"
+    },
+    {
+      "term": "Kinetic",
+      "reference": 3.2750194877095113,
+      "candidate": 3.275019487709676,
+      "difference": 1.6475709685437323e-13,
+      "unit": "Ha/cell"
+    },
+    {
+      "term": "PspCorrection",
+      "reference": 0.5538715667463744,
+      "candidate": 0.5538715667463744,
+      "difference": 0.0,
+      "unit": "Ha/cell"
+    },
+    {
+      "term": "Xc",
+      "reference": -3.1314248909758704,
+      "candidate": -3.131424890975892,
+      "difference": -2.1760371282653068e-14,
+      "unit": "Ha/cell"
+    }
+  ],
+  "gamma": {
+    "reference_delta_so_ev": 0.04745761517555575,
+    "candidate_delta_so_ev": 0.0474576151755701,
+    "difference_ev": 1.4349632593280148e-14,
+    "limit_ev": 1e-06,
+    "raw_differences_ha": [
+      2.942091015256665e-15,
+      3.774758283725532e-15,
+      6.078471059822732e-15,
+      5.523359547510154e-15,
+      7.494005416219807e-15,
+      7.771561172376096e-15,
+      5.023759186428833e-15,
+      5.023759186428833e-15,
+      5.828670879282072e-15,
+      5.995204332975845e-15,
+      3.1086244689504383e-15,
+      3.7192471324942744e-15,
+      2.4424906541753444e-15,
+      4.6074255521944e-15,
+      4.052314039881821e-15,
+      4.218847493575595e-15,
+      -1.887379141862766e-15,
+      1.7763568394002505e-15,
+      9.43689570931383e-16,
+      5.440092820663267e-15,
+      -1.5543122344752192e-15,
+      -2.831068712794149e-15,
+      0.0,
+      4.440892098500626e-16
+    ],
+    "raw_max_abs_ha": 7.771561172376096e-15,
+    "raw_limit_ha": 1e-07,
+    "raw_RMS_ha": 4.3782166159848875e-15,
+    "metrics": {
+      "values_ha": [
+        -0.2708843565368105,
+        -0.27088435653680837,
+        0.1699097362965618,
+        0.1699097362965627,
+        0.17165377148632138,
+        0.17165377148632188,
+        0.17165377148635375,
+        0.1716537714863549,
+        0.2596647000586891,
+        0.2596647000586905,
+        0.2609235739892984,
+        0.2609235739893001,
+        0.2609235739893355,
+        0.2609235739893383,
+        0.29482278448763277,
+        0.294822784487633,
+        0.4497232266250839,
+        0.4497232266250884,
+        0.44972322662508935,
+        0.4497232266250942,
+        0.4637008693225132,
+        0.4637008693225152,
+        0.5784929485553552,
+        0.5784929485553613
+      ],
+      "values_ev": [
+        -7.371138853717178,
+        -7.37113885371712,
+        4.623479461318521,
+        4.623479461318545,
+        4.670937076493651,
+        4.670937076493665,
+        4.670937076494532,
+        4.670937076494564,
+        7.065836447743794,
+        7.065836447743833,
+        7.1000921525046,
+        7.100092152504646,
+        7.100092152505611,
+        7.100092152505686,
+        8.02253666280859,
+        8.022536662808596,
+        12.237592423484005,
+        12.237592423484127,
+        12.237592423484152,
+        12.237592423484283,
+        12.61794345773207,
+        12.617943457732123,
+        15.741595063716186,
+        15.741595063716352
+      ],
+      "fixed_state_indices_one_based": {
+        "split_off": [
+          3,
+          4
+        ],
+        "upper": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "doublet_mean_ha": 0.16990973629656225,
+      "quartet_mean_ha": 0.17165377148633798,
+      "doublet_width_ev": 2.4168566033805128e-14,
+      "quartet_width_ev": 9.123633677761436e-13,
+      "lower_isolation_ev": 11.994618315035641,
+      "upper_isolation_ev": 2.39489937124923,
+      "delta_so_ev": 0.0474576151755701,
+      "six_state_width_ev": 0.0474576151760429,
+      "manifold_assignment_status": "PASS",
+      "multiplet_structure_status": "PASS",
+      "resolvable_soc_status": "PASS",
+      "space_group_irrep_assignment": "NOT_COMPUTED"
+    },
+    "status": "PASS"
+  },
+  "n_out": {
+    "reference_norm": 12.351286872744739,
+    "candidate_norm": 12.351286872745016,
+    "absolute_L2": 8.873330709004814e-13,
+    "relative": 7.184134576766379e-14,
+    "reference_sha256": "af88f351f21b8ddd5136958d0ad5cb4f46578cfbe9f0cf5018feeff593862412",
+    "candidate_sha256": "1b881be85c18228e078a0bb10df15f94ec21642fa405e2ef9562b9ebf5d667fd",
+    "limit": 1e-08,
+    "status": "PASS",
+    "evidence_level": "RUNNER_REPORTED_PRIVATE_ENDPOINT_ARRAY_COMPARISON"
+  },
+  "historical": {
+    "status": "HISTORICAL_REUSED",
+    "scf_run_id": "D-SCF-20260908T1420Z-dftk",
+    "spectrum_run_id": "D-SPECTRUM-20260908T145347Z-dftk"
+  },
+  "current": {
+    "scf_run_id": "OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be-dftk",
+    "spectrum_run_id": "OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8-dftk",
+    "map_count": 180
+  },
+  "gamma_occupation_diagnostic": {
+    "minimum": 0.9999595249412089,
+    "minimum_inclusive": 0.99999999,
+    "status": "REVIEW_REQUIRED",
+    "source": "Actual own-parent-mu Gamma diagnostics; no occupation solve"
+  },
+  "fixed_window_structure_status": "PASS",
+  "manifold_assignment_status": "MANIFOLD_ASSIGNMENT_REVIEW_REQUIRED",
+  "manifold_scope": "No new null or QE pair, irreps or continuous-band tracking; historical reviews untouched",
+  "physical_interpretation": "REVIEW_REQUIRED",
+  "physical_convergence": "NOT_ESTABLISHED",
+  "new_QE": "NOT_RUN",
+  "new_DFTK_K6_K8": "NOT_RUN",
+  "evidence_scope": "Public energy/spectrum arithmetic; density-array difference RUNNER_REPORTED"
+}

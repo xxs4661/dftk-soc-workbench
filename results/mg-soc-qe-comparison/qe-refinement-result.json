@@ -1,0 +1,483 @@
+{
+  "schema_version": 1,
+  "code": "QE",
+  "calculation": "bands",
+  "execution_status": "PASS",
+  "input_comparability_status": "PASS",
+  "energy_semantics_status": "NOT_APPLICABLE_SPECTRUM_ONLY",
+  "version": "7.5",
+  "exit_code": 0,
+  "electrons": 10.0,
+  "n_bands": 24,
+  "occupation_capacity": 1,
+  "tau_ha": 0.001,
+  "smearing": "Fermi-Dirac",
+  "energy": null,
+  "fermi_energy_ha": -0.07015234249335432,
+  "fermi_energy_definition": "Native FD chemical potential; no cross-code equality gate",
+  "occupations_source": "RECOMPUTED_AT_INHERITED_SCF_CHEMICAL_POTENTIAL",
+  "chemical_potential_source": "INHERITED_FROM_SCF_NOT_RESOLVED",
+  "occupation_availability": "AVAILABLE",
+  "native_stdout": {},
+  "kpoints": [
+    {
+      "coordinate_fractional": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "coordinate_raw": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "weight_raw": 0.3333333333333333,
+      "weight_spatial": 0.3333333333333333,
+      "eigenvalues_ha": [
+        -3.290030681128612,
+        -3.290030681128612,
+        -1.661499453064246,
+        -1.661499453064246,
+        -1.652785545715813,
+        -1.652785545715811,
+        -1.652602182644505,
+        -1.652602182644503,
+        -0.1592091612709129,
+        -0.1592091612709124,
+        0.06051999770815743,
+        0.06051999770815852,
+        0.06082948730451875,
+        0.0608294873045253,
+        0.06100683133087546,
+        0.06100683133088586,
+        0.06559166867108765,
+        0.06559166867109256,
+        0.102721262246463,
+        0.102721262246481,
+        0.1028746780713892,
+        0.1028746780714127,
+        0.2539729726592948,
+        0.2539729727649595
+      ],
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.777148474510375e-57,
+        1.777148474508405e-57,
+        1.304109591830065e-57,
+        1.30410959182154e-57,
+        1.092180849199874e-57,
+        1.092180849188513e-57,
+        1.114615299164162e-59,
+        1.114615299158649e-59,
+        8.355018094299786e-76,
+        8.355018094148996e-76,
+        7.166708637215161e-76,
+        7.166708637046506e-76,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.777148474510375e-57,
+        1.777148474508405e-57,
+        1.304109591830065e-57,
+        1.30410959182154e-57,
+        1.092180849199874e-57,
+        1.092180849188513e-57,
+        1.114615299164162e-59,
+        1.114615299158649e-59,
+        8.355018094299786e-76,
+        8.355018094148996e-76,
+        7.166708637215161e-76,
+        7.166708637046506e-76,
+        0.0,
+        0.0
+      ],
+      "npw": 2777
+    },
+    {
+      "coordinate_fractional": [
+        0.125,
+        0.0625,
+        -0.1875
+      ],
+      "coordinate_raw": [
+        0.125,
+        0.0625,
+        -0.1875
+      ],
+      "weight_raw": 0.3333333333333333,
+      "weight_spatial": 0.3333333333333333,
+      "eigenvalues_ha": [
+        -3.289853169577079,
+        -3.289853169487347,
+        -1.660668305506525,
+        -1.660667837996385,
+        -1.652578634576126,
+        -1.652578307101512,
+        -1.648907956083684,
+        -1.648907325718074,
+        -0.1526724901708458,
+        -0.1526724870371794,
+        0.01289852182662241,
+        0.01289860859435659,
+        0.03612597188764144,
+        0.03612605507521754,
+        0.05633573850648056,
+        0.05633580210571738,
+        0.1085136426297656,
+        0.1085136677723565,
+        0.1346439629149658,
+        0.1346439960287215,
+        0.1565643998712954,
+        0.1565644464530587,
+        0.1807379133750102,
+        0.1807379226880313
+      ],
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        8.540197387322214e-37,
+        8.539456405892739e-37,
+        6.980949853815035e-47,
+        6.980369149671773e-47,
+        1.166606509063132e-55,
+        1.166532316138813e-55,
+        2.548875114859466e-78,
+        2.54881103034108e-78,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        8.540197387322214e-37,
+        8.539456405892739e-37,
+        6.980949853815035e-47,
+        6.980369149671773e-47,
+        1.166606509063132e-55,
+        1.166532316138813e-55,
+        2.548875114859466e-78,
+        2.54881103034108e-78,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "npw": 2770
+    },
+    {
+      "coordinate_fractional": [
+        -0.125,
+        -0.0625,
+        0.1875
+      ],
+      "coordinate_raw": [
+        -0.125,
+        -0.0625,
+        0.1875
+      ],
+      "weight_raw": 0.3333333333333333,
+      "weight_spatial": 0.3333333333333333,
+      "eigenvalues_ha": [
+        -3.28985316957709,
+        -3.289853169487353,
+        -1.660668305506527,
+        -1.660667837996386,
+        -1.652578634576124,
+        -1.652578307101513,
+        -1.648907956083682,
+        -1.648907325718074,
+        -0.1526724901708457,
+        -0.1526724870371793,
+        0.01289852182662249,
+        0.01289860859435563,
+        0.03612597188764095,
+        0.03612605507521738,
+        0.05633573850648024,
+        0.0563358021057172,
+        0.1085136426297659,
+        0.1085136677723561,
+        0.1346439629149657,
+        0.1346439960287221,
+        0.1565643998712954,
+        0.156564446453059,
+        0.1807379133750099,
+        0.1807379226880312
+      ],
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        8.540197387321608e-37,
+        8.539456405900871e-37,
+        6.980949853818408e-47,
+        6.980369149672965e-47,
+        1.166606509063513e-55,
+        1.166532316139012e-55,
+        2.548875114858886e-78,
+        2.54881103034195e-78,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        8.540197387321608e-37,
+        8.539456405900871e-37,
+        6.980949853818408e-47,
+        6.980369149672965e-47,
+        1.166606509063513e-55,
+        1.166532316139012e-55,
+        2.548875114858886e-78,
+        2.54881103034195e-78,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "npw": 2770
+    }
+  ],
+  "requested_to_xml_kpoint_indices": [
+    0,
+    1,
+    2
+  ],
+  "electron_sum_raw": 10.0,
+  "electron_sum_normalized": 10.0,
+  "lattice_vectors_bohr": [
+    [
+      10.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      10.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      10.0
+    ]
+  ],
+  "alat_bohr": 10.0,
+  "reciprocal_vectors_raw": [
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "positions_cartesian_bohr": [
+    [
+      1.7,
+      2.3,
+      3.1
+    ]
+  ],
+  "positions_fractional": [
+    [
+      0.16999999999999998,
+      0.22999999999999998,
+      0.31
+    ]
+  ],
+  "atom_symbols": [
+    "Mg"
+  ],
+  "n_atoms": 1,
+  "ecut_ha": 15.0,
+  "ecutrho_ha": 60.0,
+  "fft_grid": [
+    36,
+    36,
+    36
+  ],
+  "fft_smooth_grid": [
+    36,
+    36,
+    36
+  ],
+  "pseudo_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+  "pseudo_sha256_evidence": "Caller receipt from actual UPF bytes, not XML-derived",
+  "pseudo_files": [
+    "Mg.upf"
+  ],
+  "pseudo_type": "NC",
+  "nlcc": false,
+  "z_valence": 10.0,
+  "xc": {
+    "functional": "PBESOL",
+    "stdout": "PBESOL",
+    "indices": [
+      1,
+      4,
+      10,
+      8,
+      0,
+      0,
+      0
+    ]
+  },
+  "scf": null,
+  "input_model": {
+    "lsda": false,
+    "noncolin": true,
+    "spinorbit": true,
+    "do_magnetization": false,
+    "starting_magnetization": 0.0,
+    "starting_magnetization_evidence": "QE7.5 all-zero field omission plus actual do_magnetization=false",
+    "nosym": true,
+    "noinv": true,
+    "no_t_rev": true,
+    "diago_full_acc": true,
+    "diago_thr_init_ry": 1e-10,
+    "conv_thr_ha": 5e-11,
+    "mixing_beta": 0.1,
+    "electron_maxstep": 400
+  },
+  "precision": {
+    "stdout_spectrum_check": {
+      "status": "PASS",
+      "matched_eigenvalues": 72,
+      "stdout_to_xml_kpoint_indices": [
+        0,
+        1,
+        2
+      ],
+      "max_abs_xml_minus_stdout_ev": 4.9781640836179915e-05,
+      "maximum_printed_rounding_bound_ev": 5.00027211386246e-05,
+      "occupation_fields_checked": 0,
+      "native_ev_per_ha": 27.211386245988034,
+      "scope": "Native stdout rounding crosscheck, not an eigenvector residual estimate"
+    },
+    "diago_full_acc": true,
+    "ethr_history_ry": [
+      1e-10
+    ],
+    "last_ethr_ry": 1e-10,
+    "individual_eigenvector_residual_status": "NOT_AVAILABLE",
+    "individual_eigenvector_residuals_ha": null,
+    "note": "ethr is an eigenvalue convergence threshold, not ||Hpsi-epsilon psi||"
+  },
+  "warnings": [],
+  "warnings_scope": "Native stdout only; stderr must be retained by the runner",
+  "eigenvalue_precision_status": "REPORTED_THRESHOLD_AVAILABLE",
+  "entropy_diagnostic": {
+    "from_published_occupations_dimensionless": 9.570402698033711e-35,
+    "minus_tau_S_ha": -9.57040269803371e-38,
+    "native_minus_diagnostic_ha": null,
+    "scope": "Independent diagnostic from rounded native occupations, not a replacement for native demet"
+  },
+  "units_provenance": {
+    "xml_energy_eigenvalue_fermi_smearing": "Ha",
+    "xml_diago_thr_init": "Ry (explicit writer exception)",
+    "xml_conv_thr": "Ha",
+    "QE_stdout_ev_per_ha": 27.211386245988034,
+    "stdout_total_smearing_energy": "Ry",
+    "stdout_band_fermi_energy": "eV",
+    "xml_cell_position": "bohr",
+    "xml_k_reciprocal": "Cartesian 2*pi/alat",
+    "coordinates": "fractional_j = a_j dot k_raw / alat; duality checked",
+    "weights": "noncolin weights sum1; no scalar spin-degeneracy factor",
+    "occupations": "QEXSD wg/wk, already capacityone; normalized f=raw f",
+    "format": {
+      "NAME": "QEXSD",
+      "VERSION": "25.05.21"
+    },
+    "sources": {
+      "xml_units": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/qexsd.f90#L128-L136",
+      "xml_energy_fermi_smearing": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L637-L727",
+      "xml_eigenvalues_occupations": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/qexsd_init.f90#L1216-L1250",
+      "zero_starting_magnetization_omission": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/qexsd_init.f90#L132-L154",
+      "pbesol_indices": "https://github.com/QEF/q-e/blob/qe-7.5/XClib/qe_dft_list.f90#L116-L118",
+      "bands_fixed_mu_occupations": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/non_scf.f90#L89-L102",
+      "fd_xml_label": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/set_occupations.f90#L135-L157",
+      "noncollinear_weights": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/setup.f90#L647-L675",
+      "xml_input_control_units": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_init_qexsd_input.f90#L440-L486",
+      "native_spectrum_printer": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/print_ks_energies.f90#L122-L210",
+      "native_eV_constant": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/constants.f90#L34-L55",
+      "input_semantics": "https://gitlab.com/QEF/q-e/-/raw/qe-7.5/PW/Doc/INPUT_PW.def",
+      "fermi_dirac_free_energy": "https://lists.quantum-espresso.org/pipermail/users/2005-October/003180.html",
+      "energy_presentation": "https://physics.nist.gov/cuu/pdf/wall_2022.pdf"
+    }
+  },
+  "native_files_sha256": {
+    "xml": "31fb8029ec401a03fddbde97004bcd77290c718ee18857838fce77cdf45748d1",
+    "stdout": "6d65e53e15d6a26c21d4892c735ab66890b7c788be4155a37db3a700b6df2837"
+  }
+}

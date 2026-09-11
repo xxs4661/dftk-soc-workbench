@@ -1,0 +1,39 @@
+! Phase 7A: new QE SOC SCF; historical preparation remains unchanged.
+&CONTROL
+ calculation = 'bands',
+ restart_mode = 'from_scratch',
+ prefix = 'mg_soc_qe_v1',
+ pseudo_dir = './pseudo',
+ outdir = './scratch',
+ verbosity = 'high',
+/
+&SYSTEM
+ nr1=40, nr2=40, nr3=40,
+ nr1s=40, nr2s=40, nr3s=40,
+ ibrav = 0, nat = 1, ntyp = 1,
+ nbnd = 24,
+ ecutwfc = 30.0, ecutrho = 120.0,
+ noncolin = .true., lspinorb = .true.,
+ starting_magnetization(1) = 0.0,
+ nosym = .true., noinv = .true., no_t_rev = .true.,
+ occupations = 'smearing', smearing = 'fermi-dirac', degauss = 0.002,
+/
+&ELECTRONS
+ startingpot = 'file', startingwfc = 'file',
+ diagonalization = 'cg', diago_cg_maxiter = 200,
+ conv_thr = 1.0d-10, electron_maxstep = 400, mixing_beta = 0.1,
+ diago_full_acc = .true., diago_thr_init = 1.0d-13,
+/
+ATOMIC_SPECIES
+Mg 24.305 Mg.upf
+CELL_PARAMETERS bohr
+10.0 0.0 0.0
+0.0 10.0 0.0
+0.0 0.0 10.0
+ATOMIC_POSITIONS crystal
+Mg 0.17000000000000001 0.23000000000000001 0.31
+K_POINTS crystal
+3
+0 0 0 0.33333333333333331
+0.125 0.0625 -0.1875 0.33333333333333331
+-0.125 -0.0625 0.1875 0.33333333333333331

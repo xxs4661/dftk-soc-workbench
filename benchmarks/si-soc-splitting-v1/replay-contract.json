@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "scope": "Committed before formal runs: offline replay of derived public scalar statistics only",
+  "original_input_and_published_file_identity": "exact SHA-256 bytes",
+  "derived_numeric_rule": "abs(a-b) <= 1e-11 * max(1,abs(a),abs(b))",
+  "string_boolean_structure_rule": "exact type, values, keys and array sizes",
+  "limitation": "Arithmetic replay does not certify runner-reported residuals or reconstruct unpublished orbitals; no physical threshold is altered"
+}

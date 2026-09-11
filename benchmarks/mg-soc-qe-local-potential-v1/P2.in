@@ -1,0 +1,6 @@
+&INPUTPP
+ prefix = 'mg_soc_qe_v1',
+ outdir = './scratch',
+ filplot = './local-ionic.pp',
+ plot_num = 2,
+/

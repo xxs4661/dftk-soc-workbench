@@ -1,0 +1,172 @@
+{
+  "status": "PASS",
+  "exit_code": 0,
+  "scope": "Preparation: authenticated single full parse and frozen channel support; no operator/solve/SCF",
+  "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+  "bytes": 291215,
+  "header": {
+    "generated": "Generated using ONCVPSP code by D. R. Hamann",
+    "author": "anonymous",
+    "date": "180423",
+    "comment": "",
+    "element": "Si",
+    "pseudo_type": "NC",
+    "relativistic": "full",
+    "is_ultrasoft": false,
+    "is_paw": false,
+    "is_coulomb": false,
+    "has_so": true,
+    "has_wfc": false,
+    "has_gipaw": false,
+    "paw_as_gipaw": null,
+    "core_correction": true,
+    "with_metagga_info": false,
+    "functional": "PBE",
+    "z_valence": 4.0,
+    "total_psenergy": -7.51994093521,
+    "wfc_cutoff": null,
+    "rho_cutoff": 15.27,
+    "l_max": 2,
+    "l_max_rho": null,
+    "l_local": -1,
+    "mesh_size": 1528,
+    "number_of_wfc": 3,
+    "number_of_proj": 10
+  },
+  "metadata": {
+    "status": "PASS",
+    "mapping": [
+      {
+        "j": 0.5,
+        "l": 0,
+        "source_index": 1
+      },
+      {
+        "j": 0.5,
+        "l": 0,
+        "source_index": 2
+      },
+      {
+        "j": 0.5,
+        "l": 1,
+        "source_index": 3
+      },
+      {
+        "j": 1.5,
+        "l": 1,
+        "source_index": 4
+      },
+      {
+        "j": 0.5,
+        "l": 1,
+        "source_index": 5
+      },
+      {
+        "j": 1.5,
+        "l": 1,
+        "source_index": 6
+      },
+      {
+        "j": 1.5,
+        "l": 2,
+        "source_index": 7
+      },
+      {
+        "j": 2.5,
+        "l": 2,
+        "source_index": 8
+      },
+      {
+        "j": 1.5,
+        "l": 2,
+        "source_index": 9
+      },
+      {
+        "j": 2.5,
+        "l": 2,
+        "source_index": 10
+      }
+    ],
+    "reasons": []
+  },
+  "channels": [
+    {
+      "cutoff_index": 196,
+      "radial": 1,
+      "l": 0,
+      "source_index": 1,
+      "two_j": 1
+    },
+    {
+      "cutoff_index": 196,
+      "radial": 2,
+      "l": 0,
+      "source_index": 2,
+      "two_j": 1
+    },
+    {
+      "cutoff_index": 196,
+      "radial": 1,
+      "l": 1,
+      "source_index": 3,
+      "two_j": 1
+    },
+    {
+      "cutoff_index": 196,
+      "radial": 2,
+      "l": 1,
+      "source_index": 5,
+      "two_j": 1
+    },
+    {
+      "cutoff_index": 196,
+      "radial": 1,
+      "l": 1,
+      "source_index": 4,
+      "two_j": 3
+    },
+    {
+      "cutoff_index": 196,
+      "radial": 2,
+      "l": 1,
+      "source_index": 6,
+      "two_j": 3
+    },
+    {
+      "cutoff_index": 196,
+      "radial": 1,
+      "l": 2,
+      "source_index": 7,
+      "two_j": 3
+    },
+    {
+      "cutoff_index": 196,
+      "radial": 2,
+      "l": 2,
+      "source_index": 9,
+      "two_j": 3
+    },
+    {
+      "cutoff_index": 196,
+      "radial": 1,
+      "l": 2,
+      "source_index": 8,
+      "two_j": 5
+    },
+    {
+      "cutoff_index": 196,
+      "radial": 2,
+      "l": 2,
+      "source_index": 10,
+      "two_j": 5
+    }
+  ],
+  "projector_columns_per_atom": 36,
+  "nlcc": {
+    "present": true,
+    "sha256": "f6a83dbb03c3f1eedbefa728d841de443dac2b10de554430737e4d24bb93cb48",
+    "norm": 1.654117228445316
+  },
+  "environment_ref": "D-environment-eb873073c5ca.json",
+  "published_source_spec": "benchmarks/si-soc-splitting-v1/source.json"
+}

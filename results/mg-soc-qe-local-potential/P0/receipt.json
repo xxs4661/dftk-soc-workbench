@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "state": {
+    "schema_version": 1,
+    "run_id": "20260907T160907555915Z-P0-5fa78c40",
+    "slot": "P0",
+    "execution_status": "PASS",
+    "postprocessing_status": "PASS",
+    "parse_status": "PASS",
+    "exit_code": 0,
+    "process_exit_code": 0,
+    "formal_call_count": 1,
+    "source_preservation_status": "PASS",
+    "copied_files_preservation_status": "PASS",
+    "input_sha256": "379ef038f90241afedec64b5f5ed6b0285da1644f3e0b658dd8c021ff3465277",
+    "filplot_sha256": "db3be785b3a1f770e3bfa0e31f3059a87fe015d3d0db2b8d98bb5a3405a4c472",
+    "parsed_sha256": "e27fa324b049b63fd92cea8a848dfb2a4c41879ccbb6e06af04df4f34d75202c",
+    "stdout_sha256": "3988784ff4e9be352989e75a29aa71d8dd0dadd2b546786036fb29d6384cdd14",
+    "stderr_sha256": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+    "source_run_id": "20260907T112107073262Z-G40-3f9731a6",
+    "warnings": {
+      "stdout": {
+        "lines": [],
+        "ieee_flags": []
+      },
+      "stderr": {
+        "lines": [
+          "Note: The following floating-point exceptions are signalling: IEEE_OVERFLOW_FLAG"
+        ],
+        "ieee_flags": [
+          "IEEE_OVERFLOW_FLAG"
+        ]
+      }
+    },
+    "qe_local_potential_status": "NOT_APPLICABLE",
+    "field_provenance": "QE_PP_RECONSTRUCTION_BOUND_TO_HISTORICAL_G40",
+    "qe_historical_in_memory_vloc_status": "NOT_EXTRACTED",
+    "qe_internal_tab_vloc_status": "NOT_EXTRACTED"
+  },
+  "preflight": {
+    "schema_version": 1,
+    "run_id": "20260907T160907555915Z-P0-5fa78c40",
+    "slot": "P0",
+    "source_run_id": "20260907T112107073262Z-G40-3f9731a6",
+    "plan_sha256": "ea225f5eed7e691450e45e3801fc81dd6c2e5db174e1daaf9cdcf5055aad5c37",
+    "preparation_sha256": "c088dd82e871b115c6af4f7ce5db6423b074eeda6429d794c37870238d2900b1",
+    "preparation_commit": "de92ca3ee6591bf0f76bf8d8ec08ab4540f77280",
+    "execution_commit": "8c18549536dbd0c0a6d337e6cdedd319f3788d70",
+    "execution_source_sha256": {
+      "scripts/run_qe_local_postprocess.py": "f796fbe23428664cfa45236bb98ccacda86de5c458bc566f775a1964084f3ad4",
+      "scripts/parse_qe_filplot.py": "b29bcf0efc3acd66519ee8be09d0217a0be1a341125f9f58d7fb1756d154ff6c",
+      "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+      "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185"
+    },
+    "input_sha256": "379ef038f90241afedec64b5f5ed6b0285da1644f3e0b658dd8c021ff3465277",
+    "source_files": {
+      "scratch/mg_soc_qe_v1.save/data-file-schema.xml": {
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "bytes": 42675
+      },
+      "scratch/mg_soc_qe_v1.save/charge-density.dat": {
+        "sha256": "b93c254aa6972cf3c559fb8f85a630c0699e2eefe4382772a9203d11fcaa5359",
+        "bytes": 619448
+      },
+      "scratch/mg_soc_qe_v1.save/Mg.upf": {
+        "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+        "bytes": 252203
+      }
+    },
+    "copy_sha256_before": {
+      "scratch/mg_soc_qe_v1.save/data-file-schema.xml": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+      "scratch/mg_soc_qe_v1.save/charge-density.dat": "b93c254aa6972cf3c559fb8f85a630c0699e2eefe4382772a9203d11fcaa5359",
+      "scratch/mg_soc_qe_v1.save/Mg.upf": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "pseudo/Mg.upf": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256"
+    },
+    "environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "JULIA_NUM_THREADS": "1"
+    },
+    "command": [
+      "<LOCAL_INSTALL>/bin/pp.x",
+      "-in",
+      "pp.in"
+    ],
+    "qe_identity": {
+      "schema_version": 1,
+      "pp_build_identity_status": "PASS",
+      "historical_pw_verification_status": "PASS",
+      "julia_version": "1.12.7",
+      "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+      "jll_version": "7.5.1+0",
+      "artifact_tree_sha1": "273d3312b2a70e6223250dbf4a39ab3f28b04104",
+      "selected_artifact": {
+        "arch": "aarch64",
+        "git-tree-sha1": "273d3312b2a70e6223250dbf4a39ab3f28b04104",
+        "libgfortran_version": "5.0.0",
+        "mpi": "mpich",
+        "os": "macos",
+        "download": [
+          {
+            "sha256": "93428e2fe1a67dc8fc8d762a1e4ef2f3c3b13083d5a304d316d7ef47225c9c32",
+            "url": "https://github.com/JuliaBinaryWrappers/QuantumEspresso_jll.jl/releases/download/QuantumEspresso-v7.5.1+0/QuantumEspresso.v7.5.1.aarch64-apple-darwin-libgfortran5-mpi+mpich.tar.gz"
+          }
+        ]
+      },
+      "products": {
+        "pp": {
+          "path": "<QE_ARTIFACT>/bin/pp.x",
+          "sha256": "cb94cb4b430f5ac52300c5377998a5a7f70f06441da9b24814762cf2324786bd"
+        },
+        "pw": {
+          "path": "<QE_ARTIFACT>/bin/pw.x",
+          "sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0"
+        }
+      },
+      "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+      "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+      "package_project_sha256": "4b7b753e8f162224853476eb656f9185ea04a544af62fc7b2c4a385835bb2ee4",
+      "artifacts_toml_sha256": "ece6b4c553f67e379ef60f097aefe2dfacb651146c46c15e8f9ca7001680a9b3",
+      "wrapper_sha256": "363b8c2ab83104485d7707051a14e7d6cb92d26c20efb6774ceb258b7ba9612d",
+      "shared_dependencies": {
+        "<JULIA_ARTIFACTS>/0a4714a5cb9f46e0867e7c6c3a26521447f8fae0/lib/libxml2.2.dylib": "a283c005013c75c802fae6277442f8e34128eb2feb10c3ad37615b4193e4b8bb",
+        "<JULIA_ARTIFACTS>/49bed26d3df75ef9b7c400e45242692617f6df0e/lib/libopenblas.0.3.34.dylib": "ac05907431fd80143551e697b799ff01230554d07301bb5c157a61ab24bc4455",
+        "<JULIA_ARTIFACTS>/57bf2e972613ddabdd4e01ec54c2a8cbadb9e681/lib/libfftw3.3.dylib": "3cf70e7d10448c14a9206a9ab8f0c9524bb65746501518c63f11a63627071d99",
+        "<JULIA_ARTIFACTS>/57bf2e972613ddabdd4e01ec54c2a8cbadb9e681/lib/libfftw3f.3.dylib": "53006b141989b91d032430b5747165caa1989d7ecc4e8efd48b108b08e5d93c9",
+        "<JULIA_ARTIFACTS>/ab07a96801d935d7e51cbbcb24a07df19a53b4d4/lib/libscalapack32.dylib": "309fbad60a6aacb4b1eb8291461c929b342f212423cf8fac2f52499c52e85cef",
+        "<JULIA_ARTIFACTS>/b820a0a437e8501d06a17439abd84feaa5b6cca3/lib/libcharset.1.dylib": "802b21ee31cc89c30605d1b35009a06f66435952f39e2bd104e0053fea9fc811",
+        "<JULIA_ARTIFACTS>/b820a0a437e8501d06a17439abd84feaa5b6cca3/lib/libiconv.2.dylib": "8647fe6b4e8a1b9bd096ff027cfda5c92cff3d9f25a18abd08c834ff838d7c5d",
+        "<JULIA_ARTIFACTS>/ba59ec3eab768a1d8e4041987a23d081195ac264/lib/libhwloc.15.dylib": "20b200744c3abc58b2d6bc1273ce7eeab3411bc17e3b7fb04f898539105b6b5e",
+        "<JULIA_ARTIFACTS>/c8e2e4506036f733e9057901e6023fc770b0d142/lib/libxc.15.dylib": "47e134ec6bebb5d27bd301e1f8fb43c2bc95472d07c01ab67fed185ff3e015bd",
+        "<JULIA_ARTIFACTS>/c8e2e4506036f733e9057901e6023fc770b0d142/lib/libxcf03.15.dylib": "9760508b8ab781d2aea27d3f82a7c2ed6abb932362fdb681ffed3619acdba9d1",
+        "<JULIA_ARTIFACTS>/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libmpi.12.dylib": "f330a193737480dd26f44368fbad96f9aec75f7eff0f16b650c39e7a5c2ef53a",
+        "<JULIA_ARTIFACTS>/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libmpicxx.12.dylib": "b5ec6bfd535e5c8574735cc12d5854648aecdad58a285eda1a179f135a299c63",
+        "<JULIA_ARTIFACTS>/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libmpifort.12.dylib": "7d69f53bcf003d2b89fe7a0dc987f8edb4b90ee8a199ee4c6bc9b8e74cdf4b6e",
+        "<JULIA_ARTIFACTS>/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libpmpi.12.dylib": "a59d657156d7aae08de09bc207adaf7c57b67f36f136af79b905b061915382af",
+        "<JULIA_RUNTIME>/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libgcc_s.1.1.dylib": "145a5cae0f20adcc2287120e626c6c137b550c491c5cdab636af957ea90e14c1",
+        "<JULIA_RUNTIME>/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libgfortran.5.dylib": "a72b8368e6ba2f9e37ac14f9c10cafb0d6d0d9746fae0c479a7990a5a4e3bfb1",
+        "<JULIA_RUNTIME>/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libgomp.1.dylib": "eada7cdb8992f30047dbe30dd52ba5ba63e7fa5bca4d5e214859ce9037528554",
+        "<JULIA_RUNTIME>/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libquadmath.0.dylib": "a171209468e2f83bf06d3ecae975218c7dc9d75a04714cda0178334b893cd555",
+        "<JULIA_RUNTIME>/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libstdc++.6.dylib": "0e37fbd38ffb1e517e2a9ebe94404dd4b12b4dfcd099a5632c680fd673265cd3",
+        "<JULIA_ENVIRONMENTS>/v1.12/Project.toml": "283d923b892d1fb37bac1e54d97f9ceec9b95b35e5dc452178f2b312a7c34f70",
+        "<JULIA_ENVIRONMENTS>/v1.12/Manifest.toml": "944648a95f9c59804a87277d6850a966b1a6d434ac7435d508c394bf5d7b1582"
+      },
+      "single_thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "JULIA_NUM_THREADS": "1"
+      },
+      "runtime_path_comparison": "Real paths compared before redaction; both executable product closures identify selected artifact; JLL runner preserves its library environment",
+      "build_evidence": "Same registered package version/UUID and selected platform artifact; wrapper declares both products in this artifact",
+      "installed_exact_qe_source_commit_status": "NOT_CONFIRMED; qe-7.5 tagged source establishes convention, not exact installed build source",
+      "numerical_probe_executions": 0,
+      "probe_script_sha256": "28e3c773a61e82585d39ed0edef9b550de0c2066f760d7d6518bd594ce17cf58",
+      "raw_probe_sha256": "482caa9f0f10a49ebeb2c13d8565dbbd6fd259e6d3c1473ded91d076069e5aaa"
+    },
+    "output_absent_before": true,
+    "field_provenance": "QE_PP_RECONSTRUCTION_BOUND_TO_HISTORICAL_G40"
+  },
+  "preservation": {
+    "source_run_id": "20260907T112107073262Z-G40-3f9731a6",
+    "source_changes": {},
+    "copy_changes": {},
+    "status": "PASS"
+  }
+}

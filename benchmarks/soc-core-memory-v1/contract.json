@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "static_suites": [
+    "REF-B0",
+    "REF-K4",
+    "CORE-B0",
+    "CORE-K4"
+  ],
+  "reference_data": "Full historical physical 24 states at every original k with original f and n_out; same authenticated file bytes for corresponding workers",
+  "rhs_columns": [
+    1,
+    24,
+    30
+  ],
+  "rhs_30_extra_columns": {
+    "seed": 91030,
+    "construction": "Append six ComplexF64 MersenneTwister Gaussian columns to original Gamma X; operator-only, not physical occupations"
+  },
+  "micro_operations": [
+    "FR mul! at original first Gamma block",
+    "component lift mul! at same fixed n_out common block",
+    "full H[n_out] mul!"
+  ],
+  "full_k_operations": [
+    "orbital_density with original order/capacity and streaming",
+    "nonlocal expectation plus independent projected contraction",
+    "seven-term energy_snapshot with all independent consistency checks"
+  ],
+  "static_pipeline": "One source loader/context construction and deep authentication, H[n_out], all nine Gamma micro actions, full-k orbital density, nonlocal/direct-projector and seven-term energy checks, final deep boundary, scoped lifetime close. Reference has no lifecycle close API: retain and measure its actual global registrations until worker ends; do not silently clear its audit globals. Constructor first call is separately recorded.",
+  "sampling": {
+    "warmups_per_operation": 1,
+    "measured_samples": 5,
+    "retain": "All samples/median/min/max for time, Julia allocation bytes, GC, compilation fields when available; checksum consumed. No cherry-picking",
+    "cold_initialization": "Record once separately, do not include in warmed performance ratio",
+    "gc": "Normal enabled GC, no forced collections in measured numerical loops; optional explicit full GC only for separately labeled between-session reachability tests"
+  },
+  "measurement_scope": {
+    "allocated_bytes": "@timed cumulative Julia allocation, not live memory or RSS",
+    "unique_live": "One roots union incl old registry, native context/basis/operator/data/workspace/state references; Base.summarysize with alias-aware underlying storage inventory and views/parent relationships, no sum of individual summarysize",
+    "rss": "Same frozen process-group/descendant sampler and interval0.1s, same host/threads, native library/JIT included; sampled not continuous bound",
+    "phases": [
+      "context_ready",
+      "H_constructed",
+      "one_static_solve_storage_proxy_no_eigensolve",
+      "density",
+      "energy",
+      "callback_or_save_boundary",
+      "next_map_boundary",
+      "session_closed"
+    ]
+  },
+  "accuracy": {
+    "operator_relative": 1e-12,
+    "relative_formula": "norm(new-old)/max(norm(new),norm(old),1)",
+    "density_R_n_m_relative": 1e-12,
+    "valence_electron_abs": 1e-08,
+    "energy_each_and_total_abs_ha": 1e-10,
+    "existing_stricter_checks": "Retained"
+  },
+  "performance": {
+    "FR_24_allocation_median_ratio_max": 0.5,
+    "pipeline_allocation_median_ratio_max": 1.1,
+    "time_median_ratio_review_above": 1.1,
+    "measurable_redundant_live_storage_reduction_required": true
+  },
+  "endpoint": {
+    "internal_and_free_energy_abs_ha": 1e-08,
+    "n_out_relative_L2": 1e-08,
+    "Gamma_raw_max_abs_ha": 1e-07,
+    "Gamma_fixed_window_delta_abs_ev": 1e-06,
+    "fixed_states_one_based": [
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        6,
+        7,
+        8
+      ]
+    ],
+    "old_thresholds_and_closure": "All unchanged; no inferred new physical convergence"
+  },
+  "kernel_boundaries": [
+    "construction/source conversion",
+    "each SCF map start",
+    "each eigensolve session entry/return",
+    "density/potential/G/P/D changes and every custom callback return",
+    "final checks/serialization/session close"
+  ],
+  "kernel_checks_each_call": [
+    "shape/one-based indexing",
+    "input/output/internal workspace aliases",
+    "finite input and alpha/beta; beta0 does not read Y",
+    "finite resulting output"
+  ],
+  "budget_statuses": [
+    "ESTIMATED_WITHIN_LIMIT",
+    "ESTIMATED_EXCEEDS_LIMIT",
+    "INSUFFICIENT_EVIDENCE"
+  ],
+  "K6_always": "DFTK_K6_SCF=NOT_RUN regardless of budget",
+  "rhs_shapes": {
+    "1": "single vector from original Gamma column1",
+    "24": "complete original Gamma matrix",
+    "30": "same24 plus six seeded operator-only columns"
+  },
+  "micro_alpha_beta": [
+    1,
+    0
+  ]
+}

@@ -1,3 +1,10 @@
+# Explicit optimized adapters below use one stage-independent parent module.
+# This happens only at module loading, never inside a numerical kernel.
+if !isdefined(parentmodule(@__MODULE__), :SOCKernels)
+    Base.include(parentmodule(@__MODULE__), joinpath(@__DIR__, "../../src/SOCKernels.jl"))
+end
+import ..SOCKernels
+
 # Independent component-interleaved nonlocal operator. No Hamiltonian/SCF patch.
 
 """One canonical table shared by P and expanded D: atom,l,2j,2mj,radial."""
@@ -169,3 +176,10 @@ function projected_nonlocal_energy(operators,X,weights,f)
 end
 nonlocal_energy(A::FRNonlocalOperator,X::AbstractMatrix,f)=nonlocal_energy([A],[X],[1.0],[f])
 projected_nonlocal_energy(A::FRNonlocalOperator,X::AbstractMatrix,f)=projected_nonlocal_energy([A],[X],[1.0],[f])
+
+# Opt-in numeric adapter. Legacy FRNonlocalOperator type/default mul! is unchanged.
+# Runtime-owned P/D can be borrowed synchronously without a second retained copy.
+function kernel_nonlocal_action!(Y,A::FRNonlocalOperator,X,workspace,alpha=1,beta=0)
+    SOCKernels.nonlocal_action!(Y,A.P,A.D,X,workspace,alpha,beta)
+end
+kernel_owned_data(A::FRNonlocalOperator)=SOCKernels.NonlocalData(A.P,A.D;labels=A.labels)

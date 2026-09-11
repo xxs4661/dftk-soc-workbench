@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "case": "si-soc-splitting-v1",
+  "slot": "Q-SCF",
+  "run_id": "Q-SCF-20260908T145232Z",
+  "export_status": "PASS",
+  "underlying_execution_status": "PASS",
+  "worker_exit_code": 0,
+  "recorder_exit_code": 0,
+  "expected_execution_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+  "execution_binding_status": "PASS",
+  "preparation_commit": "e5b940c7fb0234d4cb97572ee3f8225e9e8b6087",
+  "native_files": {
+    "qe.xml": {
+      "raw_sha256": "5cfb7274ceccf9c4a76757bd6226b97dd25e84f02cf184884d0d2b82800c6da5",
+      "public_sha256": "5cfb7274ceccf9c4a76757bd6226b97dd25e84f02cf184884d0d2b82800c6da5",
+      "raw_bytes": 51636,
+      "public_bytes": 51636,
+      "line_count": 1068,
+      "transformation": "Private path strings only"
+    },
+    "qe.stdout": {
+      "raw_sha256": "cdab42624502beacbe59be1244ca9562d5f5cb1475243dbddb9268ec6af0ac6a",
+      "public_sha256": "85d8541bd7ee051c9ed9e39eaedfe78fd47020c7c45f9c20c85e2eead3dceae3",
+      "raw_bytes": 22691,
+      "public_bytes": 22619,
+      "line_count": 537,
+      "transformation": "Trailing ASCII spaces/tabs at line ends removed in public copy only; all tokens and line numbers preserved",
+      "token_sequence_equality": "PASS",
+      "raw_files_modified": false
+    },
+    "qe.stderr": {
+      "raw_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "public_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "raw_bytes": 119,
+      "public_bytes": 119,
+      "line_count": 1,
+      "transformation": "Private path strings only"
+    }
+  },
+  "parsed_values": {
+    "status": "EXACT_VALUE_PASS",
+    "leaf_count": 827,
+    "typed_numeric_leaf_sha256": "56360ed16518691343f487d46636d70a266facd7584d02a9c8efe726964adc3a",
+    "raw_sha256": "6e48758483e522514719bf13efcf47be2ccfda317e00d2626563b9e0d645fc47",
+    "public_sha256": "6e48758483e522514719bf13efcf47be2ccfda317e00d2626563b9e0d645fc47",
+    "omitted_fields": [],
+    "warning_and_iteration_rows": "ALL_RETAINED"
+  },
+  "raw_approved_files": {
+    "qe.xml": {
+      "sha256": "5cfb7274ceccf9c4a76757bd6226b97dd25e84f02cf184884d0d2b82800c6da5",
+      "bytes": 51636
+    },
+    "qe.stdout": {
+      "sha256": "cdab42624502beacbe59be1244ca9562d5f5cb1475243dbddb9268ec6af0ac6a",
+      "bytes": 22691
+    },
+    "qe.stderr": {
+      "sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "bytes": 119
+    },
+    "qe-result.json": {
+      "sha256": "6e48758483e522514719bf13efcf47be2ccfda317e00d2626563b9e0d645fc47",
+      "bytes": 28871
+    },
+    "result.json": {
+      "sha256": "0f8c087458b71d58decafd45c0942b1ef2c64f32c2b7842291c311ee393c0679",
+      "bytes": 11000
+    },
+    "preflight.json": {
+      "sha256": "44fbf3d7b006a364e14156ef4ebf40d7b35643135098d5d8fe78060aa6246797",
+      "bytes": 21168
+    },
+    "process-start.json": {
+      "sha256": "579d09e6c41594dbdc38c9f74af3708c08c2f457fe45bcce56feeb3e220dd097",
+      "bytes": 148
+    },
+    "process-exit.json": {
+      "sha256": "e95aa1bd5cbce77c9d561e1dd6f0176abab174028436d98e1161a4ad2942ca25",
+      "bytes": 99
+    },
+    "save-manifest.json": {
+      "sha256": "1ca23a884a5923f9a509192bd659862e6eda845f8760ed230c6de38d1c00a671",
+      "bytes": 1385
+    }
+  },
+  "public_sha256": {
+    "qe.xml": "5cfb7274ceccf9c4a76757bd6226b97dd25e84f02cf184884d0d2b82800c6da5",
+    "qe.stdout": "85d8541bd7ee051c9ed9e39eaedfe78fd47020c7c45f9c20c85e2eead3dceae3",
+    "qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "qe-result.json": "6e48758483e522514719bf13efcf47be2ccfda317e00d2626563b9e0d645fc47",
+    "result.json": "3795f6097c7651df0d3c6f9ebe92b7ae953665ccb3e254f5319a44e304fd6633"
+  },
+  "public_bytes": {
+    "qe.xml": 51636,
+    "qe.stdout": 22619,
+    "qe.stderr": 119,
+    "qe-result.json": 28871,
+    "result.json": 10549
+  },
+  "whitelist": [
+    "qe-result.json",
+    "qe.stderr",
+    "qe.stdout",
+    "qe.xml",
+    "result.json"
+  ],
+  "scope": "Native streams, every normalized spectrum/occupation/iteration/warning, compact current receipt; no density/wavefunction/UPF payload",
+  "raw_files_modified": false,
+  "raw_save_tree_read_or_copied": false,
+  "publication_stdout_whitespace": "Raw original is archived unchanged; public stdout preserves every token, line and warning; only trailing horizontal whitespace removed"
+}

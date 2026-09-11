@@ -1,0 +1,254 @@
+{
+  "invocation": {
+    "profile": "E40",
+    "action": "Q-GAMMA",
+    "run_id": "Q-GAMMA-20260908T235547Z-3d6c87ec",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "started_utc": "2026-09-08T23:55:47.514388+00:00",
+    "finished_utc": "2026-09-08T23:55:52.298617+00:00",
+    "exit_code": 0,
+    "status": "PASS",
+    "peak_rss_bytes": 308887552,
+    "streams_sha256": {
+      "stdout": "abd4433ebf9e491ce1709049f4128e976e78a1a875296cb41a95ac86183043c9",
+      "stderr": "fa44f4edf08e443664e01315cc726d9aceff5f00056047e120f040352fdc93fb"
+    },
+    "resource_status": "PASS"
+  },
+  "wrapper": {
+    "schema_version": 1,
+    "case": "si-soc-sensitivity-v1/E40",
+    "sensitivity_profile": "E40",
+    "case_sha256": "d5e6af621e58297bf62825ee37bbb6021cee59f969d44f524bf8b86d176f51bc",
+    "run_id": "Q-GAMMA-20260908T235547Z-3d6c87ec",
+    "action": "Q-GAMMA",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "preparation_commit": "4a58286183e4625ad7ae69b44eb80097e8ad6c7d",
+    "created_utc": "2026-09-08T23:55:47.544962+00:00",
+    "completed_utc": "2026-09-08T23:55:52.292876+00:00",
+    "exit_code": 0,
+    "process_exit_code": 0,
+    "worker_started": true,
+    "execution_status": "PASS",
+    "input_comparability_status": "PASS",
+    "parallelism": {
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "JULIA_NUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1"
+      },
+      "mpi_processes_requested": 1,
+      "native_mpi_processes": 1,
+      "native_nodes": 1
+    },
+    "preflight_manifest_sha256": "19e5160c1e5a26bab049abf285a97fe89e9e9a130be36e33283d608e94eae0fc",
+    "source_preservation_status": "PASS"
+  },
+  "export_checks_status": "PASS",
+  "raw_result_sha256": "3bd093223a4f052c951480f40629e7341c5fc1b730516d702cb5b5c63e3d68a4",
+  "native_process": {
+    "exit_code": 0,
+    "interrupted": false,
+    "finished_utc": "2026-09-08T23:55:52.176360+00:00"
+  },
+  "parent_binding": {
+    "directory": "[workbench]/.work/phase8b/E40/Q-SCF-20260908T235336Z-24e47971",
+    "run_id": "Q-SCF-20260908T235336Z-24e47971",
+    "save_files": {
+      "Si_r.upf": {
+        "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+        "bytes": 291215
+      },
+      "charge-density.dat": {
+        "sha256": "5a654753cf33e59113f89b808742c055c8a852320743c85b7fe4db6479c94e9e",
+        "bytes": 734528
+      },
+      "data-file-schema.xml": {
+        "sha256": "85efd784c85a88150d5183933f8ac6eb0d7784302681a92eb381c0036c6384c6",
+        "bytes": 51638
+      },
+      "wfc1.dat": {
+        "sha256": "72997bc8d99c9948e4eecaba738378a9fda3bf0ad7a75c50b1cf4e8f3a709cdf",
+        "bytes": 2564216
+      },
+      "wfc2.dat": {
+        "sha256": "eaede1577b18c6847e3ff30ac15a86ac0428b75f13ffa11f8ac0df70e8bca3c8",
+        "bytes": 2554076
+      },
+      "wfc3.dat": {
+        "sha256": "789ed8d53b49dd4ff32a8a337e7b47872206cc45d6d39c7808f24fac2b3b016c",
+        "bytes": 2554076
+      },
+      "wfc4.dat": {
+        "sha256": "9681e42692f28515a4b41b46490a225f43c07969aadaec84e378c4bd756216b4",
+        "bytes": 2560316
+      },
+      "wfc5.dat": {
+        "sha256": "fb2138dc522f0c69dd1b4c4089c746ad2849240576907833adda2cee1672d875",
+        "bytes": 2554076
+      },
+      "wfc6.dat": {
+        "sha256": "cf76b460945b190cec9d9044a08658896e2f6c8ecd4f9edec75e5bcbcd562a8b",
+        "bytes": 2560316
+      },
+      "wfc7.dat": {
+        "sha256": "86964e04ba62a445bc8bb8378ea31720703ded9fa6a7dd8542e61cd1119ebb3b",
+        "bytes": 2560316
+      },
+      "wfc8.dat": {
+        "sha256": "4e532078469cb6f6bebf254e9a611d1bd1c12bcffcd580d8d729c9257add3a4b",
+        "bytes": 2554076
+      }
+    },
+    "parent_result_sha256": "283675d7f21b58fb6c01e436ee6906bcd16fd0b4001437e372cd47965701a66f",
+    "parent_parsed_sha256": "94f21ebcd58d4fb930da5b81e374003afe44fe34c65de6c422ecfc945a764ac6",
+    "charge_sha256": "5a654753cf33e59113f89b808742c055c8a852320743c85b7fe4db6479c94e9e",
+    "fermi_energy_ha": 0.2509987668356053,
+    "save_path": "scratch/si8b_e40.save",
+    "sensitivity_profile": "E40",
+    "case_sha256": "d5e6af621e58297bf62825ee37bbb6021cee59f969d44f524bf8b86d176f51bc"
+  },
+  "prepared_sha256": {
+    "benchmarks/si-soc-sensitivity-v1/plan.json": "ab37e46717e5e87e54ee443e5a0507155e1b2e146c1a5a2bb93e73231b39db2e",
+    "benchmarks/si-soc-sensitivity-v1/allowed-differences.json": "e733c76f41e074ca68e249506f44165e7c788b5e130573b5f8918967a3a67525",
+    "benchmarks/si-soc-sensitivity-v1/replay-contract.json": "2ad8ff3a703440d843921e1e642594d0ed5ec01eadd41a6236d1ccafe53086b4",
+    "benchmarks/si-soc-sensitivity-v1/E40/case.json": "d5e6af621e58297bf62825ee37bbb6021cee59f969d44f524bf8b86d176f51bc",
+    "benchmarks/si-soc-sensitivity-v1/E40/qe-scf.in": "9cfa7694799b5c68d30dd6f8a7fa2aab90b0b9eba17ef81b3248a5a03914fc63",
+    "benchmarks/si-soc-sensitivity-v1/E40/qe-gamma.in": "2e009e2fa332da90b1f8c153c3f4e1268581aa181b0178f2541b0dcb775c67f8",
+    "benchmarks/si-soc-sensitivity-v1/T05/case.json": "171f8381a2576f05c0e87af46a58c552a73a17acf829e69e09e1c1d3f14eefc3",
+    "benchmarks/si-soc-sensitivity-v1/T05/qe-scf.in": "23f0c17e7fb9a3eb785cde5b88db98c1575fd89db797683f681ffc7f3a0a8752",
+    "benchmarks/si-soc-sensitivity-v1/T05/qe-gamma.in": "3dd2729cecb8b6eea078e83f99168ae7204dd2331033e32e67ee2990e2ee5e1e",
+    "benchmarks/si-soc-sensitivity-v1/K4/case.json": "7874f0007f8df69763b7a7032d580bb05a6b39bdcba412c72cc155a8b2e039ce",
+    "benchmarks/si-soc-sensitivity-v1/K4/qe-scf.in": "7a4a3f7dce88db6152ec0d61e07eed4e232736ca0e91b8c027fa4483d56833c0",
+    "benchmarks/si-soc-sensitivity-v1/K4/qe-gamma.in": "f577c89b355d5101f33976b0adebd312ac32eafef4c44a78b3568c6c6f5c48ed",
+    "benchmarks/si-soc-splitting-v1/source.json": "e88ec3d6f0f1407d4d6b7b75c0bcc8f04ed1536c9c1ea3a67e4e23232e5a55e3"
+  },
+  "frozen_sha256": {
+    "config/sources.lock": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "environment/workbench/Project.toml": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "environment/workbench/Manifest.toml": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "environment/workbench/checksums.toml": "3a0cb9974084e96224a77baf167ed653bf4e435714dbc6c8a0578ac84006f180",
+    "benchmarks/mg-soc-qe-diagnostics-v1/plan.json": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+    "results/mg-soc-qe-diagnostics/evidence.json": "12782022024f1e00fb9a834863685ffab871dadd1b8fbeec5617d2021fc287c2"
+  },
+  "executed_source_sha256": {
+    "scripts/run_si_qe.py": "22071a7b76a217756959fb8e3acec1097fdde287094f6ae036af957955fbd0c6",
+    "scripts/si_soc_comparison.py": "91f71a01c693ef31f856ee4893a824578ce290deffe2f0287e368502c9e93906",
+    "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+    "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185",
+    "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+    "scripts/parse_qe_baseline.py": "689c9b51f4e619eee6977caa8548c2f14b3a6e8438b6ee5e51e309f54aa9a639",
+    "scripts/parse_qe_soc_diagnostics.py": "1ca9b66093a39f7fa83174aedb801f57bc4224d90776434ba172066abfef8f15",
+    "scripts/probe_qe_postprocess_build.jl": "28e3c773a61e82585d39ed0edef9b550de0c2066f760d7d6518bd594ce17cf58",
+    "scripts/si_soc_sensitivity.py": "4b3a2a90717cc06227f99bb40e8bdb845c138017696438884cd2dcf76b497fe6",
+    "scripts/run_si_dftk.py": "b476dec53c88ca485fb742b34a05e6a72456a64054fa797cbbdf1d3e5a13bad1"
+  },
+  "pseudo_sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+  "warnings": {
+    "process_exit_code": 0,
+    "stderr_lines": [
+      "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+    ],
+    "warning_lines": [
+      {
+        "stream": "stderr",
+        "line": 1,
+        "text": "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+      }
+    ],
+    "ieee_flags": {
+      "IEEE_INVALID_FLAG": {
+        "reported": true,
+        "stdout": false,
+        "stderr": true
+      },
+      "IEEE_DIVIDE_BY_ZERO": {
+        "reported": true,
+        "stdout": false,
+        "stderr": true
+      },
+      "IEEE_OVERFLOW_FLAG": {
+        "reported": true,
+        "stdout": false,
+        "stderr": true
+      },
+      "IEEE_UNDERFLOW_FLAG": {
+        "reported": false,
+        "stdout": false,
+        "stderr": false
+      },
+      "IEEE_INEXACT_FLAG": {
+        "reported": false,
+        "stdout": false,
+        "stderr": false
+      }
+    },
+    "ieee_warning_status": "REPORTED",
+    "ieee_localization_status": "NOT_LOCALIZED",
+    "eigenvalues_not_converged": false,
+    "unconverged_eigenvalue_lines": [],
+    "fatal_native_lines": [],
+    "c_bands_lines": [],
+    "note": "Reported flags are retained independently of exit code and spectral stability. Unreported flags are not proven absent."
+  },
+  "eigensolver_status": "REPORTED_THRESHOLD_AVAILABLE",
+  "source_preservation_status": "PASS",
+  "density_source_sha256": "5a654753cf33e59113f89b808742c055c8a852320743c85b7fe4db6479c94e9e",
+  "save_manifest": {
+    "Si_r.upf": {
+      "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+      "bytes": 291215
+    },
+    "charge-density.dat": {
+      "sha256": "5a654753cf33e59113f89b808742c055c8a852320743c85b7fe4db6479c94e9e",
+      "bytes": 734528
+    },
+    "data-file-schema.xml": {
+      "sha256": "3c45065ad98a0be075344b532b2970042c338dcc1c4b5d7acad2de5ec66eda7e",
+      "bytes": 37741
+    },
+    "wfc1.dat": {
+      "sha256": "5eeaa326ecde099c838f02d67cdcff4d76555d7e34688507ed6c546bdd7c0fa4",
+      "bytes": 2564216
+    },
+    "wfc2.dat": {
+      "sha256": "eaede1577b18c6847e3ff30ac15a86ac0428b75f13ffa11f8ac0df70e8bca3c8",
+      "bytes": 2554076
+    },
+    "wfc3.dat": {
+      "sha256": "789ed8d53b49dd4ff32a8a337e7b47872206cc45d6d39c7808f24fac2b3b016c",
+      "bytes": 2554076
+    },
+    "wfc4.dat": {
+      "sha256": "9681e42692f28515a4b41b46490a225f43c07969aadaec84e378c4bd756216b4",
+      "bytes": 2560316
+    },
+    "wfc5.dat": {
+      "sha256": "fb2138dc522f0c69dd1b4c4089c746ad2849240576907833adda2cee1672d875",
+      "bytes": 2554076
+    },
+    "wfc6.dat": {
+      "sha256": "cf76b460945b190cec9d9044a08658896e2f6c8ecd4f9edec75e5bcbcd562a8b",
+      "bytes": 2560316
+    },
+    "wfc7.dat": {
+      "sha256": "86964e04ba62a445bc8bb8378ea31720703ded9fa6a7dd8542e61cd1119ebb3b",
+      "bytes": 2560316
+    },
+    "wfc8.dat": {
+      "sha256": "4e532078469cb6f6bebf254e9a611d1bd1c12bcffcd580d8d729c9257add3a4b",
+      "bytes": 2554076
+    }
+  },
+  "save_array_scope": "Hash inventory recorded by original worker; arrays not read by exporter",
+  "environment_reference": {
+    "path": "../Q-environment.json",
+    "sha256": "ab15512328813705856bd42c8cf6e75c22b2fbc7d3bf714bd0081e16df565ad8",
+    "raw_identity_sha256": "dccdb8dc60b27e374283462d48a6740a445cab2a3c37d826f709f8eb1c8c4439",
+    "status": "PASS",
+    "real_paths_checked_before_redaction": true
+  }
+}

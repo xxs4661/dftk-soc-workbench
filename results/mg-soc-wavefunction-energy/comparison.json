@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "case": "mg-soc-wavefunction-energy-v1",
+  "status": "PASS_LIMITED_STATIC_AUDIT",
+  "local_state_integral_status": "PASS",
+  "signed_combination_replay_status": "PASS",
+  "signed_combination_evidence_tier": "ALGEBRA_WITH_EXPLICIT_SOURCE_AND_PRINT_LIMITATIONS",
+  "units": "Ha/cell; node density electron/bohr^3; volume bohr^3",
+  "volume_bohr3": 1000.0,
+  "node_count": 64000,
+  "dvol_bohr3": 0.015625,
+  "local_state": {
+    "L_saved_historical_ha": -79.34118126437784,
+    "L_saved_replayed_ha": -79.34118126437787,
+    "L_wfc_ha": -79.34118126437781,
+    "delta_L_state_ha": -4.883910697653117e-14,
+    "delta_L_direct_minus_subtraction_ha": 8.004311884276848e-15,
+    "saved_local_replay_drift_ha": -2.842170943040401e-14,
+    "N_saved": 10.000000000000004,
+    "N_wfc": 9.999999999999998,
+    "potential_unit": "Ha",
+    "potential_rescaled": false,
+    "density_scope": "Full finite orbital density versus the explicitly saved finite Q charge series; unsaved physical modes are not assumed zero",
+    "field_fingerprints": {
+      "n_wfc": "9f34eb4b8ff1672f9703b55453477f7789f6f18645cdbdb389dcc9c5eb5496f0",
+      "n_saved": "780de08d2145ee849736ac5492d7d202a83c125aaa4b3d97fa7d700edcbc7400",
+      "V_Qpp": "48db91863aad7f7f08da4de9a8f49b3daa32eb47b0377e5d741c82535449b54c",
+      "uV": "5703201abd0facec73b01592ed47bacab3cdcc0d2e6d03dae4b42d3ed171aa9a"
+    }
+  },
+  "Q": {
+    "T_direct_ha": 29.07598791063465,
+    "T_quantity": "DIRECT_REEVALUATION_OF_KINETIC_FROM_ORIGINAL_QE_WFC",
+    "N_D_ha": -14.214055437803232,
+    "N_D_quantity": "DFTK_FROZEN_FR_NONLOCAL_EXPECTATION_ON_QE_G40_ORBITALS",
+    "K_Q_in_D_ha": 14.86193247283142,
+    "O_historical_ha": -64.47924879196043,
+    "O_reduction_grouping_drift_ha": 0.0,
+    "NL_Q_ledger_ha": -14.214055438217272,
+    "NL_Q_ledger_quantity": "DERIVED_NL_SHAPED_REMAINDER_NOT_DIRECT_QE_NL",
+    "J_Q_ha": 4.14040357554768e-10,
+    "J_plus_NL_ledger_minus_N_D_ha": 0.0,
+    "J_scope": "Cross-source diagnostic sum, not a mixed Hamiltonian ground-state energy or localization of a SOC error"
+  },
+  "comparisons": {
+    "A": {
+      "reference_role": "primary",
+      "T_direct_ha": 29.075984450811465,
+      "N_D_ha": -14.214054510747257,
+      "T_historical_ha": 29.075984450811468,
+      "N_D_historical_ha": -14.214054510747257,
+      "T_same_source_signed_difference_ha": -3.552713678800501e-15,
+      "N_D_same_source_signed_difference_ha": 0.0,
+      "Delta_T_S_minus_Q_ha": -3.459823187057509e-06,
+      "Delta_N_D_S_minus_Q_ha": 9.270559750973462e-07,
+      "K_hist_ha": 14.861929940064211,
+      "K_new_ha": 14.861929940064208,
+      "K_Q_in_D_ha": 14.86193247283142,
+      "S_response_ha": -2.532767211960163e-06,
+      "J_Q_ha": 4.14040357554768e-10,
+      "delta_L_state_ha": -4.883910697653117e-14,
+      "drift_S_ha": -3.552713678800501e-15,
+      "R_old_ha": -2.5323531929188903e-06,
+      "historical_K_minus_O_plus_L_ha": -2.532353196471604e-06,
+      "historical_O_combination_drift_ha": 3.552713678800501e-15,
+      "saved_local_replay_drift_ha": -2.842170943040401e-14,
+      "recomposed_R_ha": -2.5323531849145784e-06,
+      "signed_closure_error_ha": 8.004311850237948e-15,
+      "original_R_print_halfwidth_ha": 1.91368827774992e-08,
+      "recomposed_R_print_halfwidth_ha": 1.9136882777499202e-08,
+      "status": "PASS_ALGEBRA",
+      "response_scope": "Same T plus workbench FR operator on different original orbitals AND occupations",
+      "causal_attribution_status": "NOT_ESTABLISHED"
+    },
+    "B": {
+      "reference_role": "auxiliary",
+      "T_direct_ha": 29.07598445081151,
+      "N_D_ha": -14.214054510747609,
+      "T_historical_ha": 29.075984450811514,
+      "N_D_historical_ha": -14.21405451074761,
+      "T_same_source_signed_difference_ha": -3.552713678800501e-15,
+      "N_D_same_source_signed_difference_ha": 1.7763568394002505e-15,
+      "Delta_T_S_minus_Q_ha": -3.4598231408722313e-06,
+      "Delta_N_D_S_minus_Q_ha": 9.27055623378692e-07,
+      "K_hist_ha": 14.861929940063904,
+      "K_new_ha": 14.861929940063902,
+      "K_Q_in_D_ha": 14.86193247283142,
+      "S_response_ha": -2.5327675174935393e-06,
+      "J_Q_ha": 4.14040357554768e-10,
+      "delta_L_state_ha": -4.883910697653117e-14,
+      "drift_S_ha": -1.7763568394002505e-15,
+      "R_old_ha": -2.532353505557694e-06,
+      "historical_K_minus_O_plus_L_ha": -2.532353503781337e-06,
+      "historical_O_combination_drift_ha": -1.7763568394002505e-15,
+      "saved_local_replay_drift_ha": -2.842170943040401e-14,
+      "recomposed_R_ha": -2.532353497553382e-06,
+      "signed_closure_error_ha": 8.004311850237948e-15,
+      "original_R_print_halfwidth_ha": 1.91368827774992e-08,
+      "recomposed_R_print_halfwidth_ha": 1.9136882777499202e-08,
+      "status": "PASS_ALGEBRA",
+      "response_scope": "Same T plus workbench FR operator on different original orbitals AND occupations",
+      "causal_attribution_status": "NOT_ESTABLISHED"
+    }
+  },
+  "printing": {
+    "bound_kind": "TOKEN_QUANTIZATION_ONLY_NOT_PHYSICAL_ERROR_OR_STATISTICAL_SIGNIFICANCE",
+    "O_token_halfwidths_ha": {
+      "G40.etot": 5e-15,
+      "G40.demet": 5e-16,
+      "G40.ehart": 5e-15,
+      "G40.etxc": 5e-16,
+      "G40.ewald": 5e-15
+    },
+    "O_halfwidth_ha": 1.6e-14,
+    "halfwidths_ha": {
+      "L_wfc": 1.9136866777499194e-08,
+      "L_saved": 1.9136866777499204e-08,
+      "delta_L_state": 1.3429428949923918e-23,
+      "J_Q": 1.9136882777499192e-08,
+      "NL_Q_ledger": 1.9136882777499192e-08,
+      "J_plus_delta_L": 1.9136882777499202e-08,
+      "recomposed_R": 1.9136882777499202e-08,
+      "J_plus_NL_Q_ledger": 0.0
+    },
+    "shared_coefficients": {
+      "L_wfc": "n_wfc",
+      "L_saved": "n_saved",
+      "delta_L_state": "n_saved - n_wfc",
+      "J_Q": "P2: n_wfc; O: -1",
+      "NL_Q_ledger": "P2: -n_wfc; O: +1",
+      "J_plus_delta_L": "P2: n_saved; O: -1",
+      "J_plus_NL_Q_ledger": "P2: 0; O: 0",
+      "recomposed_R": "P2: n_saved; O: -1; stored replay/grouping drifts remain explicit"
+    },
+    "formula": "dvol * sum(abs(combined node coefficient) * per-token uV) + abs(combined O coefficient) * uO",
+    "binary_orbital_record_precision": "Exact recorded Float64 values; no invented binary quantization/physical-error interval",
+    "unmodelled_errors": [
+      "original SCF/eigensolver",
+      "P2 reconstruction",
+      "workbench versus QE nonlocal implementation",
+      "unknown original H[n_in] residual"
+    ]
+  },
+  "recomposition_formula": "R_old = S_response + J_Q + delta_L_state - drift_S + historical_O_combination_drift - saved_local_replay_drift",
+  "native_E_F_modified": false,
+  "energy_correction_applied": false,
+  "historical_E_F_ha": {
+    "A": {
+      "E": -57.325987985147734,
+      "F": -57.325987985147734
+    },
+    "B": {
+      "E": -57.32598798514773,
+      "F": -57.32598798514773
+    },
+    "G40": {
+      "E": -57.32601093292541,
+      "F": -57.32601093292541
+    }
+  },
+  "independent_native_qe_nonlocal_status": "NOT_MEASURED",
+  "qe_original_input_hamiltonian_residual_status": "NOT_AVAILABLE",
+  "new_scf_status": "NOT_RUN",
+  "new_eigensolve_status": "NOT_RUN",
+  "new_occupation_solve_status": "NOT_RUN",
+  "new_qe_pp_execution_status": "NOT_RUN",
+  "new_xc_evaluation_status": "NOT_RUN",
+  "physical_convergence_status": "NOT_ESTABLISHED",
+  "ieee_warning_origin_status": "NOT_LOCALIZED",
+  "numerical_review_status": "REVIEW_REQUIRED",
+  "source_sha256": {
+    "results/mg-soc-energy-reference/ledger.json": "ccce1790aceac94437e50fd4eef29434aecd764e593b35160fe4553af0fa951b",
+    "results/mg-soc-qe-local-potential/saved-field-receipt.json": "7cbd64f765d157fb28175e9d98b9eee2f8d9b7ed99f4aa98a99dd9d5cd025388",
+    "results/mg-soc-density-hartree/qe-rho.csv.gz": "b3985df7971c2ecd0c8f94afd6a86cabbfa6fcad27894f0666d71c71382a6568",
+    "results/mg-soc-qe-local-potential/P2/local-ionic.pp.gz": "f24d3084238019b5a4dd95147a9bd82ca997aa3114d89624db91cb9a7ff50d8c",
+    "benchmarks/mg-soc-qe-local-potential-v1/plan.json": "ea225f5eed7e691450e45e3801fc81dd6c2e5db174e1daaf9cdcf5055aad5c37"
+  },
+  "saved_density_reconstruction": {
+    "source_support_count": 22119,
+    "native_workspace_count": 64000,
+    "imaginary": {
+      "normalized_l2": 1.3242450726784299e-16,
+      "max_abs": 2.4314786950608487e-16,
+      "status": "PASS"
+    },
+    "coefficient_roundtrip": {
+      "normalized_l2": 4.669683039903666e-17,
+      "max_abs": 3.878959614448864e-18,
+      "status": "PASS"
+    },
+    "support_scope": "Zero workspace evaluates exactly the saved finite series; unsaved physical modes are not asserted zero"
+  },
+  "P2_source": {
+    "source_sha256": "6913c3c52615de60b5813f34dfc84c27298376be449d67babfb0bca8e8b8cd00",
+    "stored_sha256": "f24d3084238019b5a4dd95147a9bd82ca997aa3114d89624db91cb9a7ff50d8c",
+    "unit": "Ha",
+    "native_unit": "Ry",
+    "unit_scale": 0.5,
+    "physical_count": 64000,
+    "parse_status": "PASS",
+    "expected_validation_status": "PASS"
+  }
+}

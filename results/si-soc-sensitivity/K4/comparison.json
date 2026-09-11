@@ -1,0 +1,1976 @@
+{
+  "schema_version": 1,
+  "case": "si-soc-sensitivity-v1/K4",
+  "sensitivity_profile": "K4",
+  "case_sha256": "7874f0007f8df69763b7a7032d580bb05a6b39bdcba412c72cc155a8b2e039ce",
+  "comparison_execution_status": "PASS",
+  "slot_execution_status": {
+    "D-SCF": "PASS",
+    "D-GAMMA": "PASS",
+    "Q-SCF": "PASS",
+    "Q-GAMMA": "PASS"
+  },
+  "input_comparability_status": "PASS",
+  "bindings": {
+    "D": {
+      "scf_run_id": "D-SCF-20260909T003031Z-dc60968c-dftk",
+      "gamma_run_id": "D-GAMMA-20260909T042914Z-ad8659b7-dftk",
+      "density_sha256": "618d64fe2712f9f9b3bbb5ecb2e904386f4749af7922fd7c1a9312d3b107c724",
+      "case_sha256": "7874f0007f8df69763b7a7032d580bb05a6b39bdcba412c72cc155a8b2e039ce"
+    },
+    "Q": {
+      "scf_run_id": "Q-SCF-20260909T042657Z-dc321fc6",
+      "gamma_run_id": "Q-GAMMA-20260909T043006Z-a98da9a9",
+      "density_sha256": "e84b7087f6fa1b2a1eab24d4c7a3a9e08be1c554df0b5c7f8f9024a88c5c156d",
+      "case_sha256": "7874f0007f8df69763b7a7032d580bb05a6b39bdcba412c72cc155a8b2e039ce"
+    }
+  },
+  "B0": {
+    "status": "HISTORICAL_REUSED",
+    "numerical_commit": "61cb1c226dcfa8dbeccc63e8f43e33b2790a07c6",
+    "physical_execution_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+    "semantic_execution_commit": "a03f91f56875a80e5b058fd86377ee0cd9317939",
+    "semantic_delivery_commit": "bc68aaf655d96dfd4335f6fa1a8e5ee76477c2a3",
+    "case": "benchmarks/si-soc-splitting-v1/case.json",
+    "source_files_sha256": {
+      "benchmarks/si-soc-splitting-v1/case.json": "a04e20b22748462fef0f0eccee93cff5a616fa3e11aa6606018d11e40d2f8cac",
+      "benchmarks/si-soc-splitting-v1/plan.json": "9f3fcf577f0cbc7b7e432f92be2add76d8f8b8128877122d951d8e2d13936a89",
+      "benchmarks/si-soc-splitting-v1/replay-contract.json": "89d475b3561ff1ca91d21e320c5d2be4fdf9037a78ef78ca8a8db3f837b590c3",
+      "results/si-soc-splitting/D-spectrum.json": "a286b1087e1ff776301ac826e4aeac3b7bdb1eb8cec2c0e141437e0402db0d41",
+      "results/si-soc-splitting/Q-spectrum.json": "93f5d681d196d25766a69ce94fdfcc049f28f52ee04fe4a98b4c428ab6f5fa0a",
+      "results/si-soc-splitting/comparison.json": "d8bf9a475c805d1ed0d6610770f5c153d0390c5d01fa8119f5dd66ea49e7817e",
+      "results/si-soc-splitting/evidence.json": "901c17499220bb78e92b2d735de0ee51652db2f2a66e5f18a650ec0b7cc6681a",
+      "results/si-soc-splitting/energy.json": "4cb9ddd108dd20a4a2f340903ff9fa723873c17f6bdbedfa0ac3f88220981eaa",
+      "results/si-soc-splitting/status-correction/assessment.json": "d2bb2c7ddac535d99ab3c634d3b9d659004fb18c8d9ede4912849289ab43f81b"
+    },
+    "selection": "Own-final-density D/Q Gamma from bound full fixed-density spectra; no SCF/null substitution",
+    "delta_so_ev": {
+      "D": 0.04745761517555575,
+      "Q": 0.04745761244197689
+    },
+    "native_SCF_energy": {
+      "D": {
+        "internal_ha": -8.368023851835549,
+        "free_ha": -8.368024366448916,
+        "minus_TS_ha": -5.146133665457469e-07,
+        "entropy_dimensionless": 0.0005146133665457469
+      },
+      "Q": {
+        "internal_ha": -8.36804460913415,
+        "free_ha": -8.368045123751521,
+        "minus_TS_ha": -5.146173709646032e-07,
+        "entropy_dimensionless": 0.0005146173709646032
+      }
+    },
+    "additional_energy_source_sha256": {
+      "results/si-soc-splitting/D-SCF.json": "0860661c4383d80a6767981476cf8c3fa0f996d69e8e1174df39d0bed83e9ab2",
+      "results/si-soc-splitting/Q-SCF/qe-result.json": "6e48758483e522514719bf13efcf47be2ccfda317e00d2626563b9e0d645fc47"
+    }
+  },
+  "D_gamma": {
+    "values_ha": [
+      -0.27854538297910963,
+      -0.27854538297910847,
+      0.16045520068942495,
+      0.16045520068942534,
+      0.16221141848886642,
+      0.16221141848886708,
+      0.1622114184888676,
+      0.16221141848886927,
+      0.25402838144439954,
+      0.2540283814444011,
+      0.2553060860490606,
+      0.2553060860490606,
+      0.25530608604906085,
+      0.2553060860490632,
+      0.28478981018430194,
+      0.2847898101843035,
+      0.4448179548498153,
+      0.44481795484981584,
+      0.44481795484981784,
+      0.4448179548498182,
+      0.45427323693068766,
+      0.4542732369306891,
+      0.5741201512661441,
+      0.5741201512661502
+    ],
+    "values_ev": [
+      -7.579606003279254,
+      -7.579606003279222,
+      4.366208441136339,
+      4.36620844113635,
+      4.4139975620090075,
+      4.413997562009026,
+      4.41399756200904,
+      4.413997562009086,
+      6.912464404924949,
+      6.912464404924991,
+      6.947232518430648,
+      6.947232518430648,
+      6.947232518430656,
+      6.947232518430719,
+      7.749525523844653,
+      7.749525523844696,
+      12.104113178565662,
+      12.104113178565676,
+      12.104113178565731,
+      12.10411317856574,
+      12.361404511332982,
+      12.361404511333022,
+      15.622605187704085,
+      15.622605187704252
+    ],
+    "fixed_state_indices_one_based": {
+      "split_off": [
+        3,
+        4
+      ],
+      "upper": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "doublet_mean_ha": 0.16045520068942515,
+    "quartet_mean_ha": 0.1622114184888676,
+    "doublet_width_ev": 1.0573747639789743e-14,
+    "quartet_width_ev": 7.779257192131026e-14,
+    "lower_isolation_ev": 11.945814444415563,
+    "upper_isolation_ev": 2.4984668429158634,
+    "delta_so_ev": 0.0477891208726956,
+    "six_state_width_ev": 0.047789120872746206,
+    "manifold_assignment_status": "PASS",
+    "multiplet_structure_status": "PASS",
+    "resolvable_soc_status": "PASS",
+    "space_group_irrep_assignment": "NOT_COMPUTED",
+    "gamma_structure_status": "PASS",
+    "fixed_window_interpretation": "ISOLATED_FIXED_WINDOW",
+    "kramers_max_ha": 6.106226635438361e-15,
+    "gamma_pairing_status": "PASS",
+    "occupation": {
+      "values": [
+        1.0,
+        1.0,
+        0.9999987984314571,
+        0.9999987984314571,
+        0.9999930423632748,
+        0.9999930423632748,
+        0.9999930423632748,
+        0.9999930423632748,
+        1.913968880198605e-35,
+        1.9139688801956403e-35,
+        5.33377649105331e-36,
+        5.33377649105331e-36,
+        5.3337764910517936e-36,
+        5.3337764910393626e-36,
+        8.364040266961169e-49,
+        8.364040266948095e-49,
+        2.6489632762650035e-118,
+        2.6489632762636483e-118,
+        2.648963276258378e-118,
+        2.6489632762574745e-118,
+        2.0734764396765176e-122,
+        2.0734764396734532e-122,
+        1.8528725012794803e-174,
+        1.8528725012681054e-174
+      ],
+      "fixed_states_3_to_8": [
+        0.9999987984314571,
+        0.9999987984314571,
+        0.9999930423632748,
+        0.9999930423632748,
+        0.9999930423632748,
+        0.9999930423632748
+      ],
+      "maximum_hole_3_to_8": 6.957636725202221e-06,
+      "mu_minus_upper_max_over_tau": 11.875663734597863,
+      "mu_ha": 0.17408708222346714,
+      "temperature_ha": 0.001,
+      "criterion": 0.99999999,
+      "status": "REVIEW_REQUIRED",
+      "scope": "FD at existing parent SCF mu; diagnostic Gamma sum is not constrained to 8"
+    },
+    "precision": {
+      "max_residual_ha": 8.753894986368046e-11,
+      "gram_frobenius": 3.38111558553923e-14,
+      "status": "PASS",
+      "evidence_level": "RUNNER_REPORTED"
+    },
+    "warning_evidence": {
+      "warning_lines": [
+        {
+          "line": 1,
+          "text": "\u250c Info: Threading setup: "
+        },
+        {
+          "line": 2,
+          "text": "\u2502   Threads.nthreads() = 1"
+        },
+        {
+          "line": 3,
+          "text": "\u2502   n_DFTK = 1"
+        },
+        {
+          "line": 4,
+          "text": "\u2502   n_fft = 1"
+        },
+        {
+          "line": 5,
+          "text": "\u2514   n_blas = 1"
+        }
+      ],
+      "full_stderr_ref": "D-GAMMA/worker.stderr.gz",
+      "warning_scope": "All native stderr retained; selected warning/error lines also indexed"
+    }
+  },
+  "Q_gamma": {
+    "values_ha": [
+      -0.2093140694985068,
+      -0.2093140694985098,
+      0.2296865140331131,
+      0.229686514033197,
+      0.2314427315231689,
+      0.2314427316676574,
+      0.2314427318716876,
+      0.2314427320448441,
+      0.3232596959595631,
+      0.3232596959596785,
+      0.3245374004528405,
+      0.3245374004984403,
+      0.3245374005616229,
+      0.3245374006036542,
+      0.3540211379760122,
+      0.3540211379760793,
+      0.5140492515031685,
+      0.5140492515165738,
+      0.514049251517094,
+      0.5140492515216837,
+      0.5235045485083188,
+      0.5235045485082824,
+      0.6433514668886854,
+      0.643351466890835
+    ],
+    "values_ev": [
+      -5.69572599184198,
+      -5.695725991842061,
+      6.2500884488479755,
+      6.250088448850259,
+      6.297877561301831,
+      6.297877565233564,
+      6.297877570785508,
+      6.2978775754973375,
+      8.796344444514055,
+      8.796344444517196,
+      8.831112554988852,
+      8.831112556229685,
+      8.831112557948972,
+      8.831112559092702,
+      9.633405924707,
+      9.633405924708827,
+      13.987992732110147,
+      13.987992732474924,
+      13.98799273248908,
+      13.987992732613971,
+      14.24528447098776,
+      14.24528447098677,
+      17.506485257426473,
+      17.506485257484968
+    ],
+    "fixed_state_indices_one_based": {
+      "split_off": [
+        3,
+        4
+      ],
+      "upper": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "doublet_mean_ha": 0.22968651403315504,
+    "quartet_mean_ha": 0.2314427317768395,
+    "doublet_width_ev": 2.283174222506028e-12,
+    "quartet_width_ev": 1.4195505444754954e-08,
+    "lower_isolation_ev": 11.945814440690038,
+    "upper_isolation_ev": 2.498466869016718,
+    "delta_so_ev": 0.047789119355442874,
+    "six_state_width_ev": 0.047789126649361274,
+    "manifold_assignment_status": "PASS",
+    "multiplet_structure_status": "PASS",
+    "resolvable_soc_status": "PASS",
+    "space_group_irrep_assignment": "NOT_COMPUTED",
+    "gamma_structure_status": "PASS",
+    "fixed_window_interpretation": "ISOLATED_FIXED_WINDOW",
+    "kramers_max_ha": 1.7315651690275047e-10,
+    "gamma_pairing_status": "PASS",
+    "occupation": {
+      "values": [
+        1.0,
+        1.0,
+        0.9999987986013082,
+        0.9999987986013082,
+        0.9999930433489379,
+        0.9999930433479328,
+        0.9999930433465133,
+        0.9999930433453087,
+        1.9142372307693768e-35,
+        1.9142372305484618e-35,
+        5.3345249145099114e-36,
+        5.334524671256698e-36,
+        5.334524334207738e-36,
+        5.334524109990583e-36,
+        8.365101898027927e-49,
+        8.36510189746648e-49,
+        2.6493820000459328e-118,
+        2.6493819645302523e-118,
+        2.6493819631518113e-118,
+        2.6493819509920717e-118,
+        2.0737732459853465e-122,
+        2.0737732460609078e-122,
+        1.8531302336343456e-174,
+        1.8531302296507686e-174
+      ],
+      "fixed_states_3_to_8": [
+        0.9999987986013082,
+        0.9999987986013082,
+        0.9999930433489379,
+        0.9999930433479328,
+        0.9999930433465133,
+        0.9999930433453087
+      ],
+      "maximum_hole_3_to_8": 6.9566546913035765e-06,
+      "mu_minus_upper_max_over_tau": 11.875804890298186,
+      "mu_ha": 0.2433185369351423,
+      "temperature_ha": 0.001,
+      "criterion": 0.99999999,
+      "status": "REVIEW_REQUIRED",
+      "scope": "FD at existing parent SCF mu; diagnostic Gamma sum is not constrained to 8"
+    },
+    "precision": {
+      "status": "PASS",
+      "evidence_level": "REPORTED_THRESHOLD_AVAILABLE; explicit residuals NOT_AVAILABLE",
+      "native_precision": {
+        "diago_thr_init_ry": 1e-13,
+        "ethr_history_ry": [
+          1e-13
+        ],
+        "explicit_wavefunction_residuals": "NOT_AVAILABLE",
+        "stdout_spectrum": {
+          "status": "PASS",
+          "matched_eigenvalues": 24,
+          "stdout_to_xml_kpoint_indices": [
+            0
+          ],
+          "max_abs_xml_minus_stdout_ev": 4.444451946934016e-05,
+          "maximum_printed_rounding_bound_ev": 5.00027211386246e-05,
+          "occupation_fields_checked": 0,
+          "native_ev_per_ha": 27.211386245988034,
+          "scope": "Native stdout rounding crosscheck, not an eigenvector residual estimate"
+        }
+      }
+    },
+    "warning_evidence": {
+      "process_exit_code": 0,
+      "stderr_lines": [
+        "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+      ],
+      "warning_lines": [
+        {
+          "stream": "stderr",
+          "line": 1,
+          "text": "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+        }
+      ],
+      "ieee_flags": {
+        "IEEE_INVALID_FLAG": {
+          "reported": true,
+          "stdout": false,
+          "stderr": true
+        },
+        "IEEE_DIVIDE_BY_ZERO": {
+          "reported": true,
+          "stdout": false,
+          "stderr": true
+        },
+        "IEEE_OVERFLOW_FLAG": {
+          "reported": true,
+          "stdout": false,
+          "stderr": true
+        },
+        "IEEE_UNDERFLOW_FLAG": {
+          "reported": false,
+          "stdout": false,
+          "stderr": false
+        },
+        "IEEE_INEXACT_FLAG": {
+          "reported": false,
+          "stdout": false,
+          "stderr": false
+        }
+      },
+      "ieee_warning_status": "REPORTED",
+      "ieee_localization_status": "NOT_LOCALIZED",
+      "eigenvalues_not_converged": false,
+      "unconverged_eigenvalue_lines": [],
+      "fatal_native_lines": [],
+      "c_bands_lines": [],
+      "note": "Reported flags are retained independently of exit code and spectral stability. Unreported flags are not proven absent."
+    }
+  },
+  "SCF": {
+    "D": {
+      "energy": {
+        "internal_ha": -8.455174692085357,
+        "free_ha": -8.455174704796129,
+        "minus_TS_ha": -1.2710770858374538e-08,
+        "entropy_dimensionless": 1.2710770858374537e-05
+      },
+      "mu_ha": 0.17408708222346714,
+      "temperature_ha": 0.001,
+      "electron_sum": 8.000000000000089,
+      "endpoint_fd_max_abs": 2.407412430484045e-35,
+      "top_two_occupation_max": 1.8528729537448039e-174,
+      "endpoint_entropy_dimensionless": 1.2710770858374535e-05,
+      "run_id": "D-SCF-20260909T003031Z-dc60968c-dftk",
+      "density_source_sha256": "618d64fe2712f9f9b3bbb5ecb2e904386f4749af7922fd7c1a9312d3b107c724",
+      "warning_evidence": {
+        "warning_lines": [
+          {
+            "line": 1,
+            "text": "\u250c Info: Threading setup: "
+          },
+          {
+            "line": 2,
+            "text": "\u2502   Threads.nthreads() = 1"
+          },
+          {
+            "line": 3,
+            "text": "\u2502   n_DFTK = 1"
+          },
+          {
+            "line": 4,
+            "text": "\u2502   n_fft = 1"
+          },
+          {
+            "line": 5,
+            "text": "\u2514   n_blas = 1"
+          }
+        ],
+        "full_stderr_ref": "D-SCF/worker.stderr.gz",
+        "warning_scope": "All native stderr retained; selected warning/error lines also indexed"
+      },
+      "scope": "Uncorrected native SCF E/F; endpoints retained in source summary; no Gamma occupation constraint"
+    },
+    "Q": {
+      "energy": {
+        "internal_ha": -8.455195456677012,
+        "free_ha": -8.45519546938801,
+        "minus_TS_ha": -1.271099725101296e-08,
+        "entropy_dimensionless": 1.2710997251012958e-05,
+        "native_components_ha": {
+          "etot": -8.45519546938801,
+          "eband": 0.361147599007063,
+          "ehart": 0.5592592468904245,
+          "vtxc": -3.241199252969551,
+          "etxc": -3.097817732234343,
+          "ewald": -8.400464788041077,
+          "demet": -1.271099725101296e-08
+        },
+        "native_stdout": {
+          "free": {
+            "token": "-16.91039094",
+            "value": -16.91039094,
+            "unit": "Ry",
+            "half_last_digit": 5e-09,
+            "displayed_zero_is_exact_zero_claim": false,
+            "xml_minus_stdout_ha": 6.119904583101743e-10,
+            "consistency_bound_ha": 2.6e-09
+          },
+          "minus_TS": {
+            "token": "-0.00000003",
+            "value": -3e-08,
+            "unit": "Ry",
+            "half_last_digit": 5e-09,
+            "displayed_zero_is_exact_zero_claim": false,
+            "xml_minus_stdout_ha": 2.2890027489870395e-09,
+            "consistency_bound_ha": 2.6e-09
+          },
+          "internal": {
+            "token": "-16.91039091",
+            "value": -16.91039091,
+            "unit": "Ry",
+            "half_last_digit": 5e-09,
+            "displayed_zero_is_exact_zero_claim": false,
+            "xml_minus_stdout_ha": -1.677012306799952e-09,
+            "consistency_bound_ha": 2.6e-09
+          },
+          "fermi": {
+            "token": "6.6210",
+            "value": 6.621,
+            "unit": "eV",
+            "half_last_digit": 5e-05,
+            "displayed_zero_is_exact_zero_claim": false,
+            "xml_minus_stdout_ha": 1.2748101309023596e-06,
+            "consistency_bound_ha": 1.8375661087827472e-06
+          }
+        },
+        "convention": "Native F=etot; E=F-demet; no constant correction"
+      },
+      "mu_ha": 0.2433185369351423,
+      "temperature_ha": 0.001,
+      "electron_sum": 8.000000000072973,
+      "endpoint_fd_max_abs": 2.0964065444543933e-19,
+      "top_two_occupation_max": 0.0,
+      "endpoint_entropy_dimensionless": 1.2710997251021625e-05,
+      "run_id": "Q-SCF-20260909T042657Z-dc321fc6",
+      "density_source_sha256": "e84b7087f6fa1b2a1eab24d4c7a3a9e08be1c554df0b5c7f8f9024a88c5c156d",
+      "warning_evidence": {
+        "process_exit_code": 0,
+        "stderr_lines": [
+          "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+        ],
+        "warning_lines": [
+          {
+            "stream": "stdout",
+            "line": 303,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 304,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 305,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 306,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 307,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 308,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 309,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 310,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 311,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 312,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 313,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 314,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 315,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 316,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 317,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 318,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 319,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 320,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 321,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 322,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 323,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 324,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 325,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 326,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 327,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 328,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 329,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 330,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 331,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 332,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 333,
+            "text": "     c_bands:  5 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 334,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 335,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 336,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 337,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 338,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 339,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 340,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 341,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 342,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 343,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 344,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 345,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 346,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 347,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 348,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 409,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 410,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 411,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 412,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 428,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 429,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 430,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 431,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 432,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 433,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 434,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 450,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 451,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 452,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 453,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 454,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 455,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 456,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 457,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 458,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 474,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 475,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 476,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 477,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 478,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 479,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 495,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 496,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 497,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 498,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 499,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 500,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 501,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 517,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 518,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 519,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stderr",
+            "line": 1,
+            "text": "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+          }
+        ],
+        "ieee_flags": {
+          "IEEE_INVALID_FLAG": {
+            "reported": true,
+            "stdout": false,
+            "stderr": true
+          },
+          "IEEE_DIVIDE_BY_ZERO": {
+            "reported": true,
+            "stdout": false,
+            "stderr": true
+          },
+          "IEEE_OVERFLOW_FLAG": {
+            "reported": true,
+            "stdout": false,
+            "stderr": true
+          },
+          "IEEE_UNDERFLOW_FLAG": {
+            "reported": false,
+            "stdout": false,
+            "stderr": false
+          },
+          "IEEE_INEXACT_FLAG": {
+            "reported": false,
+            "stdout": false,
+            "stderr": false
+          }
+        },
+        "ieee_warning_status": "REPORTED",
+        "ieee_localization_status": "NOT_LOCALIZED",
+        "eigenvalues_not_converged": true,
+        "unconverged_eigenvalue_lines": [
+          {
+            "stream": "stdout",
+            "line": 303,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 304,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 305,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 306,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 307,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 308,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 309,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 310,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 311,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 312,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 313,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 314,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 315,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 316,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 317,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 318,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 319,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 320,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 321,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 322,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 323,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 324,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 325,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 326,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 327,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 328,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 329,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 330,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 331,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 332,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 333,
+            "text": "     c_bands:  5 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 334,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 335,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 336,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 337,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 338,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 339,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 340,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 341,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 342,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 343,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 344,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 345,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 346,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 347,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 348,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 409,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 410,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 411,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 412,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 428,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 429,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 430,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 431,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 432,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 433,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 434,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 450,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 451,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 452,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 453,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 454,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 455,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 456,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 457,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 458,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 474,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 475,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 476,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 477,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 478,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 479,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 495,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 496,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 497,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 498,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 499,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 500,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 501,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 517,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 518,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 519,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          }
+        ],
+        "fatal_native_lines": [],
+        "c_bands_lines": [
+          {
+            "stream": "stdout",
+            "line": 303,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 304,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 305,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 306,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 307,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 308,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 309,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 310,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 311,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 312,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 313,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 314,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 315,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 316,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 317,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 318,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 319,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 320,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 321,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 322,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 323,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 324,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 325,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 326,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 327,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 328,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 329,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 330,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 331,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 332,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 333,
+            "text": "     c_bands:  5 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 334,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 335,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 336,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 337,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 338,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 339,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 340,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 341,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 342,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 343,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 344,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 345,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 346,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 347,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 348,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 409,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 410,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 411,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 412,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 428,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 429,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 430,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 431,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 432,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 433,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 434,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 450,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 451,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 452,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 453,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 454,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 455,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 456,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 457,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 458,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 474,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 475,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 476,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 477,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 478,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 479,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 495,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 496,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 497,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 498,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 499,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 500,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 501,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 517,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 518,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 519,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          }
+        ],
+        "note": "Reported flags are retained independently of exit code and spectral stability. Unreported flags are not proven absent."
+      },
+      "scope": "Uncorrected native SCF E/F; endpoints retained in source summary; no Gamma occupation constraint"
+    }
+  },
+  "delta_so_D_minus_Q_ev": 1.517252726235263e-09,
+  "B0_delta_so_D_minus_Q_ev": 2.7335788632676383e-09,
+  "response_ev": {
+    "D": 0.0003315056971398486,
+    "Q": 0.00033150691346598565
+  },
+  "response_gap_ev": -1.2163261370323752e-09,
+  "response_gap_from_code_gaps_ev": -1.2163261370323752e-09,
+  "response_gap_closure_ev": 0.0,
+  "gamma_structure_status": {
+    "D": "PASS",
+    "Q": "PASS"
+  },
+  "gamma_pairing_status": {
+    "D": "PASS",
+    "Q": "PASS"
+  },
+  "gamma_occupation_diagnostic_status": {
+    "D": "REVIEW_REQUIRED",
+    "Q": "REVIEW_REQUIRED"
+  },
+  "fixed_window_splitting_agreement_status": "PASS",
+  "parameter_response_agreement_status": "PASS",
+  "limited_parameter_stability_status": {
+    "D": "CHANGE_EXCEEDS_SCREENING_WINDOW",
+    "Q": "CHANGE_EXCEEDS_SCREENING_WINDOW"
+  },
+  "spectra": {
+    "D_raw_ha": [
+      -0.27854538297910963,
+      -0.27854538297910847,
+      0.16045520068942495,
+      0.16045520068942534,
+      0.16221141848886642,
+      0.16221141848886708,
+      0.1622114184888676,
+      0.16221141848886927,
+      0.25402838144439954,
+      0.2540283814444011,
+      0.2553060860490606,
+      0.2553060860490606,
+      0.25530608604906085,
+      0.2553060860490632,
+      0.28478981018430194,
+      0.2847898101843035,
+      0.4448179548498153,
+      0.44481795484981584,
+      0.44481795484981784,
+      0.4448179548498182,
+      0.45427323693068766,
+      0.4542732369306891,
+      0.5741201512661441,
+      0.5741201512661502
+    ],
+    "Q_raw_ha": [
+      -0.2093140694985068,
+      -0.2093140694985098,
+      0.2296865140331131,
+      0.229686514033197,
+      0.2314427315231689,
+      0.2314427316676574,
+      0.2314427318716876,
+      0.2314427320448441,
+      0.3232596959595631,
+      0.3232596959596785,
+      0.3245374004528405,
+      0.3245374004984403,
+      0.3245374005616229,
+      0.3245374006036542,
+      0.3540211379760122,
+      0.3540211379760793,
+      0.5140492515031685,
+      0.5140492515165738,
+      0.514049251517094,
+      0.5140492515216837,
+      0.5235045485083188,
+      0.5235045485082824,
+      0.6433514668886854,
+      0.643351466890835
+    ],
+    "raw_D_minus_Q_ha": [
+      -0.06923131348060282,
+      -0.06923131348059866,
+      -0.06923131334368815,
+      -0.06923131334377167,
+      -0.0692313130343025,
+      -0.0692313131787903,
+      -0.06923131338281999,
+      -0.06923131355597484,
+      -0.06923131451516357,
+      -0.06923131451527742,
+      -0.06923131440377994,
+      -0.06923131444937974,
+      -0.06923131451256204,
+      -0.06923131455459103,
+      -0.06923132779171026,
+      -0.06923132779177582,
+      -0.0692312966533532,
+      -0.06923129666675792,
+      -0.06923129666727618,
+      -0.0692312966718655,
+      -0.06923131157763118,
+      -0.06923131157759332,
+      -0.06923131562254126,
+      -0.06923131562468476
+    ],
+    "D_global_reference_ha": 0.1622114184888676,
+    "Q_global_reference_ha": 0.2314427317768395,
+    "global_referenced_D_minus_Q_ha": [
+      -1.9263091122212472e-10,
+      -1.9262674788578238e-10,
+      -5.5716264935057325e-11,
+      -5.579978146208475e-11,
+      2.5366939104820574e-10,
+      1.0918158044326276e-10,
+      -9.484810159499091e-11,
+      -2.6800295316320444e-10,
+      -1.2271916816075645e-09,
+      -1.2273055349787398e-09,
+      -1.1158080570616846e-09,
+      -1.161407858774055e-09,
+      -1.2245901515051116e-09,
+      -1.2666191429033802e-09,
+      -1.4503738376969721e-08,
+      -1.4503803935639326e-08,
+      1.6634618682509483e-08,
+      1.662121396073246e-08,
+      1.6620695708624567e-08,
+      1.6616106379707674e-08,
+      1.7103407023988382e-09,
+      1.7103785610039779e-09,
+      -2.3345693711540605e-09,
+      -2.3367128787477043e-09
+    ]
+  },
+  "native_SCF_energy_D_minus_Q": {
+    "internal_ha": 2.0764591655009212e-05,
+    "free_ha": 2.076459188060653e-05,
+    "minus_TS_ha": 2.2639263842114408e-13,
+    "entropy_dimensionless": -2.2639263842105144e-10
+  },
+  "native_SCF_energy_response_from_B0": {
+    "D": {
+      "internal_ha": -0.08715084024980868,
+      "free_ha": -0.08715033834721275,
+      "minus_TS_ha": 5.019025956873724e-07,
+      "entropy_dimensionless": -0.0005019025956873724
+    },
+    "Q": {
+      "internal_ha": -0.08715084754286195,
+      "free_ha": -0.08715034563648771,
+      "minus_TS_ha": 5.019063737135902e-07,
+      "entropy_dimensionless": -0.0005019063737135902
+    }
+  },
+  "energy_response_scope": "Each program native SCF x minus B0; E, F and -TS remain separate, especially for T05; no correction or zero-temperature extrapolation",
+  "parameter_scope": "One independent explicit64point SCF quadrature change, no symmetry reduction",
+  "stability_scope": "0.1meV finite-step observation only, not implementation acceptance or a convergence error bound",
+  "numerical_review_status": "REVIEW_REQUIRED",
+  "physical_manifold_interpretation": "REVIEW_REQUIRED",
+  "physical_convergence": "NOT_ESTABLISHED",
+  "variant_null_control_status": "NOT_RUN",
+  "off_gamma_TR": "NOT_ASSESSED",
+  "continuous_band_tracking": "NOT_ASSESSED",
+  "native_QE_NL_independent": "NOT_MEASURED"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "repository": "PseudoDojo/ONCVPSP-PBE-FR-PDv0.4",
+  "commit": "7aa01a3fcf5ad226caf25bd387a9be9612be9f27",
+  "path": "Si/Si_r.upf",
+  "git_blob_sha1": "0bba6c59d28251b59bf831079a340f7147308611",
+  "bytes": 291215,
+  "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+  "local_path": ".work/pseudos/si-soc-splitting-v1/Si_r.upf",
+  "source_url": "https://raw.githubusercontent.com/PseudoDojo/ONCVPSP-PBE-FR-PDv0.4/7aa01a3fcf5ad226caf25bd387a9be9612be9f27/Si/Si_r.upf",
+  "expected_header": {
+    "element": "Si",
+    "pseudo_type": "NC",
+    "relativistic": "full",
+    "has_so": true,
+    "functional": "PBE",
+    "z_valence": 4,
+    "core_correction": true,
+    "l_max": 2,
+    "number_of_proj": 10,
+    "mesh_size": 1528
+  },
+  "xc_identifiers": [
+    "gga_x_pbe",
+    "gga_c_pbe"
+  ],
+  "companions": [
+    {
+      "name": "Si_r.in",
+      "url": "https://raw.githubusercontent.com/PseudoDojo/ONCVPSP-PBE-FR-PDv0.4/7aa01a3fcf5ad226caf25bd387a9be9612be9f27/Si/Si_r.in",
+      "bytes": 350,
+      "git_blob_sha1": "a629c940a004f472a03cc9fd646b896024b3e81c",
+      "sha256": "d8903d86c46341d25a3e995f32712ca83ef231440fb445aace0b57e6b9116e28",
+      "status": "ACQUIRED"
+    },
+    {
+      "name": "Si_r.djrepo",
+      "url": "https://raw.githubusercontent.com/PseudoDojo/ONCVPSP-PBE-FR-PDv0.4/7aa01a3fcf5ad226caf25bd387a9be9612be9f27/Si/Si_r.djrepo",
+      "bytes": 726,
+      "git_blob_sha1": "042a85265daf8396938db2703ae57f97b6ca0228",
+      "sha256": "968d3322ed8fd215789072047db5629e3cb82b69ed406b52adda2027368d001c",
+      "status": "ACQUIRED"
+    }
+  ],
+  "acquired_utc": "2026-09-08T13:46:36.621530+00:00",
+  "redistributed": false,
+  "license_status": "Not established; original UPF and radial arrays local only",
+  "companion_limit": "Si_r.djrepo concerns psp8; its hints do not establish this UPF/crystal/SOC convergence"
+}

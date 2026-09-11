@@ -1,0 +1,467 @@
+{
+  "runtime_dispatch_status": "PASS",
+  "parent_result_sha256": "c31e0ca50b5eb9314cb0bfd448176ca1cfb987277485b9ecd07af94d9353634c",
+  "base_commit": "c764311a5422b5c3cab5a7b78a02d420910c4e56",
+  "core_gate_sha256": "29621b5bc01245edd6bc1de0a5871636b9851240c271213676f6db3227d06efd",
+  "action": "OPT-B0-GAMMA",
+  "resume_authorization_sha256": "119447d08eb037475696e26829799a56d8bc6865fb7ef438e836a55d9bf7b59b",
+  "parent_checkpoint_sha256": "aa34831d2bdfc5c973346ac237d0c77fa799f9074eb326047c4f37c9f53eb289",
+  "runtime_closed": true,
+  "finished_utc": "2026-09-10T14:12:33.302",
+  "exit_code": 0,
+  "environment": {
+    "project_sha256": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "julia_version": "1.12.7",
+    "packages": {
+      "dftk": {
+        "worktree_status": "clean",
+        "expected_uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+        "expected_path": "<workbench>/.work/DFTK.jl/src/DFTK.jl",
+        "checkout": "<workbench>/.work/DFTK.jl",
+        "expected_version": "0.8.0",
+        "version": "0.8.0",
+        "path": "<workbench>/.work/DFTK.jl/src/DFTK.jl"
+      },
+      "pseudopotentialio": {
+        "worktree_status": "clean",
+        "expected_uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+        "expected_path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl",
+        "checkout": "<workbench>/.work/PseudoPotentialIO.jl",
+        "expected_version": "0.3.3",
+        "version": "0.3.3",
+        "path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl"
+      }
+    },
+    "active_project": "<workbench>/environment/workbench/Project.toml",
+    "status": "PASS",
+    "source_lock_sha256": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "active_manifest": "<workbench>/environment/workbench/Manifest.toml",
+    "manifest_sha256": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "reasons": []
+  },
+  "spectrum": {
+    "temperature_ha": 0.001,
+    "code": "DFTK",
+    "backend": "soc-core",
+    "run_id": "OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8-dftk",
+    "density_source_sha256": "1b881be85c18228e078a0bb10df15f94ec21642fa405e2ef9562b9ebf5d667fd",
+    "process_exit_code": 0,
+    "pseudo_sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+    "n_bands": 24,
+    "occupations_use": "DIAGNOSTIC_ONLY_NOT_DENSITY_FEEDBACK",
+    "case": "si-soc-splitting-v1",
+    "occupation_capacity": 1,
+    "execution_status": "PASS",
+    "kind": "spectrum",
+    "source_scf_run_id": "OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be-dftk",
+    "physical_operator": "full_soc",
+    "fermi_energy_ha": 0.18176855561634891,
+    "n_electrons": 8,
+    "schema_version": 1,
+    "kpoints": [
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "gram_frobenius": 3.368372384760556e-14,
+        "residuals_ha": [
+          3.9134988311792505e-11,
+          8.766857376471276e-11,
+          3.7983356346467126e-11,
+          5.897450888376174e-11,
+          3.6354916982901444e-11,
+          6.310907816865146e-11,
+          2.5706800410671046e-11,
+          7.245326304749756e-11,
+          9.815276728756093e-11,
+          5.4237204874112604e-11,
+          3.564923597097672e-11,
+          4.0507212857776806e-11,
+          2.2992583650970522e-11,
+          5.587899564610539e-11,
+          6.720325809076507e-11,
+          4.801884961010334e-11,
+          5.716691262095705e-11,
+          4.6826840199740317e-11,
+          6.036516491836495e-11,
+          2.5311029587116075e-11,
+          4.9531199534591065e-11,
+          3.965585307614529e-11,
+          4.636509197788678e-11,
+          3.489228750631622e-11
+        ],
+        "weight_spatial": 1.0,
+        "eigenvalues_ha": [
+          -0.2708843565368105,
+          -0.27088435653680837,
+          0.1699097362965618,
+          0.1699097362965627,
+          0.17165377148632138,
+          0.17165377148632188,
+          0.17165377148635375,
+          0.1716537714863549,
+          0.2596647000586891,
+          0.2596647000586905,
+          0.2609235739892984,
+          0.2609235739893001,
+          0.2609235739893355,
+          0.2609235739893383,
+          0.29482278448763277,
+          0.294822784487633,
+          0.4497232266250839,
+          0.4497232266250884,
+          0.44972322662508935,
+          0.4497232266250942,
+          0.4637008693225132,
+          0.4637008693225152,
+          0.5784929485553552,
+          0.5784929485553613
+        ],
+        "occupations": [
+          1.0,
+          1.0,
+          0.9999929241741662,
+          0.9999929241741662,
+          0.9999595249412102,
+          0.9999595249412102,
+          0.9999595249412089,
+          0.9999595249412089,
+          1.4795658785702793e-34,
+          1.4795658785681347e-34,
+          4.201576793433145e-35,
+          4.20157679342592e-35,
+          4.201576793277128e-35,
+          4.2015767932654847e-35,
+          7.964751775092349e-50,
+          7.964751775090538e-50,
+          4.253681620392777e-117,
+          4.253681620373675e-117,
+          4.253681620369565e-117,
+          4.253681620349012e-117,
+          3.6170281372348716e-123,
+          3.6170281372276754e-123,
+          5.067401436156127e-173,
+          5.0674014361253055e-173
+        ]
+      }
+    ]
+  },
+  "backend": "soc-core",
+  "time_reversal": {
+    "time_reversal": [
+      {
+        "ng": 2085,
+        "source": 1,
+        "target": 1,
+        "bijection": true,
+        "reversal_map_sha256": "d76efeff05f553da5a4e62b6392e79dd186e2d5198290549d74288a223c5d47f",
+        "normalized_error": 3.077170672702937e-17,
+        "absolute_error": 5.877640368387096e-16
+      }
+    ],
+    "status": "PASS",
+    "scope": "RUNNER_REPORTED Gamma physical-q operator check; off-Gamma TR NOT_RUN",
+    "seed": 81032
+  },
+  "runtime_after_close": {
+    "counters": {
+      "fr_columns": 806,
+      "component_columns": 806,
+      "full_columns": 806,
+      "full_mul_calls": 34,
+      "fr_mul_calls": 34,
+      "density_calls": 0,
+      "component_mul_calls": 34
+    },
+    "owned_context_present": false,
+    "backend": "soc-core",
+    "density_sha256": null,
+    "closed": true,
+    "boundary_counts": {
+      "after_serialization": 1,
+      "hamiltonian_replacement": 1,
+      "progress_callback_entry": 1,
+      "final": 1,
+      "close": 1,
+      "eigensolve_return": 1,
+      "eigensolve_entry": 1,
+      "before_serialization": 1,
+      "driver_entry": 1,
+      "session_close": 1,
+      "conversion": 1,
+      "progress_callback_return": 1
+    },
+    "ownership": "One consumed loader-issued context; original P/D only; private boundary certificates; serial scoped workspace",
+    "workspace_released": true,
+    "workspace_capacity": {
+      "max_projectors": 72,
+      "max_ng": 2085,
+      "max_rhs": 30,
+      "n_real": 110592,
+      "n_components": 2
+    },
+    "owned_source_entries": 0,
+    "generation": 2,
+    "max_rhs": 30
+  },
+  "static_execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+  "run_id": "OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8-dftk",
+  "started_utc": "2026-09-10T14:12:14.863",
+  "attempt": 1,
+  "executed_source_sha256": {
+    "prototypes/fr_integration/runtime_checks.jl": "c0fbba8a06de748ba537469863bcc5676360b41c41dddcf2d8838f49e97a3bb2",
+    "scripts/run_si_dftk.py": "c477aae0cc6909b616126cd5c512f502d0c2d6296197d470fbd5d9a23e568dbb",
+    "prototypes/fr_integration/common_data.jl": "c8849a053486cbaa7c7c64d59ad760187a152eb846e86e2f769a39eea3e4ff63",
+    "prototypes/soc_scf/solver.jl": "83b87e2d4762973bbd2a18b41bcc821a35dfb866665863c683a1925b0bd4bbfc",
+    "scripts/upf_runtime.jl": "75e30175b9fe89d9bff39a429a1d474169c1d4a403b5ac55994dd972b5480934",
+    "prototypes/spinor/density.jl": "3e05110f41e01bc96debadd91b3dbaefc3d50e00c0d57595711414fef1a558ef",
+    "src/soc_kernels/nonlocal.jl": "8ac5ecd587e34bfd3d8dc7010cf4726ba4a2c10e41d0c7463bd128c934d0bd91",
+    "prototypes/fr_integration/variational.jl": "9642bcb94ac5e75c2e72a419ffbd9fcee38c3a14a54eac45d0284fbd0d440c21",
+    "benchmarks/soc-core-memory-v1/run.py": "175fa8c5ae8d0a9296c066800b8f8472452aa82b5419c804e5b2c746b1f634ff",
+    "scripts/upf_validation.jl": "c703419f5aea896b55544fa01a542adb6199e566d60db9c5c5aa3270a306e08e",
+    "prototypes/relativistic/radial.jl": "2384619bc8fcd437fd455e7f13442cfe1e2f88dbd2eeda94cf02a134f9d3c292",
+    "benchmarks/soc-core-memory-v1/plan.json": "09887791d1b76b0d59ca4735264a05f8f8f924edb5073a94fae1b0f5f5d7c52c",
+    "prototypes/soc_scf/scf.jl": "ff8e2ad164f698185cb64a93e10208288f57f71cb0607637d6a6ffc904e6238d",
+    "prototypes/relativistic/angular.jl": "1428a4a6a50f9f68cfa0f099827d0a606cceab1d7d72be4247062bf41fe2eb63",
+    "benchmarks/soc-core-memory-v1/contract.json": "aa1956cba470f6ac1a7f88bfffdfefeebdad1a87831e1ce7e04f3e70dd904ec7",
+    "prototypes/soc_scf/SOCSCF.jl": "fb3bc260a9b1bb33b7a2f82148858264d60f38768c98980644bbab57c264dafe",
+    "benchmarks/soc-core-memory-v1/resume/README.md": "b3a9257fb90779352759828d83097c34a7797fab262f894ba790e3689fe2df89",
+    "prototypes/fr_integration/FRIntegration.jl": "fab30ea416191bdb270ad5f91ee2d939aa28a235ba0fa172f2097c8b05049f12",
+    "benchmarks/si-soc-splitting-v1/source.json": "e88ec3d6f0f1407d4d6b7b75c0bcc8f04ed1536c9c1ea3a67e4e23232e5a55e3",
+    "benchmarks/si-soc-splitting-v1/qe-scf.in": "6ac28bdf476113dcba353b4c354817db69034a2c64cce4eb50f5a524adbed707",
+    "scripts/run_soc_scf.jl": "6bd6a74ec7c4bc1e835306070c2b15b9e94af39193fd9ca8000397aabe219d52",
+    "prototypes/crystal_soc/SpinTrace.jl": "5753483f2c7efb69f7d5ff08f3e69a3ced4ba7c4df49d3c98503e7ad6474429a",
+    "scripts/run_si_soc.jl": "110fd055dc2063dae3f9910e1d0044b52b9f33c6d5a8d6d3ce6729c5cd788bc2",
+    "prototypes/fr_integration/energy.jl": "3f6fd361c5d2139fc7bd680c13e519b0be27e5da5af6d1258b00138135219c43",
+    "prototypes/relativistic/channels.jl": "15950a9168504dac483bcdc9c588e9db0555ea547f77b34163a491d07ba0bb10",
+    "benchmarks/si-soc-splitting-v1/case.json": "a04e20b22748462fef0f0eccee93cff5a616fa3e11aa6606018d11e40d2f8cac",
+    "prototypes/soc_scf/phase6c.toml": "fed341560f53663f580c37a8f691298aa24784957b49270c5e3f71289736c58c",
+    "prototypes/spinor/scf.jl": "5321aa6af014bd2fea85a8858fdfe54ed4d66b564e7c979642c4943c1b6d79a9",
+    "benchmarks/soc-core-memory-v1/README.md": "890b3da0d56784a5e802eff0e0b0da585a3e855c745fede0478d3ba2a0cffe0f",
+    "benchmarks/si-soc-splitting-v1/plan.json": "9f3fcf577f0cbc7b7e432f92be2add76d8f8b8128877122d951d8e2d13936a89",
+    "benchmarks/soc-core-memory-v1/sources.json": "1713dd5e1462a857a91a88031b59f2c6e942851d4d2ba4ddb3dbce9b2c0e3066",
+    "prototypes/spinor/checks.jl": "f77b9f0e84aab6c8a443dc2f03c5d510f212ce5e1e4db25da37da6c5f6c24361",
+    "src/soc_kernels/density.jl": "eb27a9aa4d1cf604ae2b597b74307ee5aee2cd72bf52caf3e38d2f2345202137",
+    "src/soc_kernels/components.jl": "628aeb2586d5aa99d4366949b366a21fa2061bef9a08ddb7589f489b3691d0b3",
+    "prototypes/fr_integration/hamiltonian.jl": "028e6740b79197731a9d99852edbff28fe498c428654632b110a5134cd8f2deb",
+    "prototypes/relativistic/RelativisticProjectors.jl": "c24c2382e5bb112bc428fd59ce1995e6470caa25e657030f67aefa34d45b5de5",
+    "benchmarks/si-soc-splitting-v1/qe-spectrum.in": "5c0fc060f912239ee162c6db3c6780c0d6a35e2833e6f1cd5860a965d81ebb96",
+    "prototypes/fr_integration/runtime.jl": "1db41377c994206af38c31bf5c72f0a8bf47dc6225ce8098238361c1c631d43c",
+    "src/SOCKernels.jl": "0b6ee4204749f7c9f363ab55cae681ac157cd4c82b23e77f037065ee39732db7",
+    "benchmarks/soc-core-memory-v1/resume/control.py": "6f3f927f886413d5256ce93110d2e0b5ab2d97bf735064419413df9afabb520b",
+    "prototypes/relativistic/operator.jl": "3a8cd551ca1bd7d6be0cc7be73cd989204b380593463b7970442ac41680f22a4",
+    "prototypes/spinor/b0_support.jl": "807edeffe446dd8b9473ce322126ad50cdbd1062c0b2540354edffb28d7bcd2e",
+    "benchmarks/soc-core-memory-v1/resume/plan.json": "87a3083988c682c321d753dfa7a9251897dd8b87c3b897c5dcf5a2cdde156af5",
+    "prototypes/spinor/operators.jl": "737c96e549aef764e58ca64f2eabd39acb59dfa7093cf1bb7cf6808321c3ab55",
+    "scripts/workbench_environment.jl": "0f57d8930b56a01e534623cab662f96c9a0a66d8e1215503404c49cd09f8e850",
+    "prototypes/spinor/SpinorSCFPrototype.jl": "ecaf2dad038d41bf609a76f3095745a461ce1db7b138b695272e0e3078ef79f6",
+    "prototypes/soc_scf/ensemble.jl": "527c303f5455269487e45ce38e02bb473939ad25ccfa576cc2cb7dc6193c8c9b",
+    "prototypes/spinor/fft.jl": "7cffc78fc39c3b84320b697de631a8fd9c9e9efb03dae633a131c9d6583b3ccb",
+    "prototypes/spinor/energy.jl": "16bfe425958fd91adcd0d7eb8bf57d19820f752aca6e1244e3446e6936f0e436",
+    "prototypes/spinor/SpinorPrototype.jl": "6febe1c9122548282cda9ddcf35266a45b519e4d91c3f54a4fbe523abd255698",
+    "scripts/run_fr_integration.jl": "1f2b45f5b695de092cde0ab8dddf9e8b4e1e7fa238206fd3beeada7da28a2e1d"
+  },
+  "endpoint_execution_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+  "case_sha256": "a04e20b22748462fef0f0eccee93cff5a616fa3e11aa6606018d11e40d2f8cac",
+  "density_source_sha256": "1b881be85c18228e078a0bb10df15f94ec21642fa405e2ef9562b9ebf5d667fd",
+  "peak_rss_bytes": 1630208000,
+  "parallelism": {
+    "julia": 1,
+    "blas": 1,
+    "fft": 1,
+    "mpi": 1
+  },
+  "case": "si-soc-splitting-v1",
+  "grid": {
+    "status": "PASS",
+    "rows": [
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "g_sha256": "5dfa0f638f02a30560cb89a6bac111d2a2bb9dbb0069c8d585bd260c04a4afe1",
+        "ng": 2085,
+        "max_kinetic_ha": 29.06475842840249,
+        "max_product_component": [
+          16,
+          16,
+          16
+        ]
+      }
+    ],
+    "nyquist": "All actual same-k component difference extrema strictly below24; sufficient for every G-Gprime",
+    "memory_estimate_bytes": {
+      "retained_orbitals_and_solver": 144115200,
+      "projectors_and_snapshots": 19215360,
+      "density_core_local_fields": 88473600,
+      "bounded_fft_workspaces": 679477248,
+      "runtime_library_margin": 2147483648
+    },
+    "conservative_peak_bytes": 3078765056,
+    "basis": {
+      "kpoints": [
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ng": 2085,
+          "weight_spatial": 1.0,
+          "g_order_sha256": "5dfa0f638f02a30560cb89a6bac111d2a2bb9dbb0069c8d585bd260c04a4afe1"
+        }
+      ],
+      "lattice_bohr": [
+        [
+          0.0,
+          5.13,
+          5.13
+        ],
+        [
+          5.13,
+          0.0,
+          5.13
+        ],
+        [
+          5.13,
+          5.13,
+          0.0
+        ]
+      ],
+      "native_nonlocal_terms": 0,
+      "ecut_ha": 30.0,
+      "n_electrons": 8,
+      "positions_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.25,
+          0.25,
+          0.25
+        ]
+      ],
+      "term_types": [
+        "DFTK.TermKinetic",
+        "DFTK.TermAtomicLocal{Array{Float64, 3}}",
+        "DFTK.TermEwald{Float64}",
+        "DFTK.TermPspCorrection{Float64}",
+        "DFTK.TermHartree",
+        "DFTK.TermXc{Float64, Array{Float64, 4}, Nothing}"
+      ],
+      "volume_bohr3": 270.011394,
+      "fft_grid": [
+        48,
+        48,
+        48
+      ]
+    }
+  },
+  "numerical_review_status": "REVIEW_REQUIRED",
+  "input": {
+    "functional": "PBE",
+    "radial_points": 1528,
+    "has_so": true,
+    "g0_local": 0.0,
+    "correction_per_electron_volume": 9.346977114634537,
+    "core_fourier_zero": 0.7242548580428518,
+    "mode": "real_fr",
+    "nlcc_present": true,
+    "r_last_bohr": 15.27,
+    "relativistic": "full",
+    "r_first_bohr": 0.0,
+    "core_semantics": "PP_NLCC = n_core; Fourier integrand stores r² n_core",
+    "element": "Si",
+    "local_unit": "PP_LOCAL / 2, Ry to Ha",
+    "header_note": "Exact PP_HEADER text retained; reported functional follows frozen PPIO whitespace normalization",
+    "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+    "binding": "Loader-issued object capability plus unchanged full source/common/channel snapshots; one parse",
+    "xc_identifiers": [
+      "gga_x_pbe",
+      "gga_c_pbe"
+    ],
+    "z_valence": 4,
+    "beta_cutoff_indices": [
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196
+    ],
+    "valence_fourier_zero": 3.9999981732989602,
+    "valence_semantics": "PP_RHOATOM / (4pi) = r² n_valence",
+    "quadrature": "simpson_uniform",
+    "source": "https://raw.githubusercontent.com/PseudoDojo/ONCVPSP-PBE-FR-PDv0.4/7aa01a3fcf5ad226caf25bd387a9be9612be9f27/Si/Si_r.upf",
+    "cutoff_indices": {
+      "local_potential": 1528,
+      "core": 1528,
+      "correction": 1528,
+      "valence": 1528
+    }
+  },
+  "resume_id": "phase9a-completion-20260910",
+  "execution_status": "PASS",
+  "preparation_commit": "e4f16a51a0304f5e70f5ae038563d6760409c2c4",
+  "source_scf_run_id": "OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be-dftk",
+  "runtime": {
+    "counters": {
+      "fr_columns": 806,
+      "component_columns": 806,
+      "full_columns": 806,
+      "full_mul_calls": 34,
+      "fr_mul_calls": 34,
+      "density_calls": 0,
+      "component_mul_calls": 34
+    },
+    "owned_context_present": true,
+    "backend": "soc-core",
+    "density_sha256": "1b881be85c18228e078a0bb10df15f94ec21642fa405e2ef9562b9ebf5d667fd",
+    "closed": false,
+    "boundary_counts": {
+      "after_serialization": 1,
+      "hamiltonian_replacement": 1,
+      "eigensolve_return": 1,
+      "eigensolve_entry": 1,
+      "progress_callback_entry": 1,
+      "before_serialization": 1,
+      "driver_entry": 1,
+      "conversion": 1,
+      "final": 1,
+      "progress_callback_return": 1
+    },
+    "ownership": "One consumed loader-issued context; original P/D only; private boundary certificates; serial scoped workspace",
+    "workspace_released": false,
+    "workspace_capacity": {
+      "max_projectors": 72,
+      "max_ng": 2085,
+      "max_rhs": 30,
+      "n_real": 110592,
+      "n_components": 2
+    },
+    "owned_source_entries": 1,
+    "generation": 1,
+    "max_rhs": 30
+  },
+  "phase": "9A",
+  "execution_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+  "schema_version": 1,
+  "resume_preparation_commit": "234fe85d4e9386d9889bd1af256a28394ba88089",
+  "resume_from_commit": "98781fd0ce6c2f4138ed010e115a13e370410d58"
+}

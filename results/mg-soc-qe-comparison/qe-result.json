@@ -1,0 +1,607 @@
+{
+  "schema_version": 1,
+  "code": "QE",
+  "calculation": "scf",
+  "execution_status": "PASS",
+  "input_comparability_status": "PASS",
+  "energy_semantics_status": "PASS",
+  "version": "7.5",
+  "exit_code": 0,
+  "electrons": 10.0,
+  "n_bands": 24,
+  "occupation_capacity": 1,
+  "tau_ha": 0.001,
+  "smearing": "Fermi-Dirac",
+  "energy": {
+    "internal_ha": -57.32602794786339,
+    "free_ha": -57.32602794786339,
+    "entropy_ha": 0.0,
+    "native_etot_ha": -57.32602794786339,
+    "native_demet_ha": 0.0,
+    "native_components_ha": {
+      "etot": -57.32602794786339,
+      "eband": -16.81698744522929,
+      "ehart": 28.51669193844877,
+      "vtxc": -9.371218358098925,
+      "etxc": -7.177075813654218,
+      "ewald": -14.1864874158072,
+      "demet": 0.0
+    },
+    "native_band_energy_partial_reconstruction_difference_ha": -3.692822836853793e-06,
+    "native_component_reconstruction_status": "NOT_COMPLETE_ENERGY_DECOMPOSITION",
+    "native_component_note": "F minus (eband-ehart-vtxc+etxc+ewald+demet); no complete same-density/correction identity is assumed",
+    "sources": {
+      "free_ha": "final XML output/total_energy/etot",
+      "entropy_ha": "final XML output/total_energy/demet",
+      "internal_ha": "E = F - demet, no zero-temperature extrapolation or correction"
+    }
+  },
+  "fermi_energy_ha": -0.07015234249335432,
+  "fermi_energy_definition": "Native FD chemical potential; no cross-code equality gate",
+  "occupations_source": "RECOMPUTED_BY_SCF",
+  "chemical_potential_source": "SCF_GLOBAL_FERMI_LEVEL",
+  "occupation_availability": "AVAILABLE",
+  "native_stdout": {
+    "free_energy": {
+      "token": "-114.65205590",
+      "value": -114.6520559,
+      "unit": "Ry",
+      "half_last_digit": 5e-09,
+      "displayed_zero_is_exact_zero_claim": false,
+      "xml_minus_stdout_ha": 2.136609111857979e-09,
+      "consistency_bound_ha": 2.6e-09
+    },
+    "entropy_energy": {
+      "token": "0.00000000",
+      "value": 0.0,
+      "unit": "Ry",
+      "half_last_digit": 5e-09,
+      "displayed_zero_is_exact_zero_claim": false,
+      "xml_minus_stdout_ha": 0.0,
+      "consistency_bound_ha": 2.6e-09
+    },
+    "fermi_energy": {
+      "token": "-1.9089",
+      "value": -1.9089,
+      "unit": "eV",
+      "half_last_digit": 5e-05,
+      "displayed_zero_is_exact_zero_claim": false,
+      "xml_minus_stdout_ha": -1.5613922465934627e-06,
+      "consistency_bound_ha": 1.8375661087827472e-06
+    },
+    "internal_energy": {
+      "token": "-114.65205590",
+      "value": -114.6520559,
+      "unit": "Ry",
+      "half_last_digit": 5e-09,
+      "displayed_zero_is_exact_zero_claim": false,
+      "xml_minus_stdout_ha": 2.136609111857979e-09,
+      "consistency_bound_ha": 2.6e-09
+    }
+  },
+  "kpoints": [
+    {
+      "coordinate_fractional": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "coordinate_raw": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "weight_raw": 0.3333333333333333,
+      "weight_spatial": 0.3333333333333333,
+      "eigenvalues_ha": [
+        -3.290030032987275,
+        -3.290030032987272,
+        -1.661499016476153,
+        -1.661499016476153,
+        -1.652785108001084,
+        -1.652785108001082,
+        -1.652601749147876,
+        -1.652601749147871,
+        -0.1592092749502884,
+        -0.1592092749502856,
+        0.06051991280831323,
+        0.06051991280831323,
+        0.06082939159305185,
+        0.0608293915930537,
+        0.06100672751265537,
+        0.06100672751265838,
+        0.06559085277096612,
+        0.06559085277096681,
+        0.1027211411499545,
+        0.1027211411499712,
+        0.1028745518917121,
+        0.1028745518917362,
+        0.2539729357379036,
+        0.253972935833603
+      ],
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.77729936054401e-57,
+        1.77729936054401e-57,
+        1.304234416045572e-57,
+        1.304234416043162e-57,
+        1.092294243357766e-57,
+        1.092294243354444e-57,
+        1.115525085018926e-59,
+        1.115525085018165e-59,
+        8.356029919081802e-76,
+        8.35602991894263e-76,
+        7.167612987250946e-76,
+        7.167612987078397e-76,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.77729936054401e-57,
+        1.77729936054401e-57,
+        1.304234416045572e-57,
+        1.304234416043162e-57,
+        1.092294243357766e-57,
+        1.092294243354444e-57,
+        1.115525085018926e-59,
+        1.115525085018165e-59,
+        8.356029919081802e-76,
+        8.35602991894263e-76,
+        7.167612987250946e-76,
+        7.167612987078397e-76,
+        0.0,
+        0.0
+      ],
+      "npw": 2777
+    },
+    {
+      "coordinate_fractional": [
+        0.125,
+        0.0625,
+        -0.1875
+      ],
+      "coordinate_raw": [
+        0.125,
+        0.0625,
+        -0.1875
+      ],
+      "weight_raw": 0.3333333333333333,
+      "weight_spatial": 0.3333333333333333,
+      "eigenvalues_ha": [
+        -3.289852521486123,
+        -3.289852521396671,
+        -1.66066786232185,
+        -1.660667394793035,
+        -1.652578195115483,
+        -1.652577867628052,
+        -1.648907532663824,
+        -1.648906902270173,
+        -0.1526725958691947,
+        -0.1526725927368726,
+        0.01289820562772221,
+        0.01289829239173022,
+        0.03612581539162541,
+        0.03612589859275389,
+        0.05633561752725136,
+        0.05633568113880198,
+        0.1085132829220952,
+        0.1085133080430931,
+        0.1346437657290281,
+        0.1346437988282393,
+        0.1565641636048399,
+        0.1565642101825332,
+        0.1807375760546496,
+        0.1807375853714006
+      ],
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        8.542898215320564e-37,
+        8.542157031385829e-37,
+        6.98204243014487e-47,
+        6.981461540501289e-47,
+        1.166747652756911e-55,
+        1.16667343649009e-55,
+        2.549792129707954e-78,
+        2.549728077189779e-78,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        8.542898215320564e-37,
+        8.542157031385829e-37,
+        6.98204243014487e-47,
+        6.981461540501289e-47,
+        1.166747652756911e-55,
+        1.16667343649009e-55,
+        2.549792129707954e-78,
+        2.549728077189779e-78,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "npw": 2770
+    },
+    {
+      "coordinate_fractional": [
+        -0.125,
+        -0.0625,
+        0.1875
+      ],
+      "coordinate_raw": [
+        -0.125,
+        -0.0625,
+        0.1875
+      ],
+      "weight_raw": 0.3333333333333333,
+      "weight_spatial": 0.3333333333333333,
+      "eigenvalues_ha": [
+        -3.289852521486123,
+        -3.289852521396669,
+        -1.660667862321851,
+        -1.660667394793037,
+        -1.652578195115483,
+        -1.652577867628054,
+        -1.648907532663825,
+        -1.648906902270173,
+        -0.1526725958691943,
+        -0.1526725927368723,
+        0.01289820562772123,
+        0.01289829239172965,
+        0.03612581539162571,
+        0.03612589859275385,
+        0.05633561752725184,
+        0.05633568113880086,
+        0.1085132829220946,
+        0.1085133080430926,
+        0.1346437657290279,
+        0.1346437988282378,
+        0.1565641636048398,
+        0.1565642101825341,
+        0.1807375760546501,
+        0.1807375853713997
+      ],
+      "occupations_raw": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        8.542898215329062e-37,
+        8.542157031390685e-37,
+        6.982042430142787e-47,
+        6.981461540501586e-47,
+        1.166747652756364e-55,
+        1.166673436491416e-55,
+        2.549792129709694e-78,
+        2.549728077191083e-78,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupations": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        8.542898215329062e-37,
+        8.542157031390685e-37,
+        6.982042430142787e-47,
+        6.981461540501586e-47,
+        1.166747652756364e-55,
+        1.166673436491416e-55,
+        2.549792129709694e-78,
+        2.549728077191083e-78,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "npw": 2770
+    }
+  ],
+  "requested_to_xml_kpoint_indices": [
+    0,
+    1,
+    2
+  ],
+  "electron_sum_raw": 10.0,
+  "electron_sum_normalized": 10.0,
+  "lattice_vectors_bohr": [
+    [
+      10.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      10.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      10.0
+    ]
+  ],
+  "alat_bohr": 10.0,
+  "reciprocal_vectors_raw": [
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "positions_cartesian_bohr": [
+    [
+      1.7,
+      2.3,
+      3.1
+    ]
+  ],
+  "positions_fractional": [
+    [
+      0.16999999999999998,
+      0.22999999999999998,
+      0.31
+    ]
+  ],
+  "atom_symbols": [
+    "Mg"
+  ],
+  "n_atoms": 1,
+  "ecut_ha": 15.0,
+  "ecutrho_ha": 60.0,
+  "fft_grid": [
+    36,
+    36,
+    36
+  ],
+  "fft_smooth_grid": [
+    36,
+    36,
+    36
+  ],
+  "pseudo_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+  "pseudo_sha256_evidence": "Caller receipt from actual UPF bytes, not XML-derived",
+  "pseudo_files": [
+    "Mg.upf"
+  ],
+  "pseudo_type": "NC",
+  "nlcc": false,
+  "z_valence": 10.0,
+  "xc": {
+    "functional": "PBESOL",
+    "stdout": "PBESOL",
+    "indices": [
+      1,
+      4,
+      10,
+      8,
+      0,
+      0,
+      0
+    ]
+  },
+  "scf": {
+    "converged": true,
+    "iterations": 15,
+    "error_ha": 1.739665246124743e-12,
+    "convergence_evidence": "Last XML output/scf_conv and final native stdout convergence"
+  },
+  "input_model": {
+    "lsda": false,
+    "noncolin": true,
+    "spinorbit": true,
+    "do_magnetization": false,
+    "starting_magnetization": 0.0,
+    "starting_magnetization_evidence": "QE7.5 all-zero field omission plus actual do_magnetization=false",
+    "nosym": true,
+    "noinv": true,
+    "no_t_rev": true,
+    "diago_full_acc": true,
+    "diago_thr_init_ry": 1e-10,
+    "conv_thr_ha": 5e-11,
+    "mixing_beta": 0.1,
+    "electron_maxstep": 400
+  },
+  "precision": {
+    "stdout_spectrum_check": {
+      "status": "PASS",
+      "matched_eigenvalues": 72,
+      "stdout_to_xml_kpoint_indices": [
+        0,
+        1,
+        2
+      ],
+      "max_abs_xml_minus_stdout_ev": 4.793025300885314e-05,
+      "maximum_printed_rounding_bound_ev": 5.00027211386246e-05,
+      "occupation_fields_checked": 72,
+      "native_ev_per_ha": 27.211386245988034,
+      "scope": "Native stdout rounding crosscheck, not an eigenvector residual estimate"
+    },
+    "diago_full_acc": true,
+    "ethr_history_ry": [
+      1e-10,
+      0.00855,
+      0.00634,
+      0.00018,
+      5.36e-05,
+      3.13e-06,
+      1.64e-06,
+      1.03e-07,
+      8.8e-09,
+      8.8e-09,
+      8.14e-10,
+      1.59e-10,
+      3.46e-12,
+      1.36e-12,
+      1.36e-12
+    ],
+    "last_ethr_ry": 1.36e-12,
+    "individual_eigenvector_residual_status": "NOT_AVAILABLE",
+    "individual_eigenvector_residuals_ha": null,
+    "note": "ethr is an eigenvalue convergence threshold, not ||Hpsi-epsilon psi||"
+  },
+  "warnings": [
+    {
+      "line": 162,
+      "text": "negative rho (up, down):  7.069E-02 0.000E+00"
+    },
+    {
+      "line": 177,
+      "text": "c_bands:  2 eigenvalues not converged"
+    },
+    {
+      "line": 178,
+      "text": "c_bands:  2 eigenvalues not converged"
+    },
+    {
+      "line": 181,
+      "text": "negative rho (up, down):  5.026E-02 0.000E+00"
+    },
+    {
+      "line": 198,
+      "text": "negative rho (up, down):  2.476E-04 0.000E+00"
+    },
+    {
+      "line": 288,
+      "text": "c_bands:  1 eigenvalues not converged"
+    },
+    {
+      "line": 304,
+      "text": "c_bands:  2 eigenvalues not converged"
+    },
+    {
+      "line": 350,
+      "text": "c_bands:  1 eigenvalues not converged"
+    },
+    {
+      "line": 366,
+      "text": "c_bands:  2 eigenvalues not converged"
+    },
+    {
+      "line": 382,
+      "text": "c_bands:  2 eigenvalues not converged"
+    },
+    {
+      "line": 398,
+      "text": "c_bands:  2 eigenvalues not converged"
+    }
+  ],
+  "warnings_scope": "Native stdout only; stderr must be retained by the runner",
+  "eigenvalue_precision_status": "WARNING_REVIEW_REQUIRED",
+  "entropy_diagnostic": {
+    "from_published_occupations_dimensionless": 9.573393329777869e-35,
+    "minus_tau_S_ha": -9.573393329777868e-38,
+    "native_minus_diagnostic_ha": 9.573393329777868e-38,
+    "scope": "Independent diagnostic from rounded native occupations, not a replacement for native demet"
+  },
+  "units_provenance": {
+    "xml_energy_eigenvalue_fermi_smearing": "Ha",
+    "xml_diago_thr_init": "Ry (explicit writer exception)",
+    "xml_conv_thr": "Ha",
+    "QE_stdout_ev_per_ha": 27.211386245988034,
+    "stdout_total_smearing_energy": "Ry",
+    "stdout_band_fermi_energy": "eV",
+    "xml_cell_position": "bohr",
+    "xml_k_reciprocal": "Cartesian 2*pi/alat",
+    "coordinates": "fractional_j = a_j dot k_raw / alat; duality checked",
+    "weights": "noncolin weights sum1; no scalar spin-degeneracy factor",
+    "occupations": "QEXSD wg/wk, already capacityone; normalized f=raw f",
+    "format": {
+      "NAME": "QEXSD",
+      "VERSION": "25.05.21"
+    },
+    "sources": {
+      "xml_units": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/qexsd.f90#L128-L136",
+      "xml_energy_fermi_smearing": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L637-L727",
+      "xml_eigenvalues_occupations": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/qexsd_init.f90#L1216-L1250",
+      "zero_starting_magnetization_omission": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/qexsd_init.f90#L132-L154",
+      "pbesol_indices": "https://github.com/QEF/q-e/blob/qe-7.5/XClib/qe_dft_list.f90#L116-L118",
+      "bands_fixed_mu_occupations": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/non_scf.f90#L89-L102",
+      "fd_xml_label": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/set_occupations.f90#L135-L157",
+      "noncollinear_weights": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/setup.f90#L647-L675",
+      "xml_input_control_units": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_init_qexsd_input.f90#L440-L486",
+      "native_spectrum_printer": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/print_ks_energies.f90#L122-L210",
+      "native_eV_constant": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/constants.f90#L34-L55",
+      "input_semantics": "https://gitlab.com/QEF/q-e/-/raw/qe-7.5/PW/Doc/INPUT_PW.def",
+      "fermi_dirac_free_energy": "https://lists.quantum-espresso.org/pipermail/users/2005-October/003180.html",
+      "energy_presentation": "https://physics.nist.gov/cuu/pdf/wall_2022.pdf"
+    }
+  },
+  "native_files_sha256": {
+    "xml": "34295b4ee53396f6a655f7ca152804b3e763ba13c5dc49f14fdf2ab588107366",
+    "stdout": "35a54a7aa30aed69307617f3fd3560ec1818cc3393dad27941c59664f33f6335"
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "invocation": {
+    "profile": "K4",
+    "action": "D-GAMMA",
+    "run_id": "D-GAMMA-20260909T042914Z-ad8659b7",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "started_utc": "2026-09-09T04:29:14.215201+00:00",
+    "finished_utc": "2026-09-09T04:29:33.578351+00:00",
+    "exit_code": 0,
+    "status": "PASS",
+    "peak_rss_bytes": 1733214208,
+    "streams_sha256": {
+      "stdout": "706717c938d0d3c8f942c29a47db8c54535cced306cb2af1189fd35b7178363b",
+      "stderr": "3f2ae50764f8ed19145813967912d24c9cefe5590ed5cc23578df31fd451e5a8"
+    },
+    "resource_status": "PASS"
+  },
+  "wrapper": {
+    "schema_version": 1,
+    "case": "si-soc-sensitivity-v1/K4",
+    "sensitivity_profile": "K4",
+    "case_sha256": "7874f0007f8df69763b7a7032d580bb05a6b39bdcba412c72cc155a8b2e039ce",
+    "run_id": "D-GAMMA-20260909T042914Z-ad8659b7",
+    "action": "D-GAMMA",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "preparation_commit": "4a58286183e4625ad7ae69b44eb80097e8ad6c7d",
+    "started_utc": "2026-09-09T04:29:14.235608+00:00",
+    "finished_utc": "2026-09-09T04:29:33.574445+00:00",
+    "exit_code": 0,
+    "worker_exit_code": 0,
+    "execution_status": "PASS",
+    "temperature_ha": 0.001,
+    "preflight_manifest_sha256": "19e5160c1e5a26bab049abf285a97fe89e9e9a130be36e33283d608e94eae0fc"
+  },
+  "worker": {
+    "schema_version": 1,
+    "case": "si-soc-sensitivity-v1/K4",
+    "sensitivity_profile": "K4",
+    "case_sha256": "7874f0007f8df69763b7a7032d580bb05a6b39bdcba412c72cc155a8b2e039ce",
+    "run_id": "D-GAMMA-20260909T042914Z-ad8659b7-dftk",
+    "action": "D-GAMMA",
+    "base_commit": "bc68aaf655d96dfd4335f6fa1a8e5ee76477c2a3",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "started_utc": "2026-09-09T04:29:21.871",
+    "finished_utc": "2026-09-09T04:29:33.188",
+    "exit_code": 0,
+    "execution_status": "PASS",
+    "parallelism": {
+      "julia": 1,
+      "blas": 1,
+      "fft": 1,
+      "mpi": 1
+    },
+    "peak_rss_bytes": 1727741952,
+    "temperature_ha": 0.001
+  },
+  "source_files": {
+    "worker.stdout": {
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compressed_sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "raw_bytes": 0,
+      "public_bytes": 0,
+      "public_path": "D-GAMMA/worker.stdout.gz",
+      "line_count": 0,
+      "numeric_token_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "numeric_token_count": 0,
+      "transform": "Private path strings only; exact numerical tokens outside substituted path prefixes; gzip mtime0"
+    },
+    "worker.stderr": {
+      "raw_sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+      "public_sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+      "compressed_sha256": "22317f0ba1de3b615b3691a008d7dc321b71720fb254a1911653e7c9d235eac1",
+      "raw_bytes": 107,
+      "public_bytes": 107,
+      "public_path": "D-GAMMA/worker.stderr.gz",
+      "line_count": 5,
+      "numeric_token_sha256": "51b72882870f31701c3d5626cd40d270aab8b75c5d3ca6fb7f85f7f24ceab320",
+      "numeric_token_count": 4,
+      "transform": "Private path strings only; exact numerical tokens outside substituted path prefixes; gzip mtime0"
+    }
+  },
+  "export_checks_status": "PASS",
+  "input": {
+    "functional": "PBE",
+    "radial_points": 1528,
+    "has_so": true,
+    "g0_local": 0.0,
+    "correction_per_electron_volume": 9.346977114634537,
+    "core_fourier_zero": 0.7242548580428518,
+    "mode": "real_fr",
+    "nlcc_present": true,
+    "r_last_bohr": 15.27,
+    "relativistic": "full",
+    "r_first_bohr": 0.0,
+    "core_semantics": "PP_NLCC = n_core; Fourier integrand stores r\u00b2 n_core",
+    "element": "Si",
+    "local_unit": "PP_LOCAL / 2, Ry to Ha",
+    "header_note": "Exact PP_HEADER text retained; reported functional follows frozen PPIO whitespace normalization",
+    "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+    "binding": "Loader-issued object capability plus unchanged full source/common/channel snapshots; one parse",
+    "xc_identifiers": [
+      "gga_x_pbe",
+      "gga_c_pbe"
+    ],
+    "z_valence": 4,
+    "beta_cutoff_indices": [
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196
+    ],
+    "valence_fourier_zero": 3.9999981732989602,
+    "valence_semantics": "PP_RHOATOM / (4pi) = r\u00b2 n_valence",
+    "quadrature": "simpson_uniform",
+    "source": "https://raw.githubusercontent.com/PseudoDojo/ONCVPSP-PBE-FR-PDv0.4/7aa01a3fcf5ad226caf25bd387a9be9612be9f27/Si/Si_r.upf",
+    "cutoff_indices": {
+      "local_potential": 1528,
+      "core": 1528,
+      "correction": 1528,
+      "valence": 1528
+    }
+  },
+  "grid": {
+    "status": "PASS",
+    "rows": [
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "g_sha256": "5dfa0f638f02a30560cb89a6bac111d2a2bb9dbb0069c8d585bd260c04a4afe1",
+        "ng": 2085,
+        "max_kinetic_ha": 29.06475842840249,
+        "max_product_component": [
+          16,
+          16,
+          16
+        ]
+      }
+    ],
+    "nyquist": "All actual same-k component difference extrema strictly below24; sufficient for every G-Gprime",
+    "memory_estimate_bytes": {
+      "retained_orbitals_and_solver": 144115200,
+      "projectors_and_snapshots": 19215360,
+      "density_core_local_fields": 88473600,
+      "bounded_fft_workspaces": 679477248,
+      "runtime_library_margin": 2147483648
+    },
+    "conservative_peak_bytes": 3078765056,
+    "basis": {
+      "kpoints": [
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ng": 2085,
+          "weight_spatial": 1.0,
+          "g_order_sha256": "5dfa0f638f02a30560cb89a6bac111d2a2bb9dbb0069c8d585bd260c04a4afe1"
+        }
+      ],
+      "lattice_bohr": [
+        [
+          0.0,
+          5.13,
+          5.13
+        ],
+        [
+          5.13,
+          0.0,
+          5.13
+        ],
+        [
+          5.13,
+          5.13,
+          0.0
+        ]
+      ],
+      "native_nonlocal_terms": 0,
+      "ecut_ha": 30.0,
+      "n_electrons": 8,
+      "positions_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.25,
+          0.25,
+          0.25
+        ]
+      ],
+      "term_types": [
+        "DFTK.TermKinetic",
+        "DFTK.TermAtomicLocal{Array{Float64, 3}}",
+        "DFTK.TermEwald{Float64}",
+        "DFTK.TermPspCorrection{Float64}",
+        "DFTK.TermHartree",
+        "DFTK.TermXc{Float64, Array{Float64, 4}, Nothing}"
+      ],
+      "volume_bohr3": 270.011394,
+      "fft_grid": [
+        48,
+        48,
+        48
+      ]
+    }
+  },
+  "parallelism": {
+    "julia": 1,
+    "blas": 1,
+    "fft": 1,
+    "mpi": 1
+  },
+  "parent_checkpoint_sha256": "bac033526513aeb13cf385e0cba22c270a3a50a90ef799eb1bc2a591d6e1f5f5",
+  "parent_result_sha256": "984fda012595256ccd7282eeecd1f7ad6be38dc0eaaba35e7528d4c17b066cc6",
+  "source_scf_run_id": "D-SCF-20260909T003031Z-dc60968c-dftk",
+  "density_source_sha256": "618d64fe2712f9f9b3bbb5ecb2e904386f4749af7922fd7c1a9312d3b107c724",
+  "time_reversal": {
+    "time_reversal": [
+      {
+        "ng": 2085,
+        "source": 1,
+        "target": 1,
+        "bijection": true,
+        "reversal_map_sha256": "d76efeff05f553da5a4e62b6392e79dd186e2d5198290549d74288a223c5d47f",
+        "normalized_error": 3.183610994106556e-17,
+        "absolute_error": 6.079179910855586e-16
+      }
+    ],
+    "status": "PASS",
+    "scope": "RUNNER_REPORTED Gamma physical-q operator check; off-Gamma TR NOT_RUN",
+    "seed": 81032
+  },
+  "environment_json_sha256": "eb873073c5ca3f7b42324dc69637298e75b5b3e61544b17025604ba40cfda940",
+  "executed_code_json_sha256": "24d8d256b46ec867c489744687b67015dc31ed70d284e356b3f3245d30ddc20b",
+  "warning_evidence": {
+    "warning_lines": [
+      {
+        "line": 1,
+        "text": "\u250c Info: Threading setup: "
+      },
+      {
+        "line": 2,
+        "text": "\u2502   Threads.nthreads() = 1"
+      },
+      {
+        "line": 3,
+        "text": "\u2502   n_DFTK = 1"
+      },
+      {
+        "line": 4,
+        "text": "\u2502   n_fft = 1"
+      },
+      {
+        "line": 5,
+        "text": "\u2514   n_blas = 1"
+      }
+    ],
+    "full_stderr_ref": "D-GAMMA/worker.stderr.gz",
+    "warning_scope": "All native stderr retained; selected warning/error lines also indexed"
+  },
+  "solver_records": [
+    {
+      "map_index": 1,
+      "k_index": 1,
+      "target_states": 24,
+      "auxiliary_states": 6,
+      "ng": 2085,
+      "initial_source": "Independent ComplexF64 Gaussian whole-column QR",
+      "initial_seed": 81201,
+      "initial_sha256": "e537e91eb9c83651ad95601dec369d95adcc66527c7b8ade62275291c08d6aa1",
+      "initial_unchanged": true,
+      "converged": true,
+      "iterations": 30,
+      "elapsed_seconds": 3.3462560176849365,
+      "solver_n_matvec": 779,
+      "explicit_residuals_ha": [
+        3.845680321391912e-11,
+        8.645944966042681e-11,
+        3.040412398636654e-11,
+        6.30598490788532e-11,
+        3.847752796590117e-11,
+        3.291164966471754e-11,
+        2.044950948128816e-11,
+        8.753894986368046e-11,
+        6.027720124990278e-11,
+        3.772473318339741e-11,
+        5.746880930886798e-11,
+        2.381636971136718e-11,
+        2.1398771392470695e-11,
+        3.1152436721398585e-11,
+        6.774361799715951e-11,
+        4.836438716908896e-11,
+        5.38928195916602e-11,
+        4.621723574875589e-11,
+        6.551271996803522e-11,
+        3.498069900535116e-11,
+        4.7711913464968e-11,
+        3.986742513943832e-11,
+        6.340239899218214e-11,
+        6.345259846691139e-11
+      ],
+      "orthogonality_frobenius": 3.38111558553923e-14
+    }
+  ],
+  "eigenvalues_ref": "data.json#/D-GAMMA/kpoints/0/eigenvalues_ha",
+  "environment_reference": {
+    "path": "../D-environment.json",
+    "sha256": "eb873073c5ca3f7b42324dc69637298e75b5b3e61544b17025604ba40cfda940"
+  },
+  "executed_code_reference": {
+    "path": "../D-code-K4.json",
+    "sha256": "24d8d256b46ec867c489744687b67015dc31ed70d284e356b3f3245d30ddc20b"
+  }
+}

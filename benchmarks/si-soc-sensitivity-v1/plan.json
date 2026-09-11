@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "phase": "8B",
+  "status": "PREDECLARED_NOT_EXECUTED",
+  "base_commit": "bc68aaf655d96dfd4335f6fa1a8e5ee76477c2a3",
+  "branch": "codex/phase8b-si-soc-sensitivity",
+  "source_reference": {
+    "path": "benchmarks/si-soc-splitting-v1/source.json",
+    "sha256": "e88ec3d6f0f1407d4d6b7b75c0bcc8f04ed1536c9c1ea3a67e4e23232e5a55e3",
+    "upf_sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf"
+  },
+  "B0": {
+    "status": "HISTORICAL_REUSED",
+    "numerical_commit": "61cb1c226dcfa8dbeccc63e8f43e33b2790a07c6",
+    "physical_execution_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+    "semantic_execution_commit": "a03f91f56875a80e5b058fd86377ee0cd9317939",
+    "semantic_delivery_commit": "bc68aaf655d96dfd4335f6fa1a8e5ee76477c2a3",
+    "case": "benchmarks/si-soc-splitting-v1/case.json",
+    "source_files_sha256": {
+      "benchmarks/si-soc-splitting-v1/case.json": "a04e20b22748462fef0f0eccee93cff5a616fa3e11aa6606018d11e40d2f8cac",
+      "benchmarks/si-soc-splitting-v1/plan.json": "9f3fcf577f0cbc7b7e432f92be2add76d8f8b8128877122d951d8e2d13936a89",
+      "benchmarks/si-soc-splitting-v1/replay-contract.json": "89d475b3561ff1ca91d21e320c5d2be4fdf9037a78ef78ca8a8db3f837b590c3",
+      "results/si-soc-splitting/D-spectrum.json": "a286b1087e1ff776301ac826e4aeac3b7bdb1eb8cec2c0e141437e0402db0d41",
+      "results/si-soc-splitting/Q-spectrum.json": "93f5d681d196d25766a69ce94fdfcc049f28f52ee04fe4a98b4c428ab6f5fa0a",
+      "results/si-soc-splitting/comparison.json": "d8bf9a475c805d1ed0d6610770f5c153d0390c5d01fa8119f5dd66ea49e7817e",
+      "results/si-soc-splitting/evidence.json": "901c17499220bb78e92b2d735de0ee51652db2f2a66e5f18a650ec0b7cc6681a",
+      "results/si-soc-splitting/energy.json": "4cb9ddd108dd20a4a2f340903ff9fa723873c17f6bdbedfa0ac3f88220981eaa",
+      "results/si-soc-splitting/status-correction/assessment.json": "d2bb2c7ddac535d99ab3c634d3b9d659004fb18c8d9ede4912849289ab43f81b"
+    },
+    "selection": "Own-final-density D/Q Gamma from bound full fixed-density spectra; no SCF/null substitution"
+  },
+  "matrix": [
+    {
+      "profile": "E40",
+      "case": "E40/case.json",
+      "dftk_ecut_ha": 40,
+      "qe_ecutwfc_ry": 80,
+      "qe_ecutrho_ry": 320,
+      "scf_nk": 8,
+      "tau_ha": 0.001,
+      "qe_degauss_ry": 0.002,
+      "fft": [
+        48,
+        48,
+        48
+      ]
+    },
+    {
+      "profile": "T05",
+      "case": "T05/case.json",
+      "dftk_ecut_ha": 30,
+      "qe_ecutwfc_ry": 60,
+      "qe_ecutrho_ry": 240,
+      "scf_nk": 8,
+      "tau_ha": 0.0005,
+      "qe_degauss_ry": 0.001,
+      "fft": [
+        48,
+        48,
+        48
+      ]
+    },
+    {
+      "profile": "K4",
+      "case": "K4/case.json",
+      "dftk_ecut_ha": 30,
+      "qe_ecutwfc_ry": 60,
+      "qe_ecutrho_ry": 240,
+      "scf_nk": 64,
+      "tau_ha": 0.001,
+      "qe_degauss_ry": 0.002,
+      "fft": [
+        48,
+        48,
+        48
+      ]
+    }
+  ],
+  "execution_order": [
+    {
+      "profile": "E40",
+      "action": "D-SCF",
+      "attempt_limit": 1
+    },
+    {
+      "profile": "E40",
+      "action": "Q-SCF",
+      "attempt_limit": 1
+    },
+    {
+      "profile": "E40",
+      "action": "D-GAMMA",
+      "attempt_limit": 1
+    },
+    {
+      "profile": "E40",
+      "action": "Q-GAMMA",
+      "attempt_limit": 1
+    },
+    {
+      "profile": "T05",
+      "action": "D-SCF",
+      "attempt_limit": 1
+    },
+    {
+      "profile": "T05",
+      "action": "Q-SCF",
+      "attempt_limit": 1
+    },
+    {
+      "profile": "T05",
+      "action": "D-GAMMA",
+      "attempt_limit": 1
+    },
+    {
+      "profile": "T05",
+      "action": "Q-GAMMA",
+      "attempt_limit": 1
+    },
+    {
+      "profile": "K4",
+      "action": "D-SCF",
+      "attempt_limit": 1
+    },
+    {
+      "profile": "K4",
+      "action": "Q-SCF",
+      "attempt_limit": 1
+    },
+    {
+      "profile": "K4",
+      "action": "D-GAMMA",
+      "attempt_limit": 1
+    },
+    {
+      "profile": "K4",
+      "action": "Q-GAMMA",
+      "attempt_limit": 1
+    }
+  ],
+  "formal_slot_limit": 12,
+  "all_profiles_preflight_before_first_scf": true,
+  "preflight": [
+    "Exact source/loaded frozen packages/QE identity",
+    "Si PBE NLCC same common/FR objects; 8valence/2atoms/72columns",
+    "SCF and Gamma actual G/q and cutoff",
+    "Same-k G-Gprime component extrema strictly inside(-24,24)",
+    "QE hard/smooth density cutoff support inside48cubed; verify actual native output later",
+    "Unchanged conservative memory accounting, stream_k=true, single-thread CPU; expected and measured peak<8GiB"
+  ],
+  "gates": {
+    "case_scf": {
+      "electron_count_abs": 1e-08,
+      "density_fixedpoint_l2": 1e-08,
+      "residual_ha": 1e-09,
+      "self_density_residual_ha": 1e-07,
+      "gram_norm": 1e-09,
+      "pauli_density_relative": 1e-07,
+      "ab_density_relative": 1e-06,
+      "ab_energy_abs_ha": 1e-07,
+      "ab_spectrum_abs_ha": 1e-06,
+      "comparison_lowest_states": 16,
+      "energy_abs_ha": 1e-08,
+      "free_energy_arithmetic_relative": 1e-12,
+      "self_rayleigh_occupation_abs": 1e-06,
+      "kramers_ha": 1e-07,
+      "time_reversed_spectrum_ha": 1e-07,
+      "time_reversal_normalized": 1e-11,
+      "paired_occupation_abs": 1e-06,
+      "hermiticity_normalized": 1e-11,
+      "hamiltonian_decomposition_normalized": 1e-11,
+      "spin_flip_min_signal": 1e-12,
+      "spin_flip_relative": 1e-08
+    },
+    "manifold_isolation_ev": 0.02,
+    "manifold_doublet_width_ev": 1e-05,
+    "manifold_quartet_width_ev": 1e-05,
+    "split_min_ev": 0.005,
+    "kramers_and_pm_ha": 1e-07,
+    "qe_spectrum": "native CG1e-13Ry normal exit/no unconverged target warnings; threshold not explicit residual",
+    "code_gap_abs_ev": 0.0001,
+    "response_gap_abs_ev": 0.0001,
+    "per_program_response_window_ev": 0.0001,
+    "occupation_near_full_min": 0.99999999,
+    "peak_limit_bytes": 8589934592
+  },
+  "grouping": {
+    "doublet_one_based": [
+      3,
+      4
+    ],
+    "quartet_one_based": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "isolation_neighbors_one_based": [
+      2,
+      9
+    ],
+    "failed_structure": "WINDOW_ONLY_NOT_IDENTIFIED; preserve algebraic fixed-index difference"
+  },
+  "formulas": {
+    "delta": "mean(epsilon5:8)-mean(epsilon3:4)",
+    "code_gap": "Delta_D(x)-Delta_Q(x)",
+    "response": "Delta_P(x)-Delta_P(B0)",
+    "response_gap_direct": "response_D-response_Q",
+    "response_gap_closure": "code_gap(x)-code_gap(B0)",
+    "gamma_fd": "stable FD at each original parent SCF global mu and actual case tau; no new mu solve or electron constraint",
+    "spectrum_reference": "Each program own Gamma quartet mean; no fit",
+    "QE_energy": "Native F=etot; minus_TS=demet; E=F-demet",
+    "D_energy": "Frozen capacity-one spinor entropy once at actual model temperature"
+  },
+  "scope": {
+    "E40": "Fixed FFT and fixed-ratio joint wavefunction/density-potential cutoff response, not isolated ecutwfc attribution",
+    "K4": "One independent explicit64point SCF quadrature change, no symmetry reduction",
+    "T05": "One independent finite-temperature reduction, not zero-temperature or old-state correction",
+    "stability": "0.1meV finite-step observation only, not implementation acceptance or a convergence error bound"
+  },
+  "old_code_allowlist": [
+    "scripts/run_si_soc.jl",
+    "scripts/run_si_dftk.py",
+    "scripts/run_si_qe.py",
+    "scripts/si_soc_comparison.py",
+    "prototypes/soc_scf/solver.jl",
+    "prototypes/soc_scf/scf.jl"
+  ],
+  "interface_only": {
+    "prototypes/soc_scf/solver.jl": "validate_soc_settings explicit authenticated case_contract only; preserve legacy .001 guard",
+    "prototypes/soc_scf/scf.jl": "case_contract forwarding only; actual model/settings temperature equality retained"
+  },
+  "navigation_allowlist": [
+    "README.md",
+    "docs/status.md",
+    "results/README.md",
+    "scripts/README.md",
+    "benchmarks/README.md"
+  ],
+  "new_code_whitelist": [
+    "scripts/si_soc_sensitivity.py",
+    "tests/test_si_sensitivity.py",
+    "tests/test_si_sensitivity_qe.py",
+    "tests/test_si_sensitivity_driver.py",
+    "tests/test_si_sensitivity.jl"
+  ],
+  "output_roots": {
+    "raw": ".work/phase8b/<profile>/<action>-<actualUTC>-<uniqueSuffix>",
+    "public": "results/si-soc-sensitivity",
+    "archive": "Same-machine repository-external incremental archive; exact files and restore checks"
+  },
+  "stops": [
+    "A formal slot has only one attempt; preserve exit and no duplicate after interruption",
+    "Failed parent gives BLOCKED_PARENT; no historical substitutes",
+    "Integrity/source/common-code failure stops related tasks",
+    "Resource or grid failure BLOCKED; no changed FFT/k/bands/threshold",
+    "Code-gap or finite-response screen exceeded: retain and continue other independent declared cases; no added scan"
+  ],
+  "status_contract": {
+    "slot_execution_status": "PASS/FAIL/BLOCKED/NOT_RUN",
+    "input_comparability_status": "PASS/FAIL/NOT_ESTABLISHED",
+    "gamma_structure_status": "PASS/MISMATCH",
+    "gamma_pairing_status": "PASS/MISMATCH",
+    "fixed_window_splitting_agreement_status": "PASS/MISMATCH/INCONCLUSIVE",
+    "gamma_occupation_diagnostic_status": "per-program PASS/REVIEW_REQUIRED",
+    "parameter_response_agreement_status": "PASS/MISMATCH/INCONCLUSIVE",
+    "limited_parameter_stability_status": "per-direction/program WITHIN_SCREENING_WINDOW/CHANGE_EXCEEDS_SCREENING_WINDOW/INCONCLUSIVE",
+    "numerical_review_status": "REVIEW_REQUIRED",
+    "physical_convergence": "NOT_ESTABLISHED",
+    "physical_manifold_interpretation": "REVIEW_REQUIRED"
+  },
+  "not_run": [
+    "new null",
+    "p/-p spectra",
+    "Mg",
+    "pp.x",
+    "zero temperature",
+    "independent scalar UPF",
+    "new material",
+    "extra scan/combined variants",
+    "independent XC direction check",
+    "CI",
+    "full upstream suites",
+    "IEEE localization"
+  ],
+  "parameter_source": {
+    "url": "https://www.quantum-espresso.org/Doc/INPUT_PW.html",
+    "access_date_utc": "2026-09-08",
+    "checked": "Ry input cutoff/degauss units; ecutrho density/potential support; all hard/smooth dimensions required; CG threshold tests eigenvalues, not explicit residuals"
+  },
+  "prepared_input_sha256": {
+    "benchmarks/si-soc-sensitivity-v1/E40/qe-gamma.in": "2e009e2fa332da90b1f8c153c3f4e1268581aa181b0178f2541b0dcb775c67f8",
+    "benchmarks/si-soc-sensitivity-v1/E40/qe-scf.in": "9cfa7694799b5c68d30dd6f8a7fa2aab90b0b9eba17ef81b3248a5a03914fc63",
+    "benchmarks/si-soc-sensitivity-v1/E40/case.json": "d5e6af621e58297bf62825ee37bbb6021cee59f969d44f524bf8b86d176f51bc",
+    "benchmarks/si-soc-sensitivity-v1/T05/qe-gamma.in": "3dd2729cecb8b6eea078e83f99168ae7204dd2331033e32e67ee2990e2ee5e1e",
+    "benchmarks/si-soc-sensitivity-v1/T05/qe-scf.in": "23f0c17e7fb9a3eb785cde5b88db98c1575fd89db797683f681ffc7f3a0a8752",
+    "benchmarks/si-soc-sensitivity-v1/T05/case.json": "171f8381a2576f05c0e87af46a58c552a73a17acf829e69e09e1c1d3f14eefc3",
+    "benchmarks/si-soc-sensitivity-v1/K4/qe-gamma.in": "f577c89b355d5101f33976b0adebd312ac32eafef4c44a78b3568c6c6f5c48ed",
+    "benchmarks/si-soc-sensitivity-v1/K4/qe-scf.in": "7a4a3f7dce88db6152ec0d61e07eed4e232736ca0e91b8c027fa4483d56833c0",
+    "benchmarks/si-soc-sensitivity-v1/K4/case.json": "7874f0007f8df69763b7a7032d580bb05a6b39bdcba412c72cc155a8b2e039ce"
+  }
+}

@@ -1,0 +1,33 @@
+! Phase 8B K4 gamma; fixed before all formal executions.
+&CONTROL
+ calculation = 'bands', restart_mode = 'from_scratch',
+ prefix = 'si8b_k4', pseudo_dir = './pseudo', outdir = './scratch',
+ verbosity = 'high', disk_io = 'low', tprnfor = .false., tstress = .false.,
+/
+&SYSTEM
+ ibrav = 0, nat = 2, ntyp = 1, nbnd = 24,
+ ecutwfc = 60.0, ecutrho = 240.0,
+ nr1 = 48, nr2 = 48, nr3 = 48, nr1s = 48, nr2s = 48, nr3s = 48,
+ noncolin = .true., lspinorb = .true., starting_magnetization(1) = 0.0,
+ nosym = .true., noinv = .true., no_t_rev = .true.,
+ occupations = 'smearing', smearing = 'fermi-dirac', degauss = 0.002,
+/
+&ELECTRONS
+ conv_thr = 1.0d-12, electron_maxstep = 200, mixing_beta = 0.3,
+ startingpot = 'file', startingwfc = 'atomic+random',
+ diagonalization = 'cg', diago_full_acc = .true.,
+ diago_thr_init = 1.0d-13,
+ diago_cg_maxiter = 300,
+/
+ATOMIC_SPECIES
+Si 28.0855 Si_r.upf
+CELL_PARAMETERS bohr
+0 5.13 5.13
+5.13 0 5.13
+5.13 5.13 0
+ATOMIC_POSITIONS crystal
+Si 0 0 0
+Si 0.25 0.25 0.25
+K_POINTS crystal
+1
+0 0 0 1

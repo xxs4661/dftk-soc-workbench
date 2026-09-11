@@ -73,6 +73,9 @@ function _context_certificate(ctx)
     _FR_CONTEXT_CERTIFICATES[ctx]
 end
 
+_context_assert_bound_identity(ctx,bundle)=assert_bound_identity(bundle)
+_context_assert_bound_sources(ctx,bundle)=assert_bound_sources(bundle)
+
 function _validate_live_binding(ctx)
     cert = _context_certificate(ctx)
     basis = ctx.basis
@@ -91,7 +94,7 @@ function _validate_live_binding(ctx)
     for ia in eachindex(ctx.bundles)
         bundle = ctx.bundles[ia]
         bundle === cert.bundles[ia] || throw(ArgumentError("atom-ordered source bundle identity mismatch"))
-        assert_bound_identity(bundle)
+        _context_assert_bound_identity(ctx,bundle)
         basis.model.atoms[ia] === snap.atoms[ia] &&
             basis.model.atoms[ia].psp === bundle.common ||
             throw(ArgumentError("atom order or common pseudopotential object mismatch"))
@@ -124,7 +127,7 @@ function validate_context(ctx)
     _validate_live_binding(ctx)
     cert = _context_certificate(ctx)
     for bundle in ctx.bundles
-        assert_bound_sources(bundle)
+        _context_assert_bound_sources(ctx,bundle)
         Symbol.(bundle.xc_identifiers) == ctx.xc_identifiers && bundle.mode == ctx.mode ||
             throw(ArgumentError("bundle mode or XC family mismatch"))
     end
@@ -154,18 +157,28 @@ function _atom_ordered_fr(bundles, qcart, positions_cart, volume)
     RelativisticProjectors.FRNonlocalOperator(P, D; labels)
 end
 
+function _checked_context_fft_size(fft_size)
+    isnothing(fft_size) && return nothing
+    (fft_size isa Tuple || fft_size isa AbstractVector) && length(fft_size)==3 &&
+        all(n->n isa Integer && !(n isa Bool) && 0<n<=typemax(Int),fft_size) ||
+        throw(ArgumentError("fft_size must contain three positive integer dimensions"))
+    Tuple(Int.(fft_size))
+end
+
 """
 Build six explicit common terms, then one FR operator per physical k point.
 `bundles` has one issued bundle per atom in `positions` order. Scalar degeneration
 requires the explicit `:synthetic_scalar_limit` mode and the issued Si bundle.
 Default temperature is zero with no smearing, preserving Phase 6B. Positive
 `temperature` is tau=k_B*T in Ha and requires explicit `Smearing.FermiDirac()`.
-The six common terms exclude entropy at either temperature.
+The six common terms exclude entropy at either temperature. An explicit fft_size
+is checked against the resulting physical grid; omission retains DFTK's default.
 """
 function build_context(bundles, lattice, positions, kcoords, kweights;
                        Ecut, xc_identifiers, mode::Symbol,
-                       temperature=0.0, smearing=DFTK.Smearing.None())
+                       temperature=0.0, smearing=DFTK.Smearing.None(),fft_size=nothing)
     tau = _common_temperature(temperature, smearing)
+    requested_fft = _checked_context_fft_size(fft_size)
     bs = collect(bundles)
     !isempty(bs) && length(bs) == length(positions) ||
         throw(ArgumentError("one issued source bundle per atom is required"))
@@ -194,8 +207,11 @@ function build_context(bundles, lattice, positions, kcoords, kweights;
         model_name=iszero(tau) ? "Phase 6B common-only integration" : "Finite-temperature common-only integration",
         terms, n_electrons=ne,
         spin_polarization=:none, temperature=tau, smearing, symmetries=false)
-    basis = DFTK.PlaneWaveBasis(model; Ecut=Float64(Ecut),
-        kgrid=DFTK.ExplicitKpoints([Float64.(k) for k in kcoords], Float64.(kweights)))
+    kgrid=DFTK.ExplicitKpoints([Float64.(k) for k in kcoords], Float64.(kweights))
+    basis = isnothing(requested_fft) ? DFTK.PlaneWaveBasis(model; Ecut=Float64(Ecut),kgrid) :
+        DFTK.PlaneWaveBasis(model; Ecut=Float64(Ecut),kgrid,fft_size=requested_fft)
+    isnothing(requested_fft) || basis.fft_size==requested_fft ||
+        throw(ArgumentError("actual FFT grid differs from the explicit request"))
     length(basis.kpoints) == length(kcoords) &&
         [collect(k.coordinate) for k in basis.kpoints] == kcoords &&
         basis.kweights == kweights || throw(ArgumentError("actual explicit k-point order/weights differs from request"))
@@ -339,8 +355,12 @@ function build_full_hamiltonian(ctx, n)
     # With no orbitals the temporary kinetic energy is Inf; only the Hamiltonian
     # is retained. This is construction of one fixed-density operator, not SCF.
     common = DFTK.energy_hamiltonian(ctx.basis, nothing, nothing; ρ=rho).ham
-    (; common, full=compose_full_hamiltonian(ctx, common), rho)
+    full=compose_full_hamiltonian(ctx, common)
+    _context_density_binding!(ctx,rho)
+    (; common, full, rho)
 end
+
+_context_density_binding!(ctx,rho)=nothing
 
 """Effect-based replacement check, also usable on explicit missing/double fault objects."""
 function check_full_decomposition(H, common, fr, X; atol=1e-10)

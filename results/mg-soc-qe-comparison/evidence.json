@@ -1,0 +1,621 @@
+{
+  "schema_version": 1,
+  "case": "mg-soc-qe-v1",
+  "base_commit": "77bd2e151116bcc189b797e6da415d27a61d3a2b",
+  "run_id": "20260907T001853989732Z-c88a8fa3",
+  "default_publication_status": "PASS",
+  "publication": {
+    "default_publication_status": "PASS",
+    "pr_url": "https://github.com/xxs4661/dftk-soc-workbench/pull/1",
+    "pr_state": "MERGED",
+    "main_before": "1e78bdb406f74dbae9601edd3a158cb04df24bd0",
+    "approved_curation_sha": "ac22a64421c4a5444a399477b9a3215dbd913487",
+    "published_main_sha": "77bd2e151116bcc189b797e6da415d27a61d3a2b",
+    "merge_sha": "77bd2e151116bcc189b797e6da415d27a61d3a2b",
+    "parents": [
+      "1e78bdb406f74dbae9601edd3a158cb04df24bd0",
+      "ac22a64421c4a5444a399477b9a3215dbd913487"
+    ],
+    "published_tree": "6d13576c190986a4872e8948fb7c1a851961e950",
+    "default_branch": "main",
+    "approved_commit_is_ancestor": true,
+    "tree_equals_reviewed": true,
+    "remote_default_entries": {
+      "README.md": {
+        "remote_ref": "main",
+        "blob_sha": "c6cf2a36d2e7d8c6bbfe06c2f2b2f79578e589a8",
+        "sha256": "6c40e3016d82dae6788aefc3fc75fbd501c62dfcfdc3ecede06270be5a73abb2",
+        "equals_reviewed_content": true
+      },
+      "docs/status.md": {
+        "remote_ref": "main",
+        "blob_sha": "0a02d7f7b089be0a6efcf1b41d31bcad2bcd249b",
+        "sha256": "062123b873204686b796e9cd5dd4f311e61a7e093b35fdbaccf7181494c6099b",
+        "equals_reviewed_content": true
+      },
+      "results/README.md": {
+        "remote_ref": "main",
+        "blob_sha": "5c122604bf3936d7ed51b02efc4963b6c9994538",
+        "sha256": "782cf4fb8e25105ed5f240937d2c4998c12eacf128e4794e037ef72250661c8d",
+        "equals_reviewed_content": true
+      }
+    },
+    "curation_branch_retained": true
+  },
+  "qe_execution_status": "PASS",
+  "input_comparability_status": "PASS",
+  "numerical_settings_match": {
+    "status": "INPUT_PASS_WITH_NUMERICAL_DIFFERENCES",
+    "DFTK_fft_grid": [
+      40,
+      40,
+      40
+    ],
+    "QE_fft_grid": [
+      36,
+      36,
+      36
+    ],
+    "QE_fft_smooth_grid": [
+      36,
+      36,
+      36
+    ],
+    "spatial_plane_waves": [
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "DFTK_spatial_npw": 2777,
+        "QE_spatial_npw": 2777
+      },
+      {
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "DFTK_spatial_npw": 2770,
+        "QE_spatial_npw": 2770
+      },
+      {
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "DFTK_spatial_npw": 2770,
+        "QE_spatial_npw": 2770
+      }
+    ],
+    "scope": "FFT and spatial plane-wave counts only; quadrature and solver implementations are not asserted equal"
+  },
+  "energy_semantics_status": "PASS",
+  "comparison_execution_status": "PASS",
+  "numerical_agreement_status": "REVIEW_REQUIRED",
+  "physical_convergence_status": "NOT_ESTABLISHED",
+  "noncollinear_magnetic_xc_status": "NOT_IMPLEMENTED",
+  "upstream_native_support": "NOT_IMPLEMENTED_BY_THIS_WORKBENCH",
+  "historical_reference_status": "HISTORICAL_REUSED",
+  "case_config": {
+    "path": "benchmarks/mg-soc-qe-v1/case.json",
+    "sha256": "d6909ab6fc42aebab68486959df974ee9301b0dafa75b3d6a2bbe5304c9ef3c4"
+  },
+  "predeclaration": {
+    "saved_utc": "2026-09-07T00:18:54.170742+00:00",
+    "case_sha256": "1b9685f58dea05a9336c10f0e52df7ea4b0fea36f7a31dd767aa9511fa282f85",
+    "qe_input_sha256": "e6fcc5b7ed952f3b96c0e85797d52ff6f5075138d6c9f5e50ab440cbb23cb4cd",
+    "fresh_scratch": true
+  },
+  "metadata_erratum": {
+    "original_path": "benchmarks/mg-soc-qe-v1/case.predeclared.json",
+    "corrected_field": "xc.qe_indices",
+    "before": [
+      1,
+      1,
+      10,
+      8
+    ],
+    "after": [
+      1,
+      4,
+      10,
+      8
+    ],
+    "physical_input_changed": false,
+    "reason": "Initial workbench metadata incorrectly identified PBEsol base correlation index. Actual input had no input_dft override; native QE correctly used PBESOL. Corrected after source inspection; no physical rerun or gate relaxation.",
+    "sources": [
+      "https://github.com/QEF/q-e/blob/qe-7.5/XClib/qe_dft_list.f90#L116-L118",
+      "https://github.com/QEF/q-e/blob/qe-7.5/Modules/funct.f90#L61-L190"
+    ]
+  },
+  "input_receipt": {
+    "before_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "after_sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "actual_header": {
+      "element": "Mg",
+      "pseudo_type": "NC",
+      "relativistic": "full",
+      "has_so": true,
+      "functional": "PBESOL",
+      "z_valence": 10,
+      "nlcc": false
+    }
+  },
+  "qe_identity": {
+    "selected_path": "<home>/.local/bin/pw.x",
+    "resolved_launcher": "<home>/.local/bin/qe-jll",
+    "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+    "source_commit": null,
+    "source_commit_note": "Not confirmed; record actual startup version and binary hash",
+    "jll_version": "7.5.1+0",
+    "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+    "jll_source": "<home>/.julia/packages/QuantumEspresso_jll/T1wk0/src/QuantumEspresso_jll.jl",
+    "active_project": "<home>/.julia/environments/v1.12/Project.toml",
+    "binary": "<home>/.julia/artifacts/273d3312b2a70e6223250dbf4a39ab3f28b04104/bin/pw.x",
+    "artifacts_file": "<home>/.julia/packages/QuantumEspresso_jll/T1wk0/Artifacts.toml",
+    "runner_path": "<home>/.local/share/qe-jll/qe-runner.jl",
+    "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+    "installation_source": "Existing QuantumEspresso_jll installation (not installed or upgraded by this run)",
+    "binary_path": "<home>/.julia/artifacts/273d3312b2a70e6223250dbf4a39ab3f28b04104/bin/pw.x",
+    "binary_sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+    "startup_version": "7.5"
+  },
+  "parallelism": {
+    "command": [
+      "<home>/.local/bin/pw.x",
+      "-in",
+      "qe.in"
+    ],
+    "environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "JULIA_NUM_THREADS": "1"
+    },
+    "native_mpi_processes": 1,
+    "native_nodes": 1,
+    "native_diagonalization": "serial subspace algorithm",
+    "linked_libraries": [
+      "libopenblas.dylib",
+      "libscalapack32.dylib",
+      "libfftw3.3.dylib",
+      "libmpi.12.dylib",
+      "libmpifort.12.dylib",
+      "libxcf03.15.dylib",
+      "libxc.15.dylib"
+    ],
+    "library_scope": "otool dependencies and launcher receipt; no inferred BLAS performance or source commit"
+  },
+  "process": {
+    "run_id": "20260907T001853989732Z-c88a8fa3",
+    "started_utc": "2026-09-07T00:18:54.181010+00:00",
+    "finished_utc": "2026-09-07T00:18:58.557489+00:00",
+    "exit_code": 0,
+    "interrupted": false,
+    "binary_sha256_after": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0",
+    "scf_iterations": 15,
+    "command": [
+      "<home>/.local/bin/pw.x",
+      "-in",
+      "qe.in"
+    ]
+  },
+  "run_attempts": [
+    {
+      "run_id": "20260907T001820229335Z-d0eb93e7",
+      "stage": "MPI_INITIALIZATION",
+      "process_exit_code": 143,
+      "scf_executed": false,
+      "status": "FAILED_BEFORE_SCF",
+      "reason": "Sandbox denied OFI MPI endpoint initialization (Operation not permitted); identical input retried through normal permission review."
+    },
+    {
+      "run_id": "20260907T001853989732Z-c88a8fa3",
+      "stage": "SCF",
+      "process_exit_code": 0,
+      "scf_executed": true,
+      "initial_recorder_exit_code": 9,
+      "initial_parse_status": "FAIL",
+      "reason": "Initial parser required a starting_magnetization XML field that QE omits when all inputs are zero. Native do_magnetization=false and original zero input verified. Same bytes reparsed; initial failure record preserved locally."
+    },
+    {
+      "run_id": "20260907T002225710098Z-bands-1561a3f2",
+      "stage": "BANDS_REFINEMENT",
+      "process_exit_code": 0,
+      "scf_executed": false,
+      "status": "COMPLETED"
+    }
+  ],
+  "refinement": {
+    "run_id": "20260907T002225710098Z-bands-1561a3f2",
+    "source_scf_run_id": "20260907T001853989732Z-c88a8fa3",
+    "purpose": "Single warning-triggered fixed-density spectrum refinement; no E/F replacement",
+    "input_path": "benchmarks/mg-soc-qe-v1/qe-bands.in",
+    "input_sha256": "5cf7371b76dc55db219a0a0c419f6b5634fa9c2d83c03f4990a8c3c8c9217ff6",
+    "started_utc": "2026-09-07T00:22:25.902496+00:00",
+    "finished_utc": "2026-09-07T00:22:26.828980+00:00",
+    "exit_code": 0,
+    "source_preservation": {
+      "status": "PASS",
+      "checked_files": 19,
+      "source_run_id": "20260907T001853989732Z-c88a8fa3"
+    },
+    "source_charge_and_wavefunction_copy": true,
+    "command": [
+      "<home>/.local/bin/pw.x",
+      "-in",
+      "qe.in"
+    ],
+    "predeclaration": {
+      "saved_utc": "2026-09-07T00:22:25.901075+00:00",
+      "qe_input_sha256": "5cf7371b76dc55db219a0a0c419f6b5634fa9c2d83c03f4990a8c3c8c9217ff6"
+    },
+    "energy_source": "SCF only",
+    "occupation_and_chemical_potential_scope": "bands inherits SCF mu; occupations recomputed at inherited mu; no new SCF energy or chemical-potential solve",
+    "charge_density_bytes_unchanged": true,
+    "charge_density_sha256": "81491411c5a327ca5ae022fd950efacc247ec0eea1f78adbd0811c81dea53b9b"
+  },
+  "eigenvalue_precision_status": {
+    "scf": "WARNING_REVIEW_REQUIRED",
+    "refinement": "REPORTED_THRESHOLD_AVAILABLE",
+    "explicit_qe_eigenvector_residuals": "NOT_AVAILABLE",
+    "native_stderr_flags": [
+      "IEEE_INVALID_FLAG",
+      "IEEE_DIVIDE_BY_ZERO",
+      "IEEE_OVERFLOW_FLAG"
+    ],
+    "stderr_note": "Reported by both successful QE processes; preserved, not diagnosed or silently suppressed. Finite XML fields and convergence gates pass."
+  },
+  "native_sources": [
+    {
+      "run_id": "20260907T001853989732Z-c88a8fa3",
+      "raw_relative_path": "qe.stdout",
+      "raw_sha256": "3cce7efad635eb5c0a1c97158ac559f7dedb19815acde8bdb8e79167cb913584",
+      "raw_bytes": 20784,
+      "public_path": "results/mg-soc-qe-comparison/qe.stdout",
+      "public_sha256": "35a54a7aa30aed69307617f3fd3560ec1818cc3393dad27941c59664f33f6335",
+      "transformation": "Exact local root/home path tokens replaced if present; stdout trailing spaces/tabs stripped per line; native numbers, line structure and warnings unchanged",
+      "byte_identical": false
+    },
+    {
+      "run_id": "20260907T001853989732Z-c88a8fa3",
+      "raw_relative_path": "qe.stderr",
+      "raw_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "raw_bytes": 119,
+      "public_path": "results/mg-soc-qe-comparison/qe.stderr",
+      "public_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "transformation": "Exact local root/home path tokens replaced if present; stdout trailing spaces/tabs stripped per line; native numbers, line structure and warnings unchanged",
+      "byte_identical": true
+    },
+    {
+      "run_id": "20260907T001853989732Z-c88a8fa3",
+      "raw_relative_path": "qe-data-file-schema.xml",
+      "raw_sha256": "34295b4ee53396f6a655f7ca152804b3e763ba13c5dc49f14fdf2ab588107366",
+      "raw_bytes": 42527,
+      "public_path": "results/mg-soc-qe-comparison/qe-data-file-schema.xml",
+      "public_sha256": "34295b4ee53396f6a655f7ca152804b3e763ba13c5dc49f14fdf2ab588107366",
+      "transformation": "Exact local root/home path tokens replaced if present; stdout trailing spaces/tabs stripped per line; native numbers, line structure and warnings unchanged",
+      "byte_identical": true
+    },
+    {
+      "run_id": "20260907T002225710098Z-bands-1561a3f2",
+      "raw_relative_path": "qe.stdout",
+      "raw_sha256": "7c1e76ead4aadc0266aaf90ccb85b9eccf01eda6a7baf2183ffada0dca6ddb59",
+      "raw_bytes": 9421,
+      "public_path": "results/mg-soc-qe-comparison/qe-refinement.stdout",
+      "public_sha256": "6d65e53e15d6a26c21d4892c735ab66890b7c788be4155a37db3a700b6df2837",
+      "transformation": "Exact local root/home path tokens replaced if present; stdout trailing spaces/tabs stripped per line; native numbers, line structure and warnings unchanged",
+      "byte_identical": false
+    },
+    {
+      "run_id": "20260907T002225710098Z-bands-1561a3f2",
+      "raw_relative_path": "qe.stderr",
+      "raw_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "raw_bytes": 119,
+      "public_path": "results/mg-soc-qe-comparison/qe-refinement.stderr",
+      "public_sha256": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+      "transformation": "Exact local root/home path tokens replaced if present; stdout trailing spaces/tabs stripped per line; native numbers, line structure and warnings unchanged",
+      "byte_identical": true
+    },
+    {
+      "run_id": "20260907T002225710098Z-bands-1561a3f2",
+      "raw_relative_path": "qe-data-file-schema.xml",
+      "raw_sha256": "31fb8029ec401a03fddbde97004bcd77290c718ee18857838fce77cdf45748d1",
+      "raw_bytes": 40094,
+      "public_path": "results/mg-soc-qe-comparison/qe-refinement-data-file-schema.xml",
+      "public_sha256": "31fb8029ec401a03fddbde97004bcd77290c718ee18857838fce77cdf45748d1",
+      "transformation": "Exact local root/home path tokens replaced if present; stdout trailing spaces/tabs stripped per line; native numbers, line structure and warnings unchanged",
+      "byte_identical": true
+    }
+  ],
+  "execution_source_sha256": {
+    "scf": {
+      "scripts/run_qe_soc.py": "95cf2b574f6b5fa58257dc016fab3525b3286aa8a649d30a59bd5b1669e5a327",
+      "scripts/parse_qe_soc.py": "38cfc6236dc878141fbfae6294a873c920a7c81f65612b3e4aa9422b6f08c174",
+      "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185"
+    },
+    "refinement": {
+      "scripts/run_qe_soc.py": "613795da3829b74fb0ab1dcfe42670c54300b1a1491792534fbd62825996dfdc"
+    }
+  },
+  "current_reparse_saved_utc": "2026-09-07T00:43:47.269049+00:00",
+  "julia_identity_check": {
+    "dftk_construction_status": "NOT_RUN",
+    "overall_status": "PASS",
+    "parse_status": "NOT_RUN",
+    "action": "identity",
+    "metadata_validation_status": "NOT_RUN",
+    "environment": {
+      "project_sha256": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+      "julia_version": "1.12.7",
+      "packages": {
+        "dftk": {
+          "worktree_status": "clean",
+          "expected_uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+          "expected_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+          "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+          "uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+          "expected_path": "<workbench>/.work/DFTK.jl/src/DFTK.jl",
+          "checkout": "<workbench>/.work/DFTK.jl",
+          "expected_version": "0.8.0",
+          "version": "0.8.0",
+          "path": "<workbench>/.work/DFTK.jl/src/DFTK.jl"
+        },
+        "pseudopotentialio": {
+          "worktree_status": "clean",
+          "expected_uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+          "expected_commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+          "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+          "uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+          "expected_path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl",
+          "checkout": "<workbench>/.work/PseudoPotentialIO.jl",
+          "expected_version": "0.3.3",
+          "version": "0.3.3",
+          "path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl"
+        }
+      },
+      "active_project": "<workbench>/environment/workbench/Project.toml",
+      "status": "PASS",
+      "source_lock_sha256": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+      "active_manifest": "<workbench>/environment/workbench/Manifest.toml",
+      "manifest_sha256": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+      "reasons": []
+    },
+    "schema_version": 2,
+    "exit_code": 0,
+    "reasons": [],
+    "worker_exit_code": 0,
+    "command": [
+      "julia",
+      "--startup-file=no",
+      "--color=no",
+      "--project=<workbench>/environment/workbench",
+      "<workbench>/scripts/inspect_relativistic_upf.jl",
+      "--check-environment"
+    ],
+    "run_id": "20260907T001320275833Z-b399df1a"
+  },
+  "not_run": [
+    "New DFTK A/B SCF",
+    "Cross-code density L2 and historical private-array revalidation",
+    "Physical cutoff/k/temperature convergence",
+    "New upstream Julia numerical suite",
+    "Noncollinear magnetic XC",
+    "Additional materials or scans"
+  ],
+  "public_sha256": {
+    "results/mg-soc-qe-comparison/qe-refinement-data-file-schema.xml": "31fb8029ec401a03fddbde97004bcd77290c718ee18857838fce77cdf45748d1",
+    "results/mg-soc-qe-comparison/comparison-refinement.json": "7ad8d370d222d5ae216a0d53d409bb2ca08eb68e1f71928698bdc4a891da9529",
+    "results/mg-soc-qe-comparison/qe-result.json": "436d192ca9a355a8d910794ec113a9c009d5bff91a6a0265b59c17a36299348e",
+    "results/mg-soc-qe-comparison/eigenvalues-refinement.csv": "2514fd0570fa72053fbe5f30b6d05daa7038eff4f5c3d5a4bb7eaacda1012857",
+    "results/mg-soc-qe-comparison/eigenvalues.csv": "75f61b5ac8ae3734caa069b2e875a03d757b978641949f722d570f7f8433762c",
+    "results/mg-soc-qe-comparison/comparison.json": "d8789036973311f15f9e55104a8d51133952270f6143f9b60505fb680cb7c88e",
+    "results/mg-soc-qe-comparison/qe-refinement-result.json": "e63b7288c245409b467d4e70162f9ddbbe3e43894c390ce0f221c5c421e5cc1e",
+    "results/mg-soc-qe-comparison/qe-data-file-schema.xml": "34295b4ee53396f6a655f7ca152804b3e763ba13c5dc49f14fdf2ab588107366",
+    "results/mg-soc-qe-comparison/qe-refinement.stdout": "6d65e53e15d6a26c21d4892c735ab66890b7c788be4155a37db3a700b6df2837",
+    "results/mg-soc-qe-comparison/qe.stdout": "35a54a7aa30aed69307617f3fd3560ec1818cc3393dad27941c59664f33f6335",
+    "results/mg-soc-qe-comparison/qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "results/mg-soc-qe-comparison/qe-refinement.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "benchmarks/mg-soc-qe-v1/case.predeclared.json": "1b9685f58dea05a9336c10f0e52df7ea4b0fea36f7a31dd767aa9511fa282f85",
+    "benchmarks/mg-soc-qe-v1/case.json": "d6909ab6fc42aebab68486959df974ee9301b0dafa75b3d6a2bbe5304c9ef3c4",
+    "benchmarks/mg-soc-qe-v1/qe-bands.in": "5cf7371b76dc55db219a0a0c419f6b5634fa9c2d83c03f4990a8c3c8c9217ff6",
+    "benchmarks/mg-soc-qe-v1/qe.in": "e6fcc5b7ed952f3b96c0e85797d52ff6f5075138d6c9f5e50ab440cbb23cb4cd"
+  },
+  "verifier_sha256": {
+    "scripts/check_qe_soc_evidence.py": "cb2e68afbd985f1bb28e96357ca7b750822aec1f683576e006536febb48b773f",
+    "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+    "scripts/compare_qe_soc.py": "01e2fbd19618273251fe01681aa300ae6c811c8e00252db15a3cd11ed869ce98",
+    "scripts/check_publication.py": "e1aa6f59efa9dab5d1569d3e773a0f5a1cc8ba53c9e5b4b200d571cca807330c"
+  },
+  "validation": {
+    "status": "PASS",
+    "scope": "Independent clean public Git snapshot; no .work, cached science data, Julia, SCF or QE. Synthetic subprocess tests and offline native-file arithmetic only.",
+    "finished_utc": "2026-09-07T00:41:14.644698+00:00",
+    "snapshot_tree": "7d8b905a92c5c26176d10d6dbfaf40702bf653f4",
+    "snapshot_commit_scope": "Ephemeral local clone only; not pushed",
+    "public_snapshot_file_count": 225,
+    "historical_extractor_blob": "062aa1660a9bc1366d1bdbe181c05885aa57e575",
+    "work_absent_before": true,
+    "work_absent_after": true,
+    "git_status_before": "",
+    "git_status_after": "",
+    "public_files_unchanged_after_checks": true,
+    "runtimes": {
+      "/usr/bin/python3": "Python 3.9.6",
+      "python3.12": "Python 3.12.14"
+    },
+    "test_total": 210,
+    "snapshot_note": "First clean snapshot before a final public-only newline/trailing-space normalization and updated receipts; physical inputs and raw/derived numeric values unchanged. Follow-up checks recorded separately.",
+    "runs": [
+      {
+        "name": "publication-check",
+        "command": "/usr/bin/python3 scripts/check_publication.py",
+        "exit_code": 0,
+        "status": "PASS",
+        "log": ".agent-work/publish-phase7a/clean-public-logs/publication-check.log",
+        "log_sha256": "557465507ea8f6e0a192afa5bcf8728ad3e0c5f82227d18413c9c01e3ad29557"
+      },
+      {
+        "name": "qe-soc-tests",
+        "command": "python3.12 -m unittest discover -s tests -p 'test_qe_soc_*.py' -v",
+        "exit_code": 0,
+        "status": "PASS",
+        "log": ".agent-work/publish-phase7a/clean-public-logs/qe-soc-tests.log",
+        "log_sha256": "1e7ac899f48e50c1a2c696531b2a0ed412cbd7549f4eba590e9d35f351d6551f",
+        "tests": 96
+      },
+      {
+        "name": "publication-tests",
+        "command": "/usr/bin/python3 tests/test_publication.py -v",
+        "exit_code": 0,
+        "status": "PASS",
+        "log": ".agent-work/publish-phase7a/clean-public-logs/publication-tests.log",
+        "log_sha256": "095b8a959aeb3e2e5acf04d303022024e9727721e1b524de789e64369d58ec1f",
+        "tests": 23
+      },
+      {
+        "name": "scalar-parser-tests",
+        "command": "/usr/bin/python3 tests/test_qe_baseline_parser.py -v",
+        "exit_code": 0,
+        "status": "PASS",
+        "log": ".agent-work/publish-phase7a/clean-public-logs/scalar-parser-tests.log",
+        "log_sha256": "4a54a5bfc109fe83442ca1732c50a39db599504cbee2b8943fed636b7a8304a6",
+        "tests": 31
+      },
+      {
+        "name": "scalar-baseline-tests",
+        "command": "/usr/bin/python3 tests/test_scalar_baseline.py -v",
+        "exit_code": 0,
+        "status": "PASS",
+        "log": ".agent-work/publish-phase7a/clean-public-logs/scalar-baseline-tests.log",
+        "log_sha256": "d7f167d0682bd60e36eb731b3c5c17058d96fd49082e61ae5ed1a7c15e6f683c",
+        "tests": 18
+      },
+      {
+        "name": "phase4c-baseline-tests",
+        "command": "/usr/bin/python3 tests/test_phase4c_baseline.py -v",
+        "exit_code": 0,
+        "status": "PASS",
+        "log": ".agent-work/publish-phase7a/clean-public-logs/phase4c-baseline-tests.log",
+        "log_sha256": "bd7b0bc9970b85f00464dbbc77b5741297f65553026f38bf2a5e6384a8d630f0",
+        "tests": 18
+      },
+      {
+        "name": "soc-preparation-tests",
+        "command": "python3.12 tests/soc_scf/test_qe_preparation.py -v",
+        "exit_code": 0,
+        "status": "PASS",
+        "log": ".agent-work/publish-phase7a/clean-public-logs/soc-preparation-tests.log",
+        "log_sha256": "e9e808fc482326123780dcf78d600748527320e5da44c64c56cf49bd78bbe084",
+        "tests": 24
+      },
+      {
+        "name": "diff-check",
+        "command": "git diff --check",
+        "exit_code": 0,
+        "status": "PASS",
+        "log": ".agent-work/publish-phase7a/clean-public-logs/diff-check.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "tested_source_sha256": {
+      "scripts/check_qe_soc_evidence.py": "cb2e68afbd985f1bb28e96357ca7b750822aec1f683576e006536febb48b773f",
+      "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+      "scripts/compare_qe_soc.py": "01e2fbd19618273251fe01681aa300ae6c811c8e00252db15a3cd11ed869ce98",
+      "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+      "tests/test_qe_soc_runner.py": "238ea24322baae8ed3ad0551418deb75cee0ea9d8242057ef4df45ad112d186d",
+      "tests/test_qe_soc_evidence.py": "ea2476e29512ac108c28438ce184c53e445a1a59c6bb6ae88be831f3943e944a",
+      "tests/test_qe_soc_comparison.py": "384e8601088aa9b4bc91f0bba91450b0450e134069521ca52a97dbdc03c9aa58",
+      "tests/test_qe_soc_parser.py": "60087e10c78837e69dcd141df2928763b378c3fed7f62e4f600d00332dfe8898",
+      "scripts/check_publication.py": "e1aa6f59efa9dab5d1569d3e773a0f5a1cc8ba53c9e5b4b200d571cca807330c",
+      "tests/test_publication.py": "eda0c1fbad4cd09bd91e3af138e94a2962da1b2c1fcbe0cbdc1b5f667525bf40"
+    },
+    "A_publication_tests": {
+      "tests": 9,
+      "exit_code": 0,
+      "scope": "Separate clean reviewed ac22 checkout before merge; not new scientific tests"
+    },
+    "format_followup": {
+      "status": "PASS",
+      "scope": "Independent clean public snapshot after CSV LF and public-log whitespace changes; meaningful complete-phase diff check. No scientific execution.",
+      "finished_utc": "2026-09-07T00:46:19.933084+00:00",
+      "snapshot_tree": "4fbf09d4e0a28beb11d6bac415a14cdc94a2a541",
+      "whole_phase_diff_check": "git diff 77bd2e151116bcc189b797e6da415d27a61d3a2b..HEAD --check; exit 0",
+      "work_absent_before": true,
+      "work_absent_after": true,
+      "git_status_before": "",
+      "git_status_after": "",
+      "rerun_tests": 119,
+      "distinct_phase_tests": 210,
+      "runs": [
+        {
+          "name": "whole-phase-diff-check",
+          "command": "git diff 77bd2e151116bcc189b797e6da415d27a61d3a2b..HEAD --check",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": ".agent-work/publish-phase7a/clean-public-format-logs/whole-phase-diff-check.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "publication-check",
+          "command": "/usr/bin/python3 scripts/check_publication.py",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": ".agent-work/publish-phase7a/clean-public-format-logs/publication-check.log",
+          "log_sha256": "58329536bd94497f9105647e413dc40c4e66ba9c29838a04bfda60281a886bae"
+        },
+        {
+          "name": "qe-soc-tests",
+          "command": "python3.12 -m unittest discover -s tests -p 'test_qe_soc_*.py' -v",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": ".agent-work/publish-phase7a/clean-public-format-logs/qe-soc-tests.log",
+          "log_sha256": "72c42c5e230129fe2746aae8bf1e1cb4f2bdd3b0b05b4497733bc12078794d4c",
+          "tests": 96
+        },
+        {
+          "name": "publication-tests",
+          "command": "/usr/bin/python3 tests/test_publication.py -v",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": ".agent-work/publish-phase7a/clean-public-format-logs/publication-tests.log",
+          "log_sha256": "200ef73758fd83888e2c9eaa6778f43caf36026d4c8cfd1697ee00fcf15f24ec",
+          "tests": 23
+        }
+      ],
+      "numeric_values_and_csv_cells_unchanged": true,
+      "initial_staged_diff_check": "FAIL: CRLF CSV and native stdout trailing spaces; public formatting corrected without changing raw files or numeric values",
+      "log_scope": "Local execution logs are archived, not republished as scientific evidence."
+    }
+  },
+  "archive": {
+    "scope": "New Phase 7A original raw runs only, not old archive",
+    "file_count": 51,
+    "bytes": 22184055,
+    "backup_hash_verification": "PASS",
+    "independent_directory_restore": "PASS",
+    "storage_scope": "Repository-external directory on the same machine/disk; not offsite",
+    "manifest_sha256": "097bd3c9539eb9ec5c35525e4243f1772dcda229e9b2de836c8fe3e955edb671",
+    "location": "Repository-external local archive; private location omitted"
+  },
+  "preservation": {
+    "base": "77bd2e151116bcc189b797e6da415d27a61d3a2b",
+    "historical_files_total": 198,
+    "byte_identical": 191,
+    "allowed_changed_current_interfaces": [
+      "README.md",
+      "benchmarks/README.md",
+      "docs/status.md",
+      "results/README.md",
+      "scripts/README.md",
+      "scripts/check_publication.py",
+      "tests/test_publication.py"
+    ],
+    "frozen_files_verified": 86
+  },
+  "recording_limits": "Original SCF recorder failure is preserved. Current runner additionally cleans up its isolated child group on receipt failure/interruption and uses an exclusive refinement claim; these later recording changes were synthetic-tested, not used to replace historical execution source hashes."
+}

@@ -6,6 +6,7 @@ export validate_common_data, validate_common_request, common_data_summary, compa
 include("common_data.jl")
 include("hamiltonian.jl")
 include("energy.jl")
+include("runtime.jl")
 include("variational.jl")
 include("runtime_checks.jl")
 end

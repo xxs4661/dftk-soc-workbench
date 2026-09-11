@@ -1,0 +1,606 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "new_julia_assertions": 551,
+  "unchanged_julia_assertions": 2495,
+  "entries": [
+    {
+      "name": "new kernels",
+      "scope": "Synthetic core, synthetic orbital FFT coefficients; no SCF/eigensolve/material computation",
+      "assertions_or_tests": 280,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "kernel-tests-20260909T110416Z-5e21ab51",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--threads=1",
+        "--color=no",
+        "--project=<workbench>/environment/workbench",
+        "<workbench>/tests/soc_core_memory/test_kernels.jl",
+        "--with-fft-adapter"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/kernel-tests-20260909T110416Z-5e21ab51/receipt.json",
+        "sha256": "1c2663f8f0edf999e533ca0fe1ee24496a60e6136b3f78ddb4853b04564dcb29"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/kernel-tests-20260909T110416Z-5e21ab51/qe.stdout",
+          "sha256": "5982e2c4d66860d3e288a57a4f4be4263114d0f25f102fa18e2d17ba6e03e821",
+          "bytes": 928
+        },
+        {
+          "archive_member": "phase9a/kernel-tests-20260909T110416Z-5e21ab51/qe.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "log_tail": [
+        "Test Summary:                                          | Pass  Total  Time",
+        "Exact density order, capacities and complex Pauli sign |   24     24  0.8s",
+        "Test Summary:                                             | Pass  Total  Time",
+        "Frozen FFT statewise adapter, synthetic coefficients only |   26     26  1.8s",
+        "Kernel test scope: synthetic algebra and synthetic coefficients on frozen FFT basis; Julia 1.12.7"
+      ]
+    },
+    {
+      "name": "owned runtime and SOC boundaries",
+      "scope": "Small authenticated historical Mg static algebra/density/energy fixture and synthetic boundaries; no SCF/eigen/occupation solve",
+      "assertions_or_tests": 162,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "runtime-tests-20260909T112034Z-595145e3",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--threads=1",
+        "--color=no",
+        "--project=<workbench>/environment/workbench",
+        "<workbench>/.work/phase9a/runtime-tests-20260909T112034Z-595145e3/run.jl"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/runtime-tests-20260909T112034Z-595145e3/receipt.json",
+        "sha256": "6c08ea19d06dd5abcba661e9439ce0dd1499fd1e70632909e2f77a280d60ef17"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/runtime-tests-20260909T112034Z-595145e3/qe.stdout",
+          "sha256": "507353aaf3fd5969ae4f6d9b7c69cb3590bc4f6f170a03b5e9641a5ec9247fe5",
+          "bytes": 154
+        },
+        {
+          "archive_member": "phase9a/runtime-tests-20260909T112034Z-595145e3/qe.stderr",
+          "sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+          "bytes": 107
+        }
+      ],
+      "log_tail": [
+        "Test Summary:                                           | Pass  Total   Time",
+        "Phase9A static runtime and synthetic control boundaries |  162    162  15.1s",
+        "\u250c Info: Threading setup: ",
+        "\u2502   Threads.nthreads() = 1",
+        "\u2502   n_DFTK = 1",
+        "\u2502   n_fft = 1",
+        "\u2514   n_blas = 1"
+      ]
+    },
+    {
+      "name": "unique memory accounting",
+      "scope": "Synthetic timing/memory metadata only",
+      "assertions_or_tests": 71,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "affected-memory-20260909T110940Z-9504a951",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--threads=1",
+        "--color=no",
+        "--project=<workbench>/environment/workbench",
+        "<workbench>/tests/soc_core_memory/test_memory.jl"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/affected-memory-20260909T110940Z-9504a951/receipt.json",
+        "sha256": "3529c0733d281219bb82a1d256cad5cb5e2c23bfc0d169b350563b1a1ed68219"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/affected-memory-20260909T110940Z-9504a951/qe.stdout",
+          "sha256": "43a9a764c66b615bfbe35218f420ab3a0455f9116034ddfa226258fe5a45b5b3",
+          "bytes": 1088
+        },
+        {
+          "archive_member": "phase9a/affected-memory-20260909T110940Z-9504a951/qe.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "log_tail": [
+        "Unknown/native metadata is not fabricated or evaluated |    6      6  0.1s",
+        "Test Summary:                                                   | Pass  Total  Time",
+        "Registry table capacity counted without leaking dictionary keys |    5      5  0.2s",
+        "Test Summary:                                                    | Pass  Total  Time",
+        "Incremental observer runs outside samples and preserves failures |    7      7  0.1s"
+      ]
+    },
+    {
+      "name": "static comparison and redaction",
+      "scope": "Synthetic saved-array arithmetic and proof rejection only",
+      "assertions_or_tests": 18,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "affected-comparison-20260909T112741Z-54b26cbb",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--threads=1",
+        "--color=no",
+        "--project=<workbench>/environment/workbench",
+        "<workbench>/tests/soc_core_memory/test_comparison.jl"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/affected-comparison-20260909T112741Z-54b26cbb/receipt.json",
+        "sha256": "84049e91b45b127406722c8892eb86207e472db2f65a0270b96ee851589f2307"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/affected-comparison-20260909T112741Z-54b26cbb/qe.stdout",
+          "sha256": "9cc064bcfb2f1401eb98a2819f16525cb8c4bd98949206e1eb319c715e1b61a2",
+          "bytes": 306
+        },
+        {
+          "archive_member": "phase9a/affected-comparison-20260909T112741Z-54b26cbb/qe.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "log_tail": [
+        "Test Summary:                                    | Pass  Total  Time",
+        "Saved arithmetic contracts and units (synthetic) |   14     14  0.7s",
+        "Test Summary:                                                   | Pass  Total  Time",
+        "Same actual CORE root retains workbench identity in public text |    4      4  0.1s"
+      ]
+    },
+    {
+      "name": "synthetic frozen LOBPCG core adapter",
+      "scope": "Synthetic random Hermitian160-dimensional lifted matrix with frozen LOBPCG only; no physical context, psp, SCF or endpoint",
+      "assertions_or_tests": 20,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "kernel-solver-adapter-20260909T111450Z-bd931394",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--threads=1",
+        "--color=no",
+        "--project=<workbench>/environment/workbench",
+        "<workbench>/tests/soc_core_memory/test_solver_adapter.jl"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/kernel-solver-adapter-20260909T111450Z-bd931394/receipt.json",
+        "sha256": "f89b5822c92d741082bc78015412eb1337645c3ca3557c84e65eb67ca5ca382a"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/kernel-solver-adapter-20260909T111450Z-bd931394/qe.stdout",
+          "sha256": "da0d3f9dfecc595263394a76599b8dab4595d238d8104e8dcd8093fd8d3f0e41",
+          "bytes": 751
+        },
+        {
+          "archive_member": "phase9a/kernel-solver-adapter-20260909T111450Z-bd931394/qe.stderr",
+          "sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+          "bytes": 107
+        }
+      ],
+      "log_tail": [
+        "{\"scope\":\"SYNTHETIC_ONLY_FROZEN_LOBPCG_CORE_ABI\",\"target_states\":24,\"solver_columns\":30,\"solver_iterations\":37,\"solver_rhs_widths\":[7,10,11,15,18,20,22,26,29,30],\"solver_input_types\":[\"Matrix{ComplexF64}\",\"SubArray{ComplexF64, 2, Matrix{ComplexF64}, Tuple{Base.Slice{Base.OneTo{Int64}}, UnitRange{Int64}}, true}\"],\"solver_call_count\":38,\"residual_max\":8.70473432203136e-11,\"gram\":3.5597358564934896e-14,\"constructed_spectrum_error\":2.8199664825478976e-14,\"environment_status\":\"PASS\",\"manifest_sha256\":\"5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37\"}",
+        "Test Summary:                                                          | Pass  Total  Time",
+        "Frozen LOBPCG through bounded core on synthetic dense Hermitian scalar |   20     20  2.3s",
+        "\u250c Info: Threading setup: ",
+        "\u2502   Threads.nthreads() = 1",
+        "\u2502   n_DFTK = 1",
+        "\u2502   n_fft = 1",
+        "\u2514   n_blas = 1"
+      ]
+    },
+    {
+      "name": "unchanged spinor",
+      "scope": "Frozen synthetic spinor algebra, original small synthetic-matrix LOBPCG, FFT and density regression; no physical solve",
+      "assertions_or_tests": 544,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "affected-spinor-20260909T111057Z-5a2e6281",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--threads=1",
+        "--color=no",
+        "--project=<workbench>/environment/workbench",
+        "<workbench>/tests/spinor/runtests.jl",
+        "<workbench>/.work/phase9a/affected-spinor-20260909T111057Z-5a2e6281/evidence"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/affected-spinor-20260909T111057Z-5a2e6281/receipt.json",
+        "sha256": "b3672e6d096b3bd53435b81fb1a8b5ff564ffdca0873e290473e903e42b795b8"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/affected-spinor-20260909T111057Z-5a2e6281/qe.stdout",
+          "sha256": "75dfef88c7b746e86954eb9c7c9bbc323fadaefa57688739959453421fe5ec03",
+          "bytes": 472
+        },
+        {
+          "archive_member": "phase9a/affected-spinor-20260909T111057Z-5a2e6281/qe.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "log_tail": [
+        "Synthetic algebra threshold: 1e-11 (norm and near-zero definitions in each test)",
+        "Scope: synthetic matrices/coefficients and a small kinetic-only DFTK basis; no SCF",
+        "Synthetic FFT basis: NG=[87, 83], fft_size=(12, 15, 15)",
+        "Test Summary:                                    | Pass  Total  Time",
+        "Phase 5A independent spinor prototype unit tests |  544    544  8.9s"
+      ]
+    },
+    {
+      "name": "unchanged relativistic",
+      "scope": "Frozen metadata/angular/operator and recorder synthetic regressions; no physical solve",
+      "assertions_or_tests": 1272,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "affected-relativistic-20260909T111126Z-adced57f",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--threads=1",
+        "--color=no",
+        "--project=<workbench>/environment/workbench",
+        "<workbench>/tests/relativistic/runtests.jl",
+        "<workbench>/.work/phase9a/affected-relativistic-20260909T111126Z-adced57f/evidence"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/affected-relativistic-20260909T111126Z-adced57f/receipt.json",
+        "sha256": "f3e65f3b2fbea33cb39cdf11dfde5c20923e2de111123e994f6762df5dcad266"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/affected-relativistic-20260909T111126Z-adced57f/qe.stdout",
+          "sha256": "5d39a9b94fc25000f3a8a0cc797ee2cd524ff825268584dbdbdac338f4256b4e",
+          "bytes": 154
+        },
+        {
+          "archive_member": "phase9a/affected-relativistic-20260909T111126Z-adced57f/qe.stderr",
+          "sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+          "bytes": 107
+        }
+      ],
+      "log_tail": [
+        "Test Summary:                                           | Pass  Total   Time",
+        "Phase 6A independent relativistic projector regressions | 1272   1272  23.7s",
+        "\u250c Info: Threading setup: ",
+        "\u2502   Threads.nthreads() = 1",
+        "\u2502   n_DFTK = 1",
+        "\u2502   n_fft = 1",
+        "\u2514   n_blas = 1"
+      ]
+    },
+    {
+      "name": "unchanged FR integration",
+      "scope": "Frozen authenticated Mg/Si static operator/energy and synthetic fault regressions; no SCF/eigensolve",
+      "assertions_or_tests": 241,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "affected-fr_integration-20260909T111207Z-4b2f2053",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--threads=1",
+        "--color=no",
+        "--project=<workbench>/environment/workbench",
+        "<workbench>/tests/fr_integration/runtests.jl",
+        "<workbench>/.work/phase9a/affected-fr_integration-20260909T111207Z-4b2f2053/evidence"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/affected-fr_integration-20260909T111207Z-4b2f2053/receipt.json",
+        "sha256": "3095e5df300071fbc8e714125dada36737c4f2e4d2f612d7f65d066690d49ca8"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/affected-fr_integration-20260909T111207Z-4b2f2053/qe.stdout",
+          "sha256": "5d1c88a831b78de0fbac88474ce6bcb67b5f20e5fb5d7edb2901624aa213b2c8",
+          "bytes": 246
+        },
+        {
+          "archive_member": "phase9a/affected-fr_integration-20260909T111207Z-4b2f2053/qe.stderr",
+          "sha256": "631c1f41dbbcb02d9a8cd6050bb9495fc7ea4ce3cb7c3bcd8a956fba35330310",
+          "bytes": 3832
+        }
+      ],
+      "log_tail": [
+        "Usage: run_fr_integration.jl NEW_IGNORED_RUN_DIRECTORY",
+        "Phase 6B fixed-density and orbital-energy checks; no SCF/QE.",
+        "Test Summary:                               | Pass  Total   Time",
+        "Phase 6B Hamiltonian and energy integration |  241    241  22.0s",
+        " [12] _start()",
+        "    @ Base ./client.jl:550",
+        "Phase 6B synthetic-missing-stage: FAIL, exit=1",
+        "Persistence failure: Public evidence requires finite real numbers",
+        "One new ignored run directory is required; --help for usage"
+      ]
+    },
+    {
+      "name": "unchanged SOC SCF",
+      "scope": "Frozen synthetic spectra/occupations/maps/faults and Mg static operator/energy regressions; no physical SCF/eigensolve",
+      "assertions_or_tests": 438,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "affected-soc_scf-20260909T112833Z-adb62ba4",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--threads=1",
+        "--color=no",
+        "--project=<workbench>/environment/workbench",
+        "<workbench>/tests/soc_scf/runtests.jl",
+        "<workbench>/.work/phase9a/affected-soc_scf-20260909T112833Z-adb62ba4/evidence"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/affected-soc_scf-20260909T112833Z-adb62ba4/receipt.json",
+        "sha256": "08c68bc28b806771de88fed57564ac09fa60e8ebed2a0fe3c492e0063066b9af"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/affected-soc_scf-20260909T112833Z-adb62ba4/qe.stdout",
+          "sha256": "6431e1d8b31f1bc9332186d39559886f7579f3dbdb0a5804b507a5f5c2340d4e",
+          "bytes": 293
+        },
+        {
+          "archive_member": "phase9a/affected-soc_scf-20260909T112833Z-adb62ba4/qe.stderr",
+          "sha256": "d989ed3cdb5c596b48668335abe81d845dba786504dc4b5cd7cf947ee252f5bf",
+          "bytes": 2485
+        }
+      ],
+      "log_tail": [
+        "Usage: run_soc_scf.jl A|B NEW_IGNORED_RUN_DIRECTORY",
+        "Usage: compare_soc_scf.jl RAW_A_RESULT RAW_B_RESULT NEW_COMPARISON_JSON (no SCF; non-PASS exits 1)",
+        "Test Summary:                                     | Pass  Total   Time",
+        "Phase 6C ensemble, controller and interface tests |  438    438  17.7s",
+        "Only A and B are physical run labels",
+        "Usage: compare_soc_scf.jl RAW_A_RESULT RAW_B_RESULT NEW_COMPARISON_JSON (no SCF; non-PASS exits 1)",
+        "Refusing existing comparison output",
+        "ArgumentError: Actual final checkpoint SHA-256 differs",
+        "A/B comparison: FAIL"
+      ]
+    },
+    {
+      "name": "new Python driver/replay/endpoint/budget",
+      "scope": "Python protocol/synthetic tests",
+      "assertions_or_tests": 63,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "candidate-python-20260909T113025Z-6082a221",
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/soc_core_memory",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/candidate-python-20260909T113025Z-6082a221/receipt.json",
+        "sha256": "afb0c0f1eb911bb5516e678e44391c3ad363249bbc0674cbed16d4d3e20ca7ac"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/candidate-python-20260909T113025Z-6082a221/stdout.log",
+          "sha256": "ef6c7d6b636e7da42e2365dea22063619794d5f51b1d4087f1158907e04bcb28",
+          "bytes": 1623
+        },
+        {
+          "archive_member": "phase9a/candidate-python-20260909T113025Z-6082a221/stderr.log",
+          "sha256": "f3e9aa7bdb8cdce8382c6de5b101cee3f54a22437c877bcc6b45e0503d268daa",
+          "bytes": 8593
+        }
+      ],
+      "log_tail": [
+        "{\"run_id\": \"new\", \"action\": \"OPT-B0-SCF\", \"execution_status\": \"FAIL\", \"exit_code\": 9, \"worker_exit_code\": 7, \"reason\": \"ValueError: Julia worker returned nonzero: 7\"}",
+        "{\"run_id\": \"retry\", \"action\": \"OPT-B0-SCF\", \"execution_status\": \"FAIL\", \"exit_code\": 9, \"worker_exit_code\": null, \"reason\": \"FileExistsError: [Errno 17] File exists: '<synthetic-temp>'\"}",
+        "{\"run_id\": \"new\", \"action\": \"OPT-B0-SCF\", \"execution_status\": \"FAIL\", \"exit_code\": 9, \"worker_exit_code\": 0, \"reason\": \"ValueError: synthetic resource failure\"}",
+        "{\"run_id\": \"new\", \"action\": \"D-SCF\", \"execution_status\": \"FAIL\", \"exit_code\": 9, \"worker_exit_code\": null, \"reason\": \"ValueError: Unknown Si action/profile combination\"}",
+        "{\"run_id\": \"new\", \"action\": \"OPT-B0-SCF\", \"execution_status\": \"PASS\", \"exit_code\": 0, \"worker_exit_code\": 0, \"reason\": null}",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 63 tests in 0.161s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "static launcher",
+      "scope": "Python protocol/synthetic tests",
+      "assertions_or_tests": 37,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "python-affected-20260909T112049Z-adbeaf1e",
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_soc_core_memory.py",
+        "-v"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/python-affected-20260909T112049Z-adbeaf1e/receipt.json",
+        "sha256": "c5bbcd1b9c62fe37b55d4c714b7f9e8b1cafd175c783c61b80a8ba50e405ce35"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/python-affected-20260909T112049Z-adbeaf1e/static_launcher.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "archive_member": "phase9a/python-affected-20260909T112049Z-adbeaf1e/static_launcher.stderr",
+          "sha256": "adce31032023c186d98ba5bcc0b266a38ff605fef0503390aa28c65f2f356695",
+          "bytes": 6251
+        }
+      ],
+      "log_tail": [
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 37 tests in 12.914s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "unchanged publication synthetic",
+      "scope": "Python protocol/synthetic tests",
+      "assertions_or_tests": 23,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "python-affected-20260909T112049Z-adbeaf1e",
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_publication.py",
+        "-v"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/python-affected-20260909T112049Z-adbeaf1e/receipt.json",
+        "sha256": "c5bbcd1b9c62fe37b55d4c714b7f9e8b1cafd175c783c61b80a8ba50e405ce35"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/python-affected-20260909T112049Z-adbeaf1e/publication_synthetic.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "archive_member": "phase9a/python-affected-20260909T112049Z-adbeaf1e/publication_synthetic.stderr",
+          "sha256": "d8b69068b722a39e90f9376c826866941748d831abdc1917a6b207f879671813",
+          "bytes": 3382
+        }
+      ],
+      "log_tail": [
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 23 tests in 0.097s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "unchanged Si8A/8B Python driver",
+      "scope": "Existing synthetic Si8A/8B recorder regressions only; no Julia/science",
+      "assertions_or_tests": 24,
+      "exit_code": 0,
+      "status": "PASS",
+      "run_id": "checks/20260909T105307Z-44e54668",
+      "command": [
+        "python3.12",
+        "-B",
+        "-c",
+        "import unittest; loader=unittest.TestLoader(); suite=unittest.TestSuite([loader.discover('tests',pattern='test_si_soc_driver.py'),loader.discover('tests',pattern='test_si_sensitivity_driver.py')]); result=unittest.TextTestRunner(verbosity=2).run(suite); raise SystemExit(0 if result.wasSuccessful() else 1)"
+      ],
+      "source_version": "Pre-execution implementation bytes bound in archived receipt; final post-failure syntax check recorded separately",
+      "raw_receipt": {
+        "archive_member": "phase9a/checks/20260909T105307Z-44e54668/receipt.json",
+        "sha256": "df9d38cf54e256679d3eace5bcbe88069651149b880ed604a34f1db425be4360"
+      },
+      "raw_logs": [
+        {
+          "archive_member": "phase9a/checks/20260909T105307Z-44e54668/tests.log",
+          "sha256": "d15af428575cc816a7b8efe528f1b59b5b51088df4a1d2517562b85c35f88b36",
+          "bytes": 3338
+        }
+      ],
+      "log_tail": [
+        "----------------------------------------------------------------------",
+        "Ran 24 tests in 0.029s",
+        "",
+        "OK",
+        "{\"run_id\": \"new\", \"action\": \"prepare\", \"execution_status\": \"FAIL\", \"exit_code\": 1, \"worker_exit_code\": null, \"reason\": \"ValueError: synthetic missing source\"}"
+      ]
+    }
+  ],
+  "original_publication_checks": [
+    {
+      "name": "current-authorized-refactor",
+      "exit_code": 1,
+      "status": "FAIL",
+      "reason": "Frozen scientific file changed: prototypes/fr_integration/FRIntegration.jl",
+      "command": [
+        "python3.12",
+        "-B",
+        "<workbench>/scripts/check_publication.py",
+        "--root",
+        "<workbench>",
+        "--modern-python",
+        "python3.12"
+      ],
+      "raw_log": {
+        "archive_member": "phase9a/publication-compatibility-20260909T112525Z-ae495704/current-authorized-refactor.stdout",
+        "sha256": "409373fb299feac92486abd32c9d1b099edd161b9ef354c08fdb7ffc37c8c0d8"
+      }
+    },
+    {
+      "name": "historical-accepted-base",
+      "exit_code": 1,
+      "status": "FAIL",
+      "reason": "Frozen scientific file changed: prototypes/fr_integration/common_data.jl",
+      "command": [
+        "python3.12",
+        "-B",
+        "<workbench>/.work/phase9a/reference-tree/scripts/check_publication.py",
+        "--root",
+        "<workbench>/.work/phase9a/reference-tree",
+        "--modern-python",
+        "python3.12"
+      ],
+      "raw_log": {
+        "archive_member": "phase9a/publication-compatibility-20260909T112525Z-ae495704/historical-accepted-base.stdout",
+        "sha256": "cab5a5516f205a79abd1bcdb095e619ffde835357c73d06516d189c21547ef6f"
+      }
+    }
+  ],
+  "note": "Counts are latest distinct runs, not sums of repeated attempts. Negative fixture failures mean expected rejection, not valid physical input. No upstream full suite or new physical solver is represented by these tests.",
+  "not_run": [
+    "DFTK full upstream test suite",
+    "DFTK K6/K8 SCF",
+    "QE or pp.x",
+    "CI",
+    "OPT-B0-GAMMA: BLOCKED_PARENT",
+    "End-to-end E/F, density and Gamma regressions: BLOCKED_PARENT"
+  ]
+}

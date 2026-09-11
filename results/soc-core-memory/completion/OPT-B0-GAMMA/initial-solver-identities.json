@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "run_id": "OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8-dftk",
+  "rows": [
+    {
+      "map_index": 1,
+      "k_index": 1,
+      "target_states": 24,
+      "auxiliary_states": 6,
+      "ng": 2085,
+      "initial_source": "Independent ComplexF64 Gaussian whole-column QR",
+      "initial_seed": 81201,
+      "initial_gram_norm": 1.5279772397138753e-14,
+      "initial_imaginary_norm": 3.8797917252732073,
+      "initial_sha256": "e537e91eb9c83651ad95601dec369d95adcc66527c7b8ade62275291c08d6aa1",
+      "initial_unchanged": true
+    }
+  ],
+  "observed_solver_record_count": 1,
+  "evidence_level": "RUNNER_REPORTED",
+  "scope": "Original first-map subspace identities only; no orbital arrays or re-solve"
+}

@@ -1,0 +1,7 @@
+&INPUTPP
+ prefix = 'mg_soc_qe_v1',
+ outdir = './scratch',
+ filplot = './charge.pp',
+ plot_num = 0,
+ spin_component = 0,
+/

@@ -1,0 +1,68 @@
+name: Phase 7G public cross-environment replay
+
+on:
+  push:
+    branches: [codex/phase7g-public-cross-env-replay]
+    paths:
+      - '.github/workflows/phase7g-public-replay.yml'
+      - 'scripts/independent_orbital_*.py'
+      - 'scripts/replay_public_independent.py'
+      - 'scripts/run_cross_env_replay.py'
+      - 'scripts/phase7g_observer/**'
+      - 'tests/test_independent_*.py'
+      - 'tests/test_phase7g_observer.py'
+      - 'tests/test_cross_env_replay.py'
+      - 'benchmarks/mg-soc-public-replay-v1/plan.json'
+      - 'benchmarks/mg-soc-public-replay-v1/requirements.lock'
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONNOUSERSITE: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      PIP_DISABLE_PIP_VERSION_CHECK: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      BLIS_NUM_THREADS: '1'
+      VECLIB_MAXIMUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+    steps:
+      - name: Checkout the exact public execution commit
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # verified v6
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Select fixed CPython
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # verified v6
+        with:
+          python-version: '3.12.14'
+          architecture: x64
+          check-latest: false
+      - name: Prepare an ephemeral environment from the fixed binary wheel
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir "$RUNNER_TEMP/phase7g-output" "$RUNNER_TEMP/phase7g-wheel"
+          python -m venv "$RUNNER_TEMP/phase7g-venv"
+          "$RUNNER_TEMP/phase7g-venv/bin/python" -m pip download --no-deps --require-hashes --only-binary=:all: --no-cache-dir -r benchmarks/mg-soc-public-replay-v1/requirements.lock -d "$RUNNER_TEMP/phase7g-wheel" > "$RUNNER_TEMP/phase7g-output/pip-download.txt" 2>&1
+          "$RUNNER_TEMP/phase7g-venv/bin/python" -m pip install --no-index --no-deps --no-cache-dir "$RUNNER_TEMP/phase7g-wheel/numpy-2.3.5-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl" > "$RUNNER_TEMP/phase7g-output/pip-install.txt" 2>&1
+      - name: Run the frozen and independent paths with separate exit records
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/phase7g-venv/bin/python" scripts/run_cross_env_replay.py --output "$RUNNER_TEMP/phase7g-output" --wheel "$RUNNER_TEMP/phase7g-wheel/numpy-2.3.5-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+      - name: Preserve this attempt even when the numerical step failed
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # verified v4
+        with:
+          name: phase7g-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/phase7g-output
+          if-no-files-found: error
+          retention-days: 1

@@ -1,0 +1,11 @@
+{
+  "run_id": "OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8",
+  "execution_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+  "resume_id": "phase9a-completion-20260910",
+  "resume_preparation_commit": "234fe85d4e9386d9889bd1af256a28394ba88089",
+  "resume_from_commit": "98781fd0ce6c2f4138ed010e115a13e370410d58",
+  "static_execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+  "endpoint_execution_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+  "resume_authorization_sha256": "119447d08eb037475696e26829799a56d8bc6865fb7ef438e836a55d9bf7b59b",
+  "attempt": 1
+}

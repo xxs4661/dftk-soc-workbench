@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "archive_id": "phase8a-59f0c65c7a274b75b1c69610f51926d7",
+  "archive_status": "PASS",
+  "scope": "Same-machine external backup of Phase8A whitelist; not offsite",
+  "base_commit": "9342a5ea21a76acd0d74d228d4a2081394f702d0",
+  "snapshot_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+  "snapshot_kind": "execution",
+  "branch": "codex/phase8a-si-soc-splitting",
+  "publication_scope": "Execution snapshot: tracked result/navigation may still be pre-run placeholders; actual new data and public staging are archived under .work/phase8a. Final delivery commit/bundle is a separate append-only record.",
+  "slots": {
+    "static": {
+      "execution_status": "PASS",
+      "run_id": "static-20260908T1418Z",
+      "exit_code": 0,
+      "worker_exit_code": 0,
+      "process_exit_code": null,
+      "receipt_relative": ".work/phase8a/static-20260908T1418Z/receipt.json",
+      "receipt_sha256": "ce879025bb2d95ebe34d37605f052c94c160453ba18cc23608b2977f209bba31"
+    },
+    "D-SCF": {
+      "execution_status": "PASS",
+      "run_id": "D-SCF-20260908T1420Z",
+      "exit_code": 0,
+      "worker_exit_code": 0,
+      "process_exit_code": null,
+      "receipt_relative": ".work/phase8a/D-SCF-20260908T1420Z/receipt.json",
+      "receipt_sha256": "2fd9bfe7a0c2dc30597589c9a5e5e05b54726195fd0f78674288056aef9dd984"
+    },
+    "Q-SCF": {
+      "execution_status": "PASS",
+      "run_id": "Q-SCF-20260908T145232Z",
+      "exit_code": 0,
+      "worker_exit_code": null,
+      "process_exit_code": 0,
+      "receipt_relative": ".work/phase8a/Q-SCF-20260908T145232Z/result.json",
+      "receipt_sha256": "0f8c087458b71d58decafd45c0942b1ef2c64f32c2b7842291c311ee393c0679"
+    },
+    "D-SPECTRUM": {
+      "execution_status": "PASS",
+      "run_id": "D-SPECTRUM-20260908T145347Z",
+      "exit_code": 0,
+      "worker_exit_code": 0,
+      "process_exit_code": null,
+      "receipt_relative": ".work/phase8a/D-SPECTRUM-20260908T145347Z/receipt.json",
+      "receipt_sha256": "ffdedd3b8d544401a0370a1805249fca561749449d2c37e7a67272791514317a"
+    },
+    "Q-SPECTRUM": {
+      "execution_status": "PASS",
+      "run_id": "Q-SPECTRUM-20260908T145443Z",
+      "exit_code": 0,
+      "worker_exit_code": null,
+      "process_exit_code": 0,
+      "receipt_relative": ".work/phase8a/Q-SPECTRUM-20260908T145443Z/result.json",
+      "receipt_sha256": "af383a6b8480ff7515aa1ba36d900c059ea40a8788c6544f82d1e7e435580e24"
+    },
+    "D-NULL-GAMMA": {
+      "execution_status": "PASS",
+      "run_id": "D-NULL-GAMMA-20260908T145524Z",
+      "exit_code": 0,
+      "worker_exit_code": 0,
+      "process_exit_code": null,
+      "receipt_relative": ".work/phase8a/D-NULL-GAMMA-20260908T145524Z/receipt.json",
+      "receipt_sha256": "ee812cec293cd543a4bf069be35261d26a3b6303627b71d39549d54db7da9ecc"
+    }
+  },
+  "source": {
+    "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+    "git_blob_sha1": "0bba6c59d28251b59bf831079a340f7147308611",
+    "bytes": 291215
+  },
+  "skipped": [
+    {
+      "relative": ".work/phase8a/archive-staging",
+      "status": "EXCLUDED_ARCHIVE_OR_CACHE"
+    }
+  ],
+  "started_utc": "2026-09-08T15:08:35.015787+00:00",
+  "file_count": 343,
+  "source_bytes": 232232026,
+  "copy_and_source_hash_verification": "PASS",
+  "restored_samples": {
+    "UPF": {
+      "status": "PASS",
+      "relative": ".work/pseudos/si-soc-splitting-v1/Si_r.upf",
+      "bytes": 291215,
+      "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf"
+    },
+    "D_final": {
+      "status": "PASS",
+      "relative": ".work/phase8a/D-SCF-20260908T1420Z/D-SCF-20260908T1420Z-dftk/final.bin",
+      "bytes": 14741468,
+      "sha256": "f61fc954fa373fd8bac27c8e89bb9f42530a65c6ce378c85bb0a2aecf6fe97d5"
+    },
+    "Q_charge": {
+      "status": "PASS",
+      "relative": ".work/phase8a/Q-SCF-20260908T145232Z/scratch/si8a.save/charge-density.dat",
+      "bytes": 472336,
+      "sha256": "3c6841bed3f23b45b421a966c449bbeae859a27293d4adb020f5d4ed19068630"
+    },
+    "Q_wfc": {
+      "status": "PASS",
+      "relative": ".work/phase8a/Q-SCF-20260908T145232Z/scratch/si8a.save/wfc1.dat",
+      "bytes": 1626656,
+      "sha256": "d33ff1b2c63e3249b949cbfa846b64913d3bf0099feef986aa0b9a0a7d1029a7"
+    },
+    "Q_XML": {
+      "status": "PASS",
+      "relative": ".work/phase8a/Q-SCF-20260908T145232Z/scratch/si8a.save/data-file-schema.xml",
+      "bytes": 51636,
+      "sha256": "5cfb7274ceccf9c4a76757bd6226b97dd25e84f02cf184884d0d2b82800c6da5"
+    },
+    "process_log": {
+      "status": "PASS",
+      "relative": ".work/phase8a/D-NULL-GAMMA-20260908T145524Z.log",
+      "bytes": 153,
+      "sha256": "a7d10670073dc15be518f4a6c188e10ff68d6d0e6936834f9757364ad9dcd291"
+    },
+    "failure_log": {
+      "status": "PASS",
+      "relative": ".work/phase8a/geometry-preflight-20260908T1359Z.log",
+      "bytes": 694,
+      "sha256": "2cb5ea6f5ea20c1a67a11e5d1bf1502663e2dd6055a77c3007af9934217abaf1"
+    },
+    "public_staging_D_spectrum_or_trace": {
+      "status": "PASS",
+      "relative": ".work/phase8a/public-staging/final/D-spectrum.json",
+      "bytes": 7554,
+      "sha256": "a286b1087e1ff776301ac826e4aeac3b7bdb1eb8cec2c0e141437e0402db0d41",
+      "selection_scope": "FINAL_PUBLIC_STAGING"
+    },
+    "case": {
+      "status": "PASS",
+      "relative": "benchmarks/si-soc-splitting-v1/case.json",
+      "bytes": 5136,
+      "sha256": "a04e20b22748462fef0f0eccee93cff5a616fa3e11aa6606018d11e40d2f8cac"
+    }
+  },
+  "manifest_sha256": "42d91b7d17a89af3d1f3f15c8b631e8a0f197b2065f2f65da467106827559be9",
+  "tar_sha256": "4623b6ab8ee9670687c7b8a296b01f118bea20e0ab9447bee0e3cbdfe3faaf85",
+  "tar_bytes": 201425736,
+  "git_bundle": {
+    "relative": "phase8a.bundle",
+    "bytes": 70512,
+    "sha256": "36e0dd8a62073b52c469b06b7f82b2b27943e61696460411e46b8319e72e65d5",
+    "prerequisite_public_commit": "9342a5ea21a76acd0d74d228d4a2081394f702d0"
+  },
+  "git_bundle_verification": "PASS",
+  "git_isolated_checkout_restore": "NOT_RUN",
+  "source_deletion": false,
+  "original_files_modified": false,
+  "finished_utc": "2026-09-08T15:08:41.513943+00:00"
+}

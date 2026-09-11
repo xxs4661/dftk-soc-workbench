@@ -1,0 +1,1673 @@
+{
+  "schema_version": 1,
+  "phase": "7F",
+  "case": "mg-soc-wavefunction-energy-v1",
+  "base_commit": "28e67d4aca41e11b38a6364503e2dbacc0dd1ee4",
+  "preparation_commit": "aa088185ac1cbb134856c74e56134b21428806c2",
+  "execution_commit": "dc8a97dbdf1ebf2fa2bfb52c38db01fcde3c927e",
+  "run_id": "20260907T173343831194Z-80727713",
+  "plan_sha256": "8cdbd0303e2900152a96cfc1ac38477b041b7a61dfdf666072c435c055efbb6a",
+  "execution_status": "PASS",
+  "derivation_status": "NEW_STATIC_POSTPROCESSING_OF_HISTORICAL_ORBITALS",
+  "original_scf_status": "HISTORICAL_REUSED",
+  "Q_source_metadata": {
+    "schema_version": 1,
+    "phase": "7F",
+    "execution_status": "PASS",
+    "label": "Q",
+    "source_run_id": "20260907T112107073262Z-G40-3f9731a6",
+    "plan_sha256": "8cdbd0303e2900152a96cfc1ac38477b041b7a61dfdf666072c435c055efbb6a",
+    "n_bands": 24,
+    "occupation_capacity": 1,
+    "fft_size": [
+      40,
+      40,
+      40
+    ],
+    "source_binding_status": "PASS",
+    "data_roundtrip_status": "PASS",
+    "normalization_applied": false,
+    "orbital_rotation_applied": false,
+    "xml": {
+      "source_xml_sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+      "native_tokens": [
+        {
+          "k": [
+            "0.000000000000000E+000",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000"
+          ],
+          "weight": "0.33333333333333331",
+          "occupations": [
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.786990194143389E-057",
+            "1.786990194105297E-057",
+            "1.307686684657375E-057",
+            "1.307686684647266E-057",
+            "1.094770945739041E-057",
+            "1.094770945733752E-057",
+            "1.122773659200118E-059",
+            "1.122773659191406E-059",
+            "8.354714762732516E-076",
+            "8.354714762691913E-076",
+            "7.216675228215907E-076",
+            "7.216675228173860E-076",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000"
+          ],
+          "eigenvalues_ha": [
+            "-3.290026709683869E+000",
+            "-3.290026709683865E+000",
+            "-1.661484050124307E+000",
+            "-1.661484050124304E+000",
+            "-1.652772022458752E+000",
+            "-1.652772022458749E+000",
+            "-1.652584719435195E+000",
+            "-1.652584719435191E+000",
+            "-1.592125117318751E-001",
+            "-1.592125117318731E-001",
+            "6.051854170658223E-002",
+            "6.051854170660355E-002",
+            "6.083081476879809E-002",
+            "6.083081476880585E-002",
+            "6.100852929600227E-002",
+            "6.100852929600710E-002",
+            "6.558844253609487E-002",
+            "6.558844253610262E-002",
+            "1.027253652005468E-001",
+            "1.027253652005517E-001",
+            "1.028717968701650E-001",
+            "1.028717968701708E-001",
+            "2.539770697253799E-001",
+            "2.539770793794403E-001"
+          ]
+        },
+        {
+          "k": [
+            "1.250000000000000E-001",
+            "6.250000000000000E-002",
+            "-1.875000000000000E-001"
+          ],
+          "weight": "0.33333333333333331",
+          "occupations": [
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "8.587958216433072E-037",
+            "8.587605205758755E-037",
+            "7.015724188937902E-047",
+            "7.015345886660574E-047",
+            "1.167711080634989E-055",
+            "1.167655603648619E-055",
+            "2.563892165146938E-078",
+            "2.563770242673005E-078",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000"
+          ],
+          "eigenvalues_ha": [
+            "-3.289849151959801E+000",
+            "-3.289849151895668E+000",
+            "-1.660655539645817E+000",
+            "-1.660655406012684E+000",
+            "-1.652563421914582E+000",
+            "-1.652563350689304E+000",
+            "-1.648888092242373E+000",
+            "-1.648887996428969E+000",
+            "-1.526761307085706E-001",
+            "-1.526761280015590E-001",
+            "1.289701158087318E-002",
+            "1.289705268702681E-002",
+            "3.612506958290297E-002",
+            "3.612512350641348E-002",
+            "5.633885877809071E-002",
+            "5.633890628839111E-002",
+            "1.085118349273916E-001",
+            "1.085118824821892E-001",
+            "1.346481018109147E-001",
+            "1.346481292004228E-001",
+            "1.565616717766078E-001",
+            "1.565616773839831E-001",
+            "1.807376633274277E-001",
+            "1.807376705382888E-001"
+          ]
+        },
+        {
+          "k": [
+            "-1.250000000000000E-001",
+            "-6.250000000000000E-002",
+            "1.875000000000000E-001"
+          ],
+          "weight": "0.33333333333333331",
+          "occupations": [
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "1.000000000000000E+000",
+            "8.587958216429533E-037",
+            "8.587605205759242E-037",
+            "7.015724188936906E-047",
+            "7.015345886662667E-047",
+            "1.167711080634126E-055",
+            "1.167655603648603E-055",
+            "2.563892165145845E-078",
+            "2.563770242667176E-078",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000",
+            "0.000000000000000E+000"
+          ],
+          "eigenvalues_ha": [
+            "-3.289849151959801E+000",
+            "-3.289849151895663E+000",
+            "-1.660655539645819E+000",
+            "-1.660655406012684E+000",
+            "-1.652563421914583E+000",
+            "-1.652563350689305E+000",
+            "-1.648888092242374E+000",
+            "-1.648887996428971E+000",
+            "-1.526761307085705E-001",
+            "-1.526761280015587E-001",
+            "1.289701158087360E-002",
+            "1.289705268702676E-002",
+            "3.612506958290312E-002",
+            "3.612512350641319E-002",
+            "5.633885877809146E-002",
+            "5.633890628839116E-002",
+            "1.085118349273920E-001",
+            "1.085118824821915E-001",
+            "1.346481018109164E-001",
+            "1.346481292004225E-001",
+            "1.565616717766075E-001",
+            "1.565616773839848E-001",
+            "1.807376633274280E-001",
+            "1.807376705382868E-001"
+          ]
+        }
+      ],
+      "eband_token_ha": "-1.681689625528888E+001",
+      "eband_ha": -16.81689625528888,
+      "eband_print_halfwidth_ha": 1.815999223433713e-14,
+      "occupations": "original XML wg/wk, preserved; no new occupation solve",
+      "capacity": 1
+    },
+    "original_wfc": [
+      {
+        "schema_version": 1,
+        "qe_wfc_format_status": "PASS",
+        "metadata": {
+          "schema_version": 1,
+          "ik": 1,
+          "k_cart_bohr_inv": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "b_columns_bohr_inv": [
+            [
+              0.6283185307179586,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.6283185307179586,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.6283185307179586
+            ]
+          ],
+          "ispin": 1,
+          "gamma_only": false,
+          "gamma_only_raw": 0,
+          "scalef": 1.0,
+          "ngw": 2777,
+          "igwx": 2777,
+          "npol": 2,
+          "nbnd": 24,
+          "file_bytes": 2166416,
+          "format": {
+            "endian": "little",
+            "record_marker_bytes": 4,
+            "integer_bytes": 4,
+            "logical_bytes": 4,
+            "real_bytes": 8,
+            "complex_bytes": 16
+          },
+          "records": [
+            {
+              "payload_offset": 4,
+              "payload_bytes": 44
+            },
+            {
+              "payload_offset": 56,
+              "payload_bytes": 16
+            },
+            {
+              "payload_offset": 80,
+              "payload_bytes": 72
+            },
+            {
+              "payload_offset": 160,
+              "payload_bytes": 33324
+            },
+            {
+              "payload_offset": 33492,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 122364,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 211236,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 300108,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 388980,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 477852,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 566724,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 655596,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 744468,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 833340,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 922212,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1011084,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1099956,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1188828,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1277700,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1366572,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1455444,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1544316,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1633188,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1722060,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1810932,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1899804,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 1988676,
+              "payload_bytes": 88864
+            },
+            {
+              "payload_offset": 2077548,
+              "payload_bytes": 88864
+            }
+          ],
+          "record_payload_bytes": [
+            44,
+            16,
+            72,
+            33324,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864,
+            88864
+          ],
+          "header_payload_sha256": "b87aaec40a7e623e3443064574a49869a1b21e190b1500dfc9eed7b2749afa36",
+          "format_source": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/io_base.f90#L103-L186",
+          "producer_source": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L978-L1031",
+          "ngw_semantics": "maximum original global G index; not selected plane-wave count",
+          "igwx_semantics": "dense collected k-supported count; must equal original XML npw",
+          "coefficient_layout": "one record per original band; up[NG] followed by down[NG]",
+          "header_validation_status": "HEADER_AND_RECORD_ENVELOPES_ONLY",
+          "miller_values_status": "PASS",
+          "coefficient_values_status": "PASS",
+          "candidate_count": 1,
+          "coefficient_bitwise_roundtrip_status": "PASS",
+          "source_sha256": "d56c746b2875764923cd09cf3ee27e70ac59a9780c193c45fd40f766353be485"
+        },
+        "shape": [
+          2,
+          2777,
+          24
+        ],
+        "source_sha256": "d56c746b2875764923cd09cf3ee27e70ac59a9780c193c45fd40f766353be485",
+        "miller_payload_sha256": "035c85ff4c3ec86df579c36ae69846b44fc89a2154c81885e27407d9bd90db73",
+        "coefficient_payload_sha256": "7ab59a7eaeb75841cc9fceef4b8ca0e0767f0a0d2fd03136e73e5671fd6ede71",
+        "coefficient_dtype": "ComplexF64",
+        "coefficient_layout": "component,native_G_position,original_band",
+        "coefficient_transformations": "NONE; representation-only component/band indexing",
+        "physical_validation_status": "NOT_PERFORMED_BY_FORMAT_READER"
+      },
+      {
+        "schema_version": 1,
+        "qe_wfc_format_status": "PASS",
+        "metadata": {
+          "schema_version": 1,
+          "ik": 2,
+          "k_cart_bohr_inv": [
+            0.07853981633974483,
+            0.039269908169872414,
+            -0.11780972450961724
+          ],
+          "b_columns_bohr_inv": [
+            [
+              0.6283185307179586,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.6283185307179586,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.6283185307179586
+            ]
+          ],
+          "ispin": 1,
+          "gamma_only": false,
+          "gamma_only_raw": 0,
+          "scalef": 1.0,
+          "ngw": 2925,
+          "igwx": 2770,
+          "npol": 2,
+          "nbnd": 24,
+          "file_bytes": 2160956,
+          "format": {
+            "endian": "little",
+            "record_marker_bytes": 4,
+            "integer_bytes": 4,
+            "logical_bytes": 4,
+            "real_bytes": 8,
+            "complex_bytes": 16
+          },
+          "records": [
+            {
+              "payload_offset": 4,
+              "payload_bytes": 44
+            },
+            {
+              "payload_offset": 56,
+              "payload_bytes": 16
+            },
+            {
+              "payload_offset": 80,
+              "payload_bytes": 72
+            },
+            {
+              "payload_offset": 160,
+              "payload_bytes": 33240
+            },
+            {
+              "payload_offset": 33408,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 122056,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 210704,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 299352,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 388000,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 476648,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 565296,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 653944,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 742592,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 831240,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 919888,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1008536,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1097184,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1185832,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1274480,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1363128,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1451776,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1540424,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1629072,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1717720,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1806368,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1895016,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1983664,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 2072312,
+              "payload_bytes": 88640
+            }
+          ],
+          "record_payload_bytes": [
+            44,
+            16,
+            72,
+            33240,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640
+          ],
+          "header_payload_sha256": "7e986a9c53be3e9d4b3544b093f879a16f965f3ee06d34da25aecadf7876f7b0",
+          "format_source": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/io_base.f90#L103-L186",
+          "producer_source": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L978-L1031",
+          "ngw_semantics": "maximum original global G index; not selected plane-wave count",
+          "igwx_semantics": "dense collected k-supported count; must equal original XML npw",
+          "coefficient_layout": "one record per original band; up[NG] followed by down[NG]",
+          "header_validation_status": "HEADER_AND_RECORD_ENVELOPES_ONLY",
+          "miller_values_status": "PASS",
+          "coefficient_values_status": "PASS",
+          "candidate_count": 1,
+          "coefficient_bitwise_roundtrip_status": "PASS",
+          "source_sha256": "a583623ef9802ac040282539c71d40bf7b67cb5948977fcad55eb338b5c616af"
+        },
+        "shape": [
+          2,
+          2770,
+          24
+        ],
+        "source_sha256": "a583623ef9802ac040282539c71d40bf7b67cb5948977fcad55eb338b5c616af",
+        "miller_payload_sha256": "7fcec671073a74fd9a8cce75925fee124ffaa12464dc340be45be4fb6f214edd",
+        "coefficient_payload_sha256": "c1d85fffd27af2850a25779b142f842e3ede9b6c5999a3f6203912a02960290d",
+        "coefficient_dtype": "ComplexF64",
+        "coefficient_layout": "component,native_G_position,original_band",
+        "coefficient_transformations": "NONE; representation-only component/band indexing",
+        "physical_validation_status": "NOT_PERFORMED_BY_FORMAT_READER"
+      },
+      {
+        "schema_version": 1,
+        "qe_wfc_format_status": "PASS",
+        "metadata": {
+          "schema_version": 1,
+          "ik": 3,
+          "k_cart_bohr_inv": [
+            -0.07853981633974483,
+            -0.039269908169872414,
+            0.11780972450961724
+          ],
+          "b_columns_bohr_inv": [
+            [
+              0.6283185307179586,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.6283185307179586,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.6283185307179586
+            ]
+          ],
+          "ispin": 1,
+          "gamma_only": false,
+          "gamma_only_raw": 0,
+          "scalef": 1.0,
+          "ngw": 2944,
+          "igwx": 2770,
+          "npol": 2,
+          "nbnd": 24,
+          "file_bytes": 2160956,
+          "format": {
+            "endian": "little",
+            "record_marker_bytes": 4,
+            "integer_bytes": 4,
+            "logical_bytes": 4,
+            "real_bytes": 8,
+            "complex_bytes": 16
+          },
+          "records": [
+            {
+              "payload_offset": 4,
+              "payload_bytes": 44
+            },
+            {
+              "payload_offset": 56,
+              "payload_bytes": 16
+            },
+            {
+              "payload_offset": 80,
+              "payload_bytes": 72
+            },
+            {
+              "payload_offset": 160,
+              "payload_bytes": 33240
+            },
+            {
+              "payload_offset": 33408,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 122056,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 210704,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 299352,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 388000,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 476648,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 565296,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 653944,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 742592,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 831240,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 919888,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1008536,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1097184,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1185832,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1274480,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1363128,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1451776,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1540424,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1629072,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1717720,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1806368,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1895016,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 1983664,
+              "payload_bytes": 88640
+            },
+            {
+              "payload_offset": 2072312,
+              "payload_bytes": 88640
+            }
+          ],
+          "record_payload_bytes": [
+            44,
+            16,
+            72,
+            33240,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640,
+            88640
+          ],
+          "header_payload_sha256": "ed2d662f14a00cd18c8876c651098515344520e45aecd94cd92f3ce2173d6a5d",
+          "format_source": "https://github.com/QEF/q-e/blob/qe-7.5/Modules/io_base.f90#L103-L186",
+          "producer_source": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L978-L1031",
+          "ngw_semantics": "maximum original global G index; not selected plane-wave count",
+          "igwx_semantics": "dense collected k-supported count; must equal original XML npw",
+          "coefficient_layout": "one record per original band; up[NG] followed by down[NG]",
+          "header_validation_status": "HEADER_AND_RECORD_ENVELOPES_ONLY",
+          "miller_values_status": "PASS",
+          "coefficient_values_status": "PASS",
+          "candidate_count": 1,
+          "coefficient_bitwise_roundtrip_status": "PASS",
+          "source_sha256": "13b2987d722061a639d3285b77a815336433eae04bd5274093c423f347956a3a"
+        },
+        "shape": [
+          2,
+          2770,
+          24
+        ],
+        "source_sha256": "13b2987d722061a639d3285b77a815336433eae04bd5274093c423f347956a3a",
+        "miller_payload_sha256": "fc0a9b340cdf09180be0191d4864ca22e00106f600758c060f3eeebb239e5d42",
+        "coefficient_payload_sha256": "b5f5734170293f6f1b64d46b1a0ab6ff17b4a577cc39ec8210d11d01f59e3c94",
+        "coefficient_dtype": "ComplexF64",
+        "coefficient_layout": "component,native_G_position,original_band",
+        "coefficient_transformations": "NONE; representation-only component/band indexing",
+        "physical_validation_status": "NOT_PERFORMED_BY_FORMAT_READER"
+      }
+    ],
+    "coefficient_layout": "component,G,state; interleaved components; F order"
+  },
+  "packages": {
+    "qe-orbitals": {
+      "schema_version": 1,
+      "container": "numpy.npz",
+      "allow_pickle": false,
+      "sha256": "1273abb0a6781ae1e743cc01141aca90ba81a9f84d2f492fc382622a88ffec8e",
+      "bytes": 6171082,
+      "arrays": {
+        "lattice_columns": {
+          "dtype": "<f8",
+          "shape": [
+            3,
+            3
+          ],
+          "order": "C",
+          "bytes": 72,
+          "sha256": "ab966366d26be8289c36085e3dbf78bd63422816465b0a4f0ff613230bd211f8"
+        },
+        "reciprocal_columns": {
+          "dtype": "<f8",
+          "shape": [
+            3,
+            3
+          ],
+          "order": "C",
+          "bytes": 72,
+          "sha256": "5b53f2e58e2744a8745051b60e14eac3fcc1966693ea0ae1b983ef80628af80d"
+        },
+        "k1_millers": {
+          "dtype": "<i8",
+          "shape": [
+            2777,
+            3
+          ],
+          "order": "C",
+          "bytes": 66648,
+          "sha256": "78b78add54e39d890ba1eb141c5c86c1bdce140a57c5a6f5171117b2f169eb93"
+        },
+        "k1_coefficients": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            2777,
+            24
+          ],
+          "order": "C",
+          "bytes": 2132736,
+          "sha256": "e2daadcd88fc00b0ba27fb80bc8ca5632a1c5c7b8a4a468ac690b720435ff31c"
+        },
+        "k1_occupations": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ],
+          "order": "C",
+          "bytes": 192,
+          "sha256": "b20509644d325cbcd48f43f2712394695b1a82c1b66f23faa8eb64bf4ff92bf9"
+        },
+        "k1_eigenvalues": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ],
+          "order": "C",
+          "bytes": 192,
+          "sha256": "7a704145fa41fe7cf21863b1f99c2cf2c0d6ef06e2721f5da114f60699d41936"
+        },
+        "k1_k_cart": {
+          "dtype": "<f8",
+          "shape": [
+            3
+          ],
+          "order": "C",
+          "bytes": 24,
+          "sha256": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0"
+        },
+        "k1_weight": {
+          "dtype": "<f8",
+          "shape": [
+            1
+          ],
+          "order": "C",
+          "bytes": 8,
+          "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+        },
+        "k2_millers": {
+          "dtype": "<i8",
+          "shape": [
+            2770,
+            3
+          ],
+          "order": "C",
+          "bytes": 66480,
+          "sha256": "53254ac5b52ce7de4bf8cae89ac0be074cd98228de2b4d1689a8e5bdb43c3d86"
+        },
+        "k2_coefficients": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            2770,
+            24
+          ],
+          "order": "C",
+          "bytes": 2127360,
+          "sha256": "d02528ee26692e1831e16022176c97c0e20a20195ef693363669a8d38d9e89bb"
+        },
+        "k2_occupations": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ],
+          "order": "C",
+          "bytes": 192,
+          "sha256": "949fe162f7e94811ddd84002155963154401f8be2edd8d7147e3c52dd05c3aa7"
+        },
+        "k2_eigenvalues": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ],
+          "order": "C",
+          "bytes": 192,
+          "sha256": "9e01e05fdcddb4ae914e73a317b96c04865993633d0a8afe79160e93c1137f5c"
+        },
+        "k2_k_cart": {
+          "dtype": "<f8",
+          "shape": [
+            3
+          ],
+          "order": "C",
+          "bytes": 24,
+          "sha256": "17358d22c0a27fcbeb0d24616c3511d9659eddfcf17e6a296982ae0cc722ec5b"
+        },
+        "k2_weight": {
+          "dtype": "<f8",
+          "shape": [
+            1
+          ],
+          "order": "C",
+          "bytes": 8,
+          "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+        },
+        "k3_millers": {
+          "dtype": "<i8",
+          "shape": [
+            2770,
+            3
+          ],
+          "order": "C",
+          "bytes": 66480,
+          "sha256": "e91d2ed5a6210510071b5f599e1f18e6ee6ea199cac95f15ec197b666b06a295"
+        },
+        "k3_coefficients": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            2770,
+            24
+          ],
+          "order": "C",
+          "bytes": 2127360,
+          "sha256": "5ed690909ebb3f21b20ef094ca8f02573e38534c6397dc82b4d753df89279e3c"
+        },
+        "k3_occupations": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ],
+          "order": "C",
+          "bytes": 192,
+          "sha256": "e857849ab346be002cf58574b800707ed74369def1ccd6e9477af9bc8dd8a6b4"
+        },
+        "k3_eigenvalues": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ],
+          "order": "C",
+          "bytes": 192,
+          "sha256": "909563823f738543084e33d88b96f2ae107eda89c77d470d0ec17b79d3d850ef"
+        },
+        "k3_k_cart": {
+          "dtype": "<f8",
+          "shape": [
+            3
+          ],
+          "order": "C",
+          "bytes": 24,
+          "sha256": "1d5308fcde3b243290fc0b81ddd1c91841c7fedb84a5ba334ad5af9b8b50d151"
+        },
+        "k3_weight": {
+          "dtype": "<f8",
+          "shape": [
+            1
+          ],
+          "order": "C",
+          "bytes": 8,
+          "sha256": "9327e29fb26cdc73f5247fe463c0a619d7da9fa1a20ad5dbd8f555090f1a21d6"
+        }
+      }
+    },
+    "nonlocal-operator": {
+      "schema_version": 1,
+      "container": "numpy.npz",
+      "allow_pickle": false,
+      "sha256": "1b94546291385c269328107c46d9c68ba2d1c1cefb397d694b97918af953d662",
+      "bytes": 2467249,
+      "arrays": {
+        "D": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            16
+          ],
+          "order": "C",
+          "bytes": 4096,
+          "sha256": "6bf7d447aec6e33c533dba6c2d1e500e823328d5f0df4f370dcbaed595cd7069"
+        },
+        "k1_P": {
+          "dtype": "<c16",
+          "shape": [
+            5554,
+            16
+          ],
+          "order": "C",
+          "bytes": 1421824,
+          "sha256": "1568137a383b3d8401afcd378c4dc05cfc43f3cca7b423e5476a305d30b0cd20"
+        },
+        "k1_millers": {
+          "dtype": "<i8",
+          "shape": [
+            2777,
+            3
+          ],
+          "order": "C",
+          "bytes": 66648,
+          "sha256": "5a210b569373797bf137b91d9806fa7f3f4e20dd72a1de907f59c4318808d56b"
+        },
+        "k2_P": {
+          "dtype": "<c16",
+          "shape": [
+            5540,
+            16
+          ],
+          "order": "C",
+          "bytes": 1418240,
+          "sha256": "b8657d845a08c08b7706a907b5871173a48dc72b2d96a686a01e52cbe82637b8"
+        },
+        "k2_millers": {
+          "dtype": "<i8",
+          "shape": [
+            2770,
+            3
+          ],
+          "order": "C",
+          "bytes": 66480,
+          "sha256": "081eccb1d184f82f7b48841c61303ebdf138ed74420de918fca841001d8644c8"
+        },
+        "k3_P": {
+          "dtype": "<c16",
+          "shape": [
+            5540,
+            16
+          ],
+          "order": "C",
+          "bytes": 1418240,
+          "sha256": "2b770f36c1d23b1aa7a71a5370a75000011e1e260186b3d375d9f43062f16bcd"
+        },
+        "k3_millers": {
+          "dtype": "<i8",
+          "shape": [
+            2770,
+            3
+          ],
+          "order": "C",
+          "bytes": 66480,
+          "sha256": "71db13d29db58d6ac436011861368f922394c3cb9483b5d532987b2552f2c881"
+        },
+        "B_k1_up": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "593bf3a670da547183a8dd79167462e8765a8aa14d8d11994177159c8cfd27c1"
+        },
+        "B_k1_down": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "00f97ed5523bb763f73d1cbcb18c3eec27dc9a2b923f504eeea2358334b42b25"
+        },
+        "B_k2_up": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "f22da994f5094a9479ce620e4511f6cea3ea5babfba889dc2b1faa55e8a88f0b"
+        },
+        "B_k2_down": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "39b61b9e2a619c2f8c9b4c5cf744bded937eecb01d691d26e355237f645575bc"
+        },
+        "B_k3_up": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "b9cac3b7fe736418732c2f8d20530fc95dcf2cdd03538625d6d0ce8d93c4803e"
+        },
+        "B_k3_down": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "73f424119d08acf0b9511024c1fcc11ca679ad2131340e6915581bec1f578277"
+        },
+        "A_k1_up": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "1c38b925d2d35169b8863429397ae3c237fb4e29c60b1a24e590099f89202915"
+        },
+        "A_k1_down": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "f868930e1e0e43ed1c3a7626a2dd16279717cbb1760c37e812882c5168f04d59"
+        },
+        "A_k2_up": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "97bf67b43bb97a7bedfc5820eec781fdb4e10106b895dce193b07f68e54f4919"
+        },
+        "A_k2_down": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "6bc259385883af5993433b97b04fc7bb6ca8bbb7c0133c0137497a8b971d87b6"
+        },
+        "A_k3_up": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "cff6e4b3544426ba0b5fa1ac47d8c458de5ad58568d4fbd92fb272a32e618d40"
+        },
+        "A_k3_down": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "b5fdbd477d2cfa5ec5ef34b55c37d6ce31a0c76dfa7a77cf4e16b528a834a461"
+        },
+        "Q_k1_up": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "bd3d9e241eb3ec1d28d1dfe1c438f0888782558cb2a53ba42884c333c3db9c74"
+        },
+        "Q_k1_down": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "bda396b9e2e2c1a1c2a1c0010390cf993c9d541eeca31881e9fa47729a22ebbe"
+        },
+        "Q_k2_up": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "f11e275cac87e43274ad332ae903a0aa29db40a2422c59ae86531c69e854db3e"
+        },
+        "Q_k2_down": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "2460280722c17d27fa0c75da0f5abd44a7910145e323e6d9f8e394fe5ee4d0c8"
+        },
+        "Q_k3_up": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "25bf8611283d73da09af19c27a579cc53dd28fd7d8475a6b99e3b9787eefd709"
+        },
+        "Q_k3_down": {
+          "dtype": "<c16",
+          "shape": [
+            16,
+            24
+          ],
+          "order": "C",
+          "bytes": 6144,
+          "sha256": "f6acbd2901f117bc57e76fb5b48a013be540b103f5f1f1d9044f9690fb87fdbe"
+        }
+      }
+    }
+  },
+  "public_sha256": {
+    "results/mg-soc-wavefunction-energy/comparison.json": "e51568ff61ebe57447bf30e314bd7dffdc65a4d8458984171f35bfaf20e59f36",
+    "results/mg-soc-wavefunction-energy/execution.json": "e4e037c67140e88b1c26265e77d13e8236279fdd1e26c80861461be6a3c11603",
+    "results/mg-soc-wavefunction-energy/nonlocal-checks.json": "12178ffd8142737b5088deea02c46c2453581443011b72149a1af208f4fbe3d2",
+    "results/mg-soc-wavefunction-energy/nonlocal-operator.npz": "1b94546291385c269328107c46d9c68ba2d1c1cefb397d694b97918af953d662",
+    "results/mg-soc-wavefunction-energy/qe-orbitals.npz": "1273abb0a6781ae1e743cc01141aca90ba81a9f84d2f492fc382622a88ffec8e",
+    "results/mg-soc-wavefunction-energy/state-checks.json": "ddeaf6faac22510293f9d8503afbcc76e337c882e4713458fb0eff5e6c815b1a"
+  },
+  "execution": {
+    "argv": [
+      "python_numpy",
+      "scripts/run_orbital_energy_audit.py",
+      "--julia",
+      "julia"
+    ],
+    "env": {
+      "JULIA_LOAD_PATH": "@:@stdlib",
+      "JULIA_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "JULIA_DEPOT_PATH": "<existing locked package cache>"
+    },
+    "exit_code": 0,
+    "process_logs": {
+      "stdout": ".agent-work/phase7f/formal-attempt-1.stdout",
+      "stderr": ".agent-work/phase7f/formal-attempt-1.stderr"
+    },
+    "raw_run": ".work/phase7f/20260907T173343831194Z-80727713",
+    "static_kpoint_initializations": 3,
+    "nonlocal_operator_constructions": 3,
+    "retries": 0
+  },
+  "evidence_levels": {
+    "Q": "Full native numeric coefficients, layout/Miller/occupation binding and public Fourier/direct-gradient-T/FR replay",
+    "AB": "Original X private; norm/T extraction RUNNER_REPORTED; public scalar and projected-amplitude contractions replayable",
+    "operator": "One complete set of workbench P/D/column labels; separate regeneration requires locked UPF",
+    "native_QE_nonlocal": "NOT_MEASURED",
+    "original_QE_input_H_residual": "NOT_AVAILABLE"
+  },
+  "raw_source_refs": {
+    "A": "benchmarks/mg-soc-wavefunction-energy-v1/plan.json#/sources/A",
+    "B": "benchmarks/mg-soc-wavefunction-energy-v1/plan.json#/sources/B",
+    "Q": "benchmarks/mg-soc-wavefunction-energy-v1/plan.json#/sources/G40"
+  },
+  "public_scope": "No raw WFC/checkpoint/UPF, duplicate density tables, or original A/B X. Complete24 states, no numerical modification.",
+  "tests": [
+    {
+      "test": "tests/test_qe_wavefunction.py",
+      "command": [
+        "python_numpy",
+        "tests/test_qe_wavefunction.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": ".agent-work/phase7f/test_qe_wavefunction-integration.log",
+      "sha256": "8f97543bf0bcac2cd036bfa40b465edbf4f495a13235ece56f0b17530caa001b",
+      "tests": 17,
+      "source_sha256": "75a71a14f2e7a840a9e2632f0ca0c44e2062b212ca71961ddd5c007657df42e5"
+    },
+    {
+      "test": "tests/test_orbital_evidence.py",
+      "command": [
+        "python_numpy",
+        "tests/test_orbital_evidence.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": ".agent-work/phase7f/test_orbital_evidence-integration.log",
+      "sha256": "a071b9d4b32dc4c226ff574aa8a5a0e2ff4372fb24bd78587a6877a07168249e",
+      "tests": 26,
+      "source_sha256": "f7a01f4e01b839f0bf053858a1ccaa2444bc6239a9dbc88b6ab1a55fe4e09fad"
+    },
+    {
+      "test": "tests/test_orbital_kinetics.py",
+      "command": [
+        "python_numpy",
+        "tests/test_orbital_kinetics.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": ".agent-work/phase7f/test_orbital_kinetics-integration.log",
+      "sha256": "f8c439edac013c2aa0ed7ce6e1ee3cbd60cfb7cc9cc0175546b99fcea8e84e5d",
+      "tests": 37,
+      "source_sha256": "c8d875ba89c250dc4ce7b63c43d3d8ae754d792203cad4da6cf348bbc23297a6"
+    },
+    {
+      "test": "tests/test_compare_orbital_energy.py",
+      "command": [
+        "python_numpy",
+        "tests/test_compare_orbital_energy.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": ".agent-work/phase7f/test_compare_orbital_energy-integration.log",
+      "sha256": "945b2b84f42d0c680f3c8f4ee7d54f450528c167b149e240e753d6aa8f6a630e",
+      "tests": 24,
+      "source_sha256": "dce6cd15484b7fe83b3c8649d56b44bd0e8ba0b7a434587335b354eb020ae625"
+    },
+    {
+      "test": "tests/test_orbital_driver.py",
+      "command": [
+        "python_numpy",
+        "tests/test_orbital_driver.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": ".agent-work/phase7f/test_orbital_driver-integration.log",
+      "sha256": "27d87417368b81ecdd2fd5ee21162dc5882cf69732e6324848d1e9789c148087",
+      "tests": 14,
+      "source_sha256": "a683badbd555ac335ee9c493c7df499bb4a126185cb8c102b14e2cfbebae5d66"
+    },
+    {
+      "test": "tests/test_qe_filplot.py",
+      "command": [
+        "python_numpy",
+        "tests/test_qe_filplot.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": ".agent-work/phase7f/test_qe_filplot-integration.log",
+      "sha256": "c2dae83eb703c7a8fcc44a0e447e741b9f82052dd82b75417c9a3bfbe7301cfd",
+      "tests": 19,
+      "source_sha256": "dd3686c992148d68c9f0e44a94cad887f638e5a6f46e90af76a9b0cc74577607"
+    },
+    {
+      "test": "tests/test_qe_local_potential_comparison.py",
+      "command": [
+        "python_numpy",
+        "tests/test_qe_local_potential_comparison.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": ".agent-work/phase7f/test_qe_local_potential_comparison-integration.log",
+      "sha256": "abae21b6f1b62d5106ae032eff6cf31de5e08eb94759ac5a9af4ea4e7935958a",
+      "tests": 20,
+      "source_sha256": "112a53dce71e68b2edaeae63019d301e70c9b3d78f8dbee3244c4487059ae10f"
+    },
+    {
+      "test": "tests/test_qe_local_potential_public.py",
+      "command": [
+        "python_numpy",
+        "tests/test_qe_local_potential_public.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": ".agent-work/phase7f/test_qe_local_potential_public-integration.log",
+      "sha256": "555aa36fe3efbb0cfd328139977b1712cff6bc9bcf804f1285637f076471281c",
+      "tests": 19,
+      "source_sha256": "ff798976168fa998cd2f91f75605a3aa39f02081446d13397674dbece50adbc6"
+    },
+    {
+      "test": "tests/test_energy_ledger.py",
+      "command": [
+        "python_numpy",
+        "tests/test_energy_ledger.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": ".agent-work/phase7f/test_energy_ledger-integration.log",
+      "sha256": "a2e951d2454591b0bddcb2f43cdba34e1a691856218712847e445a1b107bf920",
+      "tests": 24,
+      "source_sha256": "f8dc5327df4d696af79498051042378d857066be985b18709d1159ac11e587a4"
+    },
+    {
+      "test": "tests/test_density_hartree.py",
+      "command": [
+        "python_numpy",
+        "tests/test_density_hartree.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": ".agent-work/phase7f/test_density_hartree-integration.log",
+      "sha256": "848bcb54a1e8360bbb96f51e9b9d4213623dcbb225fd8c1a72c7fa058ea17a75",
+      "tests": 26,
+      "source_sha256": "e9f18c36b5d0226332d77fc666842dbc899165af8f77a5b91b74931813e2ef07"
+    },
+    {
+      "test": "tests/test_density_hartree_public.py",
+      "command": [
+        "python_numpy",
+        "tests/test_density_hartree_public.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": ".agent-work/phase7f/test_density_hartree_public-integration.log",
+      "sha256": "ac6385be2d38030972bd48f6c9d3d657cfa4e5cd0c330725e1c4291af87e5668",
+      "tests": 6,
+      "source_sha256": "5b946399f8420a935355b3d1dcaf55fae88208154e1dd30bca4c37674b11ac8d"
+    },
+    {
+      "test": "tests/test_orbital_public.py",
+      "command": [
+        "python_numpy",
+        "tests/test_orbital_public.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests": 21,
+      "log": ".agent-work/phase7f/test_orbital_public-final-exit-captured.log",
+      "sha256": "62feaf457e4d6f93a1a4cc5aa8deb7beadd068d38912218cf6ab101005a13f93",
+      "source_sha256": "32e0eb3e2a78fd570e01d1ba1a8e2ffda7ee1e80d0a23f6d1ed5139d82cef42b"
+    },
+    {
+      "test": "tests/test_orbital_native_replay.py",
+      "command": [
+        "python_numpy",
+        "tests/test_orbital_native_replay.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests": 13,
+      "log": ".agent-work/phase7f/test_orbital_native_replay-final-exit-captured.log",
+      "sha256": "792ef7cc0d701611ec3d22b4701f83430ae4d353da6aad34b571d8bfa8c04fd5",
+      "source_sha256": "ae6697d73a944d6e6ac61fbfc4c83f4d2a7d5a4d5cdf37bdd1613d1b38747ca8"
+    },
+    {
+      "test": "tests/test_orbital_nonlocal.jl",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "tests/test_orbital_nonlocal.jl"
+      ],
+      "tests": 88,
+      "exit_code": 0,
+      "log": ".work/phase7f-preflight/orbital-nonlocal-synthetic-attempt-4.log",
+      "sha256": "91f5d341580bec791d05cccc1948f376e44ce2bb46ea6263013aef647064ea82",
+      "source_sha256": "952c3078a3c56f5a9194f002e03b1787d44b5a747ee8aa5907a587d53b67eb9b",
+      "scope": "Synthetic only; final suite count, earlier83/84 attempts not added again"
+    }
+  ],
+  "backup": {
+    "status": "PASS",
+    "archive_label": "phase7f-20260907T170754Z",
+    "storage_scope": "Repository-external same-machine archive; not offsite",
+    "raw_manifest_sha256": "6cbae7697fad7d87fd8022eed32ed05dbf0b9372f3a5b3a23f090cf0dea97487",
+    "files": 105,
+    "bytes": 36067236,
+    "all_file_hashes_verified": true,
+    "restore_status": "PASS",
+    "restored_files": [
+      {
+        "path": "qe-orbitals.npz",
+        "sha256": "1273abb0a6781ae1e743cc01141aca90ba81a9f84d2f492fc382622a88ffec8e",
+        "bytes": 6171082,
+        "status": "PASS"
+      },
+      {
+        "path": "comparison.json",
+        "sha256": "e51568ff61ebe57447bf30e314bd7dffdc65a4d8458984171f35bfaf20e59f36",
+        "bytes": 8918,
+        "status": "PASS"
+      }
+    ],
+    "original_archives": "Referenced and29 bound source files verified; not copied again"
+  },
+  "offline_replay_status": "PASS",
+  "test_summary": {
+    "new_python": 152,
+    "affected_historical_python": 114,
+    "new_julia": 88,
+    "all_exit_codes": 0,
+    "upstream_full_suite": "NOT_RUN",
+    "historical_1387": "NOT_A_PHASE7F_RESULT"
+  },
+  "offline_replay": {
+    "command": [
+      "python_numpy",
+      "scripts/check_orbital_energy.py",
+      "--all",
+      "--legacy-python",
+      "python3.9",
+      "--modern-python",
+      "python3.12"
+    ],
+    "exit_code": 0,
+    "log": ".agent-work/phase7f/public-full-chain-attempt-1.log",
+    "sha256": "ac586e49ee7977704625a4b75c8d3145f927cc6a7f9044d4f0f8ac8c755f2e72",
+    "scope": "Complete public Q arithmetic plus existing full historical publication chain; no private numerical source required"
+  },
+  "native_wfc_public_byte_reconstruction": {
+    "status": "PASS",
+    "scope": "Public NPZ to original complete native byte hashes only; no original WFC read/export or scientific reevaluation",
+    "files": [
+      {
+        "ik": 1,
+        "status": "PASS",
+        "sha256": "d56c746b2875764923cd09cf3ee27e70ac59a9780c193c45fd40f766353be485",
+        "bytes": 2166416,
+        "records": 28,
+        "scope": "IN_MEMORY_EXACT_NATIVE_FILE_BYTES; no WFC exported or numerical reevaluation"
+      },
+      {
+        "ik": 2,
+        "status": "PASS",
+        "sha256": "a583623ef9802ac040282539c71d40bf7b67cb5948977fcad55eb338b5c616af",
+        "bytes": 2160956,
+        "records": 28,
+        "scope": "IN_MEMORY_EXACT_NATIVE_FILE_BYTES; no WFC exported or numerical reevaluation"
+      },
+      {
+        "ik": 3,
+        "status": "PASS",
+        "sha256": "13b2987d722061a639d3285b77a815336433eae04bd5274093c423f347956a3a",
+        "bytes": 2160956,
+        "records": 28,
+        "scope": "IN_MEMORY_EXACT_NATIVE_FILE_BYTES; no WFC exported or numerical reevaluation"
+      }
+    ]
+  },
+  "frozen_boundary": {
+    "status": "PASS",
+    "prior_files_checked": 332,
+    "changed": [],
+    "allowed_prior_changes": [
+      "README.md",
+      "docs/status.md",
+      "results/README.md",
+      "benchmarks/README.md",
+      "scripts/README.md"
+    ],
+    "original_run_file_count_rechecked": 29
+  },
+  "verifier_sha256": {
+    "scripts/check_orbital_energy.py": "469c9d2ddf069406bf18f6a2b6c776d2124b2631e9e62b4bea5366ad4e7b781e"
+  },
+  "public_export": {
+    "status": "PASS",
+    "numerical_npz_and_checks_copied_without_value_changes": true,
+    "raw_nonlocal_metadata_sha256": "973418039bdd840c1517cb2c68ef94be5e51057615a4ce8dee590f0a9e0978a7",
+    "nonlocal_metadata_transformation": "Primitive path descriptors become canonical NPZ keys; redundant G permutation omitted (public G bijection recomputed). Numeric rows, full D/channel labels unchanged.",
+    "Q_metadata_transformation": "Primitive array path descriptors omitted; canonical array manifest replaces them. Complete original format/header/source/XML data retained.",
+    "compressed_npz_bytes": 8638331
+  },
+  "process_archive": {
+    "status": "PASS",
+    "archive_label": "phase7f-20260907T170754Z",
+    "manifest_sha256": "a9ea98ee19bd333a8aab7636ffe77c97b60afbbf0e6d3c7221bb424418bdc7fd",
+    "files": 49,
+    "bytes": 177607,
+    "scope": "Same-machine repository-external process; final commit/push/exact-checkout receipts archived separately after commit"
+  }
+}

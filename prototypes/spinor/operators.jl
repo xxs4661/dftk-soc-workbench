@@ -1,3 +1,10 @@
+# Explicit optimized adapters below use one stage-independent parent module.
+# This happens only at module loading, never inside a numerical kernel.
+if !isdefined(parentmodule(@__MODULE__), :SOCKernels)
+    Base.include(parentmodule(@__MODULE__), joinpath(@__DIR__, "../../src/SOCKernels.jl"))
+end
+import ..SOCKernels
+
 """
 Lift a square scalar operator to `Psi[component,G,state]`, flattened with
 `row = component + ncomp*(G-1)`. The independent dense reference for this layout
@@ -144,4 +151,17 @@ function LinearAlgebra.mul!(Y::AbstractVecOrMat, P::ComponentKineticPrecondition
 end
 function Base.:*(P::ComponentKineticPreconditioner, R::AbstractVecOrMat)
     mul!(similar(R, promote_type(eltype(P), eltype(R))), P, R)
+end
+
+# Opt-in helper, leaving ComponentOperator's historical default dispatch intact.
+# Native DFTK retained-potential protection is additionally enforced by the full-H
+# runtime adapter; arbitrary callbacks cannot be authenticated by numerical code.
+function kernel_component_action!(Y,A::ComponentOperator,X,workspace,alpha=1,beta=0)
+    if A.scalar isa AbstractMatrix
+        for array in (Y,workspace.spatial_input,workspace.spatial_output,workspace.candidate)
+            Base.mightalias(array,A.scalar) && throw(ArgumentError("Output/workspace aliases scalar operator storage"))
+        end
+    end
+    action=(output,input)->mul!(output,A.scalar,input)
+    SOCKernels.component_action!(Y,action,X,A.ncomp,workspace,alpha,beta)
 end

@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "case": "si-soc-splitting-v1",
+  "action": "Q-SPECTRUM",
+  "run_id": "Q-SPECTRUM-20260908T145443Z",
+  "execution_status": "PASS",
+  "exit_code": 0,
+  "process_exit_code": 0,
+  "worker_started": true,
+  "created_utc": "2026-09-08T14:54:43.744192+00:00",
+  "input_comparability_status": "PASS",
+  "scientific_review": "REVIEW_REQUIRED",
+  "preparation_commit": "e5b940c7fb0234d4cb97572ee3f8225e9e8b6087",
+  "execution_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+  "prepared_sha256": {
+    "benchmarks/si-soc-splitting-v1/README.md": "f27c8bff174ccbe64602aa411544c4d2879a247456b5f49663b68fc8e1cb38fc",
+    "benchmarks/si-soc-splitting-v1/case.json": "a04e20b22748462fef0f0eccee93cff5a616fa3e11aa6606018d11e40d2f8cac",
+    "benchmarks/si-soc-splitting-v1/plan.json": "9f3fcf577f0cbc7b7e432f92be2add76d8f8b8128877122d951d8e2d13936a89",
+    "benchmarks/si-soc-splitting-v1/source.json": "e88ec3d6f0f1407d4d6b7b75c0bcc8f04ed1536c9c1ea3a67e4e23232e5a55e3",
+    "benchmarks/si-soc-splitting-v1/qe-scf.in": "6ac28bdf476113dcba353b4c354817db69034a2c64cce4eb50f5a524adbed707",
+    "benchmarks/si-soc-splitting-v1/qe-spectrum.in": "5c0fc060f912239ee162c6db3c6780c0d6a35e2833e6f1cd5860a965d81ebb96"
+  },
+  "frozen_sha256": {
+    "config/sources.lock": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "environment/workbench/Project.toml": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "environment/workbench/Manifest.toml": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "environment/workbench/checksums.toml": "3a0cb9974084e96224a77baf167ed653bf4e435714dbc6c8a0578ac84006f180",
+    "benchmarks/mg-soc-qe-diagnostics-v1/plan.json": "5aca5e3351109cfe5a6c59628cd640067952431d91ae5349254d98190bf60712",
+    "results/mg-soc-qe-diagnostics/evidence.json": "12782022024f1e00fb9a834863685ffab871dadd1b8fbeec5617d2021fc287c2"
+  },
+  "executed_source_sha256": {
+    "scripts/run_si_qe.py": "a6e47583c6b26a169d4c7c367eebfe543132f0d64c48bca7c4a833c331655627",
+    "scripts/si_soc_comparison.py": "3dd219b78ab19a3d6e272dac11a62ad7269e3ae1e954f098963074a2cd508584",
+    "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+    "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185",
+    "scripts/parse_qe_soc.py": "7b1d4dd8b2ca2fe8233572dceaf3e0c945adcbfdfef1e7a8bf85406c3be734cf",
+    "scripts/parse_qe_baseline.py": "689c9b51f4e619eee6977caa8548c2f14b3a6e8438b6ee5e51e309f54aa9a639",
+    "scripts/parse_qe_soc_diagnostics.py": "1ca9b66093a39f7fa83174aedb801f57bc4224d90776434ba172066abfef8f15",
+    "scripts/probe_qe_postprocess_build.jl": "28e3c773a61e82585d39ed0edef9b550de0c2066f760d7d6518bd594ce17cf58"
+  },
+  "pseudo_sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+  "parallelism": {
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "JULIA_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1"
+    },
+    "mpi_processes_requested": 1,
+    "native_mpi_processes": 1,
+    "native_nodes": 1
+  },
+  "completed_utc": "2026-09-08T14:54:51.147471+00:00",
+  "warnings": {
+    "process_exit_code": 0,
+    "stderr_lines": [
+      "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+    ],
+    "warning_lines": [
+      {
+        "stream": "stderr",
+        "line": 1,
+        "text": "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+      }
+    ],
+    "ieee_flags": {
+      "IEEE_INVALID_FLAG": {
+        "reported": true,
+        "stdout": false,
+        "stderr": true
+      },
+      "IEEE_DIVIDE_BY_ZERO": {
+        "reported": true,
+        "stdout": false,
+        "stderr": true
+      },
+      "IEEE_OVERFLOW_FLAG": {
+        "reported": true,
+        "stdout": false,
+        "stderr": true
+      },
+      "IEEE_UNDERFLOW_FLAG": {
+        "reported": false,
+        "stdout": false,
+        "stderr": false
+      },
+      "IEEE_INEXACT_FLAG": {
+        "reported": false,
+        "stdout": false,
+        "stderr": false
+      }
+    },
+    "ieee_warning_status": "REPORTED",
+    "ieee_localization_status": "NOT_LOCALIZED",
+    "eigenvalues_not_converged": false,
+    "unconverged_eigenvalue_lines": [],
+    "fatal_native_lines": [],
+    "c_bands_lines": [],
+    "note": "Reported flags are retained independently of exit code and spectral stability. Unreported flags are not proven absent."
+  },
+  "eigensolver_status": "REPORTED_THRESHOLD_AVAILABLE",
+  "source_preservation_status": "PASS",
+  "density_source_sha256": "3c6841bed3f23b45b421a966c449bbeae859a27293d4adb020f5d4ed19068630",
+  "parsed_sha256": "93f5d681d196d25766a69ce94fdfcc049f28f52ee04fe4a98b4c428ab6f5fa0a",
+  "native_process": {
+    "exit_code": 0,
+    "interrupted": false,
+    "finished_utc": "2026-09-08T14:54:51.054638+00:00"
+  },
+  "native_process_raw_sha256": "c2ae1777e9a8b016d946fc16a94371f917a811693d4ae7bcabeb0581a892fbd4",
+  "save_summary": {
+    "file_count": 11,
+    "wavefunction_file_count": 8,
+    "original_manifest_raw_sha256": "6b95aa7fc53b58f98fbb4da0a4136b027589d1ee59284a60e331a4d17f3d3f4b",
+    "charge_sha256": "3c6841bed3f23b45b421a966c449bbeae859a27293d4adb020f5d4ed19068630",
+    "xml_sha256": "397a6eed61924b3e250b35e5bd8af0cfb6917d4579c03e5fc76601d57d69f086",
+    "upf_sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+    "arrays": "LOCAL_ARCHIVE_ONLY; no save tree or UPF copied"
+  },
+  "public_transform": {
+    "source": "result.json",
+    "raw_sha256": "af383a6b8480ff7515aa1ba36d900c059ea40a8788c6544f82d1e7e435580e24",
+    "omitted_top_level_fields": [
+      "save_files"
+    ],
+    "scope": "Remove full save-file inventory only; all status/warning/source/error fields retained"
+  }
+}

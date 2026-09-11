@@ -1,0 +1,1928 @@
+{
+  "schema_version": 1,
+  "case": "mg-soc-qe-v1",
+  "comparison_execution_status": "PASS",
+  "calculation": "bands",
+  "energy_semantics_status": "NOT_APPLICABLE_SPECTRUM_ONLY",
+  "numerical_agreement_status": "REVIEW_REQUIRED",
+  "physical_convergence_status": "NOT_ESTABLISHED",
+  "comparisons": {
+    "A_minus_QE": {
+      "role": "primary",
+      "spectrum": {
+        "difference_convention": "DFTK minus QE; no total-energy adjustment",
+        "global_reference_status": "SUPPORTED",
+        "references": {
+          "DFTK": {
+            "status": "SUPPORTED",
+            "homo_ha": -0.16186113205372762,
+            "lumo_ha": 0.003712104385955874,
+            "gap_ha": 0.1655732364396835,
+            "occupied_states": 30,
+            "empty_states": 42,
+            "rule": "Maximum occupied energy across the entire three-k set"
+          },
+          "QE": {
+            "status": "SUPPORTED",
+            "homo_ha": -0.1526724870371793,
+            "lumo_ha": 0.01289852182662241,
+            "gap_ha": 0.16557100886380172,
+            "occupied_states": 30,
+            "empty_states": 42,
+            "rule": "Maximum occupied energy across the entire three-k set"
+          }
+        },
+        "summary": {
+          "16": {
+            "all": {
+              "raw": {
+                "count": 48,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188645016548425,
+                "rms_ha": 0.009178435616958105,
+                "max_abs_ev": 0.25003576862250765,
+                "rms_ev": 0.24975795670691592,
+                "signed_mean_ha": -0.009178431743966053,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 48,
+                "status": "REPORTED",
+                "max_abs_ha": 2.463610436276298e-05,
+                "rms_ha": 1.3244128442504383e-05,
+                "max_abs_ev": 0.000670382551411441,
+                "rms_ev": 0.0003603910945403695,
+                "signed_mean_ha": 1.0213272582176395e-05,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "occupied": {
+              "raw": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188645016548425,
+                "rms_ha": 0.009174612955104286,
+                "max_abs_ev": 0.25003576862250765,
+                "rms_ev": 0.24965393677872386,
+                "signed_mean_ha": -0.00917460898798936,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 2.463610436276298e-05,
+                "rms_ha": 1.6425698461284736e-05,
+                "max_abs_ev": 0.000670382551411441,
+                "rms_ev": 0.00044696602519003477,
+                "signed_mean_ha": 1.4036028558819801e-05,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "empty": {
+              "raw": {
+                "count": 18,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009186695891036066,
+                "rms_ha": 0.009184803184560239,
+                "max_abs_ev": 0.24998273021534897,
+                "rms_ev": 0.24993122704838497,
+                "signed_mean_ha": -0.009184803003927206,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 18,
+                "status": "REPORTED",
+                "max_abs_ha": 6.604113433839043e-06,
+                "rms_ha": 4.25196644339104e-06,
+                "max_abs_ev": 0.0001797070814604661,
+                "rms_ev": 0.00011570190119606369,
+                "signed_mean_ha": 3.84201262110405e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            }
+          },
+          "24": {
+            "all": {
+              "raw": {
+                "count": 72,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188645016548425,
+                "rms_ha": 0.00918058788485349,
+                "max_abs_ev": 0.25003576862250765,
+                "rms_ev": 0.24981652289992204,
+                "signed_mean_ha": -0.009180584652521466,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 72,
+                "status": "REPORTED",
+                "max_abs_ha": 2.463610436276298e-05,
+                "rms_ha": 1.1149837409128839e-05,
+                "max_abs_ev": 0.000670382551411441,
+                "rms_ev": 0.0003034025323196929,
+                "signed_mean_ha": 8.060364026788972e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "occupied": {
+              "raw": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188645016548425,
+                "rms_ha": 0.009174612955104286,
+                "max_abs_ev": 0.25003576862250765,
+                "rms_ev": 0.24965393677872386,
+                "signed_mean_ha": -0.00917460898798936,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 2.463610436276298e-05,
+                "rms_ha": 1.6425698461284736e-05,
+                "max_abs_ev": 0.000670382551411441,
+                "rms_ev": 0.00044696602519003477,
+                "signed_mean_ha": 1.4036028558819801e-05,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "empty": {
+              "raw": {
+                "count": 42,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188166335359307,
+                "rms_ha": 0.009184853312137536,
+                "max_abs_ev": 0.2500227430437819,
+                "rms_ev": 0.2499325910892524,
+                "signed_mean_ha": -0.00918485298433011,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 42,
+                "status": "REPORTED",
+                "max_abs_ha": 7.768919531914165e-06,
+                "rms_ha": 4.516772572389781e-06,
+                "max_abs_ev": 0.00021140307009686224,
+                "rms_ev": 0.0001229076430525515,
+                "signed_mean_ha": 3.7920322181955207e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            }
+          }
+        },
+        "occupation_classification_matches": true,
+        "group_definition": "Occupied/empty statistics use DFTK f>=0.5 classification",
+        "alignment_rule": "Exactly one global occupied maximum per program, applied to every k and band; no fitting"
+      }
+    },
+    "B_minus_QE": {
+      "role": "auxiliary_reproducibility_reference",
+      "spectrum": {
+        "difference_convention": "DFTK minus QE; no total-energy adjustment",
+        "global_reference_status": "SUPPORTED",
+        "references": {
+          "DFTK": {
+            "status": "SUPPORTED",
+            "homo_ha": -0.1618611320535128,
+            "lumo_ha": 0.0037121043868500146,
+            "gap_ha": 0.16557323644036281,
+            "occupied_states": 30,
+            "empty_states": 42,
+            "rule": "Maximum occupied energy across the entire three-k set"
+          },
+          "QE": {
+            "status": "SUPPORTED",
+            "homo_ha": -0.1526724870371793,
+            "lumo_ha": 0.01289852182662241,
+            "gap_ha": 0.16557100886380172,
+            "occupied_states": 30,
+            "empty_states": 42,
+            "rule": "Maximum occupied energy across the entire three-k set"
+          }
+        },
+        "summary": {
+          "16": {
+            "all": {
+              "raw": {
+                "count": 48,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188645016333513,
+                "rms_ha": 0.009178435616742812,
+                "max_abs_ev": 0.2500357686166596,
+                "rms_ev": 0.2497579567010575,
+                "signed_mean_ha": -0.009178431743750833,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 48,
+                "status": "REPORTED",
+                "max_abs_ha": 2.4636104273945136e-05,
+                "rms_ha": 1.3244128393596116e-05,
+                "max_abs_ev": 0.0006703825489945845,
+                "rms_ev": 0.0003603910932095078,
+                "signed_mean_ha": 1.0213272582597932e-05,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "occupied": {
+              "raw": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188645016333513,
+                "rms_ha": 0.00917461295495447,
+                "max_abs_ev": 0.2500357686166596,
+                "rms_ev": 0.24965393677464717,
+                "signed_mean_ha": -0.009174608987839571,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 2.4636104273945136e-05,
+                "rms_ha": 1.642569839093802e-05,
+                "max_abs_ev": 0.0006703825489945845,
+                "rms_ev": 0.0004469660232758031,
+                "signed_mean_ha": 1.4036028493825496e-05,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "empty": {
+              "raw": {
+                "count": 18,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009186695891056668,
+                "rms_ha": 0.00918480318423594,
+                "max_abs_ev": 0.24998273021590958,
+                "rms_ev": 0.24993122703956036,
+                "signed_mean_ha": -0.009184803003602936,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 18,
+                "status": "REPORTED",
+                "max_abs_ha": 6.604113417130186e-06,
+                "rms_ha": 4.251966490074589e-06,
+                "max_abs_ev": 0.00017970708100579493,
+                "rms_ev": 0.00011570190246638779,
+                "signed_mean_ha": 3.842012730551995e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            }
+          },
+          "24": {
+            "all": {
+              "raw": {
+                "count": 72,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188645016333513,
+                "rms_ha": 0.009180587884463472,
+                "max_abs_ev": 0.2500357686166596,
+                "rms_ev": 0.2498165228893091,
+                "signed_mean_ha": -0.009180584652131604,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 72,
+                "status": "REPORTED",
+                "max_abs_ha": 2.4636104273945136e-05,
+                "rms_ha": 1.1149837405771317e-05,
+                "max_abs_ev": 0.0006703825489945845,
+                "rms_ev": 0.00030340253222833007,
+                "signed_mean_ha": 8.060364201844543e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "occupied": {
+              "raw": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188645016333513,
+                "rms_ha": 0.00917461295495447,
+                "max_abs_ev": 0.2500357686166596,
+                "rms_ev": 0.24965393677464717,
+                "signed_mean_ha": -0.009174608987839571,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 30,
+                "status": "REPORTED",
+                "max_abs_ha": 2.4636104273945136e-05,
+                "rms_ha": 1.642569839093802e-05,
+                "max_abs_ev": 0.0006703825489945845,
+                "rms_ev": 0.0004469660232758031,
+                "signed_mean_ha": 1.4036028493825496e-05,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            },
+            "empty": {
+              "raw": {
+                "count": 42,
+                "status": "REPORTED",
+                "max_abs_ha": 0.009188166335082668,
+                "rms_ha": 0.009184853311576136,
+                "max_abs_ev": 0.25002274303625416,
+                "rms_ev": 0.24993259107397592,
+                "signed_mean_ha": -0.00918485298376877,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              },
+              "single_global_reference": {
+                "count": 42,
+                "status": "REPORTED",
+                "max_abs_ha": 7.76891966136617e-06,
+                "rms_ha": 4.5167727409121294e-06,
+                "max_abs_ev": 0.00021140307361943074,
+                "rms_ev": 0.00012290764763827822,
+                "signed_mean_ha": 3.792032564715291e-06,
+                "definition": "Unweighted RMS over the explicitly included k/state entries"
+              }
+            }
+          }
+        },
+        "occupation_classification_matches": true,
+        "group_definition": "Occupied/empty statistics use DFTK f>=0.5 classification",
+        "alignment_rule": "Exactly one global occupied maximum per program, applied to every k and band; no fitting"
+      }
+    }
+  },
+  "refined_minus_scf_spectrum": {
+    "difference_convention": "QE_refinement minus QE_SCF; no total-energy adjustment",
+    "global_reference_status": "SUPPORTED",
+    "references": {
+      "QE_refinement": {
+        "status": "SUPPORTED",
+        "homo_ha": -0.1526724870371793,
+        "lumo_ha": 0.01289852182662241,
+        "gap_ha": 0.16557100886380172,
+        "occupied_states": 30,
+        "empty_states": 42,
+        "rule": "Maximum occupied energy across the entire three-k set"
+      },
+      "QE_SCF": {
+        "status": "SUPPORTED",
+        "homo_ha": -0.1526725927368723,
+        "lumo_ha": 0.01289820562772123,
+        "gap_ha": 0.16557079836459354,
+        "occupied_states": 30,
+        "empty_states": 42,
+        "rule": "Maximum occupied energy across the entire three-k set"
+      }
+    },
+    "rows": [
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 1,
+        "reference_eigenvalue_ha": -3.290030681128612,
+        "qe_eigenvalue_ha": -3.290030032987275,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -6.481413370451605e-07,
+        "raw_difference_ev": -1.7636824264322417e-05,
+        "global_reference_difference_ha": -7.538410300433895e-07,
+        "global_reference_difference_ev": -2.051305943657884e-05
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 2,
+        "reference_eigenvalue_ha": -3.290030681128612,
+        "qe_eigenvalue_ha": -3.290030032987272,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -6.48141340153785e-07,
+        "raw_difference_ev": -1.76368243489124e-05,
+        "global_reference_difference_ha": -7.53841033152014e-07,
+        "global_reference_difference_ev": -2.051305952116882e-05
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 3,
+        "reference_eigenvalue_ha": -1.661499453064246,
+        "qe_eigenvalue_ha": -1.661499016476153,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.365880930112809e-07,
+        "raw_difference_ev": -1.1880167229326242e-05,
+        "global_reference_difference_ha": -5.422877860095099e-07,
+        "global_reference_difference_ev": -1.4756402401582666e-05
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 4,
+        "reference_eigenvalue_ha": -1.661499453064246,
+        "qe_eigenvalue_ha": -1.661499016476153,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.365880930112809e-07,
+        "raw_difference_ev": -1.1880167229326242e-05,
+        "global_reference_difference_ha": -5.422877860095099e-07,
+        "global_reference_difference_ev": -1.4756402401582666e-05
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 5,
+        "reference_eigenvalue_ha": -1.652785545715813,
+        "qe_eigenvalue_ha": -1.652785108001084,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.377147289069683e-07,
+        "raw_difference_ev": -1.191082455384238e-05,
+        "global_reference_difference_ha": -5.434144219051973e-07,
+        "global_reference_difference_ev": -1.4787059726098801e-05
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 6,
+        "reference_eigenvalue_ha": -1.652785545715811,
+        "qe_eigenvalue_ha": -1.652785108001082,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.377147289069683e-07,
+        "raw_difference_ev": -1.191082455384238e-05,
+        "global_reference_difference_ha": -5.434144219051973e-07,
+        "global_reference_difference_ev": -1.4787059726098801e-05
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 7,
+        "reference_eigenvalue_ha": -1.652602182644505,
+        "qe_eigenvalue_ha": -1.652601749147876,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.3349662903757746e-07,
+        "raw_difference_ev": -1.1796044209072264e-05,
+        "global_reference_difference_ha": -5.391963220358065e-07,
+        "global_reference_difference_ev": -1.4672279381328686e-05
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 8,
+        "reference_eigenvalue_ha": -1.652602182644503,
+        "qe_eigenvalue_ha": -1.652601749147871,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.3349663192415733e-07,
+        "raw_difference_ev": -1.1796044287620102e-05,
+        "global_reference_difference_ha": -5.391963249223863e-07,
+        "global_reference_difference_ev": -1.4672279459876526e-05
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 9,
+        "reference_eigenvalue_ha": -0.1592091612709129,
+        "qe_eigenvalue_ha": -0.1592092749502884,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.1367937549633389e-07,
+        "raw_difference_ev": 3.0933733948326496e-06,
+        "global_reference_difference_ha": 7.979682498104879e-09,
+        "global_reference_difference_ev": 2.171382225762264e-07
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 10,
+        "reference_eigenvalue_ha": -0.1592091612709124,
+        "qe_eigenvalue_ha": -0.1592092749502856,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.1367937322037669e-07,
+        "raw_difference_ev": 3.093373332900699e-06,
+        "global_reference_difference_ha": 7.979680222147678e-09,
+        "global_reference_difference_ev": 2.1713816064427594e-07
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 11,
+        "reference_eigenvalue_ha": 0.06051999770815743,
+        "qe_eigenvalue_ha": 0.06051991280831323,
+        "reference_occupation": 1.777148474510375e-57,
+        "qe_occupation": 1.77729936054401e-57,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 8.489984419657315e-08,
+        "raw_difference_ev": 2.3102424526565604e-06,
+        "global_reference_difference_ha": -2.0799848787778075e-08,
+        "global_reference_difference_ev": -5.659927192222289e-07
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 12,
+        "reference_eigenvalue_ha": 0.06051999770815852,
+        "qe_eigenvalue_ha": 0.06051991280831323,
+        "reference_occupation": 1.777148474508405e-57,
+        "qe_occupation": 1.77729936054401e-57,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 8.489984528597949e-08,
+        "raw_difference_ev": 2.310242482300817e-06,
+        "global_reference_difference_ha": -2.0799847705310626e-08,
+        "global_reference_difference_ev": -5.65992689766789e-07
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 13,
+        "reference_eigenvalue_ha": 0.06082948730451875,
+        "qe_eigenvalue_ha": 0.06082939159305185,
+        "reference_occupation": 1.304109591830065e-57,
+        "qe_occupation": 1.304234416045572e-57,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 9.571146690479093e-08,
+        "raw_difference_ev": 2.6044416941156935e-06,
+        "global_reference_difference_ha": -9.988226079560292e-09,
+        "global_reference_difference_ev": -2.717934777630957e-07
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 14,
+        "reference_eigenvalue_ha": 0.0608294873045253,
+        "qe_eigenvalue_ha": 0.0608293915930537,
+        "reference_occupation": 1.30410959182154e-57,
+        "qe_occupation": 1.304234416043162e-57,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 9.57114716024221e-08,
+        "raw_difference_ev": 2.60444182194475e-06,
+        "global_reference_difference_ha": -9.988221388868013e-09,
+        "global_reference_difference_ev": -2.717933501228563e-07
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 15,
+        "reference_eigenvalue_ha": 0.06100683133087546,
+        "qe_eigenvalue_ha": 0.06100672751265537,
+        "reference_occupation": 1.092180849199874e-57,
+        "qe_occupation": 1.092294243357766e-57,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.0381822009020159e-07,
+        "raw_difference_ev": 2.8250376862447398e-06,
+        "global_reference_difference_ha": -1.881472921905214e-09,
+        "global_reference_difference_ev": -5.119748638931722e-08
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 16,
+        "reference_eigenvalue_ha": 0.06100683133088586,
+        "qe_eigenvalue_ha": 0.06100672751265838,
+        "reference_occupation": 1.092180849188513e-57,
+        "qe_occupation": 1.092294243354444e-57,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.0381822748012359e-07,
+        "raw_difference_ev": 2.8250378873347618e-06,
+        "global_reference_difference_ha": -1.8814655111665246e-09,
+        "global_reference_difference_ev": -5.119728473284438e-08
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 17,
+        "reference_eigenvalue_ha": 0.06559166867108765,
+        "qe_eigenvalue_ha": 0.06559085277096612,
+        "reference_occupation": 1.114615299164162e-59,
+        "qe_occupation": 1.115525085018926e-59,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 8.159001215340966e-07,
+        "raw_difference_ev": 2.2201773345207144e-05,
+        "global_reference_difference_ha": 7.102004285219898e-07,
+        "global_reference_difference_ev": 1.9325538172573087e-05
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 18,
+        "reference_eigenvalue_ha": 0.06559166867109256,
+        "qe_eigenvalue_ha": 0.06559085277096681,
+        "reference_occupation": 1.114615299158649e-59,
+        "qe_occupation": 1.115525085018165e-59,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 8.159001257529441e-07,
+        "raw_difference_ev": 2.2201773460007833e-05,
+        "global_reference_difference_ha": 7.102004327685929e-07,
+        "global_reference_difference_ev": 1.9325538288129042e-05
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 19,
+        "reference_eigenvalue_ha": 0.102721262246463,
+        "qe_eigenvalue_ha": 0.1027211411499545,
+        "reference_occupation": 8.355018094299786e-76,
+        "qe_occupation": 8.356029919081802e-76,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.2109650850133935e-07,
+        "raw_difference_ev": 3.2952038658696667e-06,
+        "global_reference_difference_ha": 1.5396815544743703e-08,
+        "global_reference_difference_ev": 4.1896869474614526e-07
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 20,
+        "reference_eigenvalue_ha": 0.102721262246481,
+        "qe_eigenvalue_ha": 0.1027211411499712,
+        "reference_occupation": 8.355018094148996e-76,
+        "qe_occupation": 8.35602991894263e-76,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.2109650979197362e-07,
+        "raw_difference_ev": 3.2952039009896144e-06,
+        "global_reference_difference_ha": 1.539681682150018e-08,
+        "global_reference_difference_ev": 4.189687294884589e-07
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 21,
+        "reference_eigenvalue_ha": 0.1028746780713892,
+        "qe_eigenvalue_ha": 0.1028745518917121,
+        "reference_occupation": 7.166708637215161e-76,
+        "qe_occupation": 7.167612987250946e-76,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.2617967709571687e-07,
+        "raw_difference_ev": 3.433523929844714e-06,
+        "global_reference_difference_ha": 2.0479984097487858e-08,
+        "global_reference_difference_ev": 5.572887575882907e-07
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 22,
+        "reference_eigenvalue_ha": 0.1028746780714127,
+        "qe_eigenvalue_ha": 0.1028745518917362,
+        "reference_occupation": 7.166708637046506e-76,
+        "qe_occupation": 7.167612987078397e-76,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.2617967651284978e-07,
+        "raw_difference_ev": 3.4335239139840923e-06,
+        "global_reference_difference_ha": 2.0479983486865194e-08,
+        "global_reference_difference_ev": 5.572887409724015e-07
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 23,
+        "reference_eigenvalue_ha": 0.2539729726592948,
+        "qe_eigenvalue_ha": 0.2539729357379036,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.692139122213334e-08,
+        "raw_difference_ev": 1.0046822372844427e-06,
+        "global_reference_difference_ha": -6.877830172058452e-08,
+        "global_reference_difference_ev": -1.871552933461445e-06
+      },
+      {
+        "k_index": 1,
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "band_index": 24,
+        "reference_eigenvalue_ha": 0.2539729727649595,
+        "qe_eigenvalue_ha": 0.253972935833603,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.693135652849122e-08,
+        "raw_difference_ev": 1.0049534070848066e-06,
+        "global_reference_difference_ha": -6.876833646973779e-08,
+        "global_reference_difference_ev": -1.8712817651716165e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 1,
+        "reference_eigenvalue_ha": -3.289853169577079,
+        "qe_eigenvalue_ha": -3.289852521486123,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -6.480909560124815e-07,
+        "raw_difference_ev": -1.7635453326582717e-05,
+        "global_reference_difference_ha": -7.537906490107105e-07,
+        "global_reference_difference_ev": -2.051168849883914e-05
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 2,
+        "reference_eigenvalue_ha": -3.289853169487347,
+        "qe_eigenvalue_ha": -3.289852521396671,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -6.480906762362793e-07,
+        "raw_difference_ev": -1.7635445713484414e-05,
+        "global_reference_difference_ha": -7.537903692345083e-07,
+        "global_reference_difference_ev": -2.051168088574084e-05
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 3,
+        "reference_eigenvalue_ha": -1.660668305506525,
+        "qe_eigenvalue_ha": -1.66066786232185,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.431846749586299e-07,
+        "raw_difference_ev": -1.2059669368598822e-05,
+        "global_reference_difference_ha": -5.488843679568589e-07,
+        "global_reference_difference_ev": -1.4935904540855244e-05
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 4,
+        "reference_eigenvalue_ha": -1.660667837996385,
+        "qe_eigenvalue_ha": -1.660667394793035,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.432033500201271e-07,
+        "raw_difference_ev": -1.206017754291039e-05,
+        "global_reference_difference_ha": -5.489030430183561e-07,
+        "global_reference_difference_ev": -1.4936412715166813e-05
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 5,
+        "reference_eigenvalue_ha": -1.652578634576126,
+        "qe_eigenvalue_ha": -1.652578195115483,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.394606429869441e-07,
+        "raw_difference_ev": -1.1958333296224897e-05,
+        "global_reference_difference_ha": -5.451603359851731e-07,
+        "global_reference_difference_ev": -1.483456846848132e-05
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 6,
+        "reference_eigenvalue_ha": -1.652578307101512,
+        "qe_eigenvalue_ha": -1.652577867628052,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.394734600676742e-07,
+        "raw_difference_ev": -1.195868206675919e-05,
+        "global_reference_difference_ha": -5.451731530659032e-07,
+        "global_reference_difference_ev": -1.4834917239015612e-05
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 7,
+        "reference_eigenvalue_ha": -1.648907956083684,
+        "qe_eigenvalue_ha": -1.648907532663824,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.234198598407346e-07,
+        "raw_difference_ev": -1.1521841350345369e-05,
+        "global_reference_difference_ha": -5.291195528389636e-07,
+        "global_reference_difference_ev": -1.4398076522601791e-05
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 8,
+        "reference_eigenvalue_ha": -1.648907325718074,
+        "qe_eigenvalue_ha": -1.648906902270173,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.2344790096571217e-07,
+        "raw_difference_ev": -1.1522604388227905e-05,
+        "global_reference_difference_ha": -5.291475939639412e-07,
+        "global_reference_difference_ev": -1.4398839560484327e-05
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 9,
+        "reference_eigenvalue_ha": -0.1526724901708458,
+        "qe_eigenvalue_ha": -0.1526725958691947,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.0569834890672425e-07,
+        "raw_difference_ev": 2.876198597663337e-06,
+        "global_reference_difference_ha": -1.3440915047624458e-12,
+        "global_reference_difference_ev": -3.657459308603272e-11
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 10,
+        "reference_eigenvalue_ha": -0.1526724870371794,
+        "qe_eigenvalue_ha": -0.1526725927368726,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.0569969319251804e-07,
+        "raw_difference_ev": 2.8762351775432968e-06,
+        "global_reference_difference_ha": 1.942890293094024e-16,
+        "global_reference_difference_ev": 5.286873819894872e-15
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 11,
+        "reference_eigenvalue_ha": 0.01289852182662241,
+        "qe_eigenvalue_ha": 0.01289820562772221,
+        "reference_occupation": 8.540197387322214e-37,
+        "qe_occupation": 8.542898215320564e-37,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.161989002003346e-07,
+        "raw_difference_ev": 8.604210403905703e-06,
+        "global_reference_difference_ha": 2.104992072038403e-07,
+        "global_reference_difference_ev": 5.727975231696484e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 12,
+        "reference_eigenvalue_ha": 0.01289860859435659,
+        "qe_eigenvalue_ha": 0.01289829239173022,
+        "reference_occupation": 8.539456405892739e-37,
+        "qe_occupation": 8.542157031385829e-37,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.162026263707485e-07,
+        "raw_difference_ev": 8.604311798168054e-06,
+        "global_reference_difference_ha": 2.105029333898667e-07,
+        "global_reference_difference_ev": 5.728076626383673e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 13,
+        "reference_eigenvalue_ha": 0.03612597188764144,
+        "qe_eigenvalue_ha": 0.03612581539162541,
+        "reference_occupation": 6.980949853815035e-47,
+        "qe_occupation": 6.98204243014487e-47,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.5649601602801821e-07,
+        "raw_difference_ev": 4.258473538095637e-06,
+        "global_reference_difference_ha": 5.07963230367281e-08,
+        "global_reference_difference_ev": 1.3822383660280308e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 14,
+        "reference_eigenvalue_ha": 0.03612605507521754,
+        "qe_eigenvalue_ha": 0.03612589859275389,
+        "reference_occupation": 6.980369149671773e-47,
+        "qe_occupation": 6.981461540501289e-47,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.5648246364657892e-07,
+        "raw_difference_ev": 4.258104759009739e-06,
+        "global_reference_difference_ha": 5.07827706552888e-08,
+        "global_reference_difference_ev": 1.3818695869421332e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 15,
+        "reference_eigenvalue_ha": 0.05633573850648056,
+        "qe_eigenvalue_ha": 0.05633561752725136,
+        "reference_occupation": 1.166606509063132e-55,
+        "qe_occupation": 1.166747652756911e-55,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.2097922920395465e-07,
+        "raw_difference_ev": 3.2920125336098748e-06,
+        "global_reference_difference_ha": 1.527953621960343e-08,
+        "global_reference_difference_ev": 4.157773617310853e-07
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 16,
+        "reference_eigenvalue_ha": 0.05633580210571738,
+        "qe_eigenvalue_ha": 0.05633568113880198,
+        "reference_occupation": 1.166532316138813e-55,
+        "qe_occupation": 1.16667343649009e-55,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.2096691539426052e-07,
+        "raw_difference_ev": 3.291677457778128e-06,
+        "global_reference_difference_ha": 1.5267222402970404e-08,
+        "global_reference_difference_ev": 4.1544228571052183e-07
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 17,
+        "reference_eigenvalue_ha": 0.1085136426297656,
+        "qe_eigenvalue_ha": 0.1085132829220952,
+        "reference_occupation": 2.548875114859466e-78,
+        "qe_occupation": 2.549792129707954e-78,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.5970767039983365e-07,
+        "raw_difference_ev": 9.7881443548919e-06,
+        "global_reference_difference_ha": 2.5400797737384906e-07,
+        "global_reference_difference_ev": 6.9119091818802095e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 18,
+        "reference_eigenvalue_ha": 0.1085136677723565,
+        "qe_eigenvalue_ha": 0.1085133080430931,
+        "reference_occupation": 2.54881103034108e-78,
+        "qe_occupation": 2.549728077189779e-78,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.5972926340499534e-07,
+        "raw_difference_ev": 9.788731930495567e-06,
+        "global_reference_difference_ha": 2.540295704345219e-07,
+        "global_reference_difference_ev": 6.912496758994411e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 19,
+        "reference_eigenvalue_ha": 0.1346439629149658,
+        "qe_eigenvalue_ha": 0.1346437657290281,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.9718593771700377e-07,
+        "raw_difference_ev": 5.365702713493343e-06,
+        "global_reference_difference_ha": 9.148624469101918e-08,
+        "global_reference_difference_ev": 2.4894675404816518e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 20,
+        "reference_eigenvalue_ha": 0.1346439960287215,
+        "qe_eigenvalue_ha": 0.1346437988282393,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.9720048222149344e-07,
+        "raw_difference_ev": 5.3660984896227675e-06,
+        "global_reference_difference_ha": 9.150078927877558e-08,
+        "global_reference_difference_ev": 2.4898633188768796e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 21,
+        "reference_eigenvalue_ha": 0.1565643998712954,
+        "qe_eigenvalue_ha": 0.1565641636048399,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 2.3626645548335823e-07,
+        "raw_difference_ev": 6.429137777126537e-06,
+        "global_reference_difference_ha": 1.305667625128848e-07,
+        "global_reference_difference_ev": 3.552902605625381e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 22,
+        "reference_eigenvalue_ha": 0.1565644464530587,
+        "qe_eigenvalue_ha": 0.1565642101825332,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 2.3627052550545535e-07,
+        "raw_difference_ev": 6.429248528069851e-06,
+        "global_reference_difference_ha": 1.3057083253498192e-07,
+        "global_reference_difference_ev": 3.5530133565686952e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 23,
+        "reference_eigenvalue_ha": 0.1807379133750102,
+        "qe_eigenvalue_ha": 0.1807375760546496,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.373203605883113e-07,
+        "raw_difference_ev": 9.178954620602125e-06,
+        "global_reference_difference_ha": 2.3162066759008226e-07,
+        "global_reference_difference_ev": 6.302719448345701e-06
+      },
+      {
+        "k_index": 2,
+        "coordinate_fractional": [
+          0.125,
+          0.0625,
+          -0.1875
+        ],
+        "band_index": 24,
+        "reference_eigenvalue_ha": 0.1807379226880313,
+        "qe_eigenvalue_ha": 0.1807375853714006,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.3731663068303774e-07,
+        "raw_difference_ev": 9.178853124709067e-06,
+        "global_reference_difference_ha": 2.3161693774031988e-07,
+        "global_reference_difference_ev": 6.302617953963178e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 1,
+        "reference_eigenvalue_ha": -3.28985316957709,
+        "qe_eigenvalue_ha": -3.289852521486123,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -6.480909671147117e-07,
+        "raw_difference_ev": -1.763545362868979e-05,
+        "global_reference_difference_ha": -7.537906601129407e-07,
+        "global_reference_difference_ev": -2.0511688800946213e-05
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 2,
+        "reference_eigenvalue_ha": -3.289853169487353,
+        "qe_eigenvalue_ha": -3.289852521396669,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -6.480906837857958e-07,
+        "raw_difference_ev": -1.7635445918917225e-05,
+        "global_reference_difference_ha": -7.537903767840248e-07,
+        "global_reference_difference_ev": -2.0511681091173647e-05
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 3,
+        "reference_eigenvalue_ha": -1.660668305506527,
+        "qe_eigenvalue_ha": -1.660667862321851,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.431846760688529e-07,
+        "raw_difference_ev": -1.205966939880953e-05,
+        "global_reference_difference_ha": -5.488843690670819e-07,
+        "global_reference_difference_ev": -1.4935904571065952e-05
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 4,
+        "reference_eigenvalue_ha": -1.660667837996386,
+        "qe_eigenvalue_ha": -1.660667394793037,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.432033489099041e-07,
+        "raw_difference_ev": -1.2060177512699682e-05,
+        "global_reference_difference_ha": -5.489030419081331e-07,
+        "global_reference_difference_ev": -1.4936412684956106e-05
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 5,
+        "reference_eigenvalue_ha": -1.652578634576124,
+        "qe_eigenvalue_ha": -1.652578195115483,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.3946064098854265e-07,
+        "raw_difference_ev": -1.1958333241845624e-05,
+        "global_reference_difference_ha": -5.451603339867717e-07,
+        "global_reference_difference_ev": -1.4834568414102047e-05
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 6,
+        "reference_eigenvalue_ha": -1.652578307101513,
+        "qe_eigenvalue_ha": -1.652577867628054,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.3947345895745116e-07,
+        "raw_difference_ev": -1.1958682036548483e-05,
+        "global_reference_difference_ha": -5.451731519556802e-07,
+        "global_reference_difference_ev": -1.4834917208804905e-05
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 7,
+        "reference_eigenvalue_ha": -1.648907956083682,
+        "qe_eigenvalue_ha": -1.648907532663825,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.2341985695415474e-07,
+        "raw_difference_ev": -1.1521841271797529e-05,
+        "global_reference_difference_ha": -5.291195499523837e-07,
+        "global_reference_difference_ev": -1.4398076444053953e-05
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 8,
+        "reference_eigenvalue_ha": -1.648907325718074,
+        "qe_eigenvalue_ha": -1.648906902270173,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": -4.2344790096571217e-07,
+        "raw_difference_ev": -1.1522604388227905e-05,
+        "global_reference_difference_ha": -5.291475939639412e-07,
+        "global_reference_difference_ev": -1.4398839560484327e-05
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 9,
+        "reference_eigenvalue_ha": -0.1526724901708457,
+        "qe_eigenvalue_ha": -0.1526725958691943,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.0569834860141292e-07,
+        "raw_difference_ev": 2.8761985893553925e-06,
+        "global_reference_difference_ha": -1.3443968160942177e-12,
+        "global_reference_difference_ev": -3.6582901030606845e-11
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 10,
+        "reference_eigenvalue_ha": -0.1526724870371793,
+        "qe_eigenvalue_ha": -0.1526725927368723,
+        "reference_occupation": 1.0,
+        "qe_occupation": 1.0,
+        "reference_group": "occupied",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.0569969299822901e-07,
+        "raw_difference_ev": 2.8762351722564233e-06,
+        "global_reference_difference_ha": 0.0,
+        "global_reference_difference_ev": 0.0
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 11,
+        "reference_eigenvalue_ha": 0.01289852182662249,
+        "qe_eigenvalue_ha": 0.01289820562772123,
+        "reference_occupation": 8.540197387321608e-37,
+        "qe_occupation": 8.542898215329062e-37,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.1619890126025063e-07,
+        "raw_difference_ev": 8.604210432747488e-06,
+        "global_reference_difference_ha": 2.1049920825855217e-07,
+        "global_reference_difference_ev": 5.727975260396657e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 12,
+        "reference_eigenvalue_ha": 0.01289860859435563,
+        "qe_eigenvalue_ha": 0.01289829239172965,
+        "reference_occupation": 8.539456405900871e-37,
+        "qe_occupation": 8.542157031390685e-37,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.162026259804357e-07,
+        "raw_difference_ev": 8.604311787547102e-06,
+        "global_reference_difference_ha": 2.1050293297353306e-07,
+        "global_reference_difference_ev": 5.728076615054658e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 13,
+        "reference_eigenvalue_ha": 0.03612597188764095,
+        "qe_eigenvalue_ha": 0.03612581539162571,
+        "reference_occupation": 6.980949853818408e-47,
+        "qe_occupation": 6.982042430142787e-47,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.564960152369843e-07,
+        "raw_difference_ev": 4.258473516570508e-06,
+        "global_reference_difference_ha": 5.0796322231816404e-08,
+        "global_reference_difference_ev": 1.3822383441252678e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 14,
+        "reference_eigenvalue_ha": 0.03612605507521738,
+        "qe_eigenvalue_ha": 0.03612589859275385,
+        "reference_occupation": 6.980369149672965e-47,
+        "qe_occupation": 6.981461540501586e-47,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.5648246352861772e-07,
+        "raw_difference_ev": 4.258104755799852e-06,
+        "global_reference_difference_ha": 5.078277051651092e-08,
+        "global_reference_difference_ev": 1.3818695831657948e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 15,
+        "reference_eigenvalue_ha": 0.05633573850648024,
+        "qe_eigenvalue_ha": 0.05633561752725184,
+        "reference_occupation": 1.166606509063513e-55,
+        "qe_occupation": 1.166747652756364e-55,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.2097922840598185e-07,
+        "raw_difference_ev": 3.2920125118959285e-06,
+        "global_reference_difference_ha": 1.5279535414691736e-08,
+        "global_reference_difference_ev": 4.157773398283223e-07
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 16,
+        "reference_eigenvalue_ha": 0.0563358021057172,
+        "qe_eigenvalue_ha": 0.05633568113880086,
+        "reference_occupation": 1.166532316139012e-55,
+        "qe_occupation": 1.166673436491416e-55,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.2096691634488899e-07,
+        "raw_difference_ev": 3.2916774836460463e-06,
+        "global_reference_difference_ha": 1.5267223346659975e-08,
+        "global_reference_difference_ev": 4.1544231138962323e-07
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 17,
+        "reference_eigenvalue_ha": 0.1085136426297659,
+        "qe_eigenvalue_ha": 0.1085132829220946,
+        "reference_occupation": 2.548875114858886e-78,
+        "qe_occupation": 2.549792129709694e-78,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.5970767130188985e-07,
+        "raw_difference_ev": 9.7881443794381e-06,
+        "global_reference_difference_ha": 2.5400797831753863e-07,
+        "global_reference_difference_ev": 6.911909207559311e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 18,
+        "reference_eigenvalue_ha": 0.1085136677723561,
+        "qe_eigenvalue_ha": 0.1085133080430926,
+        "reference_occupation": 2.54881103034195e-78,
+        "qe_occupation": 2.549728077191083e-78,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.5972926350213985e-07,
+        "raw_difference_ev": 9.788731933139003e-06,
+        "global_reference_difference_ha": 2.540295705455442e-07,
+        "global_reference_difference_ev": 6.9124967620154814e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 19,
+        "reference_eigenvalue_ha": 0.1346439629149657,
+        "qe_eigenvalue_ha": 0.1346437657290279,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.971859378002705e-07,
+        "raw_difference_ev": 5.365702715759146e-06,
+        "global_reference_difference_ha": 9.148624480204148e-08,
+        "global_reference_difference_ev": 2.4894675435027223e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 20,
+        "reference_eigenvalue_ha": 0.1346439960287221,
+        "qe_eigenvalue_ha": 0.1346437988282378,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 1.9720048430316162e-07,
+        "raw_difference_ev": 5.366098546267844e-06,
+        "global_reference_difference_ha": 9.150079127717703e-08,
+        "global_reference_difference_ev": 2.4898633732561534e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 21,
+        "reference_eigenvalue_ha": 0.1565643998712954,
+        "qe_eigenvalue_ha": 0.1565641636048398,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 2.3626645559438053e-07,
+        "raw_difference_ev": 6.429137780147607e-06,
+        "global_reference_difference_ha": 1.305667626239071e-07,
+        "global_reference_difference_ev": 3.5529026086464518e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 22,
+        "reference_eigenvalue_ha": 0.156564446453059,
+        "qe_eigenvalue_ha": 0.1565642101825341,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 2.362705248948327e-07,
+        "raw_difference_ev": 6.429248511453962e-06,
+        "global_reference_difference_ha": 1.305708318688481e-07,
+        "global_reference_difference_ev": 3.553013338442271e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 23,
+        "reference_eigenvalue_ha": 0.1807379133750099,
+        "qe_eigenvalue_ha": 0.1807375760546501,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.3732035981115516e-07,
+        "raw_difference_ev": 9.17895459945463e-06,
+        "global_reference_difference_ha": 2.3162066681292615e-07,
+        "global_reference_difference_ev": 6.302719427198207e-06
+      },
+      {
+        "k_index": 3,
+        "coordinate_fractional": [
+          -0.125,
+          -0.0625,
+          0.1875
+        ],
+        "band_index": 24,
+        "reference_eigenvalue_ha": 0.1807379226880312,
+        "qe_eigenvalue_ha": 0.1807375853713997,
+        "reference_occupation": 0.0,
+        "qe_occupation": 0.0,
+        "reference_group": "empty",
+        "occupation_classification_matches": true,
+        "raw_difference_ha": 3.37316631515705e-07,
+        "raw_difference_ev": 9.178853147367096e-06,
+        "global_reference_difference_ha": 2.31616938517476e-07,
+        "global_reference_difference_ev": 6.3026179751106734e-06
+      }
+    ],
+    "summary": {
+      "16": {
+        "all": {
+          "raw": {
+            "count": 48,
+            "status": "REPORTED",
+            "max_abs_ha": 6.48141340153785e-07,
+            "rms_ha": 3.712915114790555e-07,
+            "max_abs_ev": 1.76368243489124e-05,
+            "rms_ev": 1.0103356728710668e-05,
+            "signed_mean_ha": -1.6947830056779473e-07,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          },
+          "single_global_reference": {
+            "count": 48,
+            "status": "REPORTED",
+            "max_abs_ha": 7.53841033152014e-07,
+            "rms_ha": 4.29950485842398e-07,
+            "max_abs_ev": 2.051305952116882e-05,
+            "rms_ev": 1.1699548736904678e-05,
+            "signed_mean_ha": -2.7517799356472267e-07,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          }
+        },
+        "occupied": {
+          "raw": {
+            "count": 30,
+            "status": "REPORTED",
+            "max_abs_ha": 6.48141340153785e-07,
+            "rms_ha": 4.474533722344735e-07,
+            "max_abs_ev": 1.76368243489124e-05,
+            "rms_ev": 1.2175826538938969e-05,
+            "signed_mean_ha": -3.692823268138431e-07,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          },
+          "single_global_reference": {
+            "count": 30,
+            "status": "REPORTED",
+            "max_abs_ha": 7.53841033152014e-07,
+            "rms_ha": 5.380083666372782e-07,
+            "max_abs_ev": 2.051305952116882e-05,
+            "rms_ev": 1.4639953468136335e-05,
+            "signed_mean_ha": -4.749820198120721e-07,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          }
+        },
+        "empty": {
+          "raw": {
+            "count": 18,
+            "status": "REPORTED",
+            "max_abs_ha": 3.162026263707485e-07,
+            "rms_ha": 1.8419780160758445e-07,
+            "max_abs_ev": 8.604311798168054e-06,
+            "rms_ev": 5.01227752520456e-06,
+            "signed_mean_ha": 1.6352840984228587e-07,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          },
+          "single_global_reference": {
+            "count": 18,
+            "status": "REPORTED",
+            "max_abs_ha": 2.105029333898667e-07,
+            "rms_ha": 1.0262285215024494e-07,
+            "max_abs_ev": 5.728076626383673e-06,
+            "rms_ev": 2.792510067524517e-06,
+            "signed_mean_ha": 5.7828716847526294e-08,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          }
+        }
+      },
+      "24": {
+        "all": {
+          "raw": {
+            "count": 72,
+            "status": "REPORTED",
+            "max_abs_ha": 8.159001257529441e-07,
+            "rms_ha": 3.6063207360167193e-07,
+            "max_abs_ev": 2.2201773460007833e-05,
+            "rms_ev": 9.813298647464144e-06,
+            "signed_mean_ha": -1.9621644522049687e-08,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          },
+          "single_global_reference": {
+            "count": 72,
+            "status": "REPORTED",
+            "max_abs_ha": 7.53841033152014e-07,
+            "rms_ha": 3.812819445177634e-07,
+            "max_abs_ev": 2.051305952116882e-05,
+            "rms_ev": 1.0375210260891558e-05,
+            "signed_mean_ha": -1.2532133751574914e-07,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          }
+        },
+        "occupied": {
+          "raw": {
+            "count": 30,
+            "status": "REPORTED",
+            "max_abs_ha": 6.48141340153785e-07,
+            "rms_ha": 4.474533722344735e-07,
+            "max_abs_ev": 1.76368243489124e-05,
+            "rms_ev": 1.2175826538938969e-05,
+            "signed_mean_ha": -3.692823268138431e-07,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          },
+          "single_global_reference": {
+            "count": 30,
+            "status": "REPORTED",
+            "max_abs_ha": 7.53841033152014e-07,
+            "rms_ha": 5.380083666372782e-07,
+            "max_abs_ev": 2.051305952116882e-05,
+            "rms_ev": 1.4639953468136335e-05,
+            "signed_mean_ha": -4.749820198120721e-07,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          }
+        },
+        "empty": {
+          "raw": {
+            "count": 42,
+            "status": "REPORTED",
+            "max_abs_ha": 8.159001257529441e-07,
+            "rms_ha": 2.8273998870817414e-07,
+            "max_abs_ev": 2.2201773460007833e-05,
+            "rms_ev": 7.693747039922432e-06,
+            "signed_mean_ha": 2.3013598568637416e-07,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          },
+          "single_global_reference": {
+            "count": 42,
+            "status": "REPORTED",
+            "max_abs_ha": 7.102004327685929e-07,
+            "rms_ha": 2.0606727116731362e-07,
+            "max_abs_ev": 1.9325538288129042e-05,
+            "rms_ev": 5.6073761083890745e-06,
+            "signed_mean_ha": 1.2443629269591008e-07,
+            "definition": "Unweighted RMS over the explicitly included k/state entries"
+          }
+        }
+      }
+    },
+    "occupation_classification_matches": true,
+    "group_definition": "Occupied/empty statistics use QE_refinement f>=0.5 classification",
+    "alignment_rule": "Exactly one global occupied maximum per program, applied to every k and band; no fitting"
+  },
+  "energy_source": "Original SCF E/F/-TS only, retained in the separate SCF comparison; no refinement energies used",
+  "scf_comparison_execution_status": "PASS",
+  "native_sources": {
+    "SCF": {
+      "xml": "34295b4ee53396f6a655f7ca152804b3e763ba13c5dc49f14fdf2ab588107366",
+      "stdout": "35a54a7aa30aed69307617f3fd3560ec1818cc3393dad27941c59664f33f6335"
+    },
+    "refinement": {
+      "xml": "31fb8029ec401a03fddbde97004bcd77290c718ee18857838fce77cdf45748d1",
+      "stdout": "6d65e53e15d6a26c21d4892c735ab66890b7c788be4155a37db3a700b6df2837"
+    }
+  },
+  "refinement_precision": {
+    "stdout_spectrum_check": {
+      "status": "PASS",
+      "matched_eigenvalues": 72,
+      "stdout_to_xml_kpoint_indices": [
+        0,
+        1,
+        2
+      ],
+      "max_abs_xml_minus_stdout_ev": 4.9781640836179915e-05,
+      "maximum_printed_rounding_bound_ev": 5.00027211386246e-05,
+      "occupation_fields_checked": 0,
+      "native_ev_per_ha": 27.211386245988034,
+      "scope": "Native stdout rounding crosscheck, not an eigenvector residual estimate"
+    },
+    "diago_full_acc": true,
+    "ethr_history_ry": [
+      1e-10
+    ],
+    "last_ethr_ry": 1e-10,
+    "individual_eigenvector_residual_status": "NOT_AVAILABLE",
+    "individual_eigenvector_residuals_ha": null,
+    "note": "ethr is an eigenvalue convergence threshold, not ||Hpsi-epsilon psi||"
+  },
+  "refinement_warnings": [],
+  "refinement_occupation_source": "RECOMPUTED_AT_INHERITED_SCF_CHEMICAL_POTENTIAL",
+  "refinement_chemical_potential_source": "INHERITED_FROM_SCF_NOT_RESOLVED",
+  "refinement_spectral_symmetry": {
+    "status": "DIAGNOSTIC_ONLY",
+    "gamma_adjacent_pair_max_ha": 1.0566469921258204e-10,
+    "plus_minus_spectrum_max_ha": 1.1102230246251565e-14,
+    "pair_rule": "Adjacent sorted Gamma levels and equal band indices at uniquely matched k+/k-; no channel assignment"
+  },
+  "scratch_density_binding": "Established by the separate run/evidence receipt, not eigenvalue arithmetic"
+}

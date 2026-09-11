@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "limit_bytes": 8589934592,
+  "sample_interval_seconds": 0.1,
+  "peak_aggregate_rss_bytes": 1930739712,
+  "samples": 236,
+  "nonempty_samples": 235,
+  "started_utc": "2026-09-10T14:12:06.127410+00:00",
+  "scope": "Recorded session group plus descendant processes; sampled aggregate RSS, not a continuous upper bound",
+  "native_exit_code": 0,
+  "numerical_process_pid": 15086,
+  "first_sample_delay_seconds": 0.11687254201387987,
+  "owned_process_cleanup_status": "PASS",
+  "remaining_observed_processes": [],
+  "reason": null,
+  "elapsed_seconds": 27.61242275001132,
+  "finished_utc": "2026-09-10T14:12:33.739762+00:00"
+}

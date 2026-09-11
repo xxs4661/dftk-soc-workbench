@@ -1,0 +1,436 @@
+{
+  "invocation": {
+    "profile": "E40",
+    "action": "D-SCF",
+    "run_id": "D-SCF-20260908T231632Z-2f8ec6f8",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "started_utc": "2026-09-08T23:16:32.399668+00:00",
+    "finished_utc": "2026-09-08T23:53:11.204936+00:00",
+    "exit_code": 0,
+    "status": "PASS",
+    "peak_rss_bytes": 2674081792,
+    "streams_sha256": {
+      "stdout": "490cc4594eb8b7c927a1c43e397f6668de86511dfc31640a222796e3abf15fff",
+      "stderr": "b3528d082aed541a01f140d208f9523c24fbcba254c77d95dc0843a99e2e39b1"
+    },
+    "resource_status": "PASS"
+  },
+  "wrapper": {
+    "schema_version": 1,
+    "case": "si-soc-sensitivity-v1/E40",
+    "sensitivity_profile": "E40",
+    "case_sha256": "d5e6af621e58297bf62825ee37bbb6021cee59f969d44f524bf8b86d176f51bc",
+    "run_id": "D-SCF-20260908T231632Z-2f8ec6f8",
+    "action": "D-SCF",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "preparation_commit": "4a58286183e4625ad7ae69b44eb80097e8ad6c7d",
+    "started_utc": "2026-09-08T23:16:32.422296+00:00",
+    "finished_utc": "2026-09-08T23:53:11.199069+00:00",
+    "exit_code": 0,
+    "worker_exit_code": 0,
+    "execution_status": "PASS",
+    "temperature_ha": 0.001,
+    "preflight_manifest_sha256": "19e5160c1e5a26bab049abf285a97fe89e9e9a130be36e33283d608e94eae0fc"
+  },
+  "worker": {
+    "schema_version": 1,
+    "case": "si-soc-sensitivity-v1/E40",
+    "sensitivity_profile": "E40",
+    "case_sha256": "d5e6af621e58297bf62825ee37bbb6021cee59f969d44f524bf8b86d176f51bc",
+    "run_id": "D-SCF-20260908T231632Z-2f8ec6f8-dftk",
+    "action": "D-SCF",
+    "base_commit": "bc68aaf655d96dfd4335f6fa1a8e5ee76477c2a3",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "started_utc": "2026-09-08T23:16:40.049",
+    "finished_utc": "2026-09-08T23:53:10.843",
+    "exit_code": 0,
+    "execution_status": "PASS",
+    "parallelism": {
+      "julia": 1,
+      "blas": 1,
+      "fft": 1,
+      "mpi": 1
+    },
+    "peak_rss_bytes": 2674081792,
+    "temperature_ha": 0.001
+  },
+  "source_files": {
+    "worker.stdout": {
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compressed_sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "raw_bytes": 0,
+      "public_bytes": 0,
+      "public_path": "D-SCF/worker.stdout.gz",
+      "line_count": 0,
+      "numeric_token_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "numeric_token_count": 0,
+      "transform": "Private path strings only; exact numerical tokens outside substituted path prefixes; gzip mtime0"
+    },
+    "worker.stderr": {
+      "raw_sha256": "7ec37376db358f37818978f6470e9c1b3287a95fed6b157d04845379f0017439",
+      "public_sha256": "7ec37376db358f37818978f6470e9c1b3287a95fed6b157d04845379f0017439",
+      "compressed_sha256": "f833c0c2e02a630e7b86821547f55727ba3e8344afd3285c4e77d47508194a8f",
+      "raw_bytes": 14573,
+      "public_bytes": 14573,
+      "public_path": "D-SCF/worker.stderr.gz",
+      "line_count": 185,
+      "numeric_token_sha256": "8aa68c105b3aca2adda9a78634ee957fe50774a31391820e96cded20b356ba01",
+      "numeric_token_count": 544,
+      "transform": "Private path strings only; exact numerical tokens outside substituted path prefixes; gzip mtime0"
+    }
+  },
+  "export_checks_status": "PASS",
+  "input": {
+    "functional": "PBE",
+    "radial_points": 1528,
+    "has_so": true,
+    "g0_local": 0.0,
+    "correction_per_electron_volume": 9.346977114634537,
+    "core_fourier_zero": 0.7242548580428518,
+    "mode": "real_fr",
+    "nlcc_present": true,
+    "r_last_bohr": 15.27,
+    "relativistic": "full",
+    "r_first_bohr": 0.0,
+    "core_semantics": "PP_NLCC = n_core; Fourier integrand stores r\u00b2 n_core",
+    "element": "Si",
+    "local_unit": "PP_LOCAL / 2, Ry to Ha",
+    "header_note": "Exact PP_HEADER text retained; reported functional follows frozen PPIO whitespace normalization",
+    "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+    "binding": "Loader-issued object capability plus unchanged full source/common/channel snapshots; one parse",
+    "xc_identifiers": [
+      "gga_x_pbe",
+      "gga_c_pbe"
+    ],
+    "z_valence": 4,
+    "beta_cutoff_indices": [
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196
+    ],
+    "valence_fourier_zero": 3.9999981732989602,
+    "valence_semantics": "PP_RHOATOM / (4pi) = r\u00b2 n_valence",
+    "quadrature": "simpson_uniform",
+    "source": "https://raw.githubusercontent.com/PseudoDojo/ONCVPSP-PBE-FR-PDv0.4/7aa01a3fcf5ad226caf25bd387a9be9612be9f27/Si/Si_r.upf",
+    "cutoff_indices": {
+      "local_potential": 1528,
+      "core": 1528,
+      "correction": 1528,
+      "valence": 1528
+    }
+  },
+  "grid": {
+    "status": "PASS",
+    "rows": [
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "g_sha256": "cfcbd26129b34850528263c1de64b959405070106881aa251098274e2340c185",
+        "ng": 3287,
+        "max_kinetic_ha": 39.753088947234374,
+        "max_product_component": [
+          20,
+          20,
+          20
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          -0.5
+        ],
+        "g_sha256": "e8c66a4763f4f3bfcc968c57c8af441c6f398d428a40427cd5cb5f99d562248d",
+        "ng": 3274,
+        "max_kinetic_ha": 39.89372487511375,
+        "max_product_component": [
+          20,
+          20,
+          19
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          -0.5,
+          0.0
+        ],
+        "g_sha256": "b9cef7f1de8cf4e9e786ffc15df7fc5667ac18ab0c84612bc2d67481b98a4949",
+        "ng": 3274,
+        "max_kinetic_ha": 39.89372487511375,
+        "max_product_component": [
+          20,
+          19,
+          20
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          -0.5,
+          -0.5
+        ],
+        "g_sha256": "baa03ff5e5343ced95e3d0834b6368029dc5a079bb2b122e207d71425c790f3e",
+        "ng": 3282,
+        "max_kinetic_ha": 39.9406035177402,
+        "max_product_component": [
+          20,
+          19,
+          19
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          0.0,
+          0.0
+        ],
+        "g_sha256": "9f52b676e6c9c37ad7d9829f61c2a8dc6c456d3e5c2c8993268558bd058cb055",
+        "ng": 3274,
+        "max_kinetic_ha": 39.89372487511375,
+        "max_product_component": [
+          19,
+          20,
+          20
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          0.0,
+          -0.5
+        ],
+        "g_sha256": "982e862d5ffd23d51d2e14c9168b5c568943b6e07e3eb511c34daafd0b378e77",
+        "ng": 3282,
+        "max_kinetic_ha": 39.9406035177402,
+        "max_product_component": [
+          19,
+          20,
+          19
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          -0.5,
+          0.0
+        ],
+        "g_sha256": "0210ad884e6d2bd953c0c3726d25154385d9eb587cfd04ad0981481fd594cdb8",
+        "ng": 3282,
+        "max_kinetic_ha": 39.9406035177402,
+        "max_product_component": [
+          19,
+          19,
+          20
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "g_sha256": "6ff2685d8039efb7d01bd6107ca1d7c49990e104c5b8374b77a9d60f8eeeaa18",
+        "ng": 3274,
+        "max_kinetic_ha": 39.89372487511375,
+        "max_product_component": [
+          19,
+          19,
+          19
+        ]
+      }
+    ],
+    "nyquist": "All actual same-k component difference extrema strictly below24; sufficient for every G-Gprime",
+    "memory_estimate_bytes": {
+      "retained_orbitals_and_solver": 492261120,
+      "projectors_and_snapshots": 242343936,
+      "density_core_local_fields": 88473600,
+      "bounded_fft_workspaces": 679477248,
+      "runtime_library_margin": 2147483648
+    },
+    "conservative_peak_bytes": 3650039552,
+    "basis": {
+      "kpoints": [
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ng": 3287,
+          "weight_spatial": 0.125,
+          "g_order_sha256": "cfcbd26129b34850528263c1de64b959405070106881aa251098274e2340c185"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.0,
+            -0.5
+          ],
+          "ng": 3274,
+          "weight_spatial": 0.125,
+          "g_order_sha256": "e8c66a4763f4f3bfcc968c57c8af441c6f398d428a40427cd5cb5f99d562248d"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            -0.5,
+            0.0
+          ],
+          "ng": 3274,
+          "weight_spatial": 0.125,
+          "g_order_sha256": "b9cef7f1de8cf4e9e786ffc15df7fc5667ac18ab0c84612bc2d67481b98a4949"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            -0.5,
+            -0.5
+          ],
+          "ng": 3282,
+          "weight_spatial": 0.125,
+          "g_order_sha256": "baa03ff5e5343ced95e3d0834b6368029dc5a079bb2b122e207d71425c790f3e"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            0.0,
+            0.0
+          ],
+          "ng": 3274,
+          "weight_spatial": 0.125,
+          "g_order_sha256": "9f52b676e6c9c37ad7d9829f61c2a8dc6c456d3e5c2c8993268558bd058cb055"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            0.0,
+            -0.5
+          ],
+          "ng": 3282,
+          "weight_spatial": 0.125,
+          "g_order_sha256": "982e862d5ffd23d51d2e14c9168b5c568943b6e07e3eb511c34daafd0b378e77"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            -0.5,
+            0.0
+          ],
+          "ng": 3282,
+          "weight_spatial": 0.125,
+          "g_order_sha256": "0210ad884e6d2bd953c0c3726d25154385d9eb587cfd04ad0981481fd594cdb8"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "ng": 3274,
+          "weight_spatial": 0.125,
+          "g_order_sha256": "6ff2685d8039efb7d01bd6107ca1d7c49990e104c5b8374b77a9d60f8eeeaa18"
+        }
+      ],
+      "lattice_bohr": [
+        [
+          0.0,
+          5.13,
+          5.13
+        ],
+        [
+          5.13,
+          0.0,
+          5.13
+        ],
+        [
+          5.13,
+          5.13,
+          0.0
+        ]
+      ],
+      "native_nonlocal_terms": 0,
+      "ecut_ha": 40.0,
+      "n_electrons": 8,
+      "positions_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.25,
+          0.25,
+          0.25
+        ]
+      ],
+      "term_types": [
+        "DFTK.TermKinetic",
+        "DFTK.TermAtomicLocal{Array{Float64, 3}}",
+        "DFTK.TermEwald{Float64}",
+        "DFTK.TermPspCorrection{Float64}",
+        "DFTK.TermHartree",
+        "DFTK.TermXc{Float64, Array{Float64, 4}, Nothing}"
+      ],
+      "volume_bohr3": 270.011394,
+      "fft_grid": [
+        48,
+        48,
+        48
+      ]
+    }
+  },
+  "parallelism": {
+    "julia": 1,
+    "blas": 1,
+    "fft": 1,
+    "mpi": 1
+  },
+  "environment_json_sha256": "eb873073c5ca3f7b42324dc69637298e75b5b3e61544b17025604ba40cfda940",
+  "executed_code_json_sha256": "43374b450752fd9aeec33493a001e8f9cf7161604e78d0a676839fce6d3b4284",
+  "warning_evidence": {
+    "warning_lines": [
+      {
+        "line": 1,
+        "text": "\u250c Info: Threading setup: "
+      },
+      {
+        "line": 2,
+        "text": "\u2502   Threads.nthreads() = 1"
+      },
+      {
+        "line": 3,
+        "text": "\u2502   n_DFTK = 1"
+      },
+      {
+        "line": 4,
+        "text": "\u2502   n_fft = 1"
+      },
+      {
+        "line": 5,
+        "text": "\u2514   n_blas = 1"
+      }
+    ],
+    "full_stderr_ref": "D-SCF/worker.stderr.gz",
+    "warning_scope": "All native stderr retained; selected warning/error lines also indexed"
+  },
+  "environment_reference": {
+    "path": "../D-environment.json",
+    "sha256": "eb873073c5ca3f7b42324dc69637298e75b5b3e61544b17025604ba40cfda940"
+  },
+  "executed_code_reference": {
+    "path": "../D-code-E40.json",
+    "sha256": "43374b450752fd9aeec33493a001e8f9cf7161604e78d0a676839fce6d3b4284"
+  }
+}

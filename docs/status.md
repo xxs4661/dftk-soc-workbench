@@ -1,36 +1,37 @@
-# Capability and validation status
+# Current capabilities and validation
 
-This is the single complete current capability table. It describes evidence at
-accepted development snapshot `8658992afa936f6cdb1a8055699ae9aa47b32297` and the
-curated public data derived from it. Repository curation adds no scientific run.
-Acceptance of a development starting point is not an independent expert rerun;
-historical `REVIEW_REQUIRED` fields remain unchanged.
+This table describes the experimental workbench at the completed-core technical
+baseline, with links to the immutable evidence. It distinguishes function
+support, numerical comparison, parameter sensitivity and independent replay.
+A checker's exit 0 applies to its stated contract, not to every row of this table.
 
-| Capability | Evidence and scope | Limit / next validation |
+| Area | Implemented and observed | Remaining limitation / evidence |
 | --- | --- | --- |
-| FR-NC UPF acceptance and recorder | [Strict Mg metadata acceptance, exact native SOC rejection, regression code](../results/upf-acceptance/README.md) | Native DFTK constructor rejection remains intact; information-only parsing is not acceptance. |
-| Scalar Si / QE 7.5 | [B0 matched 30 Ha, eight-point input and raw spectra](../results/scalar-si-baseline/README.md) | One Si SR-LDA NC input; raw eigenvalue reference differs. |
-| Energy-reference and limited sensitivity | [B0/C1/C2/C3, independent local-potential finite-term diagnostic](../results/scalar-si-sensitivity/README.md) | Only 30/40/50 Ha and eight/64 points; complete k convergence NOT_ESTABLISHED. QE internal G=0 value was not directly extracted. |
-| No-SOC spinor representation and SCF | [Fixed-potential test; independent A/B spinor and C scalar closures](../results/spinor-no-soc/README.md) | Nonmagnetic LDA, capacity-one spinors; no noncollinear magnetic XC. |
-| Relativistic channels / nonlocal operator | [CG and independent L·S, Gaussian and real Mg quadrature, Si scalar limit](../results/relativistic-projectors/README.md) | CPU prescribed fixtures; synthetic analytic accuracy is distinct from real-UPF quadrature sensitivity. |
-| Full FR Hamiltonian and energy | [Seven terms, orbital variations and fixed-density eigenpairs](../results/fr-hamiltonian-energy/README.md) | Fixed-density test is not SCF; density mismatch and old-spectrum energy mismatch are retained limitations. |
-| Charge-only SOC SCF | [Independent Mg A/B, 191 maps each, 24 target states per k point](../results/mg-soc-scf/README.md) | PBEsol Mg, three explicit k points, 15 Ha, tau=0.001 Ha; internal engineering closure only. No resolvable partial occupations in actual endpoint stationarity check. |
-| QE SOC comparison | [Input, parameters and checklist](../benchmarks/mg-soc-fermi/checklist.md): **PREPARED_NOT_EXECUTED** | E/F cross-code comparison **NOT_RUN**. This is the next scientific gate, subject to separate authorization and review. |
-| Noncollinear magnetic XC | **NOT_IMPLEMENTED** | Charge-only closure does not validate magnetic XC. |
-| Physical cutoff/k/temperature convergence | **NOT_ESTABLISHED** | Limited scalar sensitivity and prescribed Mg cases do not establish converged material predictions. |
-| Upstream native support / architecture acceptance | **NOT_IMPLEMENTED_BY_THIS_WORKBENCH** / **NOT_ESTABLISHED** | Neither core checkout changed; no maintainer endorsement implied. [Open architectural questions](soc-upstream-risks.md). |
-| USPP/PAW, forces, stress, optimization, DFPT, GPU/AD, MLP | **OUT_OF_SCOPE / NOT_RUN** | No claims are supported by these cases. |
+| FR-NC input handling | Source-index-aware metadata acceptance; explicit relativistic channels and NLCC/common-data binding. | NC scope only; the frozen native DFTK SOC rejection stays intact. [Acceptance](../results/upf-acceptance/README.md), [conventions](../prototypes/relativistic/CONVENTIONS.md). |
+| Spinor representation and nonlocal operators | Two components, capacity-one occupations, FR spin-angular projectors and matrix-free nonlocal action; dense, angular, scalar-limit and time-reversal checks. | Prescribed CPU Float64/ComplexF64 cases; synthetic accuracy is separate from real-UPF quadrature. [Representation](../results/spinor-no-soc/README.md), [projectors](../results/relativistic-projectors/README.md). |
+| Charge-only Hamiltonian and SCF | Common local/kinetic/Hartree/XC terms plus FR nonlocal action, seven-term energy, FD entropy and closure checks; real Mg and Si endpoints. | Nonmagnetic charge-only closure; magnetic XC is not implemented. [Hamiltonian](../results/fr-hamiltonian-energy/README.md), [Mg SCF](../results/mg-soc-scf/README.md), [Si](../results/si-soc-splitting/README.md). |
+| Si SOC spectrum and control | Workbench/QE fixed Γ-window splitting, multiplet widths and same-density spin-trace control meet their contracts. | Γ occupation saturation and full manifold assignment remain REVIEW_REQUIRED; irreps and continuous band tracking are not established. [Corrected status](../results/si-soc-splitting/status-correction/README.md). |
+| Si parameter sensitivity | Paired cutoff/temperature/k-grid perturbations; the 2³→4³ split response exceeds the 0.1 meV observation window in both codes. QE-only 4³→6³→8³ steps are within that window. | DFTK K6/K8 NOT_RUN; dense-grid cross-code agreement NOT_ASSESSED; full physical convergence NOT_ESTABLISHED. [Paired data](../results/si-soc-sensitivity/README.md), [QE reference](../results/si-soc-k-reference/README.md). |
+| Mg cross-code energy and spectra | QE SCF, solver/FFT controls, raw/global-reference spectra, Fourier/Hartree, local-field and original-orbital energy diagnostics. | Agreement remains REVIEW_REQUIRED; pp-reconstructed fields are not original SCF memory. Independent native QE nonlocal energy NOT_MEASURED; IEEE origin NOT_LOCALIZED. [Mg evidence](../results/README.md#magnesium-cross-code-comparison-and-energy-reference). |
+| Scalar energy-reference baseline | Si SR-LDA matched inputs and a local-potential finite-term diagnostic, with limited cutoff/k sensitivity. | Distinct input/family from Si SOC and PBEsol Mg; limited scans do not establish physical convergence. [Scalar baseline](../results/scalar-si-baseline/README.md), [reference audit](../results/scalar-si-sensitivity/README.md). |
+| Reusable core and live adapter | Static REF/CORE equivalence and allocation gates passed. New-core Si SCF and its own-density Γ regression are **completed**, including runtime dispatch and release checks. | Timing PERFORMANCE_REVIEW_REQUIRED; K6 budget INSUFFICIENT_EVIDENCE. The original parser failure remains history, not the current endpoint status. [Interfaces](soc-core-runtime.md), [static measurements](../results/soc-core-memory/README.md), [completed regression](../results/soc-core-memory/completion/README.md). |
+| Public numerical replay | Core energy/spectrum arithmetic, Si finite-window data and the complete published Mg G40 Q orbital/density representation have specified public replay paths. Mg independent Linux path I passed; frozen path R exited 1 for two derived-density hashes. | A/B full orbital extraction, private core density differences and resource measurements remain runner-reported. Linux replay is not a from-scratch Linux SCF. [Scopes](reproducibility.md), [Linux record](../results/mg-soc-public-replay/linux/README.md). |
+| Broader software support | Experimental independent workbench; source and ownership boundaries are documented. | Native upstream SOC integration/acceptance not established. Forces, stress, geometry optimization, USPP/PAW, DFPT, GPU/AD and MLP are outside validated scope. [Integration questions](soc-upstream-risks.md). |
 
-Public offline checks reparse small QE XML outputs and recompute stored spectra,
-energy sums, finite-difference tables and iteration summaries. Density/Pauli
-norms and Hamiltonian actions requiring unshared orbitals or density arrays are
-**runner-reported**, with source hashes and physical reproduction instructions;
-hashes alone are not independent numerical verification. UPF reintegration from
-original bytes requires acquiring the recorded input. Licensed inputs are not
-redistributed by this repository.
+## Reading the statuses
 
-Historical upstream `:minimal` results remain historical; this curation did not
-rerun numerical Julia tests, SCF, QE, or the full upstream suite. Tooling CLI
-checks (including information-only Mg parsing) were checked separately. See each case for original run
-identities, exact execution-file hashes, thresholds, adverse results and NOT_RUN
-items. AI-assisted checks do not substitute for external physical validation.
+**PASS** means that the named recorded test or numerical comparison meets its
+unchanged contract. **REVIEW_REQUIRED** preserves an unresolved interpretation,
+occupation condition or performance observation. **NOT_RUN** identifies an
+unperformed operation; **NOT_ASSESSED** and **NOT_ESTABLISHED** identify missing
+comparisons or evidence for a broader conclusion.
+
+Full physical convergence is not established for the SOC material predictions.
+Good agreement between two codes at one setting and small regression differences
+between two implementations do not replace a convergence study. Native solver
+warnings and IEEE flags remain in the relevant case records.
+
+The [history index](history.md) preserves earlier states, including failed runs
+and whole-tree checker incompatibilities. Current documentation is updated in
+place; those historical result bytes are not relabeled. For actual commands,
+start with [getting started](getting-started.md) rather than a historical driver.

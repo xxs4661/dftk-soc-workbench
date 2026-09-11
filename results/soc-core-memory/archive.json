@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "archive_id": "phase9a-archive-20260909T120642Z-9c348d1d",
+  "status": "PASS",
+  "exit_code": 0,
+  "raw_archive": {
+    "name": "phase9a-raw.tar.gz",
+    "sha256": "26ee636291689d8a6d85203e6a0e5a315097cda5fd35b8a8a62418006e805fff",
+    "bytes": 757076982
+  },
+  "inventory": {
+    "name": "raw-inventory.json",
+    "sha256": "e78547c0c2cf5b600c198cc1e63675d4c019cb4bc3842fe2182c2aa1310321b2",
+    "files": 1079,
+    "regular_file_bytes": 1277863328
+  },
+  "restore": {
+    "status": "PASS",
+    "files_checked": 1079,
+    "method": "Extracted generated tar into a new separate directory; rehashed every restored regular file and original; no source deletion"
+  },
+  "execution_history_bundle": {
+    "name": "execution-history.bundle",
+    "sha256": "4cd6a45bf247a0e0255f3bbb848a20bce47450f8d14128eb7cdcc014343b155d",
+    "bytes": 19404517,
+    "verify_exit_code": 0,
+    "head": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed"
+  },
+  "historical_readonly_copies": [
+    {
+      "member": "B0/final.bin",
+      "sha256": "f61fc954fa373fd8bac27c8e89bb9f42530a65c6ce378c85bb0a2aecf6fe97d5",
+      "bytes": 14741468
+    },
+    {
+      "member": "B0/result.json",
+      "sha256": "11e76623a835927fb86d5b6409f494603dc9fd0622a4d5de58c2a3daed4b1dff",
+      "bytes": 102003
+    },
+    {
+      "member": "K4/final.bin",
+      "sha256": "bac033526513aeb13cf385e0cba22c270a3a50a90ef799eb1bc2a591d6e1f5f5",
+      "bytes": 105941372
+    },
+    {
+      "member": "K4/result.json",
+      "sha256": "984fda012595256ccd7282eeecd1f7ad6be38dc0eaaba35e7528d4c17b066cc6",
+      "bytes": 639913
+    }
+  ],
+  "scope": "Complete private Phase9A snapshot and authenticated B0/K4 native bindings. Final result commit, final clean-clone replay and push receipts are a later append-only increment; no claim that this archive contains future actions.",
+  "excluded": "Existing dependency caches/checkouts and other phases entire raw directories; no historical file was removed"
+}

@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "case": "mg-soc-qe-local-potential-v1",
+  "base_commit": "fe5e4c85700f5902afee9a345b9f1bb2c8e58e1a",
+  "preparation_commit": "de92ca3ee6591bf0f76bf8d8ec08ab4540f77280",
+  "execution_commit": "8c18549536dbd0c0a6d337e6cdedd319f3788d70",
+  "plan_sha256": "ea225f5eed7e691450e45e3801fc81dd6c2e5db174e1daaf9cdcf5055aad5c37",
+  "execution_status": "PASS",
+  "pp_build_identity_status": "PASS",
+  "historical_G40_binding_status": "PASS",
+  "P2_postprocessing_status": "PASS",
+  "P0_density_registration_status": "PASS",
+  "native_filplot_parse_status": "PASS",
+  "DFTK_saved_local_field_status": "PASS",
+  "field_run_id": "20260907T160918658618Z-Dfield-90372b75",
+  "saved_field_receipt_path": "results/mg-soc-qe-local-potential/saved-field-receipt.json",
+  "slots": {
+    "P2": {
+      "run_id": "20260907T160845617600Z-P2-9842a6f9",
+      "process_exit_code": 0,
+      "formal_call_count": 1,
+      "source_preservation_status": "PASS",
+      "filplot_raw_sha256": "6913c3c52615de60b5813f34dfc84c27298376be449d67babfb0bca8e8b8cd00",
+      "input_sha256": "d820af2f7d7f1c3c6cf9d1bbeb6a7dc0504725257712f0f18bf8a8ec948ec64e",
+      "receipt_path": "results/mg-soc-qe-local-potential/P2/receipt.json"
+    },
+    "P0": {
+      "run_id": "20260907T160907555915Z-P0-5fa78c40",
+      "process_exit_code": 0,
+      "formal_call_count": 1,
+      "source_preservation_status": "PASS",
+      "filplot_raw_sha256": "db3be785b3a1f770e3bfa0e31f3059a87fe015d3d0db2b8d98bb5a3405a4c472",
+      "input_sha256": "379ef038f90241afedec64b5f5ed6b0285da1644f3e0b658dd8c021ff3465277",
+      "receipt_path": "results/mg-soc-qe-local-potential/P0/receipt.json"
+    }
+  },
+  "execution_source_sha256": {
+    "scripts/run_qe_local_postprocess.py": "f796fbe23428664cfa45236bb98ccacda86de5c458bc566f775a1964084f3ad4",
+    "scripts/parse_qe_filplot.py": "b29bcf0efc3acd66519ee8be09d0217a0be1a341125f9f58d7fb1756d154ff6c",
+    "scripts/run_qe_soc.py": "3a427ebb655a3b716022182dc0e5953f8ab110dcfb15455b324bae45f307cfa0",
+    "scripts/run_scalar_baseline.py": "5e9d2d358d70c8e895482f4e59b69bfa7a1f0545beeacc1530aab65036dde185",
+    "scripts/extract_saved_local_field.jl": "472a1dd11d67392df6f38493a95e8c429377c670aa0f5c5697bd704384da69a1",
+    "scripts/extract_soc_density.jl": "bacb2f32ea8e80d1783369cca7c1b6fc78087647b8335c5132f74c9710d30fc8",
+    "scripts/probe_qe_postprocess_build.jl": "28e3c773a61e82585d39ed0edef9b550de0c2066f760d7d6518bd594ce17cf58",
+    "scripts/replay_qe_local_fields.py": "7d2738fd8c899328e3e5e1afc4cb546fa36044f18023dc51e6d89bbfa78028e7",
+    "scripts/compare_qe_local_potential.py": "dab08e8d708a6de2eb464c32653a3bc2cb30bc64b2789218f0d8c842acaae42f"
+  },
+  "verifier_sha256": {
+    "scripts/check_qe_local_potential.py": "a9c0f6661e5a012fdaa282e8be7c495308d7400d61a4ef61219cbd044d92cb84",
+    "scripts/replay_qe_local_fields.py": "7d2738fd8c899328e3e5e1afc4cb546fa36044f18023dc51e6d89bbfa78028e7",
+    "scripts/compare_qe_local_potential.py": "dab08e8d708a6de2eb464c32653a3bc2cb30bc64b2789218f0d8c842acaae42f",
+    "scripts/parse_qe_filplot.py": "b29bcf0efc3acd66519ee8be09d0217a0be1a341125f9f58d7fb1756d154ff6c"
+  },
+  "public_sha256": {
+    "results/mg-soc-qe-local-potential/comparison.json": "f93c78a88e6d8cbb7a2dc421b405c23bbff928a77853656874efb517575eb4b3",
+    "results/mg-soc-qe-local-potential/README.md": "55bb29eb5537329ccca8eed35291cd00c522ba721c9db2773c78fdabfc203a1e",
+    "results/mg-soc-qe-local-potential/saved-field-receipt.json": "7cbd64f765d157fb28175e9d98b9eee2f8d9b7ed99f4aa98a99dd9d5cd025388",
+    "results/mg-soc-qe-local-potential/potentials.csv.gz": "18c3e3f6fa9e986fcea1214672d287b8413c70e24d7425ed92ef34976829020b",
+    "results/mg-soc-qe-local-potential/P2/qe.stdout.gz": "a740614ee7f190ab9d98d5ee5c7fcb1cbbb0ce1bea451af7d53dcd9280c49e3f",
+    "results/mg-soc-qe-local-potential/P2/local-ionic.pp.gz": "f24d3084238019b5a4dd95147a9bd82ca997aa3114d89624db91cb9a7ff50d8c",
+    "results/mg-soc-qe-local-potential/P2/qe.stderr": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+    "results/mg-soc-qe-local-potential/P2/receipt.json": "651de9eb2f3a9f31f5f79a3e20e50a77f96a5e34b14b5a076c144cb471dc6b98",
+    "results/mg-soc-qe-local-potential/P0/charge.pp.gz": "025d5167696f43f4b6fc6ef64439ab8dd25f6d398252e2656f9971340b4a18e4",
+    "results/mg-soc-qe-local-potential/P0/qe.stdout.gz": "de04f1be749ff84b4ab913a38f2d1d3088dea8f5137aef5d057ed068943dd01e",
+    "results/mg-soc-qe-local-potential/P0/qe.stderr": "400a35c0a4d0cfe789b3c30941e4ad4e1c4878a6962021d509ff5601350223eb",
+    "results/mg-soc-qe-local-potential/P0/receipt.json": "2e59a2ecbd7ec080e6cd6c9ac253631546194cd25e39a4df619ed92a60d2031f",
+    "results/phase7e-review.md": "ac3dbb6a162dbfc3171d1e962c16c57c64431d7c1e77d948fbdc566cc675116c"
+  },
+  "comparison_path": "results/mg-soc-qe-local-potential/comparison.json",
+  "potential_path": "results/mg-soc-qe-local-potential/potentials.csv.gz",
+  "P2_path": "results/mg-soc-qe-local-potential/P2/local-ionic.pp.gz",
+  "P0_path": "results/mg-soc-qe-local-potential/P0/charge.pp.gz",
+  "qe_local_potential_status": "RECONSTRUCTED_BY_SAME_BUILD_PP_FROM_BOUND_G40",
+  "historical_sources_status": "HISTORICAL_REUSED",
+  "new_pp_numerical_calls": 2,
+  "new_scf_status": "NOT_RUN",
+  "new_eigensolve_status": "NOT_RUN",
+  "independent_xc_evaluation_status": "NOT_RUN",
+  "normal_pp_potential_H_XC_initialization": "PERMITTED_AND_EXECUTED",
+  "ieee_flags_both_slots": [
+    "IEEE_OVERFLOW_FLAG"
+  ],
+  "frozen_predecessor_files": 299,
+  "source_preservation_status": "PASS",
+  "backup": {
+    "status": "PASS",
+    "archive_name": "phase7e-20260907T154626Z",
+    "scope": "Same-machine repository-external incremental backup; not offsite",
+    "raw_manifest_sha256": "a1ee6f033d36e05f569745a50d4bbfe2172349793508e464751f487a5fc45059",
+    "file_count": 39,
+    "bytes": 24862588,
+    "restore_sample_count": 5,
+    "restore_sample_bytes": 11042807,
+    "restore_samples": [
+      {
+        "path": "raw/20260907T160845617600Z-P2-9842a6f9/local-ionic.pp",
+        "bytes": 1101426,
+        "sha256": "6913c3c52615de60b5813f34dfc84c27298376be449d67babfb0bca8e8b8cd00"
+      },
+      {
+        "path": "raw/20260907T160907555915Z-P0-5fa78c40/charge.pp",
+        "bytes": 1101426,
+        "sha256": "db3be785b3a1f770e3bfa0e31f3059a87fe015d3d0db2b8d98bb5a3405a4c472"
+      },
+      {
+        "path": "raw/20260907T160918658618Z-Dfield-90372b75/native.csv",
+        "bytes": 3378797,
+        "sha256": "f6dd5fd19ae58c5a8e31afbba9be37afaa367c89a395c61b591c5393f02dc83d"
+      },
+      {
+        "path": "raw/20260907T160918658618Z-Dfield-90372b75/fields.csv",
+        "bytes": 5439025,
+        "sha256": "7cefdf9711adac9686caae252d869f5028c2e8adb2d9b50e6b2579e9dcc35139"
+      },
+      {
+        "path": "raw/20260907T160918658618Z-Dfield-90372b75/metadata.json",
+        "bytes": 22133,
+        "sha256": "f5858417ccaec624cd83c54fc5b5eda1df507233bcd310413b01169674bed6e8"
+      }
+    ],
+    "previous_source_archives": {
+      "G40": "phase7b-20260907T111422Z",
+      "DFTK_field": "phase7d-20260907T142212Z"
+    }
+  },
+  "public_export_process_sha256": "5aae813a6b31bf50953a0fcc40f0e32b2ae937248a846903e1f9a3ab807c6b15",
+  "export_process_scope": "Full process driver archived outside repository; all scientific transform/integral modules identified in execution commit",
+  "fresh_workbench_identity": {
+    "run_id": "20260907T155851653535Z-f643dbdb",
+    "exit_code": 0,
+    "record_sha256": "00090595b2cdec75e2b6904fa6f732f17deabbfae580153654c6aadd21305bdc"
+  },
+  "no_upstream_contact": true,
+  "main_before": "77bd2e151116bcc189b797e6da415d27a61d3a2b",
+  "qe_historical_in_memory_vloc_status": "NOT_EXTRACTED",
+  "qe_internal_tab_vloc_status": "NOT_EXTRACTED",
+  "G0_prediction_comparison_status": "SUPPORTED_BY_PP_RECONSTRUCTED_MEAN",
+  "local_same_density_integration_status": "MEASURED_WITH_P0_AND_PRINT_LIMITS",
+  "nonzero_G_shape_comparison_status": "MEASURED_COMPLETE_NATIVE_GRID",
+  "local_energy_decomposition_status": "PASS_ALGEBRA",
+  "derived_remaining_combination_status": "DERIVED_NOT_INDEPENDENT_T_NL",
+  "output_precision_status": "PASS",
+  "numerical_review_status": "REVIEW_REQUIRED",
+  "physical_convergence_status": "NOT_ESTABLISHED",
+  "residual_attribution_status": "PARTIALLY_QUANTIFIED",
+  "ieee_warning_origin_status": "NOT_LOCALIZED",
+  "independent_QE_T_NL_status": "NOT_AVAILABLE",
+  "new_python_tests": {
+    "modules": [
+      "test_qe_filplot",
+      "test_qe_local_postprocess",
+      "test_qe_local_potential_comparison",
+      "test_qe_local_fields_replay",
+      "test_qe_local_potential_public"
+    ],
+    "count": 81,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "log_sha256": "8814fc443b832f266f53964ad1c5ee29a73b4c5c367fac9543bd61b943239bf6"
+  },
+  "affected_existing_python_tests": {
+    "modules": [
+      "test_energy_ledger",
+      "test_energy_reference_comparison",
+      "test_energy_reference_public",
+      "test_energy_reference_runner",
+      "test_density_hartree",
+      "test_density_hartree_public",
+      "test_density_audit_recorder",
+      "test_qe_charge_density",
+      "test_qe_soc_runner",
+      "test_qe_soc_diagnostics_runner"
+    ],
+    "count": 162,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_code": 0
+  },
+  "synthetic_julia_tests": {
+    "count": 54,
+    "exit_code": 0,
+    "log_sha256": "aec8d18301b244994719878ea37462ecdb632ded73fcdeb898d5a6cdf72d0242",
+    "initial_attempt": "32 PASS +1 ERROR, unsupported test-only mktempdir keyword; failure log retained and corrected without real-data evaluation"
+  }
+}

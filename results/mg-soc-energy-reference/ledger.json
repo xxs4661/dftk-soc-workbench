@@ -1,0 +1,1384 @@
+{
+  "schema_version": 1,
+  "case": "mg-soc-energy-reference-v1",
+  "derivation_status": "NEW_POSTPROCESSING_OF_HISTORICAL_STATES",
+  "energy_field_semantics_status": "PASS_WITH_QE_TAGGED_SOURCE_LIMITATION",
+  "historical_energy_ledger_status": "PASS",
+  "source_binding_status": "PASS",
+  "source_sha256": {
+    "benchmarks/mg-soc-qe-diagnostics-v1/G40.in": "793d30bc6c0f3ee214ca8f6cc8ed0aa88a879ffc4284536ccf7e8584287b1677",
+    "results/mg-soc-density-hartree/comparison.json": "eef425149d63aafa6b1996b50ead09c8fcbfd8edd148130ca9256c1e1bfb0c38",
+    "results/mg-soc-qe-diagnostics/G40/qe.stdout": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+    "results/mg-soc-qe-diagnostics/G40/qe.xml": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+    "results/mg-soc-qe-diagnostics/canonical.json": "549023435154cdedd1bd568e649f4935455f7c1478638b0fa9dd74d300d58551",
+    "results/mg-soc-scf/A/endpoint.json": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+    "results/mg-soc-scf/B/endpoint.json": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7"
+  },
+  "field_dictionary": [
+    {
+      "raw_token": "-5.732601093292541E+001",
+      "original_unit": "Ha",
+      "value_ha": -57.32601093292541,
+      "quantization_half_width_ha": 5e-15,
+      "quantization_interval_ha": [
+        -57.32601093292541,
+        -57.326010932925406
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "id": "G40.etot",
+      "program": "QE",
+      "native_field": "etot",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "locator": "XML output/total_energy/etot",
+        "line": 591
+      },
+      "state": "G40:final output rho / fixed ions",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "F, native finite-temperature free energy",
+      "source_definition": [
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L719-L727",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L843-L1005",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/v_of_rho.f90#L507-L600"
+      ]
+    },
+    {
+      "raw_token": "0.000000000000000E+000",
+      "original_unit": "Ha",
+      "value_ha": 0.0,
+      "quantization_half_width_ha": 5e-16,
+      "quantization_interval_ha": [
+        -5e-16,
+        5e-16
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "id": "G40.demet",
+      "program": "QE",
+      "native_field": "demet",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "locator": "XML output/total_energy/demet",
+        "line": 597
+      },
+      "state": "G40:final output rho / fixed ions",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "-TS, entropy energy",
+      "source_definition": [
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L719-L727",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L843-L1005",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/v_of_rho.f90#L507-L600"
+      ]
+    },
+    {
+      "raw_token": "2.851678477992461E+001",
+      "original_unit": "Ha",
+      "value_ha": 28.51678477992461,
+      "quantization_half_width_ha": 5e-15,
+      "quantization_interval_ha": [
+        28.516784779924606,
+        28.516784779924613
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "id": "G40.ehart",
+      "program": "QE",
+      "native_field": "ehart",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "locator": "XML output/total_energy/ehart",
+        "line": 593
+      },
+      "state": "G40:final output rho / fixed ions",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "Hartree at final unmixed output rho",
+      "source_definition": [
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L719-L727",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L843-L1005",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/v_of_rho.f90#L507-L600"
+      ]
+    },
+    {
+      "raw_token": "-7.177059505082395E+000",
+      "original_unit": "Ha",
+      "value_ha": -7.177059505082395,
+      "quantization_half_width_ha": 5e-16,
+      "quantization_interval_ha": [
+        -7.177059505082395,
+        -7.177059505082394
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "id": "G40.etxc",
+      "program": "QE",
+      "native_field": "etxc",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "locator": "XML output/total_energy/etxc",
+        "line": 595
+      },
+      "state": "G40:final output rho / fixed ions",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "XC at final unmixed output rho; etxcc is obsolete zero in tag",
+      "source_definition": [
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L719-L727",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L843-L1005",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/v_of_rho.f90#L507-L600"
+      ]
+    },
+    {
+      "raw_token": "-1.418648741580720E+001",
+      "original_unit": "Ha",
+      "value_ha": -14.1864874158072,
+      "quantization_half_width_ha": 5e-15,
+      "quantization_interval_ha": [
+        -14.186487415807205,
+        -14.186487415807195
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "id": "G40.ewald",
+      "program": "QE",
+      "native_field": "ewald",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "locator": "XML output/total_energy/ewald",
+        "line": 596
+      },
+      "state": "G40:final output rho / fixed ions",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "Ionic periodic Ewald energy",
+      "source_definition": [
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L719-L727",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L843-L1005",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/v_of_rho.f90#L507-L600"
+      ]
+    },
+    {
+      "raw_token": "-1.681689625528888E+001",
+      "original_unit": "Ha",
+      "value_ha": -16.81689625528888,
+      "quantization_half_width_ha": 5e-15,
+      "quantization_interval_ha": [
+        -16.816896255288885,
+        -16.816896255288874
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "id": "G40.eband",
+      "program": "QE",
+      "native_field": "eband",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "locator": "XML output/total_energy/eband",
+        "line": 592
+      },
+      "state": "G40:H[n_in] solved orbitals",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "Occupied eigenvalue sum from the final H[n_in] solve",
+      "source_definition": [
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L719-L727",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L843-L1005",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/v_of_rho.f90#L507-L600"
+      ]
+    },
+    {
+      "raw_token": "-9.371200751584448E+000",
+      "original_unit": "Ha",
+      "value_ha": -9.371200751584448,
+      "quantization_half_width_ha": 5e-16,
+      "quantization_interval_ha": [
+        -9.371200751584448,
+        -9.371200751584448
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "id": "G40.vtxc",
+      "program": "QE",
+      "native_field": "vtxc",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+        "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+        "locator": "XML output/total_energy/vtxc",
+        "line": 594
+      },
+      "state": "G40:final output rho / fixed ions",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "Integral of final valence n_out times full GGA vxc[n_out]",
+      "source_definition": [
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L719-L727",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L843-L1005",
+        "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/v_of_rho.f90#L507-L600"
+      ]
+    },
+    {
+      "raw_token": "-114.65202187",
+      "original_unit": "Ry",
+      "value_ha": -57.326010935,
+      "quantization_half_width_ha": 2.5e-09,
+      "quantization_interval_ha": [
+        -57.3260109375,
+        -57.3260109325
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "label": "total energy",
+      "line": 443,
+      "id": "G40.stdout.F",
+      "program": "QE",
+      "native_field": "total energy",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.stdout",
+        "sha256": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+        "locator": "Final successful SCF energy block",
+        "line": 443
+      },
+      "state": "G40:final SCF block; O uses original deband",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "total energy",
+      "source_definition": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L1689-L1728"
+    },
+    {
+      "raw_token": "0.00000000",
+      "original_unit": "Ry",
+      "value_ha": 0.0,
+      "quantization_half_width_ha": 2.5e-09,
+      "quantization_interval_ha": [
+        -2.5e-09,
+        2.5e-09
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "label": "smearing contrib. (-TS)",
+      "line": 445,
+      "id": "G40.stdout.minus_TS",
+      "program": "QE",
+      "native_field": "smearing contrib. (-TS)",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.stdout",
+        "sha256": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+        "locator": "Final successful SCF energy block",
+        "line": 445
+      },
+      "state": "G40:final SCF block; O uses original deband",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "smearing contrib. (-TS)",
+      "source_definition": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L1689-L1728"
+    },
+    {
+      "raw_token": "-114.65202187",
+      "original_unit": "Ry",
+      "value_ha": -57.326010935,
+      "quantization_half_width_ha": 2.5e-09,
+      "quantization_interval_ha": [
+        -57.3260109375,
+        -57.3260109325
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "label": "internal energy E=F+TS",
+      "line": 446,
+      "id": "G40.stdout.E_printed",
+      "program": "QE",
+      "native_field": "internal energy E=F+TS",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.stdout",
+        "sha256": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+        "locator": "Final successful SCF energy block",
+        "line": 446
+      },
+      "state": "G40:final SCF block; O uses original deband",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "internal energy E=F+TS",
+      "source_definition": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L1689-L1728"
+    },
+    {
+      "raw_token": "-128.95849758",
+      "original_unit": "Ry",
+      "value_ha": -64.47924879,
+      "quantization_half_width_ha": 2.5e-09,
+      "quantization_interval_ha": [
+        -64.4792487925,
+        -64.4792487875
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "label": "one-electron contribution",
+      "line": 449,
+      "id": "G40.stdout.O_printed",
+      "program": "QE",
+      "native_field": "one-electron contribution",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.stdout",
+        "sha256": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+        "locator": "Final successful SCF energy block",
+        "line": 449
+      },
+      "state": "G40:final SCF block; O uses original deband",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "eband+deband",
+      "source_definition": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L1689-L1728"
+    },
+    {
+      "raw_token": "57.03356956",
+      "original_unit": "Ry",
+      "value_ha": 28.51678478,
+      "quantization_half_width_ha": 2.5e-09,
+      "quantization_interval_ha": [
+        28.5167847775,
+        28.5167847825
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "label": "hartree contribution",
+      "line": 450,
+      "id": "G40.stdout.H_printed",
+      "program": "QE",
+      "native_field": "hartree contribution",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.stdout",
+        "sha256": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+        "locator": "Final successful SCF energy block",
+        "line": 450
+      },
+      "state": "G40:final SCF block; O uses original deband",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "hartree contribution",
+      "source_definition": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L1689-L1728"
+    },
+    {
+      "raw_token": "-14.35411901",
+      "original_unit": "Ry",
+      "value_ha": -7.177059505,
+      "quantization_half_width_ha": 2.5e-09,
+      "quantization_interval_ha": [
+        -7.1770595075,
+        -7.1770595025
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "label": "xc contribution",
+      "line": 451,
+      "id": "G40.stdout.XC_printed",
+      "program": "QE",
+      "native_field": "xc contribution",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.stdout",
+        "sha256": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+        "locator": "Final successful SCF energy block",
+        "line": 451
+      },
+      "state": "G40:final SCF block; O uses original deband",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "xc contribution",
+      "source_definition": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L1689-L1728"
+    },
+    {
+      "raw_token": "-28.37297483",
+      "original_unit": "Ry",
+      "value_ha": -14.186487415,
+      "quantization_half_width_ha": 2.5e-09,
+      "quantization_interval_ha": [
+        -14.1864874175,
+        -14.1864874125
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "HALF_LAST_PRINTED_DECIMAL_PLACE",
+      "label": "ewald contribution",
+      "line": 452,
+      "id": "G40.stdout.Ew_printed",
+      "program": "QE",
+      "native_field": "ewald contribution",
+      "source": {
+        "path": "results/mg-soc-qe-diagnostics/G40/qe.stdout",
+        "sha256": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+        "locator": "Final successful SCF energy block",
+        "line": 452
+      },
+      "state": "G40:final SCF block; O uses original deband",
+      "record_kind": "DIRECT_RECORDED_VALUE",
+      "definition": "ewald contribution",
+      "source_definition": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L1689-L1728"
+    },
+    {
+      "value_ha": -57.32601093292541,
+      "quantization_half_width_ha": 5.5e-15,
+      "quantization_interval_ha": [
+        -57.32601093292542,
+        -57.326010932925406
+      ],
+      "id": "G40.E",
+      "program": "QE",
+      "native_field": null,
+      "raw_token": null,
+      "original_unit": "Ha (derived)",
+      "record_kind": "DERIVED_COMBINATION",
+      "operator_measurement_status": "NOT_A_DIRECT_OPERATOR_MEASUREMENT",
+      "formula": "etot-demet",
+      "operands": [
+        "G40.etot",
+        "G40.demet"
+      ],
+      "state": "G40:final SCF internal energy",
+      "source": [
+        {
+          "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+          "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+          "locator": "XML output/total_energy/etot",
+          "line": 591
+        },
+        {
+          "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+          "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+          "locator": "XML output/total_energy/demet",
+          "line": 597
+        }
+      ],
+      "definition": "Algebra on the cited source fields"
+    },
+    {
+      "value_ha": -64.47924879196043,
+      "quantization_half_width_ha": 1.6e-14,
+      "quantization_interval_ha": [
+        -64.47924879196044,
+        -64.47924879196042
+      ],
+      "id": "G40.O_ledger",
+      "program": "QE",
+      "native_field": null,
+      "raw_token": null,
+      "original_unit": "Ha (derived)",
+      "record_kind": "DERIVED_COMBINATION",
+      "operator_measurement_status": "NOT_A_DIRECT_OPERATOR_MEASUREMENT",
+      "formula": "E-ehart-etxc-ewald",
+      "operands": [
+        "G40.E",
+        "G40.ehart",
+        "G40.etxc",
+        "G40.ewald"
+      ],
+      "state": "G40:derived final energy ledger",
+      "source": [
+        [
+          {
+            "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+            "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+            "locator": "XML output/total_energy/etot",
+            "line": 591
+          },
+          {
+            "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+            "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+            "locator": "XML output/total_energy/demet",
+            "line": 597
+          }
+        ],
+        {
+          "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+          "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+          "locator": "XML output/total_energy/ehart",
+          "line": 593
+        },
+        {
+          "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+          "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+          "locator": "XML output/total_energy/etxc",
+          "line": 595
+        },
+        {
+          "path": "results/mg-soc-qe-diagnostics/G40/qe.xml",
+          "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+          "locator": "XML output/total_energy/ewald",
+          "line": 596
+        }
+      ],
+      "definition": "Algebra on the cited source fields"
+    },
+    {
+      "raw_token": "29.075984450811468",
+      "original_unit": "Ha",
+      "value_ha": 29.075984450811468,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        29.075984450811468,
+        29.075984450811468
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.Kinetic",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/Kinetic",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/Kinetic",
+        "line": 701
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_OPERATOR_EXPECTATION"
+    },
+    {
+      "raw_token": "-79.43302742791043",
+      "original_unit": "Ha",
+      "value_ha": -79.43302742791043,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -79.43302742791043,
+        -79.43302742791043
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.AtomicLocal",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/AtomicLocal",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/AtomicLocal",
+        "line": 703
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_OPERATOR_EXPECTATION"
+    },
+    {
+      "raw_token": "-14.214054510747257",
+      "original_unit": "Ha",
+      "value_ha": -14.214054510747257,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -14.214054510747257,
+        -14.214054510747257
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.AtomicNonlocalFR",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/AtomicNonlocalFR",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/AtomicNonlocalFR",
+        "line": 702
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_OPERATOR_EXPECTATION"
+    },
+    {
+      "raw_token": "28.516778812881178",
+      "original_unit": "Ha",
+      "value_ha": 28.516778812881178,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        28.516778812881178,
+        28.516778812881178
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.Hartree",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/Hartree",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/Hartree",
+        "line": 704
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-7.1770568580005945",
+      "original_unit": "Ha",
+      "value_ha": -7.1770568580005945,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -7.1770568580005945,
+        -7.1770568580005945
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.Xc",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/Xc",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/Xc",
+        "line": 705
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-14.186487397403095",
+      "original_unit": "Ha",
+      "value_ha": -14.186487397403095,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -14.186487397403095,
+        -14.186487397403095
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.Ewald",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/Ewald",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/Ewald",
+        "line": 700
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "0.09187494522099392",
+      "original_unit": "Ha",
+      "value_ha": 0.09187494522099392,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        0.09187494522099392,
+        0.09187494522099392
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.PspCorrection",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/PspCorrection",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/PspCorrection",
+        "line": 699
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-57.325987985147734",
+      "original_unit": "Ha",
+      "value_ha": -57.325987985147734,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -57.325987985147734,
+        -57.325987985147734
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.E",
+      "program": "DFTK",
+      "native_field": "/diagnostics/internal_energy_ha",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/internal_energy_ha",
+        "line": 443
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/soc_scf/ensemble.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-57.325987985147734",
+      "original_unit": "Ha",
+      "value_ha": -57.325987985147734,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -57.325987985147734,
+        -57.325987985147734
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.F",
+      "program": "DFTK",
+      "native_field": "/diagnostics/free_energy_ha",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/free_energy_ha",
+        "line": 455
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/soc_scf/ensemble.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-1.2426050669902276e-37",
+      "original_unit": "Ha",
+      "value_ha": -1.2426050669902276e-37,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -1.2426050669902276e-37,
+        -1.2426050669902276e-37
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.minus_TS",
+      "program": "DFTK",
+      "native_field": "/diagnostics/entropy_energy_ha",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/entropy_energy_ha",
+        "line": 442
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/soc_scf/ensemble.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-9.371197354607217",
+      "original_unit": "Ha",
+      "value_ha": -9.371197354607217,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -9.371197354607217,
+        -9.371197354607217
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.Ixc",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_checks/integral_n_vxc_ha",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/energy_checks/integral_n_vxc_ha",
+        "line": 266
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_OPERATOR_EXPECTATION"
+    },
+    {
+      "raw_token": "-16.908737216691158",
+      "original_unit": "Ha",
+      "value_ha": -16.908737216691158,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -16.908737216691158,
+        -16.908737216691158
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "A.band_expectation",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_checks/band_expectation_ha",
+      "source": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "locator": "JSON pointer /diagnostics/energy_checks/band_expectation_ha",
+        "line": 274
+      },
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_OPERATOR_EXPECTATION"
+    },
+    {
+      "value_ha": -64.47922254262522,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -64.47922254262522,
+        -64.47922254262522
+      ],
+      "id": "A.O",
+      "program": "DFTK",
+      "native_field": null,
+      "raw_token": null,
+      "original_unit": "Ha (derived)",
+      "record_kind": "DERIVED_COMBINATION",
+      "operator_measurement_status": "NOT_A_DIRECT_OPERATOR_MEASUREMENT",
+      "formula": "Kinetic+AtomicLocal+AtomicNonlocalFR+PspCorrection",
+      "operands": [
+        "A.Kinetic",
+        "A.AtomicLocal",
+        "A.AtomicNonlocalFR",
+        "A.PspCorrection"
+      ],
+      "state": "A:n_out=38e40697f7566a6efc9ca61eeaa4e42c17fcb74f1d62e01e4bf42ab9531c6130; original X/f, H[n_out] expectation",
+      "source": [
+        {
+          "path": "results/mg-soc-scf/A/endpoint.json",
+          "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+          "locator": "JSON pointer /diagnostics/energy_terms_ha/Kinetic",
+          "line": 701
+        },
+        {
+          "path": "results/mg-soc-scf/A/endpoint.json",
+          "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+          "locator": "JSON pointer /diagnostics/energy_terms_ha/AtomicLocal",
+          "line": 703
+        },
+        {
+          "path": "results/mg-soc-scf/A/endpoint.json",
+          "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+          "locator": "JSON pointer /diagnostics/energy_terms_ha/AtomicNonlocalFR",
+          "line": 702
+        },
+        {
+          "path": "results/mg-soc-scf/A/endpoint.json",
+          "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+          "locator": "JSON pointer /diagnostics/energy_terms_ha/PspCorrection",
+          "line": 699
+        }
+      ],
+      "definition": "Algebra on the cited source fields"
+    },
+    {
+      "raw_token": "29.075984450811514",
+      "original_unit": "Ha",
+      "value_ha": 29.075984450811514,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        29.075984450811514,
+        29.075984450811514
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.Kinetic",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/Kinetic",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/Kinetic",
+        "line": 701
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_OPERATOR_EXPECTATION"
+    },
+    {
+      "raw_token": "-79.43302742790986",
+      "original_unit": "Ha",
+      "value_ha": -79.43302742790986,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -79.43302742790986,
+        -79.43302742790986
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.AtomicLocal",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/AtomicLocal",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/AtomicLocal",
+        "line": 703
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_OPERATOR_EXPECTATION"
+    },
+    {
+      "raw_token": "-14.21405451074761",
+      "original_unit": "Ha",
+      "value_ha": -14.21405451074761,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -14.21405451074761,
+        -14.21405451074761
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.AtomicNonlocalFR",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/AtomicNonlocalFR",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/AtomicNonlocalFR",
+        "line": 702
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_OPERATOR_EXPECTATION"
+    },
+    {
+      "raw_token": "28.51677881288095",
+      "original_unit": "Ha",
+      "value_ha": 28.51677881288095,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        28.51677881288095,
+        28.51677881288095
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.Hartree",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/Hartree",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/Hartree",
+        "line": 704
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-7.1770568580006175",
+      "original_unit": "Ha",
+      "value_ha": -7.1770568580006175,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -7.1770568580006175,
+        -7.1770568580006175
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.Xc",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/Xc",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/Xc",
+        "line": 705
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-14.186487397403095",
+      "original_unit": "Ha",
+      "value_ha": -14.186487397403095,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -14.186487397403095,
+        -14.186487397403095
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.Ewald",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/Ewald",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/Ewald",
+        "line": 700
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "0.09187494522099392",
+      "original_unit": "Ha",
+      "value_ha": 0.09187494522099392,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        0.09187494522099392,
+        0.09187494522099392
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.PspCorrection",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_terms_ha/PspCorrection",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/energy_terms_ha/PspCorrection",
+        "line": 699
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-57.32598798514773",
+      "original_unit": "Ha",
+      "value_ha": -57.32598798514773,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -57.32598798514773,
+        -57.32598798514773
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.E",
+      "program": "DFTK",
+      "native_field": "/diagnostics/internal_energy_ha",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/internal_energy_ha",
+        "line": 443
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/soc_scf/ensemble.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-57.32598798514773",
+      "original_unit": "Ha",
+      "value_ha": -57.32598798514773,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -57.32598798514773,
+        -57.32598798514773
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.F",
+      "program": "DFTK",
+      "native_field": "/diagnostics/free_energy_ha",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/free_energy_ha",
+        "line": 455
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/soc_scf/ensemble.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-1.2426050665736325e-37",
+      "original_unit": "Ha",
+      "value_ha": -1.2426050665736325e-37,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -1.2426050665736325e-37,
+        -1.2426050665736325e-37
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.minus_TS",
+      "program": "DFTK",
+      "native_field": "/diagnostics/entropy_energy_ha",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/entropy_energy_ha",
+        "line": 442
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/soc_scf/ensemble.jl",
+      "record_kind": "DIRECT_RECORDED_VALUE"
+    },
+    {
+      "raw_token": "-9.371197354607252",
+      "original_unit": "Ha",
+      "value_ha": -9.371197354607252,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -9.371197354607252,
+        -9.371197354607252
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.Ixc",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_checks/integral_n_vxc_ha",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/energy_checks/integral_n_vxc_ha",
+        "line": 266
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_OPERATOR_EXPECTATION"
+    },
+    {
+      "raw_token": "-16.90873721669139",
+      "original_unit": "Ha",
+      "value_ha": -16.90873721669139,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -16.90873721669139,
+        -16.90873721669139
+      ],
+      "displayed_zero_is_exact_zero_claim": false,
+      "precision_basis": "EXACT_RECORDED_JSON_TOKEN",
+      "id": "B.band_expectation",
+      "program": "DFTK",
+      "native_field": "/diagnostics/energy_checks/band_expectation_ha",
+      "source": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "locator": "JSON pointer /diagnostics/energy_checks/band_expectation_ha",
+        "line": 274
+      },
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "definition": "prototypes/fr_integration/energy.jl",
+      "record_kind": "DIRECT_OPERATOR_EXPECTATION"
+    },
+    {
+      "value_ha": -64.47922254262497,
+      "quantization_half_width_ha": 0.0,
+      "quantization_interval_ha": [
+        -64.47922254262497,
+        -64.47922254262497
+      ],
+      "id": "B.O",
+      "program": "DFTK",
+      "native_field": null,
+      "raw_token": null,
+      "original_unit": "Ha (derived)",
+      "record_kind": "DERIVED_COMBINATION",
+      "operator_measurement_status": "NOT_A_DIRECT_OPERATOR_MEASUREMENT",
+      "formula": "Kinetic+AtomicLocal+AtomicNonlocalFR+PspCorrection",
+      "operands": [
+        "B.Kinetic",
+        "B.AtomicLocal",
+        "B.AtomicNonlocalFR",
+        "B.PspCorrection"
+      ],
+      "state": "B:n_out=bc3c988dc240eea33ae4a5ba1d4778d38cc163fd4356650b323c3b34d216bdb3; original X/f, H[n_out] expectation",
+      "source": [
+        {
+          "path": "results/mg-soc-scf/B/endpoint.json",
+          "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+          "locator": "JSON pointer /diagnostics/energy_terms_ha/Kinetic",
+          "line": 701
+        },
+        {
+          "path": "results/mg-soc-scf/B/endpoint.json",
+          "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+          "locator": "JSON pointer /diagnostics/energy_terms_ha/AtomicLocal",
+          "line": 703
+        },
+        {
+          "path": "results/mg-soc-scf/B/endpoint.json",
+          "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+          "locator": "JSON pointer /diagnostics/energy_terms_ha/AtomicNonlocalFR",
+          "line": 702
+        },
+        {
+          "path": "results/mg-soc-scf/B/endpoint.json",
+          "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+          "locator": "JSON pointer /diagnostics/energy_terms_ha/PspCorrection",
+          "line": 699
+        }
+      ],
+      "definition": "Algebra on the cited source fields"
+    }
+  ],
+  "native_values": {
+    "G40": {
+      "E": -57.32601093292541,
+      "F": -57.32601093292541,
+      "minus_TS": 0.0,
+      "H": 28.51678477992461,
+      "XC": -7.177059505082395,
+      "Ew": -14.1864874158072,
+      "O": -64.47924879196043,
+      "Ixc": -9.371200751584448
+    },
+    "A": {
+      "E": -57.325987985147734,
+      "F": -57.325987985147734,
+      "minus_TS": -1.2426050669902276e-37,
+      "Ixc": -9.371197354607217,
+      "band_expectation": -16.908737216691158,
+      "terms": {
+        "Kinetic": 29.075984450811468,
+        "AtomicLocal": -79.43302742791043,
+        "AtomicNonlocalFR": -14.214054510747257,
+        "Hartree": 28.516778812881178,
+        "Xc": -7.1770568580005945,
+        "Ewald": -14.186487397403095,
+        "PspCorrection": 0.09187494522099392
+      }
+    },
+    "B": {
+      "E": -57.32598798514773,
+      "F": -57.32598798514773,
+      "minus_TS": -1.2426050665736325e-37,
+      "Ixc": -9.371197354607252,
+      "band_expectation": -16.90873721669139,
+      "terms": {
+        "Kinetic": 29.075984450811514,
+        "AtomicLocal": -79.43302742790986,
+        "AtomicNonlocalFR": -14.21405451074761,
+        "Hartree": 28.51677881288095,
+        "Xc": -7.1770568580006175,
+        "Ewald": -14.186487397403095,
+        "PspCorrection": 0.09187494522099392
+      }
+    }
+  },
+  "comparisons": {
+    "A_minus_G40": {
+      "status": "PASS",
+      "direction": "DFTK minus G40",
+      "delta_ha": {
+        "E": 2.2947777679860337e-05,
+        "H": -5.967043431809316e-06,
+        "XC": 2.6470818008661468e-06,
+        "Ew": 1.840410490672184e-08,
+        "O": 2.6249335206784963e-05
+      },
+      "R_after_H_ha": 2.8914821111669653e-05,
+      "R_after_H_XC_Ew_ha": 2.6249335205896784e-05,
+      "signed_closure_error_ha": -8.881784197001252e-16,
+      "O_D_ha": -64.47922254262522,
+      "T_D_plus_NL_D_ha": 14.861929940064211,
+      "L_D_plus_Pc_D_ha": -79.34115248268944,
+      "O_Q_ledger_ha": -64.47924879196043,
+      "O_Q_record_kind": "DERIVED_COMBINATION",
+      "qe_separate_kinetic_nonlocal_status": "NOT_AVAILABLE",
+      "residual_attribution_status": "SIGNED_COMBINATION_ONLY_NOT_SOC_ERROR"
+    },
+    "B_minus_G40": {
+      "status": "PASS",
+      "direction": "DFTK minus G40",
+      "delta_ha": {
+        "E": 2.2947777686965765e-05,
+        "H": -5.967043659182991e-06,
+        "XC": 2.647081777773508e-06,
+        "Ew": 1.840410490672184e-08,
+        "O": 2.6249335462580348e-05
+      },
+      "R_after_H_ha": 2.8914821346148756e-05,
+      "R_after_H_XC_Ew_ha": 2.6249335463468526e-05,
+      "signed_closure_error_ha": 8.881784197001252e-16,
+      "O_D_ha": -64.47922254262497,
+      "T_D_plus_NL_D_ha": 14.861929940063904,
+      "L_D_plus_Pc_D_ha": -79.34115248268887,
+      "O_Q_ledger_ha": -64.47924879196043,
+      "O_Q_record_kind": "DERIVED_COMBINATION",
+      "qe_separate_kinetic_nonlocal_status": "NOT_AVAILABLE",
+      "residual_attribution_status": "SIGNED_COMBINATION_ONLY_NOT_SOC_ERROR"
+    }
+  },
+  "stdout_endpoint_block": {
+    "start_line": 443,
+    "end_line": 454,
+    "selection_rule": "Last ! total-energy block after last End of self-consistent calculation, followed by convergence and JOB DONE; no later run/energy"
+  },
+  "stdout_crosschecks": {
+    "F": {
+      "status": "PASS",
+      "difference_ha": 2.0745858364534797e-09,
+      "bound_ha": 2.501005e-09,
+      "bound_rule": "Sum of the participating tokens half-place intervals plus 1e-12 Ha"
+    },
+    "minus_TS": {
+      "status": "PASS",
+      "difference_ha": 0.0,
+      "bound_ha": 2.5010005e-09,
+      "bound_rule": "Sum of the participating tokens half-place intervals plus 1e-12 Ha"
+    },
+    "H_printed": {
+      "status": "PASS",
+      "difference_ha": -7.538858426414663e-11,
+      "bound_ha": 2.501005e-09,
+      "bound_rule": "Sum of the participating tokens half-place intervals plus 1e-12 Ha"
+    },
+    "XC_printed": {
+      "status": "PASS",
+      "difference_ha": -8.239542381716092e-11,
+      "bound_ha": 2.5010005e-09,
+      "bound_rule": "Sum of the participating tokens half-place intervals plus 1e-12 Ha"
+    },
+    "Ew_printed": {
+      "status": "PASS",
+      "difference_ha": -8.07199640462386e-10,
+      "bound_ha": 2.501005e-09,
+      "bound_rule": "Sum of the participating tokens half-place intervals plus 1e-12 Ha"
+    },
+    "E_printed": {
+      "status": "PASS",
+      "difference_ha": 2.0745858364534797e-09,
+      "bound_ha": 2.5010055e-09,
+      "bound_rule": "Sum of the participating tokens half-place intervals plus 1e-12 Ha"
+    },
+    "O_ledger_vs_one_electron": {
+      "status": "PASS",
+      "difference_ha": -1.960430040526262e-09,
+      "bound_ha": 2.501016e-09,
+      "bound_rule": "Sum of the participating tokens half-place intervals plus 1e-12 Ha"
+    },
+    "stdout_component_sum_vs_internal": {
+      "status": "PASS",
+      "difference_ha": 4.999996860988176e-09,
+      "bound_ha": 1.2500999999999999e-08,
+      "bound_rule": "Sum of the participating tokens half-place intervals plus 1e-12 Ha"
+    }
+  },
+  "cross_stage_diagnostic": {
+    "status": "NOT_A_SAME_STATE_IDENTITY",
+    "O_ledger_minus_eband_minus_2H_minus_vtxc_ha": 1.627159322481475e-05,
+    "historical_deband_status": "NOT_DIRECTLY_PUBLISHED",
+    "reason": "deband used pre-update HXC; final XML H and vtxc use n_out; no substitution or attribution"
+  },
+  "hartree_source_policy": "Main ledger uses native historical energies; Phase7C coefficient recomputation is separate",
+  "phase7c_hartree_crosschecks": {
+    "A_out": {
+      "native_hartree_ha": 28.516778812881142,
+      "historical_hartree_ha": 28.516778812881178,
+      "self_hartree_difference_ha": -3.552713678800501e-14,
+      "density_state_binding_status": "BOUND_N_OUT_ENERGY_STATE"
+    },
+    "B_out": {
+      "native_hartree_ha": 28.516778812880915,
+      "historical_hartree_ha": 28.51677881288095,
+      "self_hartree_difference_ha": -3.552713678800501e-14,
+      "density_state_binding_status": "BOUND_N_OUT_ENERGY_STATE"
+    },
+    "QE": {
+      "native_hartree_ha": 28.516784779924716,
+      "historical_hartree_ha": 28.51678477992461,
+      "self_hartree_difference_ha": 1.0658141036401503e-13,
+      "density_state_binding_status": "BOUND_SAVED_OUTPUT_RHO_TAGGED_SOURCE_CONVENTION"
+    }
+  },
+  "qe_applicability": {
+    "status": "TAGGED_SOURCE_CONVENTION_FOR_BOUND_G40_SETTINGS",
+    "source_definitions": {
+      "qe_energy": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L1130-L1203",
+      "qe_print": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L1689-L1728",
+      "qe_state": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L843-L1005",
+      "qe_units": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pw_restart_new.f90#L719-L727",
+      "qe_etxcc": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pwcom.f90#L353-L354",
+      "qe_vtxc": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/v_of_rho.f90#L507-L600",
+      "dftk_energy": "prototypes/fr_integration/energy.jl",
+      "dftk_entropy": "prototypes/soc_scf/ensemble.jl"
+    },
+    "etxcc": {
+      "status": "SOURCE_CONVENTION_ZERO_NOT_RUNTIME_EXTRACTION",
+      "value_ha": 0.0,
+      "source": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/pwcom.f90#L353-L354"
+    },
+    "descf": {
+      "status": "CONVERGED_BRANCH_ZERO_NOT_RUNTIME_EXTRACTION",
+      "value_ha": 0.0,
+      "source": "https://github.com/QEF/q-e/blob/qe-7.5/PW/src/electrons.f90#L843-L1005"
+    },
+    "extra_terms": "Bound plain periodic neutral NC/PBEsol input has no PAW, Hubbard, hybrid/meta/nonlocal-XC, dispersion, field, FCP/RISM or external-plugin request; final stdout has only four listed components",
+    "installed_source_commit": null,
+    "limitation": "Actual executable identity is historically bound; tagged source is not proof of every build-time modification"
+  },
+  "qe_native_local_potential_status": "NOT_EXTRACTED",
+  "qe_separate_kinetic_nonlocal_status": "NOT_AVAILABLE",
+  "numerical_agreement_status": "REVIEW_REQUIRED",
+  "physical_convergence_status": "NOT_ESTABLISHED",
+  "new_scf_status": "NOT_RUN",
+  "new_eigensolve_status": "NOT_RUN",
+  "new_qe_numerical_status": "NOT_RUN"
+}

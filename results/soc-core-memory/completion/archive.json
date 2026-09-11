@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "resume_id": "phase9a-completion-20260910",
+  "status": "PASS",
+  "scope": "Same-machine repository-external incremental backup; all included raw members restored and SHA-256 verified; no new science",
+  "archive_label": "phase9a-completion-archive-20260910T142420Z-27fc79b5",
+  "raw_archive": {
+    "name": "continuation-raw.tar.gz",
+    "sha256": "b1d22c1658b1acd796c4bf2f8821494c805a89c30177d3a24710b2223e1baf79",
+    "bytes": 164673892
+  },
+  "manifest": {
+    "name": "raw-manifest.json",
+    "sha256": "e7fd4ab78c5781330cda03daacdd8d6817c9f6a568e4da2b7363f3e7826f881d"
+  },
+  "member_count": 185,
+  "original_bytes": 191680654,
+  "restored_verified_members": 185,
+  "execution_bundle": {
+    "name": "execution-increment.bundle",
+    "sha256": "70cff292b28e6ce677b3591295e84bfbb6f8b8f97f1dc50296779700ad1ea119",
+    "bytes": 34141,
+    "prerequisite": "98781fd0ce6c2f4138ed010e115a13e370410d58",
+    "tip": "281c53525a70cf21c36973956d5303d3201a73eb"
+  },
+  "previous_archive_reference": "results/soc-core-memory/archive.json",
+  "historical_static_and_old_raw_duplicated": false,
+  "restore_examples": [
+    {
+      "member": ".work/phase9a/endpoints/OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8/OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8-dftk/k1.bin",
+      "sha256": "5b2794c43222200878d58460e8b59277747c7ac37675489b80d2a0c165834e4c",
+      "bytes": 3603213,
+      "restored_hash_match": true
+    },
+    {
+      "member": ".work/phase9a/endpoints/OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be/OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be-dftk/final.bin",
+      "sha256": "aa34831d2bdfc5c973346ac237d0c77fa799f9074eb326047c4f37c9f53eb289",
+      "bytes": 14741535,
+      "restored_hash_match": true
+    },
+    {
+      "member": ".work/phase9a/resume-authorizations/234fe85d4e9386d9889bd1af256a28394ba88089/authorization.json",
+      "sha256": "119447d08eb037475696e26829799a56d8bc6865fb7ef438e836a55d9bf7b59b",
+      "bytes": 39242,
+      "restored_hash_match": true
+    }
+  ],
+  "full_per_file_manifest_location": "Repository-external archive raw-manifest.json; public descriptor above binds all 185 rows."
+}

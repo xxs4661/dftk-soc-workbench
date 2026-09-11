@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "case": "mg-soc-qe-v1",
+  "phase": "7A",
+  "base_commit": "77bd2e151116bcc189b797e6da415d27a61d3a2b",
+  "publication_commit": "ac22a64421c4a5444a399477b9a3215dbd913487",
+  "geometry": {
+    "lattice_vectors_bohr": [
+      [
+        10.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        10.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        10.0
+      ]
+    ],
+    "positions_fractional": [
+      [
+        0.17,
+        0.23,
+        0.31
+      ]
+    ],
+    "species": [
+      "Mg"
+    ]
+  },
+  "electrons": {
+    "n_electrons": 10,
+    "n_bands": 24,
+    "occupation_capacity": 1,
+    "temperature_ha": 0.001
+  },
+  "kpoints": [
+    {
+      "coordinate_fractional": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "weight_spatial": 0.3333333333333333
+    },
+    {
+      "coordinate_fractional": [
+        0.125,
+        0.0625,
+        -0.1875
+      ],
+      "weight_spatial": 0.3333333333333333
+    },
+    {
+      "coordinate_fractional": [
+        -0.125,
+        -0.0625,
+        0.1875
+      ],
+      "weight_spatial": 0.3333333333333333
+    }
+  ],
+  "pseudo": {
+    "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+    "filename": "Mg.upf",
+    "element": "Mg",
+    "pseudo_type": "NC",
+    "relativistic": "full",
+    "has_so": true,
+    "z_valence": 10,
+    "nlcc": false
+  },
+  "xc": {
+    "functional": "PBESOL",
+    "qe_indices": [
+      1,
+      1,
+      10,
+      8
+    ],
+    "dftk_identifiers": [
+      "gga_x_pbe_sol",
+      "gga_c_pbe_sol"
+    ]
+  },
+  "cutoffs": {
+    "qe_ecutwfc_ry": 30.0,
+    "qe_ecutrho_ry": 120.0
+  },
+  "qe": {
+    "version": "7.5",
+    "calculation": "scf",
+    "conv_thr_ry": 1e-10,
+    "electron_maxstep": 400,
+    "mixing_beta": 0.1,
+    "diago_full_acc": true,
+    "diago_thr_init_ry": 1e-10,
+    "noncolin": true,
+    "lspinorb": true,
+    "starting_magnetization": 0.0,
+    "nosym": true,
+    "noinv": true,
+    "no_t_rev": true,
+    "smearing": "fermi-dirac",
+    "degauss_ry": 0.002,
+    "restart_mode": "from_scratch",
+    "fft": "QE default; record actual grids",
+    "threads": 1
+  },
+  "comparison": {
+    "primary_reference": "A",
+    "auxiliary_reference": "B",
+    "lowest_states": 16,
+    "all_states": 24,
+    "occupied_threshold": 0.5,
+    "saturation_tolerance": 1e-08,
+    "classification": "Each historical reference f>=0.5; report QE classification agreement separately",
+    "reference": "One global sampled HOMO per engine, applicable only when every occupation is within 1e-8 of 0 or 1; otherwise raw spectra remain available and referenced comparison is unsupported",
+    "numerical_agreement_status": "REVIEW_REQUIRED",
+    "physical_convergence_status": "NOT_ESTABLISHED",
+    "no_fitted_or_total_energy_correction": true
+  },
+  "parsing": {
+    "coordinate_tolerance": 1e-10,
+    "weight_tolerance": 1e-10,
+    "electron_tolerance": 1e-08,
+    "geometry_tolerance": 1e-09,
+    "occupation_tolerance": 1e-10,
+    "energy_arithmetic_tolerance_ha": 1e-10
+  },
+  "historical": {
+    "status": "HISTORICAL_REUSED",
+    "commit": "ac22a64421c4a5444a399477b9a3215dbd913487",
+    "evidence": {
+      "path": "results/mg-soc-scf/evidence.json",
+      "sha256": "437e2424d8ce7d8d11b5732b7b52815910853d7d43307215b5fbc466e321e243"
+    },
+    "references": {
+      "A": {
+        "path": "results/mg-soc-scf/A/endpoint.json",
+        "sha256": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+        "run_id": "20260906T151940Z-A-270110aa"
+      },
+      "B": {
+        "path": "results/mg-soc-scf/B/endpoint.json",
+        "sha256": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+        "run_id": "20260906T153016Z-B-62835d43"
+      }
+    }
+  },
+  "changes_from_historical_preparation": [
+    "New case name and isolated run prefix",
+    "diago_full_acc=true for empty states",
+    "diago_thr_init=1e-10 Ry explicit initial Davidson convergence threshold",
+    "No physical input changes; default FFT retained"
+  ],
+  "prepared_input": {
+    "path": "benchmarks/mg-soc-fermi/qe.in",
+    "sha256": "4d76b661c9a1c620da19e6f5db9dd9ee1e8651715bf9d421adce6db58c4d9476",
+    "status": "PREPARED_NOT_EXECUTED"
+  },
+  "frozen_environment": {
+    "config/sources.lock": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "environment/workbench/Project.toml": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "environment/workbench/Manifest.toml": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37"
+  },
+  "qe_input_sha256": "e6fcc5b7ed952f3b96c0e85797d52ff6f5075138d6c9f5e50ab440cbb23cb4cd"
+}

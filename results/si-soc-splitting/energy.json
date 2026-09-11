@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "case": "si-soc-splitting-v1",
+  "D_scf_run_id": "D-SCF-20260908T1420Z-dftk",
+  "Q_scf_run_id": "Q-SCF-20260908T145232Z",
+  "D": {
+    "internal_ha": -8.368023851835549,
+    "free_ha": -8.368024366448916,
+    "minus_TS_ha": -5.146133665457469e-07,
+    "entropy_dimensionless": 0.0005146133665457469
+  },
+  "Q": {
+    "internal_ha": -8.36804460913415,
+    "free_ha": -8.368045123751521,
+    "minus_TS_ha": -5.146173709646032e-07,
+    "entropy_dimensionless": 0.0005146173709646032
+  },
+  "scope": "Native uncorrected SCF E/F and entropy; D energy uses orbital n_out; Q original SCF XML. Fixed-density spectra do not replace either SCF energy.",
+  "D_minus_Q": {
+    "internal_ha": 2.0757298601736807e-05,
+    "free_ha": 2.0757302605645123e-05,
+    "minus_TS_ha": 4.004418856223276e-12,
+    "entropy_dimensionless": -4.004418856294427e-09
+  },
+  "D_minus_Q_mev_per_cell": {
+    "internal_ha": 0.5648348696750216,
+    "free_ha": 0.5648349786269173,
+    "minus_TS_ha": 1.0896578818738102e-07
+  }
+}

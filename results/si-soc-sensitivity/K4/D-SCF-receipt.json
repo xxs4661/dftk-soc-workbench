@@ -1,0 +1,1836 @@
+{
+  "invocation": {
+    "profile": "K4",
+    "action": "D-SCF",
+    "run_id": "D-SCF-20260909T003031Z-dc60968c",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "started_utc": "2026-09-09T00:30:31.486471+00:00",
+    "finished_utc": "2026-09-09T04:26:37.675381+00:00",
+    "exit_code": 0,
+    "status": "PASS",
+    "peak_rss_bytes": 3651747840,
+    "streams_sha256": {
+      "stdout": "ce175e02df155f1c5f6a70d632969c4b2d41fe3bea15468ed79b4321ed469548",
+      "stderr": "4c47fc43177f50d7599bed38255ef482d3d22d7e08764f2f2a730c5c8107875e"
+    },
+    "resource_status": "PASS"
+  },
+  "wrapper": {
+    "schema_version": 1,
+    "case": "si-soc-sensitivity-v1/K4",
+    "sensitivity_profile": "K4",
+    "case_sha256": "7874f0007f8df69763b7a7032d580bb05a6b39bdcba412c72cc155a8b2e039ce",
+    "run_id": "D-SCF-20260909T003031Z-dc60968c",
+    "action": "D-SCF",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "preparation_commit": "4a58286183e4625ad7ae69b44eb80097e8ad6c7d",
+    "started_utc": "2026-09-09T00:30:31.506838+00:00",
+    "finished_utc": "2026-09-09T04:26:37.669575+00:00",
+    "exit_code": 0,
+    "worker_exit_code": 0,
+    "execution_status": "PASS",
+    "temperature_ha": 0.001,
+    "preflight_manifest_sha256": "19e5160c1e5a26bab049abf285a97fe89e9e9a130be36e33283d608e94eae0fc"
+  },
+  "worker": {
+    "schema_version": 1,
+    "case": "si-soc-sensitivity-v1/K4",
+    "sensitivity_profile": "K4",
+    "case_sha256": "7874f0007f8df69763b7a7032d580bb05a6b39bdcba412c72cc155a8b2e039ce",
+    "run_id": "D-SCF-20260909T003031Z-dc60968c-dftk",
+    "action": "D-SCF",
+    "base_commit": "bc68aaf655d96dfd4335f6fa1a8e5ee76477c2a3",
+    "execution_commit": "48da17f47e998030a50c954c3abc38bca3a9df8f",
+    "started_utc": "2026-09-09T00:30:38.303",
+    "finished_utc": "2026-09-09T04:26:37.314",
+    "exit_code": 0,
+    "execution_status": "PASS",
+    "parallelism": {
+      "julia": 1,
+      "blas": 1,
+      "fft": 1,
+      "mpi": 1
+    },
+    "peak_rss_bytes": 3647209472,
+    "temperature_ha": 0.001
+  },
+  "source_files": {
+    "worker.stdout": {
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compressed_sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "raw_bytes": 0,
+      "public_bytes": 0,
+      "public_path": "D-SCF/worker.stdout.gz",
+      "line_count": 0,
+      "numeric_token_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "numeric_token_count": 0,
+      "transform": "Private path strings only; exact numerical tokens outside substituted path prefixes; gzip mtime0"
+    },
+    "worker.stderr": {
+      "raw_sha256": "0a1958e173a8b20f1bb14e6878f7ca805c809a7d968984ac8f790c084de5b458",
+      "public_sha256": "0a1958e173a8b20f1bb14e6878f7ca805c809a7d968984ac8f790c084de5b458",
+      "compressed_sha256": "7b422225da1c7fde660fd45cac33fabde0966e6f16b575e4ede5b7471ed05890",
+      "raw_bytes": 14507,
+      "public_bytes": 14507,
+      "public_path": "D-SCF/worker.stderr.gz",
+      "line_count": 184,
+      "numeric_token_sha256": "4b62ad7ebd7d2072af6a69bf33507384044f5c9a7b4a2713376834a3c230c0e4",
+      "numeric_token_count": 541,
+      "transform": "Private path strings only; exact numerical tokens outside substituted path prefixes; gzip mtime0"
+    }
+  },
+  "export_checks_status": "PASS",
+  "input": {
+    "functional": "PBE",
+    "radial_points": 1528,
+    "has_so": true,
+    "g0_local": 0.0,
+    "correction_per_electron_volume": 9.346977114634537,
+    "core_fourier_zero": 0.7242548580428518,
+    "mode": "real_fr",
+    "nlcc_present": true,
+    "r_last_bohr": 15.27,
+    "relativistic": "full",
+    "r_first_bohr": 0.0,
+    "core_semantics": "PP_NLCC = n_core; Fourier integrand stores r\u00b2 n_core",
+    "element": "Si",
+    "local_unit": "PP_LOCAL / 2, Ry to Ha",
+    "header_note": "Exact PP_HEADER text retained; reported functional follows frozen PPIO whitespace normalization",
+    "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+    "binding": "Loader-issued object capability plus unchanged full source/common/channel snapshots; one parse",
+    "xc_identifiers": [
+      "gga_x_pbe",
+      "gga_c_pbe"
+    ],
+    "z_valence": 4,
+    "beta_cutoff_indices": [
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196,
+      196
+    ],
+    "valence_fourier_zero": 3.9999981732989602,
+    "valence_semantics": "PP_RHOATOM / (4pi) = r\u00b2 n_valence",
+    "quadrature": "simpson_uniform",
+    "source": "https://raw.githubusercontent.com/PseudoDojo/ONCVPSP-PBE-FR-PDv0.4/7aa01a3fcf5ad226caf25bd387a9be9612be9f27/Si/Si_r.upf",
+    "cutoff_indices": {
+      "local_potential": 1528,
+      "core": 1528,
+      "correction": 1528,
+      "valence": 1528
+    }
+  },
+  "grid": {
+    "status": "PASS",
+    "rows": [
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "g_sha256": "5dfa0f638f02a30560cb89a6bac111d2a2bb9dbb0069c8d585bd260c04a4afe1",
+        "ng": 2085,
+        "max_kinetic_ha": 29.06475842840249,
+        "max_product_component": [
+          16,
+          16,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          0.25
+        ],
+        "g_sha256": "f31867dab451048862f787e624a8483030eabac511ed4c63dbfd6940d5720e3e",
+        "ng": 2106,
+        "max_kinetic_ha": 29.94373297764853,
+        "max_product_component": [
+          16,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          -0.5
+        ],
+        "g_sha256": "1ae6460e488b899b0dd0802c35e233c607621e6f6a670f251dc2a75dd90a3b41",
+        "ng": 2120,
+        "max_kinetic_ha": 29.767938067799324,
+        "max_product_component": [
+          16,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.0,
+          -0.25
+        ],
+        "g_sha256": "358da73c288dc6a45d738b9a211fbe3a9ff4fee09113936958d4e0da07889d2b",
+        "ng": 2106,
+        "max_kinetic_ha": 29.94373297764853,
+        "max_product_component": [
+          16,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.25,
+          0.0
+        ],
+        "g_sha256": "8b63dfcd1455c18e613c3ea7d1852b0e66f4b811cb5eae1877f689c8bc8dc882",
+        "ng": 2106,
+        "max_kinetic_ha": 29.94373297764853,
+        "max_product_component": [
+          16,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.25,
+          0.25
+        ],
+        "g_sha256": "7111fc072a6920a98572f386848f549939a347856caac6b2c9ae02acbe3208d2",
+        "ng": 2085,
+        "max_kinetic_ha": 29.67418078254642,
+        "max_product_component": [
+          16,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.25,
+          -0.5
+        ],
+        "g_sha256": "6bc8cf19860888efafe2eca785b724db1e18fa2ccf125fd35225cf73d326ef7c",
+        "ng": 2123,
+        "max_kinetic_ha": 29.94373297764854,
+        "max_product_component": [
+          16,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          0.25,
+          -0.25
+        ],
+        "g_sha256": "005bd3e3d4a773365ea9a0abecf3a4db2e63494a1940a494647698f71bb9ba3f",
+        "ng": 2119,
+        "max_kinetic_ha": 29.908573995678697,
+        "max_product_component": [
+          16,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          -0.5,
+          0.0
+        ],
+        "g_sha256": "1772407b07789c43f3174749a57aa4ad09f74f0a62db779c0aabb9a1f8420ec9",
+        "ng": 2120,
+        "max_kinetic_ha": 29.76793806779933,
+        "max_product_component": [
+          16,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          -0.5,
+          0.25
+        ],
+        "g_sha256": "2695b1535eecf29d837a7d6f1cfbff8100819cf7a5df6c171d673f11126a16f5",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648533,
+        "max_product_component": [
+          16,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          -0.5,
+          -0.5
+        ],
+        "g_sha256": "01284aa23fffc3e24e515d9c6afe36aa643b0bea52ac521eb5b87df7626e9a3d",
+        "ng": 2100,
+        "max_kinetic_ha": 29.627302139919962,
+        "max_product_component": [
+          16,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          -0.5,
+          -0.25
+        ],
+        "g_sha256": "2113ad906f2d126c07c1614ac942413214add6f03b7145ee7ce658fba75572df",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648533,
+        "max_product_component": [
+          16,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          -0.25,
+          0.0
+        ],
+        "g_sha256": "413a95e9c954674c62101a5c0677d3c310eda5988d8af7a4f113da8cb8dcbf08",
+        "ng": 2106,
+        "max_kinetic_ha": 29.94373297764853,
+        "max_product_component": [
+          16,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          -0.25,
+          0.25
+        ],
+        "g_sha256": "10e9163c4b1018e33e9e4a103ac2b7082a7b8ba653e4813867d4baa7325ca80e",
+        "ng": 2119,
+        "max_kinetic_ha": 29.908573995678697,
+        "max_product_component": [
+          16,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          -0.25,
+          -0.5
+        ],
+        "g_sha256": "1eb5ff88e1fa389f4091dc9e52ea819f4d88d331fe6b6d2e7ffa410aefd9116b",
+        "ng": 2123,
+        "max_kinetic_ha": 29.94373297764854,
+        "max_product_component": [
+          16,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.0,
+          -0.25,
+          -0.25
+        ],
+        "g_sha256": "4de8c35fb72c117acaf15dfd754394b39c6662aacfacdecdc72237c50d9cd708",
+        "ng": 2085,
+        "max_kinetic_ha": 29.67418078254642,
+        "max_product_component": [
+          16,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          0.0,
+          0.0
+        ],
+        "g_sha256": "36f70a9f8f24320cd6440b4f1b07733e17bf78ad826cf1d47ce7a6a4d450a04e",
+        "ng": 2106,
+        "max_kinetic_ha": 29.943732977648526,
+        "max_product_component": [
+          17,
+          16,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          0.0,
+          0.25
+        ],
+        "g_sha256": "fc9f648a22e8ccf2f677986b71622d4a689e954a99d2544c5314a19bd54c4247",
+        "ng": 2085,
+        "max_kinetic_ha": 29.67418078254642,
+        "max_product_component": [
+          17,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          0.0,
+          -0.5
+        ],
+        "g_sha256": "a1a7677729a419f64fa738c58ee9090c7f54863771471090befa4c2e3f1f52d2",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648537,
+        "max_product_component": [
+          17,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          0.0,
+          -0.25
+        ],
+        "g_sha256": "557576244afcd577662f061c81bb0b2fd23c4f746adb9ea35f6507f5017f1cf5",
+        "ng": 2119,
+        "max_kinetic_ha": 29.908573995678697,
+        "max_product_component": [
+          17,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          0.25,
+          0.0
+        ],
+        "g_sha256": "681b7d6bb24b4504f6e127f224932bd3691c8004638700d072d4560cddd49d6f",
+        "ng": 2085,
+        "max_kinetic_ha": 29.67418078254642,
+        "max_product_component": [
+          17,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          0.25,
+          0.25
+        ],
+        "g_sha256": "60a5b964dbd67640db875717e91646ca4e41f91bff0f122277fa705f4ec2c28c",
+        "ng": 2106,
+        "max_kinetic_ha": 29.94373297764853,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          0.25,
+          -0.5
+        ],
+        "g_sha256": "bc948ac21979aabd387f43c42d65ab5232177174e747d5398a500e337c1d4994",
+        "ng": 2119,
+        "max_kinetic_ha": 29.9085739956787,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          0.25,
+          -0.25
+        ],
+        "g_sha256": "763111f7e2aeacdb9a27242bd01ba0fd8f5a35228e31400621a5cea046cad634",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648537,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          -0.5,
+          0.0
+        ],
+        "g_sha256": "8a52dc4ed170069674c38d8afa76dacf7a872ff6beeedaca05be55eac836b9ce",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648537,
+        "max_product_component": [
+          17,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          -0.5,
+          0.25
+        ],
+        "g_sha256": "aa27bd7be8d7bd38335aac36ccbd7f6d1994ea19fd75b430291998e46fbada3e",
+        "ng": 2119,
+        "max_kinetic_ha": 29.908573995678697,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          -0.5,
+          -0.5
+        ],
+        "g_sha256": "ab3e8be19ddaa1e524ababf64d5bd11ea07c80a00c1a5c64b3f89514a6c3174d",
+        "ng": 2123,
+        "max_kinetic_ha": 29.94373297764854,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          -0.5,
+          -0.25
+        ],
+        "g_sha256": "9f9727c6984401cb59fa6b432dc34888211da65f0f39f56403be829a5eb06426",
+        "ng": 2148,
+        "max_kinetic_ha": 29.86169535305224,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          -0.25,
+          0.0
+        ],
+        "g_sha256": "7a132a4f30237f87521cd8da8e85b1ec882c0dd2a9fa679eca341c4c83cd3195",
+        "ng": 2119,
+        "max_kinetic_ha": 29.908573995678697,
+        "max_product_component": [
+          17,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          -0.25,
+          0.25
+        ],
+        "g_sha256": "d9407be0bf08268322352bc8b31469ce66b840cef4a02878327f6638ff608b25",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648533,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          -0.25,
+          -0.5
+        ],
+        "g_sha256": "21ae970701f56f963522430d0930e46a8318853f8ed0c74067c5ae80b964bf34",
+        "ng": 2148,
+        "max_kinetic_ha": 29.86169535305224,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          0.25,
+          -0.25,
+          -0.25
+        ],
+        "g_sha256": "a14955b777906701606b2a15abfcdac569119b2cf34e8c016007a4b522a7528a",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648533,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          0.0,
+          0.0
+        ],
+        "g_sha256": "11213e81bc37ad5eaaf7123ae5503a49d2840e424e3556e83fe54a6422f7ed07",
+        "ng": 2120,
+        "max_kinetic_ha": 29.767938067799328,
+        "max_product_component": [
+          17,
+          16,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          0.0,
+          0.25
+        ],
+        "g_sha256": "0225f27ce5e4d620e874ce87b09fc741fb1350b49de10896c9e1df6b0441f4bc",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648533,
+        "max_product_component": [
+          17,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          0.0,
+          -0.5
+        ],
+        "g_sha256": "ce79879f16100ede58283eb11c7829426a095c2b7c5674b218ab6b61341ba38a",
+        "ng": 2100,
+        "max_kinetic_ha": 29.627302139919962,
+        "max_product_component": [
+          17,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          0.0,
+          -0.25
+        ],
+        "g_sha256": "d0d36e13081545a69ea2182c680e3c2d513f5859f872960439a27ba3a4560176",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648533,
+        "max_product_component": [
+          17,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          0.25,
+          0.0
+        ],
+        "g_sha256": "2e80b2cc9b643c6f7e235e914e0119f0e320ad2824a357e26ea8e740c0a36299",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648537,
+        "max_product_component": [
+          17,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          0.25,
+          0.25
+        ],
+        "g_sha256": "8ae7ab7d3e08318b236216ebe00bea82eaa61bd14d415390419c1a66e7c7d415",
+        "ng": 2119,
+        "max_kinetic_ha": 29.908573995678697,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          0.25,
+          -0.5
+        ],
+        "g_sha256": "7d80d3911469cfa429e39f2c1aa73569bd76a5496aa8abb23e1191dd53b2d407",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648537,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          0.25,
+          -0.25
+        ],
+        "g_sha256": "eedd3159e07f3b42e4b0d300a84d576b3107125f2bcdac80387402aa402343a0",
+        "ng": 2148,
+        "max_kinetic_ha": 29.861695353052244,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          -0.5,
+          0.0
+        ],
+        "g_sha256": "cff025fdbc2e9cd0f2d4151e833147c5b5ef07ae8b633d6dee403836974c259d",
+        "ng": 2100,
+        "max_kinetic_ha": 29.627302139919955,
+        "max_product_component": [
+          17,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          -0.5,
+          0.25
+        ],
+        "g_sha256": "930e4c49885bf790c64870a6a38a6fa3d6ecc7447ea451d08b515aa060729c48",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648533,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "g_sha256": "744a2840aaa183c0e9c0c79a3e8b664f113f3c150e6b42e138a43642ca3fdef3",
+        "ng": 2120,
+        "max_kinetic_ha": 29.767938067799324,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          -0.5,
+          -0.25
+        ],
+        "g_sha256": "5c7cbf48fba43039b2b957b59fe5df937a42a377087ee1833d4fe85fc6c34e40",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648533,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          -0.25,
+          0.0
+        ],
+        "g_sha256": "8ba003fdbe17a9d7ec6b295694df092a9ceeceee0f2dbf104cd5a9c62640abf6",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648537,
+        "max_product_component": [
+          17,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          -0.25,
+          0.25
+        ],
+        "g_sha256": "a18126ddf0d89e8e5acb64f890c00548fb130ebe252f0f5beb828a3ba1321c6a",
+        "ng": 2148,
+        "max_kinetic_ha": 29.861695353052244,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          -0.25,
+          -0.5
+        ],
+        "g_sha256": "2325c6edd671bf934df17187a8da1e71ce9b45dd0811d6e59553106757bb407c",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648537,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.5,
+          -0.25,
+          -0.25
+        ],
+        "g_sha256": "29bc0a48c0a731c62dcb354c24c6834af0e34f58ee9ea0e5ea375d54ddcedf64",
+        "ng": 2119,
+        "max_kinetic_ha": 29.908573995678697,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          0.0,
+          0.0
+        ],
+        "g_sha256": "5c832612cde93aabd8db6b5d5c188d49eba865ebca07300139840ad8593a35dd",
+        "ng": 2106,
+        "max_kinetic_ha": 29.943732977648526,
+        "max_product_component": [
+          17,
+          16,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          0.0,
+          0.25
+        ],
+        "g_sha256": "372e10c6e123f5df0869ee65dade2e450e18ee4dfbc5f9cbe139871cb89a16b1",
+        "ng": 2119,
+        "max_kinetic_ha": 29.908573995678697,
+        "max_product_component": [
+          17,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          0.0,
+          -0.5
+        ],
+        "g_sha256": "b9059a5f6f925a461ebfd4e3f0bc9191d1a40ac7aae03e6cc5a248b0eeec718a",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648537,
+        "max_product_component": [
+          17,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          0.0,
+          -0.25
+        ],
+        "g_sha256": "1114f3a529e7d4d90611c319091effb66e8d1bd55bdb92496e317d2454ee72d4",
+        "ng": 2085,
+        "max_kinetic_ha": 29.67418078254642,
+        "max_product_component": [
+          17,
+          16,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          0.25,
+          0.0
+        ],
+        "g_sha256": "9122b24ce40d2be995e5d65d9ca01e7b56115140b159e85c995a0405ded000f3",
+        "ng": 2119,
+        "max_kinetic_ha": 29.908573995678697,
+        "max_product_component": [
+          17,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          0.25,
+          0.25
+        ],
+        "g_sha256": "69fe0fccfccf885375e5275a68272ff6177f8c6cad15465f025a5ac5f7a90702",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648533,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          0.25,
+          -0.5
+        ],
+        "g_sha256": "fcb9f11f4502bda52a123af76f9dfb0965d6a207396bbae33f0833d020c6b095",
+        "ng": 2148,
+        "max_kinetic_ha": 29.86169535305224,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          0.25,
+          -0.25
+        ],
+        "g_sha256": "614af3072a6cb141e33231bade11fd8ccddfc7f07abbbe56829bcc07d69fedcf",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648533,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          -0.5,
+          0.0
+        ],
+        "g_sha256": "fc22608eb706e590ad9679f0479b3bba56af806fc7e8084716e365d0eef32022",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648537,
+        "max_product_component": [
+          17,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          -0.5,
+          0.25
+        ],
+        "g_sha256": "89daac72420303817323b7ade8a2700555a836d04c74b4d3d2aac0070f53fc19",
+        "ng": 2148,
+        "max_kinetic_ha": 29.86169535305224,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          -0.5,
+          -0.5
+        ],
+        "g_sha256": "43408cd24e390e9f69a80209401cb8df22fd581becb17adb8e89f3a11a28d393",
+        "ng": 2123,
+        "max_kinetic_ha": 29.94373297764854,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          -0.5,
+          -0.25
+        ],
+        "g_sha256": "36fad45e3131a6dc95ef90d8680d34caac4d7b90f0593cc3cfd8017de6a5bb53",
+        "ng": 2119,
+        "max_kinetic_ha": 29.908573995678697,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          -0.25,
+          0.0
+        ],
+        "g_sha256": "3a5e6647830165872b3618fe2e9dd9ba6533344efe5e682f24399eb8097cdad7",
+        "ng": 2085,
+        "max_kinetic_ha": 29.67418078254642,
+        "max_product_component": [
+          17,
+          17,
+          16
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          -0.25,
+          0.25
+        ],
+        "g_sha256": "7a0f85792570b2023b78955bd5fbb27808b345b0fb0720c4d27d7c4c5e83e72b",
+        "ng": 2123,
+        "max_kinetic_ha": 29.943732977648537,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          -0.25,
+          -0.5
+        ],
+        "g_sha256": "44396c4b81aa1c3b36a453f5fca9b4b241431661b5c370a79983f359d41e29e3",
+        "ng": 2119,
+        "max_kinetic_ha": 29.9085739956787,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      },
+      {
+        "coordinate_fractional": [
+          -0.25,
+          -0.25,
+          -0.25
+        ],
+        "g_sha256": "6b6116cd525ba69b3e92c9cca72ac20aab2163956861c854b9e6bdf263143fa3",
+        "ng": 2106,
+        "max_kinetic_ha": 29.94373297764853,
+        "max_product_component": [
+          17,
+          17,
+          17
+        ]
+      }
+    ],
+    "nyquist": "All actual same-k component difference extrema strictly below24; sufficient for every G-Gprime",
+    "memory_estimate_bytes": {
+      "retained_orbitals_and_solver": 1707402240,
+      "projectors_and_snapshots": 1266941952,
+      "density_core_local_fields": 88473600,
+      "bounded_fft_workspaces": 679477248,
+      "runtime_library_margin": 2147483648
+    },
+    "conservative_peak_bytes": 5889778688,
+    "basis": {
+      "kpoints": [
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ng": 2085,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "5dfa0f638f02a30560cb89a6bac111d2a2bb9dbb0069c8d585bd260c04a4afe1"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.0,
+            0.25
+          ],
+          "ng": 2106,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "f31867dab451048862f787e624a8483030eabac511ed4c63dbfd6940d5720e3e"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.0,
+            -0.5
+          ],
+          "ng": 2120,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "1ae6460e488b899b0dd0802c35e233c607621e6f6a670f251dc2a75dd90a3b41"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.0,
+            -0.25
+          ],
+          "ng": 2106,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "358da73c288dc6a45d738b9a211fbe3a9ff4fee09113936958d4e0da07889d2b"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.25,
+            0.0
+          ],
+          "ng": 2106,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "8b63dfcd1455c18e613c3ea7d1852b0e66f4b811cb5eae1877f689c8bc8dc882"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.25,
+            0.25
+          ],
+          "ng": 2085,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "7111fc072a6920a98572f386848f549939a347856caac6b2c9ae02acbe3208d2"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.25,
+            -0.5
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "6bc8cf19860888efafe2eca785b724db1e18fa2ccf125fd35225cf73d326ef7c"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            0.25,
+            -0.25
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "005bd3e3d4a773365ea9a0abecf3a4db2e63494a1940a494647698f71bb9ba3f"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            -0.5,
+            0.0
+          ],
+          "ng": 2120,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "1772407b07789c43f3174749a57aa4ad09f74f0a62db779c0aabb9a1f8420ec9"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            -0.5,
+            0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "2695b1535eecf29d837a7d6f1cfbff8100819cf7a5df6c171d673f11126a16f5"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            -0.5,
+            -0.5
+          ],
+          "ng": 2100,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "01284aa23fffc3e24e515d9c6afe36aa643b0bea52ac521eb5b87df7626e9a3d"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            -0.5,
+            -0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "2113ad906f2d126c07c1614ac942413214add6f03b7145ee7ce658fba75572df"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            -0.25,
+            0.0
+          ],
+          "ng": 2106,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "413a95e9c954674c62101a5c0677d3c310eda5988d8af7a4f113da8cb8dcbf08"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            -0.25,
+            0.25
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "10e9163c4b1018e33e9e4a103ac2b7082a7b8ba653e4813867d4baa7325ca80e"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            -0.25,
+            -0.5
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "1eb5ff88e1fa389f4091dc9e52ea819f4d88d331fe6b6d2e7ffa410aefd9116b"
+        },
+        {
+          "coordinate_fractional": [
+            0.0,
+            -0.25,
+            -0.25
+          ],
+          "ng": 2085,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "4de8c35fb72c117acaf15dfd754394b39c6662aacfacdecdc72237c50d9cd708"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            0.0,
+            0.0
+          ],
+          "ng": 2106,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "36f70a9f8f24320cd6440b4f1b07733e17bf78ad826cf1d47ce7a6a4d450a04e"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            0.0,
+            0.25
+          ],
+          "ng": 2085,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "fc9f648a22e8ccf2f677986b71622d4a689e954a99d2544c5314a19bd54c4247"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            0.0,
+            -0.5
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "a1a7677729a419f64fa738c58ee9090c7f54863771471090befa4c2e3f1f52d2"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            0.0,
+            -0.25
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "557576244afcd577662f061c81bb0b2fd23c4f746adb9ea35f6507f5017f1cf5"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            0.25,
+            0.0
+          ],
+          "ng": 2085,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "681b7d6bb24b4504f6e127f224932bd3691c8004638700d072d4560cddd49d6f"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "ng": 2106,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "60a5b964dbd67640db875717e91646ca4e41f91bff0f122277fa705f4ec2c28c"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            0.25,
+            -0.5
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "bc948ac21979aabd387f43c42d65ab5232177174e747d5398a500e337c1d4994"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            0.25,
+            -0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "763111f7e2aeacdb9a27242bd01ba0fd8f5a35228e31400621a5cea046cad634"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            -0.5,
+            0.0
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "8a52dc4ed170069674c38d8afa76dacf7a872ff6beeedaca05be55eac836b9ce"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            -0.5,
+            0.25
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "aa27bd7be8d7bd38335aac36ccbd7f6d1994ea19fd75b430291998e46fbada3e"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            -0.5,
+            -0.5
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "ab3e8be19ddaa1e524ababf64d5bd11ea07c80a00c1a5c64b3f89514a6c3174d"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            -0.5,
+            -0.25
+          ],
+          "ng": 2148,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "9f9727c6984401cb59fa6b432dc34888211da65f0f39f56403be829a5eb06426"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            -0.25,
+            0.0
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "7a132a4f30237f87521cd8da8e85b1ec882c0dd2a9fa679eca341c4c83cd3195"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            -0.25,
+            0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "d9407be0bf08268322352bc8b31469ce66b840cef4a02878327f6638ff608b25"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            -0.25,
+            -0.5
+          ],
+          "ng": 2148,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "21ae970701f56f963522430d0930e46a8318853f8ed0c74067c5ae80b964bf34"
+        },
+        {
+          "coordinate_fractional": [
+            0.25,
+            -0.25,
+            -0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "a14955b777906701606b2a15abfcdac569119b2cf34e8c016007a4b522a7528a"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            0.0,
+            0.0
+          ],
+          "ng": 2120,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "11213e81bc37ad5eaaf7123ae5503a49d2840e424e3556e83fe54a6422f7ed07"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            0.0,
+            0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "0225f27ce5e4d620e874ce87b09fc741fb1350b49de10896c9e1df6b0441f4bc"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            0.0,
+            -0.5
+          ],
+          "ng": 2100,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "ce79879f16100ede58283eb11c7829426a095c2b7c5674b218ab6b61341ba38a"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            0.0,
+            -0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "d0d36e13081545a69ea2182c680e3c2d513f5859f872960439a27ba3a4560176"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            0.25,
+            0.0
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "2e80b2cc9b643c6f7e235e914e0119f0e320ad2824a357e26ea8e740c0a36299"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            0.25,
+            0.25
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "8ae7ab7d3e08318b236216ebe00bea82eaa61bd14d415390419c1a66e7c7d415"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            0.25,
+            -0.5
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "7d80d3911469cfa429e39f2c1aa73569bd76a5496aa8abb23e1191dd53b2d407"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            0.25,
+            -0.25
+          ],
+          "ng": 2148,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "eedd3159e07f3b42e4b0d300a84d576b3107125f2bcdac80387402aa402343a0"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            -0.5,
+            0.0
+          ],
+          "ng": 2100,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "cff025fdbc2e9cd0f2d4151e833147c5b5ef07ae8b633d6dee403836974c259d"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            -0.5,
+            0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "930e4c49885bf790c64870a6a38a6fa3d6ecc7447ea451d08b515aa060729c48"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "ng": 2120,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "744a2840aaa183c0e9c0c79a3e8b664f113f3c150e6b42e138a43642ca3fdef3"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            -0.5,
+            -0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "5c7cbf48fba43039b2b957b59fe5df937a42a377087ee1833d4fe85fc6c34e40"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            -0.25,
+            0.0
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "8ba003fdbe17a9d7ec6b295694df092a9ceeceee0f2dbf104cd5a9c62640abf6"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            -0.25,
+            0.25
+          ],
+          "ng": 2148,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "a18126ddf0d89e8e5acb64f890c00548fb130ebe252f0f5beb828a3ba1321c6a"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            -0.25,
+            -0.5
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "2325c6edd671bf934df17187a8da1e71ce9b45dd0811d6e59553106757bb407c"
+        },
+        {
+          "coordinate_fractional": [
+            -0.5,
+            -0.25,
+            -0.25
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "29bc0a48c0a731c62dcb354c24c6834af0e34f58ee9ea0e5ea375d54ddcedf64"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            0.0,
+            0.0
+          ],
+          "ng": 2106,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "5c832612cde93aabd8db6b5d5c188d49eba865ebca07300139840ad8593a35dd"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            0.0,
+            0.25
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "372e10c6e123f5df0869ee65dade2e450e18ee4dfbc5f9cbe139871cb89a16b1"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            0.0,
+            -0.5
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "b9059a5f6f925a461ebfd4e3f0bc9191d1a40ac7aae03e6cc5a248b0eeec718a"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            0.0,
+            -0.25
+          ],
+          "ng": 2085,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "1114f3a529e7d4d90611c319091effb66e8d1bd55bdb92496e317d2454ee72d4"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            0.25,
+            0.0
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "9122b24ce40d2be995e5d65d9ca01e7b56115140b159e85c995a0405ded000f3"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            0.25,
+            0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "69fe0fccfccf885375e5275a68272ff6177f8c6cad15465f025a5ac5f7a90702"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            0.25,
+            -0.5
+          ],
+          "ng": 2148,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "fcb9f11f4502bda52a123af76f9dfb0965d6a207396bbae33f0833d020c6b095"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            0.25,
+            -0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "614af3072a6cb141e33231bade11fd8ccddfc7f07abbbe56829bcc07d69fedcf"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            -0.5,
+            0.0
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "fc22608eb706e590ad9679f0479b3bba56af806fc7e8084716e365d0eef32022"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            -0.5,
+            0.25
+          ],
+          "ng": 2148,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "89daac72420303817323b7ade8a2700555a836d04c74b4d3d2aac0070f53fc19"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            -0.5,
+            -0.5
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "43408cd24e390e9f69a80209401cb8df22fd581becb17adb8e89f3a11a28d393"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            -0.5,
+            -0.25
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "36fad45e3131a6dc95ef90d8680d34caac4d7b90f0593cc3cfd8017de6a5bb53"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            -0.25,
+            0.0
+          ],
+          "ng": 2085,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "3a5e6647830165872b3618fe2e9dd9ba6533344efe5e682f24399eb8097cdad7"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            -0.25,
+            0.25
+          ],
+          "ng": 2123,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "7a0f85792570b2023b78955bd5fbb27808b345b0fb0720c4d27d7c4c5e83e72b"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            -0.25,
+            -0.5
+          ],
+          "ng": 2119,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "44396c4b81aa1c3b36a453f5fca9b4b241431661b5c370a79983f359d41e29e3"
+        },
+        {
+          "coordinate_fractional": [
+            -0.25,
+            -0.25,
+            -0.25
+          ],
+          "ng": 2106,
+          "weight_spatial": 0.015625,
+          "g_order_sha256": "6b6116cd525ba69b3e92c9cca72ac20aab2163956861c854b9e6bdf263143fa3"
+        }
+      ],
+      "lattice_bohr": [
+        [
+          0.0,
+          5.13,
+          5.13
+        ],
+        [
+          5.13,
+          0.0,
+          5.13
+        ],
+        [
+          5.13,
+          5.13,
+          0.0
+        ]
+      ],
+      "native_nonlocal_terms": 0,
+      "ecut_ha": 30.0,
+      "n_electrons": 8,
+      "positions_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.25,
+          0.25,
+          0.25
+        ]
+      ],
+      "term_types": [
+        "DFTK.TermKinetic",
+        "DFTK.TermAtomicLocal{Array{Float64, 3}}",
+        "DFTK.TermEwald{Float64}",
+        "DFTK.TermPspCorrection{Float64}",
+        "DFTK.TermHartree",
+        "DFTK.TermXc{Float64, Array{Float64, 4}, Nothing}"
+      ],
+      "volume_bohr3": 270.011394,
+      "fft_grid": [
+        48,
+        48,
+        48
+      ]
+    }
+  },
+  "parallelism": {
+    "julia": 1,
+    "blas": 1,
+    "fft": 1,
+    "mpi": 1
+  },
+  "environment_json_sha256": "eb873073c5ca3f7b42324dc69637298e75b5b3e61544b17025604ba40cfda940",
+  "executed_code_json_sha256": "24d8d256b46ec867c489744687b67015dc31ed70d284e356b3f3245d30ddc20b",
+  "warning_evidence": {
+    "warning_lines": [
+      {
+        "line": 1,
+        "text": "\u250c Info: Threading setup: "
+      },
+      {
+        "line": 2,
+        "text": "\u2502   Threads.nthreads() = 1"
+      },
+      {
+        "line": 3,
+        "text": "\u2502   n_DFTK = 1"
+      },
+      {
+        "line": 4,
+        "text": "\u2502   n_fft = 1"
+      },
+      {
+        "line": 5,
+        "text": "\u2514   n_blas = 1"
+      }
+    ],
+    "full_stderr_ref": "D-SCF/worker.stderr.gz",
+    "warning_scope": "All native stderr retained; selected warning/error lines also indexed"
+  },
+  "environment_reference": {
+    "path": "../D-environment.json",
+    "sha256": "eb873073c5ca3f7b42324dc69637298e75b5b3e61544b17025604ba40cfda940"
+  },
+  "executed_code_reference": {
+    "path": "../D-code-K4.json",
+    "sha256": "24d8d256b46ec867c489744687b67015dc31ed70d284e356b3f3245d30ddc20b"
+  }
+}

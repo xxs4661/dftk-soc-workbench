@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "resume_id": "phase9a-completion-20260910",
+  "resume_from_commit": "98781fd0ce6c2f4138ed010e115a13e370410d58",
+  "original_stage_base": "c764311a5422b5c3cab5a7b78a02d420910c4e56",
+  "original_preparation_commit": "e4f16a51a0304f5e70f5ae038563d6760409c2c4",
+  "static_execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+  "reference_execution_commit": "bbe9aa7755f052900e6e9c4618252a410e1cc8f0",
+  "reference_scientific_commit": "c764311a5422b5c3cab5a7b78a02d420910c4e56",
+  "instruction_sha256": "d386a7861f84532b0ab6e0b80c3f69d63c3180d07eaba38145bb76bc94edf232",
+  "static_gate": {
+    "path": ".work/phase9a/gate-20260909T114412Z-4b88f642/gate.json",
+    "sha256": "29621b5bc01245edd6bc1de0a5871636b9851240c271213676f6db3227d06efd"
+  },
+  "old_failure": {
+    "run_id": "OPT-B0-SCF-20260909T114559Z-0600f2bf",
+    "native_exit_code": 1,
+    "recorder_exit_code": 9,
+    "stage": "JULIA_PARSE_BEFORE_DRIVER_ENTRY",
+    "directory": ".work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf",
+    "slot": ".work/phase9a/endpoints/slots/OPT-B0-SCF.json"
+  },
+  "allowed_existing_code": {
+    "scripts/run_si_dftk.py": "Explicit authorization/identity/attempt routing and nonnumerical check-only; legacy gate and active lock preserved",
+    "scripts/run_si_soc.jl": "Same authorization forwarding/check-only/source fields; protected numerical regions unchanged",
+    "benchmarks/soc-core-memory-v1/endpoint_metrics.py": "Exact historical Git filename and source loading only; evaluate numerical function unchanged",
+    "benchmarks/soc-core-memory-v1/endpoint_compare.jl": "If needed authenticate new execution and resume fields, density formula unchanged",
+    "tests/soc_core_memory/test_endpoint_metrics.py": "Fix historical path and actual synthetic CLI path regression"
+  },
+  "allowed_navigation": [
+    "README.md",
+    "docs/status.md",
+    "results/README.md",
+    "scripts/README.md",
+    "benchmarks/README.md",
+    "results/soc-core-memory/README.md"
+  ],
+  "allowed_new_paths": [
+    "benchmarks/soc-core-memory-v1/resume/",
+    "tests/soc_core_memory/resume/",
+    "results/soc-core-memory/completion/"
+  ],
+  "numerical_driver_regions": [
+    {
+      "name": "physical_helpers",
+      "start": "function si_context(",
+      "end": "\"\"\"Check a new Si D-SCF receipt",
+      "sha256": "c672ca2402a8be0659893756d4021fd129856dd41f54b0d44287361dbc8548a7"
+    },
+    {
+      "name": "old_arity_and_null",
+      "start": "function si_arity_valid(",
+      "end": "function si_run(",
+      "sha256": "a9c62f8e692359ce6ffd2be0ade968cf2e79401914ac99ea90603a7041387812"
+    },
+    {
+      "name": "context_workspace_checkpoint",
+      "start": "        kind=work_action",
+      "end": "        if work_action==\"prepare\"",
+      "sha256": "2cc31ab8aae729a8dab425c8916e8ec77c5de419f4f0f03cdf178bc1adf0d516"
+    },
+    {
+      "name": "SCF_numerics",
+      "start": "        elseif work_action==\"D-SCF\"\n",
+      "end": "        elseif work_action in (\"D-SPECTRUM\"",
+      "sha256": "9966214b5285fc1361d98d9171087bd3ea1ffe49c98412dc2b318c6a6af546fd"
+    },
+    {
+      "name": "Gamma_numerics",
+      "start": "            cp=joinpath(parent,\"final.bin\")",
+      "end": "            # Only the final outer result",
+      "sha256": "4eb1d8cec11b47ae31cbad03895bd21a509a3bd00e58c6ac89ba291d4c6261f9"
+    },
+    {
+      "name": "runtime_close",
+      "start": "    finally\n        if owned && !isnothing(runtime)",
+      "end": "    result[\"finished_utc\"]",
+      "sha256": "31de0ca037e17507ff780c18a4e2833f47416af60e3558d26d6f71cf102a08d7"
+    }
+  ],
+  "accepted_static_to_partial_diff": [
+    {
+      "path": "README.md",
+      "static_sha256": "9f5ffb5125551dc0c07ddcd5ff08ef54f2bb8d89515b142083ee3dca9fd293db",
+      "partial_sha256": "2f3877695ca556c0199b9c2a1d9d7bfcb0f682d2069b6d78b2551871d16c071f"
+    },
+    {
+      "path": "benchmarks/README.md",
+      "static_sha256": "f863b1e433fc47b3f313a24b3d30c7d9b0c6d942dbf85f494e390b221ad7e3ef",
+      "partial_sha256": "d344f50562baa6e5eaeb5abb18351897d4ce86989e2107936ad3b5caac1bb547"
+    },
+    {
+      "path": "benchmarks/soc-core-memory-v1/replay_delivery.py",
+      "static_sha256": null,
+      "partial_sha256": "b0436a601b56a7445f23ffd23bccdd880537bf9058e7f4f749314c00cc10d66a"
+    },
+    {
+      "path": "docs/status.md",
+      "static_sha256": "930a24fee8e7e2ef5acf75a20d68bd5e02f7c8ee401ed16be42c363e89baedbe",
+      "partial_sha256": "a9463cd355fb90d859c62e9590cf9db74dc48dc9789cc11df9acd6238952d4f3"
+    },
+    {
+      "path": "results/README.md",
+      "static_sha256": "a607dd265b70643b495e2989778212314860af4bdc9ce137cb66752ee9d503db",
+      "partial_sha256": "4de9dd4be41e15ef00155c0626e49d89af14c136c859c1da041949381480d40a"
+    },
+    {
+      "path": "results/soc-core-memory/README.md",
+      "static_sha256": "22d29b11c6e06d53281fb1ba6b101e7a8cfa63658ee87868dc2d01df80189a02",
+      "partial_sha256": "64876b5e2c89cace1a5f51862ab7467ee1f96cf278af8cb52ff5f5be57910d03"
+    },
+    {
+      "path": "results/soc-core-memory/archive.json",
+      "static_sha256": null,
+      "partial_sha256": "2b2a8795a4a399791a6bb76492380757cc0fb59ca7033ff04f4ad924fc5a325b"
+    },
+    {
+      "path": "results/soc-core-memory/comparison.json",
+      "static_sha256": null,
+      "partial_sha256": "f5d61f46217026bd62c63e9bbd09c8ca19d986967b3cffb30a224d7aa8d2373b"
+    },
+    {
+      "path": "results/soc-core-memory/delivery-checks.json",
+      "static_sha256": null,
+      "partial_sha256": "9b0b2eb6c403fd24803f79eeca5442e4660ed1af95013760763d85cdf4a05061"
+    },
+    {
+      "path": "results/soc-core-memory/delivery-evidence.json",
+      "static_sha256": null,
+      "partial_sha256": "2d7375a315c118a8df5aa68081b4d1ffaee428cfd476302c985e43f56c80b60c"
+    },
+    {
+      "path": "results/soc-core-memory/endpoints/OPT-B0-SCF.stderr.txt.gz",
+      "static_sha256": null,
+      "partial_sha256": "5cd9ae09cf966d1373c3baf9f416be133a94bed836c3b38a116023d8c929a55a"
+    },
+    {
+      "path": "results/soc-core-memory/endpoints/endpoint-status.json",
+      "static_sha256": null,
+      "partial_sha256": "16dd3aeb52b304ba1444e5f12b3e3e5283834e092862a8ca1b5c1787d76a232a"
+    },
+    {
+      "path": "results/soc-core-memory/gate.json",
+      "static_sha256": null,
+      "partial_sha256": "29621b5bc01245edd6bc1de0a5871636b9851240c271213676f6db3227d06efd"
+    },
+    {
+      "path": "results/soc-core-memory/memory-budget.json",
+      "static_sha256": null,
+      "partial_sha256": "87db0af845b707e0575b6ed0ac989872c8ba72c83e4693382af1d6b05f474c0e"
+    },
+    {
+      "path": "results/soc-core-memory/memory-budget.md",
+      "static_sha256": null,
+      "partial_sha256": "79858951247d8252eb12194718920e1e05febb4537c46981e8af97baea9a13c9"
+    },
+    {
+      "path": "results/soc-core-memory/performance.json",
+      "static_sha256": null,
+      "partial_sha256": "94db81bce0a31d2e29b3b75c664f77644d272ade81109b2766af1308a6a29668"
+    },
+    {
+      "path": "results/soc-core-memory/replay-data.json",
+      "static_sha256": null,
+      "partial_sha256": "329c4eec4f0f1ce958be6796794cc563bc022313dfbcff89f8902e0779cc90a9"
+    },
+    {
+      "path": "results/soc-core-memory/source-boundary.json",
+      "static_sha256": null,
+      "partial_sha256": "14f11adcee74ca60d849cd0cc76c1a1e14f71b89b513046348636aac46661606"
+    },
+    {
+      "path": "results/soc-core-memory/static-evidence.json",
+      "static_sha256": null,
+      "partial_sha256": "c638f67e695a15e213f0c7d1fd13504b65d5574c93359caadc1a68df9b6f3d38"
+    },
+    {
+      "path": "results/soc-core-memory/tests.json",
+      "static_sha256": null,
+      "partial_sha256": "b778e6ff2031ebbd6ba878b21319fec89fd772705bdff58ff5e707d8ed964f91"
+    },
+    {
+      "path": "scripts/README.md",
+      "static_sha256": "d82fc453af6bacc371e9ae37181ea9394dd32c241ee02d74775aa8410fa8802a",
+      "partial_sha256": "1d7fef61486df06b05950145d0dca01360cfa9e157b4dead22bfbe6acab7c1a3"
+    },
+    {
+      "path": "scripts/run_si_soc.jl",
+      "static_sha256": "4232ff06df04519fd45136c2b7f4d0a81623aa5df7c827d6fc9658af27e20ea6",
+      "partial_sha256": "0d8c07569193c79e08dfc15084d4f7211b33711d9c5b707477b27e436c943124"
+    },
+    {
+      "path": "tests/soc_core_memory/test_delivery.py",
+      "static_sha256": null,
+      "partial_sha256": "a8c24bad9056d83872ce4bccb48b3548d556ee50e3c4c2c6e2f56e6e93912433"
+    },
+    {
+      "path": "tests/soc_core_memory/test_source_syntax.jl",
+      "static_sha256": null,
+      "partial_sha256": "3c0b5fe5bebf940aed392d67f26ee2ba53d3036d2756cf215ff9e86d6087e8cb"
+    }
+  ],
+  "slots": {
+    "OPT-B0-SCF": {
+      "additional_attempts": 1,
+      "cumulative_attempt": 2,
+      "seed": 81001,
+      "fresh_uniform_density": true
+    },
+    "OPT-B0-GAMMA": {
+      "additional_attempts": 1,
+      "cumulative_attempt": 1,
+      "seed": 81201,
+      "parent": "Successful new authorization/E-bound SCF n_out and inherited mu only"
+    }
+  },
+  "immutable_contract": {
+    "path": "benchmarks/soc-core-memory-v1/contract.json",
+    "sha256": "aa1956cba470f6ac1a7f88bfffdfefeebdad1a87831e1ce7e04f3e70dd904ec7"
+  },
+  "preserved_limits": {
+    "process_rss_bytes": 8589934592,
+    "disk_reserve_bytes": 10737418240,
+    "runtime_margin_bytes": 2147483648,
+    "julia_threads": 1,
+    "blas_threads": 1,
+    "fft_threads": 1,
+    "mpi_processes": 1
+  },
+  "static_status": "HISTORICAL_REUSED_ONLY_IF_COMPLETE_SOURCE_INPUT_ENVIRONMENT_COMPATIBILITY_PASSES",
+  "time_status": "PERFORMANCE_REVIEW_REQUIRED",
+  "source_contract": "All src/prototypes and existing numerical include-chain files equal static execution; all remaining preexisting files equal partial commit unless explicitly permitted. No new dispatch-changing numerical file. Protected driver regions and endpoint evaluate function byte-identical; record complete allowed-file diffs.",
+  "preparation": [
+    "Parse complete drivers and changed Julia files; failed exact old source rejected",
+    "Load actual full Julia definitions and frozen environment without numerical context",
+    "Fix exact Git D-spectrum path and real CLI synthetic regression",
+    "Commit clean E; issue immutable one-per-preparation authorization from full original raw static evidence",
+    "Nonphysical check-entry through Python to Julia with this authorization; no reservation",
+    "Reserve new SCF once in preparation-derived namespace under original global active lock; Gamma only after all parent gates"
+  ],
+  "stop": "Any second SCF failure blocks Gamma; no third SCF. Gamma failure is not retried. No numerical core change or static remeasurement authorized.",
+  "not_run": [
+    "Four static suites remeasurement",
+    "DFTK K6/K8 context/SCF",
+    "QE/pp",
+    "extra SCF/Gamma/null/p+-",
+    "performance tuning/sampling",
+    "new material",
+    "CI",
+    "Phase9B",
+    "upstream full tests"
+  ]
+}

@@ -1,0 +1,1302 @@
+{
+  "schema_version": 1,
+  "derivation_status": "NEW_EXTRACTION_FROM_HISTORICAL_ARRAYS",
+  "geometry": {
+    "direct_vectors_bohr": [
+      [
+        10.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        10.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        10.0
+      ]
+    ],
+    "reciprocal_vectors_bohr_inv": [
+      [
+        0.6283185307179586,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.6283185307179586,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.6283185307179586
+      ]
+    ],
+    "volume_bohr3": 1000.0,
+    "signed_determinant_bohr3": 1000.0,
+    "reciprocal_identity_max_abs": 0.0,
+    "convention": "Outer lists are lattice columns; A^T B = 2*pi I"
+  },
+  "thresholds": {
+    "reciprocal_identity_abs": 1e-12,
+    "electron_abs": 1e-08,
+    "zero_imag_electrons_abs": 1e-10,
+    "conjugacy_relative_l2": 1e-10,
+    "self_hartree_abs_ha": 1e-08,
+    "energy_identity_abs_ha": 1e-10
+  },
+  "sources": {
+    "A_out": {
+      "electron_count_status": "PASS",
+      "zero_imaginary_status": "PASS",
+      "discrete_conjugacy_status": "PASS",
+      "reciprocal_support_status": "PASS",
+      "independent_energy_sum_status": "PASS",
+      "self_hartree_reconstruction_status": "PASS",
+      "engineering_status": "PASS",
+      "electron_count": 9.999999999999998,
+      "expected_electrons": 10.0,
+      "electron_count_difference": -1.7763568394002505e-15,
+      "zero_imaginary_electrons": 0.0,
+      "support": {
+        "count": 64000,
+        "nonzero_count": 63999,
+        "zero_count": 1,
+        "unique_integer_modes": true,
+        "unique_fft_bins": true,
+        "complete_fft_grid": true,
+        "fft_size": [
+          40,
+          40,
+          40
+        ],
+        "miller_min": [
+          -20,
+          -20,
+          -20
+        ],
+        "miller_max": [
+          19,
+          19,
+          19
+        ],
+        "max_q_bohr_inv": 21.765592370810612,
+        "max_q_m": [
+          -20,
+          -20,
+          -20
+        ],
+        "nyquist_representative_count": 4681,
+        "nyquist_examples": [
+          [
+            -20,
+            -20,
+            -20
+          ],
+          [
+            -20,
+            -20,
+            -19
+          ],
+          [
+            -20,
+            -20,
+            -18
+          ],
+          [
+            -20,
+            -20,
+            -17
+          ],
+          [
+            -20,
+            -20,
+            -16
+          ],
+          [
+            -20,
+            -20,
+            -15
+          ],
+          [
+            -20,
+            -20,
+            -14
+          ],
+          [
+            -20,
+            -20,
+            -13
+          ],
+          [
+            -20,
+            -20,
+            -12
+          ],
+          [
+            -20,
+            -20,
+            -11
+          ],
+          [
+            -20,
+            -20,
+            -10
+          ],
+          [
+            -20,
+            -20,
+            -9
+          ]
+        ],
+        "nyquist_policy": "Keep every native representative in native sums; never add its aliased opposite"
+      },
+      "modular_conjugacy": {
+        "status": "PASS",
+        "pairing": "modulo_fft_grid",
+        "missing_partner_count": 0,
+        "missing_partner_examples": [],
+        "normalized_l2": 2.003256349611549e-16,
+        "normalization": "native nonzero coefficient squared norm; zero/zero residual is zero",
+        "max_abs_electron_per_bohr3": 1.788112030672749e-18,
+        "maximum_m": [
+          -1,
+          -2,
+          1
+        ]
+      },
+      "strict_conjugacy": {
+        "status": "FAIL",
+        "pairing": "strict_integer_negative",
+        "missing_partner_count": 4681,
+        "missing_partner_examples": [
+          [
+            -20,
+            -20,
+            -20
+          ],
+          [
+            -20,
+            -20,
+            -19
+          ],
+          [
+            -20,
+            -20,
+            -18
+          ],
+          [
+            -20,
+            -20,
+            -17
+          ],
+          [
+            -20,
+            -20,
+            -16
+          ],
+          [
+            -20,
+            -20,
+            -15
+          ],
+          [
+            -20,
+            -20,
+            -14
+          ],
+          [
+            -20,
+            -20,
+            -13
+          ],
+          [
+            -20,
+            -20,
+            -12
+          ],
+          [
+            -20,
+            -20,
+            -11
+          ],
+          [
+            -20,
+            -20,
+            -10
+          ],
+          [
+            -20,
+            -20,
+            -9
+          ]
+        ],
+        "normalized_l2": 1.9758091259697118e-16,
+        "normalization": "native nonzero coefficient squared norm; zero/zero residual is zero",
+        "max_abs_electron_per_bohr3": 1.788112030672749e-18,
+        "maximum_m": [
+          -1,
+          -2,
+          1
+        ]
+      },
+      "native_nonzero_density_coefficient_norm": 0.10517554332685873,
+      "native_nonzero_density_l2_electron_bohr_minus_3_over_2": 3.3259427105859682,
+      "native_hartree_ha": 28.516778812881142,
+      "native_half_n_vh_ha": 28.516778812881142,
+      "independent_energy_sum_difference_ha": 0.0,
+      "historical_hartree_ha": 28.516778812881178,
+      "self_hartree_difference_ha": -3.552713678800501e-14,
+      "self_hartree_absolute_difference_ha": 3.552713678800501e-14,
+      "hartree_scope": "Electron-electron periodic Hartree only, native nonzero support, zero mean potential; not total electrostatics",
+      "density_state_binding_status": "BOUND_N_OUT_ENERGY_STATE"
+    },
+    "B_out": {
+      "electron_count_status": "PASS",
+      "zero_imaginary_status": "PASS",
+      "discrete_conjugacy_status": "PASS",
+      "reciprocal_support_status": "PASS",
+      "independent_energy_sum_status": "PASS",
+      "self_hartree_reconstruction_status": "PASS",
+      "engineering_status": "PASS",
+      "electron_count": 10.000000000000005,
+      "expected_electrons": 10.0,
+      "electron_count_difference": 5.329070518200751e-15,
+      "zero_imaginary_electrons": 0.0,
+      "support": {
+        "count": 64000,
+        "nonzero_count": 63999,
+        "zero_count": 1,
+        "unique_integer_modes": true,
+        "unique_fft_bins": true,
+        "complete_fft_grid": true,
+        "fft_size": [
+          40,
+          40,
+          40
+        ],
+        "miller_min": [
+          -20,
+          -20,
+          -20
+        ],
+        "miller_max": [
+          19,
+          19,
+          19
+        ],
+        "max_q_bohr_inv": 21.765592370810612,
+        "max_q_m": [
+          -20,
+          -20,
+          -20
+        ],
+        "nyquist_representative_count": 4681,
+        "nyquist_examples": [
+          [
+            -20,
+            -20,
+            -20
+          ],
+          [
+            -20,
+            -20,
+            -19
+          ],
+          [
+            -20,
+            -20,
+            -18
+          ],
+          [
+            -20,
+            -20,
+            -17
+          ],
+          [
+            -20,
+            -20,
+            -16
+          ],
+          [
+            -20,
+            -20,
+            -15
+          ],
+          [
+            -20,
+            -20,
+            -14
+          ],
+          [
+            -20,
+            -20,
+            -13
+          ],
+          [
+            -20,
+            -20,
+            -12
+          ],
+          [
+            -20,
+            -20,
+            -11
+          ],
+          [
+            -20,
+            -20,
+            -10
+          ],
+          [
+            -20,
+            -20,
+            -9
+          ]
+        ],
+        "nyquist_policy": "Keep every native representative in native sums; never add its aliased opposite"
+      },
+      "modular_conjugacy": {
+        "status": "PASS",
+        "pairing": "modulo_fft_grid",
+        "missing_partner_count": 0,
+        "missing_partner_examples": [],
+        "normalized_l2": 2.5962745139147826e-16,
+        "normalization": "native nonzero coefficient squared norm; zero/zero residual is zero",
+        "max_abs_electron_per_bohr3": 1.788112030672749e-18,
+        "maximum_m": [
+          -2,
+          0,
+          -1
+        ]
+      },
+      "strict_conjugacy": {
+        "status": "FAIL",
+        "pairing": "strict_integer_negative",
+        "missing_partner_count": 4681,
+        "missing_partner_examples": [
+          [
+            -20,
+            -20,
+            -20
+          ],
+          [
+            -20,
+            -20,
+            -19
+          ],
+          [
+            -20,
+            -20,
+            -18
+          ],
+          [
+            -20,
+            -20,
+            -17
+          ],
+          [
+            -20,
+            -20,
+            -16
+          ],
+          [
+            -20,
+            -20,
+            -15
+          ],
+          [
+            -20,
+            -20,
+            -14
+          ],
+          [
+            -20,
+            -20,
+            -13
+          ],
+          [
+            -20,
+            -20,
+            -12
+          ],
+          [
+            -20,
+            -20,
+            -11
+          ],
+          [
+            -20,
+            -20,
+            -10
+          ],
+          [
+            -20,
+            -20,
+            -9
+          ]
+        ],
+        "normalized_l2": 2.5563876085034993e-16,
+        "normalization": "native nonzero coefficient squared norm; zero/zero residual is zero",
+        "max_abs_electron_per_bohr3": 1.788112030672749e-18,
+        "maximum_m": [
+          -2,
+          0,
+          -1
+        ]
+      },
+      "native_nonzero_density_coefficient_norm": 0.10517554332685822,
+      "native_nonzero_density_l2_electron_bohr_minus_3_over_2": 3.3259427105859523,
+      "native_hartree_ha": 28.516778812880915,
+      "native_half_n_vh_ha": 28.516778812880915,
+      "independent_energy_sum_difference_ha": 0.0,
+      "historical_hartree_ha": 28.51677881288095,
+      "self_hartree_difference_ha": -3.552713678800501e-14,
+      "self_hartree_absolute_difference_ha": 3.552713678800501e-14,
+      "hartree_scope": "Electron-electron periodic Hartree only, native nonzero support, zero mean potential; not total electrostatics",
+      "density_state_binding_status": "BOUND_N_OUT_ENERGY_STATE"
+    },
+    "QE": {
+      "electron_count_status": "PASS",
+      "zero_imaginary_status": "PASS",
+      "discrete_conjugacy_status": "PASS",
+      "reciprocal_support_status": "PASS",
+      "independent_energy_sum_status": "PASS",
+      "self_hartree_reconstruction_status": "PASS",
+      "engineering_status": "PASS",
+      "electron_count": 10.000000000000002,
+      "expected_electrons": 10.0,
+      "electron_count_difference": 1.7763568394002505e-15,
+      "zero_imaginary_electrons": 0.0,
+      "support": {
+        "count": 22119,
+        "nonzero_count": 22118,
+        "zero_count": 1,
+        "unique_integer_modes": true,
+        "unique_fft_bins": true,
+        "complete_fft_grid": false,
+        "fft_size": [
+          40,
+          40,
+          40
+        ],
+        "miller_min": [
+          -17,
+          -17,
+          -17
+        ],
+        "miller_max": [
+          17,
+          17,
+          17
+        ],
+        "max_q_bohr_inv": 10.919011913408623,
+        "max_q_m": [
+          -17,
+          -3,
+          -2
+        ],
+        "nyquist_representative_count": 0,
+        "nyquist_examples": [],
+        "nyquist_policy": "Keep every native representative in native sums; never add its aliased opposite"
+      },
+      "modular_conjugacy": {
+        "status": "PASS",
+        "pairing": "modulo_fft_grid",
+        "missing_partner_count": 0,
+        "missing_partner_examples": [],
+        "normalized_l2": 4.571806078275735e-17,
+        "normalization": "native nonzero coefficient squared norm; zero/zero residual is zero",
+        "max_abs_electron_per_bohr3": 4.4702800766818725e-19,
+        "maximum_m": [
+          -5,
+          -1,
+          1
+        ]
+      },
+      "strict_conjugacy": {
+        "status": "PASS",
+        "pairing": "strict_integer_negative",
+        "missing_partner_count": 0,
+        "missing_partner_examples": [],
+        "normalized_l2": 4.571806078275735e-17,
+        "normalization": "native nonzero coefficient squared norm; zero/zero residual is zero",
+        "max_abs_electron_per_bohr3": 4.4702800766818725e-19,
+        "maximum_m": [
+          -5,
+          -1,
+          1
+        ]
+      },
+      "native_nonzero_density_coefficient_norm": 0.10517555025935894,
+      "native_nonzero_density_l2_electron_bohr_minus_3_over_2": 3.325942929810874,
+      "native_hartree_ha": 28.516784779924716,
+      "native_half_n_vh_ha": 28.516784779924716,
+      "independent_energy_sum_difference_ha": 0.0,
+      "historical_hartree_ha": 28.51678477992461,
+      "self_hartree_difference_ha": 1.0658141036401503e-13,
+      "self_hartree_absolute_difference_ha": 1.0658141036401503e-13,
+      "hartree_scope": "Electron-electron periodic Hartree only, native nonzero support, zero mean potential; not total electrostatics",
+      "density_state_binding_status": "BOUND_SAVED_OUTPUT_RHO_TAGGED_SOURCE_CONVENTION"
+    }
+  },
+  "comparisons": {
+    "A_out_minus_QE": {
+      "common_G_density_comparison_status": "MEASURED",
+      "reciprocal_support_status": "PASS",
+      "common_nonzero_count": 22118,
+      "literal_intersection_nonzero_count": 22118,
+      "nyquist_ambiguous_common_count": 0,
+      "nyquist_ambiguous_examples": [],
+      "common_missing_strict_negative_count": 0,
+      "common_missing_strict_negative_examples": [],
+      "left_exclusive_nonzero_count": 41881,
+      "right_exclusive_nonzero_count": 0,
+      "exclusive_scope": "Native support outside unambiguous common set, including retained Nyquist boundary representatives",
+      "density": {
+        "status": "MEASURED",
+        "mode_count": 22118,
+        "projected_l2": 2.966217396996639e-07,
+        "projected_l2_unit": "electron bohr^(-3/2)",
+        "relative_l2": 8.918425419781059e-08,
+        "relative_l2_status": "MEASURED",
+        "reference_nonzero_coefficient_norm_squared": 0.01106189637235894,
+        "denominator_scope": "Only right coefficients on this common nonzero set; no G=0 and no max(...,1)",
+        "maximum": {
+          "m": [
+            0,
+            1,
+            -1
+          ],
+          "q_bohr_inv": [
+            0.0,
+            0.6283185307179586,
+            -0.6283185307179586
+          ],
+          "left_real": 0.0066626219879408165,
+          "left_imag": 0.0036628323064420262,
+          "right_real": 0.006662623535508933,
+          "right_imag": 0.0036628331553808452,
+          "difference_real": -1.5475681161905563e-09,
+          "difference_imag": -8.489388189820979e-10,
+          "abs_difference": 1.7651244127891684e-09
+        },
+        "coefficient_unit": "electron/bohr^3"
+      },
+      "hartree_potential": {
+        "status": "MEASURED",
+        "mode_count": 22118,
+        "projected_l2": 4.006815319676432e-06,
+        "projected_l2_unit": "Ha bohr^(3/2)",
+        "relative_l2": 1.4423974197648808e-07,
+        "relative_l2_status": "MEASURED",
+        "reference_nonzero_coefficient_norm_squared": 0.7716649553874604,
+        "denominator_scope": "Only right coefficients on this common nonzero set; no G=0 and no max(...,1)",
+        "maximum": {
+          "m": [
+            0,
+            1,
+            0
+          ],
+          "q_bohr_inv": [
+            0.0,
+            0.6283185307179586,
+            0.0
+          ],
+          "left_real": 0.03364548605083807,
+          "left_imag": -0.26631306791622666,
+          "right_real": 0.033645490356817014,
+          "right_imag": -0.26631310503053124,
+          "difference_real": -4.305978941465671e-09,
+          "difference_imag": 3.711430457409293e-08,
+          "abs_difference": 3.73632581376796e-08
+        },
+        "coefficient_unit": "Ha"
+      },
+      "potential_source": "Independent Poisson construction from stored density; native potential not extracted",
+      "norm_coverage": {
+        "left": {
+          "native_nonzero_coefficient_norm": 0.10517554332685873,
+          "common_nonzero_coefficient_norm": 0.10517554332685873,
+          "common_norm_fraction": 1.0,
+          "status": "MEASURED",
+          "scope": "Norm coverage only, not physical precision/correctness"
+        },
+        "right": {
+          "native_nonzero_coefficient_norm": 0.10517555025935894,
+          "common_nonzero_coefficient_norm": 0.10517555025935894,
+          "common_norm_fraction": 1.0,
+          "status": "MEASURED",
+          "scope": "Norm coverage only, not physical precision/correctness"
+        }
+      },
+      "hartree_decomposition": {
+        "left_common_ha": 28.516778812881142,
+        "right_common_ha": 28.516784779924716,
+        "common_difference_ha": -5.967043573917863e-06,
+        "left_exclusive_ha": 1.373791116226432e-32,
+        "right_exclusive_ha": 0.0,
+        "common_linear_cross_term_ha": -5.967044018496902e-06,
+        "common_nonnegative_quadratic_ha": 4.4475497182698777e-13,
+        "common_cross_decomposition_difference_ha": -1.7593297830945445e-16,
+        "native_difference_from_parts_ha": -5.967043573917863e-06,
+        "native_difference_ha": -5.967043573917863e-06,
+        "support_decomposition_difference_ha": 0.0,
+        "support_decomposition_status": "PASS",
+        "cross_decomposition_status": "PASS",
+        "shell_native_sum_difference_ha": -1.2984405217686401e-15,
+        "shell_sum_status": "PASS"
+      },
+      "shells": [
+        {
+          "lower_exclusive_ha": 0.0,
+          "upper_inclusive_ha": 1.0,
+          "upper_is_infinity": false,
+          "common_count": 56,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 18.42027645137639,
+          "right_common_ha": 18.420281747820063,
+          "common_difference_ha": -5.296443671198858e-06,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -5.296444098591308e-06,
+          "common_nonnegative_quadratic_ha": 4.2561574839299424e-13,
+          "common_cross_decomposition_difference_ha": 1.776701581809783e-15,
+          "native_difference_from_parts_ha": -5.296443671198858e-06,
+          "cumulative_signed_native_difference_ha": -5.296443671198858e-06
+        },
+        {
+          "lower_exclusive_ha": 1.0,
+          "upper_inclusive_ha": 5.0,
+          "upper_is_infinity": false,
+          "common_count": 458,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 9.271216764860394,
+          "right_common_ha": 9.271217272736816,
+          "common_difference_ha": -5.078764218069409e-07,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -5.078764298919199e-07,
+          "common_nonnegative_quadratic_ha": 8.82002918123048e-15,
+          "common_cross_decomposition_difference_ha": -7.350502153087167e-16,
+          "native_difference_from_parts_ha": -5.078764218069409e-07,
+          "cumulative_signed_native_difference_ha": -5.804320093005799e-06
+        },
+        {
+          "lower_exclusive_ha": 5.0,
+          "upper_inclusive_ha": 15.0,
+          "upper_is_infinity": false,
+          "common_count": 2262,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 0.7974828328173161,
+          "right_common_ha": 0.7974829962954131,
+          "common_difference_ha": -1.6347809694838844e-07,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -1.6347810718981367e-07,
+          "common_nonnegative_quadratic_ha": 1.0162424341560405e-14,
+          "common_cross_decomposition_difference_ha": 7.900088363605687e-17,
+          "native_difference_from_parts_ha": -1.6347809694838844e-07,
+          "cumulative_signed_native_difference_ha": -5.967798189954188e-06
+        },
+        {
+          "lower_exclusive_ha": 15.0,
+          "upper_inclusive_ha": 30.0,
+          "upper_is_infinity": false,
+          "common_count": 5032,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 0.025838357436251642,
+          "right_common_ha": 0.02583835638339173,
+          "common_difference_ha": 1.0528599103665215e-09,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": 1.0528597640395504e-09,
+          "common_nonnegative_quadratic_ha": 1.4469713750262667e-16,
+          "common_cross_decomposition_difference_ha": 1.629833665582633e-18,
+          "native_difference_from_parts_ha": 1.0528599103665215e-09,
+          "cumulative_signed_native_difference_ha": -5.966745330043821e-06
+        },
+        {
+          "lower_exclusive_ha": 30.0,
+          "upper_inclusive_ha": 60.0,
+          "upper_is_infinity": false,
+          "common_count": 14310,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 0.001964406390788139,
+          "right_common_ha": 0.0019644066890307146,
+          "common_difference_ha": -2.9824257560123746e-10,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -2.982425878987343e-10,
+          "common_nonnegative_quadratic_ha": 1.2072773699992717e-17,
+          "common_cross_decomposition_difference_ha": 2.2472315554200153e-19,
+          "native_difference_from_parts_ha": -2.9824257560123746e-10,
+          "cumulative_signed_native_difference_ha": -5.967043572619422e-06
+        },
+        {
+          "lower_exclusive_ha": 60.0,
+          "upper_inclusive_ha": null,
+          "upper_is_infinity": true,
+          "common_count": 0,
+          "left_exclusive_count": 41881,
+          "right_exclusive_count": 0,
+          "left_common_ha": 0.0,
+          "right_common_ha": 0.0,
+          "common_difference_ha": 0.0,
+          "left_exclusive_ha": 1.373791116226432e-32,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": 0.0,
+          "common_nonnegative_quadratic_ha": 0.0,
+          "common_cross_decomposition_difference_ha": 0.0,
+          "native_difference_from_parts_ha": 1.373791116226432e-32,
+          "cumulative_signed_native_difference_ha": -5.967043572619422e-06
+        }
+      ],
+      "identical_native_support_density_difference": null,
+      "full_cross_code_realspace_density_status": "NOT_ASSESSED",
+      "complex_difference_replay": "iter_common_differences on complete canonical coefficients; no amplitude-only or fitted phase comparison",
+      "left": "A_out",
+      "right": "QE",
+      "historical_total_energy_difference_ha": 2.2947777679860337e-05,
+      "other_energy_terms_undecomposed_difference_ha": 2.89148212537782e-05,
+      "residual_scope": "Remaining undecomposed energy-term difference; not attributed to SOC/nonlocal/radial error"
+    },
+    "B_out_minus_QE": {
+      "common_G_density_comparison_status": "MEASURED",
+      "reciprocal_support_status": "PASS",
+      "common_nonzero_count": 22118,
+      "literal_intersection_nonzero_count": 22118,
+      "nyquist_ambiguous_common_count": 0,
+      "nyquist_ambiguous_examples": [],
+      "common_missing_strict_negative_count": 0,
+      "common_missing_strict_negative_examples": [],
+      "left_exclusive_nonzero_count": 41881,
+      "right_exclusive_nonzero_count": 0,
+      "exclusive_scope": "Native support outside unambiguous common set, including retained Nyquist boundary representatives",
+      "density": {
+        "status": "MEASURED",
+        "mode_count": 22118,
+        "projected_l2": 2.966218209037486e-07,
+        "projected_l2_unit": "electron bohr^(-3/2)",
+        "relative_l2": 8.918427861316781e-08,
+        "relative_l2_status": "MEASURED",
+        "reference_nonzero_coefficient_norm_squared": 0.01106189637235894,
+        "denominator_scope": "Only right coefficients on this common nonzero set; no G=0 and no max(...,1)",
+        "maximum": {
+          "m": [
+            0,
+            1,
+            -1
+          ],
+          "q_bohr_inv": [
+            0.0,
+            0.6283185307179586,
+            -0.6283185307179586
+          ],
+          "left_real": 0.006662621987940264,
+          "left_imag": 0.0036628323064419365,
+          "right_real": 0.006662623535508933,
+          "right_imag": 0.0036628331553808452,
+          "difference_real": -1.5475686686999834e-09,
+          "difference_imag": -8.489389087540378e-10,
+          "abs_difference": 1.7651249403762713e-09
+        },
+        "coefficient_unit": "electron/bohr^3"
+      },
+      "hartree_potential": {
+        "status": "MEASURED",
+        "mode_count": 22118,
+        "projected_l2": 4.00681462141577e-06,
+        "projected_l2_unit": "Ha bohr^(3/2)",
+        "relative_l2": 1.4423971684008185e-07,
+        "relative_l2_status": "MEASURED",
+        "reference_nonzero_coefficient_norm_squared": 0.7716649553874604,
+        "denominator_scope": "Only right coefficients on this common nonzero set; no G=0 and no max(...,1)",
+        "maximum": {
+          "m": [
+            0,
+            -1,
+            0
+          ],
+          "q_bohr_inv": [
+            0.0,
+            -0.6283185307179586,
+            0.0
+          ],
+          "left_real": 0.0336454860508618,
+          "left_imag": 0.2663130679162814,
+          "right_real": 0.033645490356817014,
+          "right_imag": 0.26631310503053124,
+          "difference_real": -4.30595521044852e-09,
+          "difference_imag": -3.711424984009781e-08,
+          "abs_difference": 3.736320103347128e-08
+        },
+        "coefficient_unit": "Ha"
+      },
+      "potential_source": "Independent Poisson construction from stored density; native potential not extracted",
+      "norm_coverage": {
+        "left": {
+          "native_nonzero_coefficient_norm": 0.10517554332685822,
+          "common_nonzero_coefficient_norm": 0.10517554332685822,
+          "common_norm_fraction": 1.0,
+          "status": "MEASURED",
+          "scope": "Norm coverage only, not physical precision/correctness"
+        },
+        "right": {
+          "native_nonzero_coefficient_norm": 0.10517555025935894,
+          "common_nonzero_coefficient_norm": 0.10517555025935894,
+          "common_norm_fraction": 1.0,
+          "status": "MEASURED",
+          "scope": "Norm coverage only, not physical precision/correctness"
+        }
+      },
+      "hartree_decomposition": {
+        "left_common_ha": 28.516778812880915,
+        "right_common_ha": 28.516784779924716,
+        "common_difference_ha": -5.967043801291538e-06,
+        "left_exclusive_ha": 1.3026721902541872e-32,
+        "right_exclusive_ha": 0.0,
+        "common_linear_cross_term_ha": -5.967044246936141e-06,
+        "common_nonnegative_quadratic_ha": 4.4475512107207236e-13,
+        "common_cross_decomposition_difference_ha": 8.894820034059496e-16,
+        "native_difference_from_parts_ha": -5.967043801291538e-06,
+        "native_difference_ha": -5.967043801291538e-06,
+        "support_decomposition_difference_ha": 0.0,
+        "support_decomposition_status": "PASS",
+        "cross_decomposition_status": "PASS",
+        "shell_native_sum_difference_ha": 3.9278476304804855e-15,
+        "shell_sum_status": "PASS"
+      },
+      "shells": [
+        {
+          "lower_exclusive_ha": 0.0,
+          "upper_inclusive_ha": 1.0,
+          "upper_is_infinity": false,
+          "common_count": 56,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 18.420276451375923,
+          "right_common_ha": 18.420281747820063,
+          "common_difference_ha": -5.296444140157064e-06,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -5.296444563393463e-06,
+          "common_nonnegative_quadratic_ha": 4.256159078842967e-13,
+          "common_cross_decomposition_difference_ha": -2.3795086723493036e-15,
+          "native_difference_from_parts_ha": -5.296444140157064e-06,
+          "cumulative_signed_native_difference_ha": -5.296444140157064e-06
+        },
+        {
+          "lower_exclusive_ha": 1.0,
+          "upper_inclusive_ha": 5.0,
+          "upper_is_infinity": false,
+          "common_count": 458,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 9.271216764860577,
+          "right_common_ha": 9.271217272736816,
+          "common_difference_ha": -5.078762388421865e-07,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -5.078762469342684e-07,
+          "common_nonnegative_quadratic_ha": 8.820020291860782e-15,
+          "common_cross_decomposition_difference_ha": -7.279383149253328e-16,
+          "native_difference_from_parts_ha": -5.078762388421865e-07,
+          "cumulative_signed_native_difference_ha": -5.80432037899925e-06
+        },
+        {
+          "lower_exclusive_ha": 5.0,
+          "upper_inclusive_ha": 15.0,
+          "upper_is_infinity": false,
+          "common_count": 2262,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 0.7974828328173604,
+          "right_common_ha": 0.7974829962954131,
+          "common_difference_ha": -1.6347805265048976e-07,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -1.6347806287792314e-07,
+          "common_nonnegative_quadratic_ha": 1.01624226941459e-14,
+          "common_cross_decomposition_difference_ha": 6.501067867427401e-17,
+          "native_difference_from_parts_ha": -1.6347805265048976e-07,
+          "cumulative_signed_native_difference_ha": -5.96779843164974e-06
+        },
+        {
+          "lower_exclusive_ha": 15.0,
+          "upper_inclusive_ha": 30.0,
+          "upper_is_infinity": false,
+          "common_count": 5032,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 0.02583835743626029,
+          "right_common_ha": 0.02583835638339173,
+          "common_difference_ha": 1.0528685596977727e-09,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": 1.0528684107390255e-09,
+          "common_nonnegative_quadratic_ha": 1.4469746006166805e-16,
+          "common_cross_decomposition_difference_ha": 4.261287100015926e-18,
+          "native_difference_from_parts_ha": 1.0528685596977727e-09,
+          "cumulative_signed_native_difference_ha": -5.966745563090042e-06
+        },
+        {
+          "lower_exclusive_ha": 30.0,
+          "upper_inclusive_ha": 60.0,
+          "upper_is_infinity": false,
+          "common_count": 14310,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 0.0019644063907885852,
+          "right_common_ha": 0.0019644066890307146,
+          "common_difference_ha": -2.9824212934362326e-10,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -2.982421412262042e-10,
+          "common_nonnegative_quadratic_ha": 1.2072741707302224e-17,
+          "common_cross_decomposition_difference_ha": -1.9016080951375695e-19,
+          "native_difference_from_parts_ha": -2.9824212934362326e-10,
+          "cumulative_signed_native_difference_ha": -5.967043805219386e-06
+        },
+        {
+          "lower_exclusive_ha": 60.0,
+          "upper_inclusive_ha": null,
+          "upper_is_infinity": true,
+          "common_count": 0,
+          "left_exclusive_count": 41881,
+          "right_exclusive_count": 0,
+          "left_common_ha": 0.0,
+          "right_common_ha": 0.0,
+          "common_difference_ha": 0.0,
+          "left_exclusive_ha": 1.3026721902541872e-32,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": 0.0,
+          "common_nonnegative_quadratic_ha": 0.0,
+          "common_cross_decomposition_difference_ha": 0.0,
+          "native_difference_from_parts_ha": 1.3026721902541872e-32,
+          "cumulative_signed_native_difference_ha": -5.967043805219386e-06
+        }
+      ],
+      "identical_native_support_density_difference": null,
+      "full_cross_code_realspace_density_status": "NOT_ASSESSED",
+      "complex_difference_replay": "iter_common_differences on complete canonical coefficients; no amplitude-only or fitted phase comparison",
+      "left": "B_out",
+      "right": "QE",
+      "historical_total_energy_difference_ha": 2.2947777686965765e-05,
+      "other_energy_terms_undecomposed_difference_ha": 2.8914821488257303e-05,
+      "residual_scope": "Remaining undecomposed energy-term difference; not attributed to SOC/nonlocal/radial error"
+    },
+    "A_out_minus_B_out": {
+      "common_G_density_comparison_status": "MEASURED",
+      "reciprocal_support_status": "PASS",
+      "common_nonzero_count": 59318,
+      "literal_intersection_nonzero_count": 63999,
+      "nyquist_ambiguous_common_count": 4681,
+      "nyquist_ambiguous_examples": [
+        [
+          -20,
+          -20,
+          -20
+        ],
+        [
+          -20,
+          -20,
+          -19
+        ],
+        [
+          -20,
+          -20,
+          -18
+        ],
+        [
+          -20,
+          -20,
+          -17
+        ],
+        [
+          -20,
+          -20,
+          -16
+        ],
+        [
+          -20,
+          -20,
+          -15
+        ],
+        [
+          -20,
+          -20,
+          -14
+        ],
+        [
+          -20,
+          -20,
+          -13
+        ],
+        [
+          -20,
+          -20,
+          -12
+        ],
+        [
+          -20,
+          -20,
+          -11
+        ],
+        [
+          -20,
+          -20,
+          -10
+        ],
+        [
+          -20,
+          -20,
+          -9
+        ]
+      ],
+      "common_missing_strict_negative_count": 0,
+      "common_missing_strict_negative_examples": [],
+      "left_exclusive_nonzero_count": 4681,
+      "right_exclusive_nonzero_count": 4681,
+      "exclusive_scope": "Native support outside unambiguous common set, including retained Nyquist boundary representatives",
+      "density": {
+        "status": "MEASURED",
+        "mode_count": 59318,
+        "projected_l2": 5.082550682907394e-13,
+        "projected_l2_unit": "electron bohr^(-3/2)",
+        "relative_l2": 1.5281534064704227e-13,
+        "relative_l2_status": "MEASURED",
+        "reference_nonzero_coefficient_norm_squared": 0.011061894914099831,
+        "denominator_scope": "Only right coefficients on this common nonzero set; no G=0 and no max(...,1)",
+        "maximum": {
+          "m": [
+            1,
+            2,
+            3
+          ],
+          "q_bohr_inv": [
+            0.6283185307179586,
+            1.2566370614359172,
+            1.8849555921538759
+          ],
+          "left_real": -0.0036723714244383627,
+          "left_imag": 0.001454010823786306,
+          "right_real": -0.0036723714244348135,
+          "right_imag": 0.0014540108237861811,
+          "difference_real": -3.5492442318485473e-15,
+          "difference_imag": 1.249000902703301e-16,
+          "abs_difference": 3.551441207433923e-15
+        },
+        "coefficient_unit": "electron/bohr^3"
+      },
+      "hartree_potential": {
+        "status": "MEASURED",
+        "mode_count": 59318,
+        "projected_l2": 5.200650865003606e-12,
+        "projected_l2_unit": "Ha bohr^(3/2)",
+        "relative_l2": 1.872161754631111e-13,
+        "relative_l2_status": "MEASURED",
+        "reference_nonzero_coefficient_norm_squared": 0.7716647474701558,
+        "denominator_scope": "Only right coefficients on this common nonzero set; no G=0 and no max(...,1)",
+        "maximum": {
+          "m": [
+            0,
+            1,
+            0
+          ],
+          "q_bohr_inv": [
+            0.0,
+            0.6283185307179586,
+            0.0
+          ],
+          "left_real": 0.03364548605083807,
+          "left_imag": -0.26631306791622666,
+          "right_real": 0.0336454860508618,
+          "right_imag": -0.2663130679162814,
+          "difference_real": -2.373101715136272e-14,
+          "difference_imag": 5.473399511402022e-14,
+          "abs_difference": 5.965711521838665e-14
+        },
+        "coefficient_unit": "Ha"
+      },
+      "potential_source": "Independent Poisson construction from stored density; native potential not extracted",
+      "norm_coverage": {
+        "left": {
+          "native_nonzero_coefficient_norm": 0.10517554332685873,
+          "common_nonzero_coefficient_norm": 0.10517554332685873,
+          "common_norm_fraction": 1.0,
+          "status": "MEASURED",
+          "scope": "Norm coverage only, not physical precision/correctness"
+        },
+        "right": {
+          "native_nonzero_coefficient_norm": 0.10517554332685822,
+          "common_nonzero_coefficient_norm": 0.10517554332685822,
+          "common_norm_fraction": 1.0,
+          "status": "MEASURED",
+          "scope": "Norm coverage only, not physical precision/correctness"
+        }
+      },
+      "hartree_decomposition": {
+        "left_common_ha": 28.516778812881142,
+        "right_common_ha": 28.516778812880915,
+        "common_difference_ha": 2.2737367544323206e-13,
+        "left_exclusive_ha": 1.409557041336273e-33,
+        "right_exclusive_ha": 1.1661117358952496e-33,
+        "common_linear_cross_term_ha": 2.284390912742084e-13,
+        "common_nonnegative_quadratic_ha": 9.414971260389909e-25,
+        "common_cross_decomposition_difference_ha": -1.0654158319178303e-15,
+        "native_difference_from_parts_ha": 2.2737367544323206e-13,
+        "native_difference_ha": 2.2737367544323206e-13,
+        "support_decomposition_difference_ha": 0.0,
+        "support_decomposition_status": "PASS",
+        "cross_decomposition_status": "PASS",
+        "shell_native_sum_difference_ha": -5.2262881522491256e-15,
+        "shell_sum_status": "PASS"
+      },
+      "shells": [
+        {
+          "lower_exclusive_ha": 0.0,
+          "upper_inclusive_ha": 1.0,
+          "upper_is_infinity": false,
+          "common_count": 56,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 18.42027645137639,
+          "right_common_ha": 18.420276451375923,
+          "common_difference_ha": 4.689582056016661e-13,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": 4.648019950969079e-13,
+          "common_nonnegative_quadratic_ha": 6.841740638445013e-25,
+          "common_cross_decomposition_difference_ha": 4.156210504074058e-15,
+          "native_difference_from_parts_ha": 4.689582056016661e-13,
+          "cumulative_signed_native_difference_ha": 4.689582056016661e-13
+        },
+        {
+          "lower_exclusive_ha": 1.0,
+          "upper_inclusive_ha": 5.0,
+          "upper_is_infinity": false,
+          "common_count": 458,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 9.271216764860394,
+          "right_common_ha": 9.271216764860577,
+          "common_difference_ha": -1.829647544582258e-13,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -1.829576426167905e-13,
+          "common_nonnegative_quadratic_ha": 2.4832552764073e-25,
+          "common_cross_decomposition_difference_ha": -7.111841683625495e-18,
+          "native_difference_from_parts_ha": -1.829647544582258e-13,
+          "cumulative_signed_native_difference_ha": 2.859934511434403e-13
+        },
+        {
+          "lower_exclusive_ha": 5.0,
+          "upper_inclusive_ha": 15.0,
+          "upper_is_infinity": false,
+          "common_count": 2262,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 0.7974828328173161,
+          "right_common_ha": 0.7974828328173604,
+          "common_difference_ha": -4.4297898682543746e-14,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -4.431188890997471e-14,
+          "common_nonnegative_quadratic_ha": 7.130363947744115e-27,
+          "common_cross_decomposition_difference_ha": 1.3990227423833522e-17,
+          "native_difference_from_parts_ha": -4.4297898682543746e-14,
+          "cumulative_signed_native_difference_ha": 2.416955524608966e-13
+        },
+        {
+          "lower_exclusive_ha": 15.0,
+          "upper_inclusive_ha": 30.0,
+          "upper_is_infinity": false,
+          "common_count": 5032,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 0.025838357436251642,
+          "right_common_ha": 0.02583835743626029,
+          "common_difference_ha": -8.64933125122036e-15,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -8.646699797859859e-15,
+          "common_nonnegative_quadratic_ha": 1.8162804595940495e-27,
+          "common_cross_decomposition_difference_ha": -2.631453362317207e-18,
+          "native_difference_from_parts_ha": -8.64933125122036e-15,
+          "cumulative_signed_native_difference_ha": 2.330462212096762e-13
+        },
+        {
+          "lower_exclusive_ha": 30.0,
+          "upper_inclusive_ha": 60.0,
+          "upper_is_infinity": false,
+          "common_count": 14310,
+          "left_exclusive_count": 0,
+          "right_exclusive_count": 0,
+          "left_common_ha": 0.001964406390788139,
+          "right_common_ha": 0.0019644063907885852,
+          "common_difference_ha": -4.462576141950336e-16,
+          "left_exclusive_ha": 0.0,
+          "right_exclusive_ha": 0.0,
+          "common_linear_cross_term_ha": -4.466724980743838e-16,
+          "common_nonnegative_quadratic_ha": 5.086688194902434e-29,
+          "common_cross_decomposition_difference_ha": 4.1488387929928113e-19,
+          "native_difference_from_parts_ha": -4.462576141950336e-16,
+          "cumulative_signed_native_difference_ha": 2.325999635954812e-13
+        },
+        {
+          "lower_exclusive_ha": 60.0,
+          "upper_inclusive_ha": null,
+          "upper_is_infinity": true,
+          "common_count": 37200,
+          "left_exclusive_count": 4681,
+          "right_exclusive_count": 4681,
+          "left_common_ha": 1.2328354120928046e-32,
+          "right_common_ha": 1.1860610166646621e-32,
+          "common_difference_ha": 4.6774395428142525e-34,
+          "left_exclusive_ha": 1.409557041336273e-33,
+          "right_exclusive_ha": 1.1661117358952496e-33,
+          "common_linear_cross_term_ha": -2.279672848017552e-32,
+          "common_nonnegative_quadratic_ha": 2.3264472434456944e-32,
+          "common_cross_decomposition_difference_ha": 1.3684555315672042e-48,
+          "native_difference_from_parts_ha": 7.111892597224487e-34,
+          "cumulative_signed_native_difference_ha": 2.325999635954812e-13
+        }
+      ],
+      "identical_native_support_density_difference": {
+        "status": "MEASURED_ON_IDENTICAL_NATIVE_SUPPORT",
+        "mode_count_including_zero": 64000,
+        "density_l2_including_zero": 5.082552080419824e-13,
+        "density_l2_unit": "electron bohr^(-3/2)",
+        "scope": "Full identical native support, including original Nyquist representatives; no absent-mode zero fill"
+      },
+      "full_cross_code_realspace_density_status": "NOT_ASSESSED",
+      "complex_difference_replay": "iter_common_differences on complete canonical coefficients; no amplitude-only or fitted phase comparison",
+      "left": "A_out",
+      "right": "B_out",
+      "historical_total_energy_difference_ha": -7.105427357601002e-15,
+      "other_energy_terms_undecomposed_difference_ha": -2.3447910280083306e-13,
+      "residual_scope": "Remaining undecomposed energy-term difference; not attributed to SOC/nonlocal/radial error"
+    }
+  },
+  "engineering_status": "PASS",
+  "numerical_agreement_status": "REVIEW_REQUIRED",
+  "physical_convergence_status": "NOT_ESTABLISHED",
+  "residual_attribution_status": "NOT_ESTABLISHED",
+  "ieee_warning_origin_status": "NOT_LOCALIZED",
+  "new_scf_status": "NOT_RUN",
+  "new_eigensolve_status": "NOT_RUN",
+  "full_cross_code_realspace_density_status": "NOT_ASSESSED",
+  "summation": "Float64 complex inputs, real math.fsum reductions; no correction, filtering or missing-mode zero fill",
+  "source_binding_scope": "Raw-file/run/state certification is separate from public coefficient arithmetic replay",
+  "in_only_scope": "Not published; complete in/out closure and n_in EH remain local-array runner measurements"
+}

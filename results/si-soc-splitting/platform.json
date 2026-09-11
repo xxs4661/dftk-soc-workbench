@@ -1,0 +1,8 @@
+{
+  "system": "Darwin",
+  "release": "25.6.0",
+  "machine": "arm64",
+  "macos_version": "26.6.2",
+  "python_version": "3.12.14",
+  "scope": "Local prescribed CPU execution; no new environment installation"
+}

@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "scope": "Post-failure Python tests and public recorded arithmetic; no numerical workers. An expected nonzero remains a failure/incomplete scientific result.",
+  "run_id": "final-delivery-20260909T120416Z-004e6d72",
+  "checks": [
+    {
+      "name": "new_python",
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/soc_core_memory",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expectation_met": true,
+      "status": "PASS",
+      "logs": [
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/new_python.stdout",
+          "sha256": "91ed957e4b8bad7d84a54f3752dbf6580772041304dc4d3926dee78bdeda0082"
+        },
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/new_python.stderr",
+          "sha256": "963048d426b016c2f1d519d43dbd970c47376a010c85c69cfd3a6c0ee2408d8d"
+        }
+      ],
+      "actual_tests": 81
+    },
+    {
+      "name": "static_launcher",
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_soc_core_memory.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expectation_met": true,
+      "status": "PASS",
+      "logs": [
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/static_launcher.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/static_launcher.stderr",
+          "sha256": "d3c444d6f9bf6997e847e950633f0c096282fefb79c13d1c9875778f143dfa50"
+        }
+      ],
+      "actual_tests": 37
+    },
+    {
+      "name": "old_publication_synthetic",
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_publication.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expectation_met": true,
+      "status": "PASS",
+      "logs": [
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/old_publication_synthetic.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/old_publication_synthetic.stderr",
+          "sha256": "be13f23663c0fb8e5407d3cc086364d8d4ee15c88673306efdcba8e741fb8319"
+        }
+      ],
+      "actual_tests": 23
+    },
+    {
+      "name": "old_si_drivers",
+      "command": [
+        "python3.12",
+        "-B",
+        "-c",
+        "import unittest; l=unittest.TestLoader(); s=unittest.TestSuite([l.discover('tests',pattern='test_si_soc_driver.py'),l.discover('tests',pattern='test_si_sensitivity_driver.py')]); r=unittest.TextTestRunner(verbosity=2).run(s); raise SystemExit(0 if r.wasSuccessful() else 1)"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expectation_met": true,
+      "status": "PASS",
+      "logs": [
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/old_si_drivers.stdout",
+          "sha256": "80ca676277dd4e016eead75d3f0d056072cef637fa6eb65d23c529cfec1c15b6"
+        },
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/old_si_drivers.stderr",
+          "sha256": "2579db05d117610f3dc856071fb0f32071de08baea6f0e01483e57a06e2c455d"
+        }
+      ],
+      "actual_tests": 24
+    },
+    {
+      "name": "delivery_replay",
+      "command": [
+        "python3.12",
+        "-B",
+        "benchmarks/soc-core-memory-v1/replay_delivery.py",
+        "--root",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expectation_met": true,
+      "status": "PASS",
+      "logs": [
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/delivery_replay.stdout",
+          "sha256": "cbb0d11f465dc6fc20bf3b8a0b0195628dd12112d0675185dc741dfe17ba2d5c"
+        },
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/delivery_replay.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "actual_result": {
+        "schema_version": 1,
+        "phase": "9A",
+        "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+        "replay_status": "PASS",
+        "replay_exit_code": 0,
+        "exit_code": 0,
+        "mode": "RECORDED_DELIVERY",
+        "delivery_status": "PARTIAL",
+        "end_to_end_status": "FAIL",
+        "time_status": "PERFORMANCE_REVIEW_REQUIRED",
+        "k6_budget_status": "INSUFFICIENT_EVIDENCE",
+        "k6_known_subtotal_bytes": 6788850928,
+        "DFTK_K6_SCF": "NOT_RUN",
+        "endpoints": {
+          "scf_status": "FAIL",
+          "scf_numerical_execution": "NOT_STARTED",
+          "native_exit_code": 1,
+          "recorder_exit_code": 9,
+          "gamma_status": "BLOCKED_PARENT",
+          "end_to_end_status": "FAIL",
+          "resource_scope": "Parse/startup failure only; not an SCF peak"
+        },
+        "tests": {
+          "status": "RECORDED_TEST_METADATA_VALIDATED",
+          "execution": "NOT_RERUN",
+          "original_publication_failure_count": 2
+        },
+        "scope": "Public recorded arithmetic and exact original parse-failure/source binding only; static array/owner identity remains RUNNER_REPORTED; no numerical workers, tests, SCF or Gamma executed"
+      }
+    },
+    {
+      "name": "strict_endpoints",
+      "command": [
+        "python3.12",
+        "-B",
+        "benchmarks/soc-core-memory-v1/replay_delivery.py",
+        "--root",
+        ".",
+        "--require-endpoints"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "expectation_met": true,
+      "status": "INCOMPLETE_ENDPOINT",
+      "logs": [
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/strict_endpoints.stdout",
+          "sha256": "61711ccb570d0d6bcd87097d45d18b1484721e452fcc132212789affb3640548"
+        },
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/strict_endpoints.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "actual_result": {
+        "schema_version": 1,
+        "phase": "9A",
+        "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+        "replay_status": "PASS",
+        "replay_exit_code": 0,
+        "exit_code": 1,
+        "mode": "REQUIRE_ENDPOINTS",
+        "delivery_status": "PARTIAL",
+        "end_to_end_status": "FAIL",
+        "time_status": "PERFORMANCE_REVIEW_REQUIRED",
+        "k6_budget_status": "INSUFFICIENT_EVIDENCE",
+        "k6_known_subtotal_bytes": 6788850928,
+        "DFTK_K6_SCF": "NOT_RUN",
+        "endpoints": {
+          "scf_status": "FAIL",
+          "scf_numerical_execution": "NOT_STARTED",
+          "native_exit_code": 1,
+          "recorder_exit_code": 9,
+          "gamma_status": "BLOCKED_PARENT",
+          "end_to_end_status": "FAIL",
+          "resource_scope": "Parse/startup failure only; not an SCF peak"
+        },
+        "tests": {
+          "status": "RECORDED_TEST_METADATA_VALIDATED",
+          "execution": "NOT_RERUN",
+          "original_publication_failure_count": 2
+        },
+        "scope": "Public recorded arithmetic and exact original parse-failure/source binding only; static array/owner identity remains RUNNER_REPORTED; no numerical workers, tests, SCF or Gamma executed"
+      }
+    },
+    {
+      "name": "pre_archive_publication_pending_links",
+      "command": [
+        "python3.12",
+        "-B",
+        "scripts/check_publication.py",
+        "--root",
+        ".",
+        "--modern-python",
+        "python3.12"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "expectation_met": true,
+      "status": "FAIL",
+      "logs": [
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/original_publication_current.stdout",
+          "sha256": "2a0c71f81f8f24ee9b8fbd6337533b1219bb1e7a65b1f13a6a143c8a5750fd09"
+        },
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/original_publication_current.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "actual_result": {
+        "status": "FAIL",
+        "error_type": "ValueError",
+        "reason": "Broken relative link in results/soc-core-memory/README.md: delivery-checks.json"
+      },
+      "context": "This preparatory check occurred before delivery-checks.json and archive.json existed. Retained failure is not the final current-tree check."
+    },
+    {
+      "name": "git_diff_check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expectation_met": true,
+      "status": "PASS",
+      "logs": [
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/git_diff_check.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "archive_member": "phase9a/checks/final-delivery-20260909T120416Z-004e6d72/git_diff_check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "all_expected_outcomes_observed": true,
+  "syntax_regression": {
+    "run_id": "source-syntax-20260909T115557Z-4c454588",
+    "status": "PASS",
+    "exit_code": 0,
+    "assertions": 37,
+    "parsed_files": 29,
+    "failed_execution_source_status": "FAIL",
+    "scope": "Meta.parseall only; no numerical evaluation",
+    "raw_receipt_sha256": "d7b4263473179fa9fb7bd0c308a4789790ea96b1220fd500c4c1ff4093f52c91",
+    "source_sha256": "3c0b5fe5bebf940aed392d67f26ee2ba53d3036d2756cf215ff9e86d6087e8cb"
+  },
+  "final_exact_commit_clone_replay": "NOT_RUN_AT_THIS_PRECOMMIT_RECORD; performed after final commit with receipt in later external increment, no future SHA backfilled",
+  "final_precommit_boundary_check": {
+    "schema_version": 1,
+    "phase": "9A",
+    "status": "PASS",
+    "scope": "Final precommit explicit source authorization, paths/privacy and unchanged historical bytes; separate original checker FAIL preserved",
+    "public_file_count": 640,
+    "changed_old_files": [
+      "README.md",
+      "benchmarks/README.md",
+      "docs/status.md",
+      "prototypes/fr_integration/FRIntegration.jl",
+      "prototypes/fr_integration/common_data.jl",
+      "prototypes/fr_integration/energy.jl",
+      "prototypes/fr_integration/hamiltonian.jl",
+      "prototypes/relativistic/operator.jl",
+      "prototypes/soc_scf/scf.jl",
+      "prototypes/soc_scf/solver.jl",
+      "prototypes/spinor/density.jl",
+      "prototypes/spinor/fft.jl",
+      "prototypes/spinor/operators.jl",
+      "results/README.md",
+      "scripts/README.md",
+      "scripts/run_si_dftk.py",
+      "scripts/run_si_soc.jl"
+    ],
+    "new_files": [
+      "benchmarks/soc-core-memory-v1/README.md",
+      "benchmarks/soc-core-memory-v1/budget.py",
+      "benchmarks/soc-core-memory-v1/compare.jl",
+      "benchmarks/soc-core-memory-v1/contract.json",
+      "benchmarks/soc-core-memory-v1/endpoint_compare.jl",
+      "benchmarks/soc-core-memory-v1/endpoint_metrics.py",
+      "benchmarks/soc-core-memory-v1/export_reference_operators.jl",
+      "benchmarks/soc-core-memory-v1/measure.jl",
+      "benchmarks/soc-core-memory-v1/memory.jl",
+      "benchmarks/soc-core-memory-v1/plan.json",
+      "benchmarks/soc-core-memory-v1/replay_delivery.py",
+      "benchmarks/soc-core-memory-v1/run.py",
+      "benchmarks/soc-core-memory-v1/sources.json",
+      "docs/soc-core-runtime.md",
+      "examples/soc_kernels.jl",
+      "prototypes/fr_integration/runtime.jl",
+      "results/soc-core-memory/README.md",
+      "results/soc-core-memory/archive.json",
+      "results/soc-core-memory/comparison.json",
+      "results/soc-core-memory/delivery-checks.json",
+      "results/soc-core-memory/delivery-evidence.json",
+      "results/soc-core-memory/endpoints/OPT-B0-SCF.stderr.txt.gz",
+      "results/soc-core-memory/endpoints/endpoint-status.json",
+      "results/soc-core-memory/gate.json",
+      "results/soc-core-memory/memory-budget.json",
+      "results/soc-core-memory/memory-budget.md",
+      "results/soc-core-memory/performance.json",
+      "results/soc-core-memory/replay-data.json",
+      "results/soc-core-memory/source-boundary.json",
+      "results/soc-core-memory/static-evidence.json",
+      "results/soc-core-memory/tests.json",
+      "scripts/replay_soc_core_memory.py",
+      "src/SOCKernels.jl",
+      "src/soc_kernels/components.jl",
+      "src/soc_kernels/density.jl",
+      "src/soc_kernels/nonlocal.jl",
+      "tests/soc_core_memory/test_budget.py",
+      "tests/soc_core_memory/test_comparison.jl",
+      "tests/soc_core_memory/test_delivery.py",
+      "tests/soc_core_memory/test_driver.py",
+      "tests/soc_core_memory/test_endpoint_metrics.py",
+      "tests/soc_core_memory/test_kernels.jl",
+      "tests/soc_core_memory/test_memory.jl",
+      "tests/soc_core_memory/test_replay.py",
+      "tests/soc_core_memory/test_runtime.jl",
+      "tests/soc_core_memory/test_soc_boundaries.jl",
+      "tests/soc_core_memory/test_solver_adapter.jl",
+      "tests/soc_core_memory/test_source_syntax.jl",
+      "tests/test_soc_core_memory.py"
+    ],
+    "unchanged_old_count": 574,
+    "unchanged_ledger_sha256": "0e6de2942952284f9d2f44df9a727acd1e0f50ff161a8a0c337a05a18a05b95f",
+    "immutable_preparation": "PASS",
+    "upstream": {
+      "DFTK.jl": {
+        "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "status": "clean"
+      },
+      "PseudoPotentialIO.jl": {
+        "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "status": "clean"
+      }
+    },
+    "original_publication": {
+      "status": "FAIL",
+      "exit_code": 1,
+      "reason": "Frozen scientific file changed: prototypes/fr_integration/FRIntegration.jl"
+    },
+    "git_diff_check_exit": 0,
+    "full_public_tree_list_scope": "New path names only; exact staged bytes recorded externally before commit"
+  }
+}

@@ -37,14 +37,47 @@ function energy_factors(basis,X,f)
       fchi=[vcat(occ,occ) for occ in f])
 end
 
-function orbital_density(basis,X,f)
+"""One reusable k tensor feeding the unchanged density accumulator in its original order.
+Views returned by this internal adapter are transient. No consumer may retain a k
+tensor across iteration; density_from_real_states only consumes it synchronously.
+"""
+mutable struct _StreamingRealStates{B,S} <: AbstractVector{Array{ComplexF64,3}}
+    basis::B
+    X::S
+    cached_k::Int
+    workspace::Union{Nothing,Array{ComplexF64,3}}
+    evaluations::Int
+end
+_StreamingRealStates(basis,X)=_StreamingRealStates(basis,X,0,nothing,0)
+Base.size(states::_StreamingRealStates)=(length(states.X),)
+Base.IndexStyle(::Type{<:_StreamingRealStates})=IndexLinear()
+function Base.getindex(states::_StreamingRealStates,ik::Int)
+    checkbounds(states,ik)
+    if ik!=states.cached_k
+        transformed=SpinorPrototype.component_ifft(states.basis,states.basis.kpoints[ik],
+            SpinorPrototype.unflatten_components(states.X[ik],2))
+        if isnothing(states.workspace) || size(states.workspace)!=size(transformed)
+            states.workspace=transformed
+        else
+            copyto!(states.workspace,transformed)
+        end
+        states.cached_k=ik;states.evaluations+=1
+    end
+    states.workspace::Array{ComplexF64,3}
+end
+
+function orbital_density(basis,X,f;stream_k=false)
+    stream_k isa Bool || throw(ArgumentError("stream_k must be boolean"))
     check_energy_orbitals(basis,X,f)
     # Empty columns are retained so even an entirely empty k point has a valid
     # array shape. The frozen density accumulator skips its zero occupations.
-    states=[SpinorPrototype.component_ifft(basis,k,
+    states=stream_k ? _StreamingRealStates(basis,X) : [SpinorPrototype.component_ifft(basis,k,
         SpinorPrototype.unflatten_components(x,2)) for (k,x) in zip(basis.kpoints,X)]
     SpinorPrototype.density_from_real_states(states,basis.kweights,f)
 end
+
+context_orbital_density(ctx,X,f;stream_k=false)=orbital_density(ctx.basis,X,f;stream_k)
+_context_nonlocal_operators(ctx)=ctx.fr_blocks
 
 function energy_valence_rho(basis,n)
     n isa AbstractVector && length(n)==prod(basis.fft_size) ||
@@ -98,11 +131,11 @@ Current X -> R,n,m -> six common terms and H_common[n_X] -> one spinor FR term.
 TermXc internally adds its immutable core density once and retains its complete
 GGA divergence contribution. Hartree, electron counts and n*vxc use valence n.
 """
-function energy_snapshot(ctx,X,f;expected_n=nothing)
+function energy_snapshot(ctx,X,f;expected_n=nothing,stream_k=false)
     validate_context(ctx)
     basis=ctx.basis
     factors=energy_factors(basis,X,f)
-    density=orbital_density(basis,X,f)
+    density=context_orbital_density(ctx,X,f;stream_k)
     rho=energy_valence_rho(basis,density.n)
     if !isnothing(expected_n)
         expected_n isa AbstractVector && length(expected_n)==length(density.n) &&
@@ -114,7 +147,8 @@ function energy_snapshot(ctx,X,f;expected_n=nothing)
     terms=Dict{String,Float64}(pairs(common.energies))
     Set(keys(terms))==COMMON_ENERGY_NAMES || throw(ArgumentError("Common energy must contain exactly six terms without native nonlocal"))
     ham=compose_full_hamiltonian(ctx,common.ham)
-    nl=nonlocal_spin_decomposition(ctx.fr_blocks,X,basis.kweights,f)
+    _context_density_binding!(ctx,rho)
+    nl=nonlocal_spin_decomposition(_context_nonlocal_operators(ctx),X,basis.kweights,f)
     terms["AtomicNonlocalFR"]=nl.full_ha
     total=Float64(common.energies.total)+nl.full_ha
     all(isfinite,values(terms)) && isfinite(total) || throw(ArgumentError("Nonfinite full energy"))

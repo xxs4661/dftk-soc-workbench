@@ -1,0 +1,926 @@
+{
+  "schema_version": 1,
+  "case": "si-soc-sensitivity-v1/T05",
+  "sensitivity_profile": "T05",
+  "case_sha256": "171f8381a2576f05c0e87af46a58c552a73a17acf829e69e09e1c1d3f14eefc3",
+  "comparison_execution_status": "PASS",
+  "slot_execution_status": {
+    "D-SCF": "PASS",
+    "D-GAMMA": "PASS",
+    "Q-SCF": "PASS",
+    "Q-GAMMA": "PASS"
+  },
+  "input_comparability_status": "PASS",
+  "bindings": {
+    "D": {
+      "scf_run_id": "D-SCF-20260908T235632Z-200bf045-dftk",
+      "gamma_run_id": "D-GAMMA-20260909T002926Z-8e9a0eb1-dftk",
+      "density_sha256": "233425e79378c7cceb290839d026da75a8474bcc858ad8e0cff6c965c2c34d0f",
+      "case_sha256": "171f8381a2576f05c0e87af46a58c552a73a17acf829e69e09e1c1d3f14eefc3"
+    },
+    "Q": {
+      "scf_run_id": "Q-SCF-20260909T002844Z-fbb97f24",
+      "gamma_run_id": "Q-GAMMA-20260909T002956Z-f7dfe0a4",
+      "density_sha256": "e1a86a7a0b6df54769ce08666533a5e7a09c8d9a49bdfb61c3e9bb2cfcd08d30",
+      "case_sha256": "171f8381a2576f05c0e87af46a58c552a73a17acf829e69e09e1c1d3f14eefc3"
+    }
+  },
+  "B0": {
+    "status": "HISTORICAL_REUSED",
+    "numerical_commit": "61cb1c226dcfa8dbeccc63e8f43e33b2790a07c6",
+    "physical_execution_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+    "semantic_execution_commit": "a03f91f56875a80e5b058fd86377ee0cd9317939",
+    "semantic_delivery_commit": "bc68aaf655d96dfd4335f6fa1a8e5ee76477c2a3",
+    "case": "benchmarks/si-soc-splitting-v1/case.json",
+    "source_files_sha256": {
+      "benchmarks/si-soc-splitting-v1/case.json": "a04e20b22748462fef0f0eccee93cff5a616fa3e11aa6606018d11e40d2f8cac",
+      "benchmarks/si-soc-splitting-v1/plan.json": "9f3fcf577f0cbc7b7e432f92be2add76d8f8b8128877122d951d8e2d13936a89",
+      "benchmarks/si-soc-splitting-v1/replay-contract.json": "89d475b3561ff1ca91d21e320c5d2be4fdf9037a78ef78ca8a8db3f837b590c3",
+      "results/si-soc-splitting/D-spectrum.json": "a286b1087e1ff776301ac826e4aeac3b7bdb1eb8cec2c0e141437e0402db0d41",
+      "results/si-soc-splitting/Q-spectrum.json": "93f5d681d196d25766a69ce94fdfcc049f28f52ee04fe4a98b4c428ab6f5fa0a",
+      "results/si-soc-splitting/comparison.json": "d8bf9a475c805d1ed0d6610770f5c153d0390c5d01fa8119f5dd66ea49e7817e",
+      "results/si-soc-splitting/evidence.json": "901c17499220bb78e92b2d735de0ee51652db2f2a66e5f18a650ec0b7cc6681a",
+      "results/si-soc-splitting/energy.json": "4cb9ddd108dd20a4a2f340903ff9fa723873c17f6bdbedfa0ac3f88220981eaa",
+      "results/si-soc-splitting/status-correction/assessment.json": "d2bb2c7ddac535d99ab3c634d3b9d659004fb18c8d9ede4912849289ab43f81b"
+    },
+    "selection": "Own-final-density D/Q Gamma from bound full fixed-density spectra; no SCF/null substitution",
+    "delta_so_ev": {
+      "D": 0.04745761517555575,
+      "Q": 0.04745761244197689
+    },
+    "native_SCF_energy": {
+      "D": {
+        "internal_ha": -8.368023851835549,
+        "free_ha": -8.368024366448916,
+        "minus_TS_ha": -5.146133665457469e-07,
+        "entropy_dimensionless": 0.0005146133665457469
+      },
+      "Q": {
+        "internal_ha": -8.36804460913415,
+        "free_ha": -8.368045123751521,
+        "minus_TS_ha": -5.146173709646032e-07,
+        "entropy_dimensionless": 0.0005146173709646032
+      }
+    },
+    "additional_energy_source_sha256": {
+      "results/si-soc-splitting/D-SCF.json": "0860661c4383d80a6767981476cf8c3fa0f996d69e8e1174df39d0bed83e9ab2",
+      "results/si-soc-splitting/Q-SCF/qe-result.json": "6e48758483e522514719bf13efcf47be2ccfda317e00d2626563b9e0d645fc47"
+    }
+  },
+  "D_gamma": {
+    "values_ha": [
+      -0.2708839367862268,
+      -0.2708839367862268,
+      0.16991023539164127,
+      0.16991023539164285,
+      0.17165426992881622,
+      0.17165426992881658,
+      0.17165426992884825,
+      0.17165426992884922,
+      0.2596650006345902,
+      0.25966500063459086,
+      0.26092387359684693,
+      0.2609238735968473,
+      0.2609238735968857,
+      0.260923873596886,
+      0.2948233355087649,
+      0.29482333550876494,
+      0.4497234820208383,
+      0.44972348202084017,
+      0.44972348202084184,
+      0.4497234820208428,
+      0.46370160010911876,
+      0.4637016001091213,
+      0.5784932252874644,
+      0.5784932252874693
+    ],
+    "values_ev": [
+      -7.371127431721918,
+      -7.371127431721918,
+      4.623493042387501,
+      4.623493042387544,
+      4.670950639804899,
+      4.670950639804909,
+      4.670950639805771,
+      4.670950639805797,
+      7.065844626830735,
+      7.065844626830754,
+      7.100100305241326,
+      7.1001003052413365,
+      7.10010030524238,
+      7.100100305242389,
+      8.022551656857447,
+      8.022551656857448,
+      12.237599373156522,
+      12.237599373156574,
+      12.23759937315662,
+      12.237599373156645,
+      12.617963343448656,
+      12.617963343448725,
+      15.741602593980497,
+      15.741602593980629
+    ],
+    "fixed_state_indices_one_based": {
+      "split_off": [
+        3,
+        4
+      ],
+      "upper": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "doublet_mean_ha": 0.16991023539164207,
+    "quartet_mean_ha": 0.17165426992883256,
+    "doublet_width_ev": 4.305025824771538e-14,
+    "quartet_width_ev": 8.980132816935718e-13,
+    "lower_isolation_ev": 11.994620474109421,
+    "upper_isolation_ev": 2.3948939870249375,
+    "delta_so_ev": 0.04745759741782119,
+    "six_state_width_ev": 0.047457597418296256,
+    "manifold_assignment_status": "PASS",
+    "multiplet_structure_status": "PASS",
+    "resolvable_soc_status": "PASS",
+    "space_group_irrep_assignment": "NOT_COMPUTED",
+    "gamma_structure_status": "PASS",
+    "fixed_window_interpretation": "ISOLATED_FIXED_WINDOW",
+    "kramers_max_ha": 4.884981308350689e-15,
+    "gamma_pairing_status": "PASS",
+    "occupation": {
+      "values": [
+        1.0,
+        1.0,
+        0.9999999999688081,
+        0.9999999999688081,
+        0.9999999989793138,
+        0.9999999989793138,
+        0.9999999989793138,
+        0.9999999989793138,
+        3.5152670543474805e-68,
+        3.5152670543427846e-68,
+        2.834752598388752e-69,
+        2.8347525983865767e-69,
+        2.834752598169122e-69,
+        2.834752598167189e-69,
+        1.018161489344418e-98,
+        1.0181614893443022e-98,
+        2.9057544661082705e-233,
+        2.905754466097369e-233,
+        2.9057544660874585e-233,
+        2.9057544660818426e-233,
+        2.09903561625864e-245,
+        2.0990356162479015e-245,
+        0.0,
+        0.0
+      ],
+      "fixed_states_3_to_8": [
+        0.9999999999688081,
+        0.9999999999688081,
+        0.9999999989793138,
+        0.9999999989793138,
+        0.9999999989793138,
+        0.9999999989793138
+      ],
+      "maximum_hole_3_to_8": 1.0206862022243968e-09,
+      "mu_minus_upper_max_over_tau": 20.702790585895748,
+      "mu_ha": 0.1820056652217971,
+      "temperature_ha": 0.0005,
+      "criterion": 0.99999999,
+      "status": "PASS",
+      "scope": "FD at existing parent SCF mu; diagnostic Gamma sum is not constrained to 8"
+    },
+    "precision": {
+      "max_residual_ha": 9.174186960032845e-11,
+      "gram_frobenius": 3.365313895234978e-14,
+      "status": "PASS",
+      "evidence_level": "RUNNER_REPORTED"
+    },
+    "warning_evidence": {
+      "warning_lines": [
+        {
+          "line": 1,
+          "text": "\u250c Info: Threading setup: "
+        },
+        {
+          "line": 2,
+          "text": "\u2502   Threads.nthreads() = 1"
+        },
+        {
+          "line": 3,
+          "text": "\u2502   n_DFTK = 1"
+        },
+        {
+          "line": 4,
+          "text": "\u2502   n_fft = 1"
+        },
+        {
+          "line": 5,
+          "text": "\u2514   n_blas = 1"
+        }
+      ],
+      "full_stderr_ref": "D-GAMMA/worker.stderr.gz",
+      "warning_scope": "All native stderr retained; selected warning/error lines also indexed"
+    }
+  },
+  "Q_gamma": {
+    "values_ha": [
+      -0.2016526075094374,
+      -0.2016526075094389,
+      0.2391415709383162,
+      0.2391415709388023,
+      0.2408856052811359,
+      0.2408856053463889,
+      0.2408856053733212,
+      0.240885605501256,
+      0.3288963295267441,
+      0.3288963295268285,
+      0.3301552023364024,
+      0.3301552023396917,
+      0.3301552024566596,
+      0.3301552024658703,
+      0.3640546874230646,
+      0.3640546874230689,
+      0.5189547919554227,
+      0.5189547919647752,
+      0.518954791983713,
+      0.5189547919984369,
+      0.5329328953269366,
+      0.5329328953269818,
+      0.6477245379588921,
+      0.6477245379619145
+    ],
+    "values_ev": [
+      -5.48724699044851,
+      -5.487246990448551,
+      6.507373654273187,
+      6.507373654286415,
+      6.55483124640191,
+      6.554831248177534,
+      6.5548312489104,
+      6.554831252391683,
+      8.949725057637679,
+      8.949725057639975,
+      8.983980731895855,
+      8.98398073198536,
+      8.983980735168219,
+      8.983980735418855,
+      9.906432714128893,
+      9.906432714129009,
+      14.121479288101721,
+      14.121479288356216,
+      14.121479288871537,
+      14.121479289272196,
+      14.501842857930233,
+      14.501842857931466,
+      17.625482583398995,
+      17.62548258348124
+    ],
+    "fixed_state_indices_one_based": {
+      "split_off": [
+        3,
+        4
+      ],
+      "upper": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "doublet_mean_ha": 0.23914157093855926,
+    "quartet_mean_ha": 0.2408856053755255,
+    "doublet_width_ev": 1.3227758297376969e-11,
+    "quartet_width_ev": 5.989773512729846e-09,
+    "lower_isolation_ev": 11.994620644721737,
+    "upper_isolation_ev": 2.3948938052459954,
+    "delta_so_ev": 0.047457594690580536,
+    "six_state_width_ev": 0.04745759811849586,
+    "manifold_assignment_status": "PASS",
+    "multiplet_structure_status": "PASS",
+    "resolvable_soc_status": "PASS",
+    "space_group_irrep_assignment": "NOT_COMPUTED",
+    "gamma_structure_status": "PASS",
+    "fixed_window_interpretation": "ISOLATED_FIXED_WINDOW",
+    "kramers_max_ha": 1.2793480164141613e-10,
+    "gamma_pairing_status": "PASS",
+    "occupation": {
+      "values": [
+        1.0,
+        1.0,
+        0.9999999999677609,
+        0.9999999999677609,
+        0.9999999989450514,
+        0.9999999989450512,
+        0.9999999989450512,
+        0.999999998945051,
+        3.401143124752346e-68,
+        3.4011431241779546e-68,
+        2.7427225595805293e-69,
+        2.74272254153717e-69,
+        2.742721899916427e-69,
+        2.7427218493913686e-69,
+        9.850612918257544e-99,
+        9.850612918173553e-99,
+        2.811525096088897e-233,
+        2.811525043499295e-233,
+        2.8115249370111954e-233,
+        2.8115248542181605e-233,
+        2.031026738779472e-245,
+        2.031026738595444e-245,
+        0.0,
+        0.0
+      ],
+      "fixed_states_3_to_8": [
+        0.9999999999677609,
+        0.9999999999677609,
+        0.9999999989450514,
+        0.9999999989450512,
+        0.9999999989450512,
+        0.999999998945051
+      ],
+      "maximum_hole_3_to_8": 1.0549490170319586e-09,
+      "mu_minus_upper_max_over_tau": 20.669773315658613,
+      "mu_ha": 0.2512204921590853,
+      "temperature_ha": 0.0005,
+      "criterion": 0.99999999,
+      "status": "PASS",
+      "scope": "FD at existing parent SCF mu; diagnostic Gamma sum is not constrained to 8"
+    },
+    "precision": {
+      "status": "PASS",
+      "evidence_level": "REPORTED_THRESHOLD_AVAILABLE; explicit residuals NOT_AVAILABLE",
+      "native_precision": {
+        "diago_thr_init_ry": 1e-13,
+        "ethr_history_ry": [
+          1e-13
+        ],
+        "explicit_wavefunction_residuals": "NOT_AVAILABLE",
+        "stdout_spectrum": {
+          "status": "PASS",
+          "matched_eigenvalues": 24,
+          "stdout_to_xml_kpoint_indices": [
+            0
+          ],
+          "max_abs_xml_minus_stdout_ev": 4.699044996952173e-05,
+          "maximum_printed_rounding_bound_ev": 5.00027211386246e-05,
+          "occupation_fields_checked": 0,
+          "native_ev_per_ha": 27.211386245988034,
+          "scope": "Native stdout rounding crosscheck, not an eigenvector residual estimate"
+        }
+      }
+    },
+    "warning_evidence": {
+      "process_exit_code": 0,
+      "stderr_lines": [
+        "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+      ],
+      "warning_lines": [
+        {
+          "stream": "stderr",
+          "line": 1,
+          "text": "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+        }
+      ],
+      "ieee_flags": {
+        "IEEE_INVALID_FLAG": {
+          "reported": true,
+          "stdout": false,
+          "stderr": true
+        },
+        "IEEE_DIVIDE_BY_ZERO": {
+          "reported": true,
+          "stdout": false,
+          "stderr": true
+        },
+        "IEEE_OVERFLOW_FLAG": {
+          "reported": true,
+          "stdout": false,
+          "stderr": true
+        },
+        "IEEE_UNDERFLOW_FLAG": {
+          "reported": false,
+          "stdout": false,
+          "stderr": false
+        },
+        "IEEE_INEXACT_FLAG": {
+          "reported": false,
+          "stdout": false,
+          "stderr": false
+        }
+      },
+      "ieee_warning_status": "REPORTED",
+      "ieee_localization_status": "NOT_LOCALIZED",
+      "eigenvalues_not_converged": false,
+      "unconverged_eigenvalue_lines": [],
+      "fatal_native_lines": [],
+      "c_bands_lines": [],
+      "note": "Reported flags are retained independently of exit code and spectral stability. Unreported flags are not proven absent."
+    }
+  },
+  "SCF": {
+    "D": {
+      "energy": {
+        "internal_ha": -8.36802432242326,
+        "free_ha": -8.3680243224348,
+        "minus_TS_ha": -1.1541857793559589e-11,
+        "entropy_dimensionless": 2.308371558711918e-08
+      },
+      "mu_ha": 0.1820056652217971,
+      "temperature_ha": 0.0005,
+      "electron_sum": 8.000000000000226,
+      "endpoint_fd_max_abs": 3.491753744649773e-251,
+      "top_two_occupation_max": 0.0,
+      "endpoint_entropy_dimensionless": 2.3083715587119172e-08,
+      "run_id": "D-SCF-20260908T235632Z-200bf045-dftk",
+      "density_source_sha256": "233425e79378c7cceb290839d026da75a8474bcc858ad8e0cff6c965c2c34d0f",
+      "warning_evidence": {
+        "warning_lines": [
+          {
+            "line": 1,
+            "text": "\u250c Info: Threading setup: "
+          },
+          {
+            "line": 2,
+            "text": "\u2502   Threads.nthreads() = 1"
+          },
+          {
+            "line": 3,
+            "text": "\u2502   n_DFTK = 1"
+          },
+          {
+            "line": 4,
+            "text": "\u2502   n_fft = 1"
+          },
+          {
+            "line": 5,
+            "text": "\u2514   n_blas = 1"
+          }
+        ],
+        "full_stderr_ref": "D-SCF/worker.stderr.gz",
+        "warning_scope": "All native stderr retained; selected warning/error lines also indexed"
+      },
+      "scope": "Uncorrected native SCF E/F; endpoints retained in source summary; no Gamma occupation constraint"
+    },
+    "Q": {
+      "energy": {
+        "internal_ha": -8.368045079742908,
+        "free_ha": -8.368045079754447,
+        "minus_TS_ha": -1.153887521243447e-11,
+        "entropy_dimensionless": 2.307775042486894e-08,
+        "native_components_ha": {
+          "etot": -8.368045079754447,
+          "eband": 0.5125762418508526,
+          "ehart": 0.6314837044750228,
+          "vtxc": -3.282754845186887,
+          "etxc": -3.131427804037302,
+          "ewald": -8.400464788041077,
+          "demet": -1.153887521243447e-11
+        },
+        "native_stdout": {
+          "free": {
+            "token": "-16.73609016",
+            "value": -16.73609016,
+            "unit": "Ry",
+            "half_last_digit": 5e-09,
+            "displayed_zero_is_exact_zero_claim": false,
+            "xml_minus_stdout_ha": 2.455529113376542e-10,
+            "consistency_bound_ha": 2.6e-09
+          },
+          "minus_TS": {
+            "token": "-0.00000000",
+            "value": -0.0,
+            "unit": "Ry",
+            "half_last_digit": 5e-09,
+            "displayed_zero_is_exact_zero_claim": false,
+            "xml_minus_stdout_ha": -1.153887521243447e-11,
+            "consistency_bound_ha": 2.6e-09
+          },
+          "internal": {
+            "token": "-16.73609016",
+            "value": -16.73609016,
+            "unit": "Ry",
+            "half_last_digit": 5e-09,
+            "displayed_zero_is_exact_zero_claim": false,
+            "xml_minus_stdout_ha": 2.5709212536639825e-10,
+            "consistency_bound_ha": 2.6e-09
+          },
+          "fermi": {
+            "token": "6.8361",
+            "value": 6.8361,
+            "unit": "eV",
+            "half_last_digit": 5e-05,
+            "displayed_zero_is_exact_zero_claim": false,
+            "xml_minus_stdout_ha": -1.5491659094424293e-06,
+            "consistency_bound_ha": 1.8375661087827472e-06
+          }
+        },
+        "convention": "Native F=etot; E=F-demet; no constant correction"
+      },
+      "mu_ha": 0.2512204921590853,
+      "temperature_ha": 0.0005,
+      "electron_sum": 7.9999999999660565,
+      "endpoint_fd_max_abs": 7.367077330550403e-23,
+      "top_two_occupation_max": 0.0,
+      "endpoint_entropy_dimensionless": 2.3077750409651295e-08,
+      "run_id": "Q-SCF-20260909T002844Z-fbb97f24",
+      "density_source_sha256": "e1a86a7a0b6df54769ce08666533a5e7a09c8d9a49bdfb61c3e9bb2cfcd08d30",
+      "warning_evidence": {
+        "process_exit_code": 0,
+        "stderr_lines": [
+          "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+        ],
+        "warning_lines": [
+          {
+            "stream": "stdout",
+            "line": 191,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 192,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 193,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 194,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 195,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 196,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 197,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 198,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 289,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 320,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 321,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 337,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stderr",
+            "line": 1,
+            "text": "Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG"
+          }
+        ],
+        "ieee_flags": {
+          "IEEE_INVALID_FLAG": {
+            "reported": true,
+            "stdout": false,
+            "stderr": true
+          },
+          "IEEE_DIVIDE_BY_ZERO": {
+            "reported": true,
+            "stdout": false,
+            "stderr": true
+          },
+          "IEEE_OVERFLOW_FLAG": {
+            "reported": true,
+            "stdout": false,
+            "stderr": true
+          },
+          "IEEE_UNDERFLOW_FLAG": {
+            "reported": false,
+            "stdout": false,
+            "stderr": false
+          },
+          "IEEE_INEXACT_FLAG": {
+            "reported": false,
+            "stdout": false,
+            "stderr": false
+          }
+        },
+        "ieee_warning_status": "REPORTED",
+        "ieee_localization_status": "NOT_LOCALIZED",
+        "eigenvalues_not_converged": true,
+        "unconverged_eigenvalue_lines": [
+          {
+            "stream": "stdout",
+            "line": 191,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 192,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 193,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 194,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 195,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 196,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 197,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 198,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 289,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 320,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 321,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 337,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          }
+        ],
+        "fatal_native_lines": [],
+        "c_bands_lines": [
+          {
+            "stream": "stdout",
+            "line": 191,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 192,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 193,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 194,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 195,
+            "text": "     c_bands:  2 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 196,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 197,
+            "text": "     c_bands:  4 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 198,
+            "text": "     c_bands:  3 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 289,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 320,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 321,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          },
+          {
+            "stream": "stdout",
+            "line": 337,
+            "text": "     c_bands:  1 eigenvalues not converged"
+          }
+        ],
+        "note": "Reported flags are retained independently of exit code and spectral stability. Unreported flags are not proven absent."
+      },
+      "scope": "Uncorrected native SCF E/F; endpoints retained in source summary; no Gamma occupation constraint"
+    }
+  },
+  "delta_so_D_minus_Q_ev": 2.7272406555312045e-09,
+  "B0_delta_so_D_minus_Q_ev": 2.7335788632676383e-09,
+  "response_ev": {
+    "D": -1.7757734560586158e-08,
+    "Q": -1.7751396352849724e-08
+  },
+  "response_gap_ev": -6.3382077364337874e-12,
+  "response_gap_from_code_gaps_ev": -6.3382077364337874e-12,
+  "response_gap_closure_ev": 0.0,
+  "gamma_structure_status": {
+    "D": "PASS",
+    "Q": "PASS"
+  },
+  "gamma_pairing_status": {
+    "D": "PASS",
+    "Q": "PASS"
+  },
+  "gamma_occupation_diagnostic_status": {
+    "D": "PASS",
+    "Q": "PASS"
+  },
+  "fixed_window_splitting_agreement_status": "PASS",
+  "parameter_response_agreement_status": "PASS",
+  "limited_parameter_stability_status": {
+    "D": "WITHIN_SCREENING_WINDOW",
+    "Q": "WITHIN_SCREENING_WINDOW"
+  },
+  "spectra": {
+    "D_raw_ha": [
+      -0.2708839367862268,
+      -0.2708839367862268,
+      0.16991023539164127,
+      0.16991023539164285,
+      0.17165426992881622,
+      0.17165426992881658,
+      0.17165426992884825,
+      0.17165426992884922,
+      0.2596650006345902,
+      0.25966500063459086,
+      0.26092387359684693,
+      0.2609238735968473,
+      0.2609238735968857,
+      0.260923873596886,
+      0.2948233355087649,
+      0.29482333550876494,
+      0.4497234820208383,
+      0.44972348202084017,
+      0.44972348202084184,
+      0.4497234820208428,
+      0.46370160010911876,
+      0.4637016001091213,
+      0.5784932252874644,
+      0.5784932252874693
+    ],
+    "Q_raw_ha": [
+      -0.2016526075094374,
+      -0.2016526075094389,
+      0.2391415709383162,
+      0.2391415709388023,
+      0.2408856052811359,
+      0.2408856053463889,
+      0.2408856053733212,
+      0.240885605501256,
+      0.3288963295267441,
+      0.3288963295268285,
+      0.3301552023364024,
+      0.3301552023396917,
+      0.3301552024566596,
+      0.3301552024658703,
+      0.3640546874230646,
+      0.3640546874230689,
+      0.5189547919554227,
+      0.5189547919647752,
+      0.518954791983713,
+      0.5189547919984369,
+      0.5329328953269366,
+      0.5329328953269818,
+      0.6477245379588921,
+      0.6477245379619145
+    ],
+    "raw_D_minus_Q_ha": [
+      -0.0692313292767894,
+      -0.0692313292767879,
+      -0.06923133554667493,
+      -0.06923133554715946,
+      -0.06923133535231968,
+      -0.06923133541757232,
+      -0.06923133544447296,
+      -0.0692313355724068,
+      -0.06923132889215389,
+      -0.06923132889223765,
+      -0.06923132873955545,
+      -0.06923132874284438,
+      -0.0692313288597739,
+      -0.06923132886898431,
+      -0.06923135191429974,
+      -0.06923135191430396,
+      -0.06923130993458443,
+      -0.06923130994393506,
+      -0.06923130996287113,
+      -0.06923130997759408,
+      -0.06923129521781779,
+      -0.06923129521786053,
+      -0.06923131267142768,
+      -0.06923131267444527
+    ],
+    "D_global_reference_ha": 0.17165426992883256,
+    "Q_global_reference_ha": 0.2408856053755255,
+    "global_referenced_D_minus_Q_ha": [
+      6.169903477015737e-09,
+      6.169905031327971e-09,
+      -9.998199490546256e-11,
+      -1.0046652398898459e-10,
+      9.437325920735873e-11,
+      2.912062257998116e-11,
+      2.2199742044648474e-12,
+      -1.2571385599180473e-10,
+      6.554539050407371e-09,
+      6.554455284080163e-09,
+      6.7071374842964104e-09,
+      6.703848559608261e-09,
+      6.586919037987471e-09,
+      6.577708627775181e-09,
+      -1.6467606805958823e-08,
+      -1.6467611024806317e-08,
+      2.5512108536851485e-08,
+      2.5502757905471185e-08,
+      2.5483821830540876e-08,
+      2.5469098829944414e-08,
+      4.02288751200075e-08,
+      4.022883237642105e-08,
+      2.277526522931339e-08,
+      2.277224764313246e-08
+    ]
+  },
+  "native_SCF_energy_D_minus_Q": {
+    "internal_ha": 2.075731964801264e-05,
+    "free_ha": 2.0757319646236283e-05,
+    "minus_TS_ha": -2.982581125119284e-15,
+    "entropy_dimensionless": 5.965162250238645e-12
+  },
+  "native_SCF_energy_response_from_B0": {
+    "D": {
+      "internal_ha": -4.7058771102115315e-07,
+      "free_ha": 4.401411501930852e-08,
+      "minus_TS_ha": 5.146018246879533e-07,
+      "entropy_dimensionless": -0.0005145902828301598
+    },
+    "Q": {
+      "internal_ha": -4.7060875729698637e-07,
+      "free_ha": 4.399707442814815e-08,
+      "minus_TS_ha": 5.146058320893908e-07,
+      "entropy_dimensionless": -0.0005145942932141784
+    }
+  },
+  "energy_response_scope": "Each program native SCF x minus B0; E, F and -TS remain separate, especially for T05; no correction or zero-temperature extrapolation",
+  "parameter_scope": "One independent finite-temperature reduction, not zero-temperature or old-state correction",
+  "stability_scope": "0.1meV finite-step observation only, not implementation acceptance or a convergence error bound",
+  "numerical_review_status": "REVIEW_REQUIRED",
+  "physical_manifold_interpretation": "REVIEW_REQUIRED",
+  "physical_convergence": "NOT_ESTABLISHED",
+  "variant_null_control_status": "NOT_RUN",
+  "off_gamma_TR": "NOT_ASSESSED",
+  "continuous_band_tracking": "NOT_ASSESSED",
+  "native_QE_NL_independent": "NOT_MEASURED"
+}

@@ -1,0 +1,438 @@
+{
+  "schema_version": 1,
+  "phase": "7E",
+  "case": "mg-soc-qe-local-potential-v1",
+  "base_commit": "fe5e4c85700f5902afee9a345b9f1bb2c8e58e1a",
+  "saved_utc": "2026-09-07T16:01:37.994085+00:00",
+  "source_sha256": {
+    "results/mg-soc-scf/evidence.json": "437e2424d8ce7d8d11b5732b7b52815910853d7d43307215b5fbc466e321e243",
+    "results/mg-soc-qe-diagnostics/canonical.json": "549023435154cdedd1bd568e649f4935455f7c1478638b0fa9dd74d300d58551",
+    "results/mg-soc-qe-diagnostics/evidence.json": "12782022024f1e00fb9a834863685ffab871dadd1b8fbeec5617d2021fc287c2",
+    "results/mg-soc-density-hartree/comparison.json": "eef425149d63aafa6b1996b50ead09c8fcbfd8edd148130ca9256c1e1bfb0c38",
+    "results/mg-soc-density-hartree/evidence.json": "8dc5d15e512ed1a3923b51ade2690db6ce9201876f77e2549ab7c4e486daa084",
+    "benchmarks/mg-soc-density-hartree-v1/plan.json": "7f1d157de21c89046f4257c1a391432d0e970625b037d444b330521e9d91b428",
+    "benchmarks/mg-soc-density-hartree-v1/source-conventions.md": "460be8197887f900af64bd0d334aa51885554ab64b24c1cd6bc27de603a5e59a",
+    "benchmarks/mg-soc-qe-diagnostics-v1/G40.in": "793d30bc6c0f3ee214ca8f6cc8ed0aa88a879ffc4284536ccf7e8584287b1677",
+    "benchmarks/mg-soc-fermi/parameters.json": "560ce58d1906b344b4ae9db82d52abb44026c4c23d23a3eb895580dbf5252f8e",
+    "benchmarks/mg-soc-qe-v1/case.json": "d6909ab6fc42aebab68486959df974ee9301b0dafa75b3d6a2bbe5304c9ef3c4",
+    "config/sources.lock": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+    "environment/workbench/Project.toml": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+    "environment/workbench/Manifest.toml": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+    "environment/workbench/checksums.toml": "3a0cb9974084e96224a77baf167ed653bf4e435714dbc6c8a0578ac84006f180",
+    "results/mg-soc-scf/A/endpoint.json": "80a935034e3290183e2da9d4d45fb103db5e5f92c0890085ecaf03771cbbf4de",
+    "results/mg-soc-scf/B/endpoint.json": "db47246335b1c27152c162a290efa60bea028cbc3124debccf132f3dffde60b7",
+    "results/mg-soc-qe-diagnostics/G40/qe.xml": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+    "results/mg-soc-qe-diagnostics/G40/qe.stdout": "60198ad056b06adb790237a8c8b440a2969cf0d62c70ed0fbdd20d29c88fd46b",
+    "results/mg-soc-qe-diagnostics/G40/qe.stderr": "2750f374283edb5f3c051d6b6ab959b74f7d4c5e001f46bd13f6ca02daf41aa5",
+    "results/mg-soc-density-hartree/dftk-nout.csv.gz": "5a395b2d7312bc42a81bc7fcfa03ecad41ec7d71b8d9295eb1d1a5912d4e298a",
+    "results/mg-soc-density-hartree/qe-rho.csv.gz": "b3985df7971c2ecd0c8f94afd6a86cabbfa6fcad27894f0666d71c71382a6568",
+    "benchmarks/mg-soc-energy-reference-v1/plan.json": "bc05068d22cc0e409f75d3cb403fdfbca72ce47d88426eac4d957c2e623c0687",
+    "results/mg-soc-energy-reference/evidence.json": "bf11084b145793f250cbc3cd7d7eeb9bdb8fb0f2e417edebac3b6f5e8343aed5",
+    "results/mg-soc-energy-reference/common-terms.json": "238340ab5b7dd2885260f13d38f1bfc8874fd83aa510de2cc713bee3587064ce",
+    "results/mg-soc-energy-reference/ledger.json": "ccce1790aceac94437e50fd4eef29434aecd764e593b35160fe4553af0fa951b",
+    "results/mg-soc-energy-reference/comparison.json": "7a151d4f76ab91a42276ef528eb5dd24b4359623e96d38e5b355370d97a0a865",
+    "results/mg-soc-energy-reference/local-g0.json": "7a1f75c0e6ccb723ad390f20344e21769d044b8fc543f5a6ebdcfae7cb724300"
+  },
+  "source_bytes": {
+    "results/mg-soc-scf/evidence.json": 30583,
+    "results/mg-soc-qe-diagnostics/canonical.json": 105512,
+    "results/mg-soc-qe-diagnostics/evidence.json": 48254,
+    "results/mg-soc-density-hartree/comparison.json": 44681,
+    "results/mg-soc-density-hartree/evidence.json": 53976,
+    "benchmarks/mg-soc-density-hartree-v1/plan.json": 7925,
+    "benchmarks/mg-soc-density-hartree-v1/source-conventions.md": 4280,
+    "benchmarks/mg-soc-qe-diagnostics-v1/G40.in": 988,
+    "benchmarks/mg-soc-fermi/parameters.json": 2477,
+    "benchmarks/mg-soc-qe-v1/case.json": 4638,
+    "config/sources.lock": 3468,
+    "environment/workbench/Project.toml": 341,
+    "environment/workbench/Manifest.toml": 44517,
+    "environment/workbench/checksums.toml": 257,
+    "results/mg-soc-scf/A/endpoint.json": 26994,
+    "results/mg-soc-scf/B/endpoint.json": 26992,
+    "results/mg-soc-qe-diagnostics/G40/qe.xml": 42675,
+    "results/mg-soc-qe-diagnostics/G40/qe.stdout": 20846,
+    "results/mg-soc-qe-diagnostics/G40/qe.stderr": 119,
+    "results/mg-soc-density-hartree/dftk-nout.csv.gz": 2377865,
+    "results/mg-soc-density-hartree/qe-rho.csv.gz": 493611,
+    "benchmarks/mg-soc-energy-reference-v1/plan.json": 13911,
+    "results/mg-soc-energy-reference/evidence.json": 13679,
+    "results/mg-soc-energy-reference/common-terms.json": 67188,
+    "results/mg-soc-energy-reference/ledger.json": 54846,
+    "results/mg-soc-energy-reference/comparison.json": 5143,
+    "results/mg-soc-energy-reference/local-g0.json": 7023
+  },
+  "physical": {
+    "lattice_vectors_bohr": [
+      [
+        10.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        10.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        10.0
+      ]
+    ],
+    "volume_bohr3": 1000.0,
+    "atoms": 1,
+    "element": "Mg",
+    "position_fractional": [
+      0.17,
+      0.23,
+      0.31
+    ],
+    "expected_electrons": 10.0,
+    "functionals": [
+      "gga_x_pbe_sol",
+      "gga_c_pbe_sol"
+    ],
+    "nlcc": false,
+    "ecut_ha": 15.0,
+    "fft_size": [
+      40,
+      40,
+      40
+    ],
+    "tau_ha": 0.001,
+    "kpoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.125,
+        0.0625,
+        -0.1875
+      ],
+      [
+        -0.125,
+        -0.0625,
+        0.1875
+      ]
+    ],
+    "kweights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "charge_spin_components": 1
+  },
+  "julia_version": "1.12.7",
+  "source_run_id": "20260907T112107073262Z-G40-3f9731a6",
+  "dftk_source_run_id": "20260907T144446657126Z-8fa3b4d2",
+  "source_files": {
+    "scratch/mg_soc_qe_v1.save/data-file-schema.xml": {
+      "sha256": "bfa848a8a91563272ed4b8b0980ea48e3e1b3bb1b2ba27c81e82c1db42bb9097",
+      "bytes": 42675
+    },
+    "scratch/mg_soc_qe_v1.save/charge-density.dat": {
+      "sha256": "b93c254aa6972cf3c559fb8f85a630c0699e2eefe4382772a9203d11fcaa5359",
+      "bytes": 619448
+    },
+    "scratch/mg_soc_qe_v1.save/Mg.upf": {
+      "sha256": "19b117bfa920945bffaee91eefbcfbf9fd44e035f3708b965aae59aabf3be256",
+      "bytes": 252203
+    }
+  },
+  "historical_G40_binding_status": "PASS",
+  "historical_G40_archive_manifest_sha256": "70a3235baa0a7361ac7fe57fa6b76ff795670c3f6a91b472156d3a6a10d3a2e4",
+  "DFTK_archive_manifest_sha256": "f054dc6d9009c0bcf5b8a724e0b54bf02e49b8592c1bf05fd973ff6846f95a85",
+  "historical_status": "HISTORICAL_REUSED",
+  "execution_order": [
+    "P2",
+    "P0"
+  ],
+  "slots": {
+    "P2": {
+      "input_path": "benchmarks/mg-soc-qe-local-potential-v1/P2.in",
+      "input_sha256": "d820af2f7d7f1c3c6cf9d1bbeb6a7dc0504725257712f0f18bf8a8ec948ec64e",
+      "plot_num": 2,
+      "filplot": "local-ionic.pp",
+      "max_numerical_calls": 1
+    },
+    "P0": {
+      "input_path": "benchmarks/mg-soc-qe-local-potential-v1/P0.in",
+      "input_sha256": "379ef038f90241afedec64b5f5ed6b0285da1644f3e0b658dd8c021ff3465277",
+      "plot_num": 0,
+      "filplot": "charge.pp",
+      "max_numerical_calls": 1
+    }
+  },
+  "qe_identity": {
+    "schema_version": 1,
+    "pp_build_identity_status": "PASS",
+    "historical_pw_verification_status": "PASS",
+    "julia_version": "1.12.7",
+    "jll_uuid": "74603b90-2fcf-5710-a7d7-830b31b8b33c",
+    "jll_version": "7.5.1+0",
+    "artifact_tree_sha1": "273d3312b2a70e6223250dbf4a39ab3f28b04104",
+    "selected_artifact": {
+      "arch": "aarch64",
+      "git-tree-sha1": "273d3312b2a70e6223250dbf4a39ab3f28b04104",
+      "libgfortran_version": "5.0.0",
+      "mpi": "mpich",
+      "os": "macos",
+      "download": [
+        {
+          "sha256": "93428e2fe1a67dc8fc8d762a1e4ef2f3c3b13083d5a304d316d7ef47225c9c32",
+          "url": "https://github.com/JuliaBinaryWrappers/QuantumEspresso_jll.jl/releases/download/QuantumEspresso-v7.5.1+0/QuantumEspresso.v7.5.1.aarch64-apple-darwin-libgfortran5-mpi+mpich.tar.gz"
+        }
+      ]
+    },
+    "products": {
+      "pp": {
+        "path": "<QE_ARTIFACT>/bin/pp.x",
+        "sha256": "cb94cb4b430f5ac52300c5377998a5a7f70f06441da9b24814762cf2324786bd"
+      },
+      "pw": {
+        "path": "<QE_ARTIFACT>/bin/pw.x",
+        "sha256": "0500a3db2fc668d4e558d6e667522fbd62793bdf87631776e6b0c4bc3c4e50f0"
+      }
+    },
+    "launcher_sha256": "2693ceb566549491fb051ab3047bbf7033d51409f75a9a26a6f2a2f10db30c2c",
+    "runner_sha256": "4e360d81c96dc47ce3725111693be9401e5ebcb85634e62dd9e38f9fedff6813",
+    "package_project_sha256": "4b7b753e8f162224853476eb656f9185ea04a544af62fc7b2c4a385835bb2ee4",
+    "artifacts_toml_sha256": "ece6b4c553f67e379ef60f097aefe2dfacb651146c46c15e8f9ca7001680a9b3",
+    "wrapper_sha256": "363b8c2ab83104485d7707051a14e7d6cb92d26c20efb6774ceb258b7ba9612d",
+    "shared_dependencies": {
+      "<JULIA_ARTIFACTS>/0a4714a5cb9f46e0867e7c6c3a26521447f8fae0/lib/libxml2.2.dylib": "a283c005013c75c802fae6277442f8e34128eb2feb10c3ad37615b4193e4b8bb",
+      "<JULIA_ARTIFACTS>/49bed26d3df75ef9b7c400e45242692617f6df0e/lib/libopenblas.0.3.34.dylib": "ac05907431fd80143551e697b799ff01230554d07301bb5c157a61ab24bc4455",
+      "<JULIA_ARTIFACTS>/57bf2e972613ddabdd4e01ec54c2a8cbadb9e681/lib/libfftw3.3.dylib": "3cf70e7d10448c14a9206a9ab8f0c9524bb65746501518c63f11a63627071d99",
+      "<JULIA_ARTIFACTS>/57bf2e972613ddabdd4e01ec54c2a8cbadb9e681/lib/libfftw3f.3.dylib": "53006b141989b91d032430b5747165caa1989d7ecc4e8efd48b108b08e5d93c9",
+      "<JULIA_ARTIFACTS>/ab07a96801d935d7e51cbbcb24a07df19a53b4d4/lib/libscalapack32.dylib": "309fbad60a6aacb4b1eb8291461c929b342f212423cf8fac2f52499c52e85cef",
+      "<JULIA_ARTIFACTS>/b820a0a437e8501d06a17439abd84feaa5b6cca3/lib/libcharset.1.dylib": "802b21ee31cc89c30605d1b35009a06f66435952f39e2bd104e0053fea9fc811",
+      "<JULIA_ARTIFACTS>/b820a0a437e8501d06a17439abd84feaa5b6cca3/lib/libiconv.2.dylib": "8647fe6b4e8a1b9bd096ff027cfda5c92cff3d9f25a18abd08c834ff838d7c5d",
+      "<JULIA_ARTIFACTS>/ba59ec3eab768a1d8e4041987a23d081195ac264/lib/libhwloc.15.dylib": "20b200744c3abc58b2d6bc1273ce7eeab3411bc17e3b7fb04f898539105b6b5e",
+      "<JULIA_ARTIFACTS>/c8e2e4506036f733e9057901e6023fc770b0d142/lib/libxc.15.dylib": "47e134ec6bebb5d27bd301e1f8fb43c2bc95472d07c01ab67fed185ff3e015bd",
+      "<JULIA_ARTIFACTS>/c8e2e4506036f733e9057901e6023fc770b0d142/lib/libxcf03.15.dylib": "9760508b8ab781d2aea27d3f82a7c2ed6abb932362fdb681ffed3619acdba9d1",
+      "<JULIA_ARTIFACTS>/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libmpi.12.dylib": "f330a193737480dd26f44368fbad96f9aec75f7eff0f16b650c39e7a5c2ef53a",
+      "<JULIA_ARTIFACTS>/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libmpicxx.12.dylib": "b5ec6bfd535e5c8574735cc12d5854648aecdad58a285eda1a179f135a299c63",
+      "<JULIA_ARTIFACTS>/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libmpifort.12.dylib": "7d69f53bcf003d2b89fe7a0dc987f8edb4b90ee8a199ee4c6bc9b8e74cdf4b6e",
+      "<JULIA_ARTIFACTS>/f822b53e59145a4dfdceef194142de78ce8e510b/lib/libpmpi.12.dylib": "a59d657156d7aae08de09bc207adaf7c57b67f36f136af79b905b061915382af",
+      "<JULIA_RUNTIME>/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libgcc_s.1.1.dylib": "145a5cae0f20adcc2287120e626c6c137b550c491c5cdab636af957ea90e14c1",
+      "<JULIA_RUNTIME>/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libgfortran.5.dylib": "a72b8368e6ba2f9e37ac14f9c10cafb0d6d0d9746fae0c479a7990a5a4e3bfb1",
+      "<JULIA_RUNTIME>/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libgomp.1.dylib": "eada7cdb8992f30047dbe30dd52ba5ba63e7fa5bca4d5e214859ce9037528554",
+      "<JULIA_RUNTIME>/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libquadmath.0.dylib": "a171209468e2f83bf06d3ecae975218c7dc9d75a04714cda0178334b893cd555",
+      "<JULIA_RUNTIME>/julia-1.12.7+0.aarch64.apple.darwin14/Julia-1.12.app/Contents/Resources/julia/lib/julia/libstdc++.6.dylib": "0e37fbd38ffb1e517e2a9ebe94404dd4b12b4dfcd099a5632c680fd673265cd3",
+      "<JULIA_ENVIRONMENTS>/v1.12/Project.toml": "283d923b892d1fb37bac1e54d97f9ceec9b95b35e5dc452178f2b312a7c34f70",
+      "<JULIA_ENVIRONMENTS>/v1.12/Manifest.toml": "944648a95f9c59804a87277d6850a966b1a6d434ac7435d508c394bf5d7b1582"
+    },
+    "single_thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "JULIA_NUM_THREADS": "1"
+    },
+    "runtime_path_comparison": "Real paths compared before redaction; both executable product closures identify selected artifact; JLL runner preserves its library environment",
+    "build_evidence": "Same registered package version/UUID and selected platform artifact; wrapper declares both products in this artifact",
+    "installed_exact_qe_source_commit_status": "NOT_CONFIRMED; qe-7.5 tagged source establishes convention, not exact installed build source",
+    "numerical_probe_executions": 0,
+    "probe_script_sha256": "28e3c773a61e82585d39ed0edef9b550de0c2066f760d7d6518bd594ce17cf58",
+    "raw_probe_sha256": "482caa9f0f10a49ebeb2c13d8565dbbd6fd259e6d3c1473ded91d076069e5aaa"
+  },
+  "identity_path": "benchmarks/mg-soc-qe-local-potential-v1/identity.json",
+  "identity_sha256": "b08d1d98f28cf674b9fc305cdf50e5b4936900c38fbc69e001b7a02553cd434c",
+  "thresholds": {
+    "p0_pointwise_fp_relative": 1e-12,
+    "electron_count_abs": 1e-08,
+    "fft_normalized": 1e-11,
+    "dftk_local_recovery_abs_ha": 1e-08,
+    "dftk_mean_recovery_abs_ha": 1e-11,
+    "real_fourier_energy_abs_ha": 1e-09,
+    "ledger_abs_ha": 1e-10,
+    "g0_prediction_abs_ha": 1e-09,
+    "local_print_bound_target_ha": 1e-07,
+    "mean_print_bound_target_ha": 1e-08,
+    "saved_local_energy_abs_ha": 1e-08,
+    "saved_local_mean_abs_ha": 1e-11,
+    "local_parseval_abs_ha": 1e-09
+  },
+  "direct_fourier_miller_points": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      -1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      -1
+    ],
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      -1,
+      -2,
+      -3
+    ],
+    [
+      2,
+      -1,
+      3
+    ],
+    [
+      -2,
+      1,
+      -3
+    ],
+    [
+      3,
+      2,
+      -1
+    ],
+    [
+      -3,
+      -2,
+      1
+    ],
+    [
+      7,
+      -5,
+      4
+    ],
+    [
+      -7,
+      5,
+      -4
+    ],
+    [
+      17,
+      0,
+      0
+    ],
+    [
+      -17,
+      0,
+      0
+    ]
+  ],
+  "filplot_expected": {
+    "grid": [
+      40,
+      40,
+      40
+    ],
+    "lattice_columns_bohr": [
+      [
+        10.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        10.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        10.0
+      ]
+    ],
+    "positions_cartesian_bohr": [
+      [
+        1.7,
+        2.3,
+        3.1
+      ]
+    ],
+    "species": [
+      {
+        "symbol": "Mg",
+        "z_valence": 10.0
+      }
+    ],
+    "atom_species_indices": [
+      1
+    ],
+    "cutoffs": {
+      "gcutm": 303.96355092701333,
+      "dual": 4.0,
+      "ecut_ry": 30.0
+    }
+  },
+  "source_mapping": {
+    "G40": "Original SCF XML/charge/UPF/receipt/snapshot, verified against Phase7B archive; all original tree files protected",
+    "DFTK": "Successful Phase7D plain array container checked against public evidence and same-machine archive before deserialization",
+    "minimum_restart_files": [
+      "scratch/mg_soc_qe_v1.save/data-file-schema.xml",
+      "scratch/mg_soc_qe_v1.save/charge-density.dat",
+      "scratch/mg_soc_qe_v1.save/Mg.upf"
+    ],
+    "controlled_pseudo_lookup": "Independent ordinary same-hash Mg.upf at pseudo/Mg.upf as required by unchanged XML; no wavefunction initialization for plot0/2",
+    "full_G40_snapshot_sha256": "970d44b6cf90e834d2759997ec92385d0a2760daeff17fff7e588415d099265c"
+  },
+  "normalization": "First index fastest, zero fractional origin, physical40^3; nbar=FFT(n)/N; all discrete native bins including G0/Nyquist. Raw Ry potential /2 once; density unchanged. XML geometry retained.",
+  "formulas": {
+    "inner_product": "Omega/Ngrid*sum(n*V)=Omega*Re sum(conj(nbar)*Vbar)",
+    "rho_response": "<n_D-n_Q,V_D>",
+    "shape_at_Q": "<n_Q,V_D-mean_D-V_Qpp+C_Qpp>",
+    "g0_at_Q": "Pc_D+N_Q*(mean_D-C_Qpp)",
+    "Delta_Lbar": "L_D_D+Pc_D-L_Qpp_Q=rho_response+shape_at_Q+g0_at_Q",
+    "drift": "L_D_D+Pc_D-L_D_historical-Pc_historical",
+    "remainder": "Delta_O_historical-(L_D_historical+Pc_historical-L_Qpp_Q)",
+    "Q_TNL_ledger_post": "O_Q_ledger-L_Qpp_Q; derived combination only",
+    "u_meanV": "sum(uV)/Ngrid",
+    "u_L_Q": "dvol*sum(abs(Qrep)*uV)",
+    "u_printed": "dvol*sum(abs(P0)*uV+abs(VQpp)*un+un*uV)"
+  },
+  "precision": "Actual decimal token exponent/last digit nearest-rounding halfwidth; not a bound on physical computation. Correlated reused V propagated after signed algebra. No threshold on cross-code residual.",
+  "fft_gate": "norm(a-b)/max(norm(a),norm(b),1)<=1e-11 for numerical transforms, Parseval and direct17; P0-vs-Q coefficient allowance sum(un)/N plus1e-11*max(norms,1), pointwise test stricter.",
+  "forbidden": [
+    "SCF",
+    "eigensolve",
+    "new independent XC evaluation",
+    "parameter scan",
+    "history/kernel/dependency modification",
+    "fitted potential zero",
+    "density adjustment",
+    "pp retry"
+  ],
+  "allowed_internal_initialization": "Two pp calls may reread UPF and reconstruct local/Hartree/XC using normal read_file_new/post_xml_init; not claimed to avoid XC",
+  "stop_conditions": [
+    "No matching existing pp build:BLOCKED",
+    "Any pp numerical failure consumes slot; no retry",
+    "P0 registration failure blocks same-density interpretation",
+    "Missing authenticated DFTK field:BLOCKED; do not reconstruct model",
+    "Printbound exceeds target:PRECISION_LIMITED; noextraexport"
+  ],
+  "public_fft_backend": "Existing NumPy2.3.5/Python3.12.14, no install; complete native-to-coefficient transform and public inverse density reconstruction; separate frozenJuliaFFTW check on savedDFTKfield",
+  "publication": "Full native P0/P2 gzip tokens + full64000 D/Qpp coefficient pack; prior density/evidence by references; raw save/archive local only"
+}

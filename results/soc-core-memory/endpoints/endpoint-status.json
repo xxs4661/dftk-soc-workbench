@@ -1,0 +1,410 @@
+{
+  "base_commit": "c764311a5422b5c3cab5a7b78a02d420910c4e56",
+  "evidence_scope": "Recorder/native parse-failure and process-observer evidence only; no SCF result or physical array is published",
+  "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+  "failed_driver_source": {
+    "binding_scope": "Exact original failed driver Git blob; a subsequent syntax fix cannot replace this execution or native stderr",
+    "bytes": 39295,
+    "error_column": 52,
+    "error_line": 330,
+    "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+    "path": "scripts/run_si_soc.jl",
+    "sha256": "4232ff06df04519fd45136c2b7f4d0a81623aa5df7c827d6fc9658af27e20ea6"
+  },
+  "formal_attempt_policy": "Exactly one OPT-B0-SCF and dependent OPT-B0-GAMMA; failed SCF is not automatically retried",
+  "limits": [
+    "A later syntax repair is a different execution and must not overwrite this unique failed attempt",
+    "No E/F, density, occupations, Gamma eigenvalues, splitting or endpoint-equivalence result exists for this attempt",
+    "The 741703680-byte sampled peak and 3.7200854169932427 seconds belong to parse/startup failure, not SCF convergence or SCF resource use",
+    "No Julia or QE process was launched during this export"
+  ],
+  "phase": "9A",
+  "preparation_commit": "e4f16a51a0304f5e70f5ae038563d6760409c2c4",
+  "raw_sources": {
+    ".work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf/process-exit.json": {
+      "bytes": 99,
+      "sha256": "4459c5a69fd6efbf4c32c2743ac3b4f7c2c39ccbe6a5dda4b75e8e280e1ec2dd"
+    },
+    ".work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf/process-start.json": {
+      "bytes": 681,
+      "sha256": "78a33d4593b518e60653b95c8704176a8221715a434e35a471c5b6dbfcc01662"
+    },
+    ".work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf/qe.stderr": {
+      "bytes": 894,
+      "sha256": "1f7c7e02568b3ce5fa25be38b3970e1c022897f3e3ec7cb37a775f5507849fb7"
+    },
+    ".work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf/qe.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    ".work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf/receipt.json": {
+      "bytes": 2534,
+      "sha256": "7e76ea3b3d928ddb1f5e1c73943a47cf3af306d1299e7e07be0d1158ba8fa31b"
+    },
+    ".work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf/resource-samples.jsonl": {
+      "bytes": 4203,
+      "sha256": "f4b66a621d50eba5a24affdbe49f8e565b0d2c215694ed7ac700f16d9dc4ce06"
+    },
+    ".work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf/resource.json": {
+      "bytes": 579,
+      "sha256": "176ebbbee33c7aa31fef2d92fd35b08cb8d0cb707344ff643693d0597e98e3f9"
+    },
+    ".work/phase9a/endpoints/slots/OPT-B0-SCF.json": {
+      "bytes": 114,
+      "sha256": "12546eca2db9119a3316382532dd17ec9a6d6c0f0a574e52c81eae82f3bacaad"
+    },
+    ".work/phase9a/launch-OPT-B0-SCF-20260909T114559Z-0600f2bf/exit.json": {
+      "bytes": 17,
+      "sha256": "c107e0898b3fa42043927de5f3d973201dfd4db6e63d5e60662f0c56f5da6b2e"
+    },
+    ".work/phase9a/launch-OPT-B0-SCF-20260909T114559Z-0600f2bf/invocation.json": {
+      "bytes": 798,
+      "sha256": "5a3cc14dab23a5cf500567f358c97ea773f5cd2b5b642fdb759f5c3120ba229c"
+    },
+    ".work/phase9a/launch-OPT-B0-SCF-20260909T114559Z-0600f2bf/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    ".work/phase9a/launch-OPT-B0-SCF-20260909T114559Z-0600f2bf/stdout.log": {
+      "bytes": 200,
+      "sha256": "99a4e4aec859d7f90bb5ccee5a6032e3e3aebe75e09485edafa08c299e150371"
+    }
+  },
+  "schema_version": 1,
+  "slots": {
+    "OPT-B0-GAMMA": {
+      "binding_scope": "Declared mandatory dependency plus observed absence of a Gamma claim/run; this is not a fabricated Gamma worker receipt",
+      "formal_slot_claimed": false,
+      "native_exit_code": null,
+      "native_process_started": false,
+      "parent_run_id": "OPT-B0-SCF-20260909T114559Z-0600f2bf",
+      "parent_status": "FAIL",
+      "recorder_exit_code": null,
+      "required_parent": "A successful same-execution OPT-B0-SCF n_out checkpoint; none exists",
+      "run_id": null,
+      "spectrum_status": "NOT_RUN",
+      "status": "BLOCKED_PARENT"
+    },
+    "OPT-B0-SCF": {
+      "checkpoint_present": false,
+      "energy_density_occupation_and_gamma_results": "NOT_AVAILABLE",
+      "failure_stage": "JULIA_PARSE_BEFORE_DRIVER_ENTRY",
+      "failure_summary": "Julia ParseError at scripts/run_si_soc.jl:330:52: missing whitespace after the ternary colon. The entry function and SCF maps were not reached.",
+      "formal_attempt": 1,
+      "formal_slot_claim": {
+        "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+        "run_id": "OPT-B0-SCF-20260909T114559Z-0600f2bf"
+      },
+      "formal_slot_claimed": true,
+      "launch_exit": {
+        "exit_code": 9
+      },
+      "launch_invocation": {
+        "action": "OPT-B0-SCF",
+        "command": [
+          "<home>/.local/bin/python3.12",
+          "-B",
+          "<workbench>/scripts/run_si_dftk.py",
+          "OPT-B0-SCF",
+          "<workbench>/.work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf",
+          "--backend",
+          "soc-core",
+          "--core-gate",
+          "<workbench>/.work/phase9a/gate-20260909T114412Z-4b88f642/gate.json",
+          "--execution-commit",
+          "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed"
+        ],
+        "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+        "formal_attempt": 1,
+        "run_directory": "<workbench>/.work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf"
+      },
+      "launch_stdout_summary": {
+        "action": "OPT-B0-SCF",
+        "execution_status": "FAIL",
+        "exit_code": 9,
+        "reason": "ValueError: Julia worker returned nonzero: 1",
+        "run_id": "OPT-B0-SCF-20260909T114559Z-0600f2bf",
+        "worker_exit_code": 1
+      },
+      "map_count": 0,
+      "native_exit_code": 1,
+      "native_process_start": {
+        "command": [
+          "julia",
+          "--startup-file=no",
+          "--color=no",
+          "--project=<workbench>/environment/workbench",
+          "<workbench>/scripts/run_si_soc.jl",
+          "OPT-B0-SCF",
+          "<workbench>/.work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf/OPT-B0-SCF-20260909T114559Z-0600f2bf-dftk",
+          "--backend",
+          "soc-core",
+          "--core-gate",
+          "<workbench>/.work/phase9a/gate-20260909T114412Z-4b88f642/gate.json"
+        ],
+        "pid": 73754,
+        "started_utc": "2026-09-09T11:45:59.656016+00:00"
+      },
+      "native_process_started": true,
+      "native_stderr": {
+        "compressed_bytes": 409,
+        "compressed_sha256": "5cd9ae09cf966d1373c3baf9f416be133a94bed836c3b38a116023d8c929a55a",
+        "compression": "gzip; deterministic mtime=0",
+        "content": "Complete Julia native stderr, preserving ParseError text/source excerpt/stacktrace; inherited original filename qe.stderr does not mean QE was run",
+        "path": "results/soc-core-memory/endpoints/OPT-B0-SCF.stderr.txt.gz",
+        "public_text_bytes": 771,
+        "public_text_lines": 15,
+        "public_text_sha256": "9a795684ceb2831806f53682224fef904bc9f3813bf0fc0b96b64d6cf8070182",
+        "raw_text_bytes": 894,
+        "raw_text_sha256": "1f7c7e02568b3ce5fa25be38b3970e1c022897f3e3ec7cb37a775f5507849fb7",
+        "redactions": [
+          "Exact workbench absolute path -> <workbench>",
+          "Exact ~/ workbench spelling -> <workbench>",
+          "Exact HOME absolute path -> <home>"
+        ]
+      },
+      "progress_records": 0,
+      "progress_scope": "No worker directory, worker-result, trace, map, or checkpoint was created; native syntax error occurred before the entry call.",
+      "receipt": {
+        "action": "OPT-B0-SCF",
+        "backend": "soc-core",
+        "base_commit": "c764311a5422b5c3cab5a7b78a02d420910c4e56",
+        "case": "si-soc-splitting-v1",
+        "case_sha256": "a04e20b22748462fef0f0eccee93cff5a616fa3e11aa6606018d11e40d2f8cac",
+        "command": [
+          "julia",
+          "--startup-file=no",
+          "--color=no",
+          "--project=<workbench>/environment/workbench",
+          "<workbench>/scripts/run_si_soc.jl",
+          "OPT-B0-SCF",
+          "<workbench>/.work/phase9a/endpoints/OPT-B0-SCF-20260909T114559Z-0600f2bf/OPT-B0-SCF-20260909T114559Z-0600f2bf-dftk",
+          "--backend",
+          "soc-core",
+          "--core-gate",
+          "<workbench>/.work/phase9a/gate-20260909T114412Z-4b88f642/gate.json"
+        ],
+        "core_gate_sha256": "29621b5bc01245edd6bc1de0a5871636b9851240c271213676f6db3227d06efd",
+        "execution_commit": "1b42a27063ca65757d2c4f34d46fe4f1cd9929ed",
+        "execution_status": "FAIL",
+        "exit_code": 9,
+        "failure_status": "FAIL",
+        "finished_utc": "2026-09-09T11:46:03.375397+00:00",
+        "log_labels": "qe.stdout/qe.stderr are inherited executor names containing Julia output; no QE command",
+        "native_process": {
+          "exit_code": 1,
+          "finished_utc": "2026-09-09T11:46:03.305076+00:00",
+          "interrupted": false
+        },
+        "phase": "9A",
+        "preparation_commit": "e4f16a51a0304f5e70f5ae038563d6760409c2c4",
+        "pseudo_sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+        "reason": "ValueError: Julia worker returned nonzero: 1",
+        "resource": {
+          "elapsed_seconds": 3.7200854169932427,
+          "finished_utc": "2026-09-09T11:46:03.374882+00:00",
+          "first_sample_delay_seconds": 0.11734949999663513,
+          "limit_bytes": 8589934592,
+          "native_exit_code": 1,
+          "nonempty_samples": 31,
+          "numerical_process_pid": 73754,
+          "owned_process_cleanup_status": "PASS",
+          "peak_aggregate_rss_bytes": 741703680,
+          "reason": null,
+          "remaining_observed_processes": [],
+          "sample_interval_seconds": 0.1,
+          "samples": 31,
+          "scope": "Recorded session group plus descendant processes; sampled aggregate RSS, not a continuous upper bound",
+          "started_utc": "2026-09-09T11:45:59.654790+00:00",
+          "status": "PASS"
+        },
+        "run_id": "OPT-B0-SCF-20260909T114559Z-0600f2bf",
+        "schema_version": 1,
+        "started_utc": "2026-09-09T11:45:59.244698+00:00",
+        "worker_directory": "OPT-B0-SCF-20260909T114559Z-0600f2bf-dftk",
+        "worker_exit_code": 1,
+        "worker_started": true
+      },
+      "recorder_exit_code": 9,
+      "resource_samples": {
+        "columns": [
+          "elapsed_s",
+          "aggregate_rss_bytes",
+          "process_count"
+        ],
+        "observer_elapsed_seconds": 3.7200854169932427,
+        "rows": [
+          [
+            0.1173537499998929,
+            264404992,
+            1
+          ],
+          [
+            0.23465816699899733,
+            277725184,
+            1
+          ],
+          [
+            0.350966874990263,
+            304758784,
+            1
+          ],
+          [
+            0.4680364169907989,
+            333742080,
+            1
+          ],
+          [
+            0.5848624169884715,
+            341655552,
+            1
+          ],
+          [
+            0.7020352499966975,
+            375275520,
+            1
+          ],
+          [
+            0.8179529170010937,
+            433176576,
+            1
+          ],
+          [
+            0.9340052499901503,
+            443203584,
+            1
+          ],
+          [
+            1.0505539169971598,
+            463650816,
+            1
+          ],
+          [
+            1.1677859170013107,
+            468418560,
+            1
+          ],
+          [
+            1.284513499995228,
+            478560256,
+            1
+          ],
+          [
+            1.4008590829907916,
+            493486080,
+            1
+          ],
+          [
+            1.5176288749935338,
+            505348096,
+            1
+          ],
+          [
+            1.63441137499467,
+            524124160,
+            1
+          ],
+          [
+            1.750979999997071,
+            621576192,
+            1
+          ],
+          [
+            1.8676304580003489,
+            625197056,
+            1
+          ],
+          [
+            1.984123082991573,
+            625360896,
+            1
+          ],
+          [
+            2.1011894999974174,
+            626425856,
+            1
+          ],
+          [
+            2.2174338329932652,
+            641236992,
+            1
+          ],
+          [
+            2.33430312499695,
+            648806400,
+            1
+          ],
+          [
+            2.45102812499681,
+            654049280,
+            1
+          ],
+          [
+            2.5676680829928955,
+            659505152,
+            1
+          ],
+          [
+            2.684275791994878,
+            664846336,
+            1
+          ],
+          [
+            2.80068183298863,
+            669614080,
+            1
+          ],
+          [
+            2.9181985420000274,
+            709033984,
+            1
+          ],
+          [
+            3.0367079169955105,
+            733020160,
+            1
+          ],
+          [
+            3.1513498749991413,
+            737427456,
+            1
+          ],
+          [
+            3.268921582988696,
+            738869248,
+            1
+          ],
+          [
+            3.3856047919980483,
+            739196928,
+            1
+          ],
+          [
+            3.5009046249906532,
+            740966400,
+            1
+          ],
+          [
+            3.6177421669999603,
+            741703680,
+            1
+          ]
+        ],
+        "sampled_peak_rss_bytes": 741703680,
+        "scope": "Julia parse/startup process plus descendants; these are not SCF iterations or an SCF peak"
+      },
+      "run_id": "OPT-B0-SCF-20260909T114559Z-0600f2bf",
+      "scf_status": "NOT_STARTED",
+      "status": "FAIL",
+      "stdout_bytes": 0,
+      "worker_environment_validation_status": "NOT_REACHED",
+      "worker_result_present": false
+    }
+  },
+  "static_gate": {
+    "assessment_status": "PASS",
+    "path": "results/soc-core-memory/gate.json",
+    "scope": "Prior static prerequisite only; it is not an SCF result",
+    "sha256": "29621b5bc01245edd6bc1de0a5871636b9851240c271213676f6db3227d06efd"
+  }
+}

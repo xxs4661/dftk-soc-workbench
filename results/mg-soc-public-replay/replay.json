@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "phase": "7G",
+  "status": "BLOCKED",
+  "recorded_utc": "2026-09-08T12:04:52.727112+00:00",
+  "repository": "xxs4661/dftk-soc-workbench",
+  "branch": "codex/phase7g-public-cross-env-replay",
+  "input_commit": "747d7d3e21dadd8a5fef0183d2375e7f1f82c176",
+  "preparation_commit": "757397ab0f0080f783d64841a6522db7f7d851b0",
+  "execution_candidate_commit": "95334efbab69fe97006ac76cbf4d676d4a7efd9f",
+  "execution_commit": null,
+  "tested_commit": null,
+  "synthetic_test_code_matches_commit": "95334efbab69fe97006ac76cbf4d676d4a7efd9f",
+  "delivery_commit_binding": "Use the ordinary commit containing this receipt; it was not executed in CI. No self-referential SHA or amend.",
+  "block": {
+    "kind": "GITHUB_WORKFLOW_AUTHORIZATION",
+    "message": "GitHub refused the branch push: the current OAuth App lacks workflow scope for .github/workflows/phase7g-public-replay.yml.",
+    "push_exit_code": 1,
+    "current_oauth_scopes": [
+      "gist",
+      "read:org",
+      "repo"
+    ],
+    "scope_expansion_requested": false,
+    "admin_bypass": false,
+    "first_push_commit": "95334efbab69fe97006ac76cbf4d676d4a7efd9f",
+    "push_attempt_count": 1,
+    "push_transcript_sha256": "fa698992c94034c1b61ad68a680d891b8ce3d8197ac378445a7a27ff9666a80c",
+    "push_transcript_scope": "Captured original tool/session output, not a repeated push"
+  },
+  "CI": {
+    "status": "NOT_CREATED",
+    "run_id": null,
+    "job_id": null,
+    "run_attempt": null,
+    "execution_exit_code": null,
+    "exact_head_query": "95334efbab69fe97006ac76cbf4d676d4a7efd9f",
+    "matching_run_count": 0,
+    "planned_runner": "ubuntu-24.04 standard GitHub-hosted x86_64",
+    "dependency_installation": "NOT_RUN",
+    "formal_execution_count": 0,
+    "engineering_retry_count": 0,
+    "fallback": "No existing different-OS/CPU runner identified; no new environment or paid resource created"
+  },
+  "R": {
+    "status": "NOT_RUN",
+    "exit_code": null,
+    "command": [
+      "python",
+      "scripts/check_orbital_energy.py"
+    ],
+    "source_commit": "747d7d3e21dadd8a5fef0183d2375e7f1f82c176",
+    "checker_sha256": "469c9d2ddf069406bf18f6a2b6c776d2124b2631e9e62b4bea5366ad4e7b781e",
+    "all_option_used": false,
+    "raw_numeric_output": "NOT_AVAILABLE_NO_PROCESS_STARTED"
+  },
+  "I": {
+    "status": "NOT_RUN",
+    "exit_code": null,
+    "command": [
+      "python",
+      "scripts/replay_public_independent.py",
+      "--source-root",
+      "READ_ONLY_BASELINE",
+      "--plan",
+      "benchmarks/mg-soc-public-replay-v1/plan.json",
+      "--output",
+      "NEW_I_DIR"
+    ],
+    "raw_numeric_output": "NOT_AVAILABLE_NO_PROCESS_STARTED"
+  },
+  "public_input_identity_status": "FILE_HASH_VERIFIED_ONLY",
+  "public_input_file_identity": {
+    "status": "PASS_FILE_BYTES_ONLY",
+    "file_count": 59,
+    "total_bytes": 15876489,
+    "authority_commit": "747d7d3e21dadd8a5fef0183d2375e7f1f82c176",
+    "identity_manifest": {
+      "path": "benchmarks/mg-soc-public-replay-v1/plan.json",
+      "sha256": "056c11391f43f9438d02a67a869c3c93bc24b73eb2b634d996dc01df60cf6965",
+      "fields": [
+        "input_sha256",
+        "input_bytes"
+      ]
+    },
+    "current_bytes_equal_baseline_git_blobs": true,
+    "canonical_NPZ_member_replay_status": "NOT_RUN",
+    "original_WFC_memory_reconstruction_status": "NOT_RUN"
+  },
+  "cross_environment_status": "BLOCKED",
+  "frozen_reference_checker_status": "NOT_RUN",
+  "independent_implementation_status": "NOT_RUN",
+  "Q_full_public_numeric_replay_status": "NOT_RUN",
+  "A_B_replay_scope": "SCALAR_AND_PROJECTED_ONLY",
+  "A_B_replay_status": "NOT_RUN",
+  "historical_platform_fingerprint_status": "PREDECLARED_NOT_TESTED",
+  "numerical_interpretation_status": "REVIEW_REQUIRED",
+  "native_QE_nonlocal_status": "NOT_MEASURED",
+  "original_Q_H_input_residual_status": "NOT_AVAILABLE",
+  "physical_convergence_status": "NOT_ESTABLISHED",
+  "ieee_origin_status": "NOT_LOCALIZED",
+  "new_numeric_results": {
+    "status": "NOT_RUN",
+    "density_coefficients": null,
+    "kinetic_ha": null,
+    "nonlocal_ha": null,
+    "L_wfc_ha": null,
+    "L_saved_ha": null,
+    "J_Q_ha": null,
+    "J_Q_halfwidth_ha": null,
+    "signed_ledger_ha": null,
+    "historical_numeric_differences": null
+  },
+  "actual_preparation_host": {
+    "scope": "SYNTHETIC_TESTS_ONLY_NOT_FORMAL_REPLAY",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "OS": "Darwin",
+    "architecture": "arm64",
+    "python_version": "3.12.14",
+    "python_full_version": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "numpy_version": "2.3.5",
+    "packages_installed_or_changed": false
+  },
+  "synthetic_tests": {
+    "status": "PASS",
+    "total": 47,
+    "exit_code": 0,
+    "suites": [
+      {
+        "command": [
+          "python",
+          "tests/test_independent_orbital_io.py"
+        ],
+        "scope": "SYNTHETIC_ONLY",
+        "test_count": 9,
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "5684d13977a1f6829bcd5f644c72b35ab6f8d42951d571a5f230c4cc35a359f3",
+        "archive_log": "process/pre-execution/test_independent_orbital_io.stderr"
+      },
+      {
+        "command": [
+          "python",
+          "tests/test_independent_orbital_math.py"
+        ],
+        "scope": "SYNTHETIC_ONLY",
+        "test_count": 14,
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "b287d0d1d60d3c3d4629e9139a735eefeb89b6d695d48d00e70404daa6a8692a",
+        "archive_log": "process/pre-execution/test_independent_orbital_math.stderr"
+      },
+      {
+        "command": [
+          "python",
+          "tests/test_independent_replay.py"
+        ],
+        "scope": "SYNTHETIC_ONLY",
+        "test_count": 7,
+        "exit_code": 0,
+        "stdout_sha256": "549fb34c39faca5bfa3e53a2585b81019b109816e479bcca7e728d5f81e409be",
+        "stderr_sha256": "ff3d223c596d0d4ed21936182a2fc9a646432e7deb58db64a778c097193abd7c",
+        "archive_log": "process/pre-execution/test_independent_replay.stderr"
+      },
+      {
+        "command": [
+          "python",
+          "tests/test_phase7g_observer.py"
+        ],
+        "scope": "SYNTHETIC_ONLY",
+        "test_count": 7,
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e34bbc677c14b125f9ccb68304940462c5bde90a1c7d9cc7b491e6f2b8053238",
+        "archive_log": "process/pre-execution/test_phase7g_observer.stderr"
+      },
+      {
+        "command": [
+          "python",
+          "tests/test_cross_env_replay.py"
+        ],
+        "scope": "SYNTHETIC_ONLY",
+        "test_count": 10,
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "2d407504d003cfe404f23be48347e686ae1f67393860d4067d9a0bf06b1ddd60",
+        "archive_log": "process/pre-execution/test_cross_env_replay.stderr"
+      }
+    ],
+    "note": "Actual current Mac synthetic tests, not Linux, pseudopotential, or physical data replay"
+  },
+  "checks": {
+    "public_path_privacy_and_relative_links": {
+      "status": "PASS",
+      "required_paths": 23,
+      "entry": "check_publication.check_paths(public_files(root))"
+    },
+    "frozen_science_hashes": {
+      "status": "PASS",
+      "count": 86,
+      "entry": "check_publication.check_frozen(root)"
+    },
+    "historical_numerical_publication_chain": "NOT_RUN_PER_PHASE7G_SCOPE",
+    "execution_candidate_code_plan_lock_unchanged": {
+      "status": "PASS",
+      "sha256": {
+        "benchmarks/mg-soc-public-replay-v1/plan.json": "056c11391f43f9438d02a67a869c3c93bc24b73eb2b634d996dc01df60cf6965",
+        "benchmarks/mg-soc-public-replay-v1/requirements.lock": "8723a458c6cdbd978ed15c95953149a019b86c5832dad7357788ef3a2154c2b4",
+        ".github/workflows/phase7g-public-replay.yml": "fd98c22585dec2b06437a806701eae40db0cbcad0cf8c503b018822e689b11b5",
+        "scripts/independent_orbital_io.py": "8efab9007e0a82db167c0d40784aa5aa74360f0abf1e7568cd4c285871965d58",
+        "scripts/independent_orbital_math.py": "435b43a2f66f58ee3a676dfab208b5fc48be81b2659422b7ae893df1f8728eb0",
+        "scripts/phase7g_observer/sitecustomize.py": "903cd577021d4c3d05ea8a76c69cb11bfe503eab0334d7f13e2f40db20779563",
+        "scripts/replay_public_independent.py": "c3ec57fa4661c2deea8af6e2be6099ae522892654a20e36d2086882d01490427",
+        "scripts/run_cross_env_replay.py": "7f30d275306991ecefb7d2b2a1dd2be5aa8762ead6a1e5d740f1a7125aaa7f1c",
+        "tests/test_cross_env_replay.py": "0a36645a3df82ad07fb4c8855f2893377b1e11761fb65a34c93ee1bfefab5da1",
+        "tests/test_independent_orbital_io.py": "cdb1bc0365f0032807dae24ec892d0bd00ffa063880ee20785b6664de13144ec",
+        "tests/test_independent_orbital_math.py": "40b2240994857b60861a388e3c77e481595da464df5a185886d9e5dcc925ea6a",
+        "tests/test_independent_replay.py": "840c954336f7287acf8caf3fbceefaa46fd3f52782f046793cd2f9d40dcb4e96",
+        "tests/test_phase7g_observer.py": "223626deeb367de9d152f5d3cf7f36ef9a38e5b127d17ac27e4917f8f91f694c"
+      }
+    },
+    "full_original_input_files_match_base": "PASS_FILE_BYTES_ONLY",
+    "final_publication_and_evidence_receipt": {
+      "status": "PASS",
+      "scope": "New blocked receipt consistency; current public paths/privacy/links; exact frozen and candidate-code hashes. No old numerical checker or real data math.",
+      "public_required_paths": 23,
+      "frozen_files": 86,
+      "bound_public_files": 59,
+      "unchanged_candidate_execution_files": 13,
+      "base_existing_changed_paths": [
+        "README.md",
+        "benchmarks/README.md",
+        "docs/status.md",
+        "results/README.md",
+        "scripts/README.md"
+      ],
+      "diff_check_exit_code": 0,
+      "numeric_replay": "NOT_RUN"
+    },
+    "final_publication_log_sha256": "4569079072394ab1d06aa3c2c0fd6659993e6f6ed25f03c0f7d40a8bb9985765"
+  },
+  "independence": {
+    "code": "New readers, streamed mathematical kernels and projection-space contractions do not import or call production numeric functions; no P/D regeneration.",
+    "shared": [
+      "public input bytes",
+      "published P/D",
+      "NumPy",
+      "potentially common FFT/BLAS components"
+    ],
+    "limits": [
+      "Not a second DFT code",
+      "Not independent human expert certification",
+      "Actual real-data integration and Linux numerical results untested",
+      "A/B original orbitals not public; no claim of full A/B reconstruction"
+    ],
+    "development_disclosure": "Mathematical implementation and synthetic tests preceded target-value comparison. During format reconnaissance, the IO author incidentally saw historical summary energies in a public README before its reader tests; those values were not used to derive outputs or fit constraints. AI-assisted review is disclosed."
+  },
+  "retained_failures": [
+    {
+      "kind": "PUSH_REJECTED",
+      "exit_code": 1,
+      "reason": "Missing workflow OAuth scope; no CI created"
+    },
+    {
+      "kind": "SYNTHETIC_RED_TESTS",
+      "archive_log": "process/cross-wrapper-tests-initial.log",
+      "sha256": "15ca1a9252c4fb620f53f5d4becbe77c64ab6cfed0b7b40d61451540fbd4ae89",
+      "reason": "Initial tests exposed nonfinite equality, invalid hash types and missing-code aggregate acceptance; assertions preserved, implementation fixed before candidate commit"
+    },
+    {
+      "kind": "PREPARATION_INTERPRETER_OR_PATH_ERRORS",
+      "scope": "Local synthetic setup only",
+      "reason": "A bare Python 3.12 interpreter had no NumPy; observer synthetic path matching initially distinguished /var from /private/var. Existing bundled NumPy runtime and realpath matching fixed these before candidate commit; no dependency installed."
+    }
+  ],
+  "backup": {
+    "status": "PASS",
+    "archive_id": "phase7g-public-replay-20260908-blocked",
+    "scope": "New preparation/execution-candidate commits and this-phase process records only; no private historical inputs accessed",
+    "public_base_prerequisite": "747d7d3e21dadd8a5fef0183d2375e7f1f82c176",
+    "restored_candidate_commit": "95334efbab69fe97006ac76cbf4d676d4a7efd9f",
+    "bundle_sha256": "ec122673f42e052ecabb3e7dd4a41473b45804ab3800fdb3022c964c53a2f873",
+    "bundle_bytes": 59957,
+    "new_files_restored": 14,
+    "process_file_count": 41,
+    "process_manifest_sha256": "55cd8a0cdfa5f44abcadebcb16490ea389f75acd61c088b74d7ff498e4550b07",
+    "process_tar_sha256": "1f0fd15adcda63a33e4f230e744a5ff5e2f1769ce160b4b4dffe6ff879abbe1a",
+    "all_process_file_hashes_restored": true,
+    "delivery_commit_archive": "Will be appended after ordinary final commit; not included in this candidate receipt"
+  },
+  "remote": {
+    "main_before": "77bd2e151116bcc189b797e6da415d27a61d3a2b",
+    "main_after_push_rejection": "77bd2e151116bcc189b797e6da415d27a61d3a2b",
+    "main_unchanged": true,
+    "phase7g_branch": "ABSENT",
+    "pushed": false,
+    "pull_request_created": false
+  },
+  "not_run": [
+    "Linux real-data R",
+    "Linux independent I",
+    "canonical member and WFC byte reconstruction",
+    "real density/T/NL/P2/J replay",
+    "new SCF",
+    "eigenvalue solve",
+    "occupation solve",
+    "QE/pp",
+    "Julia science",
+    "XC",
+    "P/D regeneration",
+    "physical scan",
+    "full upstream physical tests",
+    "historical Python 3.9 full publication chain"
+  ],
+  "stop": "BLOCKED; no new scope, fallback science or next phase attempted. Await human review."
+}

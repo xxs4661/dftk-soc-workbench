@@ -1,105 +1,89 @@
-# Workbench scripts
+# Commands and their scope
 
-Use the [workbench environment](../environment/workbench/README.md), not a modified DFTK
-Project. All expected source commits and the default Mg checksum come from
-[`config/sources.lock`](../config/sources.lock).
+Start with [getting started](../docs/getting-started.md). This directory contains
+both public review tools and the drivers that produced historical experiments.
+They do not share a single generic material-calculation interface.
 
-- `fetch_sources.sh [--source-cache DIR]`: clone missing fixed sources; preserve and refuse
-  existing dirty or wrong-version checkouts. A cache is a parent directory containing
-  `DFTK.jl` and `PseudoPotentialIO.jl`, not a package download cache.
-- `bootstrap_dftk.sh`: instantiate the saved workbench Manifest and check loaded identity
-  in a new Julia process. It never changes the dependency resolution intentionally.
-- `python3 scripts/run_recorded.py tests`: check actual environment identity and run the
-  workbench Julia tests. These are not upstream DFTK tests.
-- `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_recorder*.py' -v`:
-  original subprocess/log tests plus synthetic recorder protocol/publication regressions.
-  Synthetic workers do not validate Julia, environments or pseudopotentials.
-- `python3 tests/test_cli.py`: fresh-process CLI checks, including real Mg information
-  mode. Requires the environment and the ignored Mg sample.
-- `run_upf_inspection.sh [UPF_PATH]`: explicitly run **fr-nc** acceptance. With no argument,
-  read the Mg path, provenance and SHA-256 from the source lock and verify the hash first.
-- `run_dftk_minimal.sh`: optionally run upstream `:minimal` after the same identity checks.
-  It uses `allow_reresolve=false`; missing test dependencies cause failure instead of a
-  silent dependency upgrade. Phase 4A did not rerun this upstream selection.
-- `collect_environment.sh`: legacy optional host inventory in ignored `.work/environment-inventory/`;
-  its old reports remain history.
+## Public result review
 
-Every recorded invocation has a unique `results/runs/<run_id>/` with JSON, worker log
-and a summary referencing the run ID, input checksum and Manifest checksum. These
-transient directories are ignored; selected sanitized evidence is committed under
-case-oriented `results/` entries after explicit whitelist export. Historical inspection
-bytes remain at `results/upf-acceptance/phase3-inspection.json` and in Git history.
-The initial marker is non-passing, so interrupted or early-failed runs cannot inherit
-another run's PASS. There is no shared "latest PASS" file.
+From a normal clone with local Git history and an existing Python 3.12:
 
-The Python recorder replaces the old shell pipelines: it separately checks the worker
-exit, output sanitization, JSON structure and log/result writes. Human-readable logs go
-to stderr/the run log; stdout contains one JSON object (except help). If storage itself
-fails, the command exits nonzero and emits the failure JSON on stdout when possible.
-Schema 2 is checked against the requested action before accepting worker output.
-Strict inspection requires environment/parse/metadata PASS and EXPECTED_SOC_REJECTION;
-identity, tests and minimal require their matching worker action and no UPF stages.
-Protocol contradictions return 9; valid worker failures retain their failure codes.
-JSON and summary are prepared before writing, and the authoritative result JSON is
-published last. Rendering or writing failures produce a fresh ERROR record; failure
-to persist that record is explicitly reported on stderr and in the stdout JSON.
+```sh
+python3.12 -B scripts/review.py core-regression
+```
 
-## Acceptance contract
+[`review.py`](review.py) creates its own temporary clean copy outside the current
+repository, checks out the fixed completed-core snapshot and runs the original
+strict public checker. It starts no Julia, QE, SCF or occupation solver and reads
+no private `.work` data. Its summary preserves scientific review flags and the
+original exit. `--log-dir` accepts a new directory outside the repository for
+complete output and preparation metadata. See [reproduction and exit semantics](../docs/reproducibility.md).
 
-The low-level Julia worker requires `--mode fr-nc` or `--mode inspect`. The recorder is
-the durable entry point; direct worker calls are useful for CLI/environment tests.
-Information mode can return `INFO_ONLY`/0 after parsing; it does not set metadata or
-construction checks to PASS. Strict mode only returns 0 after metadata acceptance and
-the exact locked DFTK SOC guard. JSON separately reports `parse_status`,
-`metadata_validation_status`, `dftk_construction_status`, `overall_status` and reasons.
+Other checkers cover [Si](../results/README.md#silicon-soc-spectra-and-sensitivity)
+and [Mg](../results/README.md#magnesium-cross-code-comparison-and-energy-reference).
+Use the explicit fixed snapshots and original commands in the
+[history index](../docs/history.md). Do not run an old whole-tree checker on
+updated documentation and then edit its hashes to make it pass.
 
-| Exit | Meaning |
+## Core example
+
+```sh
+julia --startup-file=no --project=@stdlib examples/soc_kernels.jl
+```
+
+This existing [example](../examples/soc_kernels.jl) is at the repository root's
+`examples/` path. It exercises the actual `SOCKernels` matrix interface on small
+synthetic inputs, including a dense reference and two expectation contractions.
+It needs no pseudopotential or DFTK installation. It is not an SCF example or a
+registered Julia package. See [runtime and ownership](../docs/soc-core-runtime.md).
+
+## Environment and input preparation
+
+For development that actually uses the frozen DFTK adapter, follow the
+[environment guide](../environment/workbench/README.md). Existing entry points:
+
+| Entry | What it does / prerequisite |
 | --- | --- |
-| 0 | Strict acceptance, successful requested check, information-only result, or help |
-| 2 | Invalid arguments |
-| 3 | Parser/type failure |
-| 4 | Metadata fails or format variant is unsupported |
-| 5 | Unexpected DFTK exception or unexpected construction success |
-| 6 | Environment identity/dependency mismatch |
-| 7 | Missing prerequisite or blocked bootstrap |
-| 8 | Default input checksum mismatch |
-| 9 | Unexpected worker termination, test failure, filtering/JSON/log/I/O failure |
+| `fetch_sources.sh` | Obtain the exact local source checkouts before instantiation; optional `--source-cache DIR` reuses source repositories. |
+| `bootstrap_dftk.sh` | Instantiate the saved workbench environment, then check loaded identity in a fresh Julia process. May need package downloads. |
+| `python3 scripts/run_recorded.py identity` | Check the actual Julia, Manifest and loaded checkout identities; no SCF. |
+| `run_upf_inspection.sh [UPF_PATH]` | Strict FR-NC metadata acceptance and the locked DFTK's expected SOC rejection; default Mg bytes must match the lock. |
+| `python3 scripts/run_recorded.py tests` | Workbench Julia tests using the frozen environment; not upstream DFTK tests. |
+| `run_dftk_minimal.sh` | The separate historical upstream minimal-test selection; not part of public result replay. |
 
-Mapping uses parsed source indices, never record positions. PseudoPotentialIO's locked
-v2 parser uses a beta's explicit index, falling back to its tag only when the attribute
-is absent or `*`; relativistic-beta parsing does not have that fallback. It also prunes
-all-zero ordinary betas without renumbering the source IDs. Missing parsed indices and
-count mismatches after pruning are explicitly UNSUPPORTED, not claims that all such
-physical pseudopotentials are invalid. Explicitly indexed reordering is accepted.
+The [UPF acceptance record](../results/upf-acceptance/README.md) explains parser,
+metadata, construction and exit statuses. Information-only inspection does not
+satisfy strict acceptance. [`run_recorded.py`](run_recorded.py) preserves
+per-run output and checks the worker protocol; a record cannot borrow an earlier
+run's PASS.
 
-`j` uses absolute tolerance `1e-10` and zero relative tolerance, solely for decimal
-roundoff; no rounding into allowed values is performed. Repeated `(l,j)` radial channels
-are allowed; a partner `j` branch is not required. PP_RELWFC is not required for the
-nonlocal-beta acceptance performed here. See the pinned source citations and test
-results in [UPF acceptance evidence](../results/upf-acceptance/README.md).
+## Historical experiment drivers
 
+These are implementation and reproduction references, not commands to launch
+unrestricted new experiments. Their original provenance, source, exact-commit,
+parent-density and single-use controls remain enforced. Published slots cannot
+be reused by changing a label or pretending to have an old authorization.
 
-## Scientific entry points and public offline review
-
-| Purpose | Entry point / instructions |
+| Scientific operation | Source and fixed input documentation |
 | --- | --- |
-| Matched scalar Si run and parse/compare | `run_scalar_baseline.py`, `parse_qe_baseline.py`, `compare_scalar_baseline.py`; [Si case](../benchmarks/si-sr-lda/README.md) |
-| Independent reference integral and limited sensitivity | `inspect_si_reference.py`, `analyze_si_sensitivity.py`; [fixed matrix](../benchmarks/si-sr-lda/phase4c/README.md) |
-| No-SOC fixed-potential / SCF spinors | [spinor prototype](../prototypes/spinor/README.md) |
-| Angular/radial FR projectors | [FR projector conventions](../prototypes/relativistic/CONVENTIONS.md) |
-| Full Hamiltonian / energy at fixed density | [FR integration](../prototypes/fr_integration/README.md) |
-| Charge-only SOC SCF / comparison | `run_soc_scf.jl`, `compare_soc_scf.jl`; [SOC prototype](../prototypes/soc_scf/README.md) |
-| QE SOC input preparation only | `prepare_soc_qe_input.py` (Python 3.12+); [checklist](../benchmarks/mg-soc-fermi/checklist.md) |
-| Public-only verification, no scientific run | `python3.9 scripts/check_publication.py` |
+| Scalar Si paired SCF / spectra | `run_scalar_baseline.py`; [scalar case](../benchmarks/si-sr-lda/README.md) |
+| Charge-only Mg SOC SCF | `run_soc_scf.jl`; [SOC prototype](../prototypes/soc_scf/README.md) |
+| Si SOC and own-density spectra | `run_si_dftk.py`, `run_si_soc.jl`, `run_si_qe.py`; [Si inputs](../benchmarks/si-soc-splitting-v1/README.md) |
+| Mg QE comparison / fixed diagnostics | `run_qe_soc.py`, `run_qe_soc_diagnostics.py`; [case index](../benchmarks/README.md) |
+| Original saved-density / field / orbital extraction | `run_density_hartree_audit.py`, `run_energy_reference_audit.py`, `run_orbital_energy_audit.py`; require authenticated original private save files. |
+| Local-potential reconstruction | `run_qe_local_postprocess.py`; historical bounded pp.x experiment, not read-only arithmetic replay. |
 
-The `curate_*_evidence.py` helpers export explicit existing source fields or check
-published arithmetic. Their check modes never start Julia/QE or load private raw
-arrays. Export is publication work, not a new scientific result. Do not copy whole
-run directories into results. Exact historical scalar replay uses Python 3.9;
-newer Python summation differences are not repaired by changing algorithms or
-loosening assertions. Current [status and NOT_RUN limits](../docs/status.md) apply.
+A new material calculation still requires explicit input validation, a suitable
+unconsumed driver contract and further integration work. Public numerical packs
+cannot replace missing UPF, checkpoint or wavefunction sources. The current
+curation does not add such a driver.
 
-The combined publication check uses Python 3.9 for exact historical scalar
-arithmetic and `python3.12` on PATH for standard-library TOML in the prototype
-checks (`--modern-python PATH` selects an existing Python 3.11+ interpreter).
-It installs no packages or environments.
+## Maintenance
+
+The `curate_*_evidence.py` and case-specific export tools select recorded fields;
+their export modes are distinct from read-only checks. The original
+`check_publication.py` binds an earlier scientific tree and must retain its
+historical successes and compatibility failures. Contributor checks and evidence
+selection are described in [CONTRIBUTING](../CONTRIBUTING.md) and the
+[evidence policy](../docs/evidence-policy.md). Agent execution boundaries live in
+[AGENTS.md](../AGENTS.md), not in the researcher quick start.

@@ -1,0 +1,852 @@
+{
+  "schema_version": 1,
+  "phase": "9A",
+  "execution_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+  "scope": "Recorded command/exit evidence, no rerun implied by replay",
+  "entries": [
+    {
+      "name": "Latest distinct new Python protocol suite",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "SYNTHETIC_PROTOCOL_ONLY; control20, launcher14, source bridge4",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/python-final-20260910T131528Z-737ba647/receipt.json",
+          "sha256": "c56c4d064ed647d443a57971d6f3532fe15a39dceeb17173ff6070f28a372d32",
+          "bytes": 252
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/python-final-20260910T131528Z-737ba647/stdout",
+          "sha256": "2534b2dbc5ed2b32ec6e9f5089f98905a469e879c53968518739d5ee56ef8c7d",
+          "bytes": 2867
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/python-final-20260910T131528Z-737ba647/stderr",
+          "sha256": "2041bdd0413a6a161949b78a9ba3d906d7501fd204fc0d5d20536c1de7024eb4",
+          "bytes": 6238
+        }
+      ],
+      "assertions_or_tests": 38
+    },
+    {
+      "name": "Affected existing Python suite",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "SYNTHETIC and recorded-data tests; includes the fixed actual endpoint CLI tests",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/ledger.json",
+          "sha256": "aca83ea3e73cb70fdf50d1f4d1ce4be8829afb45b47fa141981ee0e4a5b0f884",
+          "bytes": 1177
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/python-affected.stdout",
+          "sha256": "168ad878e385ed4ce9d9b5849f407ee92cf3e78c2313956317bba3477ac4c993",
+          "bytes": 1623
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/python-affected.stderr",
+          "sha256": "7c47c9345110f4c32bf58265a4669121c53b18dc4fff0d750320923cd57239c4",
+          "bytes": 12188
+        }
+      ],
+      "assertions_or_tests": 88
+    },
+    {
+      "name": "Whole-source parser regression",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "Julia syntax only, including exact old failed text rejection",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/ledger.json",
+          "sha256": "aca83ea3e73cb70fdf50d1f4d1ce4be8829afb45b47fa141981ee0e4a5b0f884",
+          "bytes": 1177
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/syntax.stdout",
+          "sha256": "dc1fe873b0e346537a12e25e9ee91d2c15402bda8e582a8a2617ba98fcf25baa",
+          "bytes": 178
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/syntax.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/syntax.toml",
+          "sha256": "5ff7661d84b2ff1db777d6a20eef5512c0333dc7e337cca5c034b51979cde51c",
+          "bytes": 54265
+        }
+      ],
+      "assertions_or_tests": 39
+    },
+    {
+      "name": "Full driver definition/CLI checks",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "Definitions/library initialization and dispatch only; no physical context",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/checks-20260910T131306Z-3a059991/ledger.json",
+          "sha256": "bc8bce704b1546229d46cba782b2c88606bcff9b3fc080673d0ceb3311c8655f",
+          "bytes": 876
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/checks-20260910T131306Z-3a059991/entry-tests.stdout",
+          "sha256": "f5b0e6029a560a6bf16866a377b9e892739a6940f40bb5ab1236f90424886c30",
+          "bytes": 624
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/checks-20260910T131306Z-3a059991/entry-tests.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "assertions_or_tests": 21
+    },
+    {
+      "name": "Julia-to-Python authorization bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "SYNTHETIC temporary bridge; no numerical arrays evaluated",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/ledger.json",
+          "sha256": "aca83ea3e73cb70fdf50d1f4d1ce4be8829afb45b47fa141981ee0e4a5b0f884",
+          "bytes": 1177
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/bridge.stdout",
+          "sha256": "117b072733a134f77c59687756f4a0a016489f53cc0ec32e4b3594684fc44c1a",
+          "bytes": 148
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/bridge.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "assertions_or_tests": 13
+    },
+    {
+      "name": "Actual endpoint CLI before canonical filename fix",
+      "status": "FAIL",
+      "exit_code": 1,
+      "scope": "3 failing assertions; SYNTHETIC case-sensitive read semantics only",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/endpoint-tests/before-fix-20260910T125732Z-cc8a7567/receipt.json",
+          "sha256": "9d208aadf0e0e24407bef05cd5a6dd5e417865cdf9446a3b2c7222fdbe863cb6",
+          "bytes": 748
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/endpoint-tests/before-fix-20260910T125732Z-cc8a7567/tests.log",
+          "sha256": "ff061cb457a7c088144bff9bc373debc826bb3cd2a9c676efa11a863be277f8b",
+          "bytes": 7162
+        }
+      ],
+      "assertions_or_tests": 14
+    },
+    {
+      "name": "Initial control fixture run",
+      "status": "FAIL",
+      "exit_code": 1,
+      "scope": "1 FAIL and 1 ERROR caused by temporary /var alias; fixed fixture canonical root, not protocol",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/control-tests/run-20260910T131333Z-e6b7db7a/receipt.json",
+          "sha256": "5cd29e4157f149940f3725da8ee6f0307d7eb3d008af63e60b67162a2848e374",
+          "bytes": 652
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/control-tests/run-20260910T131333Z-e6b7db7a/stdout.log",
+          "sha256": "e4708c880290af562721d11370104671c9eccdf77389265b3e293a1793fa92d7",
+          "bytes": 98
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/control-tests/run-20260910T131333Z-e6b7db7a/stderr.log",
+          "sha256": "6370e28554f293f7b48bf83abced2e043fff39abb5cb20acc1367c5893686824",
+          "bytes": 5476
+        }
+      ],
+      "assertions_or_tests": 18
+    },
+    {
+      "name": "Initial Julia bridge fixture",
+      "status": "FAIL",
+      "exit_code": 1,
+      "scope": "1 assertion passed and 1 errored because temporary root was aliased; fixture-only canonicalization fix",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/checks-20260910T131306Z-3a059991/ledger.json",
+          "sha256": "bc8bce704b1546229d46cba782b2c88606bcff9b3fc080673d0ceb3311c8655f",
+          "bytes": 876
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/checks-20260910T131306Z-3a059991/bridge-tests.stdout",
+          "sha256": "1c29e18e30e51813e27f1ce4333d172919e4c50c2fd57bd764b49882cb73f667",
+          "bytes": 2155
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/checks-20260910T131306Z-3a059991/bridge-tests.stderr",
+          "sha256": "023119a3e6751e59dbd2528727340ed0d8cc64dab30236b07283eff75456ab92",
+          "bytes": 230
+        }
+      ],
+      "assertions_or_tests": 2
+    },
+    {
+      "name": "Intermediate combined Python protocol suite",
+      "status": "FAIL",
+      "exit_code": 1,
+      "scope": "1 FAIL and 2 ERROR: alias fixtures plus missing new process_proof dependency in synthetic launcher fixture",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/ledger.json",
+          "sha256": "aca83ea3e73cb70fdf50d1f4d1ce4be8829afb45b47fa141981ee0e4a5b0f884",
+          "bytes": 1177
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/python-new.stdout",
+          "sha256": "ed2d0d2686c16fcd2927d8e8ee927bce1a0fa7895529884f94e321ee6c026463",
+          "bytes": 2867
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/regression-20260910T131423Z-9d26e1d5/python-new.stderr",
+          "sha256": "c90a31ec477e425532082f1ec1dce4ff65e63c808b2aded0d6a88f814a224b1c",
+          "bytes": 10447
+        }
+      ],
+      "assertions_or_tests": 36
+    },
+    {
+      "name": "density",
+      "exit_code": 0,
+      "status": "PASS",
+      "scope": "Read-only endpoint postprocessing; first metrics CLI referenced an absent standalone spectrum, then used exact authenticated terminal worker subtree",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=environment/workbench",
+        "benchmarks/soc-core-memory-v1/endpoint_compare.jl",
+        "<workbench>",
+        "<workbench>/.work/phase9a/endpoints/OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be/receipt.json",
+        "<workbench>/.work/phase9a/endpoints/OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8/receipt.json",
+        "<workbench>/.work/phase9a/resume-20260910/endpoint-comparison/density.json",
+        "<workbench>/.work/phase9a/resume-authorizations/234fe85d4e9386d9889bd1af256a28394ba88089/authorization.json"
+      ],
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/endpoint-comparison/density.stdout",
+          "sha256": "0ed20cd8995618f172eb869bb6bf03ade6eeace368c66a54089b9c6a523dff2f",
+          "bytes": 40
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/endpoint-comparison/density.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "metrics",
+      "exit_code": 1,
+      "status": "FAIL",
+      "scope": "Read-only endpoint postprocessing; first metrics CLI referenced an absent standalone spectrum, then used exact authenticated terminal worker subtree",
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        "benchmarks/soc-core-memory-v1/endpoint_metrics.py",
+        "--root",
+        "<workbench>",
+        "--scf",
+        "<workbench>/.work/phase9a/endpoints/OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be/OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be-dftk/result.json",
+        "--gamma",
+        "<workbench>/.work/phase9a/endpoints/OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8/OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8-dftk/spectrum.json",
+        "--density",
+        "<workbench>/.work/phase9a/resume-20260910/endpoint-comparison/density.json",
+        "--output",
+        "<workbench>/.work/phase9a/resume-20260910/endpoint-comparison/metrics.json"
+      ],
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/endpoint-comparison/metrics.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/endpoint-comparison/metrics.stderr",
+          "sha256": "e3fac6afe24f6bb143efc7f3e2885786707640aba6e9fbfeb885c655cf1cbda3",
+          "bytes": 1611
+        }
+      ]
+    },
+    {
+      "name": "metrics-corrected-exact-subtree",
+      "exit_code": 0,
+      "status": "PASS",
+      "scope": "Read-only endpoint postprocessing; first metrics CLI referenced an absent standalone spectrum, then used exact authenticated terminal worker subtree",
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        "benchmarks/soc-core-memory-v1/endpoint_metrics.py",
+        "--root",
+        "<workbench>",
+        "--scf",
+        "<workbench>/.work/phase9a/endpoints/OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be/OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be-dftk/result.json",
+        "--gamma",
+        "<workbench>/.work/phase9a/resume-20260910/endpoint-comparison/gamma-spectrum.json",
+        "--density",
+        "<workbench>/.work/phase9a/resume-20260910/endpoint-comparison/density.json",
+        "--output",
+        "<workbench>/.work/phase9a/resume-20260910/endpoint-comparison/metrics.json"
+      ],
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/endpoint-comparison/metrics-corrected.stdout",
+          "sha256": "0c8f13fda01cd18e2b559cc9bbc91dc5b743f20e32a7bc76386b1c63cd53e520",
+          "bytes": 43
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/endpoint-comparison/metrics-corrected.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/endpoint-comparison/gamma-extraction.json",
+          "sha256": "cedd237fc5561564f7cd83680f76dcdbd7ebfd20d50f1462bac2c39b88242104",
+          "bytes": 425
+        }
+      ]
+    },
+    {
+      "name": "Initial public-tool synthetic test_replay_draft.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "SYNTHETIC_PROTOCOL_ONLY; repeated publication verification does not add independent scientific evidence",
+      "assertions_or_tests": 13,
+      "source_sha256": {
+        "replay.py": "78799dfa2b3eef51c49d2ca82aa0fb4e6b2207c9b26cf9099f88026abeefb5a5",
+        "export_completion.py": "8bd72a24afda3a9274cff345f4270f1450999cbdf5ee945b2c01a5220695558c",
+        "test_replay_draft.py": "bc8fd460ad488a8702eb673b907dcca1bf96499e4d7871e5fc53de6ecdf8492e",
+        "test_export_completion.py": "d37637020e197245de11cecf71c5a69dad1ce77fc45c3c9c183c322f2b841d26"
+      },
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/drafts/final-draft-protocol-20260910T134022Z-9c60f10b/receipt.json",
+          "sha256": "19647fc940f0743fd73f214ed0b1958a6aa756500b54a55bcd64448049c613e9",
+          "bytes": 1228
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/drafts/final-draft-protocol-20260910T134022Z-9c60f10b/test_replay_draft.py.log",
+          "sha256": "727de6586fe059f8e64a7bad0fe67d1196f35fa42dbf53e43b254bf16229fbe9",
+          "bytes": 1680
+        }
+      ]
+    },
+    {
+      "name": "Initial public-tool synthetic test_export_completion.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "SYNTHETIC_PROTOCOL_ONLY; repeated publication verification does not add independent scientific evidence",
+      "assertions_or_tests": 7,
+      "source_sha256": {
+        "replay.py": "78799dfa2b3eef51c49d2ca82aa0fb4e6b2207c9b26cf9099f88026abeefb5a5",
+        "export_completion.py": "8bd72a24afda3a9274cff345f4270f1450999cbdf5ee945b2c01a5220695558c",
+        "test_replay_draft.py": "bc8fd460ad488a8702eb673b907dcca1bf96499e4d7871e5fc53de6ecdf8492e",
+        "test_export_completion.py": "d37637020e197245de11cecf71c5a69dad1ce77fc45c3c9c183c322f2b841d26"
+      },
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/drafts/final-draft-protocol-20260910T134022Z-9c60f10b/receipt.json",
+          "sha256": "19647fc940f0743fd73f214ed0b1958a6aa756500b54a55bcd64448049c613e9",
+          "bytes": 1228
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/drafts/final-draft-protocol-20260910T134022Z-9c60f10b/test_export_completion.py.log",
+          "sha256": "4099dced8341e32572a2edbe6fa514cc5b5d73cabeb9fd2c9553e8868bf08b09",
+          "bytes": 1069
+        }
+      ]
+    },
+    {
+      "name": "Actual terminal text-only candidate export",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "Actual terminal text-only evidence export; no checkpoint arrays/scientific execution",
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        "<workbench>/.work/phase9a/resume-20260910/drafts/export_completion.py",
+        "--root",
+        "<workbench>",
+        "--authorization",
+        "<workbench>/.work/phase9a/resume-authorizations/234fe85d4e9386d9889bd1af256a28394ba88089/authorization.json",
+        "--scf",
+        "<workbench>/.work/phase9a/endpoints/OPT-B0-SCF-RESUME-20260910T131756Z-9d9840be",
+        "--gamma",
+        "<workbench>/.work/phase9a/endpoints/OPT-B0-GAMMA-RESUME-20260910T141203Z-28121ef8",
+        "--density",
+        "<workbench>/.work/phase9a/resume-20260910/endpoint-comparison/density.json",
+        "--metrics",
+        "<workbench>/.work/phase9a/resume-20260910/endpoint-comparison/metrics.json"
+      ],
+      "source_sha256": {
+        "export_completion.py": "8bd72a24afda3a9274cff345f4270f1450999cbdf5ee945b2c01a5220695558c",
+        "replay.py": "78799dfa2b3eef51c49d2ca82aa0fb4e6b2207c9b26cf9099f88026abeefb5a5"
+      },
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/actual-export-20260910T141530Z-fd06ba4b/receipt.json",
+          "sha256": "68d0da63aac88ee788470cc5f6a1bb5ea401621d0c2a6bc6bb866e5b941cdb61",
+          "bytes": 1571
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/actual-export-20260910T141530Z-fd06ba4b/stdout.log",
+          "sha256": "c37a10083c025e97ffe2dce587bda3f6e20c430f32a8ccb929065b3c9dfa5c29",
+          "bytes": 288
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/actual-export-20260910T141530Z-fd06ba4b/stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "Public-only candidate review candidate-review-20260910T141829Z-97f56fb0",
+      "status": "FAIL",
+      "exit_code": 2,
+      "scope": "Temporary clone caller used /var alias; exact public path check correctly rejected it. Caller now resolves canonical root.",
+      "clone_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+      "platform": {
+        "system": "Darwin",
+        "machine": "arm64",
+        "python": "3.12.14"
+      },
+      "no_private_work_directory": true,
+      "source_sha256": {
+        "replay.py": "78799dfa2b3eef51c49d2ca82aa0fb4e6b2207c9b26cf9099f88026abeefb5a5"
+      },
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/candidate-review-20260910T141829Z-97f56fb0/receipt.json",
+          "sha256": "65ac426e6977757b6ebe9c84d705b9858c8a5cfc6a6d5cc2adf7f5e7e38beebc",
+          "bytes": 678
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/candidate-review-20260910T141829Z-97f56fb0/review.log",
+          "sha256": "1137a38df18b25350bdd610904621a4d2fef06ab7a48b9eee8058f22498bfa83",
+          "bytes": 1046
+        }
+      ]
+    },
+    {
+      "name": "Public-only candidate review candidate-review-20260910T141943Z-e3d23d03",
+      "status": "FAIL",
+      "exit_code": 2,
+      "scope": "New replay expected redundant native_process in a successful outer; production embeds it only for failures. Fixed only new replay to bind mandatory original process-exit and outer.worker_exit_code, comparing optional embed if present.",
+      "clone_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+      "platform": {
+        "system": "Darwin",
+        "machine": "arm64",
+        "python": "3.12.14"
+      },
+      "no_private_work_directory": true,
+      "source_sha256": {
+        "review_candidate.py": "ac871dcbb36cbf4c6e350c17209b1a9dcc17461d50c81c84531d9b9645524433",
+        "replay.py": "78799dfa2b3eef51c49d2ca82aa0fb4e6b2207c9b26cf9099f88026abeefb5a5"
+      },
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/candidate-review-20260910T141943Z-e3d23d03/receipt.json",
+          "sha256": "ba13fea1c35681bed51cde76ff2df5118f96f83a8c1ed55599b2da07a930cdf8",
+          "bytes": 875
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/candidate-review-20260910T141943Z-e3d23d03/review.log",
+          "sha256": "06e22f8fe56b30e316ac79ba5cc332cb52444cc840a7d474ae53cdbcb1b672a8",
+          "bytes": 734
+        }
+      ]
+    },
+    {
+      "name": "Public-only candidate review candidate-review-20260910T142007Z-05f906ed",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "Corrected independent candidate endpoint, source, environment, density quotient and exact metrics checks passed in a fresh public-only clone. This is not final-commit full replay.",
+      "clone_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+      "platform": {
+        "system": "Darwin",
+        "machine": "arm64",
+        "python": "3.12.14"
+      },
+      "no_private_work_directory": true,
+      "source_sha256": {
+        "review_candidate.py": "ac871dcbb36cbf4c6e350c17209b1a9dcc17461d50c81c84531d9b9645524433",
+        "replay.py": "85412c2f0102513704f9739a856c76b88a3a37a54e1299b26ca076001f311c97"
+      },
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/candidate-review-20260910T142007Z-05f906ed/receipt.json",
+          "sha256": "c62e4894520f1297acd08def6d4326db32b3f3d58a1f059cb144d11a64013b12",
+          "bytes": 1448
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/candidate-review-20260910T142007Z-05f906ed/review.log",
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "bytes": 1
+        }
+      ]
+    },
+    {
+      "name": "Final public-tool synthetic test_replay_draft.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "Synthetic postexecution publication tools, not new scientific tests; repeated verification, not additional distinct scientific tests",
+      "assertions_or_tests": 13,
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        "<workbench>/.work/phase9a/resume-20260910/drafts/test_replay_draft.py",
+        "-v"
+      ],
+      "source_sha256": {
+        "replay.py": "85412c2f0102513704f9739a856c76b88a3a37a54e1299b26ca076001f311c97",
+        "export_completion.py": "8bd72a24afda3a9274cff345f4270f1450999cbdf5ee945b2c01a5220695558c",
+        "test_replay_draft.py": "bc8fd460ad488a8702eb673b907dcca1bf96499e4d7871e5fc53de6ecdf8492e",
+        "test_export_completion.py": "d37637020e197245de11cecf71c5a69dad1ce77fc45c3c9c183c322f2b841d26"
+      },
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/publication-tests-20260910T142131Z-b4dd25f0/receipt.json",
+          "sha256": "17d517c73819b983f2929fbb66dc025b98771ef43dec07a2652cfa8a60417ef9",
+          "bytes": 1767
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/publication-tests-20260910T142131Z-b4dd25f0/test_replay_draft.py.log",
+          "sha256": "b31fccdc8cd0983e58b90f71e9a70e0aa16ec8d2ee0656b1814940d4ea5712dc",
+          "bytes": 1680
+        }
+      ]
+    },
+    {
+      "name": "Final public-tool synthetic test_export_completion.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "Synthetic postexecution publication tools, not new scientific tests; repeated verification, not additional distinct scientific tests",
+      "assertions_or_tests": 7,
+      "command": [
+        "<home>/.local/bin/python3.12",
+        "-B",
+        "<workbench>/.work/phase9a/resume-20260910/drafts/test_export_completion.py",
+        "-v"
+      ],
+      "source_sha256": {
+        "replay.py": "85412c2f0102513704f9739a856c76b88a3a37a54e1299b26ca076001f311c97",
+        "export_completion.py": "8bd72a24afda3a9274cff345f4270f1450999cbdf5ee945b2c01a5220695558c",
+        "test_replay_draft.py": "bc8fd460ad488a8702eb673b907dcca1bf96499e4d7871e5fc53de6ecdf8492e",
+        "test_export_completion.py": "d37637020e197245de11cecf71c5a69dad1ce77fc45c3c9c183c322f2b841d26"
+      },
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/publication-tests-20260910T142131Z-b4dd25f0/receipt.json",
+          "sha256": "17d517c73819b983f2929fbb66dc025b98771ef43dec07a2652cfa8a60417ef9",
+          "bytes": 1767
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/export-checks/publication-tests-20260910T142131Z-b4dd25f0/test_export_completion.py.log",
+          "sha256": "4099dced8341e32572a2edbe6fa514cc5b5d73cabeb9fd2c9553e8868bf08b09",
+          "bytes": 1069
+        }
+      ]
+    },
+    {
+      "name": "Completion clean-clone clone",
+      "status": "PASS",
+      "exit_code": 0,
+      "execution_commit": "d5e93c86646bb30143766df36023fae3cc6435dd",
+      "scope": "Actual clean public-clone scalar/source replay; no scientific solver or private density evaluation",
+      "command": [
+        "git",
+        "clone",
+        "--no-local",
+        "--branch",
+        "codex/phase9a-soc-core-memory",
+        "<source-repository>",
+        "<new-clean-clone>"
+      ],
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/clone.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/clone.stderr",
+          "sha256": "12c2a349b65f374f606ef076626ff97ebc9d9cdc2d7bde6f9d175907f96a63a6",
+          "bytes": 165
+        }
+      ]
+    },
+    {
+      "name": "Completion clean-clone default",
+      "status": "PASS",
+      "exit_code": 0,
+      "execution_commit": "d5e93c86646bb30143766df36023fae3cc6435dd",
+      "scope": "Actual clean public-clone scalar/source replay; no scientific solver or private density evaluation",
+      "command": [
+        "python3.12",
+        "-B",
+        "benchmarks/soc-core-memory-v1/resume/replay.py",
+        "--root",
+        "."
+      ],
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/default.stdout",
+          "sha256": "47601b52bab02f236e2fcedcaa8f66d2be41bb4e2607fe68885a59a64676b00e",
+          "bytes": 7628
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/default.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "Completion clean-clone strict",
+      "status": "PASS",
+      "exit_code": 0,
+      "execution_commit": "d5e93c86646bb30143766df36023fae3cc6435dd",
+      "scope": "Actual clean public-clone scalar/source replay; no scientific solver or private density evaluation",
+      "command": [
+        "python3.12",
+        "-B",
+        "benchmarks/soc-core-memory-v1/resume/replay.py",
+        "--root",
+        ".",
+        "--require-endpoints"
+      ],
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/strict.stdout",
+          "sha256": "53020e828dfc4731d4ef2361bf1dbd06f55fcd1f94e93b74c85382b15fa70f9f",
+          "bytes": 7628
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/public-clone-20260910T143037Z-6f2f37bd/strict.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "Completion links/privacy/frozen-source and git diff --check",
+      "status": "PASS",
+      "exit_code": 0,
+      "scope": "Read-only current public tree and continuation diff; no scientific tasks",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/prepublication-20260910T142931Z-1db710ad/receipt.private.json",
+          "sha256": "626f1322e994f4082f51b8d281c603c22f2858526d682769d41e1d63355db317",
+          "bytes": 781
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/prepublication-20260910T142931Z-1db710ad/1.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/final-checks/prepublication-20260910T142931Z-1db710ad/1.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    }
+  ],
+  "counting_policy": "Do not add dedicated20/15/4 repetitions to the latest38/88 suite counts; older Phase9A551/2495 are historical, not rerun here.",
+  "real_check_entry": {
+    "run_id": "CHECK-ENTRY-20260910T131635Z-4331be25",
+    "status": "CHECK_ONLY_PASS",
+    "recorder_exit": 0,
+    "native_exit": 0,
+    "numerical_execution_status": "NOT_RUN",
+    "formal_slot_reserved": false,
+    "context_constructed": false,
+    "context_registrations": 0,
+    "source_registrations": 0,
+    "environment": {
+      "project_sha256": "80ba283d76c997492af04fa4546edeb39aa397839daef085137ba045ba56a3c4",
+      "julia_version": "1.12.7",
+      "packages": {
+        "dftk": {
+          "worktree_status": "clean",
+          "expected_uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+          "expected_commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+          "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+          "uuid": "acf6eb54-70d9-11e9-0013-234b7a5f5337",
+          "expected_path": "<workbench>/.work/DFTK.jl/src/DFTK.jl",
+          "checkout": "<workbench>/.work/DFTK.jl",
+          "expected_version": "0.8.0",
+          "version": "0.8.0",
+          "path": "<workbench>/.work/DFTK.jl/src/DFTK.jl"
+        },
+        "pseudopotentialio": {
+          "worktree_status": "clean",
+          "expected_uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+          "expected_commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+          "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+          "uuid": "cb339c56-07fa-4cb2-923a-142469552264",
+          "expected_path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl",
+          "checkout": "<workbench>/.work/PseudoPotentialIO.jl",
+          "expected_version": "0.3.3",
+          "version": "0.3.3",
+          "path": "<workbench>/.work/PseudoPotentialIO.jl/src/PseudoPotentialIO.jl"
+        }
+      },
+      "active_project": "<workbench>/environment/workbench/Project.toml",
+      "status": "PASS",
+      "source_lock_sha256": "e1df6b6e926a57f129ccf7f50ea8ebd006d7239f46d530d96e19d67f16965a1b",
+      "active_manifest": "<workbench>/environment/workbench/Manifest.toml",
+      "manifest_sha256": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+      "reasons": []
+    },
+    "resource": {
+      "status": "PASS",
+      "limit_bytes": 8589934592,
+      "sample_interval_seconds": 0.1,
+      "peak_aggregate_rss_bytes": 1654915072,
+      "samples": 139,
+      "nonempty_samples": 139,
+      "started_utc": "2026-09-10T13:16:38.553848+00:00",
+      "scope": "Recorded session group plus descendant processes; sampled aggregate RSS, not a continuous upper bound",
+      "native_exit_code": 0,
+      "first_sample_delay_seconds": 0.12053254200145602,
+      "owned_process_cleanup_status": "PASS",
+      "remaining_observed_processes": [],
+      "reason": null,
+      "elapsed_seconds": 16.502863917005016,
+      "finished_utc": "2026-09-10T13:16:55.056733+00:00"
+    },
+    "files": [
+      {
+        "path": ".work/phase9a/endpoints/CHECK-ENTRY-20260910T131635Z-4331be25/receipt.json",
+        "sha256": "0841b98d4baa03209c8d49c18c9c64b43c64e5502793c06e07b3ade84e1e4827",
+        "bytes": 3528
+      },
+      {
+        "path": ".work/phase9a/endpoints/CHECK-ENTRY-20260910T131635Z-4331be25/CHECK-ENTRY-20260910T131635Z-4331be25-entry-check/result.json",
+        "sha256": "5914623ff91288d49902a45fc8e0664911f64f800b9ce426df4820eb0922e54c",
+        "bytes": 8053
+      },
+      {
+        "path": ".work/phase9a/endpoints/CHECK-ENTRY-20260910T131635Z-4331be25/process-start.json",
+        "sha256": "e9d5d4de5033aa3f430753c3afa12e1f4aaff9b19289b8ee8c60a5923376e3b1",
+        "bytes": 900
+      },
+      {
+        "path": ".work/phase9a/endpoints/CHECK-ENTRY-20260910T131635Z-4331be25/process-exit.json",
+        "sha256": "28f82692568b1e5e5496012ce354e52c1f8bb442d197a36fbabb52f5f6da1f3c",
+        "bytes": 99
+      },
+      {
+        "path": ".work/phase9a/endpoints/CHECK-ENTRY-20260910T131635Z-4331be25/resource.json",
+        "sha256": "385f1433ab5f9729a57b5af9612f0aab35e9a51acff545b6176763a1a6d49d5d",
+        "bytes": 582
+      }
+    ]
+  },
+  "historical_replay": {
+    "snapshot": "98781fd0ce6c2f4138ed010e115a13e370410d58",
+    "default_exit": 0,
+    "strict_exit": 1,
+    "original_delivery_status": "PARTIAL",
+    "original_end_to_end_status": "FAIL",
+    "files": [
+      {
+        "path": ".work/phase9a/resume-20260910/drafts/historical-replay-20260910T132003Z-8441343b/default.stdout.json",
+        "sha256": "cbb0d11f465dc6fc20bf3b8a0b0195628dd12112d0675185dc741dfe17ba2d5c",
+        "bytes": 985
+      },
+      {
+        "path": ".work/phase9a/resume-20260910/drafts/historical-replay-20260910T132003Z-8441343b/default.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": ".work/phase9a/resume-20260910/drafts/historical-replay-20260910T132003Z-8441343b/require-endpoints.stdout.json",
+        "sha256": "61711ccb570d0d6bcd87097d45d18b1484721e452fcc132212789affb3640548",
+        "bytes": 985
+      },
+      {
+        "path": ".work/phase9a/resume-20260910/drafts/historical-replay-20260910T132003Z-8441343b/require-endpoints.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    ]
+  },
+  "not_run": [
+    "four static benchmarks",
+    "DFTK K6/K8",
+    "QE/pp",
+    "full upstream tests",
+    "CI",
+    "extra SCF/Gamma"
+  ],
+  "original_publication_checks": [
+    {
+      "name": "unchanged_publication_at_E",
+      "status": "FAIL",
+      "exit_code": 1,
+      "reason": "Frozen scientific file changed: prototypes/fr_integration/FRIntegration.jl",
+      "scope": "Known historical checker compatibility failure; unchanged checker and historical manifest",
+      "raw_logs": [
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/publication-E-20260910T133123Z-eeb24c63/receipt.json",
+          "sha256": "70d63cdb80853d624b0a49a79800ef40073961ff3bf43e75cf500679f07342f4",
+          "bytes": 315
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/publication-E-20260910T133123Z-eeb24c63/stdout.json",
+          "sha256": "409373fb299feac92486abd32c9d1b099edd161b9ef354c08fdb7ffc37c8c0d8",
+          "bytes": 135
+        },
+        {
+          "path": ".work/phase9a/resume-20260910/prechecks/publication-E-20260910T133123Z-eeb24c63/stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "command": [
+        "python3.9",
+        "-B",
+        "scripts/check_publication.py",
+        "--root",
+        ".",
+        "--modern-python",
+        "python3.12"
+      ],
+      "source_commit": "281c53525a70cf21c36973956d5303d3201a73eb",
+      "status": "FAIL",
+      "exit_code": 1,
+      "reason": "Frozen scientific file changed: prototypes/fr_integration/FRIntegration.jl",
+      "scope": "Old checker and old manifest preserved; observed again during completion publication",
+      "stdout": {
+        "path": ".work/phase9a/resume-20260910/final-checks/prepublication-20260910T142931Z-1db710ad/0.stdout",
+        "sha256": "409373fb299feac92486abd32c9d1b099edd161b9ef354c08fdb7ffc37c8c0d8",
+        "bytes": 135
+      },
+      "stderr": {
+        "path": ".work/phase9a/resume-20260910/final-checks/prepublication-20260910T142931Z-1db710ad/0.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "snapshot_id": "d-export-20260908T145621Z-703a37aa",
+  "export_status": "PASS",
+  "scope": "Offline whitelist snapshot; export success is not physical execution acceptance",
+  "execution_commit": "3948ed5d37660fe1e909aa6d12983234e317a479",
+  "task_statuses": {
+    "static": "PASS",
+    "D-SCF": "PASS",
+    "D-SPECTRUM": "PASS",
+    "D-NULL-GAMMA": "PASS"
+  },
+  "raw_inputs": {
+    "preparation/source-parse.json": {
+      "sha256": "f5e8c636a1444f7df2de757f215a82ffeec81fcb34a886a0d0d5d733ba07d02d",
+      "bytes": 3405
+    },
+    "static-20260908T1418Z/receipt.json": {
+      "sha256": "ce879025bb2d95ebe34d37605f052c94c160453ba18cc23608b2977f209bba31",
+      "bytes": 1007
+    },
+    "static-20260908T1418Z/static-20260908T1418Z-dftk/result.json": {
+      "sha256": "377d9b111f79c893596810f62d4cd7952273ed83003aa7099e9aeb57e96b6c4c",
+      "bytes": 15251
+    },
+    "D-SCF-20260908T1420Z/receipt.json": {
+      "sha256": "2fd9bfe7a0c2dc30597589c9a5e5e05b54726195fd0f78674288056aef9dd984",
+      "bytes": 1096
+    },
+    "D-SCF-20260908T1420Z/D-SCF-20260908T1420Z-dftk/result.json": {
+      "sha256": "11e76623a835927fb86d5b6409f494603dc9fd0622a4d5de58c2a3daed4b1dff",
+      "bytes": 102003
+    },
+    "D-SCF-20260908T1420Z/D-SCF-20260908T1420Z-dftk/maps.jsonl": {
+      "sha256": "2d23b99f22c0e70e339847bbbd073df43d5cd4cd3c4c4ac4698fe776730fe62e",
+      "bytes": 7609208,
+      "complete_jsonl_rows": 180,
+      "incomplete_trailing_bytes": 0,
+      "incomplete_trailing_sha256": null
+    },
+    "D-SCF-20260908T1420Z/D-SCF-20260908T1420Z-dftk/solver.jsonl": {
+      "sha256": "88de71b4b9d880429974c9fe3504504b18a0dc6e5aa86f154f13f87f6dbaca8a",
+      "bytes": 2789902,
+      "complete_jsonl_rows": 1440,
+      "incomplete_trailing_bytes": 0,
+      "incomplete_trailing_sha256": null
+    },
+    "D-SPECTRUM-20260908T145347Z/receipt.json": {
+      "sha256": "ffdedd3b8d544401a0370a1805249fca561749449d2c37e7a67272791514317a",
+      "bytes": 1258
+    },
+    "D-SPECTRUM-20260908T145347Z/D-SPECTRUM-20260908T145347Z-dftk/result.json": {
+      "sha256": "2d70f4851f5d168722bb531a291d6fb1c26044b88db9a9dc067f095f11001ce8",
+      "bytes": 16568
+    },
+    "D-SPECTRUM-20260908T145347Z/D-SPECTRUM-20260908T145347Z-dftk/solver.jsonl": {
+      "sha256": "382ec560da203a04ab98a1e31ff1faef24aeeb4adc8759f81b69f32f699a6582",
+      "bytes": 5866,
+      "complete_jsonl_rows": 3,
+      "incomplete_trailing_bytes": 0,
+      "incomplete_trailing_sha256": null
+    },
+    "D-NULL-GAMMA-20260908T145524Z/receipt.json": {
+      "sha256": "ee812cec293cd543a4bf069be35261d26a3b6303627b71d39549d54db7da9ecc",
+      "bytes": 1270
+    },
+    "D-NULL-GAMMA-20260908T145524Z/D-NULL-GAMMA-20260908T145524Z-dftk/result.json": {
+      "sha256": "cec8d0809462809c17540a8f636b33651dbea377f00f507ff28eaba9fd6a4b22",
+      "bytes": 11644
+    },
+    "D-NULL-GAMMA-20260908T145524Z/D-NULL-GAMMA-20260908T145524Z-dftk/solver.jsonl": {
+      "sha256": "07a42083a5aabf40ac5466145db5e7c36f24d552a54de6634ae785e3b7a61c66",
+      "bytes": 2103,
+      "complete_jsonl_rows": 1,
+      "incomplete_trailing_bytes": 0,
+      "incomplete_trailing_sha256": null
+    }
+  },
+  "public_files": {
+    "D-environment-eb873073c5ca.json": {
+      "sha256": "eb873073c5ca3f7b42324dc69637298e75b5b3e61544b17025604ba40cfda940",
+      "bytes": 1632
+    },
+    "D-source-attestation.json": {
+      "sha256": "a9d3d60fae776b9a608d23d40bfd5272ca72e81bcf925f21d7de137b659d9daa",
+      "bytes": 3306
+    },
+    "D-code-217a04713c3e.json": {
+      "sha256": "217a04713c3e79b9ca42879ac9461a649765d6496dbf17cd19474d0a381a5a18",
+      "bytes": 3968
+    },
+    "D-static.json": {
+      "sha256": "7bf8a7566266cb61b0a33ea7e3c574588c2321ef2bafc1fa3a9aad2d7b672065",
+      "bytes": 13793
+    },
+    "D-trace.json": {
+      "sha256": "9d723917d06446022f8762ec822e97f78b71b6ebbee6135350ffc70f1044ad1f",
+      "bytes": 714350
+    },
+    "D-SCF.json": {
+      "sha256": "0860661c4383d80a6767981476cf8c3fa0f996d69e8e1174df39d0bed83e9ab2",
+      "bytes": 78017
+    },
+    "D-spectrum.json": {
+      "sha256": "a286b1087e1ff776301ac826e4aeac3b7bdb1eb8cec2c0e141437e0402db0d41",
+      "bytes": 7554
+    },
+    "D-spectrum-receipt.json": {
+      "sha256": "687169f52958471805e81cc9852d788fc89544694d4935e85f801d347e316039",
+      "bytes": 15411
+    },
+    "D-null.json": {
+      "sha256": "c891e32a6b0c0111ca8bbe29d40c27572ed0e437c28a0fd11db985e3b258c832",
+      "bytes": 2974
+    },
+    "D-null-receipt.json": {
+      "sha256": "a4d1aa1afa281611cbabdc09811f56f78675dad932199f39a454b33fe7643fde",
+      "bytes": 8419
+    }
+  },
+  "exporter_sha256": "375d677fb6ce442c40bcbe006b49135d90c5ebb6c337661ca7152aeed912c8dc",
+  "array_claims": "RUNNER_REPORTED; raw checkpoints, densities and WFC were neither read nor copied",
+  "deduplication": "Identical environment and executed-code objects published once by reference",
+  "floating_values": "Retained JSON numeric values are unchanged; no rounding or tolerance adjustment",
+  "not_run": [
+    "SCF",
+    "eigensolve",
+    "occupations solve",
+    "Julia",
+    "QE",
+    "FFT",
+    "XC"
+  ],
+  "snapshot_limit": "RUNNING captures are interim; complete JSONL rows retained, incomplete tails declared; rerun exporter after terminal receipt",
+  "publication_transform": {
+    "D-trace.json": {
+      "pre_compaction_sha256": "31b3965151ba086e471ae6cd139ca86d3043eade1f85eb06326d0e219b76d099",
+      "transformation": "One complete map object per JSON line; whitespace only, parsed values exactly equal",
+      "parsed_value_equality": "PASS"
+    }
+  }
+}
