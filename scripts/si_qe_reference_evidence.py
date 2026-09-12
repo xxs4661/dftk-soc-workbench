@@ -125,24 +125,40 @@ def reference_execution_guard(root, directory, action, profile):
         lock.unlink()
 
 
-def monitored_execute(executor, command, directory, env):
-    """Sample aggregate RSS of only the recorded new session and descendants.
+def monitored_execute(executor, command, directory, env, *, limit_bytes=MAX_RSS,
+                      observation_callback=None, safe_stop_timeout_seconds=30):
+    """Sample only the recorded new session/descendants, with an internal hook.
 
-    Sampling can miss an inter-sample peak; retain this limitation explicitly.
-    A monitoring error terminates the owned session and fails the wrapper.
-    The original executor still owns process creation, native logs and wait code.
+    Default callers retain8 GiB. The exceptional10 GiB call is authenticated by
+    its controller before reaching this internal mechanism; it also requires an
+    observation callback. This is sampled supervision, not OS memory isolation.
+    Callback errors fail closed. A safe request is latched and escalated after
+    at most30 seconds, even if later samples decline or the callback retracts it.
     """
-    directory=Path(directory); initial_processes={r['pid'] for r in ps_rows()}  # Refuse before spawning if unavailable.
-    state={'status':'RUNNING','limit_bytes':MAX_RSS,'sample_interval_seconds':INTERVAL,
+    require(type(limit_bytes) is int and limit_bytes in (MAX_RSS, 10*GIB), 'Unsupported internal RSS limit')
+    require(observation_callback is None or callable(observation_callback), 'Invalid observation callback')
+    require(limit_bytes == MAX_RSS or observation_callback is not None, 'Exceptional limit requires authenticated policy observation')
+    require(type(safe_stop_timeout_seconds) in (int, float) and math.isfinite(safe_stop_timeout_seconds) and
+            0 < safe_stop_timeout_seconds <= 30, 'Safe-stop deadline must be positive and at most30 seconds')
+    directory=Path(directory); initial_rows=ps_rows()
+    require(initial_rows and len({r['pid'] for r in initial_rows})==len(initial_rows) and all(
+        type(r.get(k)) is int and r[k]>=0 for r in initial_rows for k in ('pid','ppid','pgid','rss_kib')),
+        'Initial process accounting unavailable or malformed')
+    initial_processes={r['pid'] for r in initial_rows}
+    state={'status':'RUNNING','limit_bytes':limit_bytes,'sample_interval_seconds':INTERVAL,
            'peak_aggregate_rss_bytes':0,'samples':0,'nonempty_samples':0,'started_utc':utc(),
            'scope':'Recorded session group plus descendant processes; sampled aggregate RSS, not a continuous upper bound',
-           'native_exit_code':None,'numerical_process_pid':None}
+           'native_exit_code':None,'numerical_process_pid':None,
+           'resource_policy_status':'RUNNING','safe_stop_requested':False,
+           'safe_stop_timeout_seconds':safe_stop_timeout_seconds,'safe_stop_escalated':False}
     result={}; started=time.monotonic()
     def worker():
         try:result['code']=executor(command,directory,env)
         except BaseException as error:result['error']=error
-    thread=threading.Thread(target=worker,daemon=False);thread.start()
-    leader=None; violation=None; marker_first_seen=None
+    # An executor that fails to reap even after owned-process termination must
+    # produce UNCONFIRMED, not keep the recorder waiting forever.
+    thread=threading.Thread(target=worker,daemon=True);thread.start()
+    leader=None; violation=None; marker_first_seen=None; stop_requested_at=None; empty_since=None
     observed_owned={}
     def live_owned():
         alive=[]
@@ -154,8 +170,6 @@ def monitored_execute(executor, command, directory, env):
     def stop_owned(sig=signal.SIGTERM):
         if leader is None:return
         alive=live_owned()
-        # The session can outlive its leader. A still-observed group member
-        # proves the group identity even after the leader has been reaped.
         if any(pgid==leader for pid,pgid in alive):
             try:os.killpg(leader,sig)
             except ProcessLookupError:pass
@@ -171,44 +185,77 @@ def monitored_execute(executor, command, directory, env):
                     if marker_first_seen is None:marker_first_seen=time.monotonic()
                     try:record=json.loads(marker.read_text())
                     except json.JSONDecodeError:
-                        # The frozen executor writes this short marker directly;
-                        # observing it mid-write is not a malformed final record.
                         if time.monotonic()-marker_first_seen<1:
                             time.sleep(.01);continue
                         raise ValueError('Process marker remained incomplete for one second')
                     candidate=record['pid']
-                    require(type(candidate)is int and candidate>1 and record['command']==command,'Unexpected process ownership marker')
+                    require(type(candidate)is int and candidate>1 and candidate not in initial_processes and
+                            record['command']==command,'Unexpected process ownership marker')
                     leader=candidate
                     observed_owned[leader]=leader
                     state['numerical_process_pid']=leader
-                if leader is not None:
-                    rows=owned_rows(ps_rows(),leader)
+                if leader is None:
+                    require(time.monotonic()-started<5, 'No valid process ownership marker within five seconds')
+                else:
+                    table=ps_rows()
+                    require(len({r['pid'] for r in table})==len(table) and all(
+                        type(r.get(k)) is int and r[k]>=0 for r in table for k in ('pid','ppid','pgid','rss_kib')),
+                        'Malformed or duplicate process accounting')
+                    rows=owned_rows(table,leader)
+                    require(not any(r['pid'] in initial_processes for r in rows), 'Owned group contains an existing unrelated process')
+                    if not rows:
+                        if empty_since is None:empty_since=time.monotonic()
+                        require(time.monotonic()-empty_since<1, 'Owned process accounting absent for one second')
+                    else:empty_since=None
                     observed_owned.update({r['pid']:r['pgid'] for r in rows})
                     total=sum(r['rss_kib'] for r in rows)*1024
                     state['peak_aggregate_rss_bytes']=max(state['peak_aggregate_rss_bytes'],total)
                     state['samples']+=1
                     if state['samples']==1:state['first_sample_delay_seconds']=time.monotonic()-started
                     if rows and total>0:state['nonempty_samples']+=1
-                    log.write(json.dumps({'elapsed_s':time.monotonic()-started,'aggregate_rss_bytes':total,'processes':rows},separators=(',',':'))+'\n')
-                    log.flush()
-                    if total>=MAX_RSS:
-                        violation='RESOURCE_BLOCKED: sampled process-tree RSS reaches 8 GiB';stop_owned();break
+                    now=time.monotonic()
+                    sample={'elapsed_s':now-started,'aggregate_rss_bytes':total,'processes':rows}
+                    log.write(json.dumps(sample,separators=(',',':'))+'\n');log.flush()
+                    decision=None
+                    if observation_callback is not None:
+                        decision=observation_callback(dict(current_group_rss_bytes=total,
+                            peak_group_rss_bytes=state['peak_aggregate_rss_bytes'],elapsed_seconds=now-started,
+                            monotonic_seconds=now,processes=rows,leader_pid=leader))
+                        require(type(decision) is dict and decision.get('status') in
+                            ('CONTINUE','WARNING','STOP_AT_SAFE_BOUNDARY','RESOURCE_LIMIT','MONITORING_UNAVAILABLE'),
+                            'Invalid resource-policy callback result')
+                        require(decision['status']=='CONTINUE' or type(decision.get('reason')) is str and decision['reason'],
+                            'Missing resource-policy reason')
+                        if 'limit_bytes' in decision:
+                            require(type(decision['limit_bytes']) is int and decision['limit_bytes']==limit_bytes,
+                                    'Callback and sampler effective limits differ')
+                        if decision['status'] in ('RESOURCE_LIMIT','MONITORING_UNAVAILABLE'):
+                            state['resource_policy_status']=decision['status']
+                            violation='Resource policy: '+decision['reason'];stop_owned();break
+                        if decision['status']=='STOP_AT_SAFE_BOUNDARY' and stop_requested_at is None:
+                            stop_requested_at=now;state.update(safe_stop_requested=True,
+                                safe_stop_first_decision=dict(decision),safe_stop_elapsed_seconds=now-started,
+                                resource_policy_status='STOP_AT_SAFE_BOUNDARY')
+                        if decision['status']=='WARNING':state['warning_observed']=True
+                    # The bottom sampler applies the effective limit itself;
+                    # the callback is not allowed to cancel this hard check.
+                    if state['peak_aggregate_rss_bytes']>=limit_bytes:
+                        state['resource_policy_status']='RESOURCE_LIMIT'
+                        violation='RESOURCE_BLOCKED: sampled process-tree peak reaches '+str(limit_bytes)+' bytes';stop_owned();break
+                    if stop_requested_at is not None and now-stop_requested_at>=safe_stop_timeout_seconds:
+                        state['safe_stop_escalated']=True
+                        violation='RESOURCE_BLOCKED: safe-boundary request unacknowledged at its bounded deadline';stop_owned();break
                 time.sleep(INTERVAL)
     except BaseException as error:
         violation='Resource monitoring failed: '+str(error)
-        if leader is None:
-            try:
-                candidates=[r for r in ps_rows() if r['ppid']==os.getpid() and r['pid']==r['pgid'] and r['pid'] not in initial_processes]
-                if len(candidates)==1:
-                    leader=candidates[0]['pid'];observed_owned[leader]=leader
-            except Exception:pass
+        state['resource_policy_status']='MONITORING_UNAVAILABLE'
+        # Without an authenticated marker there is no safe target to kill.
+        # Do not guess ownership from a newly appearing sibling process.
         stop_owned()
     if violation:
         thread.join(30)
-        if thread.is_alive() and leader is not None:
-            try:os.killpg(leader,signal.SIGKILL)
-            except ProcessLookupError:pass
-    thread.join()
+        if thread.is_alive():stop_owned(signal.SIGKILL)
+    thread.join(3)
     if live_owned():
         violation=violation or 'RESOURCE_BLOCKED: numerical descendants survived their recorded leader'
         stop_owned();deadline=time.monotonic()+1
@@ -216,15 +263,20 @@ def monitored_execute(executor, command, directory, env):
         if live_owned():stop_owned(signal.SIGKILL)
         deadline=time.monotonic()+2
         while live_owned() and time.monotonic()<deadline:time.sleep(.05)
-    state['owned_process_cleanup_status']='PASS' if not live_owned() else 'UNCONFIRMED'
+    state['owned_process_cleanup_status']='PASS' if not live_owned() and not thread.is_alive() else 'UNCONFIRMED'
     state['remaining_observed_processes']=live_owned()
+    if state['safe_stop_requested'] and violation is None:
+        violation='Resource policy safe-boundary stop: '+state['safe_stop_first_decision']['reason']
+    if state['owned_process_cleanup_status']!='PASS':
+        violation=violation or 'Owned-process/executor cleanup unconfirmed'
+    if state['resource_policy_status']=='RUNNING':state['resource_policy_status']='PASS' if not violation else 'RESOURCE_BLOCKED'
     state.update(status='RESOURCE_BLOCKED' if violation else 'PASS',reason=violation,
                  native_exit_code=result.get('code'),elapsed_seconds=time.monotonic()-started,finished_utc=utc())
     if not state['nonempty_samples']:
-        state.update(status='RESOURCE_BLOCKED',reason='No numerical-process RSS sample was obtained')
+        state.update(status='RESOURCE_BLOCKED',reason='No numerical-process RSS sample was obtained',resource_policy_status='MONITORING_UNAVAILABLE')
     write(directory/'resource.json',state)
     if 'error' in result:raise result['error']
-    return result['code'],state
+    return result.get('code'),state
 
 
 A = 10.26

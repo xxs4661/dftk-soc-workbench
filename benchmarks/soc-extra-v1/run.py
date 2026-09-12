@@ -15,7 +15,7 @@ import shutil
 import subprocess
 import sys
 import time
-import types
+import hashlib
 import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -69,6 +69,11 @@ def worker_contract(value, code, state, auth, *, check=False):
     for key, item in expected.items():
         require(value.get(key) == item, 'Worker identity mismatch: ' + key)
     status = value.get('execution_status')
+    if auth.get('continuation_id') and code == 0:
+        require(value.get('resource_policy') == state.get('resource_policy') and
+                value.get('resource_policy_sha256') == state.get('resource_policy_sha256') and
+                value.get('resource_policy_status') == 'WORKER_BOUNDARY_CHECKS_PASS',
+                'Worker boundaries did not certify this action policy')
     if code:
         require(status in ('FAIL', 'RESOURCE_LIMIT', 'RESOURCE_BLOCKED') and
                 isinstance(value.get('reason'), str) and value['reason'], 'Failure status/exit/reason contradiction')
@@ -81,6 +86,8 @@ def worker_contract(value, code, state, auth, *, check=False):
         require(status == 'CHECK_ONLY_PASS' and value.get('check_only') is True and
                 value.get('context_constructed') is False and value.get('numerical_execution_status') == 'NOT_RUN',
                 'Entry check must not build a context or claim a numerical slot')
+        if auth.get('continuation_id'):
+            require(value.get('formal_slot_reserved') is False, 'Continuation entry worker cannot claim a formal slot')
         return
     require(status == (PILOT if state['action'] == 'X-K6-PILOT' else 'PASS'), 'Wrong numerical action/status')
     require(value.get('parallelism') == {'julia': 1, 'blas': 1, 'fft': 1, 'mpi': 1} and
@@ -136,12 +143,22 @@ def worker_contract(value, code, state, auth, *, check=False):
             require(isinstance(value.get(key), str) and value[key] and spectrum.get(key) == value[key], 'Gamma parent binding missing: ' + key)
 
 
-def resource_contract(value, native):
-    require(isinstance(value, dict) and value.get('status') == 'PASS' and
-            value.get('owned_process_cleanup_status') == 'PASS', 'Resource monitor or cleanup failed')
-    require(value.get('native_exit_code') == native and type(native) is int, 'Resource/native exit differs')
-    require(type(value.get('peak_aggregate_rss_bytes')) is int and 0 < value['peak_aggregate_rss_bytes'] < 8 * 1024**3 and
-            type(value.get('nonempty_samples')) is int and value['nonempty_samples'] > 0, 'Missing/unsafe observed RSS')
+def resource_contract(value, native, *, policy=None):
+    require(isinstance(value,dict) and value.get('status')=='PASS' and
+            value.get('owned_process_cleanup_status')=='PASS','Resource monitor or cleanup failed')
+    require(type(native) is int and value.get('native_exit_code')==native,'Resource/native exit differs')
+    limit = 8*1024**3 if policy is None else policy['limit_bytes']
+    require(type(value.get('peak_aggregate_rss_bytes')) is int and 0<value['peak_aggregate_rss_bytes']<limit and
+            type(value.get('nonempty_samples')) is int and value['nonempty_samples']>0,'Missing/unsafe observed RSS')
+    if policy is not None:
+        require(value.get('limit_bytes')==limit and value.get('resource_policy')==policy and
+                value.get('resource_policy_sha256')==control.retry_module().digest(policy),'Resource policy differs from authenticated action')
+        require(value.get('resource_policy_status')=='PASS' and value.get('first_stop_request') is None and
+                value.get('safe_stop_requested') is False,'A latched resource stop cannot publish PASS')
+        high=value.get('authenticated_worker_highwater_bytes')
+        require(type(high) is int and high>0,'Missing authenticated native highwater')
+        require(value.get('screen_peak_bytes')==max(high,value['peak_aggregate_rss_bytes']) and
+                value['screen_peak_bytes']+policy['remaining_growth_bytes']<limit,'Insufficient fixed-growth headroom')
 
 
 def checked_run(root, directory, action, execution, *, auth=None):
@@ -162,10 +179,34 @@ def checked_run(root, directory, action, execution, *, auth=None):
     native = read(directory / 'process-exit.json')
     require(native.get('exit_code') == rec['native_exit_code'] == 0 and native.get('interrupted') is False, 'BLOCKED_PARENT: native receipt differs')
     require(read(directory / 'resource.json') == rec['resource'], 'BLOCKED_PARENT: resource bytes changed')
-    resource_contract(rec['resource'], rec['native_exit_code'])
+    parent_policy = control.retry_module().policy_for(own_auth, action) if own_auth.get('continuation_id') else None
+    resource_contract(rec['resource'], rec['native_exit_code'], policy=parent_policy)
     if action.endswith('-SCF'):
         require(sha(worker / 'final.bin') == value['checkpoint_sha256'], 'BLOCKED_PARENT: final checkpoint changed')
     return rec, value, worker
+
+
+def checked_entry(root, auth, action):
+    """A successful real nonphysical entry receipt is a formal prerequisite."""
+    retry=control.retry_module();policy=retry.policy_for(auth,action,check=True)
+    directory=Path(auth['run_store'])/'runs'/policy['run_id'];rec=read(directory/'result.json')
+    require(rec.get('run_id')==policy['run_id'] and rec.get('action')==action and
+            rec.get('execution_commit')==auth['execution_commit'] and rec.get('contract_sha256')==auth['contract_sha256'] and
+            rec.get('check_only') is True and rec.get('worker_started') is False and rec.get('formal_slot_reserved') is False and
+            rec.get('execution_status')=='CHECK_ONLY_PASS' and rec.get('exit_code')==rec.get('native_exit_code')==0,
+            'Entry prerequisite is not a successful bound nonphysical check')
+    worker_dir=directory/rec['worker_directory'];require(worker_dir.parent==directory and not worker_dir.is_symlink(),'Invalid entry worker path')
+    require(sha(worker_dir/'result.json')==rec['worker_result_sha256'],'Entry worker bytes changed')
+    value=read(worker_dir/'result.json');worker_contract(value,0,rec,auth,check=True)
+    require(read(directory/'resource.json')==rec['resource'],'Entry resource bytes changed')
+    resource_contract(rec['resource'],0,policy=policy)
+    process=read(directory/'process-exit.json');require(process.get('exit_code')==0 and process.get('interrupted') is False,'Entry native process failed')
+    if action.endswith('GAMMA'):
+        parent_policy=retry.policy_for(auth,'X-K6-SCF');parent=Path(auth['run_store'])/'runs'/parent_policy['run_id']/(parent_policy['run_id']+'-dftk')
+        for key,name in [('parent_result_sha256','result.json'),('parent_checkpoint_sha256','final.bin')]:
+            require(rec.get(key)==value.get(key)==sha(parent/name),'Entry parent changed or hash echo missing')
+    return {'status':'CHECK_ONLY_PASS','run_id':directory.name,'raw_recorder_sha256':sha(directory/'result.json'),
+            'raw_worker_sha256':rec['worker_result_sha256'],'native_exit_code':0,'recorder_exit_code':0}
 
 
 def prior(root, action, execution, *, auth=None):
@@ -194,49 +235,142 @@ def global_guard(root, run_id):
                 path.unlink()
 
 
-def monitored(command, directory, env, resources, remaining_growth):
-    """Reuse frozen session/RSS/reaping logic, adding an isolated sampling hook."""
+def monitored(command, directory, env, resources, remaining_growth, *, policy=None):
+    """Explicit sampler callback; policy is authenticated before this call."""
     tool = module(ROOT, 'benchmarks/soc-core-memory-v1/run.py', 'soc_extra_existing_runner')
-    sampler = tool.monitored_execute
-    original_rows = sampler.__globals__['ps_rows']
-    last_pressure = [0., None]
-    policy_log = directory / 'resource-policy.jsonl'
-    def observe():
-        rows = original_rows()
-        now = time.monotonic()
-        if now - last_pressure[0] >= 2:
-            last_pressure[:] = [now, resources.host_pressure()]
-        pressure = last_pressure[1]
-        marker = directory / 'process-start.json'
-        total = 0
-        if marker.is_file():
+    if policy is None and (Path(directory)/'resource-policy.json').is_file():
+        policy=read(Path(directory)/'resource-policy.json')
+        require(policy.get('limit_bytes')==8*1024**3,'Default monitor cannot grant 10 GiB')
+    rules = resources.validate_policy(policy)
+    if rules['remaining_growth_bytes'] is None:
+        rules['remaining_growth_bytes'] = remaining_growth
+    rules = resources.validate_policy(rules)
+    require(remaining_growth == rules['remaining_growth_bytes'], 'Forwarded fixed growth differs from bound policy')
+    directory = Path(directory)
+    policy_bytes = json.dumps(rules, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()
+    policy_hash = hashlib.sha256(policy_bytes).hexdigest()
+    policy_path = directory / 'resource-policy.json'
+    require(not policy_path.is_symlink() and policy_path.read_bytes() == policy_bytes, 'Bound policy file differs before sampler')
+    started_epoch = time.time()
+    pressure = [0., None]
+    first_stop = [None, None]
+    native_peak = [None]
+    last_worker_time = [None]
+    last_policy_status = [None]
+    warning = [False]
+    stop_path = directory / 'safe-boundary-stop.json'
+    highwater_path = directory / 'resource-highwater.json'
+    identity = {k: rules[k] for k in ('policy_id','run_id','action','case_sha256','execution_commit') if k in rules}
+    identity['resource_policy_sha256'] = policy_hash
+
+    def validate_identity(value):
+        require(type(value) is dict and type(value.get('schema_version')) is int and value['schema_version'] == 1 and
+                all(value.get(k) == v for k,v in identity.items()), 'Monitor message belongs to another policy/run/action/E')
+
+    def read_stop():
+        if not stop_path.exists():
+            require(first_stop[0] is None, 'Latched stop file was removed')
+            return None
+        require(not stop_path.is_symlink(), 'Linked stop file refused')
+        raw = stop_path.read_bytes(); value = json.loads(raw)
+        validate_identity(value)
+        stamp = value.get('first_requested_unix_time')
+        require(type(stamp) in (int,float) and math.isfinite(stamp) and started_epoch-1 <= stamp <= time.time()+1,
+                'Stop request timestamp is not from this run')
+        decision = value.get('resource_decision')
+        require(type(decision) is dict and decision.get('status') in ('STOP_AT_SAFE_BOUNDARY','RESOURCE_LIMIT') and
+                decision.get('limit_bytes') == rules['limit_bytes'] and
+                decision.get('remaining_growth_bytes') == rules['remaining_growth_bytes'] and
+                decision.get('warning_bytes') == rules['warning_bytes'] and
+                isinstance(decision.get('reason'),str) and decision['reason'], 'Stop rule/reason differs')
+        known=[]
+        for key in ('peak_group_rss_bytes','worker_highwater_bytes'):
+            number=decision.get(key)
+            if number is not None:
+                require(type(number) is int and number>=0,'Invalid stop peak statistic')
+                known.append(number)
+        require(known and type(decision.get('screen_peak_bytes')) is int and decision['screen_peak_bytes']==max(known),'Stop screening peak is not the maximum observation')
+        require(decision['screen_peak_bytes']+rules['remaining_growth_bytes']>=rules['limit_bytes'],'Stop request does not meet its fixed headroom rule')
+        digest = hashlib.sha256(raw).hexdigest()
+        if first_stop[0] is None: first_stop[:] = [value,digest]
+        require(first_stop[1] == digest, 'First stop request bytes changed')
+        return decision
+
+    def latch(decision):
+        if not stop_path.exists():
+            value = dict(schema_version=1, **identity, first_requested_unix_time=time.time(), resource_decision=decision)
+            temporary = directory / ('stop-write-' + uuid.uuid4().hex + '.tmp')
+            temporary.write_bytes(json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False).encode())
             try:
-                leader = read(marker)['pid']
-                total = sum(row['rss_kib'] for row in sampler.__globals__['owned_rows'](rows, leader)) * 1024
-            except json.JSONDecodeError:
-                return rows  # Frozen executor's short start marker can be mid-write.
-        decision = resources.monitor_decision(total, remaining_growth_bytes=remaining_growth, pressure=pressure)
-        if decision['status'] != 'CONTINUE':
-            with policy_log.open('a') as stream:
-                stream.write(json.dumps(dict(decision, observed_rss_bytes=total, monotonic_seconds=now), allow_nan=False) + '\n')
-        if decision['status'] in ('RESOURCE_LIMIT', 'MONITORING_UNAVAILABLE'):
-            raise ValueError('RESOURCE_LIMIT: ' + json.dumps(decision))
-        if decision['status'] == 'STOP_AT_SAFE_BOUNDARY':
-            write(Path(env['SOC_EXTRA_STOP_FILE']), dict(decision, observed_rss_bytes=total))
-        return rows
-    namespace = dict(sampler.__globals__, ps_rows=observe)
-    observer = types.FunctionType(sampler.__code__, namespace, sampler.__name__, sampler.__defaults__, sampler.__closure__)
-    code, resource = observer(tool.execute, command, directory, env)
-    resource['extra_policy'] = {'warning_bytes': 7 * 1024**3, 'stop_bytes': 8 * 1024**3,
-                              'remaining_growth_bytes': remaining_growth,
-                              'host_pressure_sampling_seconds': 2,
-                              'safe_boundary_stop_requested': Path(env['SOC_EXTRA_STOP_FILE']).exists()}
-    write(directory / 'resource.json', resource)
+                try: os.link(temporary,stop_path)
+                except FileExistsError: pass
+            finally: temporary.unlink()
+        return read_stop()
+
+    def observe(sample):
+        require(policy_path.read_bytes() == policy_bytes and not policy_path.is_symlink(), 'Resource policy changed during worker')
+        now = sample['monotonic_seconds']
+        if now-pressure[0] >= 2 or pressure[1] is None:
+            pressure[:] = [now,resources.host_pressure()]
+        if highwater_path.exists():
+            require(not highwater_path.is_symlink(), 'Linked native highwater record')
+            value = read(highwater_path); validate_identity(value)
+            high = value.get('highwater_bytes'); stamp = value.get('reported_unix_time')
+            require(type(high) is int and high > 0 and value.get('units') == 'bytes', 'Invalid native highwater units/value')
+            require(type(stamp) in (int,float) and math.isfinite(stamp) and started_epoch-1 <= stamp <= time.time()+1,
+                    'Native highwater is not from this current run')
+            require(last_worker_time[0] is None or stamp >= last_worker_time[0], 'Worker highwater time moved backwards')
+            require(native_peak[0] is None or high >= native_peak[0], 'Worker highwater decreased')
+            native_peak[0] = high; last_worker_time[0] = stamp
+        latched = read_stop()
+        if latched is not None and latched['status']=='RESOURCE_LIMIT':
+            return latched
+        decision = resources.monitor_decision(sample['current_group_rss_bytes'], policy=rules,
+            peak_group_rss_bytes=sample['peak_group_rss_bytes'], worker_highwater_bytes=native_peak[0],
+            pressure=pressure[1], stop_request=latched)
+        if decision['status'] == 'STOP_AT_SAFE_BOUNDARY': latch(decision)
+        if decision['status'] == 'WARNING': warning[0] = True
+        # A compact transition log; all RSS observations remain in the sampler.
+        if decision['status'] != last_policy_status[0]:
+            with (directory/'resource-policy.jsonl').open('a') as stream:
+                stream.write(json.dumps(dict(decision,monotonic_seconds=now,pressure=pressure[1]),allow_nan=False)+'\n')
+            last_policy_status[0] = decision['status']
+        return decision
+
+    code, resource = tool.monitored_execute(tool.execute, command, directory, env,
+        limit_bytes=rules['limit_bytes'], observation_callback=observe, safe_stop_timeout_seconds=30)
+    try:
+        final = observe(dict(current_group_rss_bytes=0,peak_group_rss_bytes=resource['peak_aggregate_rss_bytes'],
+                             monotonic_seconds=time.monotonic()))
+        if final['status'] not in ('CONTINUE','WARNING'):
+            resource.update(status='RESOURCE_BLOCKED', resource_policy_status=final['status'], reason=final['reason'])
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        resource.update(status='RESOURCE_BLOCKED', resource_policy_status='MONITORING_UNAVAILABLE',reason=str(error))
+    resource.update(resource_policy=rules, resource_policy_sha256=policy_hash,
+        authenticated_worker_highwater_bytes=native_peak[0], worker_highwater_status='NOT_YET_AVAILABLE' if native_peak[0] is None else 'AUTHENTICATED_CURRENT_RUN',
+        screen_peak_bytes=max(resource['peak_aggregate_rss_bytes'],native_peak[0] or resource['peak_aggregate_rss_bytes']),
+        warning_observed=warning[0], first_stop_request=first_stop[0], first_stop_sha256=first_stop[1])
+    resource['extra_policy'] = {'warning_bytes': rules['warning_bytes'], 'stop_bytes':rules['limit_bytes'],
+                              'remaining_growth_bytes': rules['remaining_growth_bytes'], 'host_pressure_sampling_seconds':2,
+                              'safe_boundary_stop_requested': first_stop[0] is not None}
+    write(directory/'resource.json',resource)
     return code, resource
 
 
 def prerequisites(root, action, auth, resources):
     host = resources.host_preflight(root)
+    if auth.get('continuation_id'):
+        retry=control.retry_module()
+        entry=checked_entry(root,auth,action)
+        if action=='X-K6-SCF':
+            decision=retry.admission(root,auth,host)
+        else:
+            require(host.get('status')=='ELIGIBLE','RESOURCE_BLOCKED: current Gamma host')
+            policy=retry.policy_for(auth,action)
+            parent_slot=read(Path(auth['run_store'])/'slots'/retry.plan(root)['slots']['X-K6-SCF']['slot_key'])
+            checked_run(root,Path(auth['run_store'])/'runs'/parent_slot['run_id'],'X-K6-SCF',auth['execution_commit'],auth=auth)
+            decision={'status':'ELIGIBLE_OWN_PARENT_GAMMA','limit_bytes':policy['limit_bytes']}
+        return {'status':'ELIGIBLE','host':host,'decision':decision,'entry_check':entry,'remaining_growth_bytes':retry.policy_for(auth,action)['remaining_growth_bytes']}
     require(host.get('status') == 'ELIGIBLE', 'RESOURCE_BLOCKED: host prerequisites: ' + json.dumps(host))
     if action.startswith('X-B0'):
         require(auth['numerical_change_requires_B0'], 'Unchanged numerical path does not authorize another B0')
@@ -263,7 +397,14 @@ def prerequisites(root, action, auth, resources):
 def launch(action, *, profile, contract, execution_commit, directory=None, parent=None, check_entry=False, root=ROOT, julia='julia'):
     root = Path(root).resolve(); area = root / '.work/phase9a-extra'
     run_id = action + ('-ENTRY-' if check_entry else '-') + datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ') + '-' + uuid.uuid4().hex[:8]
+    preview = read(contract) if Path(contract).is_file() else {}
+    continuation = isinstance(preview,dict) and preview.get('continuation_id') is not None
+    if continuation:
+        slot_plan=control.retry_module().plan(root)['slots'].get(action)
+        require(slot_plan is not None,'Action is outside this one-time continuation')
+        run_id=slot_plan['check_run_id' if check_entry else 'run_id']
     directory = Path(directory).resolve() if directory else area / 'runs' / run_id
+    if continuation: require(directory.name==run_id,'Continuation cannot change the fixed run_id/directory')
     require(directory.parent == area / 'runs', 'Run directory must be a direct child of extra/runs')
     require(not directory.exists(), 'Existing run is never overwritten')
     directory.mkdir(parents=True)
@@ -271,13 +412,17 @@ def launch(action, *, profile, contract, execution_commit, directory=None, paren
              'run_id': directory.name, 'worker_directory': directory.name + '-dftk', 'execution_commit': execution_commit,
              'execution_status': 'INCOMPLETE', 'exit_code': 9, 'native_exit_code': None,
              'worker_started': False, 'check_only': check_entry, 'formal_slot_reserved': False}
-    locks = []; auth = None
+    locks = []; auth = None; effective_policy = None
     try:
         write(directory / 'result.json', state)
         require(action in ACTIONS and ('-' + profile + '-') in action, 'Unregistered action/profile')
         require((parent is not None) == action.endswith('-GAMMA') or check_entry and parent is None, 'BLOCKED_PARENT: wrong parent arguments')
         auth = control.verify_contract(root, contract, execution_commit, profile)
         state.update(contract_sha256=auth['contract_sha256'], contract_path=auth['contract_path'], case_sha256=auth['case_sha256'])
+        if continuation:
+            effective_policy=control.retry_module().policy_for(auth,action,check=check_entry)
+            require(effective_policy['run_id']==directory.name,'Policy run mismatch')
+            state.update(continuation_id=auth['continuation_id'],resource_policy=effective_policy,resource_policy_sha256=control.retry_module().digest(effective_policy))
         parent_worker = None
         if parent is not None:
             _, parent_value, parent_worker = checked_run(root, parent, action.replace('-GAMMA', '-SCF'), execution_commit, auth=auth)
@@ -293,27 +438,43 @@ def launch(action, *, profile, contract, execution_commit, directory=None, paren
             if not check_entry:
                 eligibility = prerequisites(root, action, auth, resources)
                 state['admission'] = eligibility
-                slot = area / 'slots' / (action + '.json'); slot.parent.mkdir(parents=True, exist_ok=True)
+                slot_name=control.retry_module().plan(root)['slots'][action]['slot_key'] if continuation else action+'.json'
+                slot = area / 'slots' / slot_name; slot.parent.mkdir(parents=True, exist_ok=True)
                 write(slot, dict(run_id=directory.name, action=action, profile=profile, execution_commit=execution_commit,
                                  contract_sha256=auth['contract_sha256'], worker_directory=state['worker_directory'],
-                                 numerical_authorization_status='ELIGIBLE', admission=eligibility), exclusive=True)
+                                 numerical_authorization_status='ELIGIBLE', admission=eligibility,
+                                 **({'resource_policy_sha256':state['resource_policy_sha256'],'attempt':control.retry_module().plan(root)['slots'][action]['attempt']} if continuation else {})), exclusive=True)
                 state['formal_slot_reserved'] = True
             env = dict(os.environ, JULIA_LOAD_PATH='@:@stdlib', JULIA_NUM_THREADS='1', OPENBLAS_NUM_THREADS='1',
                        OMP_NUM_THREADS='1', MKL_NUM_THREADS='1', VECLIB_MAXIMUM_THREADS='1', JULIA_PKG_OFFLINE='true', SOC_CORE_PYTHON=sys.executable,
                        SOC_EXTRA_PYTHON=sys.executable, SOC_EXTRA_RUN_ID=directory.name,
                        SOC_EXTRA_WORKER_DIRECTORY=state['worker_directory'], SOC_EXTRA_STOP_FILE=str(directory / 'safe-boundary-stop.json'))
             if not check_entry: env['SOC_EXTRA_SLOT_RECEIPT'] = str(slot)
+            else: env.pop('SOC_EXTRA_SLOT_RECEIPT',None)
+            if effective_policy is None:
+                effective_policy=dict(schema_version=1,policy_id='extra-default-8gib-v2',limit_bytes=8*1024**3,warning_bytes=7*1024**3,
+                    remaining_growth_bytes=1024**3 if check_entry else eligibility['remaining_growth_bytes'],
+                    run_id=directory.name,action=action,case_sha256=auth['case_sha256'],execution_commit=execution_commit)
+            (directory/'resource-policy.json').write_bytes(control.retry_module().canonical(effective_policy))
+            env['SOC_EXTRA_RESOURCE_POLICY_FILE']=str(directory/'resource-policy.json')
             command = [executable, '--startup-file=no', '--color=no', '--project=' + str(root / 'environment/workbench'),
                        str(root / 'scripts/run_si_soc.jl'), action, str(directory / state['worker_directory'])]
             if parent_worker is not None: command.append(str(parent_worker))
             command += ['--extra-profile', profile, '--extra-contract', str(Path(contract).resolve())]
             if check_entry: command.append('--check-entry')
             state['command'] = command; write(directory / 'result.json', state)
-            code, resource = monitored(command, directory, env, resources, 1024**3 if check_entry else eligibility['remaining_growth_bytes'])
-            state.update(native_exit_code=code, resource=resource, worker_started=not check_entry and (directory / 'process-start.json').exists())
-            resource_contract(resource, code)
+            code, resource = monitored(command, directory, env, resources, 1024**3 if check_entry else eligibility['remaining_growth_bytes'],
+                                       **({'policy':effective_policy} if continuation else {}))
+            state.update(native_exit_code=code, resource=resource, resource_policy_status=resource.get('resource_policy_status'), worker_started=not check_entry and (directory / 'process-start.json').exists())
             result_path = directory / state['worker_directory'] / 'result.json'
             value = read(result_path); worker_contract(value, code, state, auth, check=check_entry)
+            state['worker_result_sha256']=sha(result_path)
+            if code:
+                state.update(execution_status='FAIL',exit_code=code,reason=value['reason'])
+            else:
+                resource_contract(resource,code,policy=effective_policy if continuation else None)
+            if continuation:
+                require(value.get('resource_policy')==effective_policy and value.get('resource_policy_sha256')==state['resource_policy_sha256'],'Worker policy differs')
             require(control.verify_contract(root, contract, execution_commit, profile) == auth, 'Execution identity changed during worker')
             if parent_worker is not None:
                 require(sha(parent_worker / 'result.json') == state['parent_result_sha256'] and sha(parent_worker / 'final.bin') == state['parent_checkpoint_sha256'], 'Parent changed during Gamma')
@@ -321,8 +482,11 @@ def launch(action, *, profile, contract, execution_commit, directory=None, paren
             state.update(execution_status=value['execution_status'], exit_code=code, worker_result_sha256=sha(result_path))
             if code: state['reason'] = value['reason']
     except BaseException as error:
-        state.update(execution_status='RESOURCE_BLOCKED' if 'RESOURCE_' in str(error) else 'BLOCKED_PARENT' if 'BLOCKED_PARENT' in str(error) else 'FAIL',
-                     exit_code=9, reason=type(error).__name__ + ': ' + str(error))
+        prior_reason=state.get('reason')
+        native_failure=state.get('native_exit_code')
+        state.update(execution_status='RESOURCE_BLOCKED' if 'RESOURCE_' in str(error) and not native_failure else 'BLOCKED_PARENT' if 'BLOCKED_PARENT' in str(error) else 'FAIL',
+                     exit_code=native_failure if type(native_failure) is int and 0<native_failure<=255 else 9,
+                     reason=prior_reason or type(error).__name__ + ': ' + str(error), validation_error=type(error).__name__+': '+str(error))
         for name, key in [('process-exit.json', 'native_process'), ('resource.json', 'resource')]:
             try: state[key] = read(directory / name)
             except (OSError, ValueError): pass

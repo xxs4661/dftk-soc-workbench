@@ -376,11 +376,13 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
         delete!(result,"preparation_commit") # Extra is bound by its own plan and actual E.
     end
     phase6b_write(joinpath(outdir,"result.json"),result)
-    runtime=nothing;resume_auth=nothing;extra_auth=nothing;extra_observer=nothing
+    runtime=nothing;resume_auth=nothing;extra_auth=nothing;extra_observer=nothing;extra_boundary=nothing
     try
         if extra
             extra_auth=si_extra_authorization(extra_contract,extra_profile;action,outdir)
             si_extra_result_binding!(result,extra_auth,extra_profile)
+            extra_boundary=si_extra_boundary_state(outdir,extra_auth)
+            si_extra_safe_boundary(outdir,"authorized_entry",extra_boundary)
         else
             result["executed_source_sha256"]=si_sources(profile;backend,resume=!isnothing(resume_authorization))
         end
@@ -414,16 +416,16 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
         b.model.temperature==settings["ensemble"]["tau_ha"] || error("Actual Si context/ensemble temperature mismatch")
         result["input"]=FI.common_data_summary(built.bundle)
         result["grid"]=extra ? si_extra_grid(ctx,case;gamma=work_action=="D-GAMMA") : si_grid(ctx)
-        extra && si_extra_safe_boundary(outdir,"context_constructed")
+        extra && si_extra_safe_boundary(outdir,"context_constructed",extra_boundary)
         if owned
             runtime=FI.owned_runtime(ctx;max_rhs=30);ctx=runtime;built=(;ctx,bundle=built.bundle)
             FI.runtime_boundary!(runtime,:driver_entry)
         end
-        extra && (extra_observer=si_extra_observer(outdir,result,ctx))
+        extra && (extra_observer=si_extra_observer(outdir,result,ctx;boundary=extra_boundary))
         checkpoint=function(path,value)
             owned && FI.runtime_boundary!(runtime,:before_serialization)
             phase6c_checkpoint(path,value)
-            extra && si_extra_safe_boundary(outdir,"checkpoint_written")
+            extra && si_extra_safe_boundary(outdir,"checkpoint_written",extra_boundary)
             owned && FI.runtime_boundary!(runtime,:after_serialization)
         end
         result["parallelism"]=(;julia=Threads.nthreads(),blas=BLAS.get_num_threads(),fft=DFTK.FFTW.get_num_threads(),mpi=1)
@@ -466,7 +468,7 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
             n=fill(8/b.model.unit_cell_volume,prod(b.fft_size))
             checkpoint(joinpath(outdir,"initial.bin"),(;n,seed=81001))
             progress=function(event)
-                extra && si_extra_safe_boundary(outdir,"solver_progress")
+                extra && si_extra_safe_boundary(outdir,"solver_progress",extra_boundary)
                 if hasproperty(event,:event) && event.event=="map_input_checkpoint"
                     checkpoint(joinpath(outdir,"current-map-input.bin"),event)
                 elseif hasproperty(event,:event) && event.event in ("target_solve","failed_target_solve")
@@ -494,7 +496,11 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
                     end
                     println(stderr,"Si map=$(record["map_index"]) $(record["map_role"]) $(record["status"]) residual=$(get(record,"unmixed_residual_l2",nothing)) E=$(raw.thermal.internal_energy_ha)")
                 end
-                Sys.maxrss()<8*1024^3 || error("RESOURCE_BLOCKED: measured peak exceeds8GiB")
+                if extra
+                    si_extra_safe_boundary(outdir,"callback_complete",extra_boundary)
+                else
+                    Sys.maxrss()<8*1024^3 || error("RESOURCE_BLOCKED: measured peak exceeds8GiB")
+                end
                 phase6b_write(joinpath(outdir,"result.json"),result)
                 owned && FI.runtime_boundary!(runtime,:callback_return)
             end
@@ -523,20 +529,21 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
             isnothing(parent) && error("Missing successful D-SCF parent")
             parent=abspath(parent);receipt=si_json(joinpath(parent,"result.json"))
             startswith(realpath(parent),realpath(joinpath(PHASE6C_ROOT,area))*"/") || error("Parent must belong to the same Si run area")
+            parent_binding=nothing
             if extra
-                si_extra_parent(receipt,case,extra_auth,parent)
+                parent_binding=si_extra_read_parent(parent,case,extra_auth);receipt=parent_binding.receipt
             else
                 si_validate_parent_receipt(receipt,case,result["executed_source_sha256"],result["execution_commit"];backend,core_gate_sha256=owned ? result["core_gate_sha256"] : nothing)
             end
             isnothing(resume_auth) || si_resume_parent(receipt,resume_auth)
             get(receipt,"run_id",nothing)==basename(parent) || error("Parent run ID differs from its directory")
             cp=joinpath(parent,"final.bin");filehash(cp)==receipt["checkpoint_sha256"] || error("Parent checkpoint hash mismatch")
-            raw=deserialize(cp);FI.integration_density_hash(raw.n_out)==receipt["final"]["n_out_sha256"] || error("Wrong parent final density")
+            raw=extra ? parent_binding.raw : deserialize(cp);FI.integration_density_hash(raw.n_out)==receipt["final"]["n_out_sha256"] || error("Wrong parent final density")
             H=FI.build_full_hamiltonian(ctx,raw.n_out)
             null=work_action=="D-NULL-GAMMA";ham=null ? SpinTrace.spin_trace_hamiltonian.(H.full) : H.full
             result["source_scf_run_id"]=receipt["run_id"];result["density_source_sha256"]=receipt["final"]["n_out_sha256"]
             result["parent_checkpoint_sha256"]=receipt["checkpoint_sha256"]
-            result["parent_result_sha256"]=filehash(joinpath(parent,"result.json"))
+            result["parent_result_sha256"]=extra ? parent_binding.parent_result_sha256 : filehash(joinpath(parent,"result.json"))
             if !null
                 result["time_reversal"]=work_action=="D-GAMMA" ? si_gamma_time_reversal(ctx,H.full,settings) : FI.full_hamiltonian_checks(ctx,H.full,settings)
                 result["time_reversal"].status=="PASS" || error("Final-density full-H time reversal failed")
@@ -545,7 +552,7 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
                 result["spin_trace"].status=="PASS" || error("Spin-dependent action is not identifiable")
             end
             progress=function(event)
-                extra && si_extra_safe_boundary(outdir,"solver_progress")
+                extra && si_extra_safe_boundary(outdir,"solver_progress",extra_boundary)
                 if event.event=="target_solve"
                     si_append(joinpath(outdir,"solver.jsonl"),event.record)
                     checkpoint(joinpath(outdir,"k$(event.record.k_index).bin"),event.state)
@@ -577,7 +584,11 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
             # standalone PASS spectrum before all source/environment/I/O gates.
             result["spectrum"]=spectrum
         end
-        Sys.maxrss()<8*1024^3 || error("RESOURCE_BLOCKED: measured peak exceeds8GiB")
+        if extra
+            si_extra_safe_boundary(outdir,"evaluation_complete",extra_boundary)
+        else
+            Sys.maxrss()<8*1024^3 || error("RESOURCE_BLOCKED: measured peak exceeds8GiB")
+        end
         if owned
             FI.runtime_boundary!(runtime,:final)
             result["runtime"]=FI.runtime_summary(runtime)
@@ -613,7 +624,7 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
                 result["runtime_after_close"]=FI.runtime_summary(runtime)
                 result["runtime_closed"]=result["runtime_after_close"].closed
                 result["runtime_closed"] || error("Owned runtime did not close")
-                extra && si_extra_safe_boundary(outdir,"runtime_closed")
+                extra && si_extra_safe_boundary(outdir,"runtime_closed",extra_boundary)
             catch err
                 result["execution_status"]="FAIL";result["exit_code"]=1;result["cleanup_reason"]=sprint(showerror,err)
                 get!(result,"reason","Owned runtime cleanup failed")
@@ -623,6 +634,20 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
         end
     end
     result["finished_utc"]=string(now(UTC));result["peak_rss_bytes"]=Sys.maxrss()
+    if extra && !isnothing(extra_boundary)
+        try
+            si_extra_safe_boundary(outdir,"result_publication",extra_boundary)
+            result["resource_policy_status"]="WORKER_BOUNDARY_CHECKS_PASS"
+        catch err
+            result["execution_status"]="FAIL";result["exit_code"]=1
+            result["resource_policy_status"]=isnothing(extra_boundary.first_stop_sha256) ? "RESOURCE_POLICY_FAILED" : "STOP_REQUESTED"
+            result["safe_boundary_stop_requested"]=!isnothing(extra_boundary.first_stop_sha256)
+            result["resource_reason"]=sprint(showerror,err)
+            get!(result,"reason",result["resource_reason"])
+            haskey(result,"spectrum") && (result["spectrum"]=merge(result["spectrum"],(;execution_status="FAIL",process_exit_code=1)))
+        end
+        result["native_highwater_bytes"]=extra_boundary.highwater_bytes
+    end
     try
         phase6b_finite(result)
         write(joinpath(outdir,"summary.txt"),"$(result["run_id"]): $(result["execution_status"]) exit=$(result["exit_code"])\n")

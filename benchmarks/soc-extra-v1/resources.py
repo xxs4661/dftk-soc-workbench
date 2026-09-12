@@ -289,11 +289,8 @@ def host_pressure():
             require(found is not None, 'Missing macOS memory-pressure percentage')
             free = int(found[1])
             require(0 <= free <= 100, 'Invalid system-wide free percentage')
-            level = None
-            try:
-                level = int(_command(['/usr/sbin/sysctl', '-n', 'kern.memorystatus_vm_pressure_level']).strip())
-            except (ValueError, OSError, subprocess.SubprocessError):
-                pass
+            level = int(_command(['/usr/sbin/sysctl', '-n', 'kern.memorystatus_vm_pressure_level']).strip())
+            require(level in (1, 2, 4), 'Missing/unknown macOS kernel pressure level')
             return dict(status='KNOWN', severe=free <= 5 or level == 4,
                         system_wide_free_percent=free, kernel_pressure_level=level,
                         criterion='Kernel critical level 4 or system-wide free percentage <=5%; operational indicator')
@@ -362,22 +359,87 @@ def host_preflight(root, archive_root=None):
                     native_exit_code=None)
 
 
-def monitor_decision(rss_bytes, *, remaining_growth_bytes=None, pressure=None):
+def validate_policy(policy=None):
+    """Validate an internal policy shape, after the controller authenticates it.
+
+    This is not an authorization issuer. In particular the controller must bind
+    the sole SCF reservation, exact source set, case and execution before passing
+    the10 GiB policy. No command-line or environment-only quota switch exists.
+    """
+    if policy is None:
+        return dict(schema_version=1, policy_id='extra-default-8gib-v2',
+                    limit_bytes=LIMIT_BYTES, warning_bytes=WARNING_BYTES,
+                    remaining_growth_bytes=None)
+    require(type(policy) is dict and type(policy.get('schema_version')) is int and
+            policy['schema_version'] == 1, 'Invalid resource policy schema')
+    value = dict(policy)
+    name = value.get('policy_id')
+    require(name in ('extra-default-8gib-v2', 'k6-scf-attempt2-10gib-v1',
+                     'k6-gamma-attempt1-8gib-v1'), 'Unknown resource policy')
+    limit = integer(value.get('limit_bytes'), 'limit_bytes', positive=True)
+    warning = integer(value.get('warning_bytes'), 'warning_bytes', positive=True)
+    growth = integer(value.get('remaining_growth_bytes'), 'remaining_growth_bytes', positive=True)
+    ten = name == 'k6-scf-attempt2-10gib-v1'
+    require((limit, warning) == ((10*GIB, 8*GIB) if ten else (LIMIT_BYTES, WARNING_BYTES)),
+            'Resource policy limits differ from its fixed scope')
+    if name != 'extra-default-8gib-v2':
+        action = 'X-K6-SCF' if ten else 'X-K6-GAMMA'
+        require(value.get('action') == action, 'Resource policy belongs to another action')
+        require(type(value.get('run_id')) is str and
+                re.fullmatch(r'[A-Za-z0-9_-]+', value['run_id']), 'Missing/invalid policy run_id')
+        for key, length in (('case_sha256', 64), ('execution_commit', 40)):
+            require(type(value.get(key)) is str and re.fullmatch('[0-9a-f]{'+str(length)+'}', value[key]),
+                    'Missing/invalid policy identity: '+key)
+    if ten:
+        require(growth >= 2021087414, 'Single K6 fixed growth cannot be reduced')
+    return value
+
+
+def monitor_decision(rss_bytes, *, remaining_growth_bytes=None, pressure=None,
+                     policy=None, peak_group_rss_bytes=None,
+                     worker_highwater_bytes=None, stop_request=None):
+    """Independent hard-limit, headroom and warning rules; no process is started.
+
+    The runner supplies a cumulative group peak and already authenticated current
+    worker high-water. Their maximum is a conservative screen, never an added
+    RSS measurement. A latched safe stop survives subsequent declining RSS.
+    """
     try:
+        rules = validate_policy(policy)
         integer(rss_bytes, 'rss_bytes')
+        peak = rss_bytes if peak_group_rss_bytes is None else integer(peak_group_rss_bytes, 'peak_group_rss_bytes')
+        require(peak >= rss_bytes, 'Cumulative group peak is below current RSS')
+        highwater = None if worker_highwater_bytes is None else integer(worker_highwater_bytes, 'worker_highwater_bytes', positive=True)
+        screen = max(peak, highwater if highwater is not None else peak)
+        growth = remaining_growth_bytes
+        if rules['remaining_growth_bytes'] is not None:
+            require(growth is None or growth == rules['remaining_growth_bytes'], 'Fixed growth differs from bound policy')
+            growth = rules['remaining_growth_bytes']
+        if growth is not None:
+            integer(growth, 'remaining_growth_bytes', positive=True)
         if pressure is None:
             pressure = host_pressure()
         require(type(pressure) is dict and pressure.get('status') == 'KNOWN' and type(pressure.get('severe')) is bool,
                 'Host-pressure observation unavailable')
-        if pressure['severe'] or rss_bytes >= LIMIT_BYTES:
-            return dict(status='RESOURCE_LIMIT', reason='Severe host pressure or sampled group RSS >=8 GiB')
-        if rss_bytes >= WARNING_BYTES:
-            if remaining_growth_bytes is None:
-                return dict(status='STOP_AT_SAFE_BOUNDARY', reason='7 GiB warning without a priced remaining-growth estimate')
-            integer(remaining_growth_bytes, 'remaining_growth_bytes')
-            if rss_bytes + remaining_growth_bytes >= LIMIT_BYTES:
-                return dict(status='STOP_AT_SAFE_BOUNDARY', reason='7 GiB warning plus declared remaining growth reaches8 GiB')
-            return dict(status='WARNING', reason='7 GiB warning; priced growth remains below8 GiB, retain warning')
-        return dict(status='CONTINUE', reason=None)
+        if stop_request is not None:
+            require(type(stop_request) is dict and stop_request.get('status') == 'STOP_AT_SAFE_BOUNDARY' and
+                    type(stop_request.get('reason')) is str and stop_request['reason'], 'Invalid latched stop request')
+        facts = dict(current_group_rss_bytes=rss_bytes, peak_group_rss_bytes=peak,
+                     worker_highwater_bytes=highwater, worker_highwater_status='NOT_YET_AVAILABLE' if highwater is None else 'AUTHENTICATED_BY_CALLER',
+                     screen_peak_bytes=screen, remaining_growth_bytes=growth,
+                     limit_bytes=rules['limit_bytes'], warning_bytes=rules['warning_bytes'], policy_id=rules['policy_id'])
+        if pressure['severe'] or screen >= rules['limit_bytes']:
+            return dict(facts, status='RESOURCE_LIMIT', reason='Severe host pressure or current/known peak reaches effective byte limit',
+                        first_safe_stop_reason=stop_request['reason'] if stop_request else None)
+        if stop_request is not None:
+            return dict(facts, status='STOP_AT_SAFE_BOUNDARY', reason=stop_request['reason'], stop_latched=True)
+        # This condition must remain independent of the warning threshold.
+        if growth is not None and screen + growth >= rules['limit_bytes']:
+            return dict(facts, status='STOP_AT_SAFE_BOUNDARY', reason='Known peak plus fixed remaining growth reaches effective byte limit')
+        if rss_bytes >= rules['warning_bytes']:
+            if growth is None:
+                return dict(facts, status='STOP_AT_SAFE_BOUNDARY', reason='Warning without a priced remaining-growth estimate')
+            return dict(facts, status='WARNING', reason='Current RSS reaches warning; fixed-growth headroom remains')
+        return dict(facts, status='CONTINUE', reason=None)
     except (ValueError, TypeError, KeyError) as error:
         return dict(status='MONITORING_UNAVAILABLE', reason=str(error))

@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "continuation_id": "k6-scf-attempt2-10gib-v1",
+  "repository": "xxs4661/dftk-soc-workbench",
+  "branch": "codex/phase9a-extra-validation",
+  "start": "e40def9dcfd243131adae1ce16d8b22815560a87",
+  "historical_execution": "96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504",
+  "original_9A_status": "COMPLETED_UNCHANGED",
+  "core_selection": "baseline",
+  "numerical_core_changed": false,
+  "case": "benchmarks/soc-extra-v1/K6.json",
+  "case_sha256": "63f90c9837857e36ed9b39115feeac71f3e56c69d78111dfe49dc56159dfe541",
+  "upf_sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+  "slots": {
+    "X-K6-SCF": {
+      "run_id": "X-K6-SCF-ATTEMPT2-20260913-10GIB-4c7e92a1",
+      "check_run_id": "X-K6-SCF-ATTEMPT2-20260913-10GIB-4c7e92a1-ENTRY",
+      "slot_key": "X-K6-SCF-attempt2.json",
+      "attempt": 2,
+      "allowed_starts": 1,
+      "limit_bytes": 10737418240,
+      "warning_bytes": 8589934592,
+      "remaining_growth_bytes": 2021538619,
+      "policy_id": "k6-scf-attempt2-10gib-v1"
+    },
+    "X-K6-GAMMA": {
+      "run_id": "X-K6-GAMMA-ATTEMPT1-20260913-8GIB-3d8f60b2",
+      "check_run_id": "X-K6-GAMMA-ATTEMPT1-20260913-8GIB-3d8f60b2-ENTRY",
+      "slot_key": "X-K6-GAMMA-attempt1.json",
+      "attempt": 1,
+      "allowed_starts": 1,
+      "limit_bytes": 8589934592,
+      "warning_bytes": 7516192768,
+      "remaining_growth_bytes": 1073741824,
+      "policy_id": "k6-gamma-attempt1-8gib-v1"
+    }
+  },
+  "resource_contract": {
+    "sample_seconds": 0.1,
+    "host_pressure_seconds": 2,
+    "safe_stop_timeout_seconds": 30,
+    "P_screen": "max(current-run accumulated process-group peak, authenticated current-run native worker highwater); not a sum",
+    "remaining_growth_min_bytes": 2021087414,
+    "stop": "P_screen + G_fixed >= effective_limit independently of warning; severe/unknown pressure or limit reached triggers owned termination",
+    "latched": "First stop reason and peak never decrease; no dynamic remaining-growth deduction",
+    "source_runtime_reserve_bytes": 2147483648,
+    "observational_fluctuation_reserve_bytes": 1073741824,
+    "scope": "Sampled engineering protection; not operating-system memory isolation"
+  },
+  "admission": {
+    "historical_formal_group_peak_bytes": 7447937024,
+    "historical_formal_worker_highwater_bytes": 7528939520,
+    "observational_estimate_bytes": 9550478139,
+    "source_engineering_estimate_bytes": 8203424092,
+    "requires_current_host_check": true,
+    "status": "PENDING_ACTUAL_PREFLIGHT_NOT_EXECUTION_PASS",
+    "remaining_growth_terms_bytes": {
+      "uncovered_history": 536418495,
+      "uncovered_serialization": 277160572,
+      "later_output": 134217728,
+      "unobserved_fluctuation": 1073741824
+    },
+    "growth_basis": "Conservative old-formal one-record history rather than two-record pilot; max observed buffer capacity 1108642288, 25% allowance ceiling1385802860. This increases G by451205 bytes. Inferred capacity residency remains uncertain within retained fluctuation/runtime allowances, not a strict bound."
+  },
+  "source_boundary": {
+    "allowed_existing_control_edits": [
+      "benchmarks/soc-extra-v1/resources.py",
+      "benchmarks/soc-extra-v1/run.py",
+      "benchmarks/soc-extra-v1/driver.jl",
+      "benchmarks/soc-extra-v1/control.py",
+      "scripts/run_si_soc.jl",
+      "scripts/run_si_dftk.py",
+      "scripts/si_qe_reference_evidence.py"
+    ],
+    "frozen": [
+      "src/",
+      "prototypes/",
+      "environment/",
+      "config/",
+      "all existing physical inputs",
+      "all existing results and original extra plans/sources",
+      "scripts/review.py"
+    ],
+    "new_sources": [
+      "benchmarks/soc-extra-v1/retry.py",
+      "benchmarks/soc-extra-v1/replay_retry.py",
+      "benchmarks/soc-extra-v1/k6-retry-10gib.json"
+    ],
+    "scope": "Control/protocol fixes only; no mathematical or object-lifecycle refactoring",
+    "frozen_mathematical_regions": [
+      {
+        "path": "scripts/run_si_soc.jl",
+        "label": "helpers_geometry_sources_and_fixed_math",
+        "start_byte_zero_based": 0,
+        "end_byte_exclusive": 22468,
+        "sha256": "fcc88228cdb82e796bdc8e2a4370fd65b59eeefb4b680675f42dbe5a85233288"
+      },
+      {
+        "path": "scripts/run_si_soc.jl",
+        "label": "SCF_uniform_density_seed",
+        "start_byte_zero_based": 31293,
+        "end_byte_exclusive": 31428,
+        "sha256": "0816e16db0c777d4425819cd537a8b406669163169c4d570a7b0e5b8d81ca8ec"
+      },
+      {
+        "path": "scripts/run_si_soc.jl",
+        "label": "SCF_checkpoint_state",
+        "start_byte_zero_based": 32717,
+        "end_byte_exclusive": 33507,
+        "sha256": "587dd795fae5279024d18d37575bc138870696346095b118a451871ffa068826"
+      },
+      {
+        "path": "scripts/run_si_soc.jl",
+        "label": "SCF_algorithm_call_and_closure",
+        "start_byte_zero_based": 33758,
+        "end_byte_exclusive": 35396,
+        "sha256": "cdd8eb36e015db2fb3d0e27efd838bb12b4abd2b06196b998a3568834af6b5e3"
+      },
+      {
+        "path": "scripts/run_si_soc.jl",
+        "label": "Gamma_Hamiltonian_construction",
+        "start_byte_zero_based": 36530,
+        "end_byte_exclusive": 36692,
+        "sha256": "c4b4f91f2e99bf1723a48cf272ef32056aa7c4526af6cb94a4d715a99c65374e"
+      },
+      {
+        "path": "scripts/run_si_soc.jl",
+        "label": "Gamma_symmetry_diagnostic",
+        "start_byte_zero_based": 36975,
+        "end_byte_exclusive": 37485,
+        "sha256": "a4f817a72966b37a4c31eb9a05401ea9f93e4e6bf76c3ab0be14daea96e7172c"
+      },
+      {
+        "path": "scripts/run_si_soc.jl",
+        "label": "Gamma_solve_and_occupations",
+        "start_byte_zero_based": 37942,
+        "end_byte_exclusive": 39948,
+        "sha256": "788a05d58b2954cb0df72b3ebe4d5d4ae128d955e636a392bd67332918facc3d"
+      },
+      {
+        "path": "benchmarks/soc-extra-v1/driver.jl",
+        "label": "serialization_length_method",
+        "start_byte_zero_based": 4679,
+        "end_byte_exclusive": 5842,
+        "sha256": "3fd24f1e98f4aaa0eff9db97d1bd2bbab6f0b3fc5f38db67bff9eab676ebbbc6"
+      },
+      {
+        "path": "benchmarks/soc-extra-v1/driver.jl",
+        "label": "compact_map",
+        "start_byte_zero_based": 6401,
+        "end_byte_exclusive": 7089,
+        "sha256": "3779da65b6ac5e3d2a58746d94f74bed08ffbc9d7867a8ed12cb940121aa7133"
+      },
+      {
+        "path": "benchmarks/soc-extra-v1/driver.jl",
+        "label": "lifecycle_size_math",
+        "start_byte_zero_based": 7089,
+        "end_byte_exclusive": 8445,
+        "sha256": "4c054f0a942435d0349e33427d6947893f0529eca920fbe3d244f1cb0beb471d"
+      },
+      {
+        "path": "benchmarks/soc-extra-v1/driver.jl",
+        "label": "pilot_report_and_spectral_pairing",
+        "start_byte_zero_based": 8504,
+        "end_byte_exclusive": 10578,
+        "sha256": "5071fb4f26e2592efd0aa0caf2ec2133418d4b2abed4d0c4658d97ec62b719fa"
+      },
+      {
+        "path": "scripts/si_qe_reference_evidence.py",
+        "label": "geometry_and_QE_replay_after_sampler",
+        "start_byte_zero_based": 10811,
+        "end_byte_exclusive": 46658,
+        "sha256": "54e1df0b18e8944d822e325de498732d9226b6226b6adf35fd4dcb810d95cfe9"
+      }
+    ]
+  },
+  "inheritance": "Old B0, pilot, formal failure, performance and QE remain bound to their original execution, with bytes checked against e40def9; never re-labelled E_new",
+  "comparison": {
+    "fixed_window_one_based": {
+      "lower": [
+        3,
+        4
+      ],
+      "upper": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "split_difference_limit_mev": 0.1,
+    "response_difference_limit_mev": 0.1,
+    "occupation_saturation": 0.99999999,
+    "QE": "Historical native reuse only after qualified new SCF/Gamma; not rerun"
+  },
+  "initial_state": "Original K6 uniform density, independent orbitals seed81001; no checkpoint/pilot warm start; Gamma seed81201 on new own n_out",
+  "prohibited": [
+    "B0",
+    "pilot",
+    "performance measurements",
+    "Linux",
+    "K8",
+    "QE/pp",
+    "new material",
+    "CI",
+    "upstream contact",
+    "main/PR/merge",
+    "Phase 9B"
+  ],
+  "failure": "No third formal SCF; no Gamma retry; retain native and recorder exits, no endpoint means NOT_ASSESSED",
+  "public_results": "results/soc-extra/k6-retry-10gib/"
+}

@@ -2,6 +2,7 @@
 """Read-only identity contract for the explicitly selected 9A extra experiment."""
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -14,6 +15,12 @@ BRANCH = 'codex/phase9a-extra-validation'
 AREA = Path('benchmarks/soc-extra-v1')
 PROFILES = ('B0', 'K6')
 ACTIONS = ('X-B0-SCF', 'X-B0-GAMMA', 'X-K6-PILOT', 'X-K6-SCF', 'X-K6-GAMMA')
+
+
+def retry_module():
+    spec = importlib.util.spec_from_file_location('soc_extra_once_retry', Path(__file__).with_name('retry.py'))
+    value = importlib.util.module_from_spec(spec); spec.loader.exec_module(value)
+    return value
 
 
 def require(ok, reason):
@@ -60,6 +67,8 @@ def verify_contract(root, path, execution, profile):
     require(not original.is_symlink() and root / '.work/phase9a-extra/authorizations' in path.parents,
             'Extra contract must be a new local authorization, not an old gate')
     auth = read(path)
+    if isinstance(auth, dict) and auth.get('continuation_id') is not None:
+        return retry_module().verify_contract(root, path, execution, profile)
     require(isinstance(auth, dict) and type(auth.get('schema_version')) is int and auth['schema_version'] == 1,
             'Unsupported extra contract schema')
     require(auth.get('experiment') == 'soc-extra-v1' and auth.get('base') == BASE,
@@ -109,6 +118,8 @@ def verify_contract(root, path, execution, profile):
 
 
 def verify_slot(root, auth, action):
+    if auth.get('continuation_id') is not None:
+        return retry_module().verify_slot(root, auth, action)
     require(action in auth['allowed_actions'], 'Action does not match contract profile')
     relative = os.environ.get('SOC_EXTRA_SLOT_RECEIPT')
     require(relative, 'Numerical worker requires its own consumed extra slot')
@@ -131,11 +142,17 @@ def main(argv=None):
     parser.add_argument('root'); parser.add_argument('contract'); parser.add_argument('execution')
     parser.add_argument('profile', choices=PROFILES)
     parser.add_argument('action', nargs='?', choices=ACTIONS)
+    parser.add_argument('--check-entry', action='store_true')
     args = parser.parse_args(argv)
     try:
         auth = verify_contract(args.root, args.contract, args.execution, args.profile)
-        if args.action is not None:
+        if args.action is not None and not args.check_entry:
             auth['slot'] = verify_slot(args.root, auth, args.action)
+        if args.action is not None and auth.get('continuation_id') is not None:
+            retry = retry_module()
+            policy = retry.policy_for(auth, args.action, check=args.check_entry)
+            auth['selected_resource_policy'] = policy
+            auth['selected_resource_policy_sha256'] = retry.digest(policy)
         print(json.dumps(auth, allow_nan=False))
         return 0
     except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:
