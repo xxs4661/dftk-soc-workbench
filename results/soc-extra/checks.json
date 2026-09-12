@@ -1,0 +1,573 @@
+{
+  "schema_version": 1,
+  "scope": "Recorded checks and sanitized command/log projections, not a new SCF or blanket scientific PASS",
+  "numerical_execution_commit": "96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504",
+  "postprocessing_identity": "Containing Git commit; changed code bytes are independently listed below",
+  "postprocessing_source_sha256": {
+    "benchmarks/soc-extra-v1/replay.py": "961496cd6dc702e205a1627687dd5ed28ecbfc04c05def69a12a936b666f16bd",
+    "tests/test_soc_extra_replay.py": "41c4fbb60f9a6755821652dcf24fc75f4b049e126c6522c9c87bd1bf84f65e75",
+    "tests/test_soc_extra_resource_stop_replay.py": "6066ed8a3357890294a7853c159795e3e0d68474ee83cedc6ee97a16c1b96898"
+  },
+  "checks": [
+    {
+      "name": "extra-tests",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_soc_extra_*.py",
+        "-v"
+      ],
+      "scope": "Python regression with synthetic rejection fixtures; not material calculations",
+      "tests": 61,
+      "logs": {
+        "stdout": {
+          "path": "checks/extra-tests.stdout.gz",
+          "raw_sha256": "40e0672039b12940ed0277a31c670ee42febaa6419fe96fd3c807c3fb03b1fde",
+          "public_sha256": "c3e8b7572753b25d32cba02f9f80b5b0e92f933700851dafe5346bbae3693cf3",
+          "gzip_sha256": "db90eb0ae1c28a481b77ae77f1914f99cfa873244e86bfee07d6547261e34e33",
+          "raw_bytes": 1373,
+          "public_bytes": 1183
+        },
+        "stderr": {
+          "path": "checks/extra-tests.stderr.gz",
+          "raw_sha256": "5332d51207737064a0394af46756e908217e37f8232dc78f54e6b6deddd7dab4",
+          "public_sha256": "5332d51207737064a0394af46756e908217e37f8232dc78f54e6b6deddd7dab4",
+          "gzip_sha256": "e2d740da817725ec6fcd352e84b4e9fb3ddfcd018fcec24df1a486bf9b1f7642",
+          "raw_bytes": 9123,
+          "public_bytes": 9123
+        }
+      }
+    },
+    {
+      "name": "public-replay",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "command": [
+        "python3.12",
+        "-B",
+        "benchmarks/soc-extra-v1/replay.py"
+      ],
+      "scope": "Public arithmetic replay; not electronic structure",
+      "logs": {
+        "stdout": {
+          "path": "checks/public-replay.stdout.gz",
+          "raw_sha256": "cab08cfdd48bfd9f445161b91b7caef5a04c02eef9723429a32e136466b4dfe1",
+          "public_sha256": "cab08cfdd48bfd9f445161b91b7caef5a04c02eef9723429a32e136466b4dfe1",
+          "gzip_sha256": "64848c160f9e5e2494ea9d89719400823262f286da88d164e35e5eb97ce85d82",
+          "raw_bytes": 102661,
+          "public_bytes": 102661
+        },
+        "stderr": {
+          "path": "checks/public-replay.stderr.gz",
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "gzip_sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+          "raw_bytes": 0,
+          "public_bytes": 0
+        }
+      }
+    },
+    {
+      "name": "public-replay-strict",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "command": [
+        "python3.12",
+        "-B",
+        "benchmarks/soc-extra-v1/replay.py",
+        "--require-k6"
+      ],
+      "scope": "Public arithmetic replay; not electronic structure",
+      "logs": {
+        "stdout": {
+          "path": "checks/public-replay-strict.stdout.gz",
+          "raw_sha256": "bde688b16756394a150de237b3d0c73512e0c3e9d4ea07dd614b5194a1897618",
+          "public_sha256": "bde688b16756394a150de237b3d0c73512e0c3e9d4ea07dd614b5194a1897618",
+          "gzip_sha256": "38bbd96a71fbf89b807490f862df1efe43df7faab4da0d67336b9a46bb01e62e",
+          "raw_bytes": 102661,
+          "public_bytes": 102661
+        },
+        "stderr": {
+          "path": "checks/public-replay-strict.stderr.gz",
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "gzip_sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+          "raw_bytes": 0,
+          "public_bytes": 0
+        }
+      }
+    },
+    {
+      "name": "si-driver",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_si_soc_driver.py",
+        "-v"
+      ],
+      "scope": "Python regression with synthetic rejection fixtures; not material calculations",
+      "tests": 11,
+      "logs": {
+        "stdout": {
+          "path": "checks/si-driver.stdout.gz",
+          "raw_sha256": "80ca676277dd4e016eead75d3f0d056072cef637fa6eb65d23c529cfec1c15b6",
+          "public_sha256": "80ca676277dd4e016eead75d3f0d056072cef637fa6eb65d23c529cfec1c15b6",
+          "gzip_sha256": "ecb2759845158eb69bdab269416ed5ae39aa5bf82d70e60aa6c3e959436e9f2d",
+          "raw_bytes": 159,
+          "public_bytes": 159
+        },
+        "stderr": {
+          "path": "checks/si-driver.stderr.gz",
+          "raw_sha256": "35822942fd10f44061586edc14c6f81ca80303eb750dd311f5df3cf4a23bfdcf",
+          "public_sha256": "35822942fd10f44061586edc14c6f81ca80303eb750dd311f5df3cf4a23bfdcf",
+          "gzip_sha256": "3cb3e245f3838e37a032330b7c3c39519c4bf7c96389ac9babcaf7b496481597",
+          "raw_bytes": 1146,
+          "public_bytes": 1146
+        }
+      }
+    },
+    {
+      "name": "sensitivity-driver",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_si_sensitivity_driver.py",
+        "-v"
+      ],
+      "scope": "Python regression with synthetic rejection fixtures; not material calculations",
+      "tests": 13,
+      "logs": {
+        "stdout": {
+          "path": "checks/sensitivity-driver.stdout.gz",
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "gzip_sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+          "raw_bytes": 0,
+          "public_bytes": 0
+        },
+        "stderr": {
+          "path": "checks/sensitivity-driver.stderr.gz",
+          "raw_sha256": "c011d20378303f47cf68cb0c12c20239bcfefafa1b0226895b598939664c7011",
+          "public_sha256": "c011d20378303f47cf68cb0c12c20239bcfefafa1b0226895b598939664c7011",
+          "gzip_sha256": "da2b942422229762ea7c98fe8bfd752e286709ab7ddeb9a2f03b315179ef85ce",
+          "raw_bytes": 2132,
+          "public_bytes": 2132
+        }
+      }
+    },
+    {
+      "name": "core-driver",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/soc_core_memory",
+        "-p",
+        "test_driver.py",
+        "-v"
+      ],
+      "scope": "Python regression with synthetic rejection fixtures; not material calculations",
+      "tests": 22,
+      "logs": {
+        "stdout": {
+          "path": "checks/core-driver.stdout.gz",
+          "raw_sha256": "71ff2030a7f452a0e8f9938e5711d5d4f5454c41e3da01d9248a30c97172dbb7",
+          "public_sha256": "d72520f762a5610c09c3ea5534ed3b9397f2a1418184eee17038f5b0f3b33786",
+          "gzip_sha256": "432d59b7a93afed8abaa1955bdee1065b5a8209d276d73fb768b598ec079ee88",
+          "raw_bytes": 1623,
+          "public_bytes": 1520
+        },
+        "stderr": {
+          "path": "checks/core-driver.stderr.gz",
+          "raw_sha256": "3f821b37718b3414f2590a3bd5f86d769f861623b8eff06e0b7eeaeeaa561a11",
+          "public_sha256": "3f821b37718b3414f2590a3bd5f86d769f861623b8eff06e0b7eeaeeaa561a11",
+          "gzip_sha256": "2e22216863df0c048d134f561142d0dff428abd863fe776299cca5d1f6a81218",
+          "raw_bytes": 3163,
+          "public_bytes": 3163
+        }
+      }
+    },
+    {
+      "name": "settings",
+      "exit_code": 0,
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=<WORKBENCH>/environment/workbench",
+        "tests/test_soc_extra_settings.jl"
+      ],
+      "log": {
+        "path": "checks/settings-preparation.log.gz",
+        "raw_sha256": "85a3a903468c0189b5c28d6c019dc727f5c4bfc706b41d4bef8cbdbff3350caf",
+        "public_sha256": "85a3a903468c0189b5c28d6c019dc727f5c4bfc706b41d4bef8cbdbff3350caf",
+        "gzip_sha256": "97ba4855201adf59cd4ea85027bef2427590b8dbffe9617eb9cbafbd36e768cb",
+        "raw_bytes": 469,
+        "public_bytes": 469
+      },
+      "scope": "Pre-numerical preparation: synthetic/definition checks in frozen environment"
+    },
+    {
+      "name": "old-si-settings",
+      "exit_code": 0,
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=<WORKBENCH>/environment/workbench",
+        "tests/test_si_sensitivity.jl"
+      ],
+      "log": {
+        "path": "checks/old-si-settings-preparation.log.gz",
+        "raw_sha256": "f8cc5222b6ae10d36d0d47f2979f4daf950f02045707f86a0fb85a78ad21ff4b",
+        "public_sha256": "f8cc5222b6ae10d36d0d47f2979f4daf950f02045707f86a0fb85a78ad21ff4b",
+        "gzip_sha256": "f30c0d94c206495c50913fe5df73162fe7d82c0a4a7190e8ae3d64e74e72cf87",
+        "raw_bytes": 160,
+        "public_bytes": 160
+      },
+      "scope": "Pre-numerical preparation: synthetic/definition checks in frozen environment"
+    },
+    {
+      "name": "old-driver-definitions",
+      "exit_code": 0,
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=<WORKBENCH>/environment/workbench",
+        "tests/soc_core_memory/resume/test_driver_entry.jl"
+      ],
+      "log": {
+        "path": "checks/old-driver-definitions-preparation.log.gz",
+        "raw_sha256": "67717cafd28796755d34bd855fdfe75e79efd138b418cdfdd0997f14f47d3839",
+        "public_sha256": "67717cafd28796755d34bd855fdfe75e79efd138b418cdfdd0997f14f47d3839",
+        "gzip_sha256": "6bc800df69bba3f8363c6e1fae2242dd69ef01749807b0a906d178201ab5b6f6",
+        "raw_bytes": 624,
+        "public_bytes": 624
+      },
+      "scope": "Pre-numerical preparation: synthetic/definition checks in frozen environment"
+    },
+    {
+      "name": "old-callback-boundaries",
+      "exit_code": 0,
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=<WORKBENCH>/environment/workbench",
+        "-e",
+        "include(\"scripts/run_si_soc.jl\");include(\"tests/soc_core_memory/test_soc_boundaries.jl\")"
+      ],
+      "log": {
+        "path": "checks/old-callback-boundaries-preparation.log.gz",
+        "raw_sha256": "6dbd7d7cfe103db93fe82af0e5615fceeba866e094ce618050a975a274ad45e6",
+        "public_sha256": "6dbd7d7cfe103db93fe82af0e5615fceeba866e094ce618050a975a274ad45e6",
+        "gzip_sha256": "4f5cc2d29f35cfb776a61cf31fbf5e8a3fe1271f7ffb8cf19a7674db3bdb2235",
+        "raw_bytes": 470,
+        "public_bytes": 470
+      },
+      "scope": "Pre-numerical preparation: synthetic/definition checks in frozen environment"
+    },
+    {
+      "name": "old-resume-current-tree",
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/soc_core_memory/resume",
+        "-p",
+        "test_driver.py",
+        "-v"
+      ],
+      "exit_code": 1,
+      "tests": 14,
+      "failures": 5,
+      "scope": "Preserved failure: historical source hashes differ; not fixed by weakening assertions",
+      "log": {
+        "path": "checks/old-resume-recorder.log.gz",
+        "raw_sha256": "2a1d37d8a65a393a3ecaf2319cd09ef51d0e90e615e52e973a7365bcfca2602b",
+        "public_sha256": "feb7a11f55840529937e8b5792df48759cfd7a58402d5765fec3c5cc21f1d40a",
+        "gzip_sha256": "66b60c7a04e8cb32b4c7c8c9643ec7e316273b53c4662f46c6242ce4f4f807b8",
+        "raw_bytes": 11291,
+        "public_bytes": 10769
+      }
+    },
+    {
+      "name": "old-resume-fixed-baseline",
+      "command": [
+        "python3.12",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/soc_core_memory/resume",
+        "-p",
+        "test_driver.py",
+        "-v"
+      ],
+      "snapshot": "7630172808773a3d4ac2da825c27fe43a8705fb8",
+      "exit_code": 0,
+      "tests": 14,
+      "scope": "Actual historical worktree run, not extra numerical certification",
+      "log": {
+        "path": "checks/old-resume-recorder-fixed763.log.gz",
+        "raw_sha256": "483143d2551c556ed2ca67d19c4356d32a953d484083622e3f40d4330027aa64",
+        "public_sha256": "81c7bac40111e1819c72908bfb8e50541bafce63da446e26828c3715099512ab",
+        "gzip_sha256": "a2a28b63e8997da2633f9d94f6bffb27e7e29f91a5672447ba24d521ee4fac4f",
+        "raw_bytes": 5110,
+        "public_bytes": 4808
+      }
+    },
+    {
+      "name": "saved-b0-regression",
+      "exit_code": 0,
+      "scope": "Authenticated own-density/endpoint gate; private density differences remain runner-reported",
+      "log": {
+        "path": "checks/b0-regression.log.gz",
+        "raw_sha256": "cba7a3a0e74b4e232a6a0aa7652d4493fd308660281fa5af0bda1c7992cfb00a",
+        "public_sha256": "cba7a3a0e74b4e232a6a0aa7652d4493fd308660281fa5af0bda1c7992cfb00a",
+        "gzip_sha256": "8df51857cb19901b3bfd35275df744f6eb2fb850702b2fb7d40ed5bdce1e6906",
+        "raw_bytes": 32,
+        "public_bytes": 32
+      }
+    },
+    {
+      "name": "frozen-monitor-headroom-counterexample",
+      "exit_code": 1,
+      "actual_frozen_status": "CONTINUE",
+      "expected_contract_status": "STOP_AT_SAFE_BOUNDARY",
+      "scope": "Actual read-only call with recorded RSS/growth; original failing assertion retained, numerical monitor NOT repaired",
+      "logs": [
+        {
+          "path": "checks/monitor-headroom-counterexample.stdout.gz",
+          "raw_sha256": "e300da6fa104e657f67bd487c8e7e31e8864519e534ed606e15f1d6844db274b",
+          "public_sha256": "e300da6fa104e657f67bd487c8e7e31e8864519e534ed606e15f1d6844db274b",
+          "gzip_sha256": "adf20948a4f80aa0f9157a08a906e9c2a5bb46234dba54b0adc9196dbc5a2537",
+          "raw_bytes": 292,
+          "public_bytes": 292
+        },
+        {
+          "path": "checks/monitor-headroom-counterexample.stderr.gz",
+          "raw_sha256": "907a2e4dc682e62cce2f5a521715dc3f2dc4b8bb4b799768fae823fe7db0798a",
+          "public_sha256": "907a2e4dc682e62cce2f5a521715dc3f2dc4b8bb4b799768fae823fe7db0798a",
+          "gzip_sha256": "663cd7416d79790e01d8c6a3bdf116762179eb7338f8ce348fb4715dc70a40cc",
+          "raw_bytes": 152,
+          "public_bytes": 152
+        }
+      ]
+    },
+    {
+      "name": "original-E-public-replay",
+      "status": "PASS",
+      "native_exit_code": 0,
+      "execution_commit": "96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504",
+      "scope": "Ignored candidate clone public replay only; no electronic-structure calculation",
+      "command": [
+        "<USER_HOME>/.local/bin/python3.12",
+        "-B",
+        "benchmarks/soc-extra-v1/replay.py",
+        "--root",
+        "<WORKBENCH>/.work/phase9a-extra/public-draft/delivery-verify-fa72cd38"
+      ]
+    }
+  ],
+  "native_commands": {
+    "X-B0-SCF": {
+      "run_id": "X-B0-SCF-20260912T095142925295Z-5beddab2",
+      "raw_recorder_sha256": "0a3aa1750824d4e25a99248f153d9541e3e39dcdd2a400bec66c31b5b879445f",
+      "execution_commit": "96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=<WORKBENCH>/environment/workbench",
+        "<WORKBENCH>/scripts/run_si_soc.jl",
+        "X-B0-SCF",
+        "<WORKBENCH>/.work/phase9a-extra/runs/X-B0-SCF-20260912T095142925295Z-5beddab2/X-B0-SCF-20260912T095142925295Z-5beddab2-dftk",
+        "--extra-profile",
+        "B0",
+        "--extra-contract",
+        "<WORKBENCH>/.work/phase9a-extra/authorizations/B0-96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504.json"
+      ],
+      "native_exit_code": 0,
+      "recorder_exit_code": 0,
+      "scope": "Sanitized original native command, not permission to consume another slot"
+    },
+    "X-B0-GAMMA": {
+      "run_id": "X-B0-GAMMA-20260912T104611503053Z-d095fe92",
+      "raw_recorder_sha256": "dfbb187fec8de874c62c912dfc5261db4cb36685b5fd4e2a85c2e82d6b7c7f9d",
+      "execution_commit": "96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=<WORKBENCH>/environment/workbench",
+        "<WORKBENCH>/scripts/run_si_soc.jl",
+        "X-B0-GAMMA",
+        "<WORKBENCH>/.work/phase9a-extra/runs/X-B0-GAMMA-20260912T104611503053Z-d095fe92/X-B0-GAMMA-20260912T104611503053Z-d095fe92-dftk",
+        "<WORKBENCH>/.work/phase9a-extra/runs/X-B0-SCF-20260912T095142925295Z-5beddab2/X-B0-SCF-20260912T095142925295Z-5beddab2-dftk",
+        "--extra-profile",
+        "B0",
+        "--extra-contract",
+        "<WORKBENCH>/.work/phase9a-extra/authorizations/B0-96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504.json"
+      ],
+      "native_exit_code": 0,
+      "recorder_exit_code": 0,
+      "scope": "Sanitized original native command, not permission to consume another slot"
+    },
+    "X-K6-PILOT": {
+      "run_id": "X-K6-PILOT-20260912T104806269817Z-c3066352",
+      "raw_recorder_sha256": "3749ac8d8e04fca8b8741449fd4f752d42c1f15094f0c549928c4e4fdb0291d8",
+      "execution_commit": "96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=<WORKBENCH>/environment/workbench",
+        "<WORKBENCH>/scripts/run_si_soc.jl",
+        "X-K6-PILOT",
+        "<WORKBENCH>/.work/phase9a-extra/runs/X-K6-PILOT-20260912T104806269817Z-c3066352/X-K6-PILOT-20260912T104806269817Z-c3066352-dftk",
+        "--extra-profile",
+        "K6",
+        "--extra-contract",
+        "<WORKBENCH>/.work/phase9a-extra/authorizations/K6-96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504.json"
+      ],
+      "native_exit_code": 0,
+      "recorder_exit_code": 0,
+      "scope": "Sanitized original native command, not permission to consume another slot"
+    },
+    "X-K6-SCF": {
+      "run_id": "X-K6-SCF-20260912T125749806970Z-9b5c1377",
+      "raw_recorder_sha256": "be03255f92d1e0dbd8790d0698da3cd349e6457359cab1da1407b84683194697",
+      "execution_commit": "96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--color=no",
+        "--project=<WORKBENCH>/environment/workbench",
+        "<WORKBENCH>/scripts/run_si_soc.jl",
+        "X-K6-SCF",
+        "<WORKBENCH>/.work/phase9a-extra/runs/X-K6-SCF-20260912T125749806970Z-9b5c1377/X-K6-SCF-20260912T125749806970Z-9b5c1377-dftk",
+        "--extra-profile",
+        "K6",
+        "--extra-contract",
+        "<WORKBENCH>/.work/phase9a-extra/authorizations/K6-96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504.json"
+      ],
+      "native_exit_code": 1,
+      "recorder_exit_code": 1,
+      "scope": "Sanitized original native command, not permission to consume another slot"
+    }
+  },
+  "diagnosis_reference": {
+    "actual_performance_sha256": "495dd90ba7f9ae7da6208c0d3f2a39ec201df18106aef6a5fc09c058df39f371",
+    "status": "CORRECTED_POSTPROCESSING_REFERENCE",
+    "historical_E_binding_exit_code": 1,
+    "scope": "Only stale pre-compaction reference corrected; performance numbers unchanged"
+  },
+  "linux": {
+    "schema_version": 1,
+    "status": "NOT_RUN_NO_SUITABLE_ENVIRONMENT",
+    "native_exit_code": null,
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "source_sha256": "16918eb478886baa9e69741e67650b963b50886a7ca35fa07ee1e1d26677cf3e",
+    "checked_local_runtimes": {
+      "julia": "AVAILABLE",
+      "python3.12": "AVAILABLE",
+      "docker": "NOT_FOUND",
+      "podman": "NOT_FOUND",
+      "colima": "NOT_FOUND",
+      "lima": "NOT_FOUND",
+      "limactl": "NOT_FOUND",
+      "multipass": "NOT_FOUND",
+      "virsh": "NOT_FOUND"
+    },
+    "scope": "Existing local runtime discovery only; no new Linux environment, remote account or CI provisioning",
+    "reason": "The current platform is macOS arm64. No suitable existing authorized Linux runtime was found. Linux native SCF, Gamma and numerical regression are NOT_RUN.",
+    "requirements": [
+      "An existing authorized Linux environment with Julia 1.12.7 and fixed dependencies",
+      "Process-group RSS and host-pressure observation, single-thread execution and sufficient disk",
+      "The same authenticated UPF, B0 input and numerical E; no dependency version change"
+    ]
+  },
+  "process_cleanup": {
+    "schema_version": 1,
+    "scope": "Independent read-only process query after formal resource stop; no process was signalled",
+    "ps_exit_code": 0,
+    "matching_workbench_numerical_processes": [],
+    "status": "PASS"
+  },
+  "not_run": [
+    "Full upstream DFTK tests",
+    "QE/pw.x/pp.x",
+    "CI",
+    "K8",
+    "New material",
+    "Phase 9B"
+  ],
+  "delivery_checks": "Exact final clean-clone, incremental backup and push receipts are recorded outside Git after this commit, avoiding a self-referential receipt commit.",
+  "source_boundary": {
+    "schema_version": 1,
+    "base": "7630172808773a3d4ac2da825c27fe43a8705fb8",
+    "numerical_E": "96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504",
+    "files": {
+      "scripts/run_si_soc.jl": "ed9dc156a1534a9f87b889c519905701e0b69dcc95ddd163ce1d50e74519ae19",
+      "scripts/run_si_dftk.py": "d41b0ae9917a47c46b841235ad715d332a1c0077c0235dce3861d3d3c6e8c4c5",
+      "prototypes/soc_scf/solver.jl": "7c9a0ac470bf988a25e8f4b7bcec459c833615bce106188119850f0f61e6186a",
+      "prototypes/soc_scf/scf.jl": "73568e330ae669e6ced1a3baea77a7845d9035417de3c53436148d364ebfb7d8",
+      "benchmarks/soc-extra-v1/driver.jl": "577987bf090ac569869f0fb731a5077599eb26723a01252534805e5e5fd4abe9",
+      "benchmarks/soc-extra-v1/run.py": "cb02d24474365f8e5286f178e5ab974590e1b5a2ad8fd8d9a5b990657cd14c16",
+      "benchmarks/soc-extra-v1/resources.py": "71d1b350ee61af4c59ea485cc985d5ca6d8c280fd670b6552ee3c366ef3989f5",
+      "benchmarks/soc-extra-v1/plan.json": "34b9cf06d7535efdc232eceda3a9c45211e480510b620634f6e0b92853005ed0"
+    },
+    "upstream": {
+      "DFTK.jl": {
+        "commit": "2f51b91213e26726fb9c6a17e5fae235a1412d01",
+        "status": "CLEAN"
+      },
+      "PseudoPotentialIO.jl": {
+        "commit": "fec942781560c391f20214ba4cd85fb2431deb84",
+        "status": "CLEAN"
+      }
+    },
+    "status": "PASS",
+    "exit_code": 0
+  },
+  "navigation": {
+    "status": "PASS",
+    "local_links_checked": 166,
+    "scope": "Exact local filenames and Markdown anchors; current research navigation plus new result/benchmark entry"
+  }
+}

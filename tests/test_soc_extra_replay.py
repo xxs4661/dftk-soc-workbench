@@ -192,6 +192,51 @@ class ReplayTests(unittest.TestCase):
         reported['metrics']['n_out']['relative']=1.
         with self.assertRaises(ValueError):M.b0_comparison(old,gamma,energy,self.history,reported)
 
+    def gate_fixture(self):
+        E='96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504';rows=[];sources={}
+        manifest=M.read(ROOT/'results/soc-core-memory/completion/endpoints.json')
+        for action in ('OPT-B0-SCF','OPT-B0-GAMMA'):
+            item=manifest['slots'][action];old=self.history['B0'][action]
+            prefix='.work/phase9a/endpoints/'+item['run_id']+'/'
+            sources[prefix+'receipt.json']=item['outer']['raw_sha256'];sources[prefix+old['run_id']+'/result.json']=item['worker']['raw_sha256']
+            sources.update({prefix+k:v['raw_sha256'] for k,v in item['process'].items()})
+            if action.endswith('SCF'):sources[prefix+old['run_id']+'/final.bin']=old['checkpoint_sha256']
+            new=copy.deepcopy(old);new.update(action='X-B0-SCF' if action.endswith('SCF') else 'X-B0-GAMMA',execution_commit=E,run_id='synthetic-'+action+'-dftk')
+            row=dict(run_id='synthetic-'+action,worker=new,raw_recorder_sha256=('1' if action.endswith('SCF') else '2')*64,raw_worker_sha256=('3' if action.endswith('SCF') else '4')*64)
+            prefix='.work/phase9a-extra/runs/'+row['run_id']+'/'
+            sources[prefix+'result.json']=row['raw_recorder_sha256'];sources[prefix+new['run_id']+'/result.json']=row['raw_worker_sha256']
+            if action.endswith('SCF'):sources[prefix+new['run_id']+'/final.bin']=new['checkpoint_sha256']
+            rows.append(row)
+        paths=['benchmarks/soc-extra-v1/'+f for f in ['b0_regression.jl','run.py','control.py','plan.json','sources.json','B0.json']]+[
+            'benchmarks/soc-core-memory-v1/endpoint_compare.jl','benchmarks/soc-core-memory-v1/compare.jl',
+            'scripts/si_soc_comparison.py','scripts/parse_qe_soc.py','scripts/workbench_environment.jl']
+        gate=dict(schema_version=1,execution_commit=E,status='PASS',exit_code=0,metrics=dict(status='PASS'),environment=dict(status='PASS'),closure_status='PASS',
+            dispatch_status=dict(scf='PASS',gamma='PASS'),runtime_closed=dict(scf=True,gamma=True),
+            scf_receipt_sha256=rows[0]['raw_recorder_sha256'],gamma_receipt_sha256=rows[1]['raw_recorder_sha256'],source_hashes=sources,
+            arithmetic_sources=dict(execution_commit=E,source_sha256={p:M.digest(M.git(ROOT,'show',E+':'+p)) for p in paths}),
+            historical_reference=dict(status='HISTORICAL_REUSED',execution_commit='281c53525a70cf21c36973956d5303d3201a73eb',snapshot_commit=M.BASE,
+                manifest_sha256=M.digest((ROOT/'results/soc-core-memory/completion/endpoints.json').read_bytes()),
+                scf_run_id=self.history['B0']['OPT-B0-SCF']['run_id'],gamma_run_id=self.history['B0']['OPT-B0-GAMMA']['run_id']))
+        return gate,rows
+
+    def test_failed_b0_is_not_relabelled_unrun(self):
+        data=empty();data['slots']['X-B0-SCF'].update(status='FAIL',native_exit_code=9,recorder_exit_code=9,reason='Synthetic native failure')
+        result=self.evaluate(data)
+        self.assertEqual(result['B0']['status'],'FAIL')
+        self.assertEqual(result['Linux_B0']['status'],'NOT_RUN')
+
+    def test_b0_gate_receipts_exit_and_source_closure(self):
+        gate,rows=self.gate_fixture();M.validate_b0_gate(gate,*rows,self.history,ROOT)
+        changes=[lambda g:g.update(exit_code=9),lambda g:g.update(scf_receipt_sha256='0'*64),
+            lambda g:g.update(gamma_receipt_sha256='0'*64),lambda g:g['metrics'].update(status='FAIL'),
+            lambda g:g['source_hashes'].update({next(iter(g['source_hashes'])):'0'*64}),
+            lambda g:g['arithmetic_sources']['source_sha256'].pop('scripts/parse_qe_soc.py')]
+        for mutate in changes:
+            bad=copy.deepcopy(gate);mutate(bad)
+            with self.subTest(mutate=mutate),self.assertRaises(ValueError):M.validate_b0_gate(bad,*rows,self.history,ROOT)
+        failed=dict(schema_version=1,execution_commit=gate['execution_commit'],status='FAIL',exit_code=9,reason='Synthetic failed read before metrics')
+        M.validate_b0_gate(failed,*rows,self.history,ROOT)
+
     def test_required_b0_cannot_be_replaced_by_k6_or_history(self):
         data=self.pair();data['b0_regression_required']=True
         with self.assertRaisesRegex(ValueError,'mandatory new B0'):self.evaluate(data)
@@ -247,6 +292,27 @@ class ReplayTests(unittest.TestCase):
             with self.assertRaises(ValueError):M.audit_artifacts(root,artifacts[1:],slots)
             slots['X-K6-SCF']['worker']['final']['map_count']=4
             with self.assertRaises(ValueError):M.audit_artifacts(root,artifacts,slots)
+
+    def test_performance_failure_streams_identity_and_hashes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);run='SYNTHETIC-PREPARATION-FAILURE';prefix='results/soc-extra/performance-preparation-failure/'+run+'/'
+            perf=dict(retained_premeasurement_failures=[dict(run_id=run,status='RETAINED_PREMEASUREMENT_PREPARATION_FAILURE',
+                raw_recorder_sha256='a'*64,native_exit_code=9,recorder_exit_code=9,warmups=0,samples=0,profiler_calls=0)])
+            artifacts=[]
+            for name in ('qe.stdout','qe.stderr'):
+                raw=('SYNTHETIC '+name+' failure text\n').encode();compressed=gzip.compress(raw,mtime=0)
+                relative=prefix+name+'.txt.gz';p=root/relative;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(compressed)
+                artifacts.append(dict(path=relative,sha256=M.digest(compressed),bytes=len(compressed),raw_sha256=M.digest(raw),public_sha256=M.digest(raw),public_bytes=len(raw)))
+            item=dict(run_id=run,status='RETAINED_PREMEASUREMENT_PREPARATION_FAILURE',raw_recorder_sha256='a'*64,artifacts=artifacts)
+            self.assertEqual(M.audit_performance_failures(root,[item],perf)['native_streams_checked'],2)
+            changes=[lambda x:x['artifacts'].pop(),lambda x:x.update(run_id='ANOTHER-RUN'),
+                lambda x:x['artifacts'][0].update(sha256='b'*64),lambda x:x['artifacts'][1].update(public_sha256='b'*64)]
+            for change in changes:
+                bad=copy.deepcopy(item);change(bad)
+                with self.subTest(change=change),self.assertRaises(ValueError):M.audit_performance_failures(root,[bad],perf)
+            p=root/artifacts[1]['path'];p.write_bytes(p.read_bytes()+b'CORRUPTED')
+            with self.assertRaises(ValueError):M.audit_performance_failures(root,[item],perf)
+            with self.assertRaises(ValueError):M.audit_performance_failures(root,[],perf)
 
     def test_cli_default_strict_and_malformed_statuses(self):
         for strict,comparison,code in [(False,'NOT_ASSESSED',0),(True,'NOT_ASSESSED',1),(True,'REVIEW_REQUIRED',1),(True,'PASS',0)]:

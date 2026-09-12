@@ -20,7 +20,8 @@ SOC problem; their fixed-density probes use each program's own final density.
 | Does SOC resolve the fixed Γ valence window? | [Full spectra and same-density spin-trace control](si-soc-splitting/README.md): Δ = 47.4576152 meV (workbench), 47.4576124 meV (QE). | Fixed-window structure and splitting comparison pass. The [occupation-aware assessment](si-soc-splitting/status-correction/README.md) retains manifold interpretation as **REVIEW_REQUIRED**. |
 | Does removing the spin-dependent nonlocal action restore the degeneracy? | The same-density control's six-state width is about 1.63×10⁻¹² eV; see [canonical comparison](si-soc-splitting/comparison.json). | A spin-trace operator diagnostic, not a separate scalar-pseudopotential calculation. |
 | How sensitive is Δ to the selected settings? | [Paired cutoff, temperature and k-grid changes](si-soc-sensitivity/README.md): E40/T05 changes fall within the declared 0.1 meV window; K4 raises Δ by about 0.331506 meV in both programs. | Agreement between programs does not make the k-grid change small. These are three finite checks, not a convergence study. |
-| Does the denser QE sequence change that picture? | [QE K6/K8 reference](si-soc-k-reference/README.md): K4→K6 and K6→K8 changes are +0.0471284 and +0.0086212 meV. | Both are within the observation window. DFTK K6/K8 were **NOT_RUN**; no dense-grid cross-code agreement or full convergence is established. |
+| Does the denser QE sequence change that picture? | [Historical QE K6/K8 reference](si-soc-k-reference/README.md): K4→K6 and K6→K8 changes are +0.0471284 and +0.0086212 meV. | Both are within the observation window. That QE-only matrix contained no workbench K6/K8 runs; its values do not establish cross-code agreement or full convergence. |
+| Does the workbench reproduce the same-input QE K6 splitting? | [K6 resource outcome](soc-extra/README.md): a two-map pilot completed, but the single formal SCF attempt stopped under the fixed resource-headroom rule, **FAIL / native 1 / outer 1**. | No converged workbench K6 state: Γ BLOCKED_PARENT, D−QE splitting and K4→K6 response comparisons NOT_ASSESSED. QE is historical reuse; workbench K8 remains NOT_RUN. |
 
 Raw spectra and single-global-reference diagnostics remain available. No fitted
 potential offset or empirical total-energy correction was applied. QE warnings,
@@ -79,7 +80,16 @@ It is an actual endpoint calculation, not a new QE pair. The initial parser
 failure remains in the [earlier partial report](soc-core-memory/README.md).
 Private-array differences and observed memory ownership are runner-reported;
 public replay checks their recorded scalar arithmetic and published endpoints.
-K6 resource evidence remains insufficient, and occupation/manifold and physical
-convergence limits are unchanged. Use the
+Occupation/manifold and physical convergence limits are unchanged. Use the
 [completed snapshot](../docs/history.md#core-allocation-and-endpoint-regression)
-for strict public replay.
+for strict replay of that original completed regression.
+
+The [supplementary validation](soc-extra/README.md) retains the completed core
+after finite B0/K4 profiling and passes a fresh B0 SCF/own-density Γ regression.
+Each of four profiled operations retains one warmup and all five samples; no
+optimization candidate was attempted and no overall speedup is established.
+The K6 pilot completed two full maps, but the subsequent formal SCF stopped
+when sampled peak plus fixed remaining growth exceeded the 8 GiB screen.
+This was not sampled RSS reaching 8 GiB, and the pilot is not a converged SCF.
+The new record separates cumulative allocations, retained storage, resource
+observations and execution outcomes; native Linux SCF/Γ remains NOT_RUN.

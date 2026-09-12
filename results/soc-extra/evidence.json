@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "experiment": "soc-extra-v1",
+  "execution_commit": "96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504",
+  "data": {
+    "path": "results/soc-extra/data.json.gz",
+    "sha256": "9fa9b0e8c5359475ae2b6f35cdfba94a0c8501f1bcf4e025d72cd798f48192d6",
+    "bytes": 351954,
+    "public_sha256": "9db0e5e216602b9854bd38fe012d0ed2d1443732ec3f468bd27e3b6513a167ef",
+    "public_bytes": 1499565,
+    "projection_before_compaction_sha256": "c6b72e1969d4775c7f789b87532640bfd6efc9ecf68d76d5de3f2301a2fb84ee",
+    "scope": "Lossless selected public JSON, whitespace compacted and gzip-compressed; original raw-worker identities remain in each row"
+  },
+  "performance": {
+    "path": "results/soc-extra/performance.json",
+    "sha256": "495dd90ba7f9ae7da6208c0d3f2a39ec201df18106aef6a5fc09c058df39f371",
+    "bytes": 116112
+  },
+  "artifacts": [
+    {
+      "path": "results/soc-extra/X-B0-SCF/native_stdout.txt.gz",
+      "sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "bytes": 20,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_bytes": 0,
+      "public_lines": 0,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-B0-SCF",
+      "kind": "native_stdout"
+    },
+    {
+      "path": "results/soc-extra/X-B0-SCF/native_stderr.txt.gz",
+      "sha256": "f5257dee923c20649a93c9116b226315bc948f395ee4e5d3b6c02e83e64d383e",
+      "bytes": 3715,
+      "raw_sha256": "c70c011f4e7672a19f07df9f064f6031577bec37aa1678116120c2af78bd69c1",
+      "raw_bytes": 14584,
+      "public_sha256": "c70c011f4e7672a19f07df9f064f6031577bec37aa1678116120c2af78bd69c1",
+      "public_bytes": 14584,
+      "public_lines": 185,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-B0-SCF",
+      "kind": "native_stderr"
+    },
+    {
+      "path": "results/soc-extra/X-B0-SCF/compact_trace.jsonl.gz",
+      "sha256": "85bc741426e2d7543ef8ea9a60296bb6d9c5073b261c892dd915f52a29b754a7",
+      "bytes": 61348,
+      "raw_sha256": "427b8f6e518e43e85a67bd4b3330cc733da435c8e274bf35ed8612d52ffeccc2",
+      "raw_bytes": 370219,
+      "public_sha256": "427b8f6e518e43e85a67bd4b3330cc733da435c8e274bf35ed8612d52ffeccc2",
+      "public_bytes": 370219,
+      "public_lines": 180,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-B0-SCF",
+      "kind": "compact_trace"
+    },
+    {
+      "path": "results/soc-extra/X-B0-SCF/lifecycle.jsonl.gz",
+      "sha256": "5ee30c15ba8ff3e7a95c0fec8472fce47ab2779c2a317d599f6b879f16cea07a",
+      "bytes": 666,
+      "raw_sha256": "4770f64f2b854b226085f16255f94b6680da302b805fb4aa4d62b85ff5bb5d9e",
+      "raw_bytes": 1689,
+      "public_sha256": "4770f64f2b854b226085f16255f94b6680da302b805fb4aa4d62b85ff5bb5d9e",
+      "public_bytes": 1689,
+      "public_lines": 4,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-B0-SCF",
+      "kind": "lifecycle"
+    },
+    {
+      "path": "results/soc-extra/X-B0-GAMMA/native_stdout.txt.gz",
+      "sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "bytes": 20,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_bytes": 0,
+      "public_lines": 0,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-B0-GAMMA",
+      "kind": "native_stdout"
+    },
+    {
+      "path": "results/soc-extra/X-B0-GAMMA/native_stderr.txt.gz",
+      "sha256": "22317f0ba1de3b615b3691a008d7dc321b71720fb254a1911653e7c9d235eac1",
+      "bytes": 90,
+      "raw_sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+      "raw_bytes": 107,
+      "public_sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+      "public_bytes": 107,
+      "public_lines": 5,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-B0-GAMMA",
+      "kind": "native_stderr"
+    },
+    {
+      "path": "results/soc-extra/X-B0-GAMMA/lifecycle.jsonl.gz",
+      "sha256": "038f942ce43b98761a56328a7e76404fc545aa9ba233d55ab26e90fefa34a2df",
+      "bytes": 400,
+      "raw_sha256": "880224496d842e8525a48ebd2af04fe8588546890c3a2b3faae676bc3b2f6de3",
+      "raw_bytes": 702,
+      "public_sha256": "880224496d842e8525a48ebd2af04fe8588546890c3a2b3faae676bc3b2f6de3",
+      "public_bytes": 702,
+      "public_lines": 1,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-B0-GAMMA",
+      "kind": "lifecycle"
+    },
+    {
+      "path": "results/soc-extra/X-K6-PILOT/native_stdout.txt.gz",
+      "sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "bytes": 20,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_bytes": 0,
+      "public_lines": 0,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-K6-PILOT",
+      "kind": "native_stdout"
+    },
+    {
+      "path": "results/soc-extra/X-K6-PILOT/native_stderr.txt.gz",
+      "sha256": "d29856adf622f3d5a04380ebbd37d9710101afaba79382b83e85a2ac6f54a1fd",
+      "bytes": 196,
+      "raw_sha256": "9849b643d465221e83f37fdceea51a8bd932faaacb12d5b95f5b104ae5e9cf8b",
+      "raw_bytes": 262,
+      "public_sha256": "9849b643d465221e83f37fdceea51a8bd932faaacb12d5b95f5b104ae5e9cf8b",
+      "public_bytes": 262,
+      "public_lines": 7,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-K6-PILOT",
+      "kind": "native_stderr"
+    },
+    {
+      "path": "results/soc-extra/X-K6-PILOT/compact_trace.jsonl.gz",
+      "sha256": "2cfc33af87d63f3e106da7a6b3968f3658fa16997f19cccada12c76451eee131",
+      "bytes": 1295,
+      "raw_sha256": "d6fd63c77f99742d7301eabea29102d9961189433935c23580f592872170f675",
+      "raw_bytes": 4079,
+      "public_sha256": "d6fd63c77f99742d7301eabea29102d9961189433935c23580f592872170f675",
+      "public_bytes": 4079,
+      "public_lines": 2,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-K6-PILOT",
+      "kind": "compact_trace"
+    },
+    {
+      "path": "results/soc-extra/X-K6-PILOT/lifecycle.jsonl.gz",
+      "sha256": "4eb72f01453c1d86871972b48caa9669fc280178d628182dc5ef12cc72b82f5b",
+      "bytes": 627,
+      "raw_sha256": "4792ba8e8e3e79ac95c587fc3a8434500a5bf178046e614efcb3d880011a7eb7",
+      "raw_bytes": 1370,
+      "public_sha256": "4792ba8e8e3e79ac95c587fc3a8434500a5bf178046e614efcb3d880011a7eb7",
+      "public_bytes": 1370,
+      "public_lines": 3,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-K6-PILOT",
+      "kind": "lifecycle"
+    },
+    {
+      "path": "results/soc-extra/X-K6-SCF/native_stdout.txt.gz",
+      "sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "bytes": 20,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_bytes": 0,
+      "public_lines": 0,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-K6-SCF",
+      "kind": "native_stdout"
+    },
+    {
+      "path": "results/soc-extra/X-K6-SCF/native_stderr.txt.gz",
+      "sha256": "5dabe8ad08dac63f78a9ae7ecea178dbe718aa03bdcbc1778ebc2deb71364ba9",
+      "bytes": 989,
+      "raw_sha256": "937201c6e16080f11c7e8cd078bee89bef347ac748669e2c74b5797c06e58e04",
+      "raw_bytes": 2870,
+      "public_sha256": "937201c6e16080f11c7e8cd078bee89bef347ac748669e2c74b5797c06e58e04",
+      "public_bytes": 2870,
+      "public_lines": 31,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-K6-SCF",
+      "kind": "native_stderr"
+    },
+    {
+      "path": "results/soc-extra/X-K6-SCF/compact_trace.jsonl.gz",
+      "sha256": "2448e47e6d8bc16c0ba77e619d7a4b7c805f1f175a22d480a1e785edc9196f35",
+      "bytes": 996,
+      "raw_sha256": "ad585f46216c6170a806da113c18b8436433044e45320e6a8c8440b7c1299812",
+      "raw_bytes": 2380,
+      "public_sha256": "ad585f46216c6170a806da113c18b8436433044e45320e6a8c8440b7c1299812",
+      "public_bytes": 2380,
+      "public_lines": 2,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-K6-SCF",
+      "kind": "compact_trace"
+    },
+    {
+      "path": "results/soc-extra/X-K6-SCF/lifecycle.jsonl.gz",
+      "sha256": "bb90844067284df573fdccee9a3df177b7181da8b4f0230e3b8f33ee5e4cfbc5",
+      "bytes": 579,
+      "raw_sha256": "0336f2b6fc0a8a37ee8d8b1ee8dd28d420ef8bd8d0a4dee963914ca3e1a23e83",
+      "raw_bytes": 1037,
+      "public_sha256": "0336f2b6fc0a8a37ee8d8b1ee8dd28d420ef8bd8d0a4dee963914ca3e1a23e83",
+      "public_bytes": 1037,
+      "public_lines": 2,
+      "evidence_scope": "Complete native text or compact map stream; path redaction only",
+      "action": "X-K6-SCF",
+      "kind": "lifecycle"
+    }
+  ],
+  "performance_failed_preparations": [
+    {
+      "run_id": "baseline-B0-20260912T092534052613Z-4edc4362",
+      "status": "RETAINED_PREMEASUREMENT_PREPARATION_FAILURE",
+      "raw_recorder_sha256": "8f62a369be3e8a3d3bfc9cb5c9a5aa48b0fc348649c115eaa0c94b8693811e10",
+      "artifacts": [
+        {
+          "path": "results/soc-extra/performance-preparation-failure/baseline-B0-20260912T092534052613Z-4edc4362/qe.stdout.txt.gz",
+          "sha256": "6625943b502a907f6c7f91b0ae4f76ca8e0448542c894751a722e43b69e1c801",
+          "bytes": 113,
+          "raw_sha256": "af8731f2e2b592632100a9dba45947478ad3bbadd8eae252d830afeabf49cc84",
+          "raw_bytes": 95,
+          "public_sha256": "af8731f2e2b592632100a9dba45947478ad3bbadd8eae252d830afeabf49cc84",
+          "public_bytes": 95,
+          "public_lines": 1,
+          "evidence_scope": "Complete native text or compact map stream; path redaction only"
+        },
+        {
+          "path": "results/soc-extra/performance-preparation-failure/baseline-B0-20260912T092534052613Z-4edc4362/qe.stderr.txt.gz",
+          "sha256": "0ff57c46614f34e7a7fbc9bc00075fd621bf1beeb8a42c65f62232f0bbc714c3",
+          "bytes": 1027,
+          "raw_sha256": "0ea69b3b3d91e7aa1078536d2e74af4c4ead7a079242723b934aae1a63c24492",
+          "raw_bytes": 2668,
+          "public_sha256": "0ea69b3b3d91e7aa1078536d2e74af4c4ead7a079242723b934aae1a63c24492",
+          "public_bytes": 2668,
+          "public_lines": 29,
+          "evidence_scope": "Complete native text or compact map stream; path redaction only"
+        }
+      ]
+    }
+  ],
+  "scope": "Exact final compact endpoints plus complete native streams; old performance/native QE/B0 evidence referenced without copying; no private arrays",
+  "resource_guard_review": {
+    "path": "results/soc-extra/resource-guard-review/safe-boundary-stop.json.gz",
+    "sha256": "9502549f9fcb368cb759f495862fe13a1d428c050c7b0df8b153218d877abdc6",
+    "bytes": 916,
+    "raw_sha256": "0c9b24327e1a7338aabc9954a4c0ad6e8d7e92aa550763e7abf99be05a747aec",
+    "raw_bytes": 1591,
+    "public_sha256": "0c9b24327e1a7338aabc9954a4c0ad6e8d7e92aa550763e7abf99be05a747aec",
+    "public_bytes": 1591,
+    "public_lines": 32,
+    "evidence_scope": "Complete native text or compact map stream; path redaction only"
+  }
+}

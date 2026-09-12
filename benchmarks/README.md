@@ -16,7 +16,8 @@ and [runtime guide](../docs/soc-core-runtime.md). Neither performs a new materia
 | Si scalar baseline and finite checks | [SR-LDA B0](si-sr-lda/README.md), [C1/C2/C3](si-sr-lda/phase4c/README.md): matched geometry/source and a limited cutoff/k matrix. | [Baseline](../results/scalar-si-baseline/README.md), [reference and sensitivity](../results/scalar-si-sensitivity/README.md) |
 | Si SOC B0 | [FR-NC-PBE case](si-soc-splitting-v1/README.md): two-atom diamond primitive cell, NLCC, full SOC, Γ/p/−p probes and same-density spin-trace control. | [Spectra](../results/si-soc-splitting/README.md), [corrected interpretation](../results/si-soc-splitting/status-correction/README.md) |
 | Si SOC E40/T05/K4 | [Three paired variants](si-soc-sensitivity-v1/README.md): cutoff, temperature and k-grid changes relative to B0. | [Finite responses](../results/si-soc-sensitivity/README.md) |
-| Si QE K6/K8 | [QE-only reference cases](si-soc-k-reference-v1/README.md): fixed other settings, 216/512 SCF k points and own-density Γ probes. | [Trend and limits](../results/si-soc-k-reference/README.md); no DFTK K6/K8 calculation |
+| Si QE K6/K8 | [QE-only reference cases](si-soc-k-reference-v1/README.md): fixed other settings, 216/512 SCF k points and own-density Γ probes. | [Trend and limits](../results/si-soc-k-reference/README.md); this historical matrix contained no workbench K6/K8 calculation |
+| Si retained-core B0 / K6 | [Experiment and resource scope](soc-extra-v1/README.md), explicit [B0](soc-extra-v1/B0.json) and [K6](soc-extra-v1/K6.json) inputs; unchanged physical settings and bounded slots. | [Fresh B0 regression and K6 resource outcome](../results/soc-extra/README.md): pilot completed, formal K6 SCF failed before convergence, Γ BLOCKED_PARENT; QE K6 is historical reuse |
 
 The scalar Si and SOC Si cases use different, separately authenticated sources.
 The spin-trace control is not a scalar-pseudopotential SCF. Physical convergence
@@ -48,7 +49,10 @@ fixtures and synthetic tests are distinct from physical input cases.
 [Core static measurements](soc-core-memory-v1/README.md) use authenticated
 historical Si B0/K4 orbitals. The [endpoint continuation](soc-core-memory-v1/resume/README.md)
 uses unchanged B0 settings; its [completed regression](../results/soc-core-memory/completion/README.md)
-is the current result. Static timing and dense-grid resource limits remain.
+remains completed and unchanged. The [supplementary experiment](soc-extra-v1/README.md)
+retains that core after finite profiling and passes another fresh B0 regression.
+Its K6 resource pilot and failed formal SCF have separate outcomes; neither
+static allocations nor the pilot establish an overall speedup or convergence.
 
 ## What reproduction requires
 

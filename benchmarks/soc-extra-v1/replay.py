@@ -307,6 +307,54 @@ def gamma_check(worker,energy,case,arithmetic):
     return result
 
 
+
+def validate_b0_gate(report,scf_row,gamma_row,history,root):
+    if report is None:
+        return
+    require(type(report) is dict and type(report.get('schema_version')) is int and report['schema_version']==1 and
+            report.get('execution_commit')==scf_row['worker']['execution_commit'],'B0 gate schema/execution differs')
+    status=report.get('status');code=report.get('exit_code')
+    require(type(code) is int and ((status=='PASS' and code==0) or (status=='FAIL' and code!=0)),
+            'B0 gate status/exit contradiction')
+    if status=='FAIL':
+        require(bool(report.get('reason')) or report.get('metrics',{}).get('status')=='FAIL','B0 gate failure reason missing')
+        return  # A failed arithmetic step may legitimately lack later source fields.
+    require(report.get('metrics',{}).get('status')=='PASS','B0 gate/metric status contradiction')
+    require(report.get('scf_receipt_sha256')==exact_hash(scf_row.get('raw_recorder_sha256')) and
+            report.get('gamma_receipt_sha256')==exact_hash(gamma_row.get('raw_recorder_sha256')),
+            'B0 gate bound another recorder receipt')
+    require(report.get('environment',{}).get('status')=='PASS' and report.get('closure_status')=='PASS' and
+            report.get('dispatch_status')==dict(scf='PASS',gamma='PASS') and
+            report.get('runtime_closed')==dict(scf=True,gamma=True),'B0 gate omitted environment/closure/dispatch/release')
+    execution=report['execution_commit'];identity=report.get('arithmetic_sources',{})
+    required={'benchmarks/soc-extra-v1/'+x for x in ('b0_regression.jl','run.py','control.py','plan.json','sources.json','B0.json')}
+    required.update(('benchmarks/soc-core-memory-v1/endpoint_compare.jl','benchmarks/soc-core-memory-v1/compare.jl',
+        'scripts/si_soc_comparison.py','scripts/parse_qe_soc.py','scripts/workbench_environment.jl'))
+    require(identity.get('execution_commit')==execution and set(identity.get('source_sha256',{}))==required,'B0 arithmetic source closure differs')
+    for relative,h in identity['source_sha256'].items():
+        require(digest(git(root,'show',execution+':'+relative))==exact_hash(h),'B0 arithmetic code does not match E')
+    manifest_hash='fef429dc8d0f0e40bb683604443afca99440065b0ec906eaba3c345431c2e426'
+    manifest=json.loads(fixed(root,'results/soc-core-memory/completion/endpoints.json',manifest_hash))
+    reference=report.get('historical_reference',{})
+    require(reference.get('status')=='HISTORICAL_REUSED' and reference.get('execution_commit')=='281c53525a70cf21c36973956d5303d3201a73eb' and
+            reference.get('snapshot_commit')==BASE and reference.get('manifest_sha256')==manifest_hash,'B0 gate historical identity differs')
+    expected={}
+    for action in ('OPT-B0-SCF','OPT-B0-GAMMA'):
+        old=manifest['slots'][action];worker=history['B0'][action]
+        prefix='.work/phase9a/endpoints/'+old['run_id']+'/'
+        expected[prefix+'receipt.json']=old['outer']['raw_sha256']
+        expected[prefix+worker['run_id']+'/result.json']=old['worker']['raw_sha256']
+        for name,entry in old['process'].items():expected[prefix+name]=entry['raw_sha256']
+        require(reference.get('scf_run_id' if action.endswith('SCF') else 'gamma_run_id')==worker['run_id'],'B0 gate historical run differs')
+        if action.endswith('SCF'):expected[prefix+worker['run_id']+'/final.bin']=worker['checkpoint_sha256']
+    for row in (scf_row,gamma_row):
+        prefix='.work/phase9a-extra/runs/'+row['run_id']+'/'
+        expected[prefix+'result.json']=exact_hash(row['raw_recorder_sha256'])
+        expected[prefix+row['worker']['run_id']+'/result.json']=exact_hash(row.get('raw_worker_sha256'))
+        if row['worker']['action'].endswith('SCF'):expected[prefix+row['worker']['run_id']+'/final.bin']=row['worker']['checkpoint_sha256']
+    require(report.get('source_hashes')==expected,'B0 gate endpoint source bindings differ from public receipts')
+
+
 def b0_comparison(scf,gamma,energy,history,reported):
     old=history['B0']['OPT-B0-SCF'];oldg=history['B0']['OPT-B0-GAMMA']['spectrum']['kpoints'][0]['eigenvalues_ha']
     diag=old['final']['diagnostics'];new=gamma['values_ha'];require(len(oldg)==len(new)==24,'B0 raw spectrum size changed')
@@ -318,6 +366,9 @@ def b0_comparison(scf,gamma,energy,history,reported):
         status='PASS' if max(map(abs,raw))<=1e-7 else 'FAIL')
     rows['splitting']=dict(difference_ev=gap,limit_ev=1e-6,status='PASS' if abs(gap)<=1e-6 else 'FAIL')
     density=dict(status='NOT_ASSESSED',reason='Private n_out array comparison unavailable')
+    if reported is not None and reported.get('status')=='FAIL' and not reported.get('metrics',{}).get('n_out'):
+        return dict(status='FAIL',arithmetic=rows,n_out=density,reason=reported.get('reason'),
+                    scope='Failed saved-endpoint arithmetic; public E/F/Gamma remain visible, private density was not assessed')
     if reported is not None:
         require(type(reported) is dict and reported.get('execution_commit')==scf['execution_commit'],'Wrong B0 comparison execution')
         density=reported['metrics']['n_out'];require(density.get('evidence_level')=='RUNNER_REPORTED_PRIVATE_ARRAY_COMPARISON','Private density evidence level missing')
@@ -346,7 +397,7 @@ def evaluate(data,root):
         historical_source_status='HISTORICAL_REUSED',historical_sources=history['sources'],
         historical_native_slots_reparsed=history['native_slots_reparsed'],
         K4=dict(D=d4,Q=q4),K6=dict(D=None,Q=q,comparison_status='NOT_ASSESSED',comparison=None),
-        B0=dict(status='NOT_RUN',comparison=None),Linux_B0=dict(status='NOT_RUN',comparison=None),
+        B0=dict(status=slots['X-B0-SCF']['status'],comparison=None),Linux_B0=dict(status=slots['L-B0-SCF']['status'],comparison=None),
         QE_native_energy=qscf['energy'],QE_warnings=dict(SCF=qscf['warning_evidence'],Gamma=qgamma['warning_evidence']),
         limitations=dict(physical_convergence='NOT_ESTABLISHED',manifold_assignment='MANIFOLD_ASSIGNMENT_REVIEW_REQUIRED',
             IEEE_localization='NOT_LOCALIZED',QE_native_nonlocal_independent='NOT_MEASURED',
@@ -359,6 +410,7 @@ def evaluate(data,root):
             energy=d_scf_quantities(bs,bc);result[label]=dict(status='SCF_ONLY',energy=energy,comparison=None)
             if slots[prefix+'-B0-GAMMA']['status']=='PASS':
                 bg=gamma_check(slots[prefix+'-B0-GAMMA']['worker'],energy,bc,arithmetic)
+                validate_b0_gate(data.get(report_key),slots[prefix+'-B0-SCF'],slots[prefix+'-B0-GAMMA'],history,root)
                 compared=b0_comparison(bs,bg,energy,history,data.get(report_key))
                 result[label].update(status=compared['status'],Gamma=bg,comparison=compared)
     if data['b0_regression_required'] and any(slots[k]['status'] in ('PASS','PILOT_COMPLETED_NOT_SCF_CONVERGED') for k in ('X-K6-PILOT','X-K6-SCF','X-K6-GAMMA')):
@@ -523,6 +575,97 @@ def audit_artifacts(root,entries,slots):
     return dict(artifacts_checked=len(entries),complete_accepted_map_traces=sum(k[1]=='compact_trace' and slots[k[0]]['status'] in ('PASS','PILOT_COMPLETED_NOT_SCF_CONVERGED') for k in seen))
 
 
+
+def audit_performance_failures(root,entries,performance):
+    expected=performance.get('retained_premeasurement_failures',[])
+    require(type(entries) is list and type(expected) is list,'Performance failure evidence must be a list')
+    by_run={r['run_id']:r for r in expected}
+    require(len(by_run)==len(expected) and len(entries)==len(expected) and
+            {r.get('run_id') for r in entries}==set(by_run),'Performance failure run list differs')
+    for item in entries:
+        old=by_run[item['run_id']]
+        require(item.get('status')==old['status'] and item.get('raw_recorder_sha256')==exact_hash(old['raw_recorder_sha256']) and
+                old['native_exit_code']==old['recorder_exit_code']==9 and
+                old['warmups']==old['samples']==old['profiler_calls']==0,'Performance failure status/identity differs')
+        streams=item.get('artifacts');require(type(streams) is list and len(streams)==2,'Both performance failure native streams are required')
+        prefix='results/soc-extra/performance-preparation-failure/'+item['run_id']+'/'
+        require({a.get('path') for a in streams}=={prefix+'qe.stdout.txt.gz',prefix+'qe.stderr.txt.gz'},'Performance failure stdout/stderr roles differ')
+        for entry in streams:
+            exact_hash(entry.get('raw_sha256'));artifact(root,entry)
+    return dict(retained_preparation_failures=len(entries),native_streams_checked=2*len(entries),
+        scope='Only the declared premeasurement failure; excluded from all five-sample statistics and from numerical slots')
+
+
+def audit_resource_stop(root, descriptor, data):
+    """Replay the disclosed stop screen; never upgrade a failed physical slot."""
+    scf=data['slots']['X-K6-SCF'];gamma=data['slots']['X-K6-GAMMA']
+    resource=scf.get('resource')
+    if resource is None: resource={}
+    require(type(resource) is dict,'Invalid resource-stop resource record')
+    policy=resource.get('extra_policy',{})
+    require(type(policy) is dict,'Invalid resource-stop policy record')
+    requested=policy.get('safe_boundary_stop_requested',False)
+    require(type(requested) is bool,'Resource-stop flag must be boolean')
+    review=data.get('resource_guard_review')
+    if descriptor is None and review is None:
+        require(not requested,'Requested resource stop is missing its public review')
+        return dict(status='NOT_ASSESSED',scope='No published resource-stop review; no stop flag present')
+    require(requested and type(descriptor) is dict and type(review) is dict,
+            'Resource-stop artifact/data/flag mismatch')
+    stop=json.loads(artifact(root,descriptor))
+    require(type(stop) is dict and stop==review.get('stop_request'),
+            'Resource-stop artifact differs from data')
+    raw_hash=exact_hash(review.get('raw_stop_request_sha256'))
+    require(raw_hash==exact_hash(descriptor.get('raw_sha256')),
+            'Resource-stop original-byte hash references differ')
+    require(type(stop.get('schema_version')) is int and stop['schema_version']==1 and
+            stop.get('status')=='STOP_AT_SAFE_BOUNDARY','Wrong resource-stop schema/status')
+    execution=exact_hash(data['execution_commit'],40)
+    require(stop.get('execution_commit')==execution and stop.get('run_id')==scf.get('run_id') and
+            type(scf.get('run_id')) is str,'Resource-stop execution/run differs')
+    worker=scf.get('worker')
+    require(type(worker) is dict and worker.get('action')=='X-K6-SCF' and
+            worker.get('execution_commit')==execution and
+            worker.get('run_id') in (scf['run_id'],scf['run_id']+'-dftk'),
+            'Resource-stop worker identity differs')
+    require(scf.get('status')==worker.get('execution_status')=='FAIL' and
+            all(type(v) is int and v==1 for v in (scf.get('native_exit_code'),
+                scf.get('recorder_exit_code'),worker.get('exit_code'),resource.get('native_exit_code'))),
+            'Resource-stop SCF must retain its native/recorder failure')
+    require(gamma.get('status')=='BLOCKED_PARENT' and gamma.get('native_exit_code') is None and
+            gamma.get('worker') is None,'Resource-stop Gamma must remain blocked and unrun')
+    require(type(scf.get('admission')) is dict,'Resource-stop admission record missing')
+    peak=integer(stop.get('sampled_peak_bytes'),1)
+    growth=integer(stop.get('fixed_remaining_growth_bytes'),1)
+    limit=integer(stop.get('limit_bytes'),1)
+    require(peak==integer(resource.get('peak_aggregate_rss_bytes'),1) and
+            growth==integer(policy.get('remaining_growth_bytes'),1)==
+            integer(scf['admission'].get('remaining_growth_bytes'),1),
+            'Resource-stop peak/growth differs from the actual slot')
+    require(limit==8*1024**3==integer(resource.get('limit_bytes'),1)==
+            integer(policy.get('stop_bytes'),1),'Resource-stop 8 GiB limit changed')
+    projected=integer(stop.get('projected_screen_bytes'),1)
+    excess=integer(stop.get('excess_screen_bytes'),1)
+    require(projected==peak+growth and excess==projected-limit and projected>=limit,
+            'Resource-stop fixed integer arithmetic differs')
+    for relative,key in (('benchmarks/soc-extra-v1/plan.json','plan_sha256'),
+                         ('benchmarks/soc-extra-v1/resources.py','resources_source_sha256')):
+        require(digest(git(root,'show',execution+':'+relative))==exact_hash(stop.get(key)),
+                'Resource-stop frozen source differs: '+relative)
+    highwater=integer(worker.get('peak_rss_bytes'),1)
+    return dict(status='GROWTH_SCREEN_FAILED',run_id=scf['run_id'],execution_commit=execution,
+        scf_execution_status='FAIL',native_exit_code=1,recorder_exit_code=1,
+        gamma_execution_status='BLOCKED_PARENT',sampled_peak_bytes=peak,
+        native_highwater_bytes=highwater,fixed_remaining_growth_bytes=growth,
+        projected_screen_bytes=projected,limit_bytes=limit,excess_screen_bytes=excess,
+        resource_record_status=resource.get('status'),raw_stop_request_sha256=raw_hash,
+        raw_hash_scope='Reference to original private bytes; public artifact bytes separately verified',
+        monitor_implementation_status='KNOWN_REMAINING_SPACE_TRIGGER_OMISSION',
+        scope='Public fixed-growth arithmetic only; sampled group RSS and native high-water are distinct. '
+              'Resource record PASS describes sampling/cleanup, not resource GO or SCF success. '
+              'The projected screen is not measured RSS or a strict future peak bound; frozen monitor unchanged.')
+
+
 def replay(root,manifest_path='results/soc-extra/evidence.json'):
     root=Path(root).resolve();manifest=read(path(root,manifest_path))
     require(manifest.get('schema_version')==1 and manifest.get('experiment')=='soc-extra-v1','Wrong evidence manifest')
@@ -540,6 +683,8 @@ def replay(root,manifest_path='results/soc-extra/evidence.json'):
     artifacts=audit_artifacts(root,manifest.get('artifacts'),data['slots'])
     result=evaluate(data,root);result['performance']=performance_statistics(performance)
     result['artifact_audit']=artifacts
+    result['performance_failure_audit']=audit_performance_failures(root,manifest.get('performance_failed_preparations',[]),performance)
+    result['resource_guard_review']=audit_resource_stop(root,manifest.get('resource_guard_review'),data)
     result.update(replay_status='PASS',recorded_execution_commit=execution,
                   scope=result['scope']+'; all declared compact/native artifact hashes checked')
     return result

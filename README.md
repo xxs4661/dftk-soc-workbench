@@ -33,8 +33,9 @@ comparisons, sensitivity, replay coverage and open work.
 | --- | --- | --- |
 | Does the Si calculation resolve an SOC split at Γ? | Workbench / QE fixed-window splits: **47.4576 / 47.4576 meV**. The same-density spin-trace control removes the resolved six-state split. | [Si spectra and corrected status](results/si-soc-splitting/status-correction/README.md): fixed-window checks pass; occupation saturation and complete manifold interpretation remain under review. The control is not a separate scalar-UPF calculation. |
 | How sensitive is that statistic to settings? | Increasing the SCF k-point grid from 2³ to 4³ changes it by about **+0.3315 meV** in both programs, above the declared 0.1 meV observation window. | [Limited paired sensitivity](results/si-soc-sensitivity/README.md): tested cutoff and temperature changes stay within that window; a few directions do not establish convergence. |
-| What does a denser QE reference show? | 4³→6³: **+0.04713 meV**; 6³→8³: **+0.00862 meV**. | [QE-only trend](results/si-soc-k-reference/README.md): DFTK 6³/8³ were not run, so these are not new dense-grid cross-code comparisons. |
-| Does the extracted core preserve the existing calculation? | A fresh Si SCF and Γ calculation meet the original energy, density and all-24-level regression limits. | [Core endpoint regression](results/soc-core-memory/completion/README.md): comparison against the earlier workbench, not a new QE pair or a measured overall speedup. |
+| What does a denser QE reference show? | 4³→6³: **+0.04713 meV**; 6³→8³: **+0.00862 meV**. | The [historical QE-only trend](results/si-soc-k-reference/README.md) contained no workbench dense-grid runs. These values alone do not establish cross-code agreement or convergence. |
+| Can the workbench complete the same-input K6 comparison? | A two-map resource pilot completed; the formal K6 SCF **failed after a resource-headroom stop**, before convergence. | [K6 resource outcome](results/soc-extra/README.md): no Γ endpoint or new D−QE comparison; workbench K8 was not run. The stop followed the fixed growth allowance, not sampled RSS reaching 8 GiB. |
+| Does the extracted core preserve the existing calculation? | The [completed core regression](results/soc-core-memory/completion/README.md) and a [fresh B0 SCF/Γ regression](results/soc-extra/README.md) meet the unchanged energy, density and all-24-level limits. | Finite profiling retained the existing core without an optimization candidate. These are workbench regressions, not new QE pairs or a measured overall speedup. |
 
 Small differences under one fixed input are not estimates of absolute physical
 accuracy. Raw values, warnings and the original comparison thresholds remain in
@@ -72,8 +73,10 @@ historical checks and the additional requirements of native experiments.
 Magnetic noncollinear XC, forces/stress, USPP/PAW, GPU/automatic differentiation
 and MLP are outside the validated implementation. The tested path is CPU
 Float64/ComplexF64. Full physical convergence and Si manifold interpretation
-are not established. DFTK dense-k memory remains insufficiently bounded;
-static allocation reductions do not establish an overall SCF speedup.
+are not established. The formal workbench K6 attempt stopped when sampled peak
+memory plus the fixed remaining-growth allowance exceeded the 8 GiB screen;
+a converged K6 endpoint remains unavailable. Static allocation reductions and
+finite profiling do not establish an overall SCF speedup.
 
 Mg's independent Linux public replay passed its numerical contract while the
 original checker failed two derived-density hashes. That is not a Linux SOC SCF

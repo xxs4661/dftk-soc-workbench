@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "scope": "Preserved nonphysical Gamma check-entry recorder failure; not one of the seven numerical slots",
+  "run_id": "X-B0-GAMMA-ENTRY-20260912T104212466274Z-b38a2e4d",
+  "native_exit_code": 0,
+  "recorder_exit_code": 9,
+  "execution_commit": "96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504",
+  "diagnosis": {
+    "schema_version": 1,
+    "scope": "Independent read-only diagnosis of failed check-only recording; original outer failure remains unchanged",
+    "execution_commit": "96795a6b2bf2ca4f6c8dcf6546287eb95bfe4504",
+    "original_entry_run_id": "X-B0-GAMMA-ENTRY-20260912T104212466274Z-b38a2e4d",
+    "original_entry_recorder_exit": 9,
+    "original_entry_native_exit": 0,
+    "entry_worker_contract": "PASS",
+    "actual_parent_saved_run": "PASS",
+    "parent_unchanged_since_entry": "PASS",
+    "context_constructed": false,
+    "formal_gamma_slot_consumed": false,
+    "cause": "Check-only worker authenticates the parent but does not echo parent_result_sha256/parent_checkpoint_sha256 required by the outer recorder. Formal si_run sets both fields and enforces before/after source hashes.",
+    "source_hashes": {
+      "benchmarks/soc-extra-v1/run.py": "cb02d24474365f8e5286f178e5ab974590e1b5a2ad8fd8d9a5b990657cd14c16",
+      "benchmarks/soc-extra-v1/driver.jl": "577987bf090ac569869f0fb731a5077599eb26723a01252534805e5e5fd4abe9",
+      "scripts/run_si_soc.jl": "ed9dc156a1534a9f87b889c519905701e0b69dcc95ddd163ce1d50e74519ae19"
+    },
+    "raw_entry_outer_sha256": "71c834813c730f76d47ef1270f9eec2e5b7b205e7dfcf07d0222b1b0728b09a4",
+    "raw_entry_worker_sha256": "4218dd0dabf57f2c4c822199e3b22ab21d29c39f662d5ac590ce59e8caea5d92",
+    "parent_result_sha256": "092f0fe2df8e386c62b88c7f95f6577298bfdcbc5b2f61d94fce4bffffead3a8",
+    "parent_checkpoint_sha256": "76a077f14b8e77523fa137ce96dd65771a0c60604dab6015457bca3a1cc3720e"
+  },
+  "raw_diagnosis_sha256": "879e1aaa99dac424b2532e0e610cc12a738c51ca92923aa70817985dd39bd230",
+  "artifacts": [
+    {
+      "path": "results/soc-extra/gamma-entry-failure/result.json.gz",
+      "raw_sha256": "71c834813c730f76d47ef1270f9eec2e5b7b205e7dfcf07d0222b1b0728b09a4",
+      "raw_bytes": 2992,
+      "public_sha256": "b65b07fb43fad1256226488337bdead6d81badee593648f2044614e4efe30027",
+      "public_bytes": 2773,
+      "sha256": "aef17f552fea643100a31a04b49ceccfc20b7f860b371f82a123a7561c0823ab",
+      "bytes": 1219
+    },
+    {
+      "path": "results/soc-extra/gamma-entry-failure/qe.stdout.gz",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_bytes": 0,
+      "sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "bytes": 20
+    },
+    {
+      "path": "results/soc-extra/gamma-entry-failure/qe.stderr.gz",
+      "raw_sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+      "raw_bytes": 107,
+      "public_sha256": "428342213732f342d5cb4e2542874c639d5c3d9e9d27a0228cf0eb369dd01fd5",
+      "public_bytes": 107,
+      "sha256": "22317f0ba1de3b615b3691a008d7dc321b71720fb254a1911653e7c9d235eac1",
+      "bytes": 90
+    }
+  ]
+}

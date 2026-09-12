@@ -25,6 +25,20 @@ Use the explicit fixed snapshots and original commands in the
 [history index](../docs/history.md). Do not run an old whole-tree checker on
 updated documentation and then edit its hashes to make it pass.
 
+The [supplementary core and K6 record](../results/soc-extra/README.md) has a
+separate public-arithmetic entry:
+
+```sh
+python3.12 -B benchmarks/soc-extra-v1/replay.py
+```
+
+It checks the published sample statistics, endpoint arithmetic and retained
+failure evidence. Default exit 0 means those records are consistent; it can
+coexist with the formal K6 SCF failure. `--require-k6` additionally requires
+qualified K6 endpoints and the declared comparison screens, so a blocked Γ
+cannot pass that mode. Neither mode launches Julia, repeats SCF, reconstructs
+private density arrays or measures RSS. The result page records the actual exits.
+
 ## Core example
 
 ```sh
