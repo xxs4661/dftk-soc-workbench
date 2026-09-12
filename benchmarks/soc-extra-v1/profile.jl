@@ -172,6 +172,10 @@ function diagnose(f,consume,name,out,root)
     end
 end
 
+# old_roots has no positional arguments. Keep the actual keyword-only call in
+# one small helper so its two inventory boundaries share the tested signature.
+profile_roots(payload,rhs,built,H)=Main.old_roots(;data=(;payload,rhs),built,H)
+
 function loaded_run(root,label,out,result,identity)
     FI=Main.FRIntegration;WE=Main.WorkbenchEnvironment
     environment=WE.environment_identity(root,(Main.DFTK,Main.PseudoPotentialIO))
@@ -217,7 +221,7 @@ function loaded_run(root,label,out,result,identity)
             "Candidate P/D/geometry arrays differ before measurements")
         hcold=@timed FI.build_full_hamiltonian(rt,state.n_out);H=hcold.value
         result["cold_initialization"]["H_construction"]=Main.cold_report(hcold)
-        result["live_memory"]["prepared"]=SOCCoreMemory.unique_memory(Main.old_roots(data=(;payload,rhs),built,H))
+        result["live_memory"]["prepared"]=SOCCoreMemory.unique_memory(profile_roots(payload,rhs,built,H))
         for name in OPERATIONS
             result["active_operation"]=name;persist()
             pipeline=name=="pipeline_with_validation"
@@ -252,7 +256,7 @@ function loaded_run(root,label,out,result,identity)
             persist()
         end
         Main.static_boundary(built,:extra_profile_final;ham=H)
-        result["live_memory"]["final_before_close"]=SOCCoreMemory.unique_memory(Main.old_roots(data=(;payload,rhs),built,H))
+        result["live_memory"]["final_before_close"]=SOCCoreMemory.unique_memory(profile_roots(payload,rhs,built,H))
         result["runtime_before_close"]=FI.runtime_summary(rt)
     finally
         FI.close_runtime!(rt)

@@ -107,3 +107,22 @@ end
     @test_throws ArgumentError XP.compare_values!(Any[],(;a=1.0),(;b=1.0),"fields")
     @test_throws ArgumentError XP.compare_values!(Any[],[1.0],Float32[1.0],"type")
 end
+
+# Only this stdlib test process defines the synthetic stub. Real profiling loads
+# the unmodified keyword-only helper from the authenticated old measure.jl.
+function old_roots(;data=nothing,built=nothing,H=nothing,outputs=nothing,energy=nothing)
+    (;data,built,H,outputs,energy)
+end
+@testset "Synthetic actual keyword-only inventory call rejects the old positional mistake" begin
+    payload=(;X=ones(ComplexF64,2,1));rhs=Dict(1=>ones(ComplexF64,2))
+    built=(;ctx=:synthetic_context);H=(;full=[:synthetic_hamiltonian])
+    @test_throws MethodError old_roots(data=(;payload,rhs),built,H)
+    actual=XP.profile_roots(payload,rhs,built,H)
+    @test actual.data.payload===payload
+    @test actual.data.rhs===rhs
+    @test actual.built===built
+    @test actual.H===H
+    @test actual.outputs===nothing && actual.energy===nothing
+    second=XP.profile_roots(payload,rhs,built,H)
+    @test second==actual
+end
