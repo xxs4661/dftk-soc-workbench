@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "experiment": "soc-extra-v1",
+  "core_selection": "baseline",
+  "core_changed": false,
+  "candidate_status": "NOT_RUN_NO_SUPPORTED_COPY_ONLY_BENEFIT",
+  "original_9A_status": "COMPLETED_UNCHANGED",
+  "static_execution_commit": "e90f9ab1916b24c6118cf670dee1a78f98cdcff6",
+  "static_scope": "Fresh B0/K4 four-operation performance diagnosis on unchanged completed core; all five samples, separate profiling. Final experimental driver is checked separately.",
+  "numerical_change_requires_B0": true,
+  "B0_reason": "New active resource callback holds diagnostic records through cleanup and observes representative serialization; full lifecycle equivalence is not assumed. One real B0/own-density Gamma regression is required before K6.",
+  "mathematics": "soc_map body and solver implementation below case validation unchanged; no core, upstream or physical-input change.",
+  "linux_status": "NOT_RUN_NO_SUITABLE_ENVIRONMENT",
+  "formal_execution": "Decision fixed before physical slots; all physical workers bind one later clean E. Actual outcomes are separate run records."
+}

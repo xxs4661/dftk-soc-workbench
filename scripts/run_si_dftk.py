@@ -399,6 +399,11 @@ def launch(action,directory,*,parent=None,execution_commit=None,static_receipt=N
     return rec['exit_code'] if 0<=rec['exit_code']<=255 else 1
 
 def main():
+    if '--extra-profile' in sys.argv[1:] or '--extra-contract' in sys.argv[1:]:
+        path=ROOT/'benchmarks/soc-extra-v1/run.py'
+        spec=importlib.util.spec_from_file_location('soc_extra_runner',path)
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        return module.main(sys.argv[1:])
     if sys.argv[1:2]==['--verify-resume']:
         if len(sys.argv)!=6:return 9
         try:

@@ -2,7 +2,22 @@
 function validate_soc_settings(settings;case_contract=nothing)
     e,s,c=settings["ensemble"],settings["solver"],settings["scf"]
     tau=0.001
-    if !isnothing(case_contract)
+    if !isnothing(case_contract) && haskey(case_contract,"extra_profile")
+        profile=case_contract["extra_profile"]
+        profile in ("B0","K6") || error("Unregistered extra settings profile")
+        case_contract["case"]=="soc-extra-v1/"*profile || error("Extra case/profile mismatch")
+        settings===case_contract["settings"] || error("Settings must belong to their extra case")
+        root=normpath(joinpath(@__DIR__,"../.."))
+        path="benchmarks/soc-extra-v1/$profile.json"
+        expected=JSON3.read(read(`git -C $root show $("HEAD:"*path)`,String),Dict{String,Any})
+        isequal(case_contract,expected) || error("Extra case differs from clean execution bytes")
+        historical=profile=="B0" ? "benchmarks/si-soc-splitting-v1/case.json" : "benchmarks/si-soc-k-reference-v1/K6/case.json"
+        original=JSON3.read(read(`git -C $root show $("7630172808773a3d4ac2da825c27fe43a8705fb8:"*historical)`,String),Dict{String,Any})
+        for key in ("pseudo","geometry","electrons","xc","cutoffs","fft_size","kpoints","symmetries","settings")
+            isequal(case_contract[key],original[key]) || error("Extra physical input changed: $key")
+        end
+        tau=0.001
+    elseif !isnothing(case_contract)
         case_contract isa AbstractDict || error("Expected an authenticated Si sensitivity case")
         profile=get(case_contract,"sensitivity_profile",nothing)
         profile in ("E40","T05","K4") || error("Unregistered SOC settings profile")

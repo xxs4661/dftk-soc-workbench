@@ -123,7 +123,7 @@ function si_gamma_time_reversal(ctx,ham,settings)
             reversal_map_sha256=FI._source_snapshot(mapping),normalized_error=err,absolute_error=norm(lhs-rhs))],
         scope="RUNNER_REPORTED Gamma physical-q operator check; off-Gamma TR NOT_RUN")
 end
-function si_grid(ctx)
+function si_geometry(ctx)
     b=ctx.basis
     rows=map(b.kpoints) do k
         G=collect(DFTK.G_vectors(b,k));q=collect(DFTK.Gplusk_vectors_cart(b,k))
@@ -134,6 +134,10 @@ function si_grid(ctx)
         (;coordinate_fractional=collect(k.coordinate),ng=length(G),max_product_component=widths,
           max_kinetic_ha=maxkin,g_sha256=FI._source_snapshot(G))
     end
+    (;basis=FI.basis_summary(ctx),rows)
+end
+function si_grid(ctx)
+    b=ctx.basis;geometry=si_geometry(ctx);rows=geometry.rows
     # Deliberately overcount retained old/new/auxiliary orbitals, trial vectors,
     # source certificates, FFT temporaries, and native-library/runtime headroom.
     ngmax=maximum(r.ng for r in rows);nk=length(rows);nr=prod(b.fft_size)
@@ -339,8 +343,10 @@ function si_spin_trace_report(full,settings)
         spin_dependent_signal_threshold=threshold))
 end
 
-function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,core_gate=nothing,resume_authorization=nothing)
+function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,core_gate=nothing,resume_authorization=nothing,extra_profile=nothing,extra_contract=nothing)
+    extra=!isnothing(extra_profile)
     owned=backend=="soc-core"
+    extra && (!owned || !isnothing(profile) || !isnothing(core_gate) || !isnothing(resume_authorization)) && error("Extra requires its own explicit owned contract")
     isnothing(backend) || owned || error("Unknown explicit backend")
     owned && !isnothing(profile) && error("Core backend cannot impersonate an old profile")
     !owned && !isnothing(core_gate) && error("Core gate requires explicit backend")
@@ -348,9 +354,15 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
     !isnothing(profile) && si_profile(profile)
     work_action=owned ? action=="OPT-B0-SCF" ? "D-SCF" : action=="OPT-B0-GAMMA" ? "D-GAMMA" : "INVALID" : action
     allowed=owned ? ("OPT-B0-SCF","OPT-B0-GAMMA") : isnothing(profile) ? ("prepare","static","D-SCF","D-SPECTRUM","D-NULL-GAMMA") : ("prepare","D-SCF","D-GAMMA")
+    if extra
+        extra_profile in ("B0","K6") || error("Unregistered extra profile")
+        allowed=extra_profile=="B0" ? ("X-B0-SCF","X-B0-GAMMA") : ("X-K6-PILOT","X-K6-SCF","X-K6-GAMMA")
+        work_action=action in ("X-B0-SCF","X-K6-PILOT","X-K6-SCF") ? "D-SCF" : "D-GAMMA"
+    end
     action in allowed || error("Unknown Si action")
     area=owned ? ".work/phase9a/endpoints" : isnothing(profile) ? ".work/phase8a" : ".work/phase8b/$profile"
-    caseid=isnothing(profile) ? "si-soc-splitting-v1" : "si-soc-sensitivity-v1/$profile"
+    extra && (area=".work/phase9a-extra/runs")
+    caseid=extra ? "soc-extra-v1/$extra_profile" : isnothing(profile) ? "si-soc-splitting-v1" : "si-soc-sensitivity-v1/$profile"
     outdir=abspath(outdir)
     startswith(outdir,joinpath(PHASE6C_ROOT,area)*"/") || error("Si runs require ignored $area path")
     ispath(outdir) && error("Refusing existing run directory; no prior PASS reused")
@@ -359,13 +371,24 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
         "action"=>action,"base_commit"=>(owned ? SI_CORE_BASE : isnothing(profile) ? SI_BASE : SI_SENSITIVITY_BASE),"execution_status"=>"RUNNING","exit_code"=>1,
         "started_utc"=>string(now(UTC)),"numerical_review_status"=>"REVIEW_REQUIRED")
     owned && merge!(result,Dict("phase"=>"9A","backend"=>"soc-core","preparation_commit"=>SI_CORE_PREPARATION,"runtime_closed"=>false))
+    if extra
+        merge!(result,Dict("phase"=>"9A-extra","base_commit"=>SI_EXTRA_BASE,"extra_profile"=>extra_profile))
+        delete!(result,"preparation_commit") # Extra is bound by its own plan and actual E.
+    end
     phase6b_write(joinpath(outdir,"result.json"),result)
-    runtime=nothing;resume_auth=nothing
+    runtime=nothing;resume_auth=nothing;extra_auth=nothing;extra_observer=nothing
     try
-        result["executed_source_sha256"]=si_sources(profile;backend,resume=!isnothing(resume_authorization))
+        if extra
+            extra_auth=si_extra_authorization(extra_contract,extra_profile;action,outdir)
+            si_extra_result_binding!(result,extra_auth,extra_profile)
+        else
+            result["executed_source_sha256"]=si_sources(profile;backend,resume=!isnothing(resume_authorization))
+        end
         result["execution_commit"]=strip(read(`git -C $PHASE6C_ROOT rev-parse HEAD`,String))
         if owned
-            if isnothing(resume_authorization)
+            if extra
+                si_extra_check_sources(extra_auth)
+            elseif isnothing(resume_authorization)
                 result["core_gate_sha256"]=si_core_gate(core_gate,result["execution_commit"])
             else
                 resume_auth=si_resume_authorization(resume_authorization,result["execution_commit"],core_gate)
@@ -373,14 +396,14 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
                 merge!(result,si_resume_fields(resume_auth,action))
             end
             isempty(strip(read(`git -C $PHASE6C_ROOT status --porcelain`,String))) || error("Core endpoint needs a clean execution tree")
-            result["case_sha256"]=filehash(joinpath(PHASE6C_ROOT,"benchmarks/si-soc-splitting-v1/case.json"))
+            extra || (result["case_sha256"]=filehash(joinpath(PHASE6C_ROOT,"benchmarks/si-soc-splitting-v1/case.json")))
         end
         identity=environment_identity(PHASE6C_ROOT,(DFTK,PseudoPotentialIO));result["environment"]=identity
         phase6b_write(joinpath(outdir,"identity.raw.json"),identity;redact=false)
         identity.status=="PASS" || error("Frozen environment mismatch")
         DFTK.disable_threading();Threads.nthreads()==BLAS.get_num_threads()==1 || error("Single CPU thread required")
         DFTK.mpi_nprocs(DFTK.MPI.COMM_WORLD)==1 || error("Single MPI process required")
-        case=si_case(profile);settings=case["settings"]
+        case=extra ? si_extra_case(extra_profile) : si_case(profile);settings=case["settings"]
         if !isnothing(profile)
             result["sensitivity_profile"]=profile
             result["case_sha256"]=filehash(joinpath(PHASE6C_ROOT,si_case_path(profile)))
@@ -389,14 +412,18 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
         kind=work_action in ("prepare","D-SCF") ? "scf" : owned ? "core_gamma" : work_action=="D-NULL-GAMMA" ? "null" : "spectrum"
         built=si_context(case,kind;backend);ctx=built.ctx;b=ctx.basis
         b.model.temperature==settings["ensemble"]["tau_ha"] || error("Actual Si context/ensemble temperature mismatch")
-        result["input"]=FI.common_data_summary(built.bundle);result["grid"]=si_grid(ctx)
+        result["input"]=FI.common_data_summary(built.bundle)
+        result["grid"]=extra ? si_extra_grid(ctx,case;gamma=work_action=="D-GAMMA") : si_grid(ctx)
+        extra && si_extra_safe_boundary(outdir,"context_constructed")
         if owned
             runtime=FI.owned_runtime(ctx;max_rhs=30);ctx=runtime;built=(;ctx,bundle=built.bundle)
             FI.runtime_boundary!(runtime,:driver_entry)
         end
+        extra && (extra_observer=si_extra_observer(outdir,result,ctx))
         checkpoint=function(path,value)
             owned && FI.runtime_boundary!(runtime,:before_serialization)
             phase6c_checkpoint(path,value)
+            extra && si_extra_safe_boundary(outdir,"checkpoint_written")
             owned && FI.runtime_boundary!(runtime,:after_serialization)
         end
         result["parallelism"]=(;julia=Threads.nthreads(),blas=BLAS.get_num_threads(),fft=DFTK.FFTW.get_num_threads(),mpi=1)
@@ -439,6 +466,7 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
             n=fill(8/b.model.unit_cell_volume,prod(b.fft_size))
             checkpoint(joinpath(outdir,"initial.bin"),(;n,seed=81001))
             progress=function(event)
+                extra && si_extra_safe_boundary(outdir,"solver_progress")
                 if hasproperty(event,:event) && event.event=="map_input_checkpoint"
                     checkpoint(joinpath(outdir,"current-map-input.bin"),event)
                 elseif hasproperty(event,:event) && event.event in ("target_solve","failed_target_solve")
@@ -454,8 +482,9 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
             end
             callback=function(record,raw)
                 owned && FI.runtime_boundary!(runtime,:callback_entry)
-                si_append(joinpath(outdir,"maps.jsonl"),record)
-                result["completed_maps"]=record["map_index"];result["latest_map"]=record
+                si_append(joinpath(outdir,"maps.jsonl"),extra ? si_extra_compact_map(record) : record)
+                extra && si_extra_observe_map!(extra_observer,record,raw,ctx)
+                result["completed_maps"]=record["map_index"];result["latest_map"]=extra ? si_extra_compact_map(record) : record
                 if !isnothing(raw)
                     state=(;X=raw.X,all_X=raw.all_X,f=raw.f,eigenvalues=raw.eigenvalues,n_in=raw.n_in,n_out=raw.n_out,
                         diagnostics=raw.diag,mu=raw.ensemble.mu,record)
@@ -469,19 +498,36 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
                 phase6b_write(joinpath(outdir,"result.json"),result)
                 owned && FI.runtime_boundary!(runtime,:callback_return)
             end
-            solved=SOC.soc_scf(ctx,n,settings;seed=81001,callback,progress,case_contract=isnothing(profile) ? nothing : case);raw=solved.raw
-            result["final"]=(;map_count=solved.map_count,n_in_sha256=FI.integration_density_hash(raw.n_in),
+            solved=SOC.soc_scf(ctx,n,settings;seed=81001,callback,progress,
+                case_contract=(extra || !isnothing(profile)) ? case : nothing,
+                diagnostic_map_limit=action=="X-K6-PILOT" ? 2 : nothing);raw=solved.raw
+            extra && (result["time_reversal_pairs"]=si_extra_spectral_pairs(b,raw,settings))
+            if action=="X-K6-PILOT"
+                result["pilot"]=si_extra_pilot_report(extra_observer,solved,ctx)
+            end
+            endpoint=(;map_count=solved.map_count,n_in_sha256=FI.integration_density_hash(raw.n_in),
                 n_out_sha256=FI.integration_density_hash(raw.n_out),mu_ha=raw.ensemble.mu,
                 eigenvalues_ha=raw.eigenvalues,occupations=raw.f,diagnostics=raw.diag,
                 unmixed_residual_l2=last(solved.history)["unmixed_residual_l2"])
-            checkpoint(joinpath(outdir,"final.bin"),(;n_in=raw.n_in,n_out=raw.n_out,X=raw.X,f=raw.f,
-                eigenvalues=raw.eigenvalues,mu=raw.ensemble.mu,final=result["final"]))
-            result["checkpoint_sha256"]=filehash(joinpath(outdir,"final.bin"))
+            if extra && action!="X-K6-PILOT"
+                closure=solved.converged && last(solved.history)["map_role"]=="closure" &&
+                    last(solved.history)["status"]=="PASS" && last(solved.history)["closure_checks_passed"]
+                closure || error("Final extra closure not certified")
+                endpoint=merge(endpoint,(;closure_status="PASS"))
+            end
+            result[action=="X-K6-PILOT" ? "pilot_endpoint" : "final"]=endpoint
+            checkpoint(joinpath(outdir,action=="X-K6-PILOT" ? "pilot.bin" : "final.bin"),(;n_in=raw.n_in,n_out=raw.n_out,X=raw.X,f=raw.f,
+                eigenvalues=raw.eigenvalues,mu=raw.ensemble.mu,final=endpoint))
+            result["checkpoint_sha256"]=filehash(joinpath(outdir,action=="X-K6-PILOT" ? "pilot.bin" : "final.bin"))
         elseif work_action in ("D-SPECTRUM","D-NULL-GAMMA","D-GAMMA")
             isnothing(parent) && error("Missing successful D-SCF parent")
             parent=abspath(parent);receipt=si_json(joinpath(parent,"result.json"))
             startswith(realpath(parent),realpath(joinpath(PHASE6C_ROOT,area))*"/") || error("Parent must belong to the same Si run area")
-            si_validate_parent_receipt(receipt,case,result["executed_source_sha256"],result["execution_commit"];backend,core_gate_sha256=owned ? result["core_gate_sha256"] : nothing)
+            if extra
+                si_extra_parent(receipt,case,extra_auth,parent)
+            else
+                si_validate_parent_receipt(receipt,case,result["executed_source_sha256"],result["execution_commit"];backend,core_gate_sha256=owned ? result["core_gate_sha256"] : nothing)
+            end
             isnothing(resume_auth) || si_resume_parent(receipt,resume_auth)
             get(receipt,"run_id",nothing)==basename(parent) || error("Parent run ID differs from its directory")
             cp=joinpath(parent,"final.bin");filehash(cp)==receipt["checkpoint_sha256"] || error("Parent checkpoint hash mismatch")
@@ -499,6 +545,7 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
                 result["spin_trace"].status=="PASS" || error("Spin-dependent action is not identifiable")
             end
             progress=function(event)
+                extra && si_extra_safe_boundary(outdir,"solver_progress")
                 if event.event=="target_solve"
                     si_append(joinpath(outdir,"solver.jsonl"),event.record)
                     checkpoint(joinpath(outdir,"k$(event.record.k_index).bin"),event.state)
@@ -537,7 +584,9 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
             counts=result["runtime"].counters
             all(getproperty(counts,k)>0 for k in (:fr_mul_calls,:component_mul_calls,:full_mul_calls)) || error("Owned core dispatch counters were not exercised")
             result["runtime_dispatch_status"]="PASS"
-            if isnothing(resume_auth)
+            if extra
+                si_extra_authorization(extra_contract,extra_profile;action,outdir)==extra_auth || error("Extra execution contract changed")
+            elseif isnothing(resume_auth)
                 si_core_gate(core_gate,result["execution_commit"])==result["core_gate_sha256"] || error("Core static gate changed")
             else
                 si_resume_authorization(resume_authorization,result["execution_commit"],core_gate)==resume_auth || error("Continuation authorization changed")
@@ -545,9 +594,10 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
         else
             FI.validate_context(ctx);FI.assert_bound_sources(built.bundle)
         end
-        si_sources(profile;backend,resume=!isnothing(resume_authorization))==result["executed_source_sha256"] || error("Execution source/config changed")
+        extra ? si_extra_check_sources(extra_auth) :
+            (si_sources(profile;backend,resume=!isnothing(resume_authorization))==result["executed_source_sha256"] || error("Execution source/config changed"))
         environment_identity(PHASE6C_ROOT,(DFTK,PseudoPotentialIO)).status=="PASS" || error("Environment changed")
-        result["execution_status"]="PASS";result["exit_code"]=0
+        result["execution_status"]=action=="X-K6-PILOT" ? "PILOT_COMPLETED_NOT_SCF_CONVERGED" : "PASS";result["exit_code"]=0
     catch err
         result["execution_status"]="FAIL";result["exit_code"]=1;result["reason"]=sprint(showerror,err)
         if haskey(result,"nlcc") && result["nlcc"] isa AbstractDict && result["nlcc"]["status"]=="RUNNING"
@@ -563,6 +613,7 @@ function si_run(action,outdir,parent=nothing;profile=nothing,backend=nothing,cor
                 result["runtime_after_close"]=FI.runtime_summary(runtime)
                 result["runtime_closed"]=result["runtime_after_close"].closed
                 result["runtime_closed"] || error("Owned runtime did not close")
+                extra && si_extra_safe_boundary(outdir,"runtime_closed")
             catch err
                 result["execution_status"]="FAIL";result["exit_code"]=1;result["cleanup_reason"]=sprint(showerror,err)
                 get!(result,"reason","Owned runtime cleanup failed")
@@ -641,7 +692,11 @@ function si_check_entry(action,outdir,parent;core_gate,resume_authorization)
     result["exit_code"]
 end
 
+include("../benchmarks/soc-extra-v1/driver.jl")
 function si_main(args)
+    if "--extra-profile" in args || "--extra-contract" in args
+        return si_extra_main(args)
+    end
     if args==["--check-definitions"]
         length(FI._FR_CONTEXT_CERTIFICATES)==length(FI._BOUND_PSP_SOURCES)==0 || return 1
         println(JSON3.write((;schema_version=1,check_only=true,check_status="DEFINITIONS_LOADED",

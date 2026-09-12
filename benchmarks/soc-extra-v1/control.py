@@ -77,6 +77,10 @@ def verify_contract(root, path, execution, profile):
     require(auth.get('resource_policy') == '8GiB/7GiB', 'Resource policy changed')
     require(auth.get('plan_sha256') == sha(root / AREA / 'plan.json'), 'Prepared plan differs')
     require(auth.get('case_sha256') == sha(root / AREA / (profile + '.json')), 'Prepared case differs')
+    decision = read(root / AREA / 'decision.json')
+    require(auth['core_selection'] == decision['core_selection'] and
+            auth['numerical_change_requires_B0'] == decision['numerical_change_requires_B0'],
+            'Execution contract cannot change the committed core/B0 decision')
     sources = read(root / AREA / 'sources.json')
     require(sources.get('base') == BASE, 'Prepared source base differs')
     for relative, entry in sources['historical'].items():

@@ -299,7 +299,7 @@ def launch(action, *, profile, contract, execution_commit, directory=None, paren
                                  numerical_authorization_status='ELIGIBLE', admission=eligibility), exclusive=True)
                 state['formal_slot_reserved'] = True
             env = dict(os.environ, JULIA_LOAD_PATH='@:@stdlib', JULIA_NUM_THREADS='1', OPENBLAS_NUM_THREADS='1',
-                       OMP_NUM_THREADS='1', JULIA_PKG_OFFLINE='true', SOC_CORE_PYTHON=sys.executable,
+                       OMP_NUM_THREADS='1', MKL_NUM_THREADS='1', VECLIB_MAXIMUM_THREADS='1', JULIA_PKG_OFFLINE='true', SOC_CORE_PYTHON=sys.executable,
                        SOC_EXTRA_PYTHON=sys.executable, SOC_EXTRA_RUN_ID=directory.name,
                        SOC_EXTRA_WORKER_DIRECTORY=state['worker_directory'], SOC_EXTRA_STOP_FILE=str(directory / 'safe-boundary-stop.json'))
             if not check_entry: env['SOC_EXTRA_SLOT_RECEIPT'] = str(slot)

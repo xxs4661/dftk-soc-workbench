@@ -167,8 +167,12 @@ function soc_map(ctx,n_in,settings,previous,target;seed,map_index,is_closure=fal
     (;n_out=energy.density.n,raw,diagnostics=diag,closure_ok,potential,target=solved.band.target)
 end
 
-function soc_scf(ctx,n0,settings;seed,callback=(r,raw)->nothing,progress=(r)->nothing,hooks=NamedTuple(),case_contract=nothing)
+function soc_scf(ctx,n0,settings;seed,callback=(r,raw)->nothing,progress=(r)->nothing,hooks=NamedTuple(),case_contract=nothing,diagnostic_map_limit=nothing)
     validate_soc_settings(settings;case_contract);FI.validate_context(ctx)
+    if !isnothing(diagnostic_map_limit)
+        diagnostic_map_limit===2 && !isnothing(case_contract) && get(case_contract,"extra_profile",nothing)=="K6" ||
+            error("Only the explicit extra K6 two-map diagnostic stop is supported")
+    end
     settings_stamp=_runtime_settings_stamp(ctx,settings)
     ctx.basis.model.temperature==settings["ensemble"]["tau_ha"] && ctx.basis.model.smearing isa DFTK.Smearing.FermiDirac || error("Actual model and ensemble settings disagree")
     previous=nothing;target=settings["solver"]["initial_target_states"];previous_potential=nothing
@@ -189,9 +193,39 @@ function soc_scf(ctx,n0,settings;seed,callback=(r,raw)->nothing,progress=(r)->no
         _runtime_call(()->callback(record,raw),ctx,:map_callback;
             ham=isnothing(raw) ? nothing : raw.energy.ham,settings,stamp=settings_stamp,payload)
     end
+    if !isnothing(diagnostic_map_limit)
+        return _extra_diagnostic_iteration(ctx,map,n0;callback=guarded_callback,limit=diagnostic_map_limit,
+            dvol=ctx.basis.dvol,alpha=settings["scf"]["alpha"],max_maps=settings["scf"]["max_maps"],
+            density_tol=settings["thresholds"]["density_fixedpoint_l2"],electron_tol=settings["thresholds"]["electron_count_abs"],
+            n_electrons=ctx.basis.model.n_electrons)
+    end
     _runtime_iterate_density_map(ctx,map,n0;dvol=ctx.basis.dvol,alpha=settings["scf"]["alpha"],max_maps=settings["scf"]["max_maps"],
         density_tol=settings["thresholds"]["density_fixedpoint_l2"],electron_tol=settings["thresholds"]["electron_count_abs"],
         n_electrons=ctx.basis.model.n_electrons,callback=guarded_callback)
+end
+
+function _extra_diagnostic_iteration(ctx,map,n0;callback,limit,kwargs...)
+    limit===2 || error("A pilot is limited to two complete density maps")
+    history=Any[];stop=Ref{Any}(nothing)
+    observe=function(record,raw)
+        callback(record,raw)
+        push!(history,record)
+        if record["map_index"]==limit && record["status"] in ("CONTINUE","CANDIDATE","PASS")
+            sentinel=Controller.DensityMapFailure("Requested two-map diagnostic stop; not formal SCF convergence",history)
+            stop[]=(;sentinel,raw,map_count=limit,controller_status=record["status"])
+            throw(sentinel)
+        end
+    end
+    try
+        actual=_runtime_iterate_density_map(ctx,map,n0;callback=observe,kwargs...)
+        return merge(actual,(;status="PILOT_COMPLETED_NOT_SCF_CONVERGED",formal_scf=false,
+            diagnostic_converged=actual.converged))
+    catch err
+        s=stop[]
+        (isnothing(s) || err!==s.sentinel) && rethrow()
+        (;raw=s.raw,history,map_count=s.map_count,converged=false,formal_scf=false,
+          diagnostic_converged=s.controller_status=="PASS",status="PILOT_COMPLETED_NOT_SCF_CONVERGED")
+    end
 end
 
 function endpoint_time_reversal(ctx,raw,settings)
