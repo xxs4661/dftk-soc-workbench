@@ -126,7 +126,9 @@ def reference_execution_guard(root, directory, action, profile):
 
 
 def monitored_execute(executor, command, directory, env, *, limit_bytes=MAX_RSS,
-                      observation_callback=None, safe_stop_timeout_seconds=30):
+                      observation_callback=None, safe_stop_timeout_seconds=30,
+                      cooperative_callback=None, cooperative_grace_seconds=120,
+                      termination_grace_seconds=10, cleanup_grace_seconds=5):
     """Sample only the recorded new session/descendants, with an internal hook.
 
     Default callers retain8 GiB. The exceptional10 GiB call is authenticated by
@@ -140,6 +142,11 @@ def monitored_execute(executor, command, directory, env, *, limit_bytes=MAX_RSS,
     require(limit_bytes == MAX_RSS or observation_callback is not None, 'Exceptional limit requires authenticated policy observation')
     require(type(safe_stop_timeout_seconds) in (int, float) and math.isfinite(safe_stop_timeout_seconds) and
             0 < safe_stop_timeout_seconds <= 30, 'Safe-stop deadline must be positive and at most30 seconds')
+    require(cooperative_callback is None or callable(cooperative_callback), 'Invalid cooperative callback')
+    for name,value,maximum in [('cooperative',cooperative_grace_seconds,120),
+                               ('termination',termination_grace_seconds,10),('cleanup',cleanup_grace_seconds,5)]:
+        require(type(value) in (int,float) and math.isfinite(value) and 0<value<=maximum,
+                'Invalid bounded '+name+' grace')
     directory=Path(directory); initial_rows=ps_rows()
     require(initial_rows and len({r['pid'] for r in initial_rows})==len(initial_rows) and all(
         type(r.get(k)) is int and r[k]>=0 for r in initial_rows for k in ('pid','ppid','pgid','rss_kib')),
@@ -150,7 +157,9 @@ def monitored_execute(executor, command, directory, env, *, limit_bytes=MAX_RSS,
            'scope':'Recorded session group plus descendant processes; sampled aggregate RSS, not a continuous upper bound',
            'native_exit_code':None,'numerical_process_pid':None,
            'resource_policy_status':'RUNNING','safe_stop_requested':False,
-           'safe_stop_timeout_seconds':safe_stop_timeout_seconds,'safe_stop_escalated':False}
+           'safe_stop_timeout_seconds':safe_stop_timeout_seconds,'safe_stop_escalated':False,
+           'control_status':'NOT_ENABLED' if cooperative_callback is None else 'RUNNING',
+           'forced_termination':False,'signals':[]}
     result={}; started=time.monotonic()
     def worker():
         try:result['code']=executor(command,directory,env)
@@ -159,17 +168,31 @@ def monitored_execute(executor, command, directory, env, *, limit_bytes=MAX_RSS,
     # produce UNCONFIRMED, not keep the recorder waiting forever.
     thread=threading.Thread(target=worker,daemon=True);thread.start()
     leader=None; violation=None; marker_first_seen=None; stop_requested_at=None; empty_since=None
-    observed_owned={}
+    observed_owned={}; births={}; ownership_uncertain=set()
+    control_requested_at=None; control_forced=False
+    def birth(pid):
+        if cooperative_callback is None:return None
+        found=subprocess.run(['ps','-p',str(pid),'-o','lstart=','-o','comm='],capture_output=True,text=True)
+        return found.stdout.strip() if found.returncode==0 and found.stdout.strip() else None
     def live_owned():
         alive=[]
         for pid,pgid in observed_owned.items():
             try:
-                if os.getpgid(pid)==pgid:alive.append((pid,pgid))
+                if os.getpgid(pid)==pgid:
+                    if cooperative_callback is not None:
+                        current=birth(pid)
+                        if current is None or births.get(pid) is None:ownership_uncertain.add(pid)
+                        elif current!=births[pid]:continue  # A reused PID is not our old process.
+                    alive.append((pid,pgid))
             except ProcessLookupError:pass
         return alive
     def stop_owned(sig=signal.SIGTERM):
         if leader is None:return
-        alive=live_owned()
+        alive=[item for item in live_owned() if item[0] not in ownership_uncertain]
+        if alive:
+            state['forced_termination']=True
+            state['signals'].append({'signal':signal.Signals(sig).name,'elapsed_seconds':time.monotonic()-started,
+                                     'owned_pids':[pid for pid,pgid in alive]})
         if any(pgid==leader for pid,pgid in alive):
             try:os.killpg(leader,sig)
             except ProcessLookupError:pass
@@ -179,7 +202,19 @@ def monitored_execute(executor, command, directory, env, *, limit_bytes=MAX_RSS,
                 except ProcessLookupError:pass
     try:
         with (directory/'resource-samples.jsonl').open('x') as log:
-            while thread.is_alive():
+            while thread.is_alive() or (control_requested_at is not None and live_owned()):
+                if cooperative_callback is not None:
+                    control=cooperative_callback(dict(monotonic_seconds=time.monotonic(),
+                        elapsed_seconds=time.monotonic()-started,leader_pid=leader))
+                    require(type(control) is dict and control.get('status') in ('CONTINUE','REQUEST_STOP'),
+                            'Invalid cooperative-control result')
+                    if control['status']=='REQUEST_STOP':
+                        require(control.get('reason') in ('USER_CANCELLED','TIME_BUDGET_EXCEEDED'),
+                                'Unsupported cooperative reason')
+                        if control_requested_at is None:
+                            control_requested_at=time.monotonic()
+                            state.update(control_status=control['reason'],control_first_request=dict(control),
+                                         control_requested_elapsed_seconds=control_requested_at-started)
                 marker=directory/'process-start.json'
                 if leader is None and marker.is_file():
                     if marker_first_seen is None:marker_first_seen=time.monotonic()
@@ -193,6 +228,7 @@ def monitored_execute(executor, command, directory, env, *, limit_bytes=MAX_RSS,
                             record['command']==command,'Unexpected process ownership marker')
                     leader=candidate
                     observed_owned[leader]=leader
+                    if cooperative_callback is not None:births[leader]=birth(leader)
                     state['numerical_process_pid']=leader
                 if leader is None:
                     require(time.monotonic()-started<5, 'No valid process ownership marker within five seconds')
@@ -202,11 +238,18 @@ def monitored_execute(executor, command, directory, env, *, limit_bytes=MAX_RSS,
                         type(r.get(k)) is int and r[k]>=0 for r in table for k in ('pid','ppid','pgid','rss_kib')),
                         'Malformed or duplicate process accounting')
                     rows=owned_rows(table,leader)
+                    if cooperative_callback is not None:
+                        # Keep already observed independent descendants in accounting after reparenting.
+                        existing={r['pid'] for r in rows}
+                        rows += [r for r in table if r['pid'] not in existing and observed_owned.get(r['pid'])==r['pgid']]
                     require(not any(r['pid'] in initial_processes for r in rows), 'Owned group contains an existing unrelated process')
                     if not rows:
                         if empty_since is None:empty_since=time.monotonic()
-                        require(time.monotonic()-empty_since<1, 'Owned process accounting absent for one second')
+                        require(not thread.is_alive() or time.monotonic()-empty_since<1, 'Owned process accounting absent for one second')
                     else:empty_since=None
+                    if cooperative_callback is not None:
+                        for r in rows:
+                            if r['pid'] not in births:births[r['pid']]=birth(r['pid'])
                     observed_owned.update({r['pid']:r['pgid'] for r in rows})
                     total=sum(r['rss_kib'] for r in rows)*1024
                     state['peak_aggregate_rss_bytes']=max(state['peak_aggregate_rss_bytes'],total)
@@ -245,6 +288,10 @@ def monitored_execute(executor, command, directory, env, *, limit_bytes=MAX_RSS,
                     if stop_requested_at is not None and now-stop_requested_at>=safe_stop_timeout_seconds:
                         state['safe_stop_escalated']=True
                         violation='RESOURCE_BLOCKED: safe-boundary request unacknowledged at its bounded deadline';stop_owned();break
+                if control_requested_at is not None and time.monotonic()-control_requested_at>=cooperative_grace_seconds:
+                    control_forced=True
+                    violation='Cooperative request exceeded its bounded grace; forced termination'
+                    stop_owned(signal.SIGTERM);break
                 time.sleep(INTERVAL)
     except BaseException as error:
         violation='Resource monitoring failed: '+str(error)
@@ -252,23 +299,35 @@ def monitored_execute(executor, command, directory, env, *, limit_bytes=MAX_RSS,
         # Without an authenticated marker there is no safe target to kill.
         # Do not guess ownership from a newly appearing sibling process.
         stop_owned()
-    if violation:
-        thread.join(30)
-        if thread.is_alive():stop_owned(signal.SIGKILL)
-    thread.join(3)
-    if live_owned():
-        violation=violation or 'RESOURCE_BLOCKED: numerical descendants survived their recorded leader'
-        stop_owned();deadline=time.monotonic()+1
-        while live_owned() and time.monotonic()<deadline:time.sleep(.05)
-        if live_owned():stop_owned(signal.SIGKILL)
-        deadline=time.monotonic()+2
-        while live_owned() and time.monotonic()<deadline:time.sleep(.05)
+    if control_forced:
+        deadline=time.monotonic()+termination_grace_seconds
+        while (thread.is_alive() or live_owned()) and time.monotonic()<deadline:
+            thread.join(min(.05,max(0,deadline-time.monotonic())))
+            if not thread.is_alive():time.sleep(.02)
+        if thread.is_alive() or live_owned():stop_owned(signal.SIGKILL)
+        deadline=time.monotonic()+cleanup_grace_seconds
+        while (thread.is_alive() or live_owned()) and time.monotonic()<deadline:
+            thread.join(min(.05,max(0,deadline-time.monotonic())))
+            if not thread.is_alive():time.sleep(.02)
+    else:
+        if violation:
+            thread.join(30)
+            if thread.is_alive():stop_owned(signal.SIGKILL)
+        thread.join(3)
+        if live_owned():
+            violation=violation or 'RESOURCE_BLOCKED: numerical descendants survived their recorded leader'
+            stop_owned();deadline=time.monotonic()+1
+            while live_owned() and time.monotonic()<deadline:time.sleep(.05)
+            if live_owned():stop_owned(signal.SIGKILL)
+            deadline=time.monotonic()+2
+            while live_owned() and time.monotonic()<deadline:time.sleep(.05)
     state['owned_process_cleanup_status']='PASS' if not live_owned() and not thread.is_alive() else 'UNCONFIRMED'
     state['remaining_observed_processes']=live_owned()
     if state['safe_stop_requested'] and violation is None:
         violation='Resource policy safe-boundary stop: '+state['safe_stop_first_decision']['reason']
     if state['owned_process_cleanup_status']!='PASS':
         violation=violation or 'Owned-process/executor cleanup unconfirmed'
+    if state['control_status']=='RUNNING':state['control_status']='NO_REQUEST'
     if state['resource_policy_status']=='RUNNING':state['resource_policy_status']='PASS' if not violation else 'RESOURCE_BLOCKED'
     state.update(status='RESOURCE_BLOCKED' if violation else 'PASS',reason=violation,
                  native_exit_code=result.get('code'),elapsed_seconds=time.monotonic()-started,finished_utc=utc())

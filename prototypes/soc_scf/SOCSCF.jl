@@ -1,5 +1,9 @@
+if !isdefined(@__MODULE__, :WorkbenchDiagnostics)
+    include("../diagnostics.jl")
+end
 """Restricted Phase 6C charge-only ensemble/SCF; not an upstream spinor API."""
 module SOCSCF
+const RunDiagnostics = getfield(parentmodule(@__MODULE__), :WorkbenchDiagnostics)
 using LinearAlgebra, Random, SHA, TOML, JSON3
 import DFTK
 using ..SpinorPrototype

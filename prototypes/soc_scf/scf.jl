@@ -7,28 +7,38 @@ function _runtime_check_settings(ctx,settings,stamp)
         throw(ArgumentError("SOC settings changed inside the owned runtime session"))
     nothing
 end
-function _runtime_call(f,ctx,event;ham=nothing,settings=nothing,stamp=nothing,payload=nothing)
-    FI.runtime_boundary!(ctx,Symbol(event,"_entry");ham)
-    isnothing(settings) || _runtime_check_settings(ctx,settings,stamp)
-    payload_stamp=FI.runtime_enabled(ctx) && !isnothing(payload) ? FI._source_snapshot(payload) : nothing
+function _runtime_call(f,ctx,event;ham=nothing,settings=nothing,stamp=nothing,payload=nothing,diagnostics=nothing)
+    RunDiagnostics.boundary!(diagnostics,Symbol(event,"_before"))
+    RunDiagnostics.@span diagnostics :runtime_boundary_entry 0 0 begin
+        FI.runtime_boundary!(ctx,Symbol(event,"_entry");ham)
+        isnothing(settings) || _runtime_check_settings(ctx,settings,stamp)
+    end
+    payload_stamp=RunDiagnostics.with_span(diagnostics,:callback_payload_fingerprint_before) do
+        FI.runtime_enabled(ctx) && !isnothing(payload) ? FI._source_snapshot(payload) : nothing
+    end
     check_payload()=isnothing(payload_stamp) || FI._source_snapshot(payload)==payload_stamp ||
         throw(ArgumentError("SOC callback changed a borrowed numerical payload"))
     result=try
-        f()
+        RunDiagnostics.@span diagnostics Symbol(event,"_body") 0 0 f()
     catch original
         # Preserve the original exception if a callback also damaged a binding.
         try
-            FI.runtime_boundary!(ctx,Symbol(event,"_error");ham)
-            isnothing(settings) || _runtime_check_settings(ctx,settings,stamp)
-            check_payload()
+            RunDiagnostics.@span diagnostics :runtime_boundary_error 0 0 begin
+                FI.runtime_boundary!(ctx,Symbol(event,"_error");ham)
+                isnothing(settings) || _runtime_check_settings(ctx,settings,stamp)
+            end
+            RunDiagnostics.@span diagnostics :callback_payload_fingerprint_error 0 0 check_payload()
         catch boundary_error
             throw(CompositeException([original,boundary_error]))
         end
         rethrow()
     end
-    FI.runtime_boundary!(ctx,Symbol(event,"_return");ham)
-    isnothing(settings) || _runtime_check_settings(ctx,settings,stamp)
-    check_payload()
+    RunDiagnostics.@span diagnostics :runtime_boundary_return 0 0 begin
+        FI.runtime_boundary!(ctx,Symbol(event,"_return");ham)
+        isnothing(settings) || _runtime_check_settings(ctx,settings,stamp)
+    end
+    RunDiagnostics.@span diagnostics :callback_payload_fingerprint_after 0 0 check_payload()
+    RunDiagnostics.boundary!(diagnostics,Symbol(event,"_after"))
     result
 end
 
@@ -94,40 +104,55 @@ function rayleigh_occupation_diagnostic(ctx,rayleigh,formal_f,settings)
 end
 
 function soc_map(ctx,n_in,settings,previous,target;seed,map_index,is_closure=false,
-                 previous_potential=nothing,probe,hooks=NamedTuple(),progress=(r)->nothing)
+                 previous_potential=nothing,probe,hooks=NamedTuple(),progress=(r)->nothing,diagnostics=nothing)
+    local settings_stamp,b,t,sin
+    RunDiagnostics.@span diagnostics :map_input_validation map_index 0 begin
     FI.runtime_boundary!(ctx,:map_entry)
     settings_stamp=_runtime_settings_stamp(ctx,settings)
     b=ctx.basis;t=settings["thresholds"]
     sin=Controller.density_summary(n_in,b.dvol;n_electrons=b.model.n_electrons,electron_tol=t["electron_count_abs"])
-    fresh=FI.build_full_hamiltonian(ctx,n_in)
+    end
+    fresh=RunDiagnostics.with_span(diagnostics,:hamiltonian_build;map_index) do
+        FI.build_full_hamiltonian(ctx,n_in)
+    end
     selected=fresh
     if hasproperty(hooks,:ham)
         expected_potentials=[copy(DFTK.total_local_potential(h)) for h in fresh.common.blocks]
         expected_action=fresh.full[1]*probe
         selected=_runtime_call(()->hooks.ham(fresh,copy(n_in),map_index),ctx,:ham_callback;
-            ham=fresh.full,settings,stamp=settings_stamp)
+            ham=fresh.full,settings,stamp=settings_stamp,diagnostics)
         assert_current_hamiltonian(fresh,selected,probe;expected_potentials,expected_action)
     end
     potential=vec(DFTK.total_local_potential(selected.common));action=selected.full[1]*probe
     solve_hook=hasproperty(hooks,:solve) ? hooks.solve : nothing
-    solved=solve_with_band_check(ctx,selected.full,previous,target,settings;seed,map_index,solve_hook,progress)
+    solved=solve_with_band_check(ctx,selected.full,previous,target,settings;seed,map_index,solve_hook,progress,diagnostics)
     X=solved.solved.X;f=solved.ensemble.f
     hasproperty(hooks,:occupations) && (f=_runtime_call(()->hooks.occupations(deepcopy(f),map_index),ctx,:occupation_callback;
-        ham=selected.full,settings,stamp=settings_stamp))
+        ham=selected.full,settings,stamp=settings_stamp,diagnostics))
     # Hooks are fault injection only: preserve exact capacity-one global FD values.
     f==solved.ensemble.f || error("Occupation hook changed the global Fermi ensemble")
     stream_k=get(settings["solver"],"stream_k",false)
-    orbital=FI.context_orbital_density(ctx,X,f;stream_k)
+    orbital=RunDiagnostics.with_span(diagnostics,:orbital_density;map_index) do
+        FI.context_orbital_density(ctx,X,f;stream_k)
+    end
     chosen=hasproperty(hooks,:density) ? _runtime_call(()->hooks.density(deepcopy(orbital),copy(n_in),map_index),ctx,:density_callback;
-        ham=selected.full,settings,stamp=settings_stamp) : orbital
+        ham=selected.full,settings,stamp=settings_stamp,diagnostics) : orbital
     FI.integration_density_hash(chosen.n)==FI.integration_density_hash(orbital.n) || error("Stale or exchanged n_out; density must belong to current X/f")
-    energy=FI.energy_snapshot(ctx,X,f;expected_n=chosen.n,stream_k)
+    energy=RunDiagnostics.with_span(diagnostics,:energy_snapshot;map_index) do
+        isnothing(diagnostics) ? FI.energy_snapshot(ctx,X,f;expected_n=chosen.n,stream_k) :
+            FI.energy_snapshot(ctx,X,f;expected_n=chosen.n,stream_k,diagnostics)
+    end
+    local thermal,stationarity
+    RunDiagnostics.@span diagnostics :thermal_energy_checks map_index 0 begin
     FI.assert_energy_consistency(energy;energy_atol=t["energy_abs_ha"])
     thermal=ensemble_free_energy(energy.total,f,b.kweights,b.model.temperature)
     abs(thermal.arithmetic_error_ha)<=t["free_energy_arithmetic_relative"]*max(1,abs(thermal.free_energy_ha),abs(thermal.internal_energy_ha)) || error("Free-energy arithmetic failed")
     stationarity=occupation_stationarity(solved.solved.eigenvalues,f,solved.ensemble.mu,b.model.temperature;
         endpoint_margin=settings["ensemble"]["stationarity_endpoint_margin"])
     stationarity.max_abs_residual_ha<=settings["ensemble"]["stationarity_abs_ha"] || error("Finite-temperature occupation stationarity failed")
+    end
+    local self_old,self_rq,rayleigh,feedback,sout,pauli,closure_ok,diag,raw
+    RunDiagnostics.@span diagnostics :self_density_closure_checks map_index 0 begin
     self_old=Vector{Float64}[];self_rq=Vector{Float64}[];rayleigh=Vector{Float64}[]
     for (ik,(H,x)) in enumerate(zip(energy.ham,X))
         hx=H*x;rq=[real(dot(x[:,j],hx[:,j]))/sum(abs2,x[:,j]) for j in axes(x,2)]
@@ -162,12 +187,18 @@ function soc_map(ctx,n_in,settings,previous,target;seed,map_index,is_closure=fal
         energy_density_source="Same physical X/f and n_out; seven-term E plus spinor entropy once; no n_next terms")
     raw=(;X,all_X=solved.solved.all_X,f,eigenvalues=solved.solved.eigenvalues,n_in=copy(n_in),n_out=copy(energy.density.n),
         density=energy.density,energy,thermal,ensemble=solved.ensemble,diag)
+    end
+    RunDiagnostics.@span diagnostics :map_return_validation map_index 0 begin
     FI.runtime_boundary!(ctx,:map_return;ham=energy.ham)
     _runtime_check_settings(ctx,settings,settings_stamp)
+    end
     (;n_out=energy.density.n,raw,diagnostics=diag,closure_ok,potential,target=solved.band.target)
 end
 
-function soc_scf(ctx,n0,settings;seed,callback=(r,raw)->nothing,progress=(r)->nothing,hooks=NamedTuple(),case_contract=nothing,diagnostic_map_limit=nothing)
+function soc_scf(ctx,n0,settings;seed,callback=(r,raw)->nothing,progress=(r)->nothing,hooks=NamedTuple(),case_contract=nothing,diagnostic_map_limit=nothing,diagnostics=nothing)
+    RunDiagnostics.boundary!(diagnostics,:scf_initialization_before)
+    local settings_stamp,previous,target,previous_potential,probe
+    RunDiagnostics.@span diagnostics :scf_initialization 0 0 begin
     validate_soc_settings(settings;case_contract);FI.validate_context(ctx)
     if !isnothing(diagnostic_map_limit)
         diagnostic_map_limit===2 && !isnothing(case_contract) && get(case_contract,"extra_profile",nothing)=="K6" ||
@@ -177,11 +208,13 @@ function soc_scf(ctx,n0,settings;seed,callback=(r,raw)->nothing,progress=(r)->no
     ctx.basis.model.temperature==settings["ensemble"]["tau_ha"] && ctx.basis.model.smearing isa DFTK.Smearing.FermiDirac || error("Actual model and ensemble settings disagree")
     previous=nothing;target=settings["solver"]["initial_target_states"];previous_potential=nothing
     probe=randn(MersenneTwister(settings["seeds"]["potential_probe"]),ComplexF64,2length(ctx.basis.kpoints[1].G_vectors),1);probe/=norm(probe)
+    end
+    RunDiagnostics.boundary!(diagnostics,:scf_initialization_after)
     map=function(n_in,imap,closing)
         _runtime_check_settings(ctx,settings,settings_stamp)
         _runtime_call(()->progress((;event="map_input_checkpoint",map_index=imap,is_closure=closing,n_in=copy(n_in))),ctx,:progress_callback;
-            settings,stamp=settings_stamp)
-        mapped=soc_map(ctx,n_in,settings,previous,target;seed,map_index=imap,is_closure=closing,previous_potential,probe,hooks,progress)
+            settings,stamp=settings_stamp,diagnostics)
+        mapped=soc_map(ctx,n_in,settings,previous,target;seed,map_index=imap,is_closure=closing,previous_potential,probe,hooks,progress,diagnostics)
         previous=mapped.raw.all_X;target=mapped.target;previous_potential=copy(mapped.potential)
         mapped
     end
@@ -191,17 +224,17 @@ function soc_scf(ctx,n0,settings;seed,callback=(r,raw)->nothing,progress=(r)->no
         payload=FI.runtime_enabled(ctx) && !isnothing(raw) ?
             _runtime_callback_payload(record,raw) : nothing
         _runtime_call(()->callback(record,raw),ctx,:map_callback;
-            ham=isnothing(raw) ? nothing : raw.energy.ham,settings,stamp=settings_stamp,payload)
+            ham=isnothing(raw) ? nothing : raw.energy.ham,settings,stamp=settings_stamp,payload,diagnostics)
     end
     if !isnothing(diagnostic_map_limit)
         return _extra_diagnostic_iteration(ctx,map,n0;callback=guarded_callback,limit=diagnostic_map_limit,
             dvol=ctx.basis.dvol,alpha=settings["scf"]["alpha"],max_maps=settings["scf"]["max_maps"],
             density_tol=settings["thresholds"]["density_fixedpoint_l2"],electron_tol=settings["thresholds"]["electron_count_abs"],
-            n_electrons=ctx.basis.model.n_electrons)
+            n_electrons=ctx.basis.model.n_electrons,diagnostics)
     end
     _runtime_iterate_density_map(ctx,map,n0;dvol=ctx.basis.dvol,alpha=settings["scf"]["alpha"],max_maps=settings["scf"]["max_maps"],
         density_tol=settings["thresholds"]["density_fixedpoint_l2"],electron_tol=settings["thresholds"]["electron_count_abs"],
-        n_electrons=ctx.basis.model.n_electrons,callback=guarded_callback)
+        n_electrons=ctx.basis.model.n_electrons,callback=guarded_callback,diagnostics)
 end
 
 function _extra_diagnostic_iteration(ctx,map,n0;callback,limit,kwargs...)

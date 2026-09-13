@@ -1,3 +1,9 @@
+# Reuse one parent-owned module even when the driver loaded it before this module.
+if !isdefined(parentmodule(@__MODULE__), :WorkbenchDiagnostics)
+    Base.include(parentmodule(@__MODULE__), joinpath(@__DIR__, "../diagnostics.jl"))
+end
+const RunDiagnostics = getfield(parentmodule(@__MODULE__), :WorkbenchDiagnostics)
+
 # Charge-only Phase 5B controller. This file never calls scalar SCF.
 # The enclosing module imports DFTK, LinearAlgebra, Random, SHA, SpinorPrototype,
 # and includes energy.jl first.
@@ -44,7 +50,7 @@ The callback receives every completed map and a safe failure record on errors.
 """
 function iterate_density_map(map_density, n0; dvol, alpha=0.3, max_maps=200,
                              density_tol=1e-9, electron_tol=1e-8, n_electrons=8,
-                             callback=(record, raw)->nothing)
+                             callback=(record, raw)->nothing, diagnostics=nothing)
     isfinite(alpha) && 0 < alpha <= 1 || throw(ArgumentError("Mixing alpha must lie in (0,1]"))
     max_maps isa Integer && max_maps > 0 || throw(ArgumentError("Positive map budget required"))
     isfinite(density_tol) && density_tol > 0 || throw(ArgumentError("Positive density tolerance required"))
@@ -52,13 +58,23 @@ function iterate_density_map(map_density, n0; dvol, alpha=0.3, max_maps=200,
     n_in = copy(vec(n0))
     closing = false
     for imap in 1:max_maps
+        map_span=RunDiagnostics.start_span!(diagnostics,:map_total;map_index=imap)
+        map_failure=nothing
         record = Dict{String,Any}("map_index"=>imap,
             "map_role"=>closing ? "closure" : "iteration", "status"=>"RUNNING")
         raw = nothing
         try
+            RunDiagnostics.boundary!(diagnostics,:map_before;map_index=imap)
+            local sin
+            RunDiagnostics.@span diagnostics :controller_input imap 0 begin
             sin = density_summary(n_in, dvol; electron_tol, n_electrons)
             record["n_in"] = sin
-            mapped = map_density(copy(n_in), imap, closing)
+            end
+            mapped = RunDiagnostics.with_span(diagnostics,:map_compute;map_index=imap) do
+                map_density(copy(n_in), imap, closing)
+            end
+            local n_out,sout,diag,residual,n_mixed,smixed,candidate,converged,next_is_closure,n_next,snext
+            RunDiagnostics.@span diagnostics :controller_residual_mixing imap 0 begin
             raw = mapped.raw
             n_out = copy(vec(mapped.n_out))
             size(n_out) == size(n_in) || throw(DimensionMismatch("Density map changed grid size"))
@@ -92,19 +108,32 @@ function iterate_density_map(map_density, n0; dvol, alpha=0.3, max_maps=200,
                 record["failure_reason"] = "Maximum density-map count reached without closure acceptance"
             end
             push!(history, record)
-            callback(record, raw)
+            end
+            RunDiagnostics.@span diagnostics :map_output_callback imap 0 callback(record, raw)
+            RunDiagnostics.boundary!(diagnostics,:map_after;map_index=imap)
             converged && return (; raw, history, map_count=imap, converged=true,
                                   status="PASS", n_in=copy(n_in), n_out)
             imap == max_maps && throw(DensityMapFailure(record["failure_reason"], history))
             n_in = n_next
             closing = next_is_closure
         catch err
+            map_failure=err
+            err isa RunDiagnostics.ControlledStop && rethrow()
             err isa DensityMapFailure && rethrow()
             record["status"] = "FAIL"
             record["failure_reason"] = sprint(showerror, err)
             (isempty(history) || last(history) !== record) && push!(history, record)
-            callback(record, raw)
+            try
+                callback(record, raw)
+            catch callback_error
+                # A stop cannot hide a numerical/write error already in flight.
+                callback_error isa RunDiagnostics.ControlledStop &&
+                    throw(CompositeException([err,callback_error]))
+                rethrow()
+            end
             throw(DensityMapFailure(record["failure_reason"], history))
+        finally
+            RunDiagnostics.close_preserving!(diagnostics,map_span,map_failure)
         end
     end
     error("Unreachable density-map controller state")

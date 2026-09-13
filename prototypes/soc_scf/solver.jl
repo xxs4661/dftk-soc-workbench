@@ -91,21 +91,26 @@ function solver_initial(previous,nrows,ncolumns,seed)
 end
 
 function solve_soc_targets(ctx,ham,previous,target,settings;seed,map_index,extension_index=0,
-                           solve_hook=nothing,progress=(record)->nothing)
+                           solve_hook=nothing,progress=(record)->nothing,diagnostics=nothing)
     settings_stamp=_runtime_settings_stamp(ctx,settings)
     s,t=settings["solver"],settings["thresholds"]
     ncolumns=target+s["auxiliary_states"]
     kinetic=only(filter(x->x isa DFTK.TermKinetic,ctx.basis.terms)).kinetic_energies
     orbitals=Matrix{ComplexF64}[];all_X=Matrix{ComplexF64}[];eigenvalues=Vector{Float64}[];records=NamedTuple[]
     for (ik,H) in enumerate(ham)
+        RunDiagnostics.@span diagnostics :k_total map_index ik begin
+        RunDiagnostics.boundary!(diagnostics,:k_before;map_index,k_index=ik)
+        local old,derived_seed,initial,saved,initial_gram,prec
+        RunDiagnostics.@span diagnostics :initial_subspace map_index ik begin
         old=isnothing(previous) ? nothing : previous[ik]
         derived_seed=seed+ik-1+(extension_index==0 ? 0 : settings["seeds"]["extension_stride"]*extension_index+1000map_index)
         initial=solver_initial(old,size(H,1),ncolumns,derived_seed);saved=copy(initial)
         initial_gram=norm(initial'initial-I)
         initial_gram<=t["gram_norm"] || error("Initial whole-spinor QR Gram check failed")
         prec=ComponentKineticPreconditioner(kinetic[ik],2;shift=s["preconditioner_shift_ha"])
+        end
         FI.reset_full_counters!(H);started=time()
-        eig=_runtime_call(ctx,:eigensolve;ham=(H,),settings,stamp=settings_stamp) do
+        eig=_runtime_call(ctx,:eigensolve;ham=(H,),settings,stamp=settings_stamp,diagnostics) do
             isnothing(solve_hook) ? DFTK.lobpcg_hyper(H,initial;prec,tol=s["tolerance_ha"],maxiter=s["maxiter"],miniter=1,n_conv_check=target) :
                 solve_hook(H,initial,prec,ik,map_index)
         end
@@ -113,9 +118,11 @@ function solve_soc_targets(ctx,ham,previous,target,settings;seed,map_index,exten
         if eig.converged!==true || eig.n_iter<=0
             state=hasproperty(eig,:X) && hasproperty(eig,:λ) ? (;X=eig.X,eigenvalues_ha=eig.λ) : nothing
             _runtime_call(()->progress((;event="failed_target_solve",map_index,k_index=ik,converged=eig.converged,iterations=eig.n_iter,state)),ctx,:progress_callback;
-                ham=(H,),settings,stamp=settings_stamp,payload=state)
+                ham=(H,),settings,stamp=settings_stamp,payload=state,diagnostics)
             error("SOC diagonalization failed or used zero iterations")
         end
+        local x,lambda,hx,residuals,record
+        RunDiagnostics.@span diagnostics :explicit_eigen_checks map_index ik begin
         initial==saved || error("Eigensolver changed its input subspace")
         size(eig.X)==(size(H,1),ncolumns) && length(eig.λ)==ncolumns || error("Eigensolver returned wrong state counts")
         all(isfinite,eig.X) && all(isfinite,eig.λ) || error("Nonfinite SOC eigenresult")
@@ -129,29 +136,35 @@ function solve_soc_targets(ctx,ham,previous,target,settings;seed,map_index,exten
             converged=eig.converged,iterations=eig.n_iter,elapsed_seconds=time()-started,
             solver_n_matvec=eig.n_matvec,operator_counts=counts,counts_after_explicit_residual=FI.full_operator_stats(H),
             eigenvalues_ha=lambda,explicit_residuals_ha=residuals,orthogonality_frobenius=norm(x'x-I))
+        end
         # Raw arrays stay in ignored checkpoints; callback mutation cannot cross
         # the owned runtime's source/potential/settings boundary unnoticed.
         _runtime_call(()->progress((;event="target_solve",record,state=(;X=x,all_X=Matrix(eig.X),eigenvalues_ha=lambda))),ctx,:progress_callback;
-            ham=(H,),settings,stamp=settings_stamp,payload=(;x,all_X=eig.X,lambda,record))
+            ham=(H,),settings,stamp=settings_stamp,payload=(;x,all_X=eig.X,lambda,record),diagnostics)
         FI.assert_eigensolve_record(record,settings)
         push!(orbitals,x);push!(all_X,Matrix(eig.X));push!(eigenvalues,lambda);push!(records,record)
+        RunDiagnostics.boundary!(diagnostics,:k_after;map_index,k_index=ik)
+        end
     end
     (;X=orbitals,all_X,eigenvalues,records,target)
 end
 
-function solve_with_band_check(ctx,ham,previous,target,settings;seed,map_index,solve_hook=nothing,progress=(record)->nothing)
+function solve_with_band_check(ctx,ham,previous,target,settings;seed,map_index,solve_hook=nothing,progress=(record)->nothing,diagnostics=nothing)
     settings_stamp=_runtime_settings_stamp(ctx,settings)
     allow_expansion=get(settings["solver"],"allow_band_expansion",true)
     allow_expansion isa Bool || throw(ArgumentError("allow_band_expansion must be boolean"))
     attempts=NamedTuple[];warm=previous;expansion=0
     while true
-        solved=solve_soc_targets(ctx,ham,warm,target,settings;seed,map_index,extension_index=expansion,solve_hook,progress)
+        solved=solve_soc_targets(ctx,ham,warm,target,settings;seed,map_index,extension_index=expansion,solve_hook,progress,diagnostics)
+        local ensemble,band
+        RunDiagnostics.@span diagnostics :global_fd_tail_check map_index 0 begin
         ensemble=fermi_occupations(solved.eigenvalues,ctx.basis.kweights,ctx.basis.model.n_electrons,ctx.basis.model.temperature;
             electron_tol=settings["ensemble"]["root_electron_atol"],maxiter=settings["ensemble"]["root_maxiter"])
         band=band_completeness(ensemble.f;threshold=settings["ensemble"]["boundary_occupation_max"])
         push!(attempts,(;target,band,occupation=ensemble.report,per_k=solved.records))
+        end
         _runtime_call(()->progress((;map_index,event="band_completeness",attempt=last(attempts))),ctx,:progress_callback;
-            ham,settings,stamp=settings_stamp,payload=last(attempts))
+            ham,settings,stamp=settings_stamp,payload=last(attempts),diagnostics)
         band.status=="PASS" && return (;solved,ensemble,band,attempts)
         allow_expansion || throw(EnsembleError("INSUFFICIENT_BANDS",
             "At $target targets, highest two occupations exceed the declared threshold; this case forbids band expansion"))

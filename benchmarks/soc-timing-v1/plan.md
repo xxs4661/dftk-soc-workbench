@@ -8,7 +8,8 @@ remain historical facts. Their uninstrumented time will not be assigned new cost
 
 Implementation boundary: a small default-off scalar timer/typed-stop helper;
 `prototypes/soc_scf/{scf,solver}.jl` and the shared spinor controller for boundary
-wrappers only; the existing Si driver plus thin diagnostic routing; the existing
+wrappers only; `prototypes/fr_integration/energy.jl` for already-executed nested
+density/H/energy spans; the existing Si driver plus thin diagnostic routing; the existing
 Python executor/recorder hooks for owned-process control. No matrix-core,
 physics, solver/mixing formula, frozen environment, input or historical evidence
 changes. Preserve existing validation, fingerprints, checkpoint writes and RNG.
