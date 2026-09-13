@@ -215,5 +215,25 @@
   },
   "final_packaging_note": "Candidate is checked at the named SHA. Final packaging clone/push receipts will be preserved externally to avoid a self-referential receipt commit.",
   "scientific_status": "DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED",
-  "historical_K6": "USER_CANCELLED; native -2 / recorder 9; runtime close unconfirmed; no qualified endpoint; resume unverified; unchanged"
+  "historical_K6": "USER_CANCELLED; native -2 / recorder 9; runtime close unconfirmed; no qualified endpoint; resume unverified; unchanged",
+  "public_csv_format_correction": {
+    "old_full_range_diff_check_exit_code": 2,
+    "corrected_full_range_diff_check_exit_code": 0,
+    "corrections": [
+      {
+        "path": "timing.csv",
+        "old_public_sha256": "30543d8dcfe49b2850c061e008dab9a4574c8216091e018a21d5fde928e3b184",
+        "new_public_sha256": "edd72adde07a9a846b7fa0b3ae4611d1c2eaa5345d2d79926baefe7a2797dd7e",
+        "csv_cells_identical": true,
+        "scope": "CRLF to LF only; original raw files and archived projection retained"
+      },
+      {
+        "path": "phases.csv",
+        "old_public_sha256": "11f71aab068d5d3c64ca99facab680189164f65b6ed530c12622b7811a495c26",
+        "new_public_sha256": "b7ee9f7eb1563ec67b04a0faef5d84be3a4ab1a376a175f5131ac806227a2aea",
+        "csv_cells_identical": true,
+        "scope": "CRLF to LF only; original raw files and archived projection retained"
+      }
+    ]
+  }
 }

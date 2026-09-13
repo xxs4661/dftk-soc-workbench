@@ -154,12 +154,12 @@
     "cancel-test-logs.json.gz": "2bf1a717cbf60903deb31a5b1a838dcfe630f79c1e9e7e5cbaca4861b0faf867",
     "cancel-test-native.json.gz": "8d1b06ce72dc6bb08f7adb56aa90947f4badac8e9c58fd3f15ab089d85259d21",
     "cancel-tests.json": "1e7edcac3a1b1446ec06fe07127cddb3ae1d953af8464f87a8a1d7d8ed9bb1b1",
-    "delivery-checks.json": "c23690fd28283ae1dfe01adabf1fc0d798350429961a3ebeb8b3456adbd257f8",
+    "delivery-checks.json": "bae2800846fa4d57b5af69f1da2eb9258bbbe616483a8b182456fd6246ec3d46",
     "execution-identities.json.gz": "3a00b01d29c04eade399a1c0303a16be68e37bae6d193651dee24cfbe15a38e9",
     "map-spectra.json.gz": "93664db95ed343a7512687990e661649986e3a944079b24824fbd4d169b86882",
     "maps-summary.json": "c4a82394f304ced8f9f12fcf76d5bb2bd1e75533322eabcf0f81fab033514b97",
     "native-streams.json.gz": "55d59aad30f948a991bc2aa6040e0be95925dcf1e8964bd9a71a4453b8d6f244",
-    "phases.csv": "11f71aab068d5d3c64ca99facab680189164f65b6ed530c12622b7811a495c26",
+    "phases.csv": "b7ee9f7eb1563ec67b04a0faef5d84be3a4ab1a376a175f5131ac806227a2aea",
     "post-execution-checks.json.gz": "29134202815a02d65ed16ebe88d54f916ce91eb5d9533a593b7a19ce7cf4b020",
     "preparation-checks.json.gz": "01cd2c7e60e17f4458b60f3b73e3bbba47888116ff94a5533e077973792d8341",
     "raw-identities.json": "bd8cc39c85b3326e192d5efa71ce16a6950f5f612ad9004368ea91e37fb84740",
@@ -167,7 +167,7 @@
     "solver-records.json.gz": "d294920753e4c523bcafc58b1876c02b91a2809b65a11fd348964331e280f9c2",
     "tests-summary.md": "cc96a10b00cc885c757bf77c4f833197f93acf066e6149e8e55b66e0521d6dac",
     "timing-schema.md": "e171f4b0ce76c346e15b4360166300230853dda3394cbe0ceddb63efb581a064",
-    "timing.csv": "30543d8dcfe49b2850c061e008dab9a4574c8216091e018a21d5fde928e3b184"
+    "timing.csv": "edd72adde07a9a846b7fa0b3ae4611d1c2eaa5345d2d79926baefe7a2797dd7e"
   },
   "projection_selection": "Per-k values have one canonical compressed solver/spectrum source. Derived summaries reference those packs rather than duplicating raw per-k records."
 }
