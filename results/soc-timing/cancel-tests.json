@@ -1,0 +1,1918 @@
+{
+  "additional_checks": [
+    {
+      "exit_code": 0,
+      "name": "loaded policy types, limits and minimum deadline",
+      "scope": "pure protocol; no launch",
+      "tests_passed": 1
+    },
+    {
+      "Sys_maxrss_bytes": 267304960,
+      "exit_code": 0,
+      "helper_bytes": 267304960,
+      "julia": "1.12.7",
+      "name": "Sys.maxrss() API units",
+      "scope": "stdlib synthetic; no DFTK/context; bytes are not multiplied on Linux",
+      "tests_passed": 1
+    },
+    {
+      "exit_code": 0,
+      "name": "old resource contract",
+      "tests_passed": 13
+    },
+    {
+      "exit_code": 0,
+      "name": "old monitor chain first invocation",
+      "skip_reason": "Existing frozen JULIA_DEPOT_PATH was not explicitly selected",
+      "tests_passed": 6,
+      "tests_skipped": 1
+    },
+    {
+      "exit_code": 0,
+      "name": "old actual Julia boundary selected follow-up",
+      "scope": "definition-only synthetic boundary; existing frozen depot; no electronic structure",
+      "tests_passed": 1,
+      "tests_skipped": 0
+    }
+  ],
+  "artifacts": {
+    "logs": {
+      "bytes": 6547,
+      "compression": "gzip",
+      "content": "UTF-8 JSON; per-file raw/public hashes inside",
+      "path": "cancel-test-logs.json.gz",
+      "public_bytes": 44253,
+      "public_sha256": "718a531e9179d4e1cc0e139d28cb269f4d1108bacf03751363b02e9e715f5413",
+      "sha256": "2bf1a717cbf60903deb31a5b1a838dcfe630f79c1e9e7e5cbaca4861b0faf867"
+    },
+    "native": {
+      "bytes": 12640,
+      "compression": "gzip",
+      "content": "UTF-8 JSON; per-file raw/public hashes inside",
+      "path": "cancel-test-native.json.gz",
+      "public_bytes": 107020,
+      "public_sha256": "f22c6fe50d6740513f4008f9f1fd57600f8050e8ea3502a283f9197bc6c57283",
+      "sha256": "8d1b06ce72dc6bb08f7adb56aa90947f4badac8e9c58fd3f15ab089d85259d21"
+    }
+  },
+  "budget": {
+    "attempts": [
+      {
+        "name": "new-suite-attempt1",
+        "seconds_as_communicated": 80.184,
+        "timing_source": "unittest printed wall; retained failure exit 1"
+      },
+      {
+        "name": "new-suite-attempt2",
+        "seconds_as_communicated": 10.433,
+        "timing_source": "unittest printed wall; retained failure exit 1"
+      },
+      {
+        "name": "new-suite-attempt3",
+        "seconds_as_communicated": 13.025,
+        "timing_source": "unittest printed wall; 13 passing assertions / 12 launched worker records"
+      },
+      {
+        "name": "TOML-Int128-diagnostic",
+        "seconds_as_communicated": 0.68,
+        "timing_source": "tool-reported lightweight diagnostic wall; no persistent timer receipt, retained conversation observation; no signal"
+      },
+      {
+        "name": "loaded-policy-pure",
+        "seconds_as_communicated": 0.006,
+        "timing_source": "unittest printed wall; no worker or signal"
+      },
+      {
+        "name": "Sys.maxrss-unit-pure",
+        "seconds_as_communicated": 0.1,
+        "timing_source": "tool-reported lightweight Julia stdlib wall; no persistent timer receipt, stdout/stderr retained; no signal"
+      },
+      {
+        "name": "old-resource-regressions",
+        "seconds_as_communicated": 2.252,
+        "timing_source": "outer recorded 2.2518808750028256 seconds, rounded conservatively"
+      },
+      {
+        "name": "old-monitor-regressions",
+        "seconds_as_communicated": 4.453,
+        "timing_source": "outer recorded 4.452695582993329 seconds, rounded conservatively; 6 pass / 1 skipped"
+      },
+      {
+        "name": "old-actual-Julia-boundary",
+        "seconds_as_communicated": 1.184,
+        "timing_source": "outer recorded 1.1840976250095991 seconds; 1 pass after explicit existing depot selection"
+      }
+    ],
+    "communicated_cumulative_seconds": 112.317,
+    "exact_cumulative_instrument_total": null,
+    "limit_seconds": 300,
+    "note": "Cumulative value preserves the communicated total of rounded per-attempt durations, including sandbox failures and lightweight diagnostics. It is not an exact common-clock measurement; old boundary 1.184097625 seconds is rounded to 1.184. Remaining margin exceeds 187 seconds.",
+    "status": "WITHIN_LIMIT"
+  },
+  "delivery_source_files": [
+    {
+      "bytes": 20056,
+      "path": "benchmarks/soc-timing-v1/control.py",
+      "sha256": "fcf6e4d30e840d4df996650049eb50f506f1ee67a4d1902fa7aac67a53f7bc13"
+    },
+    {
+      "bytes": 6237,
+      "path": "benchmarks/soc-timing-v1/control.jl",
+      "sha256": "45b2539465dc7131f9ff6ef685fdd2cd4130ac5b5f1be5db73fa373b399e59aa"
+    },
+    {
+      "bytes": 55891,
+      "path": "scripts/si_qe_reference_evidence.py",
+      "sha256": "331c27571314c08c84cad6a99d0c2e8a7eb04e0525d4bbae0c1f024e9398ce8a"
+    },
+    {
+      "bytes": 15814,
+      "path": "tests/test_soc_timing_control.py",
+      "sha256": "4527c0f2732d1ad6d7eeebcf5dbe87ae4db8fcb0b83a271c44ea681b7ee499c7"
+    }
+  ],
+  "earlier_attempts": [
+    {
+      "attempt": 1,
+      "cause": [
+        "Sandbox denied ps before launcher execution; actual native codes are null; readiness observers then reached their own deadlines. No physical worker ran."
+      ],
+      "failed_tests": 12,
+      "raw_summary_sha256": "a33ae1b5557d1378920bd7bd64471fb8c9d3c8b3edf0e7c60d0dcf1e120dc858",
+      "recorded_elapsed_seconds": 80.18309262499679,
+      "source_path": ".work/soc-timing/cancel-tests/synthetic-7e6ac04fff714df6bebe7f0e4b3f1331/cancel-tests.json",
+      "suite_exit_code": 1,
+      "tests_run": 12,
+      "worker_outcomes": [
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": true,
+          "mode": "cooperate",
+          "native_exit_code": null,
+          "observer_errors": [
+            "RuntimeError('Synthetic ready deadline')"
+          ],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "cooperate-b4b90440",
+          "signals": null,
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": true,
+          "mode": "raw_sigint",
+          "native_exit_code": null,
+          "observer_errors": [
+            "RuntimeError('Synthetic ready deadline')"
+          ],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "raw_sigint-ef223ebd",
+          "signals": null,
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": true,
+          "mode": "catch_sigint",
+          "native_exit_code": null,
+          "observer_errors": [
+            "RuntimeError('Synthetic ready deadline')"
+          ],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "catch_sigint-f8cedea1",
+          "signals": null,
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "writefail",
+          "native_exit_code": null,
+          "observer_errors": [
+            "RuntimeError('Synthetic ready deadline')"
+          ],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "writefail-63a176c2",
+          "signals": null,
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "wait",
+          "native_exit_code": null,
+          "observer_errors": [],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "wait-50186dce",
+          "signals": null,
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "missing",
+          "native_exit_code": null,
+          "observer_errors": [],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "missing-6924480d",
+          "signals": null,
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "contradict",
+          "native_exit_code": null,
+          "observer_errors": [],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "contradict-286ca22b",
+          "signals": null,
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "normal",
+          "native_exit_code": null,
+          "observer_errors": [],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "normal-93dbfa04",
+          "signals": null,
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "orphan",
+          "native_exit_code": null,
+          "observer_errors": [
+            "RuntimeError('Synthetic ready deadline')"
+          ],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "orphan-50e8340e",
+          "signals": null,
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "swallow",
+          "native_exit_code": null,
+          "observer_errors": [
+            "RuntimeError('Synthetic ready deadline')"
+          ],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "swallow-5569a080",
+          "signals": null,
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "ignore",
+          "native_exit_code": null,
+          "observer_errors": [
+            "RuntimeError('Synthetic ready deadline')"
+          ],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "ignore-dfc325d0",
+          "signals": null,
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "wait",
+          "native_exit_code": null,
+          "observer_errors": [
+            "RuntimeError('Synthetic ready deadline')"
+          ],
+          "process_cleanup": null,
+          "recorder_exit_code": 9,
+          "run_id": "wait-07273634",
+          "signals": null,
+          "worker_exit_code": null
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "cause": [
+        "Julia cooperative request rejected valid epoch-nanoseconds parsed by TOML as Int128; synthetic 0.35-second grace also expired before exit, resulting native -15/recorder 9. Fixed Integer/range check and used 2-second Julia-only synthetic grace; real grace remains 120 seconds.",
+        "Default Julia SIGINT retained native -2 but cleanup of observed descendants made status FORCED_TERMINATION; test was corrected to require the actual signal and cleanup facts instead of one particular presentation label.",
+        "Detached-child fixture exited before ownership observation; it now waits until the child is actually observed before cancellation. This does not claim to discover descendants that escape before the first observation."
+      ],
+      "failed_tests": 3,
+      "raw_summary_sha256": "a83db30c1c499b4a2bfd35d52baa4a2bad77255de405bd068af2412f742f920c",
+      "recorded_elapsed_seconds": 10.432226832999731,
+      "source_path": ".work/soc-timing/cancel-tests/synthetic-c0cf2e5a54324a4aa81a09a47a2d96df/cancel-tests.json",
+      "suite_exit_code": 1,
+      "tests_run": 12,
+      "worker_outcomes": [
+        {
+          "execution_status": "FORCED_TERMINATION",
+          "forced_termination": true,
+          "julia": true,
+          "mode": "cooperate",
+          "native_exit_code": -15,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 9,
+          "run_id": "cooperate-6055feb5",
+          "signals": [
+            {
+              "elapsed_seconds": 1.5370644170034211,
+              "owned_pids": [
+                81135,
+                81138,
+                81139
+              ],
+              "signal": "SIGTERM"
+            }
+          ],
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FORCED_TERMINATION",
+          "forced_termination": true,
+          "julia": true,
+          "mode": "raw_sigint",
+          "native_exit_code": -2,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 9,
+          "run_id": "raw_sigint-65383e21",
+          "signals": [
+            {
+              "elapsed_seconds": 1.0841410419961903,
+              "owned_pids": [
+                81166,
+                81167
+              ],
+              "signal": "SIGTERM"
+            }
+          ],
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": true,
+          "julia": true,
+          "mode": "catch_sigint",
+          "native_exit_code": 1,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 1,
+          "run_id": "catch_sigint-733d7e4b",
+          "signals": [
+            {
+              "elapsed_seconds": 1.7622709580027731,
+              "owned_pids": [
+                81191,
+                81192
+              ],
+              "signal": "SIGTERM"
+            }
+          ],
+          "worker_exit_code": 1
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "writefail",
+          "native_exit_code": 1,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 1,
+          "run_id": "writefail-1b859ddd",
+          "signals": [],
+          "worker_exit_code": 1
+        },
+        {
+          "execution_status": "TIME_BUDGET_EXCEEDED",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "wait",
+          "native_exit_code": 124,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 124,
+          "run_id": "wait-20137373",
+          "signals": [],
+          "worker_exit_code": 124
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "missing",
+          "native_exit_code": 3,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 9,
+          "run_id": "missing-fa1881bf",
+          "signals": [],
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "contradict",
+          "native_exit_code": 7,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 9,
+          "run_id": "contradict-aea9841e",
+          "signals": [],
+          "worker_exit_code": 0
+        },
+        {
+          "execution_status": "DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "normal",
+          "native_exit_code": 0,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 0,
+          "run_id": "normal-a1556597",
+          "signals": [],
+          "worker_exit_code": 0
+        },
+        {
+          "execution_status": "USER_CANCELLED",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "orphan",
+          "native_exit_code": 130,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 130,
+          "run_id": "orphan-b033efcc",
+          "signals": [],
+          "worker_exit_code": 130
+        },
+        {
+          "execution_status": "FAIL",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "swallow",
+          "native_exit_code": 0,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 9,
+          "run_id": "swallow-cf8ab255",
+          "signals": [],
+          "worker_exit_code": 0
+        },
+        {
+          "execution_status": "FORCED_TERMINATION",
+          "forced_termination": true,
+          "julia": false,
+          "mode": "ignore",
+          "native_exit_code": -9,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 9,
+          "run_id": "ignore-c18edf01",
+          "signals": [
+            {
+              "elapsed_seconds": 0.5218632920004893,
+              "owned_pids": [
+                81265
+              ],
+              "signal": "SIGTERM"
+            },
+            {
+              "elapsed_seconds": 0.73487012500118,
+              "owned_pids": [
+                81265
+              ],
+              "signal": "SIGKILL"
+            }
+          ],
+          "worker_exit_code": null
+        },
+        {
+          "execution_status": "USER_CANCELLED",
+          "forced_termination": false,
+          "julia": false,
+          "mode": "wait",
+          "native_exit_code": 130,
+          "observer_errors": [],
+          "process_cleanup": "PASS",
+          "recorder_exit_code": 130,
+          "run_id": "wait-31e4ab21",
+          "signals": [],
+          "worker_exit_code": 130
+        }
+      ]
+    }
+  ],
+  "final_suite": {
+    "elapsed_seconds": 13.024652459003846,
+    "exit_code": 0,
+    "raw_sha256": "3430bdd1b4835d1c7ce42540a5a33ea79884eb7222e965a70257f97a80f411dc",
+    "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/cancel-tests.json",
+    "test_names": [
+      "test_actual_julia_script_cooperative_boundary",
+      "test_actual_julia_script_default_sigint_preserved",
+      "test_actual_julia_script_explicit_catch_sigint",
+      "test_cancellation_write_error_preserves_both",
+      "test_independent_timeout",
+      "test_missing_and_contradictory_worker_receipts",
+      "test_normal_diagnostic",
+      "test_parent_exit_still_cleans_observed_child",
+      "test_precontext_cancel_is_not_fabricated_runtime_close",
+      "test_request_identity_latch_stale_and_aliases",
+      "test_swallowed_stop_cannot_become_success",
+      "test_uncooperative_escalation_and_unrelated_survives",
+      "test_user_cancel_real_cli"
+    ],
+    "tests_passed": 13,
+    "tests_run": 13,
+    "worker_records": 12
+  },
+  "identity_note": "a*40 / b*40 / c*64 identities in worker fixtures are deliberate synthetic values, not a tested Git commit or physical case; final actual source bytes are listed separately.",
+  "limitations": [
+    "Normal synthetic diagnostic status and completed_maps=2 are fixture fields, not real SCF or density maps.",
+    "USER_CANCELLED/130 can coexist with forced termination of remaining owned descendants. The original control, resource and outer statuses are retained; this is not a claim of wholly signal-free shutdown.",
+    "Native Julia SIGINT was -2 with no worker receipt; explicit catch produced native/worker/recorder 1 and retained InterruptException. Neither is rewritten as a clean 130 exit.",
+    "Forced cleanup covers authenticated, previously observed owned processes. It cannot prove discovery of an unobserved descendant escaping before sampling.",
+    "Unrelated-process survival was checked by its original subprocess handle during the ignore/TERM/KILL test; the passing assertion is in the native unittest log.",
+    "Real 120/10/5-second grace settings were not consumed in these bounded synthetic tests; fixtures use shorter declared waits. No actual scientific cancellation has yet been tested.",
+    "Resource status RESOURCE_BLOCKED appears in legacy sampler receipts for forced cooperative cleanup even when the originating reason is user cancellation; the raw label is preserved."
+  ],
+  "public_preparation_only": true,
+  "records": [
+    {
+      "action": "cancel",
+      "control_sha256": "b7b054f4622137572b4a46362a8cc4978a2ef70c98eb97e9f00ee17ecf46be57",
+      "control_status": "USER_CANCELLED",
+      "control_unchanged": true,
+      "execution_status": "USER_CANCELLED",
+      "external_test_signal": null,
+      "forced_termination": true,
+      "julia": true,
+      "mode": "cooperate",
+      "native_exit_code": 130,
+      "nonempty_samples": 24,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 359530496,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/0",
+      "recorder_exit_code": 130,
+      "recorder_reason": null,
+      "resource_policy_status": "RESOURCE_BLOCKED",
+      "resource_reason": "Cooperative request exceeded its bounded grace; forced termination",
+      "resource_status": "RESOURCE_BLOCKED",
+      "run_id": "cooperate-ca4dab99",
+      "runtime_closed": true,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [
+        {
+          "elapsed_seconds": 3.0886896250012796,
+          "owned_pids": [
+            81453
+          ],
+          "signal": "SIGTERM"
+        }
+      ],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 698,
+          "public_sha256": "b7b054f4622137572b4a46362a8cc4978a2ef70c98eb97e9f00ee17ecf46be57",
+          "raw_bytes": 698,
+          "raw_sha256": "b7b054f4622137572b4a46362a8cc4978a2ef70c98eb97e9f00ee17ecf46be57",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/cooperate-ca4dab99/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 101,
+          "public_sha256": "784181cd0632a51c202411eccd56f9b374f9dec8ca85445987066aa27f5a4c85",
+          "raw_bytes": 101,
+          "raw_sha256": "784181cd0632a51c202411eccd56f9b374f9dec8ca85445987066aa27f5a4c85",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/cooperate-ca4dab99/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/cooperate-ca4dab99/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/cooperate-ca4dab99/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 1199,
+          "public_sha256": "3164bf8180d35fa2348723aed0ba2ae1f82e7f655b1d4c6dc4075529896fce57",
+          "raw_bytes": 1199,
+          "raw_sha256": "3164bf8180d35fa2348723aed0ba2ae1f82e7f655b1d4c6dc4075529896fce57",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/cooperate-ca4dab99/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 5273,
+          "public_sha256": "8d61aba7ce7b39bf3cc566acb239aab50f31c78365a0e7bc4018e427368c509d",
+          "raw_bytes": 5273,
+          "raw_sha256": "8d61aba7ce7b39bf3cc566acb239aab50f31c78365a0e7bc4018e427368c509d",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/cooperate-ca4dab99/result.json"
+        },
+        "stop-ack.toml": {
+          "public_bytes": 490,
+          "public_sha256": "022217e606e9e60641c3e46a15b20cf9b1e95b9e7da272879d9349961d2e362e",
+          "raw_bytes": 490,
+          "raw_sha256": "022217e606e9e60641c3e46a15b20cf9b1e95b9e7da272879d9349961d2e362e",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/cooperate-ca4dab99/stop-ack.toml"
+        },
+        "stop-request.toml": {
+          "public_bytes": 450,
+          "public_sha256": "1cb28bbfb0ddf7c90b5c6c95033beebd140f7d0590bb283f0467ceede4c0fa27",
+          "raw_bytes": 450,
+          "raw_sha256": "1cb28bbfb0ddf7c90b5c6c95033beebd140f7d0590bb283f0467ceede4c0fa27",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/cooperate-ca4dab99/stop-request.toml"
+        },
+        "worker/result.json": {
+          "public_bytes": 2001,
+          "public_sha256": "5eea8041ac58f8e1a5be6de59b7e69e0b2f0eb2da9192c8b1af0a238987b4566",
+          "raw_bytes": 2001,
+          "raw_sha256": "5eea8041ac58f8e1a5be6de59b7e69e0b2f0eb2da9192c8b1af0a238987b4566",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/cooperate-ca4dab99/worker/result.json"
+        }
+      },
+      "stop_request": {
+        "control_sha256": "b7b054f4622137572b4a46362a8cc4978a2ef70c98eb97e9f00ee17ecf46be57",
+        "detail": "User requested cancellation",
+        "execution_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "nonce": "b0f4d25c655942af99928fa24cbffafe",
+        "reason": "USER_CANCELLED",
+        "request_id": "191086d1e74a4d4fa21b5b953714e0ac",
+        "request_sha256": "1cb28bbfb0ddf7c90b5c6c95033beebd140f7d0590bb283f0467ceede4c0fa27",
+        "requested_unix_ns": 1789313380864954000,
+        "run_id": "cooperate-ca4dab99",
+        "schema_version": 1,
+        "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "synthetic_grace_seconds": 2,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": {
+        "ack": {
+          "acknowledged_unix_ns": 1789313380872806912,
+          "boundary": "synthetic-loop",
+          "control_sha256": "b7b054f4622137572b4a46362a8cc4978a2ef70c98eb97e9f00ee17ecf46be57",
+          "execution_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "k_index": 1,
+          "map_index": 1,
+          "reason": "USER_CANCELLED",
+          "request_id": "191086d1e74a4d4fa21b5b953714e0ac",
+          "request_sha256": "1cb28bbfb0ddf7c90b5c6c95033beebd140f7d0590bb283f0467ceede4c0fa27",
+          "requested_unix_ns": 1789313380864954000,
+          "run_id": "cooperate-ca4dab99",
+          "schema_version": 1
+        },
+        "acknowledged_boundary": "synthetic-loop",
+        "acknowledged_unix_ns": 1789313380872806912,
+        "control_sha256": "b7b054f4622137572b4a46362a8cc4978a2ef70c98eb97e9f00ee17ecf46be57",
+        "first_request_id": "191086d1e74a4d4fa21b5b953714e0ac",
+        "first_request_sha256": "1cb28bbfb0ddf7c90b5c6c95033beebd140f7d0590bb283f0467ceede4c0fa27",
+        "last_boundary": "synthetic-closed",
+        "requested_unix_ns": 1789313380864954000,
+        "stop_reason": "USER_CANCELLED",
+        "stop_request": {
+          "control_sha256": "b7b054f4622137572b4a46362a8cc4978a2ef70c98eb97e9f00ee17ecf46be57",
+          "detail": "User requested cancellation",
+          "execution_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "nonce": "b0f4d25c655942af99928fa24cbffafe",
+          "reason": "USER_CANCELLED",
+          "request_id": "191086d1e74a4d4fa21b5b953714e0ac",
+          "requested_unix_ns": 1789313380864954000,
+          "run_id": "cooperate-ca4dab99",
+          "schema_version": 1,
+          "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }
+      },
+      "worker_errors": [],
+      "worker_exit_code": 130,
+      "worker_reason": "USER_CANCELLED at synthetic-loop (map=1, k=1)",
+      "worker_status": "USER_CANCELLED",
+      "workspace_released": true
+    },
+    {
+      "action": "sigint",
+      "control_sha256": "5ee6d0817121af485f583dabc2d1057c4f70c69b62a2df0c273b0aad906d3569",
+      "control_status": "NO_REQUEST",
+      "control_unchanged": true,
+      "execution_status": "FORCED_TERMINATION",
+      "external_test_signal": {
+        "authenticated_command": [
+          "$HOME/.juliaup/bin/julia",
+          "--startup-file=no",
+          "--project=@stdlib",
+          "$REPO/.work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/raw_sigint-ab44662e/synthetic.jl",
+          "$REPO",
+          "raw_sigint"
+        ],
+        "pid": 81506,
+        "signal": "SIGINT"
+      },
+      "forced_termination": true,
+      "julia": true,
+      "mode": "raw_sigint",
+      "native_exit_code": -2,
+      "nonempty_samples": 8,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 333217792,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/1",
+      "recorder_exit_code": 9,
+      "recorder_reason": "ValueError: Worker receipt missing",
+      "resource_policy_status": "RESOURCE_BLOCKED",
+      "resource_reason": "RESOURCE_BLOCKED: numerical descendants survived their recorded leader",
+      "resource_status": "RESOURCE_BLOCKED",
+      "run_id": "raw_sigint-ab44662e",
+      "runtime_closed": null,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [
+        {
+          "elapsed_seconds": 1.0697272499965038,
+          "owned_pids": [
+            81509
+          ],
+          "signal": "SIGTERM"
+        }
+      ],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 700,
+          "public_sha256": "5ee6d0817121af485f583dabc2d1057c4f70c69b62a2df0c273b0aad906d3569",
+          "raw_bytes": 700,
+          "raw_sha256": "5ee6d0817121af485f583dabc2d1057c4f70c69b62a2df0c273b0aad906d3569",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/raw_sigint-ab44662e/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 100,
+          "public_sha256": "c1d049adb2e2b65d7e4830f38b5d30b0b842adaba27fb9673b2aae60803624a3",
+          "raw_bytes": 100,
+          "raw_sha256": "c1d049adb2e2b65d7e4830f38b5d30b0b842adaba27fb9673b2aae60803624a3",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/raw_sigint-ab44662e/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 453,
+          "public_sha256": "d03748b1ba428ab6682fa9acdf82be01e061781d8c48931298eb2d1a31471a4c",
+          "raw_bytes": 503,
+          "raw_sha256": "2190208c7e762daad39f7ea2ae9c9fdc95edfd2e97d59adf211f48345436588e",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/raw_sigint-ab44662e/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/raw_sigint-ab44662e/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 936,
+          "public_sha256": "5335aa146a62a04fe58d450ccdcb40167eaee6fb1aeb6bff2faeba8366f7dd5b",
+          "raw_bytes": 936,
+          "raw_sha256": "5335aa146a62a04fe58d450ccdcb40167eaee6fb1aeb6bff2faeba8366f7dd5b",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/raw_sigint-ab44662e/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 2016,
+          "public_sha256": "416e9fdd99764e0446bd8dcb4afac084abba76745f5f2e7a49750a02cae9e772",
+          "raw_bytes": 2016,
+          "raw_sha256": "416e9fdd99764e0446bd8dcb4afac084abba76745f5f2e7a49750a02cae9e772",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/raw_sigint-ab44662e/result.json"
+        },
+        "signal.json": {
+          "public_bytes": 269,
+          "public_sha256": "626ca385d07f3dace71abdf86c3d535c5bf4993f5eb30af320dabb8d52f25a95",
+          "raw_bytes": 374,
+          "raw_sha256": "c17cbb349fae4c443d5676819139362b7b906e86bb9d70b339beedd6407b8364",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/raw_sigint-ab44662e/signal.json"
+        }
+      },
+      "stop_request": null,
+      "synthetic_grace_seconds": 2,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": null,
+      "worker_errors": null,
+      "worker_exit_code": null,
+      "worker_reason": null,
+      "worker_status": null,
+      "workspace_released": null
+    },
+    {
+      "action": "sigint",
+      "control_sha256": "fe8e0233e07c0376ae2cfa3bb08d3b9735df8f3f0cf35521e03b1ea261e898db",
+      "control_status": "NO_REQUEST",
+      "control_unchanged": true,
+      "execution_status": "FAIL",
+      "external_test_signal": {
+        "authenticated_command": [
+          "$HOME/.juliaup/bin/julia",
+          "--startup-file=no",
+          "--project=@stdlib",
+          "$REPO/.work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/catch_sigint-d0d3879a/synthetic.jl",
+          "$REPO",
+          "catch_sigint"
+        ],
+        "pid": 81528,
+        "signal": "SIGINT"
+      },
+      "forced_termination": true,
+      "julia": true,
+      "mode": "catch_sigint",
+      "native_exit_code": 1,
+      "nonempty_samples": 14,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 400326656,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/2",
+      "recorder_exit_code": 1,
+      "recorder_reason": null,
+      "resource_policy_status": "RESOURCE_BLOCKED",
+      "resource_reason": "RESOURCE_BLOCKED: numerical descendants survived their recorded leader",
+      "resource_status": "RESOURCE_BLOCKED",
+      "run_id": "catch_sigint-d0d3879a",
+      "runtime_closed": true,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [
+        {
+          "elapsed_seconds": 1.7704790419957135,
+          "owned_pids": [
+            81531
+          ],
+          "signal": "SIGTERM"
+        }
+      ],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 704,
+          "public_sha256": "fe8e0233e07c0376ae2cfa3bb08d3b9735df8f3f0cf35521e03b1ea261e898db",
+          "raw_bytes": 704,
+          "raw_sha256": "fe8e0233e07c0376ae2cfa3bb08d3b9735df8f3f0cf35521e03b1ea261e898db",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/catch_sigint-d0d3879a/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 99,
+          "public_sha256": "5f13213d1d4b3af79399dd5279c568f85ebaa42682db3e80e008620f0c526742",
+          "raw_bytes": 99,
+          "raw_sha256": "5f13213d1d4b3af79399dd5279c568f85ebaa42682db3e80e008620f0c526742",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/catch_sigint-d0d3879a/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 826,
+          "public_sha256": "b49d5f4187f3fff350429f0ef17536476810fc6020385df9249060aeca6a5808",
+          "raw_bytes": 826,
+          "raw_sha256": "b49d5f4187f3fff350429f0ef17536476810fc6020385df9249060aeca6a5808",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/catch_sigint-d0d3879a/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/catch_sigint-d0d3879a/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 937,
+          "public_sha256": "7f36da30e16fa82b69f296b4004f8aa0bea28a95d4ea771a388c2e00f90b63db",
+          "raw_bytes": 937,
+          "raw_sha256": "7f36da30e16fa82b69f296b4004f8aa0bea28a95d4ea771a388c2e00f90b63db",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/catch_sigint-d0d3879a/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 3006,
+          "public_sha256": "343db8e0015bc0f1d9ccc7538bdcc457b868936fbb730aa96a30770bfdbc18bc",
+          "raw_bytes": 3006,
+          "raw_sha256": "343db8e0015bc0f1d9ccc7538bdcc457b868936fbb730aa96a30770bfdbc18bc",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/catch_sigint-d0d3879a/result.json"
+        },
+        "signal.json": {
+          "public_bytes": 273,
+          "public_sha256": "df71e00827139590f8588604aaf5e565bbd5fccb5b094bb42b46d9ecbd2842e0",
+          "raw_bytes": 378,
+          "raw_sha256": "e2d270a757242e6faa4bfdcca595d4f634e8d2667b28bb072b83218de9bf4c12",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/catch_sigint-d0d3879a/signal.json"
+        },
+        "worker/result.json": {
+          "public_bytes": 889,
+          "public_sha256": "60d52fbc7a4d44953cd1d143ec604d9435e488a6d024fbc13e6cc573cccf0dc6",
+          "raw_bytes": 889,
+          "raw_sha256": "60d52fbc7a4d44953cd1d143ec604d9435e488a6d024fbc13e6cc573cccf0dc6",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/catch_sigint-d0d3879a/worker/result.json"
+        }
+      },
+      "stop_request": null,
+      "synthetic_grace_seconds": 2,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": {
+        "ack": null,
+        "acknowledged_boundary": null,
+        "acknowledged_unix_ns": null,
+        "control_sha256": "fe8e0233e07c0376ae2cfa3bb08d3b9735df8f3f0cf35521e03b1ea261e898db",
+        "first_request_id": null,
+        "first_request_sha256": null,
+        "last_boundary": "synthetic-closed",
+        "requested_unix_ns": null,
+        "stop_reason": null,
+        "stop_request": null
+      },
+      "worker_errors": [],
+      "worker_exit_code": 1,
+      "worker_reason": "InterruptException:",
+      "worker_status": "FAIL",
+      "workspace_released": true
+    },
+    {
+      "action": "cancel",
+      "control_sha256": "8f6a09f6e966438b6773e4ca345c51d60642f00e1658d1e4a5c5fe4f4811bc09",
+      "control_status": "NO_REQUEST",
+      "control_unchanged": true,
+      "execution_status": "FAIL",
+      "external_test_signal": null,
+      "forced_termination": false,
+      "julia": false,
+      "mode": "writefail",
+      "native_exit_code": 1,
+      "nonempty_samples": 0,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 0,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/3",
+      "recorder_exit_code": 1,
+      "recorder_reason": null,
+      "resource_policy_status": "MONITORING_UNAVAILABLE",
+      "resource_reason": "No numerical-process RSS sample was obtained",
+      "resource_status": "RESOURCE_BLOCKED",
+      "run_id": "writefail-e1b2cc8a",
+      "runtime_closed": true,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 701,
+          "public_sha256": "8f6a09f6e966438b6773e4ca345c51d60642f00e1658d1e4a5c5fe4f4811bc09",
+          "raw_bytes": 701,
+          "raw_sha256": "8f6a09f6e966438b6773e4ca345c51d60642f00e1658d1e4a5c5fe4f4811bc09",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/writefail-e1b2cc8a/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 99,
+          "public_sha256": "bfc4163390e6de595f7d8cffb6146faed7d5d7540efdc81ffbcfb26d13e15b9d",
+          "raw_bytes": 99,
+          "raw_sha256": "bfc4163390e6de595f7d8cffb6146faed7d5d7540efdc81ffbcfb26d13e15b9d",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/writefail-e1b2cc8a/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/writefail-e1b2cc8a/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/writefail-e1b2cc8a/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 781,
+          "public_sha256": "975ca6af8c230146865a79511ee5494f29817557d08520d7395feb438933eafa",
+          "raw_bytes": 781,
+          "raw_sha256": "975ca6af8c230146865a79511ee5494f29817557d08520d7395feb438933eafa",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/writefail-e1b2cc8a/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 3470,
+          "public_sha256": "15e64dc434e8d078e0cfb4074cb3d7bc08b6e5f97bc7b960118d15cf579bcc05",
+          "raw_bytes": 3570,
+          "raw_sha256": "e091174c37b0b71c95d14c0daeb6cb5fa0e517a3c7f5a842974146e90f36692b",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/writefail-e1b2cc8a/result.json"
+        },
+        "stop-request.toml": {
+          "public_bytes": 450,
+          "public_sha256": "1b7bb064e16406c50e2d239d8839fc900f277b9977199c19b301ddfc67cede5e",
+          "raw_bytes": 450,
+          "raw_sha256": "1b7bb064e16406c50e2d239d8839fc900f277b9977199c19b301ddfc67cede5e",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/writefail-e1b2cc8a/stop-request.toml"
+        },
+        "worker/result.json": {
+          "public_bytes": 1068,
+          "public_sha256": "91fe234a973ccc799b5bd301ac7ed7d7928547590148b178958ec7691c2b0fbd",
+          "raw_bytes": 1168,
+          "raw_sha256": "e9d4164150da751f16ec27ce9fd4fe460ffc4d85df8c9d64ee4289a8a3e12ca0",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/writefail-e1b2cc8a/worker/result.json"
+        }
+      },
+      "stop_request": {
+        "control_sha256": "8f6a09f6e966438b6773e4ca345c51d60642f00e1658d1e4a5c5fe4f4811bc09",
+        "detail": "User requested cancellation",
+        "execution_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "nonce": "91359404845b4c91841d05f044c08221",
+        "reason": "USER_CANCELLED",
+        "request_id": "7255730b0f58464abbe3b3008ad0dfcc",
+        "request_sha256": "1b7bb064e16406c50e2d239d8839fc900f277b9977199c19b301ddfc67cede5e",
+        "requested_unix_ns": 1789313385856263000,
+        "run_id": "writefail-e1b2cc8a",
+        "schema_version": 1,
+        "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "synthetic_grace_seconds": 0.35,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": {
+        "acknowledged_boundary": "synthetic-loop",
+        "first_request_sha256": "1b7bb064e16406c50e2d239d8839fc900f277b9977199c19b301ddfc67cede5e"
+      },
+      "worker_errors": [
+        "[Errno 21] Is a directory: '$REPO/.work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/writefail-e1b2cc8a/worker/synthetic-checkpoint.tmp'"
+      ],
+      "worker_exit_code": 1,
+      "worker_reason": "IsADirectoryError: [Errno 21] Is a directory: '$REPO/.work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/writefail-e1b2cc8a/worker/synthetic-checkpoint.tmp'",
+      "worker_status": "FAIL",
+      "workspace_released": true
+    },
+    {
+      "action": null,
+      "control_sha256": "2f4e7c0de7792c76c3695f747f145ffa481a733119374f6a2783e7d15b1ffcf4",
+      "control_status": "TIME_BUDGET_EXCEEDED",
+      "control_unchanged": true,
+      "execution_status": "TIME_BUDGET_EXCEEDED",
+      "external_test_signal": null,
+      "forced_termination": false,
+      "julia": false,
+      "mode": "wait",
+      "native_exit_code": 124,
+      "nonempty_samples": 4,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 22118400,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/4",
+      "recorder_exit_code": 124,
+      "recorder_reason": null,
+      "resource_policy_status": "PASS",
+      "resource_reason": null,
+      "resource_status": "PASS",
+      "run_id": "wait-ce389c99",
+      "runtime_closed": true,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 693,
+          "public_sha256": "2f4e7c0de7792c76c3695f747f145ffa481a733119374f6a2783e7d15b1ffcf4",
+          "raw_bytes": 693,
+          "raw_sha256": "2f4e7c0de7792c76c3695f747f145ffa481a733119374f6a2783e7d15b1ffcf4",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-ce389c99/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 101,
+          "public_sha256": "f63cce137c46bc058489120d5b74ffcea03e71c3287c5e88ecd1ba5fbd5079f7",
+          "raw_bytes": 101,
+          "raw_sha256": "f63cce137c46bc058489120d5b74ffcea03e71c3287c5e88ecd1ba5fbd5079f7",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-ce389c99/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-ce389c99/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-ce389c99/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 1047,
+          "public_sha256": "b7c450c71551bced224850f668686af03b0825aa2012b8092b3f7966ba3675fc",
+          "raw_bytes": 1047,
+          "raw_sha256": "b7c450c71551bced224850f668686af03b0825aa2012b8092b3f7966ba3675fc",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-ce389c99/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 3492,
+          "public_sha256": "132c2b05840fce0c527f13c701d4a2ce788bcb721dd6acd68fa96759e1cdaf7a",
+          "raw_bytes": 3492,
+          "raw_sha256": "132c2b05840fce0c527f13c701d4a2ce788bcb721dd6acd68fa96759e1cdaf7a",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-ce389c99/result.json"
+        },
+        "stop-request.toml": {
+          "public_bytes": 461,
+          "public_sha256": "8823749d686a15f234b20841b16c79c5c2fbf427ddbb9d4ed5334ea7fefbcbc5",
+          "raw_bytes": 461,
+          "raw_sha256": "8823749d686a15f234b20841b16c79c5c2fbf427ddbb9d4ed5334ea7fefbcbc5",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-ce389c99/stop-request.toml"
+        },
+        "worker/result.json": {
+          "public_bytes": 762,
+          "public_sha256": "4729668bcb0bd3239c4276964badc5adc7d27e085d497d9d4121544e63a96e86",
+          "raw_bytes": 762,
+          "raw_sha256": "4729668bcb0bd3239c4276964badc5adc7d27e085d497d9d4121544e63a96e86",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-ce389c99/worker/result.json"
+        }
+      },
+      "stop_request": {
+        "control_sha256": "2f4e7c0de7792c76c3695f747f145ffa481a733119374f6a2783e7d15b1ffcf4",
+        "detail": "Independent parent deadline exhausted",
+        "execution_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "nonce": "59a5c81d4b3649d7a5bc9af4e52dc744",
+        "reason": "TIME_BUDGET_EXCEEDED",
+        "request_id": "aaa66f4f3f4f4d73ac8aa44da4a947f2",
+        "request_sha256": "8823749d686a15f234b20841b16c79c5c2fbf427ddbb9d4ed5334ea7fefbcbc5",
+        "requested_unix_ns": 1789313386407139000,
+        "run_id": "wait-ce389c99",
+        "schema_version": 1,
+        "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "synthetic_grace_seconds": 0.35,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": {
+        "acknowledged_boundary": "synthetic-loop",
+        "first_request_sha256": "8823749d686a15f234b20841b16c79c5c2fbf427ddbb9d4ed5334ea7fefbcbc5"
+      },
+      "worker_errors": [],
+      "worker_exit_code": 124,
+      "worker_reason": "Independent parent deadline exhausted",
+      "worker_status": "TIME_BUDGET_EXCEEDED",
+      "workspace_released": true
+    },
+    {
+      "action": null,
+      "control_sha256": "ad85548da484bf2bce509ce940257b0087761be532cb99c254e3376fbc4f13bd",
+      "control_status": "NO_REQUEST",
+      "control_unchanged": true,
+      "execution_status": "FAIL",
+      "external_test_signal": null,
+      "forced_termination": false,
+      "julia": false,
+      "mode": "missing",
+      "native_exit_code": 3,
+      "nonempty_samples": 3,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 22020096,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/5",
+      "recorder_exit_code": 9,
+      "recorder_reason": "ValueError: Worker receipt missing",
+      "resource_policy_status": "PASS",
+      "resource_reason": null,
+      "resource_status": "PASS",
+      "run_id": "missing-cbe8e14a",
+      "runtime_closed": null,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 697,
+          "public_sha256": "ad85548da484bf2bce509ce940257b0087761be532cb99c254e3376fbc4f13bd",
+          "raw_bytes": 697,
+          "raw_sha256": "ad85548da484bf2bce509ce940257b0087761be532cb99c254e3376fbc4f13bd",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/missing-cbe8e14a/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 99,
+          "public_sha256": "9afbee250d69d1657f1b295cd8dacbbc66bd4ca2eb3363efe562d4718b78ee09",
+          "raw_bytes": 99,
+          "raw_sha256": "9afbee250d69d1657f1b295cd8dacbbc66bd4ca2eb3363efe562d4718b78ee09",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/missing-cbe8e14a/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/missing-cbe8e14a/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/missing-cbe8e14a/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 764,
+          "public_sha256": "fd41560a0334395f02d875f9e367adc679f7516a9ce07bf36c7df2301a2cb92a",
+          "raw_bytes": 764,
+          "raw_sha256": "fd41560a0334395f02d875f9e367adc679f7516a9ce07bf36c7df2301a2cb92a",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/missing-cbe8e14a/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 1754,
+          "public_sha256": "4ad817920683441b17e9e99bc9136bd71e55d12c99a24795ecb7e32b38f86255",
+          "raw_bytes": 1754,
+          "raw_sha256": "4ad817920683441b17e9e99bc9136bd71e55d12c99a24795ecb7e32b38f86255",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/missing-cbe8e14a/result.json"
+        }
+      },
+      "stop_request": null,
+      "synthetic_grace_seconds": 0.35,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": null,
+      "worker_errors": null,
+      "worker_exit_code": null,
+      "worker_reason": null,
+      "worker_status": null,
+      "workspace_released": null
+    },
+    {
+      "action": null,
+      "control_sha256": "cc6ca83f6b432dc9ac81c27146aae843622f28b009a72d5b49edc284cb020deb",
+      "control_status": "NO_REQUEST",
+      "control_unchanged": true,
+      "execution_status": "FAIL",
+      "external_test_signal": null,
+      "forced_termination": false,
+      "julia": false,
+      "mode": "contradict",
+      "native_exit_code": 7,
+      "nonempty_samples": 3,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 22134784,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/6",
+      "recorder_exit_code": 9,
+      "recorder_reason": "ValueError: Worker/process exit mismatch",
+      "resource_policy_status": "PASS",
+      "resource_reason": null,
+      "resource_status": "PASS",
+      "run_id": "contradict-c2718bbb",
+      "runtime_closed": null,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 703,
+          "public_sha256": "cc6ca83f6b432dc9ac81c27146aae843622f28b009a72d5b49edc284cb020deb",
+          "raw_bytes": 703,
+          "raw_sha256": "cc6ca83f6b432dc9ac81c27146aae843622f28b009a72d5b49edc284cb020deb",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/contradict-c2718bbb/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 99,
+          "public_sha256": "2cd6902da1616bfe95f90a16e96bdfa502884ad6265f0825949c17c239b77530",
+          "raw_bytes": 99,
+          "raw_sha256": "2cd6902da1616bfe95f90a16e96bdfa502884ad6265f0825949c17c239b77530",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/contradict-c2718bbb/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/contradict-c2718bbb/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/contradict-c2718bbb/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 765,
+          "public_sha256": "b52c8a2c32a7e331c97d21995c3a90b87b266e2a50063d7d04076cdee6a07df9",
+          "raw_bytes": 765,
+          "raw_sha256": "b52c8a2c32a7e331c97d21995c3a90b87b266e2a50063d7d04076cdee6a07df9",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/contradict-c2718bbb/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 1764,
+          "public_sha256": "d480b6b6d59c64da24e0f25c281bc18ba96d1ed75e852b4e6c665dbf19f7eb5b",
+          "raw_bytes": 1764,
+          "raw_sha256": "d480b6b6d59c64da24e0f25c281bc18ba96d1ed75e852b4e6c665dbf19f7eb5b",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/contradict-c2718bbb/result.json"
+        },
+        "worker/result.json": {
+          "public_bytes": 591,
+          "public_sha256": "26a8adf77cf8296e54ed9bf336215c8b94b6abca12cab9ded32768b68024d471",
+          "raw_bytes": 591,
+          "raw_sha256": "26a8adf77cf8296e54ed9bf336215c8b94b6abca12cab9ded32768b68024d471",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/contradict-c2718bbb/worker/result.json"
+        }
+      },
+      "stop_request": null,
+      "synthetic_grace_seconds": 0.35,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": null,
+      "worker_errors": [],
+      "worker_exit_code": 0,
+      "worker_reason": "",
+      "worker_status": "DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED",
+      "workspace_released": true
+    },
+    {
+      "action": null,
+      "control_sha256": "762ebc241b013965395cb4bdaa0badd10a982b43d2064f34abe8bbca9c635d09",
+      "control_status": "NO_REQUEST",
+      "control_unchanged": true,
+      "execution_status": "DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED",
+      "external_test_signal": null,
+      "forced_termination": false,
+      "julia": false,
+      "mode": "normal",
+      "native_exit_code": 0,
+      "nonempty_samples": 3,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 22167552,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/7",
+      "recorder_exit_code": 0,
+      "recorder_reason": null,
+      "resource_policy_status": "PASS",
+      "resource_reason": null,
+      "resource_status": "PASS",
+      "run_id": "normal-9901a508",
+      "runtime_closed": true,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 695,
+          "public_sha256": "762ebc241b013965395cb4bdaa0badd10a982b43d2064f34abe8bbca9c635d09",
+          "raw_bytes": 695,
+          "raw_sha256": "762ebc241b013965395cb4bdaa0badd10a982b43d2064f34abe8bbca9c635d09",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/normal-9901a508/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 99,
+          "public_sha256": "f1f14bfe2f5df587174d4224bd8861b96b25da25064867302f5d30f3e43809ac",
+          "raw_bytes": 99,
+          "raw_sha256": "f1f14bfe2f5df587174d4224bd8861b96b25da25064867302f5d30f3e43809ac",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/normal-9901a508/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/normal-9901a508/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/normal-9901a508/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 765,
+          "public_sha256": "a3c1a6f458589e91cc6f302eae931cd158080ada1a4fe811b67431196a76b9d2",
+          "raw_bytes": 765,
+          "raw_sha256": "a3c1a6f458589e91cc6f302eae931cd158080ada1a4fe811b67431196a76b9d2",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/normal-9901a508/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 2361,
+          "public_sha256": "e99e75cd2978c909a03842aff02dfb27213f07f8fd41b00da7efe8dfb5ebc92d",
+          "raw_bytes": 2361,
+          "raw_sha256": "e99e75cd2978c909a03842aff02dfb27213f07f8fd41b00da7efe8dfb5ebc92d",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/normal-9901a508/result.json"
+        },
+        "worker/result.json": {
+          "public_bytes": 583,
+          "public_sha256": "87a247830c18ce57b875c846ad3fdc6954fd15913d6cdccd5f1e8f206242bf99",
+          "raw_bytes": 583,
+          "raw_sha256": "87a247830c18ce57b875c846ad3fdc6954fd15913d6cdccd5f1e8f206242bf99",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/normal-9901a508/worker/result.json"
+        }
+      },
+      "stop_request": null,
+      "synthetic_grace_seconds": 0.35,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": null,
+      "worker_errors": [],
+      "worker_exit_code": 0,
+      "worker_reason": "",
+      "worker_status": "DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED",
+      "workspace_released": true
+    },
+    {
+      "action": "cancel",
+      "control_sha256": "64256b56e0b3996ece4a8c57b80a418f459afce8fc4ce329380c18020af8c6fa",
+      "control_status": "NO_REQUEST",
+      "control_unchanged": true,
+      "execution_status": "USER_CANCELLED",
+      "external_test_signal": null,
+      "forced_termination": true,
+      "julia": false,
+      "mode": "orphan",
+      "native_exit_code": 130,
+      "nonempty_samples": 1,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 38420480,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/8",
+      "recorder_exit_code": 130,
+      "recorder_reason": null,
+      "resource_policy_status": "RESOURCE_BLOCKED",
+      "resource_reason": "RESOURCE_BLOCKED: numerical descendants survived their recorded leader",
+      "resource_status": "RESOURCE_BLOCKED",
+      "run_id": "orphan-99726062",
+      "runtime_closed": true,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [
+        {
+          "elapsed_seconds": 0.25526250000984874,
+          "owned_pids": [
+            81591
+          ],
+          "signal": "SIGTERM"
+        },
+        {
+          "elapsed_seconds": 1.2789835000003222,
+          "owned_pids": [
+            81591
+          ],
+          "signal": "SIGKILL"
+        }
+      ],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 695,
+          "public_sha256": "64256b56e0b3996ece4a8c57b80a418f459afce8fc4ce329380c18020af8c6fa",
+          "raw_bytes": 695,
+          "raw_sha256": "64256b56e0b3996ece4a8c57b80a418f459afce8fc4ce329380c18020af8c6fa",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/orphan-99726062/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 101,
+          "public_sha256": "6a0c37cd75cf5fdb40014dd293de35c9f0ea8acd64b28a9da13fb558fbfee295",
+          "raw_bytes": 101,
+          "raw_sha256": "6a0c37cd75cf5fdb40014dd293de35c9f0ea8acd64b28a9da13fb558fbfee295",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/orphan-99726062/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/orphan-99726062/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/orphan-99726062/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 1015,
+          "public_sha256": "a1cb2ce90ed29896f00ade0c6e80dbfd1a81ed76f52c40abce6e329d3f634062",
+          "raw_bytes": 1015,
+          "raw_sha256": "a1cb2ce90ed29896f00ade0c6e80dbfd1a81ed76f52c40abce6e329d3f634062",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/orphan-99726062/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 3515,
+          "public_sha256": "7f97784ed341222f0279198dea75d4e7b3e3b985642d15831ad305293e00e6b6",
+          "raw_bytes": 3515,
+          "raw_sha256": "7f97784ed341222f0279198dea75d4e7b3e3b985642d15831ad305293e00e6b6",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/orphan-99726062/result.json"
+        },
+        "stop-request.toml": {
+          "public_bytes": 447,
+          "public_sha256": "609ba0c4d615b3bd3667b15daddcaa932e5d4f13978da7b2458108feab50dfc2",
+          "raw_bytes": 447,
+          "raw_sha256": "609ba0c4d615b3bd3667b15daddcaa932e5d4f13978da7b2458108feab50dfc2",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/orphan-99726062/stop-request.toml"
+        },
+        "worker/result.json": {
+          "public_bytes": 750,
+          "public_sha256": "b905d5a636d5c70078e90aac4b311fa9cdd2ef6691f64da3f9952e8a78d04c39",
+          "raw_bytes": 750,
+          "raw_sha256": "b905d5a636d5c70078e90aac4b311fa9cdd2ef6691f64da3f9952e8a78d04c39",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/orphan-99726062/worker/result.json"
+        }
+      },
+      "stop_request": {
+        "control_sha256": "64256b56e0b3996ece4a8c57b80a418f459afce8fc4ce329380c18020af8c6fa",
+        "detail": "User requested cancellation",
+        "execution_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "nonce": "e702a0fe70d64fdeba812a3788c669e8",
+        "reason": "USER_CANCELLED",
+        "request_id": "df8c03067c4d419a9b7412545f8afe98",
+        "request_sha256": "609ba0c4d615b3bd3667b15daddcaa932e5d4f13978da7b2458108feab50dfc2",
+        "requested_unix_ns": 1789313388354178000,
+        "run_id": "orphan-99726062",
+        "schema_version": 1,
+        "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "synthetic_grace_seconds": 0.35,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": {
+        "acknowledged_boundary": "synthetic-loop",
+        "first_request_sha256": "609ba0c4d615b3bd3667b15daddcaa932e5d4f13978da7b2458108feab50dfc2"
+      },
+      "worker_errors": [],
+      "worker_exit_code": 130,
+      "worker_reason": "User requested cancellation",
+      "worker_status": "USER_CANCELLED",
+      "workspace_released": true
+    },
+    {
+      "action": "cancel",
+      "control_sha256": "691f72d1e91a44e7e90f52ac10252c779fd32312039cfbc1ca950cb01f39dd64",
+      "control_status": "NO_REQUEST",
+      "control_unchanged": true,
+      "execution_status": "FAIL",
+      "external_test_signal": null,
+      "forced_termination": false,
+      "julia": false,
+      "mode": "swallow",
+      "native_exit_code": 0,
+      "nonempty_samples": 0,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 0,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/9",
+      "recorder_exit_code": 9,
+      "recorder_reason": "ValueError: A latched stop cannot publish diagnostic completion",
+      "resource_policy_status": "MONITORING_UNAVAILABLE",
+      "resource_reason": "No numerical-process RSS sample was obtained",
+      "resource_status": "RESOURCE_BLOCKED",
+      "run_id": "swallow-cc2a3a99",
+      "runtime_closed": null,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 697,
+          "public_sha256": "691f72d1e91a44e7e90f52ac10252c779fd32312039cfbc1ca950cb01f39dd64",
+          "raw_bytes": 697,
+          "raw_sha256": "691f72d1e91a44e7e90f52ac10252c779fd32312039cfbc1ca950cb01f39dd64",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/swallow-cc2a3a99/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 99,
+          "public_sha256": "329c7d7e8a98f92dba1ddc6e9244f469e12ec804ae6700fd43abd4bdeae5df61",
+          "raw_bytes": 99,
+          "raw_sha256": "329c7d7e8a98f92dba1ddc6e9244f469e12ec804ae6700fd43abd4bdeae5df61",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/swallow-cc2a3a99/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/swallow-cc2a3a99/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/swallow-cc2a3a99/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 781,
+          "public_sha256": "1804962c389e08b02af030f41586ea2a29a335b1144aa08bba4b7eab7fa458a3",
+          "raw_bytes": 781,
+          "raw_sha256": "1804962c389e08b02af030f41586ea2a29a335b1144aa08bba4b7eab7fa458a3",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/swallow-cc2a3a99/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 2389,
+          "public_sha256": "7c5af03268c5b4c684eb4414af69124b1ae2e1d175628d64a67e299920ced865",
+          "raw_bytes": 2389,
+          "raw_sha256": "7c5af03268c5b4c684eb4414af69124b1ae2e1d175628d64a67e299920ced865",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/swallow-cc2a3a99/result.json"
+        },
+        "stop-request.toml": {
+          "public_bytes": 448,
+          "public_sha256": "1517396fa9ab78a8bfd9701da6287358a9aa68b2c10891e964573ffc7cfb5d50",
+          "raw_bytes": 448,
+          "raw_sha256": "1517396fa9ab78a8bfd9701da6287358a9aa68b2c10891e964573ffc7cfb5d50",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/swallow-cc2a3a99/stop-request.toml"
+        },
+        "worker/result.json": {
+          "public_bytes": 774,
+          "public_sha256": "e4e27d8d7af6c57a33ca9f63b57f2047681712c9aaa14cd8ca27a26728c63aaa",
+          "raw_bytes": 774,
+          "raw_sha256": "e4e27d8d7af6c57a33ca9f63b57f2047681712c9aaa14cd8ca27a26728c63aaa",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/swallow-cc2a3a99/worker/result.json"
+        }
+      },
+      "stop_request": {
+        "control_sha256": "691f72d1e91a44e7e90f52ac10252c779fd32312039cfbc1ca950cb01f39dd64",
+        "detail": "User requested cancellation",
+        "execution_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "nonce": "65e29b7b67aa46c78894c42c5868da7c",
+        "reason": "USER_CANCELLED",
+        "request_id": "5405eb448cfa4105a9d01ad406dbd73b",
+        "request_sha256": "1517396fa9ab78a8bfd9701da6287358a9aa68b2c10891e964573ffc7cfb5d50",
+        "requested_unix_ns": 1789313389558342000,
+        "run_id": "swallow-cc2a3a99",
+        "schema_version": 1,
+        "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "synthetic_grace_seconds": 0.35,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": {
+        "acknowledged_boundary": "synthetic-loop",
+        "first_request_sha256": "1517396fa9ab78a8bfd9701da6287358a9aa68b2c10891e964573ffc7cfb5d50"
+      },
+      "worker_errors": [],
+      "worker_exit_code": 0,
+      "worker_reason": "User requested cancellation",
+      "worker_status": "DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED",
+      "workspace_released": true
+    },
+    {
+      "action": "cancel",
+      "control_sha256": "c43907a6684dfa39e5a2727cf105f683a250f21a711717e6f25f1b3197b8a72a",
+      "control_status": "USER_CANCELLED",
+      "control_unchanged": true,
+      "execution_status": "FORCED_TERMINATION",
+      "external_test_signal": null,
+      "forced_termination": true,
+      "julia": false,
+      "mode": "ignore",
+      "native_exit_code": -9,
+      "nonempty_samples": 4,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 22167552,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/10",
+      "recorder_exit_code": 9,
+      "recorder_reason": "ValueError: Worker receipt missing",
+      "resource_policy_status": "RESOURCE_BLOCKED",
+      "resource_reason": "Cooperative request exceeded its bounded grace; forced termination",
+      "resource_status": "RESOURCE_BLOCKED",
+      "run_id": "ignore-a56eb547",
+      "runtime_closed": null,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [
+        {
+          "elapsed_seconds": 0.5138169999991078,
+          "owned_pids": [
+            81624
+          ],
+          "signal": "SIGTERM"
+        },
+        {
+          "elapsed_seconds": 0.7305515420011943,
+          "owned_pids": [
+            81624
+          ],
+          "signal": "SIGKILL"
+        }
+      ],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 695,
+          "public_sha256": "c43907a6684dfa39e5a2727cf105f683a250f21a711717e6f25f1b3197b8a72a",
+          "raw_bytes": 695,
+          "raw_sha256": "c43907a6684dfa39e5a2727cf105f683a250f21a711717e6f25f1b3197b8a72a",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/ignore-a56eb547/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 100,
+          "public_sha256": "822dda1e0591e32c896184ee5d89036d4bc5583eda17e3ee302b30fa51289b3d",
+          "raw_bytes": 100,
+          "raw_sha256": "822dda1e0591e32c896184ee5d89036d4bc5583eda17e3ee302b30fa51289b3d",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/ignore-a56eb547/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/ignore-a56eb547/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/ignore-a56eb547/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 1278,
+          "public_sha256": "3b75a8ebb5aa398438f96dda282e5f25e5864e1d76b834409c5329f805be0f17",
+          "raw_bytes": 1278,
+          "raw_sha256": "3b75a8ebb5aa398438f96dda282e5f25e5864e1d76b834409c5329f805be0f17",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/ignore-a56eb547/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 3060,
+          "public_sha256": "7b89c3800ef0b80d0c7c42926291c8ebb45a56422658c8e8d37ded65def431f7",
+          "raw_bytes": 3060,
+          "raw_sha256": "7b89c3800ef0b80d0c7c42926291c8ebb45a56422658c8e8d37ded65def431f7",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/ignore-a56eb547/result.json"
+        },
+        "stop-request.toml": {
+          "public_bytes": 447,
+          "public_sha256": "298940e363eabaa9407335efd7b782fef3162f1a0e5d2fc16f11c58a007a85e7",
+          "raw_bytes": 447,
+          "raw_sha256": "298940e363eabaa9407335efd7b782fef3162f1a0e5d2fc16f11c58a007a85e7",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/ignore-a56eb547/stop-request.toml"
+        }
+      },
+      "stop_request": {
+        "control_sha256": "c43907a6684dfa39e5a2727cf105f683a250f21a711717e6f25f1b3197b8a72a",
+        "detail": "User requested cancellation",
+        "execution_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "nonce": "785846e76c8c41b1824d8cf408ba4cba",
+        "reason": "USER_CANCELLED",
+        "request_id": "b442f90d19b14519b2e5d436f687a379",
+        "request_sha256": "298940e363eabaa9407335efd7b782fef3162f1a0e5d2fc16f11c58a007a85e7",
+        "requested_unix_ns": 1789313389689835000,
+        "run_id": "ignore-a56eb547",
+        "schema_version": 1,
+        "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "synthetic_grace_seconds": 0.35,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": null,
+      "worker_errors": null,
+      "worker_exit_code": null,
+      "worker_reason": null,
+      "worker_status": null,
+      "workspace_released": null
+    },
+    {
+      "action": "cancel",
+      "control_sha256": "5055356298ed83d43ba8f2a63833e2114771b1676d8135ec5fcc2dc6974e9f4d",
+      "control_status": "NO_REQUEST",
+      "control_unchanged": true,
+      "execution_status": "USER_CANCELLED",
+      "external_test_signal": null,
+      "forced_termination": false,
+      "julia": false,
+      "mode": "wait",
+      "native_exit_code": 130,
+      "nonempty_samples": 0,
+      "observer_errors": [],
+      "owned_remaining_processes": [],
+      "peak_sampled_group_rss_bytes": 0,
+      "process_cleanup": "PASS",
+      "public_receipts_pointer": "cancel-test-native.json.gz#/runs/11",
+      "recorder_exit_code": 130,
+      "recorder_reason": null,
+      "resource_policy_status": "MONITORING_UNAVAILABLE",
+      "resource_reason": "No numerical-process RSS sample was obtained",
+      "resource_status": "RESOURCE_BLOCKED",
+      "run_id": "wait-99ad90be",
+      "runtime_closed": true,
+      "runtime_state": null,
+      "scope": "SYNTHETIC_ONLY; two-map fields are fabricated protocol fixtures, not electron-density maps",
+      "signals": [],
+      "source_files": {
+        "control.toml": {
+          "public_bytes": 691,
+          "public_sha256": "5055356298ed83d43ba8f2a63833e2114771b1676d8135ec5fcc2dc6974e9f4d",
+          "raw_bytes": 691,
+          "raw_sha256": "5055356298ed83d43ba8f2a63833e2114771b1676d8135ec5fcc2dc6974e9f4d",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-99ad90be/control.toml"
+        },
+        "process-exit.json": {
+          "public_bytes": 101,
+          "public_sha256": "67220de87b4d6523f66433b445f38473c73623aa9244108f56ce215c37d1f868",
+          "raw_bytes": 101,
+          "raw_sha256": "67220de87b4d6523f66433b445f38473c73623aa9244108f56ce215c37d1f868",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-99ad90be/process-exit.json"
+        },
+        "qe.stderr": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-99ad90be/qe.stderr"
+        },
+        "qe.stdout": {
+          "public_bytes": 0,
+          "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-99ad90be/qe.stdout"
+        },
+        "resource.json": {
+          "public_bytes": 783,
+          "public_sha256": "f0c20f49274fc0af81a66b593a576126120e8066c359f6e736e1cd02caa8ebd6",
+          "raw_bytes": 783,
+          "raw_sha256": "f0c20f49274fc0af81a66b593a576126120e8066c359f6e736e1cd02caa8ebd6",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-99ad90be/resource.json"
+        },
+        "result.json": {
+          "public_bytes": 3135,
+          "public_sha256": "0a943e798d35f9e753c8a7f456703a7a44ea4650791865e5e93bdd595dffc323",
+          "raw_bytes": 3135,
+          "raw_sha256": "0a943e798d35f9e753c8a7f456703a7a44ea4650791865e5e93bdd595dffc323",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-99ad90be/result.json"
+        },
+        "stop-request.toml": {
+          "public_bytes": 445,
+          "public_sha256": "4ab690389b1c19b9c6d5b890bd7401a32dad6fac42de315d412820c3412a8ffe",
+          "raw_bytes": 445,
+          "raw_sha256": "4ab690389b1c19b9c6d5b890bd7401a32dad6fac42de315d412820c3412a8ffe",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-99ad90be/stop-request.toml"
+        },
+        "worker/result.json": {
+          "public_bytes": 746,
+          "public_sha256": "882254d62d1a66fab715cc4978968e691e15ed0a8227da069054bdf6e8243764",
+          "raw_bytes": 746,
+          "raw_sha256": "882254d62d1a66fab715cc4978968e691e15ed0a8227da069054bdf6e8243764",
+          "source_path": ".work/soc-timing/cancel-tests/synthetic-00fa1ccd5eab4c2fab06ed0e08f26494/wait-99ad90be/worker/result.json"
+        }
+      },
+      "stop_request": {
+        "control_sha256": "5055356298ed83d43ba8f2a63833e2114771b1676d8135ec5fcc2dc6974e9f4d",
+        "detail": "User requested cancellation",
+        "execution_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "nonce": "242a2300b0a54c64865bab49c3725a28",
+        "reason": "USER_CANCELLED",
+        "request_id": "73d170d94f8748a5a903aac9766eb4cb",
+        "request_sha256": "4ab690389b1c19b9c6d5b890bd7401a32dad6fac42de315d412820c3412a8ffe",
+        "requested_unix_ns": 1789313392776627000,
+        "run_id": "wait-99ad90be",
+        "schema_version": 1,
+        "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "synthetic_grace_seconds": 0.35,
+      "synthetic_kill_seconds": 0.3,
+      "synthetic_term_seconds": 0.2,
+      "worker_control": {
+        "acknowledged_boundary": "synthetic-loop",
+        "first_request_sha256": "4ab690389b1c19b9c6d5b890bd7401a32dad6fac42de315d412820c3412a8ffe"
+      },
+      "worker_errors": [],
+      "worker_exit_code": 130,
+      "worker_reason": "User requested cancellation",
+      "worker_status": "USER_CANCELLED",
+      "workspace_released": true
+    }
+  ],
+  "schema_version": 1,
+  "scope": "SYNTHETIC control, signal, timeout, recorder, cleanup and unit checks; not SCF, convergence, numerical equivalence or production cancellation evidence",
+  "source_evolution_note": "Final 13-test launcher suite preceded added pure loaded-policy hardening and extraction of the identity Sys.maxrss() helper; those later changes have their own one-case checks. No final full-suite rerun is claimed.",
+  "status": "TEST_ASSERTIONS_PASS_WITH_RETAINED_PRIOR_FAILURES"
+}

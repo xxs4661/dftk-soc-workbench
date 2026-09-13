@@ -85,6 +85,8 @@ def pair(root):
             if hashlib.sha256(raw).hexdigest()!=receipt['map_summaries_sha256'][name]:
                 raise ValueError('Map summary bytes not bound by completed worker')
             rec=json.loads(raw)
+            if type(rec.get('map_index')) is not int or rec['map_index']!=imap:
+                raise ValueError('Map summary index differs from its numbered file')
             if any(rec.get(k)!=receipt[k] for k in ('run_id','execution_commit','source_commit')):
                 raise ValueError('Map summary belongs to another execution')
             if rec['density_file']!=f'map-{imap:03d}-density.f64':

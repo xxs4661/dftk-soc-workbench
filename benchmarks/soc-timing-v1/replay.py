@@ -1,6 +1,8 @@
 """Read-only arithmetic checks of the public short-diagnostic evidence."""
 import argparse
 import csv
+import gzip
+import itertools
 import hashlib
 import json
 import math
@@ -55,6 +57,64 @@ def spans(rows):
     return result
 
 
+
+def public_map_data(directory, data, tasks):
+    """Read authenticated small summaries only; never follow private density paths."""
+    name='map-spectra.json.gz'
+    require(name in data['public_files_sha256'],'Public map/spectrum package is not authenticated')
+    package=json.loads(gzip.decompress((directory/name).read_bytes()))
+    require(type(package) is dict and set(package)==set(tasks),'Map package task matrix differs')
+    def finite(x):return type(x) in (int,float) and math.isfinite(x)
+    indexed={}
+    for task,row in tasks.items():
+        records=package[task]
+        count=row.get('completed_maps',0)
+        require(type(count) is int and 0<=count<=2 and type(records) is list and len(records)==count,
+                'Published map count differs from completed maps')
+        require([r.get('map_index') for r in records]==list(range(1,count+1)) and
+                all(type(r.get('map_index')) is int for r in records),'Map indices missing or duplicated')
+        axis=(0.,.25,.5,.75) if task=='T-K4-TIMED' else (0.,.5)
+        expected=set(itertools.product(axis,repeat=3));bound=[]
+        for rec in records:
+            for key in ('run_id','task_id','execution_commit','source_commit','case_sha256'):
+                require(key in rec and key in row and rec[key]==row[key],'Map identity differs: '+key)
+            points,levels,occupations=rec['kpoints'],rec['eigenvalues_ha'],rec['occupations']
+            require(len(points)==len(levels)==len(occupations)==len(expected),'Wrong explicit k or state-row count')
+            require(all(type(k) is list and len(k)==3 and all(finite(x) for x in k) for k in points),'Invalid k coordinate')
+            keys=[tuple(float(x)%1 for x in k) for k in points]
+            require(len(set(keys))==len(keys) and set(keys)==expected,'Missing, duplicate or unexpected k coordinate')
+            require(all(type(v) is list and len(v)==24 and all(finite(x) for x in v)
+                        for v in levels+occupations),'Expected 24 finite physical states per k')
+            require(all(finite(rec[key]) for key in ('internal_energy_ha','free_energy_ha')),'Nonfinite map energy')
+            bound.append((rec,dict(zip(keys,levels))))
+        indexed[task]=bound
+    return indexed
+
+
+def b0_energy_spectrum_replay(indexed, pair):
+    if pair['status'] not in ('PASS','FAIL'):
+        return dict(status='NOT_ASSESSED',reason='No completed paired comparison')
+    ref,new=indexed['T-B0-REF'],indexed['T-B0-TIMED']
+    require(len(ref)==len(new)==2 and [m['map_index'] for m in pair['maps']]==[1,2],
+            'Paired energy/spectrum comparison requires two complete B0 maps')
+    output=[]
+    for imap,((a,ak),(b,bk)),stored in zip((1,2),zip(ref,new),pair['maps']):
+        require(a['case_sha256']==b['case_sha256'],'Paired B0 physical cases differ')
+        # Match fractional coordinates modulo reciprocal integers, never levels
+        # by proximity. Preserve all 24 original energies and the global offset.
+        differences=[y-x for key in ak for x,y in zip(ak[key],bk[key])]
+        values=dict(delta_E_ha=b['internal_energy_ha']-a['internal_energy_ha'],
+                    delta_F_ha=b['free_energy_ha']-a['free_energy_ha'],
+                    raw_level_max_abs_ha=max(abs(x) for x in differences),
+                    raw_level_rms_ha=math.sqrt(math.fsum(x*x for x in differences))/math.sqrt(len(differences)))
+        for key,value in values.items():
+            require(type(stored.get(key)) in (int,float) and math.isfinite(stored[key]) and stored[key]==value,
+                    'Stored B0 metric differs from published energies/levels: '+key)
+        output.append(dict(map_index=imap,**values))
+    return dict(status='PASS',maps=output,
+                density_scope='RUNNER_REPORTED_PRIVATE_ARRAY_COMPARISON; density arrays are not opened by public replay')
+
+
 def replay(directory):
     directory=Path(directory)
     data=json.loads((directory/'runs.json').read_text())
@@ -64,6 +124,9 @@ def replay(directory):
         require(p.resolve().is_relative_to(directory.resolve()) and not p.is_symlink(),'Escaping public evidence path')
         require(hashlib.sha256(p.read_bytes()).hexdigest()==digest,'Public bytes changed: '+name)
     with (directory/'timing.csv').open(newline='') as stream:timing=spans(list(csv.DictReader(stream)))
+    require(type(data['runs']) is list and len(data['runs'])==3 and
+            all(type(r) is dict for r in data['runs']),'Exactly three task records required')
+    require(len({r['task_id'] for r in data['runs']})==3,'Duplicate task records')
     tasks={r['task_id']:r for r in data['runs']}
     require(set(tasks)=={'T-B0-REF','T-B0-TIMED','T-K4-TIMED'},'Fixed three-slot matrix missing')
     for name,r in tasks.items():
@@ -80,14 +143,25 @@ def replay(directory):
             require(math.isclose(r['uncovered_seconds'],r['worker_wall_seconds']-measured,abs_tol=1e-8),'Uncovered arithmetic differs')
     pair=json.loads((directory/'b0-equivalence.json').read_text())
     if pair['status']=='PASS':
+        b0=[tasks[name] for name in ('T-B0-REF','T-B0-TIMED')]
+        require(all(r['execution_status']=='DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED'
+                    for r in b0),'B0 pair PASS requires both qualified diagnostics')
+        require(type(pair.get('execution_commit')) is str and
+                all(r.get('execution_commit')==pair['execution_commit'] for r in b0),
+                'B0 pair execution differs from its task records')
+        require(pair.get('run_ids')==[r['run_id'] for r in b0],
+                'B0 pair belongs to different runs')
         require([m['map_index'] for m in pair['maps']]==[1,2],'Incomplete B0 pair')
         for m in pair['maps']:
             require(abs(m['delta_E_ha'])<=1e-10 and abs(m['delta_F_ha'])<=1e-10 and
                     0<=m['density_relative_l2']<=1e-10 and 0<=m['raw_level_max_abs_ha']<=1e-9,'B0 pair exceeds fixed observation contract')
+    public_maps=public_map_data(directory,data,tasks)
+    public_pair=b0_energy_spectrum_replay(public_maps,pair)
     if tasks['T-K4-TIMED']['execution_status']=='DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED':
         require(pair['status']=='PASS','K4 lacked the paired B0 gate')
     return dict(replay_status='PASS',scope='Published byte identities and timing/scalar arithmetic; no material calculation or private-density re-evaluation',
                 task_status={k:v['execution_status'] for k,v in tasks.items()},b0_equivalence_status=pair['status'],
+                b0_public_energy_spectrum_replay=public_pair,
                 scientific_convergence_status='NOT_ASSESSED',instrumentation_overhead_status=data['instrumentation_overhead_status'])
 
 

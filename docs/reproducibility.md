@@ -96,3 +96,13 @@ Curation checks the current document links, exact path case and authorized diff
 separately. Its candidates and local check receipts are described in the
 [curation handoff](../results/researcher-curation.md). These are documentation and
 entry checks, not new scientific results.
+
+## Bounded timing diagnostics
+
+`python3.12 -B benchmarks/soc-timing-v1/replay.py` checks the
+[published B0/K4 diagnostic evidence](../results/soc-timing/README.md) with Python
+standard-library arithmetic. It reconstructs span self/inclusive accounting and
+B0 E/F and raw-level differences from the compressed numeric pack. Private density
+norm differences and resource observations remain runner-reported. This entry
+runs no material calculation; the original researcher commands above retain
+their fixed historical snapshots and review flags.

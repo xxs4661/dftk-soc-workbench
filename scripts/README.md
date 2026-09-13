@@ -92,6 +92,12 @@ unconsumed driver contract and further integration work. Public numerical packs
 cannot replace missing UPF, checkpoint or wavefunction sources. The current
 curation does not add such a driver.
 
+The new [timing evidence checker](../benchmarks/soc-timing-v1/replay.py) is read-only:
+`python3.12 -B benchmarks/soc-timing-v1/replay.py` validates published spans and
+B0 energy/spectrum arithmetic. [Control and timing semantics](../results/soc-timing/README.md)
+cover the explicitly bounded diagnostic launcher and its cooperative stop command;
+the three used numerical slots are not a general repeatable SCF entry.
+
 ## Maintenance
 
 The `curate_*_evidence.py` and case-specific export tools select recorded fields;

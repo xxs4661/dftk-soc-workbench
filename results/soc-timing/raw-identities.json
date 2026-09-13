@@ -1,0 +1,254 @@
+[
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "route.json",
+    "raw_sha256": "fe7e35a171ef77e71100de32be7ae27277c2fed14267cc45d945edd71daac319",
+    "raw_bytes": 9639
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "control.toml",
+    "raw_sha256": "d2f6b77434f5c6a001839957410b34394c4b9515c3daf493cdcc55212927c1e2",
+    "raw_bytes": 711
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "resource.json",
+    "raw_sha256": "a0f2d102c5c9b06ce3cc4bc8a64cafa546d0dec752767cfb42d591deb17bf1f3",
+    "raw_bytes": 770
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "result.json",
+    "raw_sha256": "b5b1f85611a1c2fe384e08a56dc30cd3a51a7ed44000407f14a0defc0b5a1243",
+    "raw_bytes": 29743
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "worker/result.json",
+    "raw_sha256": "505bc8530eb02d945110c727c9e7a00b03ca848ce770568afd9f33d1d28bacea",
+    "raw_bytes": 21395
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "worker/timing.jsonl",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "worker/maps.jsonl",
+    "raw_sha256": "f1ad5c62511cff2ecb1816f8cddcb7713b3add0942e40470bd3195a294bb59e4",
+    "raw_bytes": 80818
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "worker/solver.jsonl",
+    "raw_sha256": "058c2946d97c051626b2a66650e01d293606abcd51b6026d733a43892a7e7ad1",
+    "raw_bytes": 31966
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "qe.stdout",
+    "raw_sha256": "1327a0f6ac1d57534cbbe94ccdbeabb5bf8480a9df54b4fa7fc93aa4c8d0bca3",
+    "raw_bytes": 21573
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "qe.stderr",
+    "raw_sha256": "59e9f141c45372b51031ce6ae0e9f423079b2c00d2b6eb48ce4327a4ec2b119d",
+    "raw_bytes": 263
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "process-start.json",
+    "raw_sha256": "02ae387e2b4fbd01d67e8344d1f5f5c0d4d4caa0ff131dd1e63308b98aa57b63",
+    "raw_bytes": 675
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "process-exit.json",
+    "raw_sha256": "de7d60a383403019e351d583febe19003ef09405757b81e7ebc7137403907314",
+    "raw_bytes": 99
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "worker/map-001-summary.json",
+    "raw_sha256": "d5008abf63adfd4c07f744e6ccb7feed740e36f1fe981c529235b80ed21c0c44",
+    "raw_bytes": 9925
+  },
+  {
+    "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+    "path": "worker/map-002-summary.json",
+    "raw_sha256": "9c4d716cdfd5607cda3942da2028b30dc63dbe02d46acdf177b5808e375fff0d",
+    "raw_bytes": 9909
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "route.json",
+    "raw_sha256": "9b9dcfe6c748cfcf31ad8ce45bd87f384a277553288f245838846782ba3d991b",
+    "raw_bytes": 9960
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "control.toml",
+    "raw_sha256": "b6c037606d58306175f6416b040360609c69fbc86a32793067900274fe80f23a",
+    "raw_bytes": 715
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "resource.json",
+    "raw_sha256": "73b5061a6cb6f0b1932a8d7abc9d51879ce4b9f446fd8632de4ca4c5650d63b2",
+    "raw_bytes": 770
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "result.json",
+    "raw_sha256": "5230c04ea4a0635b94c1eb9d99a111247df4799f9b08cb5a9ff0626f92b84a19",
+    "raw_bytes": 29807
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "worker/result.json",
+    "raw_sha256": "58b967776ba616159377fd725d8c9749355be0b7da83751bb2405ea77f334a71",
+    "raw_bytes": 21431
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "worker/timing.jsonl",
+    "raw_sha256": "39994781e67cf468852d2142e99beb3b6c6b54cd079dd549b48187655b50993f",
+    "raw_bytes": 117708
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "worker/maps.jsonl",
+    "raw_sha256": "9d1f8bb712408c717516a3323c2c3acedfe95b2d86c2377cc81f8ab693256e8e",
+    "raw_bytes": 80723
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "worker/solver.jsonl",
+    "raw_sha256": "815ab3857c25b6ce4dcf35274362b6c4e022526294dfce3b1985a8756e900ea7",
+    "raw_bytes": 31977
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "qe.stdout",
+    "raw_sha256": "b65f00086372882265618a4ff4b3ac949b2d4a25b40fb9b21bedf4b6b5c12edb",
+    "raw_bytes": 21871
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "qe.stderr",
+    "raw_sha256": "312590ecaf598a105706bd64232204827cf09cf66f970a87b843eae6f47d7a65",
+    "raw_bytes": 264
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "process-start.json",
+    "raw_sha256": "42ec0dc35101a93685fe1f106899b7a113b4e450ba1926f1a1d153e68d236823",
+    "raw_bytes": 675
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "process-exit.json",
+    "raw_sha256": "19bdde3d4f5df452ffeb6ede888a6d0425037a89a1f253dc42076c6e1cb203d6",
+    "raw_bytes": 99
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "worker/map-001-summary.json",
+    "raw_sha256": "49a51eeeacf535042b89c6b154d02d0e9a7b40cba41a2080025f83686274443e",
+    "raw_bytes": 9907
+  },
+  {
+    "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+    "path": "worker/map-002-summary.json",
+    "raw_sha256": "78f6c6c34938b11a366ac8d13c221aa640b1295ac1f2050af727d104fc886839",
+    "raw_bytes": 9916
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "route.json",
+    "raw_sha256": "2623cca29316036a3072d69b8de36c6ebf1ec559459de8f71bbe707020752855",
+    "raw_bytes": 9972
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "control.toml",
+    "raw_sha256": "0c04e520af2514ec3b7bd3033e78473a28fc6759f843749b4d1410f5f5494a14",
+    "raw_bytes": 716
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "resource.json",
+    "raw_sha256": "46ffa04fc0c183392e5ff6849e48141e15d2cd4d4c4bb43e1e508709735192a7",
+    "raw_bytes": 771
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "result.json",
+    "raw_sha256": "4eca2f92f36b8f03a65c53e90702c496e03b2968c07a410f7a7941db4eab354b",
+    "raw_bytes": 67887
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "worker/result.json",
+    "raw_sha256": "780c1917b364261a31160a46ce812f66f513399f40d1fa684041366eb669a253",
+    "raw_bytes": 41926
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "worker/timing.jsonl",
+    "raw_sha256": "956b14e68bc1df2b95f6536754b227ce2bd23ad73ff02eafb5ee1043ecf55c55",
+    "raw_bytes": 720859
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "worker/maps.jsonl",
+    "raw_sha256": "723a310c0202e58de2b6bb13cc94fc449183ed0e9af27863c79f2484dba1cb8d",
+    "raw_bytes": 543883
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "worker/solver.jsonl",
+    "raw_sha256": "98e3c8dbc13aa52ecd39b68071cf37b4c7eeb3fc8448ecbfef15d77914637cf6",
+    "raw_bytes": 255467
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "qe.stdout",
+    "raw_sha256": "32a863563ed472e39caf5384627a4e60bd61f50a3655076fcd6f244af42cea7f",
+    "raw_bytes": 42366
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "qe.stderr",
+    "raw_sha256": "c125b375d8f77968a5b460339ddfa702eaddd2a6ec61d76f41d90ebc30dad9ee",
+    "raw_bytes": 262
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "process-start.json",
+    "raw_sha256": "fd94ccea404c69108ec21c0de25e6102b82cc864290a68307cf9348923d46c79",
+    "raw_bytes": 675
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "process-exit.json",
+    "raw_sha256": "7e1f7d1772f795b534e89bbede6b005a995f72a94f68a90afe73b67d497f4efb",
+    "raw_bytes": 99
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "worker/map-001-summary.json",
+    "raw_sha256": "6b9fd7a9cf6e39d6290dddaeb5f8315b78119184cffdc936c9eaf2c96e8c3587",
+    "raw_bytes": 60003
+  },
+  {
+    "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+    "path": "worker/map-002-summary.json",
+    "raw_sha256": "5e6fadeb55a24b706648a6ec1ca39addd9ddf9bcc8c0858d400690015094f297",
+    "raw_bytes": 60146
+  }
+]

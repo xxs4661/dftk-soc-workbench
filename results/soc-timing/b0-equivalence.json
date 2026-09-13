@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "execution_commit": "5830d69ce73c201875dca373f5cdf1f98a63e133",
+  "run_ids": [
+    "T-B0-REF-20260913T154940049438Z-c4386456",
+    "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf"
+  ],
+  "maps": [
+    {
+      "map_index": 1,
+      "delta_E_ha": 7.283063041541027e-14,
+      "delta_F_ha": 7.283063041541027e-14,
+      "density_relative_l2": 4.526797803671007e-13,
+      "raw_level_max_abs_ha": 6.938893903907228e-15,
+      "raw_level_rms_ha": 1.6944981891096138e-15,
+      "status": "PASS"
+    },
+    {
+      "map_index": 2,
+      "delta_E_ha": 6.572520305780927e-14,
+      "delta_F_ha": 6.572520305780927e-14,
+      "density_relative_l2": 4.550866623055675e-13,
+      "raw_level_max_abs_ha": 6.994405055138486e-15,
+      "raw_level_rms_ha": 1.847098187507211e-15,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "thresholds": {
+    "energy_abs_ha": 1e-10,
+    "density_relative_l2": 1e-10,
+    "raw_level_abs_ha": 1e-09
+  },
+  "array_scope": "Actual new run-local Float64 density exports; not a comparison to historical converged endpoints",
+  "public_scope": "Runner-reported density norm comparison; public scalar arithmetic alone does not repeat the private array comparison"
+}

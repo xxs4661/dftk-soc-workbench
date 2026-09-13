@@ -21,7 +21,7 @@ SOC problem; their fixed-density probes use each program's own final density.
 | Does removing the spin-dependent nonlocal action restore the degeneracy? | The same-density control's six-state width is about 1.63×10⁻¹² eV; see [canonical comparison](si-soc-splitting/comparison.json). | A spin-trace operator diagnostic, not a separate scalar-pseudopotential calculation. |
 | How sensitive is Δ to the selected settings? | [Paired cutoff, temperature and k-grid changes](si-soc-sensitivity/README.md): E40/T05 changes fall within the declared 0.1 meV window; K4 raises Δ by about 0.331506 meV in both programs. | Agreement between programs does not make the k-grid change small. These are three finite checks, not a convergence study. |
 | Does the denser QE sequence change that picture? | [Historical QE K6/K8 reference](si-soc-k-reference/README.md): K4→K6 and K6→K8 changes are +0.0471284 and +0.0086212 meV. | Both are within the observation window. That QE-only matrix contained no workbench K6/K8 runs; its values do not establish cross-code agreement or full convergence. |
-| Does the workbench reproduce the same-input QE K6 splitting? | [K6 resource outcome](soc-extra/README.md): a two-map pilot completed, but the single formal SCF attempt stopped under the fixed resource-headroom rule, **FAIL / native 1 / outer 1**. | No converged workbench K6 state: Γ BLOCKED_PARENT, D−QE splitting and K4→K6 response comparisons NOT_ASSESSED. QE is historical reuse; workbench K8 remains NOT_RUN. |
+| Does the workbench reproduce the same-input QE K6 splitting? | [Original headroom stop](soc-extra/README.md), followed by [user cancellation of the second attempt](soc-timing/README.md). Neither produced a qualified endpoint. | K6 Γ and the new D−QE comparison remain unavailable; runtime close for the canceled attempt and resume capability remain unverified. Workbench K8 was not run. |
 
 Raw spectra and single-global-reference diagnostics remain available. No fitted
 potential offset or empirical total-energy correction was applied. QE warnings,
@@ -93,3 +93,9 @@ when sampled peak plus fixed remaining growth exceeded the 8 GiB screen.
 This was not sampled RSS reaching 8 GiB, and the pilot is not a converged SCF.
 The new record separates cumulative allocations, retained storage, resource
 observations and execution outcomes; native Linux SCF/Γ remains NOT_RUN.
+
+The [bounded timing and cancellation diagnostics](soc-timing/README.md) separate
+validation, solver and write costs using fresh B0/K4 two-map runs. Their same-map
+B0 regression passes; public replay checks the span and energy/spectrum arithmetic.
+They are not new converged endpoints or an overall speedup benchmark. The older
+K6 cancellation and unclassified time remain explicit.

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "execution_commit": "5830d69ce73c201875dca373f5cdf1f98a63e133",
+  "candidate_clone": {
+    "status": "NOT_RUN_PENDING_PACKAGING_COMMIT"
+  },
+  "incremental_archive": {
+    "status": "NOT_RUN_PENDING_COPY"
+  },
+  "scope": "Delivery checks only; numerical execution identity and outcomes stay bound to E1."
+}

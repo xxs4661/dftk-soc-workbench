@@ -54,6 +54,10 @@ retains that core after finite profiling and passes another fresh B0 regression.
 Its K6 resource pilot and failed formal SCF have separate outcomes; neither
 static allocations nor the pilot establish an overall speedup or convergence.
 
+The [bounded timing contract](soc-timing-v1/plan.md) reuses exact B0/K4 inputs
+through the existing numerical path for at most two maps. [Actual results](../results/soc-timing/README.md)
+and a read-only replay distinguish this diagnostic from a full SCF or the old K6 pilot.
+
 ## What reproduction requires
 
 - **Public checks:** use the stated clean [historical snapshots](../docs/history.md)

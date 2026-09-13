@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "maps": [
+    {
+      "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+      "task_id": "T-B0-REF",
+      "map_index": 1,
+      "scientific_map_complete": true,
+      "native_map_rows": [
+        {
+          "line": 1,
+          "status": "CONTINUE",
+          "role": "iteration"
+        }
+      ],
+      "expected_kpoints": 8,
+      "completed_solver_records": 8,
+      "legacy_per_k_inclusive_sum_seconds": 21.194838762283325,
+      "legacy_elapsed_scope": "Original inclusive time(), not pure LOBPCG; separate from new monotonic spans.",
+      "summary_status": "WORKER_HASH_BOUND",
+      "map_wall_seconds": null,
+      "summary_sha256": "d5008abf63adfd4c07f744e6ccb7feed740e36f1fe981c529235b80ed21c0c44",
+      "internal_energy_ha": -8.254462100988722,
+      "free_energy_ha": -8.254462100988722,
+      "unmixed_residual_l2": 0.4689349276831269,
+      "density_comparison_scope": "Not read here; binary density comparison is performed by the separate B0 comparator.",
+      "map_span_status": "NOT_RECORDED_DISABLED",
+      "iterations_sum": 264,
+      "solver_n_matvec_sum": 6786,
+      "per_k_source": "solver-records.json.gz with fractional k coordinates in map-spectra.json.gz"
+    },
+    {
+      "run_id": "T-B0-REF-20260913T154940049438Z-c4386456",
+      "task_id": "T-B0-REF",
+      "map_index": 2,
+      "scientific_map_complete": true,
+      "native_map_rows": [
+        {
+          "line": 2,
+          "status": "CONTINUE",
+          "role": "iteration"
+        }
+      ],
+      "expected_kpoints": 8,
+      "completed_solver_records": 8,
+      "legacy_per_k_inclusive_sum_seconds": 13.8919198513031,
+      "legacy_elapsed_scope": "Original inclusive time(), not pure LOBPCG; separate from new monotonic spans.",
+      "summary_status": "WORKER_HASH_BOUND",
+      "map_wall_seconds": null,
+      "summary_sha256": "9c4d716cdfd5607cda3942da2028b30dc63dbe02d46acdf177b5808e375fff0d",
+      "internal_energy_ha": -8.277409764956937,
+      "free_energy_ha": -8.277409764956937,
+      "unmixed_residual_l2": 0.4119768492715617,
+      "density_comparison_scope": "Not read here; binary density comparison is performed by the separate B0 comparator.",
+      "map_span_status": "NOT_RECORDED_DISABLED",
+      "iterations_sum": 174,
+      "solver_n_matvec_sum": 4517,
+      "per_k_source": "solver-records.json.gz with fractional k coordinates in map-spectra.json.gz"
+    },
+    {
+      "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+      "task_id": "T-B0-TIMED",
+      "map_index": 1,
+      "scientific_map_complete": true,
+      "native_map_rows": [
+        {
+          "line": 1,
+          "status": "CONTINUE",
+          "role": "iteration"
+        }
+      ],
+      "expected_kpoints": 8,
+      "completed_solver_records": 8,
+      "legacy_per_k_inclusive_sum_seconds": 21.74881601333618,
+      "legacy_elapsed_scope": "Original inclusive time(), not pure LOBPCG; separate from new monotonic spans.",
+      "summary_status": "WORKER_HASH_BOUND",
+      "map_wall_seconds": 39.859424959,
+      "summary_sha256": "49a51eeeacf535042b89c6b154d02d0e9a7b40cba41a2080025f83686274443e",
+      "internal_energy_ha": -8.254462100988649,
+      "free_energy_ha": -8.254462100988649,
+      "unmixed_residual_l2": 0.46893492768317274,
+      "density_comparison_scope": "Not read here; binary density comparison is performed by the separate B0 comparator.",
+      "map_span_status": "COMPLETE",
+      "map_span_id": 13,
+      "iterations_sum": 266,
+      "solver_n_matvec_sum": 6806,
+      "per_k_source": "solver-records.json.gz with fractional k coordinates in map-spectra.json.gz"
+    },
+    {
+      "run_id": "T-B0-TIMED-20260913T155204973464Z-c0cdaeaf",
+      "task_id": "T-B0-TIMED",
+      "map_index": 2,
+      "scientific_map_complete": true,
+      "native_map_rows": [
+        {
+          "line": 2,
+          "status": "CONTINUE",
+          "role": "iteration"
+        }
+      ],
+      "expected_kpoints": 8,
+      "completed_solver_records": 8,
+      "legacy_per_k_inclusive_sum_seconds": 14.14707350730896,
+      "legacy_elapsed_scope": "Original inclusive time(), not pure LOBPCG; separate from new monotonic spans.",
+      "summary_status": "WORKER_HASH_BOUND",
+      "map_wall_seconds": 24.418721542,
+      "summary_sha256": "78f6c6c34938b11a366ac8d13c221aa640b1295ac1f2050af727d104fc886839",
+      "internal_energy_ha": -8.277409764956872,
+      "free_energy_ha": -8.277409764956872,
+      "unmixed_residual_l2": 0.4119768492716038,
+      "density_comparison_scope": "Not read here; binary density comparison is performed by the separate B0 comparator.",
+      "map_span_status": "DIAGNOSTIC_COMPLETED",
+      "map_span_id": 208,
+      "iterations_sum": 175,
+      "solver_n_matvec_sum": 4521,
+      "per_k_source": "solver-records.json.gz with fractional k coordinates in map-spectra.json.gz"
+    },
+    {
+      "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+      "task_id": "T-K4-TIMED",
+      "map_index": 1,
+      "scientific_map_complete": true,
+      "native_map_rows": [
+        {
+          "line": 1,
+          "status": "CONTINUE",
+          "role": "iteration"
+        }
+      ],
+      "expected_kpoints": 64,
+      "completed_solver_records": 64,
+      "legacy_per_k_inclusive_sum_seconds": 251.5235674381256,
+      "legacy_elapsed_scope": "Original inclusive time(), not pure LOBPCG; separate from new monotonic spans.",
+      "summary_status": "WORKER_HASH_BOUND",
+      "map_wall_seconds": 502.295239833,
+      "summary_sha256": "6b9fd7a9cf6e39d6290dddaeb5f8315b78119184cffdc936c9eaf2c96e8c3587",
+      "internal_energy_ha": -8.33700016159466,
+      "free_energy_ha": -8.33700016159466,
+      "unmixed_residual_l2": 0.4505708172179715,
+      "density_comparison_scope": "Not read here; binary density comparison is performed by the separate B0 comparator.",
+      "map_span_status": "COMPLETE",
+      "map_span_id": 13,
+      "iterations_sum": 2362,
+      "solver_n_matvec_sum": 55914,
+      "per_k_source": "solver-records.json.gz with fractional k coordinates in map-spectra.json.gz"
+    },
+    {
+      "run_id": "T-K4-TIMED-20260913T155409589722Z-ae671958",
+      "task_id": "T-K4-TIMED",
+      "map_index": 2,
+      "scientific_map_complete": true,
+      "native_map_rows": [
+        {
+          "line": 2,
+          "status": "CONTINUE",
+          "role": "iteration"
+        }
+      ],
+      "expected_kpoints": 64,
+      "completed_solver_records": 64,
+      "legacy_per_k_inclusive_sum_seconds": 205.28004384040833,
+      "legacy_elapsed_scope": "Original inclusive time(), not pure LOBPCG; separate from new monotonic spans.",
+      "summary_status": "WORKER_HASH_BOUND",
+      "map_wall_seconds": 444.2238015,
+      "summary_sha256": "5e6fadeb55a24b706648a6ec1ca39addd9ddf9bcc8c0858d400690015094f297",
+      "internal_energy_ha": -8.361675566187854,
+      "free_energy_ha": -8.361675566187854,
+      "unmixed_residual_l2": 0.3943031135339965,
+      "density_comparison_scope": "Not read here; binary density comparison is performed by the separate B0 comparator.",
+      "map_span_status": "DIAGNOSTIC_COMPLETED",
+      "map_span_id": 1216,
+      "iterations_sum": 1658,
+      "solver_n_matvec_sum": 39304,
+      "per_k_source": "solver-records.json.gz with fractional k coordinates in map-spectra.json.gz"
+    }
+  ]
+}
