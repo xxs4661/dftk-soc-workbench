@@ -2,10 +2,218 @@
   "schema_version": 1,
   "execution_commit": "5830d69ce73c201875dca373f5cdf1f98a63e133",
   "candidate_clone": {
-    "status": "NOT_RUN_PENDING_PACKAGING_COMMIT"
+    "commit": "6005260f69889d6b078656fd026061b98b3d83dc",
+    "scope": "Clean-clone public replay and synthetic tests; no material calculation",
+    "checks": [
+      {
+        "name": "clone",
+        "command": [
+          "git",
+          "clone",
+          "--no-hardlinks",
+          "--no-checkout",
+          "$REPOSITORY",
+          "$ARCHIVE/candidate-clone"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.43315354199148715,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "bb07b0b38e603e3ab4697c43efc799c771ef7b7131c9b0e7df0e593df0de3188"
+      },
+      {
+        "name": "checkout",
+        "command": [
+          "git",
+          "checkout",
+          "--detach",
+          "6005260f69889d6b078656fd026061b98b3d83dc"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.15719370800070465,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "f80dfb0ffcd72a7a92b081e884bead155ae01e321512adc1d9fdd4bd941182e1"
+      },
+      {
+        "name": "timing-public-replay",
+        "command": [
+          "python3.12",
+          "-B",
+          "benchmarks/soc-timing-v1/replay.py"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.03442120899853762,
+        "stdout_sha256": "f18112843c7b509f5ee822ed464d0d9eeb26d798a3565aa4dca4e924b33505ab",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "timing-analysis-tests",
+        "command": [
+          "python3.12",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_soc_timing_analysis.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.07770608300052118,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "400338833a68ff909e293d6a9d7e3ffb36fb057d7f41036df69ddd22e52877dc"
+      },
+      {
+        "name": "review-tests",
+        "command": [
+          "python3.12",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_review.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 2.146748999992269,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "5f9bf90fd88799f0d35f590f3d3a59ec657a46ceede58b4f2a28793843c3f453"
+      },
+      {
+        "name": "researcher-replay",
+        "command": [
+          "python3.12",
+          "-B",
+          "scripts/review.py",
+          "core-regression"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 4.217060541006504,
+        "stdout_sha256": "0a004c5293a8e9ba7602ea00b2d79125f412974680a9a289569dfba596542cbb",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "core-example",
+        "command": [
+          "julia",
+          "--startup-file=no",
+          "--project=@stdlib",
+          "examples/soc_kernels.jl"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 1.0689265840046573,
+        "stdout_sha256": "4e8a7ebd4dd92bf6f5f09eb3ce4323e45ec30bad4d771c5bd041ab10de9d74c5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "diff-check",
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.04153945900907274,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "status": "PASS",
+    "worktree_status": "CLEAN",
+    "private_environment": "NOT_COPIED",
+    "numerical_tasks": "NOT_RUN"
   },
   "incremental_archive": {
-    "status": "NOT_RUN_PENDING_COPY"
+    "schema_version": 1,
+    "status": "PASS",
+    "candidate_commit": "6005260f69889d6b078656fd026061b98b3d83dc",
+    "execution_commit": "5830d69ce73c201875dca373f5cdf1f98a63e133",
+    "archive_id": "soc-timing-cancellation-20260913",
+    "regular_files": 761,
+    "symlinks": 3,
+    "bytes": 905836132,
+    "manifest_sha256": "7f77cc148f1ba9a9658feb88465a85c1ee3b123caa62fe0967aa26ffe8b87e56",
+    "incremental_bundle_sha256": "701deb64e4718bd692900af9509b1cb4b78d99396dcf5519355d79f317474a5d",
+    "prerequisite_commit": "e40def9dcfd243131adae1ce16d8b22815560a87",
+    "execution_absent_before_bundle": true,
+    "restored_tree": "d932cc352034dd537ed7e35c9e16fb77506101db",
+    "restored_samples": [
+      {
+        "path": "raw/soc-timing/runs/T-B0-REF-20260913T154940049438Z-c4386456/worker/current-map-input.bin",
+        "size": 884865,
+        "sha256": "bc67b92a9d085c351e360ef2b32d488b658b80254cf1e5ca8d9b7bd6bb734fdf",
+        "status": "PASS"
+      },
+      {
+        "path": "raw/soc-timing/runs/T-B0-REF-20260913T154940049438Z-c4386456/result.json",
+        "size": 29743,
+        "sha256": "b5b1f85611a1c2fe384e08a56dc30cd3a51a7ed44000407f14a0defc0b5a1243",
+        "status": "PASS"
+      },
+      {
+        "path": "raw/soc-timing/runs/T-B0-REF-20260913T154940049438Z-c4386456/worker/timing.jsonl",
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status": "PASS"
+      },
+      {
+        "path": "input/Si_r.upf",
+        "size": 291215,
+        "sha256": "cc91a6be43c3c89daf6c34410096e8d870f25152dbfb513bcf01afa5ab53eabf",
+        "status": "PASS"
+      },
+      {
+        "path": "control/consumed/T-K4-TIMED.json",
+        "size": 228,
+        "sha256": "5d24c456db6cad8480202633fc7ce8f8c341e9cb3e4f4a9f5eb22b5059f987f1",
+        "status": "PASS"
+      },
+      {
+        "path": "execution-files/environment/workbench/Manifest.toml",
+        "size": 44517,
+        "sha256": "5b8ae036ac430219a95d61a5e3cd20074e9ecd252335253bf7ada81278b08c37",
+        "status": "PASS"
+      }
+    ],
+    "binary_handling": "Copy and streamed hashes only; no deserialize or scientific evaluation",
+    "old_409_file_archive": "NOT_COPIED",
+    "same_machine_not_offsite": true,
+    "source_directories_removed": false,
+    "additional_restores": [
+      {
+        "name": "map-001.bin",
+        "bytes": 236016725,
+        "sha256": "32e80121c4cd1edea44c77e90f240a3dfb1ce1715f2711479adf384c82f6594f",
+        "status": "PASS",
+        "scope": "Byte copy and stream hash; not deserialized"
+      },
+      {
+        "name": "timing.jsonl",
+        "bytes": 720859,
+        "sha256": "956b14e68bc1df2b95f6536754b227ce2bd23ad73ff02eafb5ee1043ecf55c55",
+        "status": "PASS",
+        "scope": "Byte copy and stream hash; not deserialized"
+      },
+      {
+        "name": "map-002-density.f64",
+        "bytes": 884736,
+        "sha256": "38307aab974a82f2c2eccfde14ecdd30448ca9796395e7032573ef2b820aaa55",
+        "status": "PASS",
+        "scope": "Byte copy and stream hash; not deserialized"
+      }
+    ],
+    "execution_source_files_verified": 26,
+    "initial_copy_attempt": {
+      "exit_code": 1,
+      "reason": "Intentional synthetic symlink alias rejected by strict copier; partial increment-01 retained. Increment-02 preserves symbolic link bytes without dereferencing.",
+      "numerical_tasks": "NOT_RUN"
+    }
   },
-  "scope": "Delivery checks only; numerical execution identity and outcomes stay bound to E1."
+  "final_packaging_note": "Candidate is checked at the named SHA. Final packaging clone/push receipts will be preserved externally to avoid a self-referential receipt commit.",
+  "scientific_status": "DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED",
+  "historical_K6": "USER_CANCELLED; native -2 / recorder 9; runtime close unconfirmed; no qualified endpoint; resume unverified; unchanged"
 }
