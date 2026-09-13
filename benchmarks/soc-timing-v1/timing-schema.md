@@ -14,7 +14,9 @@ Each row records run_id, pid, span_id, parent_span (0 means no parent), name,
 map_index (0 outside a map), k_index (0 outside a k solve), start_offset_ns,
 end_offset_ns, inclusive_ns, exclusive_ns, calls and status. Self time subtracts
 only direct serial children. Never sum an inclusive parent with its children.
-COMPLETE, STOPPED and ERROR spans have observed ends. A missing end after process
+COMPLETE, DIAGNOSTIC_COMPLETED, STOPPED and ERROR spans have observed ends.
+DIAGNOSTIC_COMPLETED records the exact two-map stop, not SCF convergence.
+A missing end after process
 termination is incomplete/truncated; no zero duration may be substituted.
 
 `map_total` begins before controller density checks and ends after the map,

@@ -7,6 +7,33 @@ const TD=WorkbenchDiagnostics
 include(joinpath(@__DIR__,"control.jl"))
 const TC=SocTimingControl
 
+# Julia 1.12 imports made by the selected source tree must be inspected and
+# called in the same latest world. Checking isdefined in the caller can skip
+# a valid newly imported serializer without raising an exception.
+function timing_ref_sentinel(err)
+    Base.invokelatest() do
+        isdefined(Main,:SOC) || return nothing
+        SOC.Controller.DensityMapFailure(sprint(showerror,err),Any[])
+    end
+end
+function timing_persist_result(path,result)
+    Base.invokelatest() do
+        if isdefined(Main,:phase6b_write)
+            phase6b_write(path,result)
+        else
+            isdefined(Main,:JSON3) || error("Result serializer did not load")
+            temporary=path*".tmp"
+            write(temporary,JSON3.write(result));mv(temporary,path;force=true)
+        end
+    end
+end
+function timing_emit_result(result)
+    Base.invokelatest() do
+        isdefined(Main,:JSON3) || error("Result serializer did not load; cannot publish a receipt")
+        println(JSON3.write(result))
+    end
+end
+
 function timing_main(args)
     isempty(args) && return 2
     check=last(args)=="--check-entry"
@@ -32,10 +59,12 @@ function timing_main(args)
         try
             TC.boundary!(control[],event,map_index,k_index;propagate)
         catch err
-            if task=="T-B0-REF" && err isa TD.ControlledStop && isdefined(Main,:SOC)
-                sentinel=SOC.Controller.DensityMapFailure(sprint(showerror,err),Any[])
-                bridge[]=(;sentinel,original=err)
-                throw(sentinel)
+            if task=="T-B0-REF" && err isa TD.ControlledStop
+                sentinel=timing_ref_sentinel(err)
+                if !isnothing(sentinel)
+                    bridge[]=(;sentinel,original=err)
+                    throw(sentinel)
+                end
             end
             rethrow()
         end
@@ -312,19 +341,14 @@ function timing_main(args)
         end
         failure_reason!()
         try
-            if isdefined(Main,:phase6b_write)
-                Base.invokelatest(phase6b_write,joinpath(outdir,"result.json"),result)
-            else
-                path=joinpath(outdir,"result.json");temporary=path*".tmp"
-                write(temporary,Base.invokelatest(JSON3.write,result));mv(temporary,path;force=true)
-            end
+            timing_persist_result(joinpath(outdir,"result.json"),result)
         catch err
             result["execution_status"]="FAIL";result["exit_code"]=1;push!(result["errors"],sprint(showerror,err))
             println(stderr,"Diagnostic persistence failed: ",sprint(showerror,err))
         end
     end
     failure_reason!()
-    isdefined(Main,:JSON3) && println(Base.invokelatest(JSON3.write,result))
+    timing_emit_result(result)
     result["exit_code"]
 end
 

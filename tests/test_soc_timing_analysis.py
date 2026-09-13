@@ -68,6 +68,24 @@ class SpanArithmetic(unittest.TestCase):
         with self.assertRaises(ValueError):R.spans([self.row(1,0,0,100,10),self.row(2,1,10,60,50),self.row(3,1,50,90,40)])
 
 class BatchControl(unittest.TestCase):
+    def test_zero_entry_without_receipt_is_rejected(self):
+        m=load('run')
+        with self.assertRaises(ValueError):m.entry_contract(b'',0,{})
+        with self.assertRaises(ValueError):m.entry_contract(b'{}',0,{'run_id':'synthetic'})
+    def test_entry_loaded_source_and_no_context_are_required(self):
+        m=load('run')
+        route=dict(run_id='synthetic',task_id='T-B0-REF',execution_commit='a'*40,
+                   source_commit=C.E0,case_sha256='b'*64,source_sha256={'source.jl':'c'*64})
+        value=dict(route,execution_status='CHECK_ONLY_PASS',exit_code=0,check_only=True,
+                   context_constructed=False,owned_runtime_constructed=False,formal_slot_reserved=False,
+                   numerical_execution_status='NOT_RUN',environment={'status':'PASS'},
+                   actual_method_sources={name:dict(relative_path='source.jl',source_sha256='c'*64)
+                       for name in ['soc_scf','solve_soc_targets','controller']})
+        self.assertEqual(m.entry_contract(json.dumps(value).encode(),0,route)['exit_code'],0)
+        for key,changed in [('context_constructed',True),('source_commit','d'*40),
+                            ('environment',{'status':'FAIL'}),('actual_method_sources',{})]:
+            bad=dict(value);bad[key]=changed
+            with self.subTest(key=key),self.assertRaises(ValueError):m.entry_contract(json.dumps(bad).encode(),0,route)
     def test_sleep_and_backward_calendar_do_not_extend_budget(self):
         m=load('run');batch=dict(started_epoch=1000,started_monotonic_ns=1000000000)
         self.assertEqual(m.remaining(batch,now_epoch=2000,now_ns=11000000000),2600)

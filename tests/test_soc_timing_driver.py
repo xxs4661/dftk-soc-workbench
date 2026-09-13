@@ -1,9 +1,11 @@
-"""Synthetic route/source contracts. No Julia or numerical launcher is invoked."""
+"""Synthetic route/source and stdlib Julia binding tests; no numerical context."""
 import copy
 import hashlib
 import importlib.util
 from pathlib import Path
 import tempfile
+import shutil
+import subprocess
 import unittest
 from unittest.mock import patch
 
@@ -89,6 +91,55 @@ class RouteTests(unittest.TestCase):
         self.assertIn('benchmarks/soc-extra-v1/driver.jl',inventory)
         self.assertIn('prototypes/soc_scf/phase6c.toml',inventory)
         self.assertIn('environment/workbench/Manifest.toml',inventory)
+
+
+class DriverWorldAgeTests(unittest.TestCase):
+    @unittest.skipUnless(shutil.which('julia'), 'Julia not installed: stdlib binding test NOT_RUN')
+    def test_late_imports_publish_json_persist_and_bridge_in_actual_helpers(self):
+        # Load only the actual driver's definitions; fake imported modules are
+        # protocol fixtures, never DFTK or a physical/numerical worker.
+        program = r'''using Test
+source=read(ARGS[1],String)
+source=replace(source,"isempty(ARGS) ? exit(2) : exit(timing_main(ARGS))"=>"")
+include_string(Main,source,ARGS[1])
+module SyntheticBindings
+    module JSON3
+        write(value)="SYNTHETIC_JSON_RECEIPT"
+    end
+    module SOC
+        module Controller
+            struct DensityMapFailure <: Exception
+                message::String
+                history::Vector{Any}
+            end
+        end
+    end
+    phase6b_write(path,value)=write(path,"SYNTHETIC_NATIVE_WRITER")
+end
+function exercise(directory)
+    @test timing_ref_sentinel(TD.ControlledStop("USER_CANCELLED"))===nothing
+    Core.eval(Main,:(using .SyntheticBindings: JSON3, SOC))
+    # Same imported-binding gap as the original empty-output check-entry.
+    @test isdefined(Main,:JSON3)===false
+    sentinel=timing_ref_sentinel(TD.ControlledStop("USER_CANCELLED"))
+    @test !isnothing(sentinel)
+    @test occursin("USER_CANCELLED",sentinel.message)
+    path=joinpath(directory,"synthetic-result.json")
+    timing_persist_result(path,Dict("synthetic"=>true))
+    @test read(path,String)=="SYNTHETIC_JSON_RECEIPT"
+    Core.eval(Main,:(using .SyntheticBindings: phase6b_write))
+    timing_persist_result(path,Dict("synthetic"=>true))
+    @test read(path,String)=="SYNTHETIC_NATIVE_WRITER"
+    timing_emit_result(Dict("synthetic"=>true))
+end
+exercise(ARGS[2])
+'''
+        with tempfile.TemporaryDirectory() as directory:
+            proc=subprocess.run([shutil.which('julia'),'--startup-file=no','--project=@stdlib',
+                                 '-e',program,str(ROOT/'benchmarks/soc-timing-v1/driver.jl'),directory],
+                                capture_output=True,text=True,timeout=30)
+        self.assertEqual(proc.returncode,0,proc.stdout+'\n'+proc.stderr)
+        self.assertIn('SYNTHETIC_JSON_RECEIPT',proc.stdout)
 
 
 if __name__=='__main__':

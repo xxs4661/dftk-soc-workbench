@@ -43,6 +43,28 @@ def require(condition, reason):
         raise ValueError(reason)
 
 
+def entry_contract(raw, native, routed):
+    require(native == 0, 'Entry worker returned nonzero')
+    value = json.loads(raw)
+    require(type(value) is dict, 'Entry receipt is not an object')
+    for key in ('run_id', 'task_id', 'execution_commit', 'source_commit', 'case_sha256'):
+        require(value.get(key) == routed[key], 'Entry identity differs: '+key)
+    require(value.get('execution_status') == 'CHECK_ONLY_PASS' and type(value.get('exit_code')) is int and
+            value['exit_code'] == 0 and value.get('check_only') is True, 'Entry receipt is not successful check-only')
+    require(value.get('context_constructed') is False and value.get('owned_runtime_constructed') is False and
+            value.get('formal_slot_reserved') is False and value.get('numerical_execution_status') == 'NOT_RUN',
+            'Entry constructed numerical state or reserved a slot')
+    require(type(value.get('environment')) is dict and value['environment'].get('status') == 'PASS',
+            'Entry environment failed')
+    methods=value.get('actual_method_sources')
+    require(type(methods) is dict and set(methods) == {'soc_scf','solve_soc_targets','controller'},
+            'Loaded method identities missing')
+    for item in methods.values():
+        require(type(item) is dict and item.get('source_sha256') == routed['source_sha256'].get(item.get('relative_path'))
+                and item.get('source_sha256') is not None, 'Entry loaded method source differs')
+    return value
+
+
 @contextlib.contextmanager
 def locks(root, run_id):
     paths = [root/p for p in ('.work/soc-timing/active.json', '.work/phase9a-extra/active.json',
@@ -124,9 +146,15 @@ def run(task, julia, reference, *, check=False):
         proc=subprocess.run(command,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=120)
         (directory/'entry.stdout').write_bytes(proc.stdout);(directory/'entry.stderr').write_bytes(proc.stderr)
         state.update(execution_status='ENTRY_ONLY',native_exit_code=proc.returncode,exit_code=proc.returncode)
+        try:
+            entry_contract(proc.stdout, proc.returncode, routed)
+            state['entry_contract_status']='PASS'
+        except (ValueError, TypeError, KeyError) as error:
+            state.update(execution_status='ENTRY_PROTOCOL_FAILURE',entry_contract_status='FAIL',exit_code=9,
+                         reason=type(error).__name__+': '+str(error))
         write(directory/'launcher.json',state)
         print(json.dumps(dict(directory=str(directory),**state)))
-        return proc.returncode
+        return state['exit_code']
     with locks(root,run_id) as lease:
         common=Path(route.git(root,'rev-parse','--git-common-dir').decode().strip())
         if not common.is_absolute():common=root/common
