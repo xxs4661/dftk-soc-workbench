@@ -181,7 +181,8 @@ is not proof of exact SCF resumability.
   without changing production stop rules or its single authenticated SIGINT/assertions.
   The handler-level cause of the missed SIGINT was not established.
   An overbroad test discovery ran a historical extra hash checker in the wrong tree
-  and exited 1; no hash was changed. New public-protocol negatives first exposed 24
+  and exited 1; no hash was changed. At its proper fixed `e40def9…` snapshot,
+  that suite subsequently passed all 20 tests, exit 0. New public-protocol negatives first exposed 24
   failures, followed by one synthetic category-total expectation correction, before
   all 33 final cases passed. None consumed a numerical slot.
 
