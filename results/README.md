@@ -94,8 +94,9 @@ This was not sampled RSS reaching 8 GiB, and the pilot is not a converged SCF.
 The new record separates cumulative allocations, retained storage, resource
 observations and execution outcomes; native Linux SCF/Γ remains NOT_RUN.
 
-The [bounded timing and cancellation diagnostics](soc-timing/README.md) separate
-validation, solver and write costs using fresh B0/K4 two-map runs. Their same-map
-B0 regression passes; public replay checks the span and energy/spectrum arithmetic.
-They are not new converged endpoints or an overall speedup benchmark. The older
-K6 cancellation and unclassified time remain explicit.
+The [boundary-validation candidate](soc-boundary/README.md) passes fresh B0/K4
+same-map and protection gates but misses both performance targets: validation
+self time +34.6%, wall +25.6%. Strict validation remains the default. Its public
+replay exits 0 for arithmetic and 1 for strict optimization acceptance. These
+two-map diagnostics are not converged endpoints. The [original timing/control
+evidence](soc-timing/README.md) retains the K6 cancellation and unclassified time.

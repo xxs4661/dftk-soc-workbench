@@ -98,6 +98,19 @@ B0 energy/spectrum arithmetic. [Control and timing semantics](../results/soc-tim
 cover the explicitly bounded diagnostic launcher and its cooperative stop command;
 the three used numerical slots are not a general repeatable SCF entry.
 
+The [boundary candidate replay](../benchmarks/soc-boundary-v1/replay.py) checks
+the new paired B0/K4 records without a solve:
+
+```sh
+python3.12 -B benchmarks/soc-boundary-v1/replay.py
+python3.12 -B benchmarks/soc-boundary-v1/replay.py --strict
+```
+
+Default exits 0 for record/arithmetic consistency; `--strict` exits 1 because
+both performance targets fail. [Scope and results](../results/soc-boundary/README.md)
+distinguish public spectra arithmetic from runner-reported private-density norms.
+The four consumed V slots are historical experiments, not a reusable submission API.
+
 ## Maintenance
 
 The `curate_*_evidence.py` and case-specific export tools select recorded fields;

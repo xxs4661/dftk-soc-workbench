@@ -35,12 +35,13 @@ comparisons, sensitivity, replay coverage and open work.
 | How sensitive is that statistic to settings? | Increasing the SCF k-point grid from 2³ to 4³ changes it by about **+0.3315 meV** in both programs, above the declared 0.1 meV observation window. | [Limited paired sensitivity](results/si-soc-sensitivity/README.md): tested cutoff and temperature changes stay within that window; a few directions do not establish convergence. |
 | What does a denser QE reference show? | 4³→6³: **+0.04713 meV**; 6³→8³: **+0.00862 meV**. | The [historical QE-only trend](results/si-soc-k-reference/README.md) contained no workbench dense-grid runs. These values alone do not establish cross-code agreement or convergence. |
 | Can the workbench complete the same-input K6 comparison? | No converged endpoint: the first attempt stopped under the 8 GiB headroom rule; the later 10 GiB attempt was canceled by the user for elapsed time. | [Original resource outcome](results/soc-extra/README.md) and [preserved cancellation context](results/soc-timing/README.md): no K6 Γ or new D−QE comparison; resume remains unverified. |
-| Does the extracted core preserve the existing calculation? | The [completed core regression](results/soc-core-memory/completion/README.md) and a [fresh B0 SCF/Γ regression](results/soc-extra/README.md) meet the unchanged energy, density and all-24-level limits. | Finite profiling retained the existing core without an optimization candidate. These are workbench regressions, not new QE pairs or a measured overall speedup. |
+| Does the extracted core preserve the existing calculation? | The [completed core regression](results/soc-core-memory/completion/README.md) and a [fresh B0 SCF/Γ regression](results/soc-extra/README.md) meet the unchanged energy, density and all-24-level limits. | These full-SCF regressions concern the retained core. The boundary candidate below is a separate short diagnostic, not a new QE pair or an accepted speedup. |
 
-[Bounded timing and cancellation checks](results/soc-timing/README.md) completed two-map
-B0 REF/TIMED and K4 diagnostics, with same-map B0 numerical agreement and verified
-runtime cleanup. K4 timing isolates validation boundaries from solver and write
-costs; these diagnostics do not establish SCF convergence or a performance gain.
+[Fresh B0/K4 boundary-validation pairs](results/soc-boundary/README.md) preserve
+same-map numerical agreement and protection checks, but the opt-in candidate is
+slower: K4 validation self time +34.6%, total wall +25.6%. Both performance targets
+fail; strict validation remains the default. [Controlled stopping](results/soc-timing/README.md)
+and these two-map diagnostics do not establish SCF convergence or a general speedup.
 
 Small differences under one fixed input are not estimates of absolute physical
 accuracy. Raw values, warnings and the original comparison thresholds remain in
