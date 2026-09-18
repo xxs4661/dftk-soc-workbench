@@ -17,9 +17,75 @@ timing=importlib.util.module_from_spec(spec);spec.loader.exec_module(timing)
 require=timing.require
 TASKS=('V-B0-REF','V-B0-OPT','V-K4-REF','V-K4-OPT')
 R='d9e19af3557c923a1e4f7e64510092d47975cc7c'
+PROTECTION_CATEGORIES=frozenset(('protection-equivalence','hash-equivalence','cancellation-timeout',
+    'source-entry','full-syntax','legacy-control','public-arithmetic','legacy-timer'))
 
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def finite(x):return type(x) in (int,float) and math.isfinite(x)
+def digest(value,length):return type(value) is str and len(value)==length and all(c in '0123456789abcdef' for c in value)
+
+def protection_receipt(proof,record):
+    """Bind successful coverage to the exact preparation and executed source map.
+
+    This replays a runner's public receipt, not execution of its private tests.
+    The eight categories are the same required union as the physical launcher.
+    """
+    protection=record['protection_status']
+    require(type(proof) is dict and type(proof.get('schema_version')) is int and
+            proof['schema_version']==1 and proof.get('experiment')=='soc-boundary-v1',
+            'Wrong protection receipt schema')
+    require(proof.get('status')==protection,'Protection outcome contradicts its receipt')
+    if protection!='PASS':return
+    prepared=record.get('preparation_commit')
+    require(digest(prepared,40) and proof.get('preparation_commit')==prepared,
+            'Protection preparation commit is absent or differs')
+    required=record.get('required_source_sha256');tested=proof.get('tested_source_sha256')
+    require(type(required) is dict and bool(required) and all(
+        type(path) is str and bool(path) and not Path(path).is_absolute() and
+        '..' not in Path(path).parts and digest(value,64) for path,value in required.items()),
+        'Missing valid required execution source map')
+    require(type(tested) is dict and all(tested.get(path)==value for path,value in required.items()),
+            'Protection tested source bytes differ from required execution source bytes')
+    checks=proof.get('checks');categories=set()
+    require(type(checks) is list and bool(checks),'Protection PASS lacks actual successful checks')
+    for check in checks:
+        require(type(check) is dict and type(check.get('exit_code')) is int and check['exit_code']==0 and
+                type(check.get('command')) is list and bool(check['command']) and
+                all(type(arg) is str and bool(arg) for arg in check['command']),
+                'Protection PASS lacks actual successful checks')
+        tags=check.get('categories')
+        require(type(tags) is list and bool(tags) and all(type(t) is str and t in PROTECTION_CATEGORIES for t in tags),
+                'Protection check has missing or unknown categories')
+        categories.update(tags)
+    require(categories==PROTECTION_CATEGORIES,'Required protection categories are incomplete')
+
+def task_spans(rows,record,complete):
+    """Validate task identity before the legacy tree reducer can group rows."""
+    require(type(rows) is list,'Task spans must be a list')
+    fields=('pid','span_id','parent_span','map_index','k_index','start_offset_ns',
+            'end_offset_ns','inclusive_ns','exclusive_ns','calls')
+    for row in rows:
+        require(type(row) is dict and row.get('run_id')==record['run_id'],
+                'Task span run identity differs')
+        require(all(type(row.get(k)) is int and row[k]>=0 for k in fields) and
+                row['pid']>0 and row['span_id']>0,'Invalid integer span identity or PID')
+    if rows:
+        pid=record.get('numerical_process_pid')
+        require(type(pid) is int and pid>0 and all(row['pid']==pid for row in rows),
+                'Span PID differs from authenticated numerical process PID')
+    require(len({row['pid'] for row in rows})<=1,'Multiple worker PIDs in one task span stream')
+    if not complete:return
+    require(bool(rows),'Completed task has no spans')
+    roots=[row for row in rows if row['parent_span']==0]
+    workers=[row for row in rows if row.get('name')=='worker_total']
+    require(len(roots)==len(workers)==1 and roots[0] is workers[0],
+            'Completed task requires exactly one worker_total root')
+    require(workers[0]['status'] in ('COMPLETE','DIAGNOSTIC_COMPLETED'),
+            'Completed task has incomplete worker_total status')
+    maps=sorted((row for row in rows if row.get('name')=='map_total'),key=lambda row:row['map_index'])
+    require([row['map_index'] for row in maps]==[1,2],'Completed task requires both unique map_total spans')
+    require(maps[0]['status']=='COMPLETE' and maps[1]['status'] in ('COMPLETE','DIAGNOSTIC_COMPLETED'),
+            'Completed task has incomplete map_total status')
 
 def spectrum(record,nk):
     coords=record['kpoints'];e=record['eigenvalues_ha'];f=record['occupations']
@@ -45,6 +111,11 @@ def compare_maps(a,b,nk):
                 raw_level_rms_ha=math.sqrt(math.fsum(v*v for v in ds))/math.sqrt(len(ds)))
 
 def aggregate(spans,contract):
+    pids={}
+    for row in spans:
+        require(row['run_id'] not in pids or pids[row['run_id']]==row['pid'],
+                'Multiple worker PIDs cannot overwrite one run timing result')
+        pids[row['run_id']]=row['pid']
     trees=timing.spans(spans);out={}
     categories=contract['stage_categories']
     for run,tree in trees.items():
@@ -78,14 +149,19 @@ def replay(directory,contract_path=None):
     require(type(record['runs']) is list and len(record['runs'])==4,'Expected four slot records')
     require(tuple(r['task_id'] for r in record['runs'])==TASKS,'Wrong/duplicate task matrix')
     require(set(data)==set(TASKS),'Canonical numeric package differs from task matrix')
-    bytask={r['task_id']:r for r in record['runs']};complete=[];spanrows=[]
+    bytask={r['task_id']:r for r in record['runs']};complete=[];spanrows=[];run_ids=set()
     for task,r in bytask.items():
         require(r['source_commit']==(R if task.endswith('REF') else record['execution_commit']),'Wrong numerical source')
         require(r['execution_commit']==record['execution_commit'],'Wrong adapter version')
         require(r['timing_enabled'] is True,'Both paths must have identical timing enabled')
         require(r['validation_policy']==contract['tasks'][task]['validation_policy'],'Wrong internal strategy')
         status=r['execution_status'];ok=status=='DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED';complete.append(ok)
+        if r['run_id'] is not None:
+            require(type(r['run_id']) is str and bool(r['run_id']) and r['run_id'] not in run_ids,
+                    'Tasks may not share or omit a run identity')
+            run_ids.add(r['run_id'])
         if ok:
+            require(r['run_id'] is not None,'Completed task has no run identity')
             require(r['native_exit_code']==r['worker_exit_code']==r['recorder_exit_code']==0,'Completion contradicts exit codes')
             require(r['completed_maps']==2 and r['runtime_closed'] is True and r['workspace_released'] is True and r['owned_process_cleanup_status']=='PASS','Incomplete diagnostic or cleanup')
             require(r['limit_bytes']==8*1024**3 and r['warning_bytes']==7*1024**3 and r['remaining_growth_bytes']==2*1024**3,'Wrong resource contract')
@@ -97,6 +173,7 @@ def replay(directory,contract_path=None):
             for key in ('task_id','run_id','source_commit','execution_commit','case_sha256'):
                 require(m[key]==r[key],'Wrong map origin: '+key)
             spectrum(m,8 if '-B0-' in task else 64)
+        task_spans(data[task]['spans'],r,ok)
         spanrows+=data[task]['spans']
     times=aggregate(spanrows,contract)
     for r in bytask.values():
@@ -109,6 +186,7 @@ def replay(directory,contract_path=None):
         a,b='V-'+profile+'-REF','V-'+profile+'-OPT'
         if not all(bytask[t]['execution_status']=='DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED' for t in (a,b)):
             pairs[profile]={'status':'NOT_ASSESSED','maps':[]};numeric=False;continue
+        require(bytask[a]['case_sha256']==bytask[b]['case_sha256'],'Paired REF/OPT physical case hashes differ')
         stored=record['pairs'][profile]
         require(stored['run_ids']==[bytask[t]['run_id'] for t in (a,b)] and stored['execution_commit']==record['execution_commit'],'Pair source identity differs')
         require(len(stored['maps'])==2,'Paired receipt incomplete')
@@ -134,12 +212,7 @@ def replay(directory,contract_path=None):
     protection=record['protection_status'];require(protection in ('PASS','FAIL','NOT_ASSESSED'),'Unknown protection status')
     require('protection.json.gz' in record['public_files_sha256'],'Protection receipt is not bound')
     proof=json.loads(gzip.decompress((directory/'protection.json.gz').read_bytes()))
-    require(proof['status']==protection,'Protection outcome contradicts its receipt')
-    if protection=='PASS':
-        require(type(proof['checks']) is list and bool(proof['checks']) and
-                all(type(c.get('exit_code')) is int and c['exit_code']==0 and
-                    type(c.get('command')) is list and bool(c['command']) for c in proof['checks']),
-                'Protection PASS lacks actual successful checks')
+    protection_receipt(proof,record)
     accepted=all(complete) and numeric and protection=='PASS' and performance['status']=='PASS'
     return dict(replay_status='PASS',strict_optimization_status='PASS' if accepted else 'NOT_ACCEPTED',protection_status=protection,pairs=pairs,performance=performance,timing=times,scientific_convergence_status='NOT_ASSESSED',density_scope='Published norm arithmetic only; acquisition and array norms runner-reported, private density arrays not read',performance_scope='One fresh cold pair, not statistical generality or old K6 reconstruction')
 
