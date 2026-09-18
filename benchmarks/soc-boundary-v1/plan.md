@@ -1,0 +1,28 @@
+# Single-validation deduplication candidate (9A-extra)
+
+Reference R: `d9e19af3557c923a1e4f7e64510092d47975cc7c`. Strict defaults stay unchanged.
+Candidate: explicit internal `single_validation_v1` policy on an OwnedRuntime. Within ONE synchronous validation, share a short-lived content-digest memo across projector/coupling and derived/current-storage checks; deduplicate repeated validation of the identical loader-issued source bundle. For canonical dense Float64/ComplexF64 arrays hash the same column-major byte sequence without the preliminary copy. Views/unknown layouts retain the exact old hash path and are not eligible for memo reuse. Identity, shape, label and binding comparisons remain at every use. No certification survives a validation return/error, callback, checkpoint, generation change or close. No checkpoint is removed. No cross-call or across-hook cache.
+
+This intentionally retains all runtime/checkpoint entry/return scans. Existing per-_check_storage memoization is already present; it is not a new gain. Arbitrary clock/boundary hooks and serializers prevent a justified broad callback scope in this candidate. The declared performance targets may remain unmet; do not expand the candidate after observing physical results.
+
+| Protected state | Possible writer | Mandatory boundary | Reuse extent | Invalidation |
+|---|---|---|---|---|
+| Source/common/channel/parsed arrays and metadata; atom order | Borrowed aliases, source hooks | Each validate_context/runtime boundary; per-atom identity checks | Same issued bundle inside this validation only | Return/error; replacement; mutation rechecked next boundary |
+| P/D and labels | Mutable array aliases, operator replacement | Every context check before/after all external operations | Same canonical array inside one synchronous validation | No cross-boundary token; shapes/labels checked every occurrence |
+| G order, FFT maps, k/weights, lattice, electrons, XC/NLCC | Basis/common aliases | Every live-binding and storage boundary | No skipped identity/value gate | All existing mismatch errors retained |
+| Current scalar H/potential and derived terms | H update, callback, direct array aliases | Every runtime/checkpoint entry/return/error; stale generation check | Shared digest only during that call | Generation/replacement, exit/error/close |
+| Payload/settings/workspace | Unknown callbacks, solve/density hooks, reentry | Original before/after/error fingerprint and alias checks | None across unknown hooks or numerical use | Original failure timing; both errors preserved |
+
+Files: `fr_integration/{hamiltonian,runtime}.jl` plus a small internal validation helper; no src/soc_kernels change. Existing timing driver/route/control/run receive backward-compatible registration/strategy forwarding, with a thin `soc-boundary-v1` entry. New focused synthetic protection/byte-hash tests and public replay; old plan/results/physical cases/dependencies unchanged.
+
+REF uses an independent clean R tree, OPT the clean execution E; the same E adapter enables identical hierarchical timing in both. Source/adapter identities remain separate. Preserve unknown callback paths, cancellation polling, 120+10+5-second escalation and all original scientific checks/writes. Four one-use V slots, no T-slot reuse; shared active locks protect both namespaces. Preflight must prove loaded validation as well as SOC methods without constructing a context.
+
+Before E: strict and candidate mutation/replacement/G/potential/source/alias/invalid-token/close/reentry/error tests, identical hash bytes incl signed zero/complex/views, default/RNG parity, actual stdlib subprocess cancel+timeout (<300s cumulative), complete parsing and no-context entry checks. Candidate counter telemetry measures scans/hash bytes/reuse/fallback; strict internal counts not observable without modifying R are explicitly unmeasured, with span-based counts separately labeled derived.
+
+Fixed matrix: V-B0-REF, V-B0-OPT (2 maps each, 900s); then only after complete B0 equivalence/protection, V-K4-REF, V-K4-OPT (2 maps each, 1800s). K4 OPT requires qualified K4 REF. Whole batch 5400s including comparisons/gaps, no next start with <300s remaining; each at most one launch. Every task 8 GiB limit /7 GiB warning /2 GiB fixed growth. No physical change: original Si B0/K4 case bytes, 30Ha/48³/8e/tau .001/24+6/seed81001/alpha .1/tol1e-10/maxiter300; serial, fresh uniform start. No K6/Γ/QE/full SCF/CI.
+
+Numerical limits per same map: |ΔE|,|ΔF|≤1e-10Ha, norm(Δn)/max(norm(nOPT),norm(nREF),1)≤1e-10, corresponding-k original 24-level max≤1e-9Ha. No energy shift, orbital permutation or historical endpoint comparison. All original residual/Gram/FD/Pauli/energy checks retained.
+
+Performance: new K4 OPT validation_total self time ≤50% of new REF; monitor wall ≤80%. Category mapping is frozen in contract before execution. Validation includes all certification, scope/memo setup/teardown/reentry/close and callback protection; mixed constructor/closure/explicit checks are conservatively included identically. Parent/child self times counted once. Unknown spans fail category replay. No retuning/rerun to hit targets. One cold pair only; work-count differences retained; not general speedup or a K6 estimate.
+
+Publish one compressed canonical span/spectrum/log source and compact derived tables, no duplicate giant JSON. Public replay 0 checks records/arithmetic only; strict acceptance separately requires four complete slots, protection/numerical gates and BOTH performance targets. Final clone, old frozen review and synthetic example, full push-range privacy/workflow check and new incremental restore precede branch-only push. No history rewrite; stop for review.

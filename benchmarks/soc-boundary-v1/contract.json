@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "experiment": "soc-boundary-v1",
+  "reference_commit": "d9e19af3557c923a1e4f7e64510092d47975cc7c",
+  "branch": "codex/phase9a-validation-boundaries",
+  "policy": "single_validation_v1",
+  "batch_seconds": 5400,
+  "minimum_remaining_start_seconds": 300,
+  "map_limit": 2,
+  "limit_bytes": 8589934592,
+  "warning_bytes": 7516192768,
+  "remaining_growth_bytes": 2147483648,
+  "grace_seconds": [
+    120,
+    10,
+    5
+  ],
+  "tasks": {
+    "V-B0-REF": {
+      "profile": "B0",
+      "role": "REF",
+      "timing_enabled": true,
+      "budget_seconds": 900,
+      "validation_policy": "strict"
+    },
+    "V-B0-OPT": {
+      "profile": "B0",
+      "role": "OPT",
+      "timing_enabled": true,
+      "budget_seconds": 900,
+      "validation_policy": "single_validation_v1"
+    },
+    "V-K4-REF": {
+      "profile": "K4",
+      "role": "REF",
+      "timing_enabled": true,
+      "budget_seconds": 1800,
+      "validation_policy": "strict"
+    },
+    "V-K4-OPT": {
+      "profile": "K4",
+      "role": "OPT",
+      "timing_enabled": true,
+      "budget_seconds": 1800,
+      "validation_policy": "single_validation_v1"
+    }
+  },
+  "numerical_limits": {
+    "energy_ha": 1e-10,
+    "density_relative_l2": 1e-10,
+    "raw_level_max_ha": 1e-09
+  },
+  "performance_limits": {
+    "k4_validation_ratio": 0.5,
+    "k4_monitor_wall_ratio": 0.8
+  },
+  "validation_category_rule": "Names below are exact; new names must be explicitly classified before E, never inferred from results. Use all disjoint self time.",
+  "validation_names": [
+    "route_authentication",
+    "final_authentication",
+    "runtime_boundary_entry",
+    "runtime_boundary_return",
+    "runtime_boundary_error",
+    "checkpoint_validation_before",
+    "checkpoint_validation_after",
+    "callback_payload_fingerprint_before",
+    "callback_payload_fingerprint_after",
+    "callback_payload_fingerprint_error",
+    "map_input_validation",
+    "map_return_validation",
+    "hamiltonian_hook_validation",
+    "scf_initialization",
+    "initial_subspace",
+    "explicit_eigen_checks",
+    "global_fd_tail_check",
+    "self_density_closure_checks",
+    "runtime_close",
+    "boundary_policy_setup",
+    "boundary_policy_cleanup"
+  ],
+  "validation_mixed_names": [
+    "context_construction",
+    "owned_runtime_construction",
+    "hamiltonian_construction",
+    "energy_common_terms",
+    "energy_full_hamiltonian",
+    "energy_orbital_validation"
+  ]
+}
