@@ -40,7 +40,9 @@ function timing_main(args)
     a=check ? args[1:end-1] : args
     length(a)==3 || return 2
     task,outdir,routepath=a;outdir=abspath(outdir)
-    task in ("T-B0-REF","T-B0-TIMED","T-K4-TIMED") || return 2
+    task in ("T-B0-REF","T-B0-TIMED","T-K4-TIMED",
+             "V-B0-REF","V-B0-OPT","V-K4-REF","V-K4-OPT") || return 2
+    boundary_task=startswith(task,"V-")
     timed=task!="T-B0-REF";runid=basename(dirname(outdir))
     control=Ref{Any}(nothing);bridge=Ref{Any}(nothing);limit_stop=Ref{Any}(nothing)
     runtime=Ref{Any}(nothing);timingio=Ref{Any}(nothing)
@@ -102,6 +104,12 @@ function timing_main(args)
         for key in ("execution_commit","source_commit","case_sha256","source_sha256","adapter_sha256","route_sha256","timing_enabled")
             result[key]=route[key]
         end
+        timed===route["timing_enabled"] || error("Loaded timing registration differs")
+        if boundary_task
+            for key in ("experiment","role","validation_policy","registration_sha256")
+                result[key]=route[key]
+            end
+        end
         result["numerical_root"]=route["numerical_root"]
         result["adapter_root"]=route["adapter_root"]
         if !check
@@ -113,6 +121,10 @@ function timing_main(args)
                 expected_task_id=task,expected_case_sha256=route["case_sha256"])
             result["control"]=TC.summary(control[])
             result["control_sha256"]=result["control"]["control_sha256"]
+            if boundary_task
+                control[].config["validation_policy"]==route["validation_policy"] || error("Control/route policy differs")
+                result["protection_gate_sha256"]=control[].config["protection_gate_sha256"]
+            end
             boundary("module_loading_before")
         end
         TD.with_span(session,:numerical_definitions_load) do
@@ -122,6 +134,7 @@ function timing_main(args)
         # Loading an independent E0/E1 module tree introduces new Julia methods.
         # Cross this one entry barrier; never change environments in a loaded session.
         Base.invokelatest() do
+        identity=TD.with_span(session,:loaded_identity_validation) do
         case=si_json(joinpath(route["numerical_root"],route["case_path"]));settings=case["settings"]
         locations=Dict{String,Any}()
         for (name,f,relative) in (("soc_scf",SOC.soc_scf,"prototypes/soc_scf/scf.jl"),
@@ -131,6 +144,17 @@ function timing_main(args)
             paths==[realpath(joinpath(route["numerical_root"],relative))] || error("Loaded method belongs to another source tree: $name")
             locations[name]=(;relative_path=relative,source_sha256=route["source_sha256"][relative])
         end
+        if boundary_task
+            for (name,f,types,relative) in (
+                ("runtime_boundary",FI.runtime_boundary!,Tuple{FI.OwnedRuntime,Symbol},"prototypes/fr_integration/runtime.jl"),
+                ("validate_context",FI.validate_context,Tuple{FI.OwnedRuntime},
+                    route["role"]=="REF" ? "prototypes/fr_integration/hamiltonian.jl" : "prototypes/fr_integration/runtime.jl"))
+                method=which(f,types)
+                realpath(String(Base.functionloc(method)[1]))==realpath(joinpath(route["numerical_root"],relative)) ||
+                    error("Loaded validation method belongs to another source tree: $name")
+                locations[name]=(;relative_path=relative,source_sha256=route["source_sha256"][relative])
+            end
+        end
         result["actual_method_sources"]=locations
         contract=route["profile"]=="K4" ? case : nothing
         SOC.validate_soc_settings(settings;case_contract=contract)
@@ -139,6 +163,9 @@ function timing_main(args)
         DFTK.disable_threading()
         Threads.nthreads()==BLAS.get_num_threads()==DFTK.FFTW.get_num_threads()==1 || error("Serial CPU threads required")
         DFTK.mpi_nprocs(DFTK.MPI.COMM_WORLD)==1 || error("Single MPI process required")
+            (;case,settings,contract)
+        end
+        case=identity.case;settings=identity.settings;contract=identity.contract
         if check
             length(FI._FR_CONTEXT_CERTIFICATES)==length(FI._BOUND_PSP_SOURCES)==0 || error("Entry built a physical context")
             result["execution_status"]="CHECK_ONLY_PASS";result["exit_code"]=0
@@ -154,11 +181,35 @@ function timing_main(args)
         result["input"]=FI.common_data_summary(built.bundle)
         result["grid"]=si_grid(built.ctx)
         runtime[]=TD.with_span(session,:owned_runtime_construction) do
-            FI.owned_runtime(built.ctx;max_rhs=30)
+            if boundary_task
+                TD.with_span(session,:boundary_policy_setup) do
+                    route["validation_policy"]=="single_validation_v1" ?
+                        FI.owned_runtime(built.ctx;max_rhs=30,validation_policy=:single_validation_v1) :
+                        FI.owned_runtime(built.ctx;max_rhs=30)
+                end
+            else
+                FI.owned_runtime(built.ctx;max_rhs=30)
+            end
         end
         built=(;ctx=runtime[],bundle=built.bundle) # Same retained-context ownership as the existing driver.
         result["owned_runtime_constructed"]=true;result["runtime_state"]="OPEN"
-        ctx=runtime[];b=ctx.basis;FI.runtime_boundary!(ctx,:driver_entry)
+        ctx=runtime[];b=ctx.basis
+        if boundary_task
+            TD.with_span(session,:boundary_policy_validation) do
+                FI.runtime_boundary!(ctx,:driver_entry)
+                if route["validation_policy"]=="single_validation_v1"
+                    v=FI.runtime_summary(ctx).validation
+                    v.policy=="single_validation_v1" && !v.active && v.live_array_entries==v.live_source_entries==0 ||
+                        error("Requested candidate validation policy was not activated")
+                    result["validation_policy_observation"]=v
+                else
+                    result["validation_policy_observation"]=(;policy="strict",counter_status="NOT_INSTRUMENTED_REFERENCE",
+                        evidence="Exact R method/source binding; frozen reference has no new validation counters")
+                end
+            end
+        else
+            FI.runtime_boundary!(ctx,:driver_entry)
+        end
         result["parallelism"]=(;julia=Threads.nthreads(),blas=BLAS.get_num_threads(),fft=DFTK.FFTW.get_num_threads(),mpi=1)
         boundary("initialization_after")
         checkpoint=function(path,value)
@@ -230,6 +281,10 @@ function timing_main(args)
                     density_file=density_path,density_file_sha256=filehash(joinpath(outdir,density_path)),density_encoding="little-endian Float64",
                     density_count=length(raw.n_out),diagnostics=si_extra_compact_map(record)["diagnostics"],
                     band_completeness_status=raw.diag.band_completeness.status,energy_checks=raw.diag.energy_checks)
+                if boundary_task
+                    summary=merge(summary,(;energy_terms_ha=raw.diag.energy_terms_ha,
+                        validation_policy=route["validation_policy"]))
+                end
                 summary_name="map-$(lpad(m,3,'0'))-summary.json"
                 phase6b_write(joinpath(outdir,summary_name),summary)
                 result["map_summaries_sha256"][summary_name]=filehash(joinpath(outdir,summary_name))
@@ -293,6 +348,13 @@ function timing_main(args)
                         (:fr_mul_calls,:component_mul_calls,:full_mul_calls)) ? "PASS" : "NOT_EXERCISED"
                     FI.close_runtime!(runtime[])
                     closed=FI.runtime_summary(runtime[])
+                    if boundary_task && route["validation_policy"]=="single_validation_v1"
+                        TD.with_span(session,:boundary_policy_cleanup) do
+                            v=closed.validation
+                            v.policy=="single_validation_v1" && v.closed && !v.active &&
+                                v.live_array_entries==v.live_source_entries==0 || error("Candidate validation scope release unconfirmed")
+                        end
+                    end
                     result["runtime_after_close"]=closed;result["runtime_closed"]=closed.closed
                     result["workspace_released"]=closed.workspace_released && closed.owned_source_entries==0
                     result["runtime_closed"] && result["workspace_released"] || error("Owned runtime release unconfirmed")

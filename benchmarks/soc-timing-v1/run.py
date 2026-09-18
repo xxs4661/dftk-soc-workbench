@@ -35,7 +35,9 @@ def remaining(batch, now_epoch=None, now_ns=None):
     """Conservative across sleep or calendar adjustments: take the older clock."""
     utc_elapsed = (time.time() if now_epoch is None else now_epoch)-batch['started_epoch']
     mono_elapsed = ((time.monotonic_ns() if now_ns is None else now_ns)-batch['started_monotonic_ns'])/1e9
-    return 3600-max(0, utc_elapsed, mono_elapsed)
+    total=batch.get('total_seconds',3600)
+    require(type(total) is int and total in (3600,5400),'Unregistered batch budget')
+    return total-max(0, utc_elapsed, mono_elapsed)
 
 
 def require(condition, reason):
@@ -57,7 +59,12 @@ def entry_contract(raw, native, routed):
     require(type(value.get('environment')) is dict and value['environment'].get('status') == 'PASS',
             'Entry environment failed')
     methods=value.get('actual_method_sources')
-    require(type(methods) is dict and set(methods) == {'soc_scf','solve_soc_targets','controller'},
+    expected={'soc_scf','solve_soc_targets','controller'}
+    if routed['task_id'] in route.BOUNDARY_TASKS:
+        expected|={'runtime_boundary','validate_context'}
+        require(value.get('timing_enabled') is True and value.get('validation_policy')==routed['validation_policy'],
+                'Boundary entry timing/policy differs')
+    require(type(methods) is dict and set(methods) == expected,
             'Loaded method identities missing')
     for item in methods.values():
         require(type(item) is dict and item.get('source_sha256') == routed['source_sha256'].get(item.get('relative_path'))
@@ -66,9 +73,10 @@ def entry_contract(raw, native, routed):
 
 
 @contextlib.contextmanager
-def locks(root, run_id):
+def locks(root, run_id, *, boundary=False):
     paths = [root/p for p in ('.work/soc-timing/active.json', '.work/phase9a-extra/active.json',
              '.work/phase9a/endpoints/active.json', '.work/phase9a/static/active.json')]
+    if boundary:paths.insert(0,root/'.work/soc-boundary/active.json')
     owned=[]; lease=dict(paths=owned, launched=False, cleanup_confirmed=False)
     try:
         for path in paths:
@@ -85,14 +93,84 @@ def locks(root, run_id):
         raise
 
 
+
+def protection_sources(root,execution):
+    sources=route.source_files(root,execution,route.CASES['B0'])
+    sources.update(route.adapter_files(root,execution,boundary=True))
+    for name in route.git(root,'ls-tree','-r','--name-only',execution).decode().splitlines():
+        if name.startswith(('tests/test_soc_boundary','tests/test_soc_timing','tests/soc_boundary/')):
+            sources[name]=route.exact_file(root,execution,name)
+    return sources
+
+
+def verify_protection(root,execution):
+    path=root/'.work/soc-boundary/protection.json'
+    require(path.is_file() and not path.is_symlink(),'Missing actual protection-test receipt')
+    value=json.loads(path.read_text())
+    require(type(value.get('schema_version')) is int and value['schema_version']==1 and
+            value.get('experiment')=='soc-boundary-v1' and value.get('status')=='PASS','Protection gate is not PASS')
+    tested=value.get('tested_source_sha256')
+    required=protection_sources(root,execution)
+    require(type(tested) is dict and all(tested.get(k)==v for k,v in required.items()),
+            'Protection tests did not cover these exact numerical/adapter/test bytes')
+    prepared=value.get('preparation_commit',value.get('execution_commit'))
+    require(type(prepared) is str and len(prepared)==40 and
+            route.git(root,'cat-file','-t',prepared).decode().strip()=='commit','Missing exact protection-test preparation commit')
+    route.git(root,'merge-base','--is-ancestor',prepared,execution)
+    require(all(route.exact_file(root,prepared,k)==v for k,v in required.items()),
+            'Protection preparation does not contain the exact executed/tested bytes')
+    checks=value.get('checks')
+    require(type(checks) is list and bool(checks),'No actual protection checks recorded')
+    categories=set()
+    needed={'protection-equivalence','hash-equivalence','cancellation-timeout','source-entry',
+            'full-syntax','legacy-control','public-arithmetic','legacy-timer'}
+    for check in checks:
+        require(type(check) is dict and type(check.get('exit_code')) is int and check['exit_code']==0 and
+                bool(check.get('command')),'Protection check did not succeed')
+        log=Path(check['log_path']);log=log if log.is_absolute() else root/log
+        require(log.is_file() and not log.is_symlink() and log.resolve().is_relative_to(root/'.work') and
+                route.sha(log)==check['log_sha256'],'Protection check log missing/changed')
+        tags=check.get('categories')
+        require(type(tags)is list and bool(tags) and all(type(t)is str and t in needed for t in tags),
+                'Protection check has no recognized coverage categories')
+        categories.update(tags)
+    require(categories==needed,'Required protection check categories are incomplete')
+    return dict(path=str(path),sha256=route.sha(path),preparation_commit=prepared,checks=len(checks))
+
+
+def checked_prior(root,area,task,execution):
+    receipt=json.loads((area/(task+'-accepted.json')).read_text())
+    directory=Path(receipt['directory'])
+    require(directory==directory.resolve() and directory.parent==area/'runs' and directory.name==receipt['run_id'],
+            'Predecessor belongs to another run area')
+    outer=json.loads((directory/'result.json').read_text())
+    raw=(directory/'worker/result.json').read_bytes();worker=json.loads(raw)
+    spec=route.task_spec(task,root);source=spec['reference_commit'] if spec['role']=='REF' else execution
+    require(route.sha(directory/'worker/result.json')==outer.get('worker_result_sha256'),'Predecessor worker bytes changed')
+    for record in (outer,worker):
+        require(all(record.get(k)==v for k,v in dict(run_id=receipt['run_id'],task_id=task,
+                    execution_commit=execution,source_commit=source,exit_code=0,
+                    execution_status='DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED').items()),'Predecessor identity/status differs')
+    c=control.load_control(directory);control.worker_contract(worker,0,c,directory)
+    native=json.loads((directory/'process-exit.json').read_text())
+    resource=json.loads((directory/'resource.json').read_text())
+    require(outer.get('native_exit_code')==native.get('exit_code')==0 and
+            all(r.get('status')=='PASS' and r.get('owned_process_cleanup_status')=='PASS'
+                for r in (outer.get('resource',{}),resource)),
+            'Predecessor process/cleanup not qualified')
+    return receipt
+
+
 def run(task, julia, reference, *, check=False):
     global CURRENT
-    root = ROOT.resolve(); area=root/'.work/soc-timing'; area.mkdir(exist_ok=True)
+    root = ROOT.resolve(); spec=route.task_spec(task,root)
+    boundary=task in route.BOUNDARY_TASKS
+    area=root/spec['area']; area.mkdir(exist_ok=True)
     execution=route.git(root,'rev-parse','HEAD').decode().strip()
-    require(route.git(root,'branch','--show-current').decode().strip() == 'codex/phase9a-timing-cancellation', 'Wrong diagnostic branch')
+    require(route.git(root,'branch','--show-current').decode().strip() == spec['branch'], 'Wrong diagnostic branch')
     route.tree_identity(root,execution)
-    profile,budget,timed=route.TASKS[task]
-    numerical=root if timed else Path(reference).resolve()
+    profile,budget,timed=spec['profile'],spec['budget_seconds'],spec['timing_enabled']
+    numerical=root if spec['role']=='OPT' else Path(reference).resolve()
     source=json.loads((numerical/'benchmarks/si-soc-splitting-v1/source.json').read_text())
     pseudo=numerical/source['local_path']
     require(pseudo.stat().st_size==source['bytes'] and route.sha(pseudo)==source['sha256']==
@@ -104,6 +182,8 @@ def run(task, julia, reference, *, check=False):
     state=dict(schema_version=1,task_id=task,run_id=run_id,execution_commit=execution,
                execution_status='NOT_STARTED',native_exit_code=None,exit_code=9)
     write(directory/'launcher.json',state)
+    protection=verify_protection(root,execution) if boundary and not check else None
+    if protection:state['protection']=protection
     res=module(root/'benchmarks/soc-extra-v1/resources.py','timing_resources')
     estimate=admission.admission(root,profile);write(directory/'admission.json',estimate)
     require(estimate['status']=='ELIGIBLE_WITH_MONITORING','Resource estimate blocked')
@@ -111,7 +191,7 @@ def run(task, julia, reference, *, check=False):
     require(host['status']=='ELIGIBLE','Current host preflight blocked')
     # Include this new diagnostic name in the existing process detector.
     suspicious=[p for p in res.process_table() if 'julia' in Path(p['command'].split()[0]).name and
-                ('soc-timing-v1/driver.jl' in p['command'] or 'soc-timing-v1' in p['command'])]
+                ('soc-timing-v1' in p['command'] or 'soc-boundary-v1' in p['command'])]
     require(not suspicious,'Another timing worker exists')
     depot=os.environ.get('JULIA_DEPOT_PATH','')
     require(depot and all(Path(p).is_dir() for p in depot.split(os.pathsep)), 'Select existing frozen depots explicitly')
@@ -123,12 +203,23 @@ def run(task, julia, reference, *, check=False):
         left=budget;batch=None
     elif batch_path.exists():
         batch=json.loads(batch_path.read_text())
-        require(batch['execution_commit']==execution,'The fixed batch execution version changed')
+        require(batch['execution_commit']==execution and batch.get('total_seconds')==spec['batch_seconds'],
+                'The fixed batch execution version/budget changed')
         left=remaining(batch);require(left>=300,'Less than five minutes remain; no next slot')
     else:
-        require(task=='T-B0-REF','REF must start the fixed batch')
-        batch=None;left=3600
-    if not check and task!='T-B0-REF':
+        require(task==spec['tasks'][0],'REF must start the fixed batch')
+        batch=None;left=spec['batch_seconds']
+    if boundary and not check:
+        position=spec['tasks'].index(task)
+        previous=[checked_prior(root,area,t,execution) for t in spec['tasks'][:position]]
+        if position>=2:
+            paired=json.loads((area/'b0-equivalence.json').read_text())
+            require(paired.get('status')=='PASS' and paired.get('execution_commit')==execution and
+                    paired.get('run_ids')==[r['run_id'] for r in previous[:2]],'New B0 pair gate missing/stale')
+            comparator=module(root/'benchmarks/soc-timing-v1/compare.py','boundary_start_pair')
+            require(comparator.pair(root,boundary_profile='B0',write_result=False)==paired,
+                    'B0 gate does not reproduce the bound current maps and density exports')
+    if not boundary and not check and task!='T-B0-REF':
         prior='T-B0-REF' if task=='T-B0-TIMED' else 'T-B0-TIMED'
         receipt=json.loads((area/(prior+'-accepted.json')).read_text())
         require(receipt['execution_commit']==execution and receipt['status']=='DIAGNOSTIC_COMPLETED_NOT_SCF_CONVERGED', 'Previous slot not complete')
@@ -155,19 +246,20 @@ def run(task, julia, reference, *, check=False):
         write(directory/'launcher.json',state)
         print(json.dumps(dict(directory=str(directory),**state)))
         return state['exit_code']
-    with locks(root,run_id) as lease:
+    with locks(root,run_id,boundary=boundary) as lease:
         common=Path(route.git(root,'rev-parse','--git-common-dir').decode().strip())
         if not common.is_absolute():common=root/common
-        slots=common/'soc-timing-consumed';slots.mkdir(exist_ok=True)
+        slots=common/spec['slots'];slots.mkdir(exist_ok=True)
         write(slots/(task+'.json'),dict(run_id=run_id,execution_commit=execution,task_id=task,
               consumption='Committed before launch; never reopened after failure'),exclusive=True)
         if batch is None:
             batch=dict(execution_commit=execution,started_epoch=time.time(),started_monotonic_ns=time.monotonic_ns(),
-                       total_seconds=3600,origin='Immediately before first worker launch, conservatively includes parent setup')
+                       total_seconds=spec['batch_seconds'],origin='Immediately before first worker launch, conservatively includes parent setup')
             write(batch_path,batch,exclusive=True)
         control.create_control(directory,execution_commit=execution,source_commit=routed['source_commit'],
             task_id=task,case_sha256=routed['case_sha256'],budget_seconds=budget,
-            batch_deadline_unix_ns=int((time.time()+remaining(batch))*1e9))
+            batch_deadline_unix_ns=int((time.time()+remaining(batch))*1e9),
+            protection_gate_sha256=None if protection is None else protection['sha256'])
         state.update(execution_status='LAUNCH_REQUESTED',command=command,slot_consumed=True)
         write(directory/'launcher.json',state)
         # launch_worker returns a persisted failure too; do not retry on any code.
@@ -192,14 +284,14 @@ def run(task, julia, reference, *, check=False):
         return code
 
 
-if __name__=='__main__':
+def main(argv=None, *, tasks=None):
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('task',choices=route.TASKS)
+    parser.add_argument('task',choices=route.TASKS if tasks is None else tasks)
     parser.add_argument('--julia',required=True);parser.add_argument('--reference',required=True)
     parser.add_argument('--check-entry',action='store_true')
-    args=parser.parse_args()
+    args=parser.parse_args(argv)
     try:
-        sys.exit(run(args.task,args.julia,args.reference,check=args.check_entry))
+        return run(args.task,args.julia,args.reference,check=args.check_entry)
     except Exception as error:
         if CURRENT is not None:
             path=CURRENT/'launcher.json'
@@ -209,4 +301,7 @@ if __name__=='__main__':
                 write(path,state)
             except Exception as persistence:
                 print('LAUNCHER PERSISTENCE FAILURE: '+str(persistence),file=sys.stderr)
-        print(type(error).__name__+': '+str(error),file=sys.stderr);sys.exit(9)
+        print(type(error).__name__+': '+str(error),file=sys.stderr);return 9
+
+
+if __name__=='__main__':sys.exit(main())

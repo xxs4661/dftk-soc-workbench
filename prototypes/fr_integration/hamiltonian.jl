@@ -13,6 +13,81 @@ const _FR_CONTEXT_CERTIFICATES = IdDict{FRHamiltonianContext,Any}()
 
 _fr_array_hash(a) = bytes2hex(SHA.sha256(reinterpret(UInt8, vec(copy(a)))))
 
+# Private, synchronous validation scratch. It is never a certificate for a later
+# call, and never crosses a callback, numerical action, or serialization boundary.
+mutable struct _ValidationMemo
+    owner
+    generation::Int
+    current
+    active::Bool
+    arrays::IdDict{Any,String}
+    sources::IdDict{Any,Nothing}
+    counters::Dict{String,Int}
+end
+
+_canonical_validation_array(a) = a isa Array{Float64} || a isa Array{ComplexF64}
+
+function _validation_memo_open(memo::_ValidationMemo)
+    rt=memo.owner
+    memo.active && !isnothing(rt) && rt._validation_active===memo &&
+        !rt._closed && rt._generation==memo.generation && rt._current===memo.current ||
+        throw(ArgumentError("Validation memo is inactive, foreign, or invalidated"))
+    memo
+end
+
+_validation_array_hash(::Nothing,a)=_fr_array_hash(a)
+function _validation_array_hash(memo::_ValidationMemo,a)
+    _validation_memo_open(memo)
+    counts=memo.counters;counts["array_hash_requests"]+=1
+    if _canonical_validation_array(a)
+        if haskey(memo.arrays,a)
+            counts["array_hash_reuses"]+=1
+            return memo.arrays[a]
+        end
+        # Canonical Array storage has the same column-major byte order as the
+        # old copy. Views, wrappers and custom arrays retain the old expression.
+        bytes=reinterpret(UInt8,vec(a))
+        digest=bytes2hex(SHA.sha256(bytes))
+        counts["array_hash_calls"]+=1;counts["array_hash_bytes"]+=length(bytes)
+        counts["canonical_hash_calls"]+=1
+        memo.arrays[a]=digest
+        counts["max_live_array_entries"]=max(counts["max_live_array_entries"],length(memo.arrays))
+        return digest
+    end
+    counts["fallback_hash_requests"]+=1
+    # A custom copy/getindex implementation is not part of the canonical
+    # read-only path. Do not carry any digest through such a fallback.
+    empty!(memo.arrays);counts["fallback_memo_invalidations"]+=1
+    try
+        bytes=reinterpret(UInt8,vec(copy(a))) # Exactly the original expression.
+        digest=bytes2hex(SHA.sha256(bytes))
+        counts["array_hash_calls"]+=1;counts["array_hash_bytes"]+=length(bytes)
+        digest
+    finally
+        empty!(memo.arrays)
+    end
+end
+
+function _validation_bound_sources(ctx,bundle,::Nothing)
+    _context_assert_bound_sources(ctx,bundle)
+end
+function _validation_bound_sources(ctx,bundle,memo::_ValidationMemo)
+    _validation_memo_open(memo)
+    ctx===memo.owner || throw(ArgumentError("Validation source belongs to another runtime"))
+    # Every atom occurrence still checks its issued identity and metadata. Only
+    # the complete, synchronous validation of the identical bundle is shared.
+    _context_assert_bound_identity(ctx,bundle)
+    if haskey(memo.sources,bundle)
+        memo.counters["source_validation_reuses"]+=1
+    else
+        _context_assert_bound_sources(ctx,bundle)
+        memo.counters["source_validation_calls"]+=1
+        memo.sources[bundle]=nothing
+        memo.counters["max_live_source_entries"]=max(memo.counters["max_live_source_entries"],length(memo.sources))
+    end
+    nothing
+end
+
 # The explicit six-term model contains internal energy only. The caller's
 # capacity-one ensemble layer owns entropy; native scalar Entropy is not added.
 function _common_temperature(temperature, smearing)
@@ -76,7 +151,7 @@ end
 _context_assert_bound_identity(ctx,bundle)=assert_bound_identity(bundle)
 _context_assert_bound_sources(ctx,bundle)=assert_bound_sources(bundle)
 
-function _validate_live_binding(ctx)
+function _validate_live_binding(ctx,memo=nothing)
     cert = _context_certificate(ctx)
     basis = ctx.basis
     basis === cert.basis || throw(ArgumentError("basis object identity mismatch"))
@@ -101,6 +176,7 @@ function _validate_live_binding(ctx)
     end
     basis.kweights == snap.weights && length(basis.kpoints) == length(snap.kpoints) ||
         throw(ArgumentError("spatial k-point weights or count changed"))
+    isnothing(memo) || (memo.counters["all_k_scan_calls"]+=1)
     for ik in eachindex(basis.kpoints)
         kpt = basis.kpoints[ik]
         kpt === snap.kpoints[ik] && kpt.coordinate == snap.coords[ik] &&
@@ -123,17 +199,23 @@ function _validate_live_binding(ctx)
 end
 
 """Deep boundary validation; iterative mul! uses the lightweight object/grid checks above."""
-function validate_context(ctx)
-    _validate_live_binding(ctx)
+validate_context(ctx)=_validate_context(ctx,nothing)
+function _validate_context(ctx,memo)
+    if !isnothing(memo)
+        _validation_memo_open(memo)
+        ctx===memo.owner || throw(ArgumentError("Validation context belongs to another runtime"))
+        memo.counters["context_scan_calls"]+=1
+    end
+    _validate_live_binding(ctx,memo)
     cert = _context_certificate(ctx)
     for bundle in ctx.bundles
-        _context_assert_bound_sources(ctx,bundle)
+        _validation_bound_sources(ctx,bundle,memo)
         Symbol.(bundle.xc_identifiers) == ctx.xc_identifiers && bundle.mode == ctx.mode ||
             throw(ArgumentError("bundle mode or XC family mismatch"))
     end
     for (ik, op) in enumerate(ctx.fr_blocks)
-        _fr_array_hash(op.P) == cert.projector_hashes[ik] &&
-            _fr_array_hash(op.D) == cert.coupling_hashes[ik] &&
+        _validation_array_hash(memo,op.P) == cert.projector_hashes[ik] &&
+            _validation_array_hash(memo,op.D) == cert.coupling_hashes[ik] &&
             op.labels == cert.labels[ik] ||
             throw(ArgumentError("issued FR projector, radial coupling, or atom/channel labels changed"))
     end

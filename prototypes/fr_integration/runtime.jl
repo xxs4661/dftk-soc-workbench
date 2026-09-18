@@ -42,7 +42,12 @@ mutable struct OwnedRuntime
     _closed::Bool
     _boundaries::Dict{String,Int}
     _counts::Dict{String,Int}
-    function OwnedRuntime(ctx::FRHamiltonianContext,max_rhs::Integer)
+    _validation_policy::Symbol
+    _validation_counters::Dict{String,Int}
+    _validation_active
+    function OwnedRuntime(ctx::FRHamiltonianContext,max_rhs::Integer,validation_policy::Symbol=:strict)
+        validation_policy in (:strict,:single_validation_v1) ||
+            throw(ArgumentError("Unsupported internal validation policy"))
         !(max_rhs isa Bool) && 0<max_rhs<=30 || throw(ArgumentError("Runtime RHS capacity must be an integer in 1:30"))
         validate_context(ctx)
         cert=_context_certificate(ctx)
@@ -60,8 +65,15 @@ mutable struct OwnedRuntime
         derived=_storage_certificate(_runtime_term_arrays(ctx))
         counts=Dict(name=>0 for name in ("fr_mul_calls","fr_columns","component_mul_calls",
             "component_columns","full_mul_calls","full_columns","density_calls"))
+        validation_counts=Dict(name=>0 for name in ("validation_calls","validation_completed",
+            "validation_errors","reentry_rejections","context_scan_calls","all_k_scan_calls",
+            "array_hash_requests","array_hash_calls","array_hash_bytes","canonical_hash_calls",
+            "array_hash_reuses","fallback_hash_requests","source_validation_calls",
+            "source_validation_reuses","storage_scan_calls","fallback_memo_invalidations",
+            "max_live_array_entries","max_live_source_entries"))
         rt=new(ctx,cert,sources,workspace,capacity,0,nothing,Any[],derived,
-            _runtime_term_values(ctx),nothing,false,false,Dict{String,Int}(),counts)
+            _runtime_term_values(ctx),nothing,false,false,Dict{String,Int}(),counts,
+            validation_policy,validation_counts,nothing)
         validate_context(rt)
         # All checks and allocations precede the ownership transfer. No global
         # registry receives this runtime or any new Hamiltonian/density object.
@@ -74,7 +86,8 @@ mutable struct OwnedRuntime
     end
 end
 
-owned_runtime(ctx::FRHamiltonianContext;max_rhs=30)=OwnedRuntime(ctx,max_rhs)
+owned_runtime(ctx::FRHamiltonianContext;max_rhs=30,validation_policy=:strict)=
+    OwnedRuntime(ctx,max_rhs,validation_policy)
 FullHamiltonianBlock(rt::OwnedRuntime,ik::Integer,scalar,fr)=
     throw(ArgumentError("Owned runtimes require compose_full_hamiltonian; legacy full-H fallback is forbidden"))
 runtime_enabled(ctx)=false
@@ -104,6 +117,43 @@ function _context_assert_bound_identity(rt::OwnedRuntime,bundle)
 end
 function _context_assert_bound_sources(rt::OwnedRuntime,bundle)
     _assert_bound_sources(bundle,get(rt._sources,bundle._token,nothing))
+end
+
+function _with_validation(f,rt::OwnedRuntime)
+    rt._validation_policy===:strict && return f(nothing)
+    rt._validation_policy===:single_validation_v1 || throw(ArgumentError("Runtime validation policy changed"))
+    _runtime_open(rt)
+    if !isnothing(rt._validation_active)
+        rt._validation_counters["reentry_rejections"]+=1
+        throw(ArgumentError("Nested/concurrent validation is unsupported"))
+    end
+    memo=_ValidationMemo(rt,rt._generation,rt._current,true,IdDict{Any,String}(),
+        IdDict{Any,Nothing}(),rt._validation_counters)
+    rt._validation_active=memo;memo.counters["validation_calls"]+=1
+    try
+        value=f(memo)
+        _validation_memo_open(memo)
+        memo.counters["validation_completed"]+=1
+        value
+    catch
+        memo.counters["validation_errors"]+=1
+        rethrow()
+    finally
+        # No borrowed array, source, context, or Hamiltonian survives this call
+        # in the memo, even when a validation or an injected exception fails.
+        _clear_validation_memo!(memo)
+        rt._validation_active=nothing
+    end
+end
+
+function _clear_validation_memo!(memo::_ValidationMemo)
+    empty!(memo.arrays);empty!(memo.sources)
+    memo.active=false;memo.owner=nothing;memo.current=nothing
+    nothing
+end
+
+validate_context(rt::OwnedRuntime)=_with_validation(rt) do memo
+    _validate_context(rt,memo)
 end
 
 function _runtime_term_arrays(ctx)
@@ -138,6 +188,19 @@ function _check_storage(certificate,arrays)
     end
     true
 end
+_check_storage(certificate,arrays,::Nothing)=_check_storage(certificate,arrays)
+function _check_storage(certificate,arrays,memo::_ValidationMemo)
+    _validation_memo_open(memo)
+    memo.counters["storage_scan_calls"]+=1
+    length(certificate)==length(arrays) || throw(ArgumentError("Runtime numerical storage count changed"))
+    for (saved,(label,array)) in zip(certificate,arrays)
+        # Metadata/identity checks are deliberately repeated before any memo hit.
+        label==saved.label && array===saved.array && size(array)==saved.shape &&
+            _validation_array_hash(memo,array)==saved.sha256 ||
+            throw(ArgumentError("Runtime numerical storage changed: $label"))
+    end
+    true
+end
 function _ham_storage(common)
     arrays=Any[]
     for (ik,scalar) in enumerate(common.blocks)
@@ -157,14 +220,15 @@ end
 function runtime_boundary!(rt::OwnedRuntime,event;ham=nothing)
     _runtime_open(rt)
     !rt._busy || throw(ArgumentError("Boundary entered during an active numerical action"))
-    validate_context(rt)
-    _check_storage(rt._derived_storage,_runtime_term_arrays(rt))
+    _with_validation(rt) do memo
+    _validate_context(rt,memo)
+    _check_storage(rt._derived_storage,_runtime_term_arrays(rt),memo)
     _runtime_term_values(rt)==rt._term_values || throw(ArgumentError("Common energy/kinetic term values changed"))
     if !isnothing(rt._current)
         for (ik,scalar) in enumerate(rt._current.blocks)
             _check_common_block(rt,ik,scalar)
         end
-        _check_storage(rt._current_storage,_ham_storage(rt._current))
+        _check_storage(rt._current_storage,_ham_storage(rt._current),memo)
     end
     if !isnothing(ham)
         blocks=hasproperty(ham,:full) ? ham.full : ham isa Union{AbstractVector,Tuple} ? ham : (ham,)
@@ -176,6 +240,7 @@ function runtime_boundary!(rt::OwnedRuntime,event;ham=nothing)
     end
     key=string(event);rt._boundaries[key]=get(rt._boundaries,key,0)+1
     true
+    end
 end
 
 function close_runtime!(rt::OwnedRuntime)
@@ -187,6 +252,8 @@ function close_runtime!(rt::OwnedRuntime)
         failure=error
     finally
         # Even a failed final boundary releases every runtime-owned reference.
+        isnothing(rt._validation_active) || _clear_validation_memo!(rt._validation_active)
+        rt._validation_active=nothing
         rt._generation+=1;rt._closed=true;rt._busy=false
         rt._current=nothing;empty!(rt._current_storage);empty!(rt._derived_storage)
         rt._context=nothing;rt._certificate=nothing;empty!(rt._sources)
@@ -204,6 +271,14 @@ function runtime_summary(rt::OwnedRuntime)
       workspace_capacity=rt._capacity,workspace_released=isnothing(rt._workspace),
       owned_source_entries=length(rt._sources),owned_context_present=!isnothing(rt._context),
       counters=counts,boundary_counts=copy(rt._boundaries),
+      validation=(;policy=string(rt._validation_policy),
+        counter_status=rt._validation_policy===:strict ? "NOT_INSTRUMENTED" : "MEASURED_OPT_IN",
+        counters=rt._validation_policy===:strict ? nothing : copy(rt._validation_counters),
+        active=!isnothing(rt._validation_active),
+        live_array_entries=isnothing(rt._validation_active) ? 0 : length(rt._validation_active.arrays),
+        live_source_entries=isnothing(rt._validation_active) ? 0 : length(rt._validation_active.sources),
+        closed=rt._closed,
+        scope="One synchronous validation call only; no cross-call certification; source snapshot bytes and constructor certificate hashes are not included in array hash counts"),
       density_sha256=rt._density_sha256,
       ownership="One consumed loader-issued context; original P/D only; private boundary certificates; serial scoped workspace")
 end

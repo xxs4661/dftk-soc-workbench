@@ -21,6 +21,8 @@ import uuid
 ROOT=Path(__file__).resolve().parents[2]
 GIB=1024**3
 TASKS={'T-B0-REF':900,'T-B0-TIMED':900,'T-K4-TIMED':1800}
+BOUNDARY_TASKS={'V-B0-REF':900,'V-B0-OPT':900,'V-K4-REF':1800,'V-K4-OPT':1800}
+BOUNDARY_REFERENCE='d9e19af3557c923a1e4f7e64510092d47975cc7c'
 REASONS={'USER_CANCELLED','TIME_BUDGET_EXCEEDED','RESOURCE_LIMIT','RESOURCE_HEADROOM','HOST_PRESSURE'}
 CODES={'USER_CANCELLED':130,'TIME_BUDGET_EXCEEDED':124,'RESOURCE_LIMIT':17,'RESOURCE_HEADROOM':17,'HOST_PRESSURE':17}
 
@@ -78,15 +80,15 @@ def atomic_json(path,value):
 
 def create_control(directory,*,execution_commit,source_commit,task_id,case_sha256,
                    budget_seconds,batch_deadline_unix_ns,synthetic=False,
-                   grace_seconds=None,term_seconds=None,kill_seconds=None):
+                   grace_seconds=None,term_seconds=None,kill_seconds=None,protection_gate_sha256=None):
     directory=safe_directory(directory);now=time.time_ns()
     require(re.fullmatch('[A-Za-z0-9_-]+',directory.name),'Invalid run id')
     for value,n in [(execution_commit,40),(source_commit,40),(case_sha256,64)]:
         require(type(value)is str and re.fullmatch('[a-f0-9]{'+str(n)+'}',value),'Invalid execution/source/case identity')
     require(type(synthetic)is bool,'Invalid synthetic flag')
-    require((synthetic and task_id.startswith('SYNTHETIC-')) or (not synthetic and task_id in TASKS),'Unregistered task')
+    require((synthetic and task_id.startswith('SYNTHETIC-')) or (not synthetic and task_id in TASKS|BOUNDARY_TASKS),'Unregistered task')
     require(type(budget_seconds) in (int,float) and math.isfinite(budget_seconds) and budget_seconds>0,'Invalid budget')
-    require(budget_seconds<=10 if synthetic else budget_seconds==TASKS[task_id],'Task budget differs from declaration')
+    require(budget_seconds<=10 if synthetic else budget_seconds==(TASKS|BOUNDARY_TASKS)[task_id],'Task budget differs from declaration')
     require(type(batch_deadline_unix_ns)is int and batch_deadline_unix_ns>now,'Batch deadline already exhausted')
     if not synthetic:require(batch_deadline_unix_ns-now>=300*10**9,'Less than five minutes of total budget remain')
     grace=120 if grace_seconds is None else grace_seconds;term=10 if term_seconds is None else term_seconds;kill=5 if kill_seconds is None else kill_seconds
@@ -98,6 +100,16 @@ def create_control(directory,*,execution_commit,source_commit,task_id,case_sha25
         effective_deadline_unix_ns=min(now+int(budget_seconds*10**9),batch_deadline_unix_ns),
         batch_deadline_unix_ns=batch_deadline_unix_ns,limit_bytes=8*GIB,warning_bytes=7*GIB,
         remaining_growth_bytes=2*GIB,grace_seconds=grace,term_seconds=term,kill_seconds=kill,synthetic=synthetic)
+    if task_id in BOUNDARY_TASKS:
+        require(type(protection_gate_sha256)is str and re.fullmatch('[a-f0-9]{64}',protection_gate_sha256),
+                'Boundary diagnostics require the actual protection receipt hash')
+        value.update(experiment='soc-boundary-v1',timing_enabled=True,
+                     validation_policy='strict' if task_id.endswith('-REF') else 'single_validation_v1',
+                     protection_gate_sha256=protection_gate_sha256)
+        require(source_commit==(BOUNDARY_REFERENCE if task_id.endswith('-REF') else execution_commit),
+                'Boundary numerical source differs from role')
+    else:
+        require(protection_gate_sha256 is None,'An old timing task cannot consume a boundary authorization')
     publish_first(directory/'control.toml',toml_bytes(value))
     return load_control(directory)
 
@@ -106,7 +118,7 @@ def load_control(directory):
     directory=safe_directory(directory);raw=checked_bytes(directory/'control.toml');c=tomllib.loads(raw.decode())
     require(type(c.get('schema_version'))is int and c['schema_version']==1 and c.get('run_id')==directory.name and c.get('worker_id')=='worker','Control identity invalid')
     require((c.get('limit_bytes'),c.get('warning_bytes'),c.get('remaining_growth_bytes'))==(8*GIB,7*GIB,2*GIB),'Timing tasks have only fixed8/7 GiB and2 GiB growth')
-    require(c.get('synthetic') is True and c.get('task_id','').startswith('SYNTHETIC-') or c.get('synthetic') is False and c.get('task_id') in TASKS,'Control task invalid')
+    require(c.get('synthetic') is True and c.get('task_id','').startswith('SYNTHETIC-') or c.get('synthetic') is False and c.get('task_id') in TASKS|BOUNDARY_TASKS,'Control task invalid')
     require(re.fullmatch('[A-Za-z0-9_-]+',c['run_id']),'Invalid run id')
     for key,length in [('execution_commit',40),('source_commit',40),('case_sha256',64),('nonce',32)]:
         require(type(c.get(key))is str and re.fullmatch('[a-f0-9]{'+str(length)+'}',c[key]),'Invalid control identity: '+key)
@@ -114,7 +126,15 @@ def load_control(directory):
         require(type(c.get(key))is int and c[key]>0,'Invalid control clock field: '+key)
     budget=c.get('budget_seconds')
     require(type(budget) in (int,float) and math.isfinite(budget) and budget>0,'Invalid control budget')
-    require(budget<=10 if c['synthetic'] else budget==TASKS[c['task_id']],'Changed task budget')
+    require(budget<=10 if c['synthetic'] else budget==(TASKS|BOUNDARY_TASKS)[c['task_id']],'Changed task budget')
+    if c['task_id'] in BOUNDARY_TASKS:
+        ref=c['task_id'].endswith('-REF')
+        require(c.get('experiment')=='soc-boundary-v1' and c.get('timing_enabled') is True and
+                c.get('validation_policy')==('strict' if ref else 'single_validation_v1') and
+                c['source_commit']==(BOUNDARY_REFERENCE if ref else c['execution_commit']),
+                'Boundary control role/source/policy differs')
+        require(type(c.get('protection_gate_sha256'))is str and
+                re.fullmatch('[a-f0-9]{64}',c['protection_gate_sha256']),'Boundary protection hash missing')
     require(c['effective_deadline_unix_ns']==min(c['created_unix_ns']+int(budget*10**9),c['batch_deadline_unix_ns']) and c['effective_deadline_unix_ns']>c['created_unix_ns'],'Effective deadline differs from declared minimum')
     values=[c.get('grace_seconds'),c.get('term_seconds'),c.get('kill_seconds')]
     require(all(type(v) in (int,float) and math.isfinite(v) and 0<v<=cap for v,cap in zip(values,[120,10,5])),'Invalid bounded escalation fields')
@@ -163,6 +183,10 @@ def worker_contract(value,code,c,directory):
         require(value.get(k)==c[k],'Worker identity mismatch: '+k)
     require(type(value.get('schema_version'))is int and value['schema_version']==1,'Unsupported worker schema')
     require(type(code)is int and type(value.get('exit_code'))is int and value['exit_code']==code,'Worker/process exit mismatch')
+    boundary=c['task_id'] in BOUNDARY_TASKS
+    if boundary:
+        for key in ('experiment','timing_enabled','validation_policy','protection_gate_sha256'):
+            require(type(value.get(key))is type(c[key]) and value[key]==c[key],'Boundary worker contract differs: '+key)
     require(not (Path(directory)/'worker/final.bin').exists(),'Timing diagnostic must not publish final.bin')
     status=value.get('execution_status');request=read_request(directory,c)
     if code==0:
@@ -179,6 +203,18 @@ def worker_contract(value,code,c,directory):
             counts=before.get('counters',{})
             require(all(type(counts.get(k))is int and counts[k]>0 for k in ['fr_mul_calls','component_mul_calls','full_mul_calls']),'Actual core dispatch not exercised')
             require(type(after)is dict and after.get('closed') is True and after.get('workspace_released') is True and after.get('owned_source_entries')==0,'Owned storage release not confirmed')
+            if boundary and c['validation_policy']=='single_validation_v1':
+                for label,summary in [('before',before),('after',after)]:
+                    validation=summary.get('validation')
+                    require(type(validation)is dict and validation.get('policy')=='single_validation_v1' and
+                            validation.get('counter_status')=='MEASURED_OPT_IN' and validation.get('active') is False and
+                            type(validation.get('live_array_entries'))is int and validation['live_array_entries']==0 and
+                            type(validation.get('live_source_entries'))is int and validation['live_source_entries']==0,
+                            'Candidate validation scope/release unconfirmed: '+label)
+                require(after['validation'].get('closed') is True,'Candidate validation state not closed')
+                counters=before['validation'].get('counters')
+                require(type(counters)is dict and type(counters.get('validation_calls'))is int and
+                        counters['validation_calls']>0,'Candidate validation dispatch not exercised')
 
     elif status in CODES:
         require(code==CODES[status] and request is not None and request['reason']==status,'Stop/native reason mismatch')
@@ -202,6 +238,8 @@ def launch_worker(command,directory,env=None,*,resources=None):
     from run_qe_soc import execute
     resources=resources or _module('benchmarks/soc-extra-v1/resources.py','timing_resources')
     state={k:c[k] for k in ['run_id','execution_commit','source_commit','task_id','case_sha256','control_sha256']}
+    if c['task_id'] in BOUNDARY_TASKS:
+        state.update({k:c[k] for k in ['experiment','validation_policy','timing_enabled','protection_gate_sha256']})
     state.update(schema_version=1,execution_status='RUNNING',exit_code=9,native_exit_code=None,worker_exit_code=None,started_unix_ns=time.time_ns())
     atomic_json(directory/'result.json',state)
     env=dict(os.environ if env is None else env,SOC_TIMING_CONTROL_FILE=str(directory/'control.toml'),SOC_TIMING_STOP_FILE=str(directory/'stop-request.toml'))

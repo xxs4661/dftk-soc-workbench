@@ -48,8 +48,20 @@ function load_control(directory;expected_run_id,expected_execution_commit,
     (get(c,"limit_bytes",0),get(c,"warning_bytes",0),get(c,"remaining_growth_bytes",0))==
         (8*1024^3,7*1024^3,2*1024^3) || error("Timing control cannot alter8/7 GiB or2 GiB headroom")
     if !get(c,"synthetic",false)
-        get(c,"task_id",nothing) in ("T-B0-REF","T-B0-TIMED","T-K4-TIMED") || error("Unregistered real task")
+        get(c,"task_id",nothing) in ("T-B0-REF","T-B0-TIMED","T-K4-TIMED",
+            "V-B0-REF","V-B0-OPT","V-K4-REF","V-K4-OPT") || error("Unregistered real task")
         (c["grace_seconds"],c["term_seconds"],c["kill_seconds"])==(120,10,5) || error("Real escalation budget changed")
+        if startswith(c["task_id"],"V-")
+            ref=endswith(c["task_id"],"-REF")
+            get(c,"experiment",nothing)=="soc-boundary-v1" && get(c,"timing_enabled",nothing)===true &&
+                get(c,"validation_policy",nothing)==(ref ? "strict" : "single_validation_v1") ||
+                error("Boundary control policy changed")
+            c["source_commit"]==(ref ? "d9e19af3557c923a1e4f7e64510092d47975cc7c" : c["execution_commit"]) ||
+                error("Boundary control numerical version changed")
+            c["budget_seconds"]==(startswith(c["task_id"],"V-B0-") ? 900 : 1800) || error("Boundary task budget changed")
+            get(c,"protection_gate_sha256",nothing) isa String &&
+                occursin(r"^[a-f0-9]{64}$",c["protection_gate_sha256"]) || error("Boundary protection receipt missing")
+        end
     else
         startswith(c["task_id"],"SYNTHETIC-") || error("Synthetic task identity differs")
     end
