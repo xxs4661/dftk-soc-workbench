@@ -82,7 +82,15 @@ function run_synthetic()
  code=1
  try
  C.boundary!(state,"synthetic-initialized")
+ # Prewarm the wait before announcing readiness. The explicit SIGINT fixture
+ # then stays in one bounded interruptible sleep instead of alternating between
+ # control-file I/O and sleeps while the parent delivers its single signal.
+ mode=="catch_sigint" && sleep(.001)
  write(joinpath(root,"ready"),string(VERSION))
+ if mode=="catch_sigint"
+  sleep(8)
+  error("Synthetic SIGINT was not caught during the bounded wait")
+ end
  deadline=time()+8
  while time()<deadline
   C.boundary!(state,"synthetic-loop",1,1)
