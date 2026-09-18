@@ -94,8 +94,8 @@ and closed scalar spans. Coordinate matching uses the declared k points, not
 energy closeness. Electron, Gram, Pauli, FD/tail and energy/own-density checks retain
 their original thresholds.
 
-REF/OPT fixed-point residuals are approximately 0.468935/0.411977 for B0 and
-0.450571/0.394303 for K4. They are **not converged SCF endpoints**. First-map initial
+Map 1 / 2 fixed-point residuals in both paths are approximately 0.468935/0.411977
+for B0 and 0.450571/0.394303 for K4. They are **not converged SCF endpoints**. First-map initial
 subspace hashes match at 8/8 B0 and 64/64 K4 points. Second-map hashes differ: each
 run uses its own previous orbitals, not another run's state. Workload is not identical:
 
