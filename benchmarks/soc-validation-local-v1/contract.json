@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "experiment": "soc-validation-local-v1",
+  "B": "de2d3661bdd4a0a5081ae322b7c7e723ef0e6fdd",
+  "R": "d9e19af3557c923a1e4f7e64510092d47975cc7c",
+  "E_old": "761e09d8fe99f99fcccb0f1b10704916d336ccb8",
+  "slots": [
+    "DIAG-S",
+    "DIAG-F",
+    "BENCH-S",
+    "BENCH-F",
+    "BENCH-C"
+  ],
+  "process_limit_seconds": 600,
+  "cumulative_seconds": 1800,
+  "minimum_remaining_start_seconds": 300,
+  "limit_bytes": 8589934592,
+  "warning_bytes": 7516192768,
+  "remaining_growth_bytes": 2147483648,
+  "escalation_seconds": [
+    120,
+    10,
+    5
+  ],
+  "warmups": 2,
+  "samples": 5,
+  "control_synthetic_budget_seconds": 300,
+  "max_representative_sequences": 3,
+  "operation_order": [
+    "boundary",
+    "storage",
+    "selected_sequences"
+  ],
+  "candidate_boundary_median_ratio_max": 0.9,
+  "parallelism": 1,
+  "maps": 0,
+  "candidate_status": "NOT_SELECTED",
+  "source_policy": {
+    "S": "strict",
+    "F": "single_validation_v1"
+  },
+  "static_status": "STATIC_VALIDATION_COMPLETED_NOT_SCF",
+  "setup_status": "STATIC_CONTEXT_SETUP_NOT_SCF"
+}
