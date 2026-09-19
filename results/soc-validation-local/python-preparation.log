@@ -1,0 +1,62 @@
+Check: python-preparation
+Scope: NONPHYSICAL_PREPARATION
+Command: python3.12 -B -m unittest discover -s tests -p 'test_soc_validation_local_*.py' -v
+Exit: 0
+Actual command combined three unittest discover suites (driver/control/replay) in one Python invocation; this equivalent glob selects the same files. 44 discovered: 42 passed, 2 NOT_RUN/skipped actual process cancel/timeout. Exact source e308f5bb35d2a4f4cd14366d12728240c50fca56.
+Public projection: private paths/addresses redacted; original files retained in external archive.
+
+Original: .work/soc-validation-local/checks/python-preparation-final/stdout
+Raw SHA-256: afb43373e8f87c3ee86b09197037525fa45e63fc773f5bdcfdd2eba4f15693fe
+{"directory": "/private/var/folders/jt/0vx2wndn1tq2cp_x7jy3jszc0000gn/T/tmp246omwke/repo/.work/soc-validation-local/runs/DIAG-S-20260919T040008856702Z-d9aada58", "schema_version": 1, "experiment": "soc-validation-local-v1", "run_id": "DIAG-S-20260919T040008856702Z-d9aada58", "task_id": "DIAG-S", "execution_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "execution_status": "BLOCKED_RESOURCE_OBSERVATION", "native_exit_code": null, "exit_code": 17, "reason": "PermissionError: Synthetic ps denial", "slot_consumed": false}
+
+Original: .work/soc-validation-local/checks/python-preparation-final/stderr
+Raw SHA-256: e430b3cb188319b08e3b78c61747ed055ad8e892940788721521fc180e0d46a2
+test_all_benchmarks_gate_before_source_loading (test_soc_validation_local_driver.LocalProtocolTests.test_all_benchmarks_gate_before_source_loading) ... ok
+test_benchmark_invalid_values_and_phase_fail (test_soc_validation_local_driver.LocalProtocolTests.test_benchmark_invalid_values_and_phase_fail) ... ok
+test_benchmark_requires_all_two_warmups_and_five_samples (test_soc_validation_local_driver.LocalProtocolTests.test_benchmark_requires_all_two_warmups_and_five_samples) ... ok
+test_both_roles_are_fixed_and_registration_is_private (test_soc_validation_local_driver.LocalProtocolTests.test_both_roles_are_fixed_and_registration_is_private) ... ok
+test_budget_counts_active_time_not_edit_idle (test_soc_validation_local_driver.LocalProtocolTests.test_budget_counts_active_time_not_edit_idle) ... ok
+test_denied_observer_consumes_no_slot_and_never_launches (test_soc_validation_local_driver.LocalProtocolTests.test_denied_observer_consumes_no_slot_and_never_launches) ... ok
+test_denied_or_empty_observer_fails_closed (test_soc_validation_local_driver.LocalProtocolTests.test_denied_or_empty_observer_fails_closed) ... ok
+test_diagnostic_artifacts_are_required_and_authenticated (test_soc_validation_local_driver.LocalProtocolTests.test_diagnostic_artifacts_are_required_and_authenticated) ... ok
+test_diagnostic_false_return_or_integrity_failure_is_not_success (test_soc_validation_local_driver.LocalProtocolTests.test_diagnostic_false_return_or_integrity_failure_is_not_success) ... ok
+test_entry_requires_real_identity_and_no_context (test_soc_validation_local_driver.LocalProtocolTests.test_entry_requires_real_identity_and_no_context) ... ok
+test_latched_user_stop_cannot_succeed (test_soc_validation_local_driver.LocalProtocolTests.test_latched_user_stop_cannot_succeed) ... ok
+test_legitimate_failure_preserves_native_code (test_soc_validation_local_driver.LocalProtocolTests.test_legitimate_failure_preserves_native_code) ... ok
+test_no_counterfeit_maps_or_final_checkpoint (test_soc_validation_local_driver.LocalProtocolTests.test_no_counterfeit_maps_or_final_checkpoint) ... ok
+test_real_registration_preserves_budget_and_resource_policy (test_soc_validation_local_driver.LocalProtocolTests.test_real_registration_preserves_budget_and_resource_policy) ... ok
+test_schema_native_and_identity_types (test_soc_validation_local_driver.LocalProtocolTests.test_schema_native_and_identity_types) ... ok
+test_static_success_is_not_scf (test_soc_validation_local_driver.LocalProtocolTests.test_static_success_is_not_scf) ... ok
+test_cooperative_cancel (test_soc_validation_local_control.LocalRealControlTests.test_cooperative_cancel) ... skipped 'NOT_RUN: owner must authorize bounded synthetic launcher after resource-observer preflight'
+test_independent_timeout (test_soc_validation_local_control.LocalRealControlTests.test_independent_timeout) ... skipped 'NOT_RUN: owner must authorize bounded synthetic launcher after resource-observer preflight'
+test_artifact_path_cannot_escape_or_read_private_work (test_soc_validation_local_replay.BlockedEvidenceTests.test_artifact_path_cannot_escape_or_read_private_work) ... ok
+test_branch_and_all_three_fixed_source_versions_are_bound (test_soc_validation_local_replay.BlockedEvidenceTests.test_branch_and_all_three_fixed_source_versions_are_bound) ... ok
+test_check_exit_and_status_keep_real_failure (test_soc_validation_local_replay.BlockedEvidenceTests.test_check_exit_and_status_keep_real_failure) ... ok
+test_check_scope_and_duplicate_checks_fail (test_soc_validation_local_replay.BlockedEvidenceTests.test_check_scope_and_duplicate_checks_fail) ... ok
+test_cli_corruption_returns_recorder_error_nine (test_soc_validation_local_replay.BlockedEvidenceTests.test_cli_corruption_returns_recorder_error_nine) ... ok
+test_cli_default_zero_and_strict_one_are_distinct (test_soc_validation_local_replay.BlockedEvidenceTests.test_cli_default_zero_and_strict_one_are_distinct) ... ok
+test_consistent_blocked_record_has_no_measured_data (test_soc_validation_local_replay.BlockedEvidenceTests.test_consistent_blocked_record_has_no_measured_data) ... ok
+test_duplicate_keys_and_nonfinite_json_are_rejected (test_soc_validation_local_replay.BlockedEvidenceTests.test_duplicate_keys_and_nonfinite_json_are_rejected) ... ok
+test_duplicate_missing_extra_or_reordered_slots_are_rejected (test_soc_validation_local_replay.BlockedEvidenceTests.test_duplicate_missing_extra_or_reordered_slots_are_rejected) ... ok
+test_each_artifact_checksum_is_actually_verified (test_soc_validation_local_replay.BlockedEvidenceTests.test_each_artifact_checksum_is_actually_verified) ... ok
+test_every_slot_must_remain_exactly_not_run (test_soc_validation_local_replay.BlockedEvidenceTests.test_every_slot_must_remain_exactly_not_run) ... ok
+test_fake_counts_or_metrics_cannot_hide_in_extra_record_fields (test_soc_validation_local_replay.BlockedEvidenceTests.test_fake_counts_or_metrics_cannot_hide_in_extra_record_fields) ... ok
+test_fixed_historical_density_cannot_be_replaced (test_soc_validation_local_replay.BlockedEvidenceTests.test_fixed_historical_density_cannot_be_replaced) ... ok
+test_fixture_does_not_claim_new_actual_types_or_candidate (test_soc_validation_local_replay.BlockedEvidenceTests.test_fixture_does_not_claim_new_actual_types_or_candidate) ... ok
+test_malformed_nested_fixture_fields_reject_without_attribute_error (test_soc_validation_local_replay.BlockedEvidenceTests.test_malformed_nested_fixture_fields_reject_without_attribute_error) ... ok
+test_measured_or_successful_status_cannot_replace_blocked_contract (test_soc_validation_local_replay.BlockedEvidenceTests.test_measured_or_successful_status_cannot_replace_blocked_contract) ... ok
+test_missing_wrong_or_empty_csv_header_rejected (test_soc_validation_local_replay.BlockedEvidenceTests.test_missing_wrong_or_empty_csv_header_rejected) ... ok
+test_original_density_count_and_volume_are_not_renormalized (test_soc_validation_local_replay.BlockedEvidenceTests.test_original_density_count_and_volume_are_not_renormalized) ... ok
+test_preparation_versions_require_complete_sha (test_soc_validation_local_replay.BlockedEvidenceTests.test_preparation_versions_require_complete_sha) ... ok
+test_public_check_log_checksum_is_verified_when_present (test_soc_validation_local_replay.BlockedEvidenceTests.test_public_check_log_checksum_is_verified_when_present) ... ok
+test_resource_blocker_is_not_converted_to_success_or_other_stage (test_soc_validation_local_replay.BlockedEvidenceTests.test_resource_blocker_is_not_converted_to_success_or_other_stage) ... ok
+test_schema_unknown_and_boolean_versions_fail (test_soc_validation_local_replay.BlockedEvidenceTests.test_schema_unknown_and_boolean_versions_fail) ... ok
+test_static_started_zero_is_typed_not_boolean_or_unmeasured_number (test_soc_validation_local_replay.BlockedEvidenceTests.test_static_started_zero_is_typed_not_boolean_or_unmeasured_number) ... ok
+test_symlinked_public_file_rejected (test_soc_validation_local_replay.BlockedEvidenceTests.test_symlinked_public_file_rejected) ... ok
+test_table_fake_data_rejected_even_after_hash_is_updated (test_soc_validation_local_replay.BlockedEvidenceTests.test_table_fake_data_rejected_even_after_hash_is_updated) ... ok
+test_unknown_fields_and_missing_limitations_fail (test_soc_validation_local_replay.BlockedEvidenceTests.test_unknown_fields_and_missing_limitations_fail) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.080s
+
+OK (skipped=2)

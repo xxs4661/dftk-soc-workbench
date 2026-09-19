@@ -1,0 +1,18 @@
+Check: entry-S-native
+Scope: NONPHYSICAL_PREPARATION
+Command: python3.12 -B benchmarks/soc-validation-local-v1/supervisor.py run DIAG-S --source-root <independent-R> --julia julia --check-entry
+Exit: 15
+Native worker exit 15; recorder exit 9. Run DIAG-S-ENTRY-20260919T035938649873Z-470d12ba; exact execution e308f5bb35d2a4f4cd14366d12728240c50fca56. No static context constructed; this is not evidence of 8 GiB limit exhaustion.
+Public projection: private paths/addresses redacted, trailing whitespace stripped; original files retained in external archive.
+
+Original: .work/soc-validation-local/entries/DIAG-S-ENTRY-20260919T035938649873Z-470d12ba/entry.stderr
+Raw SHA-256: ae9464499edea8dbf730213bb17504d4549b48d0941b8780c5d8088876b643f1
+Abort(876233999) on node 0: Fatal error in internal_Init_thread: Other MPI error, error stack:
+internal_Init_thread(71)..............: MPI_Init_thread(argc=<address>, argv=<address>, required=2, provided=<address>) failed
+MPII_Init_thread(305).................:
+MPIR_init_comm_world(37)..............:
+MPIR_Comm_commit(821).................:
+MPID_Comm_commit_pre_hook(160)........:
+MPIDI_SHM_mpi_comm_commit_pre_hook(18):
+MPIDI_SHM_comm_bootstrap(45)..........:
+MPIDI_POSIX_comm_bootstrap(288).......: Out of memory

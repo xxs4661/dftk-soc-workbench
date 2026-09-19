@@ -100,3 +100,8 @@ self time +34.6%, wall +25.6%. Strict validation remains the default. Its public
 replay exits 0 for arithmetic and 1 for strict optimization acceptance. These
 two-map diagnostics are not converged endpoints. The [original timing/control
 evidence](soc-timing/README.md) retains the K6 cancellation and unclassified time.
+
+The [local validation type probe](soc-validation-local/README.md) authenticates
+its input and prepares synthetic-tested observation tools, but process monitoring
+and a no-context MPI entry are blocked. Actual S/F types, work and samples remain
+unmeasured; no correction C was selected. Public replay preserves that status.

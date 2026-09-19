@@ -1,0 +1,15 @@
+Check: lifecycle-synthetic
+Scope: NONPHYSICAL_PREPARATION
+Command: julia --startup-file=no --project=environment/workbench tests/test_soc_validation_local_lifecycle.jl
+Exit: 0
+99 synthetic assertions; only actual private driver helpers with toy objects. No DFTK import, context, or process monitoring. Source bytes match e308f5bb35d2a4f4cd14366d12728240c50fca56.
+Public projection: private paths/addresses redacted; original files retained in external archive.
+
+Original: .work/soc-validation-local/checks/lifecycle-attempt1.stdout
+Raw SHA-256: 9ec184c6541d2b5a91822adfae855791670d3923a9234ee90c7d978ce87c07dd
+Test Summary:                                               | Pass  Total  Time
+Synthetic static-driver lifecycle; no material construction |   99     99  0.3s
+Synthetic lifecycle only; Julia 1.12.7; JSON3 1.14.3; no material context or monitoring
+
+Original: .work/soc-validation-local/checks/lifecycle-attempt1.stderr
+Raw SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855

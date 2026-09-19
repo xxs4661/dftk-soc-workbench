@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "experiment": "soc-validation-local-v1",
+  "status": "BLOCKED_RESOURCE_OBSERVATION",
+  "branch": "codex/phase9a-validation-local-probe",
+  "base_commit": "de2d3661bdd4a0a5081ae322b7c7e723ef0e6fdd",
+  "reference_commit": "d9e19af3557c923a1e4f7e64510092d47975cc7c",
+  "failed_candidate_execution_commit": "761e09d8fe99f99fcccb0f1b10704916d336ccb8",
+  "preparation_commit": "d7dd0c6ffd197d632018afc117667849cf655036",
+  "execution_commit": "e308f5bb35d2a4f4cd14366d12728240c50fca56",
+  "static_processes_started": 0,
+  "slots": [
+    {
+      "slot_id": "DIAG-S",
+      "status": "NOT_RUN"
+    },
+    {
+      "slot_id": "DIAG-F",
+      "status": "NOT_RUN"
+    },
+    {
+      "slot_id": "BENCH-S",
+      "status": "NOT_RUN"
+    },
+    {
+      "slot_id": "BENCH-F",
+      "status": "NOT_RUN"
+    },
+    {
+      "slot_id": "BENCH-C",
+      "status": "NOT_RUN"
+    }
+  ],
+  "candidate_status": "NO_CANDIDATE_SELECTED",
+  "local_target_status": "NOT_ASSESSED",
+  "counts_status": "NOT_MEASURED",
+  "actual_types_status": "NOT_OBSERVED",
+  "fresh_numerical_results_status": "NOT_RUN",
+  "artifacts": {
+    "types": {
+      "path": "results/soc-validation-local/types.csv",
+      "sha256": "5022c88657b60bca27822a258b82e21617660e972c4ad54244b43e55d8eeb116"
+    },
+    "work": {
+      "path": "results/soc-validation-local/work.csv",
+      "sha256": "1bcc7957d4a3c0075ea4e0c2f09b23256af7055f0c5ff506401e10b3adf4808f"
+    },
+    "samples": {
+      "path": "results/soc-validation-local/samples.csv",
+      "sha256": "c1764a9e4f066fc0de18416bbc2ca463a08f3448821aef5045e23366f5446b9a"
+    },
+    "fixture": {
+      "path": "benchmarks/soc-validation-local-v1/fixture.json",
+      "sha256": "0fefbdded531029af18ccc07961d77db78c3b90d5fa070de6ba2d63870f08171"
+    }
+  },
+  "checks": [
+    {
+      "name": "process-observation",
+      "scope": "NONPHYSICAL_PREPARATION",
+      "exit_code": 127,
+      "status": "BLOCKED",
+      "log_sha256": "e99506b45d03f1888ac836942c470a8f2cb7bca1bc085819d9be738e76b8e906",
+      "log_path": "results/soc-validation-local/process-observation.log"
+    },
+    {
+      "name": "entry-S-native",
+      "scope": "NONPHYSICAL_PREPARATION",
+      "exit_code": 15,
+      "status": "BLOCKED",
+      "log_sha256": "363e3af399bb4136d4312b48c5e42a6aad3f2d54e37e5bb10c3ea15b1964495f",
+      "log_path": "results/soc-validation-local/entry-S-native.log"
+    },
+    {
+      "name": "entry-S-recorder",
+      "scope": "NONPHYSICAL_PREPARATION",
+      "exit_code": 9,
+      "status": "BLOCKED",
+      "log_sha256": "363e3af399bb4136d4312b48c5e42a6aad3f2d54e37e5bb10c3ea15b1964495f",
+      "log_path": "results/soc-validation-local/entry-S-native.log"
+    },
+    {
+      "name": "python-preparation",
+      "scope": "NONPHYSICAL_PREPARATION",
+      "exit_code": 0,
+      "status": "PASS",
+      "log_sha256": "447a2ce04bd36f675a6abd3357489c94af6f089eaa9b1ab9ecab9c1194e15881",
+      "log_path": "results/soc-validation-local/python-preparation.log"
+    },
+    {
+      "name": "observer-synthetic",
+      "scope": "NONPHYSICAL_PREPARATION",
+      "exit_code": 0,
+      "status": "PASS",
+      "log_sha256": "600980e0ff6cff30298f96482e827c93efc149e70cd52b5fa561cf08fb5d886f",
+      "log_path": "results/soc-validation-local/observer-synthetic.log"
+    },
+    {
+      "name": "lifecycle-synthetic",
+      "scope": "NONPHYSICAL_PREPARATION",
+      "exit_code": 0,
+      "status": "PASS",
+      "log_sha256": "0bd6cd0226c725a483cd96cf4a6dc595b61573ec974035d7ccb08a314588e95d",
+      "log_path": "results/soc-validation-local/lifecycle-synthetic.log"
+    },
+    {
+      "name": "syntax-parse",
+      "scope": "NONPHYSICAL_PREPARATION",
+      "exit_code": 0,
+      "status": "PASS",
+      "log_sha256": "22c051d043822b33f9abc36fc443ff33d1d72afbbc858fa77a6537c4f43c6119",
+      "log_path": "results/soc-validation-local/syntax-parse.log"
+    },
+    {
+      "name": "replay-test-preparation-failure",
+      "scope": "NONPHYSICAL_PREPARATION",
+      "exit_code": 1,
+      "status": "FAIL",
+      "log_sha256": "ff3ebbd72ac6f7e2a51d73d6ff68978655dfa953cd9b481fbfd8f7885316726b",
+      "log_path": "results/soc-validation-local/replay-test-preparation-failure.log"
+    }
+  ],
+  "blocker": {
+    "operation": "PROCESS_OBSERVATION",
+    "exit_code": 127,
+    "reason": "Sandbox denied ps; required live process-group/RSS monitoring could not be established. Existing resource API also raised PermissionError. No static process started."
+  },
+  "resource_observer_exit": 127,
+  "limitations": [
+    "Partial preparation only: actual S/F type diagnosis, C selection and all S/F/C static samples NOT_RUN. Empty CSV bodies denote no observations, not zero measured cost.",
+    "One no-context S entry at the stated execution_commit failed during MPI initialization: native 15, recorder 9, MPIDI_POSIX_comm_bootstrap: Out of memory. Cause not established; not evidence of measured 8 GiB limit exhaustion. F entry NOT_RUN; new actual loaded DFTK/PPIO identity NOT_VERIFIED.",
+    "No static E_new or corrected candidate exists. execution_commit identifies prepared tools and nonphysical checks only. Source/checkouts and historical density bytes were authenticated; actual type/layout/alias comparability was not observed.",
+    "Process observation unavailable; real cancellation and timeout integration tests NOT_RUN (two explicit skips). Mocked protocol and toy lifecycle checks are not successful monitored real workers.",
+    "No material runtime was constructed. Direct no-context subprocess exit was collected; independent process-group cleanup could not be verified. RSS, static close and benchmark wall measurements unavailable.",
+    "All five static slots remain unconsumed. 8 GiB/7 GiB/2 GiB rules and previous single-use 10 GiB consumption unchanged; no relaxation or substitute environment.",
+    "Historical K6 user cancellation, native -2/recorder 9, unconfirmed normal runtime close, no qualified endpoint and unverified resume remain unchanged.",
+    "No new map, SCF, eigensolve, occupation solve, QE, Gamma, CI or upstream contact. Public replay checks status/identity only, not real type observation, optimization performance or SOC execution."
+  ]
+}

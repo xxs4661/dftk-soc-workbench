@@ -42,6 +42,9 @@ same-map numerical agreement and protection checks, but the opt-in candidate is
 slower: K4 validation self time +34.6%, total wall +25.6%. Both performance targets
 fail; strict validation remains the default. [Controlled stopping](results/soc-timing/README.md)
 and these two-map diagnostics do not establish SCF convergence or a general speedup.
+The [local type probe](results/soc-validation-local/README.md) is blocked before
+static execution by process-observation and MPI-entry failures; no C was selected
+and no new performance result was measured.
 
 Small differences under one fixed input are not estimates of absolute physical
 accuracy. Raw values, warnings and the original comparison thresholds remain in

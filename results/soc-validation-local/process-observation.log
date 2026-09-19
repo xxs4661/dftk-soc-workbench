@@ -1,0 +1,10 @@
+Check: process-observation
+Scope: NONPHYSICAL_PREPARATION
+Command: ps -p <shell-pid> -o pid=,ppid=,rss=,stat=,etime=
+Exit: 127
+Actual shell exit 127; existing resource API independently raised PermissionError: [Errno 1] Operation not permitted: 'ps'. No static worker or slot reservation.
+Public projection: private paths/addresses redacted; original files retained in external archive.
+
+Original: .work/soc-validation-local/preflight/process-observation.stderr
+Raw SHA-256: 3782f7bccea4ddf978b3a6dd4fc57b2cb2968a16a0401237a66b87766a9b6b4f
+zsh:1: operation not permitted: ps

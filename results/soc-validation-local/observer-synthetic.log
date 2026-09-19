@@ -1,0 +1,14 @@
+Check: observer-synthetic
+Scope: NONPHYSICAL_PREPARATION
+Command: julia --startup-file=no --project=@stdlib tests/test_soc_validation_observer.jl
+Exit: 0
+92 synthetic assertions; no actual DFTK types or K4 context. Final source bytes are in e308f5bb35d2a4f4cd14366d12728240c50fca56.
+Public projection: private paths/addresses redacted; original files retained in external archive.
+
+Original: .work/soc-validation-local/checks/observer-attempt2.stdout
+Raw SHA-256: d444b1b1d79d709e1ccf1bd1260df877e69ab7848265db665053ea95e14eb746
+Test Summary:                                                          | Pass  Total  Time
+Diagnostic shadow preserves source/hash and does not enter main timing |   92     92  4.6s
+
+Original: .work/soc-validation-local/checks/observer-attempt2.stderr
+Raw SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
